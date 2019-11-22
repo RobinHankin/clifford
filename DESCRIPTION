@@ -11,6 +11,6 @@ Depends: methods
 Suggests: knitr
 VignetteBuilder: knitr
 Imports: Rcpp (>= 0.12.5), partitions
-LinkingTo: Rcpp
+LinkingTo: Rcpp,BH
 URL: https://github.com/RobinHankin/clifford.git
 BugReports: https://github.com/RobinHankin/clifford/issues
