@@ -1,0 +1,16 @@
+Package: clifford
+Type: Package
+Title: Clifford algebra
+Version: 1.0-0
+Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
+Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
+Description: A suite of routines for Clifford algebras
+License: GPL (>= 2)
+LazyData: yes
+Depends: methods
+Suggests: knitr
+VignetteBuilder: knitr
+Imports: Rcpp (>= 0.12.5), partitions
+LinkingTo: Rcpp
+URL: https://github.com/RobinHankin/clifford.git
+BugReports: https://github.com/RobinHankin/clifford/issues
