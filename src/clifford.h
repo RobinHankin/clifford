@@ -34,6 +34,14 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
             out[b] += d[i];  // the meat
         } // if d[i] closes
     }  // i loop closes
+
+    for(auto it=out.begin() ; it != out.end() ;){
+        if(it->second == 0){
+            it = out.erase(it); //increments pointer
+        } else {
+            ++it; // increment anyway
+        }
+    } 
     return(out);
 }
 
@@ -42,11 +50,12 @@ Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
     unsigned int i;
     for(i=0 ; i<b.size() ; ++i){
         if((bool) b[i]){
-            out.push_back(i+1); // the meat; off-by-one here
+            out.push_back(i); // the meat; off-by-one here
         }
     }
     return out;
 }
+
 
 List Rblades(const clifford C){  // takes a clifford object, returns a list of which(blades); used in retval()
     List out;
@@ -63,12 +72,8 @@ NumericVector coeffs(const clifford C){  // takes a clifford object, returns the
     clifford::const_iterator ic;   // it iterates through a hyper2 object
     
     for(ic=C.begin(); ic != C.end(); ++ic){
-        const blade b = ic->first;
-        for(i=0 ; i < b.size() ; ++i){
-            if(b[i]==1){
-                out.push_back(i+1);
-            }
-        }
+        out[i] = ic->second;
+        i++;
     }
     return out;
 }
