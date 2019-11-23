@@ -125,7 +125,17 @@ clifford prod(const clifford C1, const clifford C2, unsigned int signature){
     return out;
 }
 
-clifford power(const clifford C, unsigned int p){
-
-
+clifford power(const clifford C, unsigned int p, unsigned int signature){  // p for power
+    clifford out;
+    if(p<1){throw std::range_error("power cannot be <1");} 
+    if(p==1){
+        return C;
+    } else {
+        out = C; 
+        for( ; p>1; p--){
+            out = prod(C,out,signature);
+        }
+    }
+    return out;
 }
+
