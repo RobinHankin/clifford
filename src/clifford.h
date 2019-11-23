@@ -110,7 +110,7 @@ blade_and_sign juxtapose(const blade b1, const blade b2, const unsigned int sign
     return std::make_tuple(bout,sign);
 }
 
-clifford prod(const clifford C1, const clifford C2, unsigned int signature){
+clifford prod(const clifford C1, const clifford C2, const unsigned int signature){
     clifford out;
     clifford::const_iterator ic1,ic2;
     blade b;
@@ -125,7 +125,7 @@ clifford prod(const clifford C1, const clifford C2, unsigned int signature){
     return out;
 }
 
-clifford power(const clifford C, unsigned int p, unsigned int signature){  // p for power
+clifford power(const clifford C, unsigned int p, const unsigned int signature){  // p for power
     clifford out;
     if(p<1){throw std::range_error("power cannot be <1");} 
     if(p==1){
