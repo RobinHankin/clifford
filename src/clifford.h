@@ -101,7 +101,7 @@ clifford c_add(clifford cliff1, clifford cliff2){
     }
 }
 
-blade_and_sign juxtapose(const blade b1, const blade b2, const unsigned int signature){  // takes two blades and returns a reduced version and a sign
+blade_and_sign juxtapose(const blade b1, const blade b2, const unsigned int signature){//juxtaposes two blades, returns reduction and sign
     int sign = 1;
     blade bout;
     for(int i=0 ; i<b1.size() ; ++i){
