@@ -1,8 +1,16 @@
 `clifford` <- function(blades,coeffs){
     stopifnot(is_ok_clifford(blades,coeffs))
-    out <- identity(blades,coeffs,max(c(blades,recursive=TRUE)))
+    out <- identity(blades,coeffs,mymax(c(blades,recursive=TRUE)))
     class(out) <- "clifford"  # this is the only place class clifford is set
     return(out)
+}
+
+`mymax` <- function(x){
+    if(length(x)==0){
+        return(0)
+    } else {
+        return(suppressWarnings(max(x)))
+    }
 }
 
 `is_ok_clifford` <- function(blades,coeffs){
