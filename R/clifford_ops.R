@@ -113,7 +113,7 @@ maxyblade <- function(C1,C2){
 }
 
 `clifford_times_scalar` <- function(C,x){
-    clifford(blades(),x*coeffs(C))
+    clifford(blades(C),x*coeffs(C))
 }
 
 `clifford_plus_clifford` <- function(C1,C2){
