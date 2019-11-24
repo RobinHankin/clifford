@@ -36,3 +36,20 @@ List c_power(
   return retval(c_power(prepare(L1,c1,m),p,sig));
 }
 
+// [[Rcpp::export]]
+List add(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const NumericVector &m
+          ){
+    return retval(c_add(prepare(L1,c1,m),prepare(L2,c2,m)));
+}
+
+// [[Rcpp::export]]
+bool c_equality(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const NumericVector &m
+          ){
+    return c_equal(c_add(prepare(L1,c1,m),prepare(L2,c2,m)));
+}
