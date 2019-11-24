@@ -95,7 +95,7 @@ maxyblade <- function(C1,C2){
     if(is.zero(C)){
         return(C)
     } else {
-        return(clifford(blade(C),-coeffs(C)))
+        return(clifford(blades(C),-coeffs(C)))
     }
 }
 
