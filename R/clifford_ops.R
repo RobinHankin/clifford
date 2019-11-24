@@ -27,6 +27,14 @@
     }
 }
 
+maxyblade <- function(C1,C2){
+  if(is.scalar(C1) & is.scalar(C2)){
+    return(0)
+  } else {
+    return(max(c(blades(C1),blades(C2),recursive=TRUE)))
+  }
+}
+               
 "Ops.clifford" <- function (e1, e2 = NULL) 
 {
     oddfunc <- function(...){stop("odd---neither argument has class clifford?")}
@@ -108,18 +116,13 @@
     clifford(blades(),x*coeffs(C))
 }
 
-`clifford_plus_clifford` <- function(S1,S2){
-  if(is.zero(S1)){
-        return(S2)
-    } else if(is.zero(S2)){
-        return(S1)
-    } else {
-        jj <- mvp_add(
-            allnames1=S1[[1]],allpowers1=S1[[2]],coefficients1=S1[[3]],
-            allnames2=S2[[1]],allpowers2=S2[[2]],coefficients2=S2[[3]]
-        )
-        return(mvp(jj[[1]],jj[[2]],jj[[3]]))
-    }
+`clifford_plus_clifford` <- function(C1,C2){
+  jj <- c_add(
+      L1 = blades(C1), c1 = coeffs(C1),
+      L2 = blades(C2), c2 = coeffs(C2),
+      m  = maxyblade(C1,C2)
+  )
+  return(jj)
 }
 
 `mvp_plus_numeric` <- function(S,x){
