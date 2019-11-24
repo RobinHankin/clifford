@@ -106,6 +106,7 @@ clifford c_add(clifford cliff1, clifford cliff2){
 blade_and_sign juxtapose(const blade b1, const blade b2, const unsigned int signature){//juxtaposes two blades, returns reduction and sign
     int sign = 1;
     blade bout;
+    bout.resize(max(b1.size(),b2.size()));
     for(int i=0 ; i<b1.size() ; ++i){
         if       (((bool)~b1[i]) & ((bool)~b1[i])){ bout[i] = true;   // neither
         } else if(((bool) b1[i]) & ((bool)~b1[i])){ bout[i] = true;   // just b1
