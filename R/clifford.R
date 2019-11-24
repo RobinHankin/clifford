@@ -1,7 +1,7 @@
-`clifford` <- function(blades,coeffs,sig){
-    stopifnot(is_ok_clifford(blades,coeffs,sig))
+`clifford` <- function(blades,coeffs){
+    stopifnot(is_ok_clifford(blades,coeffs))
     m <- mymax(c(blades,recursive=TRUE))
-    out <- c_identity(blades,coeffs,m,sig)
+    out <- c_identity(blades,coeffs,m)
     class(out) <- "clifford"  # this is the only place class clifford is set
     return(out)
 }
@@ -17,7 +17,7 @@
     }
 }
 
-`is_ok_clifford` <- function(blades,coeffs,sig){
+`is_ok_clifford` <- function(blades,coeffs){
     stopifnot(is.list(blades))
     blade_elements <- c(blades,recursive = TRUE)
     
