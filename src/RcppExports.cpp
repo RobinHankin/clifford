@@ -5,22 +5,22 @@
 
 using namespace Rcpp;
 
-// identity
-List identity(const List& L, const NumericVector& p, const NumericVector& m);
-RcppExport SEXP _clifford_identity(SEXP LSEXP, SEXP pSEXP, SEXP mSEXP) {
+// c_identity
+List c_identity(const List& L, const NumericVector& p, const NumericVector& m);
+RcppExport SEXP _clifford_c_identity(SEXP LSEXP, SEXP pSEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const List& >::type L(LSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type p(pSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
-    rcpp_result_gen = Rcpp::wrap(identity(L, p, m));
+    rcpp_result_gen = Rcpp::wrap(c_identity(L, p, m));
     return rcpp_result_gen;
 END_RCPP
 }
-// add
-List add(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m);
-RcppExport SEXP _clifford_add(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP) {
+// c_add
+List c_add(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m);
+RcppExport SEXP _clifford_c_add(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -29,13 +29,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const List& >::type L2(L2SEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type c2(c2SEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
-    rcpp_result_gen = Rcpp::wrap(add(L1, c1, L2, c2, m));
+    rcpp_result_gen = Rcpp::wrap(c_add(L1, c1, L2, c2, m));
     return rcpp_result_gen;
 END_RCPP
 }
-// multiply
-List multiply(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m, const NumericVector& sig);
-RcppExport SEXP _clifford_multiply(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP, SEXP sigSEXP) {
+// c_multiply
+List c_multiply(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m, const NumericVector& sig);
+RcppExport SEXP _clifford_c_multiply(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP, SEXP sigSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -45,7 +45,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const NumericVector& >::type c2(c2SEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type sig(sigSEXP);
-    rcpp_result_gen = Rcpp::wrap(multiply(L1, c1, L2, c2, m, sig));
+    rcpp_result_gen = Rcpp::wrap(c_multiply(L1, c1, L2, c2, m, sig));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -83,9 +83,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_clifford_identity", (DL_FUNC) &_clifford_identity, 3},
-    {"_clifford_add", (DL_FUNC) &_clifford_add, 5},
-    {"_clifford_multiply", (DL_FUNC) &_clifford_multiply, 6},
+    {"_clifford_c_identity", (DL_FUNC) &_clifford_c_identity, 3},
+    {"_clifford_c_add", (DL_FUNC) &_clifford_c_add, 5},
+    {"_clifford_c_multiply", (DL_FUNC) &_clifford_c_multiply, 6},
     {"_clifford_c_power", (DL_FUNC) &_clifford_c_power, 7},
     {"_clifford_c_equal", (DL_FUNC) &_clifford_c_equal, 5},
     {NULL, NULL, 0}

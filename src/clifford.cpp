@@ -1,13 +1,13 @@
 #include "clifford.h"
 
 // [[Rcpp::export]]
-List identity(const List &L, const NumericVector &p, const NumericVector &m){
+List c_identity(const List &L, const NumericVector &p, const NumericVector &m){
     const clifford out = prepare(L,p,m);
     return retval(out);
 }
 
 // [[Rcpp::export]]
-List add(
+List c_add(
           const List &L1, const NumericVector &c1,
           const List &L2, const NumericVector &c2,  // c[12] = coeffs
           const NumericVector &m
@@ -16,7 +16,7 @@ List add(
 }
 
 // [[Rcpp::export]]
-List multiply(
+List c_multiply(
           const List &L1, const NumericVector &c1,
           const List &L2, const NumericVector &c2,  // c[12] = coeffs
           const NumericVector &m,
