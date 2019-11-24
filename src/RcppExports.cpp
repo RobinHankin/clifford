@@ -66,9 +66,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// add
-List add(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m);
-RcppExport SEXP _clifford_add(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP) {
+// c_equal
+bool c_equal(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m);
+RcppExport SEXP _clifford_c_equal(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -77,22 +77,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const List& >::type L2(L2SEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type c2(c2SEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
-    rcpp_result_gen = Rcpp::wrap(add(L1, c1, L2, c2, m));
-    return rcpp_result_gen;
-END_RCPP
-}
-// c_equality
-bool c_equality(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m);
-RcppExport SEXP _clifford_c_equality(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const List& >::type L1(L1SEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type c1(c1SEXP);
-    Rcpp::traits::input_parameter< const List& >::type L2(L2SEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type c2(c2SEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
-    rcpp_result_gen = Rcpp::wrap(c_equality(L1, c1, L2, c2, m));
+    rcpp_result_gen = Rcpp::wrap(c_equal(L1, c1, L2, c2, m));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -102,8 +87,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_clifford_add", (DL_FUNC) &_clifford_add, 5},
     {"_clifford_multiply", (DL_FUNC) &_clifford_multiply, 6},
     {"_clifford_c_power", (DL_FUNC) &_clifford_c_power, 7},
-    {"_clifford_add", (DL_FUNC) &_clifford_add, 5},
-    {"_clifford_c_equality", (DL_FUNC) &_clifford_c_equality, 5},
+    {"_clifford_c_equal", (DL_FUNC) &_clifford_c_equal, 5},
     {NULL, NULL, 0}
 };
 

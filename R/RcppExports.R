@@ -17,11 +17,7 @@ c_power <- function(L1, c1, L2, c2, m, p, sig) {
     .Call(`_clifford_c_power`, L1, c1, L2, c2, m, p, sig)
 }
 
-add <- function(L1, c1, L2, c2, m) {
-    .Call(`_clifford_add`, L1, c1, L2, c2, m)
-}
-
-c_equality <- function(L1, c1, L2, c2, m) {
-    .Call(`_clifford_c_equality`, L1, c1, L2, c2, m)
+c_equal <- function(L1, c1, L2, c2, m) {
+    .Call(`_clifford_c_equal`, L1, c1, L2, c2, m)
 }
 

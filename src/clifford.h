@@ -145,18 +145,18 @@ clifford c_power(const clifford C, const NumericVector &power, const NumericVect
     return out;
 }
 
-clifford c_equality(const clifford C1, const clifford C2){
+bool c_equal(clifford C1, clifford C2){
     // modelled on spray_equality()
     if(C1.size() != C2.size()){
         return false;
     }
 
-    for (ic=C1.begin(); ic != C1.end(); ++ic){
-        v = ic->first;
-        if(C1[v] != C2[v]){
+    for (clifford::const_iterator ic=C1.begin(); ic != C1.end(); ++ic){
+        blade b = ic->first;
+        if(C1[b] != C2[b]){
             return false;
         } else {
-            C2.erase(v);
+            C2.erase(b);
         }
     }
     
