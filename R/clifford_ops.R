@@ -21,7 +21,11 @@
     if(length(s) != 1){
         stop("signature must have length 1")
     } else if(s != round(s)){
-        stop("signature must be an integer")
+      stop("signature must be an integer")
+    } else {
+      return(TRUE)
+    }
+}
 
 "Ops.clifford" <- function (e1, e2 = NULL) 
 {
@@ -55,28 +59,24 @@
             oddfunc()
         }
     } else if (.Generic == "+") {
-            return(clifford_plus_clifford(as.clifford(e2), as.clifford(e1)))
-        }
+         return(clifford_plus_clifford(as.clifford(e2), as.clifford(e1)))
     } else if (.Generic == "-") {
             return(clifford_plus_clifford(as.clifford(e1),clifford_negative(as.clifford(e2))))
-        } else {
-            oddfunc()
-        }
     } else if (.Generic == "^") {
-        if(lclass && !rclass){
-            return(clifford_power_scalar(e1,e2)) # S^n
+      if(lclass && !rclass){
+        return(clifford_power_scalar(e1,e2)) # S^n
         } else {
             stop("Generic '^' not implemented in this case")
         }
     } else if (.Generic == "==") {
         if(lclass && rclass){
-            return(clifford_equals_clifford(e1,e2))
+            return(clifford_equals_clifford(as.clifford(e1),as.clifford(e2)))
         } else {
             stop("Generic '==' only compares two clifford objects with one another")
         }
     } else if (.Generic == "!=") {
-        if(lclass && rclass){
-            return(!clifford_equals_clifford(e1,e2))
+         if(lclass && rclass){
+            return(!clifford_equals_clifford(as.clifford(e1),as.clifford(e2)))
         } else {
             stop("Generic '==' only compares two clifford objects with one another")
         }
@@ -137,6 +137,7 @@ mvp_power_scalar <- function(S,n){
       return(mvp(jj[[1]],jj[[2]],jj[[3]]))
   }
 }
+        
 
 `mvp_eq_mvp` <- function(S1,S2){
   is.zero(S1-S2)  # nontrivial; S1 and S2 might have different orders
