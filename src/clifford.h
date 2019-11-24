@@ -19,30 +19,32 @@ typedef boost::dynamic_bitset<> blade;
 typedef map<blade, long double> clifford;
 typedef std::tuple<blade, int> blade_and_sign;
 
+clifford remove_zeros(clifford &C){
+   for(auto it=C.begin() ; it != C.end() ;){
+        if(it->second == 0){
+            it = C.erase(it); //increments pointer
+        } else {
+            ++it; // increment anyway
+        }
+    } 
+    return(C);
+}
+
 clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     clifford out;
     const unsigned n=L.size();
-
     for(int i=0 ; i<n ; i++){
         if(d[i] != 0){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
             blade b;
-            b.resize(m[0]);
+            b.resize(m[0]+1);  //off-by-one
             for(int j=0 ; j < iv.size(); j++){
                 b[iv[j]] = 1;
             }
             out[b] += d[i];  // the meat
         } // if d[i] closes
     }  // i loop closes
-
-    for(auto it=out.begin() ; it != out.end() ;){
-        if(it->second == 0){
-            it = out.erase(it); //increments pointer
-        } else {
-            ++it; // increment anyway
-        }
-    } 
-    return(out);
+    return remove_zeros(out);
 }
 
 Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
@@ -91,13 +93,13 @@ clifford c_add(clifford cliff1, clifford cliff2){
             const blade b = ic->first;
             cliff1[b] += cliff2[b];  
         }
-        return cliff1;
+        return remove_zeros(cliff1);
     } else {  // L2 is bigger
         for (ic=cliff1.begin(); ic != cliff1.end(); ++ic){
             const blade b = ic->first;
             cliff2[b] += cliff1[b];  
         }
-        return cliff2;
+        return remove_zeros(cliff2);
     }
 }
 
