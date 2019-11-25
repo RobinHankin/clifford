@@ -20,13 +20,13 @@
 `is_ok_clifford` <- function(blades,coeffs){
     stopifnot(is.list(blades))
     blade_elements <- c(blades,recursive = TRUE)
+
+    if(!is.null(blade_elements)){
+      stopifnot(all(blade_elements > 0))
+
+    }
     
-    stopifnot(all(blade_elements >0))
-    stopifnot(all(blade_elements == round(blade_elements)))
-
     blade_elements_increase <- c(lapply(blades,diff),recursive=TRUE)
-    stopifnot(all(blade_elements_increase > 0))
-
     stopifnot(length(blades) == length(coeffs))
 
     return(TRUE)
