@@ -17,13 +17,8 @@ The print method does not change the internal representation of a
 is a list of integer vectors representing blades, and the second is a
 numeric vector of coefficients.
 
-The print method has special dispensation for length-zero clifford objects
-but these are not handled entirely consistently.
-
-The print method is sensitive to the value of
-\code{getOption("usecaret")}, defaulting to \dQuote{no}.  The default is
-to use uppercase letters to represent multiplicative inverses, but if
-\code{TRUE}, use \code{a^-1}.
+The print method has special dispensation for length-zero clifford
+objects.
 
 }
 \seealso{\code{\link{clifford}}}  
