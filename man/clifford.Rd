@@ -20,6 +20,7 @@ is.clifford(x)
     entries corresponding to the basis vectors of the underlying vector
     space}
   \item{coeffs}{Numeric vector of coefficients}
+  \item{x}{Object of class \code{clifford}}
 }
 \details{
 Function \code{clifford()} is the formal creation mechanism for
@@ -34,7 +35,7 @@ Snygg 2012.  \dQuote{A new approach to differential geometry using
 Science+Business.
 }
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{clifford.ops}}}
+\seealso{\code{\link{Ops.clifford}}}
 \examples{
 
 rcliff(7,6)
