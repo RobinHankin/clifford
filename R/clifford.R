@@ -74,3 +74,37 @@
       coeffs(C) * unlist(lapply(blades(C),f))
   )
 }
+
+`print.clifford` <- function(x,...){
+  cat("Element of a Clifford  algebra, equal to\n")
+
+  f <- function(a){
+      if(is.null(a)){
+          return("")
+      } else {
+          return(paste("e",a,collapse=" ",sep=""))
+      }
+  }
+
+  out <- ""
+  for(i in seq_along(blades(x))){
+    co <- coeffs(x)[i]
+    if(co>0){
+      pm <- " + " # pm = plus or minus
+    } else {
+      pm <- " - "
+      co <- abs(co)
+    }
+
+    jj <- f(blades(x)[[i]])
+    out <- paste(out, pm, co, jj, sep="")
+  }
+  if(is.zero(x)){
+      out <- "the zero clifford element (0)"
+  } else if(is.scalar(x)){
+      out <- paste("scalar (",coeffs(x),")")
+  }
+  cat(out)
+  cat("\n")
+  return(x)
+}
