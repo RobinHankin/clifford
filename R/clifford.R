@@ -57,3 +57,11 @@
 `is.zero` <- function(C){nterms(C)==0}
 `is.scalar` <- function(C){(length(blades(C))==1) && (length(blades(C)[[1]])==0)}
 `nbits` <- function(C){max(c(blades(C),recursive=TRUE))}
+
+`rcliff` <- function(n,b){
+  clifford(
+      replicate(n,sort(sample(seq_len(b),sample(b,1))),simplify=FALSE),
+      sample(n)
+  )
+} 
+  
