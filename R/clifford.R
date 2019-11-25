@@ -67,11 +67,11 @@
   )
 } 
   
-`rev.clifford` <- function(C){
-  f <- function(x){ifelse(length(x)%%4 %in% 0:1, 1,-1)}
+`rev.clifford` <- function(x){
+  f <- function(u){ifelse(length(u)%%4 %in% 0:1, 1,-1)}
   clifford(
-      blades(C),
-      coeffs(C) * unlist(lapply(blades(C),f))
+      blades(x),
+      coeffs(x) * unlist(lapply(blades(x),f))
   )
 }
 
