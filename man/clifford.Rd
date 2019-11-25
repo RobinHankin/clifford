@@ -38,31 +38,32 @@ nterms(x)
   \item{x}{Object of class \code{clifford}}
 }
 \details{
-Function \code{clifford()} is the formal creation mechanism for
-\code{clifford} objects.
 
-Function \code{as.clifford()} is much more user-friendly and attempts to
-coerce a range of input arguments to clifford form.
+  \itemize{
+    
+    \item Function \code{clifford()} is the formal creation mechanism for
+\code{clifford} objects
 
-The extraction methods are \code{blades()} and \code{coeffs()}.  These
-are unordered vectors but the ordering is consistent between them (an
-extended discussion of this phenomenon is presented in the \code{mvp}
-package).
+\item Function \code{as.clifford()} is much more user-friendly and
+attempts to coerce a range of input arguments to clifford form
 
-Functions \code{is.scalar()} and \code{is.zero()} check for a clifford
-object being a scalar (one empty blade), or the zero object (zero
-blades) respectively.
+\item Functions \code{blades()} and \code{coeffs()} are the extraction
+methods.  These are unordered vectors but the ordering is consistent
+between them (an extended discussion of this phenomenon is presented in
+the \code{mvp} package)
 
-Function \code{nbits()} returns the number of bits required in the
+\item Functions \code{is.scalar()} and \code{is.zero()} check for a
+clifford object being a scalar (one empty blade), or the zero object
+(zero blades) respectively
+
+\item Function \code{nbits()} returns the number of bits required in the
 low-level C routines to store the blades (this is the largest entry in
-the list of blades).
+the list of blades)
 
-Function \code{nterms()} returns the number of terms in the expression.
-
-Function \code{is_ok_clifford()} is a helper function that checks for
-consistency of its arguments
-
-
+\item Function \code{nterms()} returns the number of terms in the
+expression
+\item Function \code{is_ok_clifford()} is a helper function that checks
+for consistency of its arguments}
 }
 \references{
 Snygg 2012.  \dQuote{A new approach to differential geometry using
