@@ -1,4 +1,8 @@
 \name{Ops.clifford}
+\alias{\%.\%}
+\alias{\%^\%}
+\alias{\%.\%.clifford}
+\alias{\%^\%.clifford}
 \alias{Ops.clifford}
 \alias{Ops}
 \alias{c_identity}
@@ -25,19 +29,21 @@
 c_identity(L, p, m)
 c_add(L1, c1, L2, c2, m)
 c_multiply(L1, c1, L2, c2, m, sig)
-c_power(L1, c1, L2, c2, m, p, sig)
+c_power(L, c, m, p, sig)
 c_equal(L1, c1, L2, c2, m)
 clifford_negative(C)
 clifford_times_clifford(C1,C2)
 clifford_times_scalar(C,x)
 clifford_plus_clifford(C1,C2)
 clifford_eq_clifford(C1,C2)
+C1 \%.\% C2
+C1 \%^\% C2
 }
 \arguments{
   \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}
   \item{x}{Scalar, length one numeric vector}
   \item{L,L1,L2}{Lists of blades}
-  \item{c1,c2}{Numeric vectors of coefficients}
+  \item{c1,c2,c}{Numeric vectors of coefficients}
   \item{m}{Maximum entry of blades}
   \item{p}{Integer power}
   \item{sig}{Positive integer representing number of \eqn{+1} on main
@@ -49,6 +55,9 @@ clifford_eq_clifford(C1,C2)
   operators \dQuote{\code{+}}, \dQuote{\code{-}}, \dQuote{\code{*}} and
   \dQuote{\code{^}} to the appropriate specialist function.
 
+  Idiom \code{x \%.\% y} returns the inner product \code{(xy+yx)/2} and
+  \code{x \%^\% y} returns the wedge product \code{(xy-yx)/2}.
+  
   Functions \code{c_foo()} are low-level helper functions that wrap the
   \code{C} code.
 

@@ -161,7 +161,7 @@ clifford_power_scalar <- function(C,n){
   )
 }
 
-"%.%" <- function(x,y){UseMethod("%.%")}
-"%.%.clifford" <- function(x,y){(x*y+y*x)/2}
-"%^%" <- function(x,y){UseMethod("%^%")}
-"%^%.clifford" <- function(x,y){(x*y-y*x)/2}
+"%.%" <- function(C1,C2){UseMethod("%.%")}
+"%.%.clifford" <- function(C1,C2){(C1*C2+C2*C1)/2}
+"%^%" <- function(C1,C2){UseMethod("%^%")}
+"%^%.clifford" <- function(C1,C2){(C1*C2-C2*C1)/2}
