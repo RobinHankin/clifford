@@ -13,8 +13,8 @@ c_multiply <- function(L1, c1, L2, c2, m, sig) {
     .Call(`_clifford_c_multiply`, L1, c1, L2, c2, m, sig)
 }
 
-c_power <- function(L1, c1, L2, c2, m, p, sig) {
-    .Call(`_clifford_c_power`, L1, c1, L2, c2, m, p, sig)
+c_power <- function(L, c, m, p, sig) {
+    .Call(`_clifford_c_power`, L, c, m, p, sig)
 }
 
 c_equal <- function(L1, c1, L2, c2, m) {

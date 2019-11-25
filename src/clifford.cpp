@@ -27,13 +27,12 @@ List c_multiply(
 
 // [[Rcpp::export]]
 List c_power(
-          const List &L1, const NumericVector &c1,
-          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const List &L, const NumericVector &c,
           const NumericVector &m,
           const NumericVector &p,
           const NumericVector &sig
           ){
-  return retval(c_power(prepare(L1,c1,m),p,sig));
+  return retval(c_power(prepare(L,c,m),p,sig));
 }
 
 // [[Rcpp::export]]

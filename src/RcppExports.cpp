@@ -50,19 +50,17 @@ BEGIN_RCPP
 END_RCPP
 }
 // c_power
-List c_power(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m, const NumericVector& p, const NumericVector& sig);
-RcppExport SEXP _clifford_c_power(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP, SEXP pSEXP, SEXP sigSEXP) {
+List c_power(const List& L, const NumericVector& c, const NumericVector& m, const NumericVector& p, const NumericVector& sig);
+RcppExport SEXP _clifford_c_power(SEXP LSEXP, SEXP cSEXP, SEXP mSEXP, SEXP pSEXP, SEXP sigSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const List& >::type L1(L1SEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type c1(c1SEXP);
-    Rcpp::traits::input_parameter< const List& >::type L2(L2SEXP);
-    Rcpp::traits::input_parameter< const NumericVector& >::type c2(c2SEXP);
+    Rcpp::traits::input_parameter< const List& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c(cSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type p(pSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type sig(sigSEXP);
-    rcpp_result_gen = Rcpp::wrap(c_power(L1, c1, L2, c2, m, p, sig));
+    rcpp_result_gen = Rcpp::wrap(c_power(L, c, m, p, sig));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -86,7 +84,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_identity", (DL_FUNC) &_clifford_c_identity, 3},
     {"_clifford_c_add", (DL_FUNC) &_clifford_c_add, 5},
     {"_clifford_c_multiply", (DL_FUNC) &_clifford_c_multiply, 6},
-    {"_clifford_c_power", (DL_FUNC) &_clifford_c_power, 7},
+    {"_clifford_c_power", (DL_FUNC) &_clifford_c_power, 5},
     {"_clifford_c_equal", (DL_FUNC) &_clifford_c_equal, 5},
     {NULL, NULL, 0}
 };

@@ -145,9 +145,8 @@ clifford_power_scalar <- function(C,n){
     return(as.clifford(1))
   } else {
     return(as.clifford(c_power(
-      L1  = blades(C1), c1 = coeffs(C1),
-      L2  = blades(C2), c2 = coeffs(C2),
-      m   = maxyblade(C1,C2),
+      L   = blades(C), c = coeffs(C),
+      m   = maxyblade(C,C),
       p   = n,
       sig = signature()
   )))
