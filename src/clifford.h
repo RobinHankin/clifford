@@ -103,15 +103,21 @@ clifford c_add(clifford cliff1, clifford cliff2){
     }
 }
 
-blade_and_sign juxtapose(const blade b1, const blade b2, const unsigned int signature){//juxtaposes two blades, returns reduction and sign
+blade_and_sign juxtapose(blade b1, blade b2, const unsigned int signature){//juxtaposes two blades, returns reduction and sign
     int sign = 1;
     blade bout;
-    bout.resize(max(b1.size(),b2.size()));
-    for(int i=0 ; i<b1.size() ; ++i){
-        if       (((bool)~b1[i]) & ((bool)~b1[i])){ bout[i] = true;   // neither
-        } else if(((bool) b1[i]) & ((bool)~b1[i])){ bout[i] = true;   // just b1
-        } else if(((bool)~b1[i]) & ((bool) b1[i])){ bout[i] = true;   // just b2
-        } else if(((bool) b1[i]) & ((bool) b1[i])){ bout[i] = false;  // both...
+    const unsigned int m = max(b1.size(),b2.size());
+
+    b1.resize(m);
+    b2.resize(m);
+    bout.resize(m);        
+
+    for(int i=0 ; i<m ; ++i){
+        
+        if       (((bool)~b1[i]) & ((bool)~b2[i])){ bout[i] = false;   // neither
+        } else if(((bool) b1[i]) & ((bool)~b2[i])){ bout[i] = true;   // just b1
+        } else if(((bool)~b1[i]) & ((bool) b2[i])){ bout[i] = true;   // just b2
+        } else if(((bool) b1[i]) & ((bool) b2[i])){ bout[i] = false;  // both, but...
             if((signature>0) && (i>signature)){sign *= -1;};  // ...swap sign!  NB check for off-by-one error
         }
     }
@@ -123,11 +129,10 @@ clifford c_prod(const clifford C1, const clifford C2, const NumericVector &signa
     clifford::const_iterator ic1,ic2;
     blade b;
     int sign;
-
     for(ic1=C1.begin(); ic1 != C1.end(); ++ic1){
         for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
             tie(b, sign) = juxtapose(ic1->first, ic2->first, signature[0]);
-            out[b] += sign*(ic2->second)*(ic2->second); // the meat
+            out[b] += sign*(ic1->second)*(ic2->second); // the meat
         }
     }
     return out;
