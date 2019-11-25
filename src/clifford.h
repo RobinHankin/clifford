@@ -118,7 +118,18 @@ blade_and_sign juxtapose(blade b1, blade b2, const unsigned int signature){//jux
         } else if(((bool) b1[i]) & ((bool)~b2[i])){ bout[i] = true;   // just b1
         } else if(((bool)~b1[i]) & ((bool) b2[i])){ bout[i] = true;   // just b2
         } else if(((bool) b1[i]) & ((bool) b2[i])){ bout[i] = false;  // both, but...
-            if((signature>0) && (i>signature)){sign *= -1;};  // ...swap sign!  NB check for off-by-one error
+            if(signature>0){ // ...swap sign!  
+                if(i>signature){  // NB check for off-by-one error
+                    sign *= -1;
+                }
+            }
+        }
+    }
+        
+    for(int i=0 ; i<m ; ++i){
+        for(int j=i ; j<m ; ++j){
+            if((b2[i] & b1[j]) && (i<j)){
+                sign *= -1;}
         }
     }
     return std::make_tuple(bout,sign);
