@@ -135,7 +135,7 @@ clifford c_prod(const clifford C1, const clifford C2, const NumericVector &signa
             out[b] += sign*(ic1->second)*(ic2->second); // the meat
         }
     }
-    return out;
+    return remove_zeros(out);
 }
 
 clifford c_power(const clifford C, const NumericVector &power, const NumericVector &signature){  // p for power
