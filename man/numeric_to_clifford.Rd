@@ -1,5 +1,7 @@
 \name{numeric_to_clifford}
 \alias{numeric_to_clifford}
+\alias{as.cliffvector}
+\alias{as.scalar}
 \title{Coercion from numeric to Clifford form}
 \description{
 Given a numeric value or vector, return a Clifford algebra element}
