@@ -24,6 +24,11 @@ objects.
 \seealso{\code{\link{clifford}}}  
 \examples{
 
-rfalg()
+a <- rcliff()
+b <- rcliff()
+a*b
+
+a \%^\% b
+
 
 }
