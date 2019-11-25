@@ -7,6 +7,7 @@
 \alias{is.scalar}
 \alias{is.zero}
 \alias{nbits}
+\alias{nterms}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
 
@@ -24,6 +25,7 @@ coeffs(x)
 is.scalar(x)
 is.zero(x)
 nbits(x)
+nterms(x)
 }
 \arguments{
   \item{blades}{A list of integer vectors with strictly increasing
@@ -46,9 +48,13 @@ package).
 
 Functions \code{is.scalar()} and \code{is.zero()} check for a clifford
 object being a scalar (one empty blade), or the zero object (zero
-blades) respectively.  Function \code{nbits()} returns the number of
-bits required in the low-level C routines to store the blades (this is
-the largest entry in the list of blades).
+blades) respectively.
+
+Function \code{nbits()} returns the number of bits required in the
+low-level C routines to store the blades (this is the largest entry in
+the list of blades).
+
+Function \code{nterms()} returns the number of terms in the expression.
 
 
 }
