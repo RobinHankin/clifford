@@ -52,7 +52,7 @@ maxyblade <- function(C1,C2){
         }
     }
 
-    if (!is.element(.Generic, c("+", "-", "*", "^", "==", "!="))){
+    if (!is.element(.Generic, c("+", "-", "*", "/","^", "==", "!="))){
         stop("Operator '", .Generic, "' is not implemented for clifford objects")
     }
 
@@ -66,6 +66,12 @@ maxyblade <- function(C1,C2){
         } else {
             oddfunc()
         }
+    } else if (.Generic == "/") {
+        if(lclass * !rclass){
+            return(clifford_times_scalar(e1,1/e2))
+        } else {
+            stop("Generic '/' not implemented in this case")
+        }
     } else if (.Generic == "+") {
          return(clifford_plus_clifford(as.clifford(e2), as.clifford(e1)))
     } else if (.Generic == "-") {
@@ -78,13 +84,13 @@ maxyblade <- function(C1,C2){
         }
     } else if (.Generic == "==") {
         if(lclass && rclass){
-            return(clifford_equals_clifford(as.clifford(e1),as.clifford(e2)))
+            return(clifford_eq_clifford(as.clifford(e1),as.clifford(e2)))
         } else {
             stop("Generic '==' only compares two clifford objects with one another")
         }
     } else if (.Generic == "!=") {
          if(lclass && rclass){
-            return(!clifford_equals_clifford(as.clifford(e1),as.clifford(e2)))
+            return(!clifford_eq_clifford(as.clifford(e1),as.clifford(e2)))
         } else {
             stop("Generic '==' only compares two clifford objects with one another")
         }
@@ -125,23 +131,32 @@ maxyblade <- function(C1,C2){
   ))
 }
 
-`mvp_plus_numeric` <- function(S,x){
-    mvp_plus_mvp(S,numeric_to_mvp(x))
-}
-
-mvp_power_scalar <- function(S,n){
+clifford_power_scalar <- function(C,n){
   stopifnot(n==round(n))
   if(n<0){
     stop("negative powers not implemented")
   } else if(n==0){
-    return(constant(1))
+    return(as.clifford(1))
   } else {
-      jj <- mvp_power(allnames=S[[1]],allpowers=S[[2]],coefficients=S[[3]],n=n)
-      return(mvp(jj[[1]],jj[[2]],jj[[3]]))
+    return(as.clifford(c_power(
+      L1  = blades(C1), c1 = coeffs(C1),
+      L2  = blades(C2), c2 = coeffs(C2),
+      m   = maxyblade(C1,C2),
+      p   = n,
+      sig = signature()
+  )))
   }
 }
         
-
-`mvp_eq_mvp` <- function(S1,S2){
-  is.zero(S1-S2)  # nontrivial; S1 and S2 might have different orders
+`clifford_eq_clifford` <- function(C1,C2){
+  c_equal(
+      L1  = blades(C1), c1 = coeffs(C1),
+      L2  = blades(C2), c2 = coeffs(C2),
+      m   = maxyblade(C1,C2)
+  )
 }
+
+"%.%" <- function(x,y){UseMethod("%.%")}
+"%.%.clifford" <- function(x,y){(x*y+y*x)/2}
+"%^%" <- function(x,y){UseMethod("%^%")}
+"%^%.clifford" <- function(x,y){(x*y-y*x)/2}

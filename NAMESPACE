@@ -1,4 +1,12 @@
 useDynLib(clifford, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
 
+export("%.%")
+export("%^%")
+
+
+
 importFrom(Rcpp, evalCpp)
+
+S3method("%.%",clifford)
+S3method("%^%",clifford)
