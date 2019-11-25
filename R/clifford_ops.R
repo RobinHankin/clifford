@@ -104,11 +104,12 @@ maxyblade <- function(C1,C2){
     return(as.clifford(0))
     s <- getOption("signature")
   } else {
-      jj <- multiply(
-          C1[[1]],C1[[2]],
-          C2[[1]],C2[[1]],
-          max(nbits(C1),nbits(C2)), s)
-      return(clifford(jj[[1]],jj[[2]]),s)
+return(c_multiply(
+        L1  = blades(C1), c1 = coeffs(C1),
+        L2  = blades(C2), c2 = coeffs(C2),
+        m   = maxyblade(C1,C2),
+        sig = signature()
+    ))
   }
 }
 
