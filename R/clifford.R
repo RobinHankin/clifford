@@ -6,8 +6,8 @@
     return(out)
 }
 
-`blades` <- function(C){ C[[1]] }  # accessor methods start
-`coeffs` <- function(C){ C[[2]] }  # accessor methods end
+`blades` <- function(x){ x[[1]] }  # accessor methods start
+`coeffs` <- function(x){ x[[2]] }  # accessor methods end
 
 `mymax` <- function(x){
     if(length(x)==0){
@@ -55,10 +55,13 @@
     return(clifford(list(numeric(0)),x))
 }
 
-`nterms` <- function(C){length(coeffs(C))}
-`is.zero` <- function(C){nterms(C)==0}
-`is.scalar` <- function(C){(length(blades(C))==1) && (length(blades(C)[[1]])==0)}
-`nbits` <- function(C){max(c(blades(C),recursive=TRUE))}
+`nterms` <- function(x){length(coeffs(x))}
+`is.zero` <- function(x){nterms(x)==0}
+`is.scalar` <- function(x){
+  (length(blades(x))==1) && (length(blades(x)[[1]])==0)
+}
+
+`nbits` <- function(x){max(c(blades(x),recursive=TRUE))}
 
 `rcliff` <- function(n=9,b=6){
   clifford(

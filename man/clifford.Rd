@@ -2,6 +2,11 @@
 \alias{clifford}
 \alias{as.clifford}
 \alias{is.clifford}
+\alias{blades}
+\alias{coeffs}
+\alias{is.scalar}
+\alias{is.zero}
+\alias{nbits}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
 
@@ -14,6 +19,11 @@ mathematics
 clifford(blades, coeffs)
 as.clifford(x)
 is.clifford(x)
+blades(x)
+coeffs(x)
+is.scalar(x)
+is.zero(x)
+nbits(x)
 }
 \arguments{
   \item{blades}{A list of integer vectors with strictly increasing
@@ -28,6 +38,19 @@ Function \code{clifford()} is the formal creation mechanism for
 
 Function \code{as.clifford()} is much more user-friendly and attempts to
 coerce a range of input arguments to clifford form.
+
+The extraction methods are \code{blades()} and \code{coeffs()}.  These
+are unordered vectors but the ordering is consistent between them (an
+extended discussion of this phenomenon is presented in the \code{mvp}
+package).
+
+Functions \code{is.scalar()} and \code{is.zero()} check for a clifford
+object being a scalar (one empty blade), or the zero object (zero
+blades) respectively.  Function \code{nbits()} returns the number of
+bits required in the low-level C routines to store the blades (this is
+the largest entry in the list of blades).
+
+
 }
 \references{
 Snygg 2012.  \dQuote{A new approach to differential geometry using
