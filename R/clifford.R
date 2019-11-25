@@ -39,7 +39,7 @@
     } else if(is.list(x)){
         return(clifford(x[[1]],x[[2]]))
     } else if(is.numeric(x)){
-        return(numeric_to_clifford(x))
+        return(as.clifford(x))
     } else if(is.null(x)){
         return(clifford(list(numeric(0)),0))
     } else {
@@ -48,12 +48,6 @@
 }
 
 `is.clifford` <- function(x){inherits(x,"clifford")}
-
-`numeric_to_clifford` <- function(x){
-    stopifnot(is.numeric(x))
-    stopifnot(length(x) == 1)
-    return(clifford(list(numeric(0)),x))
-}
 
 `nterms` <- function(x){length(coeffs(x))}
 `is.zero` <- function(x){nterms(x)==0}
