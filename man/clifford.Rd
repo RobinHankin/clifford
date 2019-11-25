@@ -8,6 +8,7 @@
 \alias{is.zero}
 \alias{nbits}
 \alias{nterms}
+\alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
 
@@ -18,6 +19,7 @@ mathematics
 
 \usage{
 clifford(blades, coeffs)
+is_ok_clifford(blades, coeffs)
 as.clifford(x)
 is.clifford(x)
 blades(x)
@@ -26,6 +28,7 @@ is.scalar(x)
 is.zero(x)
 nbits(x)
 nterms(x)
+
 }
 \arguments{
   \item{blades}{A list of integer vectors with strictly increasing
@@ -55,6 +58,9 @@ low-level C routines to store the blades (this is the largest entry in
 the list of blades).
 
 Function \code{nterms()} returns the number of terms in the expression.
+
+Function \code{is_ok_clifford()} is a helper function that checks for
+consistency of its arguments
 
 
 }
