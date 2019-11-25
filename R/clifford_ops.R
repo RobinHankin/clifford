@@ -124,11 +124,17 @@ maxyblade <- function(C1,C2){
 }
 
 `clifford_plus_clifford` <- function(C1,C2){
-  as.clifford(c_add(
+    if(is.zero(C1)){
+        return(C2)
+    } else if(is.zero(C2)){
+        return(C1)
+    } else {
+        return(as.clifford(c_add(
       L1 = blades(C1), c1 = coeffs(C1),
       L2 = blades(C2), c2 = coeffs(C2),
       m  = maxyblade(C1,C2)
-  ))
+      )))
+    }
 }
 
 clifford_power_scalar <- function(C,n){
