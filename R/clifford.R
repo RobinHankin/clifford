@@ -55,5 +55,5 @@
 
 `nterms` <- function(C){length(coeffs(C))}
 `is.zero` <- function(C){nterms(C)==0}
-`is.scalar` <- function(C){nterms(C)==1}
+`is.scalar` <- function(C){(length(blades(C))==1) && (length(blades(C)[[1]])==0)}
 `nbits` <- function(C){max(c(blades(C),recursive=TRUE))}
