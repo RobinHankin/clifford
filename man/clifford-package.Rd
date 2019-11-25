@@ -19,13 +19,11 @@ The DESCRIPTION file:
 
 Maintainer: \packageMaintainer{clifford}
 }
-\references{
-
-}
 \keyword{ package }
 \seealso{\code{\link{clifford}}}
 \examples{
 
+rcliff()
 
 
 }
