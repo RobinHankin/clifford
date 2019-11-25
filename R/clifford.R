@@ -47,6 +47,8 @@
     }
 }
 
+`is.clifford` <- function(x){inherits(x,"clifford")}
+
 `numeric_to_clifford` <- function(x){
     stopifnot(is.numeric(x))
     stopifnot(length(x) == 1)
@@ -58,7 +60,7 @@
 `is.scalar` <- function(C){(length(blades(C))==1) && (length(blades(C)[[1]])==0)}
 `nbits` <- function(C){max(c(blades(C),recursive=TRUE))}
 
-`rcliff` <- function(n,b){
+`rcliff` <- function(n=9,b=6){
   clifford(
       replicate(n,sort(sample(seq_len(b),sample(b,1))),simplify=FALSE),
       sample(n)
