@@ -23,7 +23,6 @@
 
     if(!is.null(blade_elements)){
       stopifnot(all(blade_elements > 0))
-
     }
     
     blade_elements_increase <- c(lapply(blades,diff),recursive=TRUE)
@@ -39,7 +38,7 @@
     } else if(is.list(x)){
         return(clifford(x[[1]],x[[2]]))
     } else if(is.numeric(x)){
-        return(as.clifford(x))
+        return(numeric_to_clifford(x))
     } else if(is.null(x)){
         return(clifford(list(numeric(0)),0))
     } else {
@@ -47,15 +46,26 @@
     }
 }
 
+`numeric_to_clifford` <- function(x){
+  if(length(x)==1){
+    return(as.scalar(x))
+  } else {
+    return(as.cliffvector(x))
+  }
+}
+
 `is.clifford` <- function(x){inherits(x,"clifford")}
 
 `nterms` <- function(x){length(coeffs(x))}
 `is.zero` <- function(x){nterms(x)==0}
+`nbits` <- function(x){max(c(blades(x),recursive=TRUE))}
+
 `is.scalar` <- function(x){
   (length(blades(x))==1) && (length(blades(x)[[1]])==0)
 }
 
-`nbits` <- function(x){max(c(blades(x),recursive=TRUE))}
+`as.scalar` <- function(x){clifford(list(numeric(0)),x)}
+`as.cliffvector` <- function(x){clifford(as.list(seq_along(x)),x)}
 
 `rcliff` <- function(n=9,b=6){
   clifford(
