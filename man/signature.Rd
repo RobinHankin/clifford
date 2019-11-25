@@ -1,11 +1,13 @@
 \name{signature}
 \alias{signature}
 \alias{is_ok_sig}
+\alias{mymax}
 \title{The signature of the Clifford algebra}
 \description{Getting and setting the signature of the Clifford algebra}
 \usage{
 signature(s)
 is_ok_sig(s)
+mymax(s)
 }
 \arguments{
   \item{s}{Integer, specifying number of positive elements on the
@@ -34,6 +36,9 @@ default special value \eqn{p=0}.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.
+
+Function \code{mymax()} is a helper function that avoids warnings from
+\code{max()} when given an empty argument.
 
 }
 \author{Robin K. S. Hankin}

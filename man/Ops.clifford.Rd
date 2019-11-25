@@ -18,6 +18,7 @@
 \alias{clifford_plus_scalar}
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
+\alias{maxyblade}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
 \description{
   Allows arithmetic operators to be used for
@@ -36,6 +37,7 @@ clifford_times_clifford(C1,C2)
 clifford_times_scalar(C,x)
 clifford_plus_clifford(C1,C2)
 clifford_eq_clifford(C1,C2)
+maxyblade(C1,C2)
 C1 \%.\% C2
 C1 \%^\% C2
 }
@@ -59,7 +61,8 @@ C1 \%^\% C2
   \code{x \%^\% y} returns the wedge product \code{(xy-yx)/2}.
   
   Functions \code{c_foo()} are low-level helper functions that wrap the
-  \code{C} code.
+  \code{C} code; function \code{maxyblade()} returns the maximum index
+  in the blades of its arguments.
 
 }
 \value{

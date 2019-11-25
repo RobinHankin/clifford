@@ -9,11 +9,11 @@
 `blades` <- function(x){ x[[1]] }  # accessor methods start
 `coeffs` <- function(x){ x[[2]] }  # accessor methods end
 
-`mymax` <- function(x){
-    if(length(x)==0){
+`mymax` <- function(s){
+    if(length(s)==0){
         return(0)
     } else {
-        return(suppressWarnings(max(x)))
+        return(suppressWarnings(max(s)))
     }
 }
 
