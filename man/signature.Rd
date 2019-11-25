@@ -1,9 +1,11 @@
 \name{signature}
 \alias{signature}
+\alias{is_ok_sig}
 \title{The signature of the Clifford algebra}
 \description{Getting and setting the signature of the Clifford algebra}
 \usage{
 signature(s)
+is_ok_sig(s)
 }
 \arguments{
   \item{s}{Integer, specifying number of positive elements on the
@@ -30,6 +32,8 @@ Clifford algebra \eqn{C_{p,q}}.
 If the quadratic form is positive-definite, package idiom is to use the
 default special value \eqn{p=0}.
 
+Function \code{is_ok_sig()} is a helper function that checks for a
+proper signature.
 
 }
 \author{Robin K. S. Hankin}
