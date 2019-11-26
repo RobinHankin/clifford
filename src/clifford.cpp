@@ -36,6 +36,15 @@ List c_power(
 }
 
 // [[Rcpp::export]]
+List c_grade(
+          const List &L, const NumericVector &c,
+          const NumericVector &m,
+          const NumericVector &n
+          ){
+  return retval(c_grade(prepare(L,c,m),n));
+}
+
+// [[Rcpp::export]]
 bool c_equal(
           const List &L1, const NumericVector &c1,
           const List &L2, const NumericVector &c2,  // c[12] = coeffs

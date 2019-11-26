@@ -116,3 +116,6 @@
   return(x)
 }
 
+`grade` <- function(C,n){
+    as.clifford(c_grade(blades(C),coeffs(C),maxyblade(C,C),n))
+}

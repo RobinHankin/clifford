@@ -185,3 +185,16 @@ bool c_equal(clifford C1, clifford C2){
         return false;
     }
 }
+
+clifford c_grade(const clifford C, const NumericVector &n){
+    clifford out;
+    const unsigned int grade=n[0];
+    for(clifford::const_iterator ic=C.begin() ; ic != C.end() ; ++ic){
+        const blade b = ic->first;
+        if(b.count() == grade){
+            out[b] = ic->second;
+        }
+    }
+    return out;
+}
+

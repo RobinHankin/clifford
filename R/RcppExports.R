@@ -17,6 +17,10 @@ c_power <- function(L, c, m, p, sig) {
     .Call(`_clifford_c_power`, L, c, m, p, sig)
 }
 
+c_grade <- function(L, c, m, n) {
+    .Call(`_clifford_c_grade`, L, c, m, n)
+}
+
 c_equal <- function(L1, c1, L2, c2, m) {
     .Call(`_clifford_c_equal`, L1, c1, L2, c2, m)
 }

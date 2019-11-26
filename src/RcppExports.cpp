@@ -64,6 +64,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// c_grade
+List c_grade(const List& L, const NumericVector& c, const NumericVector& m, const NumericVector& n);
+RcppExport SEXP _clifford_c_grade(SEXP LSEXP, SEXP cSEXP, SEXP mSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const List& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c(cSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(c_grade(L, c, m, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // c_equal
 bool c_equal(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m);
 RcppExport SEXP _clifford_c_equal(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP) {
@@ -85,6 +99,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_add", (DL_FUNC) &_clifford_c_add, 5},
     {"_clifford_c_multiply", (DL_FUNC) &_clifford_c_multiply, 6},
     {"_clifford_c_power", (DL_FUNC) &_clifford_c_power, 5},
+    {"_clifford_c_grade", (DL_FUNC) &_clifford_c_grade, 4},
     {"_clifford_c_equal", (DL_FUNC) &_clifford_c_equal, 5},
     {NULL, NULL, 0}
 };
