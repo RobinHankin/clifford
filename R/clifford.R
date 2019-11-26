@@ -88,7 +88,7 @@
   cat("Element of a Clifford  algebra, equal to\n")
 
   f <- function(a){
-      if(is.null(a)){
+      if(length(a)==0){
           return("")
       } else {
           return(paste("e",a,collapse=" ",sep=""))
