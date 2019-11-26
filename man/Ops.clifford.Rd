@@ -77,17 +77,19 @@ C1 \%^\% C2
 \author{Robin K. S. Hankin}
 \examples{
 
-x1 <- rcliff(5)
-x2 <- rcliff(5)
-x3 <- rcliff(5)
+u <- rcliff(5)
+v <- rcliff(5)
+w <- rcliff(5)
 
-x1*x2
+u*v
 
-x1^3
+u^3
 
 
-x1+(x2+x3) == (x1+x2)+x3
-x1 \%^\% x2 == (x1*x2-x2*x1)/2  
+u*v == u\%.\%v + u\%^\%v        # should be TRUE
+u \%^\% v == u \%^\% (v + 3*v)  # should be TRUE 
+u+(v+w) == (u+v)+w              # should be TRUE 
+u \%^\% v == (u*v-v*u)/2        # should be TRUE 
 
 }
 
