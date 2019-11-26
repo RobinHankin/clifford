@@ -10,6 +10,7 @@
 \alias{c_multiply}
 \alias{c_power}
 \alias{c_equal}
+\alias{c_grade}
 \alias{clifford_negative}
 \alias{clifford_times_clifford}
 \alias{clifford_times_scalar}
@@ -28,6 +29,7 @@
 \usage{
 \method{Ops}{clifford}(e1, e2)
 c_identity(L, p, m)
+c_grade(L, c, m, n)
 c_add(L1, c1, L2, c2, m)
 c_multiply(L1, c1, L2, c2, m, sig)
 c_power(L, c, m, p, sig)
@@ -47,6 +49,7 @@ C1 \%^\% C2
   \item{L,L1,L2}{Lists of blades}
   \item{c1,c2,c}{Numeric vectors of coefficients}
   \item{m}{Maximum entry of blades}
+  \item{n}{Grade to extract}
   \item{p}{Integer power}
   \item{sig}{Positive integer representing number of \eqn{+1} on main
     diagonal of quadratic form}

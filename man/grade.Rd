@@ -1,14 +1,14 @@
 \name{grade}
 \alias{grade}
+\alias{grades}
 \title{The grade of a clifford object}
 \description{The grade of a blade is the number of basis vectors in it}
 \usage{
 grade(C, n)
-grades(C, n)
+grades(x)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{C}{Cliffor object}
+  \item{C,x}{Clifford object}
   \item{n}{Integer}
 }
 \details{
@@ -22,6 +22,10 @@ grades of the constituent blades.
 
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{n}.
+
+Function \code{c_grade()} is a helper function that is documented at
+\code{Ops.clifford.Rd}.
+
 }
 \author{Robin K. S. Hankin}
 \examples{
