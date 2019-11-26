@@ -1,5 +1,3 @@
-cliff` <- function
-
 \name{rcliff}
 \alias{rcliff}
 \title{Random clifford objects}
