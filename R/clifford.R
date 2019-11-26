@@ -59,7 +59,7 @@
 `nterms` <- function(x){length(coeffs(x))}
 `is.zero` <- function(x){nterms(x)==0}
 `nbits` <- function(x){max(c(blades(x),recursive=TRUE))}
-
+`grades` <- function(x){unlist(lapply(blades(x),length))}
 `is.scalar` <- function(x){
   (length(blades(x))==1) && (length(blades(x)[[1]])==0)
 }
@@ -115,3 +115,4 @@
   cat("\n")
   return(x)
 }
+
