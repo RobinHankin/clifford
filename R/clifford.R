@@ -67,9 +67,9 @@
 `as.scalar` <- function(x){clifford(list(numeric(0)),x)}
 `as.cliffvector` <- function(x){clifford(as.list(seq_along(x)),x)}
 
-`rcliff` <- function(n=9,b=6){
+`rcliff` <- function(n=9,b=6,r=4){
   clifford(
-      replicate(n,sort(sample(seq_len(b),sample(b,1))),simplify=FALSE),
+      replicate(n,sort(sample(seq_len(b),sample(r,1))),simplify=FALSE),
       sample(n)
   )
 } 

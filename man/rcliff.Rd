@@ -3,10 +3,11 @@
 \title{Random clifford objects}
 \description{Random Clifford algebra elements, intended as quick
   \dQuote{get you going} examples of \code{clifford} objects}
-\usage{rcliff(n=9, b=6)}
+\usage{rcliff(n=9, b=6, r=4)}
 \arguments{
   \item{n}{Number of terms}
-  \item{b}{Maximum number of basis vectors in any blade}
+  \item{b}{Dimensionality of Clifford algebra}
+  \item{r}{Maximum number of basis vectors in any blade}
 }
 \author{Robin K. S. Hankin}
 \examples{
