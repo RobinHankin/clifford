@@ -18,17 +18,23 @@ is a list of integer vectors representing blades, and the second is a
 numeric vector of coefficients.
 
 The print method has special dispensation for length-zero clifford
-objects.
+objects.  It is sensitive to the value of \code{option(separate)} which,
+if \code{TRUE} prints the basis vectors separately and otherwise prints
+in a compact form.
 
 }
 \seealso{\code{\link{clifford}}}  
 \examples{
 
-a <- rcliff()
-b <- rcliff()
-a*b
+rcliff()   # fine
+rcliff(d=15) # incomprehensible
 
-a \%^\% b
+
+options("separate" = TRUE)
+rcliff(d=15) # incomprehensible
+
+
+options("separate" = FALSE)
 
 
 }

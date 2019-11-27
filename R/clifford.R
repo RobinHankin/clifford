@@ -88,11 +88,15 @@
   cat("Element of a Clifford  algebra, equal to\n")
 
   f <- function(a){
-      if(length(a)==0){
-          return("")
+    if(length(a)==0){
+      return("")
+    } else {
+      if(isTRUE(getOption("separate"))){
+        return(paste("e",a,collapse=" ",sep=""))
       } else {
-          return(paste("e",a,collapse=" ",sep=""))
+        return(paste("e_",paste(a,collapse=""),sep=""))
       }
+    }
   }
 
   out <- ""
