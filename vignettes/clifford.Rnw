@@ -1,0 +1,99 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+\documentclass[nojss]{jss}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% just as usual
+\author{Robin K. S. Hankin\\Auckland University of Technology}
+\title{Clifford algebra in \proglang{R}}
+%\VignetteIndexEntry{The clifford package}
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Robin K. S. Hankin}
+\Plaintitle{The clifford package}
+\Shorttitle{The clifford package}
+
+%% an abstract and keywords
+\Abstract{Here I present the \pkg{clifford} package for working with
+Clifford algebras}
+
+\Keywords{Clifford algebra}
+\Plainkeywords{Clifford algebra}
+  
+%% publication information
+%% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
+%% If it was not (yet) accepted, leave them commented.
+%% \Volume{13}
+%% \Issue{9}
+%% \Month{September}
+%% \Year{2004}
+%% \Submitdate{2004-09-29}
+%% \Acceptdate{2004-09-29}
+%% \Repository{https://github.com/RobinHankin/lorentz} %% this line for Tragula
+
+%% The address of (at least) one author should be given
+%% in the following format:
+\Address{
+  Robin K. S. Hankin\\%\orcid{https://orcid.org/0000-0001-5982-0415}\\
+  Auckland University of Technology\\
+  E-mail: \email{hankin.robin@gmail.com}
+}
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/1/31336-5053
+%% Fax: +43/1/31336-734
+
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\SweaveOpts{}
+
+\begin{document}
+
+<<echo=FALSE,print=FALSE>>=
+library("clifford")
+options(symbols=letters) # should not be necessary
+@ 
+
+\section{Introduction}
+
+Clifford algebras are an interesting and instructive mathematical
+object with a rich structure that has varied applications to physics.
+
+\subsection{Existing work}
+
+Computational support for working with the Clifford algebras is part
+of a number of algebra systems including Sage~\citep{sagemath2019},
+\proglang{sympy}~\citep{sympy2017}.  Here I provide R-centric
+functionality for Clifford algebras.
+
+
+\section{The package in use}
+
+In the \pkg{clifford} package, 
+
+<<>>=
+(M <- rbind(c(1,2,3,3,1),c(2,-3,2,3,-2)))
+@
+
+(see how negative entries in the second row correspond to negative
+powers).  Then to convert to a more useful form we would have
+
+
+\section{Conclusions and further work}
+
+The \pkg{clifford} package furnishes a consistent and documented
+suite of reasonably efficient \proglang{R}-centric functionality.
+
+
+\bibliography{clifford}
+\end{document}
+ 
