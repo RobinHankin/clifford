@@ -117,8 +117,7 @@
   } else if(is.scalar(x)){
       out <- paste("scalar (",coeffs(x),")")
   }
-  cat(out)
-  cat("\n")
+  cat(paste(strwrap(out, getOption("width")), collapse="\n"))
   return(x)
 }
 
