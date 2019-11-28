@@ -118,6 +118,7 @@
       out <- paste("scalar (",coeffs(x),")")
   }
   cat(paste(strwrap(out, getOption("width")), collapse="\n"))
+  cat("\n")
   return(x)
 }
 
