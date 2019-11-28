@@ -116,7 +116,17 @@ to give
        \left(x^1y^2-x^2y^1\right)\ei{1}\ei{2}
 \end{eqnarray}
   
+Multiplication is associative by design.  Snygg goes on to consider
+the algebra spanned by products of $\ei{1},\ei{2},\ei{3} and shows
+that this is an eight dimensional space spanned by
 
+\[
+\left\{
+1,\ei{1},\ei{2},\ei{3},\ei{12},\ei{31},\ei{12},\ei{123}
+\right\}
+\]
+
+where $\ei{12}=\ei{1}\ei{2}$ and so on.
 
 \section{The package in use}
 
