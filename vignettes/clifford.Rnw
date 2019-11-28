@@ -1,6 +1,7 @@
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 \documentclass[nojss]{jss}
-
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,7 +20,8 @@
 
 %% an abstract and keywords
 \Abstract{Here I present the \pkg{clifford} package for working with
-Clifford algebras}
+  Clifford algebras.  The algebra is described and package idiom is
+  given.}
 
 \Keywords{Clifford algebra}
 \Plainkeywords{Clifford algebra}
@@ -60,7 +62,7 @@ Clifford algebras}
 
 <<echo=FALSE,print=FALSE>>=
 library("clifford")
-options(symbols=letters) # should not be necessary
+options("width"=80)
 @ 
 
 \section{Introduction}
@@ -77,7 +79,7 @@ functionality for Clifford algebras.  Notation
 follows~\cite{snygg2010}.
 
 
-\newcommand{\ei}[1]{\ensuremath{{\bf e}_#1}}
+\newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 \newcommand{\bx}{\ensuremath{{\bf x}}}
 \newcommand{\by}{\ensuremath{{\bf y}}}
 
@@ -90,7 +92,7 @@ Given vectors
 
 we can define a formal product using the relations
 
-\begin{equation}
+\begin{equation}\label{square}
 \left(\ei{1}\right)^2=
 \left(\ei{2}\right)^2=
 \left(\ei{3}\right)^2=1
@@ -98,7 +100,7 @@ we can define a formal product using the relations
   
   and
   
-\begin{equation}
+\begin{equation}\label{sumprod}
 \ei{2}\ei{3} + \ei{3}\ei{2} = 
 \ei{1}\ei{3} + \ei{3}\ei{1} = 
 \ei{2}\ei{1} + \ei{1}\ei{2} = 0
@@ -117,32 +119,167 @@ to give
 \end{eqnarray}
   
 Multiplication is associative by design.  Snygg goes on to consider
-the algebra spanned by products of $\ei{1},\ei{2},\ei{3} and shows
+the algebra spanned by products of $\ei{1},\ei{2},\ei{3}$ and shows
 that this is an eight dimensional space spanned by
 
-\[
+\begin{equation}
 \left\{
 1,\ei{1},\ei{2},\ei{3},\ei{12},\ei{31},\ei{12},\ei{123}
 \right\}
-\]
+\end{equation}
 
-where $\ei{12}=\ei{1}\ei{2}$ and so on.
+where $\ei{12}=\ei{1}\ei{2}$ and so on.  Thus a general element of
+this space would be
+
+\begin{equation}
+a^0+
+a^1\ei{1} + a^2\ei{2} + a^3\ei{3} +
+a^{12}\ei{12} + a^{31}\ei{31} + a^{23}\ei{23} +
+a^{123}\ei{123}
+\end{equation}
+
+(here the $a$'s are real).  That the space is closed under
+multiplication follows from equations~\ref{square} and~\ref{sumprod};
+thus, for example,
+
+\begin{equation}
+  \ei{1}\ei{3}\ei{1}\ei{2}=
+  \ei{1}\ei{1}\ei{3}\ei{2}=
+  \ei{3}\ei{2}=
+  -\ei{3}\ei{2}=-\ei{23}.
+  \end{equation}
+
+(observe how associativity is assumed).
+
+
+\subsection{Clifford algebra in a pseudo-Euclidean space}
+
+Equations~\ref{square} and~\ref{sumprod} defined a positive-definite
+inner product on the vector space spanned by~$\ei{1},\ei{2},\ei{3}$.
+This is readily generalized in two ways: firstly, we consider
+$\ei{1},\ldots,\ei{n}$, and secondly allow a more general inner
+product.  Conventionally we define
+
+\begin{equation}\label{gencliff1}
+\ei{i}\ei{j}+\ei{j}\ei{i}=2n_{ij}
+\end{equation}
+where  
+\begin{equation}\label{gencliff2}
+  n_{ij} = \begin{cases}
+    1, & i=j=1,\ldots,p\\
+    -1, & i=j=p+1,\ldots,n\\
+    0, &i\neq j
+  \end{cases}
+\end{equation}
+
+for $1\leqslant p\leqslant n$; usually we also specify $p+q=n$ and
+write (this is a slight modification of Snygg, for R idiom reasons).
+Notations differ but the Clifford algebra specified by equations
+\ref{gencliff1} and \ref{gencliff2} is denoted by $\mathbb{R}_{p,q}$
+(sometimes ${\mathcal C}_{p,q}$).
+
+Annoyingly enough, the metric tensor $\eta$ as used in relativity
+(usually) has the negative sign first:
+
+\begin{equation}\eta=
+  \begin{bmatrix}
+    -1&0&0&0\\
+    0&1&0&0\\
+    0&0&1&0\\
+    0&0&0&1\\
+  \end{bmatrix}
+\end{equation}
+
 
 \section{The package in use}
 
+Suppose we want to work with $\ei{1} + 2\ei{2} + 3\ei{3}$.  In R idiom this would be
+
 <<>>=
-(M <- rbind(c(1,2,3,3,1),c(2,-3,2,3,-2)))
-@
+library("clifford")
+(x <- clifford(list(1,2,3),1:3))
+@ 
 
-(see how negative entries in the second row correspond to negative
-powers).  Then to convert to a more useful form we would have
+Function \code{clifford()} takes a list of blades and a vector of
+coefficients.  Addition and subtraction work as expected:
 
+<<>>=
+y <- clifford(list(1),1)
+x-y
+@ 
+
+In the above, see how the $\ei{1}$ blade has vanished.  We can
+multiply Clifford elements using natural R idiom:
+
+<<>>=
+x*y
+@ 
+
+(Multiplication that Snygg denotes by juxtaposition is here indicated
+with a \code{*}).
+
+We can consider arbitrarily high dimensional data:
+
+<<>>=
+(z <- as.cliffvector(1:7))
+z*x
+@ 
+
+The package includes many functions to generate Clifford objects:
+
+<<>>=
+rcliff()
+@ 
+
+The defaults for \code{rcliff()} specify that the object is a sum of
+grade-4 blades but this can be altered:
+
+<<>>=
+(x <- rcliff(d=7,r=5,include.fewer=TRUE))
+grades(x)
+@ 
+
+\subsection{Pseudo-Euclidean spaces}
+
+The signature of the metric may be altered.  Starting with the
+Euclidean case we have:
+    
+<<>>=
+e1 <- clifford(list(1),1)
+e2 <- clifford(list(2),1)
+e1*e1
+e2*e2
+@ 
+
+
+but if we wish to consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$,
+the package idiom is to use the \code{signature()} function:
+
+<<>>=
+signature(1)  # signature +-
+e1*e1 # as before
+e2*e2 # sign changes
+@ 
+
+
+Suppose we wish to use a signature $+++-$, corresponding to the
+Minkowski metric in special relativity; this would be
+\code{signature(3)}:
+
+<<>>=
+(x <- rcliff(d=4,r=3,include.fewer=TRUE))
+y <- rcliff(d=4,r=3,include.fewer=TRUE)
+x*y
+signature(3)  # metric +++-
+x*y
+@ 
 
 \section{Conclusions and further work}
 
-The \pkg{clifford} package furnishes a consistent and documented
-suite of reasonably efficient \proglang{R}-centric functionality.
-
+The \pkg{clifford} package furnishes a consistent and documented suite
+of reasonably efficient \proglang{R}-centric functionality.  Further
+work might include closer integration with the \code{wedge}
+package~\citep{hankin2019}.
 
 \bibliography{clifford}
 \end{document}
