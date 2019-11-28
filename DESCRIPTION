@@ -12,5 +12,6 @@ Suggests: knitr,testthat
 VignetteBuilder: knitr
 Imports: Rcpp (>= 0.12.5)
 LinkingTo: Rcpp,BH
+SystemRequirements: C++11
 URL: https://github.com/RobinHankin/clifford.git
 BugReports: https://github.com/RobinHankin/clifford/issues
