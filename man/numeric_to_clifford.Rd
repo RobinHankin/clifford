@@ -1,6 +1,7 @@
 \name{numeric_to_clifford}
 \alias{numeric_to_clifford}
 \alias{as.cliffvector}
+\alias{as.1vector}
 \alias{as.scalar}
 \alias{scalar}
 \title{Coercion from numeric to Clifford form}
@@ -8,9 +9,8 @@
 Given a numeric value or vector, return a Clifford algebra element}
 \usage{
 numeric_to_clifford(x)
-as.cliffvector(x)
+as.1vector(x)
 as.scalar(x)
-
 }
 \arguments{\item{x}{Numeric vector}}
 \details{
@@ -18,12 +18,12 @@ as.scalar(x)
   Function \code{as.scalar()} takes a length-one numeric vector and
   returns a Clifford scalar of that value.
 
-  Function \code{as.cliffvector()} takes a numeric vector and returns
+  Function \code{as.1vector()} takes a numeric vector and returns
   the linear sum of length-one blades with coefficients given by
   \code{x}.
 
   Function \code{numeric_to_vector()} dispatches to either
-  \code{as.scalar()} for length-one vectors or \code{as.cliffvector()}
+  \code{as.scalar()} for length-one vectors or \code{as.1vector()}
   if the length is greater than one.
 
 }
@@ -33,6 +33,6 @@ as.scalar(x)
 
 
 as.scalar(6)
-as.cliffvector(1:8)
+as.1vector(1:8)
 }
 

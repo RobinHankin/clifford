@@ -216,16 +216,15 @@ x*y
 @ 
 
 (Multiplication that Snygg denotes by juxtaposition is here indicated
-with a \code{*}).
-
-We can consider arbitrarily high dimensional data:
+with a \code{*}).  We can consider arbitrarily high dimensional data:
 
 <<>>=
-(z <- as.cliffvector(1:7))
+(z <- as.1vector(1:7))
 z*x
 @ 
 
-The package includes many functions to generate Clifford objects:
+In the above, we coerce a vector to a Clifford 1-vector.  The package
+includes many functions to generate Clifford objects:
 
 <<>>=
 rcliff()

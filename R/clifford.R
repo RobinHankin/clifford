@@ -50,7 +50,7 @@
   if(length(x)==1){
     return(as.scalar(x))
   } else {
-    return(as.cliffvector(x))
+    return(as.1vector(x))
   }
 }
 
@@ -65,7 +65,7 @@
 }
 
 `as.scalar` <- function(x){clifford(list(numeric(0)),x)}
-`as.cliffvector` <- function(x){clifford(as.list(seq_along(x)),x)}
+`as.1vector` <- function(x){clifford(as.list(seq_along(x)),x)}
 
 `rcliff` <- function(n=9,d=6,r=4,include.fewer=FALSE){
   if(include.fewer){
