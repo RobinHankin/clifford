@@ -46,8 +46,13 @@ as.pseudoscalar(n,x=1)
 \seealso{\code{\link{clifford}}}
 \examples{
 
-
 as.scalar(6)
 as.1vector(1:8)
+
+pseudoscalar(6)
+
+pseudoscalar(7,5) == 5*pseudoscalar(7)  # should be true
+
+
 }
 
