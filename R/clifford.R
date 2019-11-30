@@ -57,15 +57,21 @@
 `is.clifford` <- function(x){inherits(x,"clifford")}
 
 `nterms` <- function(x){length(coeffs(x))}
-`is.zero` <- function(x){nterms(x)==0}
+`is.zero` <- function(C){nterms(C)==0}
 `nbits` <- function(x){max(c(blades(x),recursive=TRUE))}
 `grades` <- function(x){unlist(lapply(blades(x),length))}
-`is.scalar` <- function(x){
-  (length(blades(x))==1) && (length(blades(x)[[1]])==0)
+`is.scalar` <- function(C){
+  (length(blades(C))==1) && (length(blades(C)[[1]])==0)
 }
 
-`as.scalar` <- function(x){clifford(list(numeric(0)),x)}
+`scalar` <- function(x=1){clifford(list(numeric(0)),x)}
+`as.scalar` <- `scalar`
 `as.1vector` <- function(x){clifford(as.list(seq_along(x)),x)}
+`pseudoscalar` <- function(n,x=1){clifford(list(seq_len(n)),x)}
+`as.pseudoscalar` <- `pseudoscalar`
+`is.pseudoscalar` <- function(C){
+    (length(blades(C))==1) && all(blades(C)==seq_along(blades(C)))
+}
 
 `rcliff` <- function(n=9,d=6,r=4,include.fewer=FALSE){
   if(include.fewer){

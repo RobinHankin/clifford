@@ -4,8 +4,6 @@
 \alias{is.clifford}
 \alias{blades}
 \alias{coeffs}
-\alias{is.scalar}
-\alias{is.zero}
 \alias{nbits}
 \alias{nterms}
 \alias{is_ok_clifford}
@@ -24,11 +22,8 @@ as.clifford(x)
 is.clifford(x)
 blades(x)
 coeffs(x)
-is.scalar(x)
-is.zero(x)
 nbits(x)
 nterms(x)
-
 }
 \arguments{
   \item{blades}{A list of integer vectors with strictly increasing
@@ -51,10 +46,6 @@ attempts to coerce a range of input arguments to clifford form
 methods.  These are unordered vectors but the ordering is consistent
 between them (an extended discussion of this phenomenon is presented in
 the \code{mvp} package)
-
-\item Functions \code{is.scalar()} and \code{is.zero()} check for a
-clifford object being a scalar (one empty blade), or the zero object
-(zero blades) respectively
 
 \item Function \code{nbits()} returns the number of bits required in the
 low-level C routines to store the blades (this is the largest entry in
