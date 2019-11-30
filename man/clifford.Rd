@@ -36,34 +36,51 @@ nterms(x)
 
   \itemize{
     
-    \item Function \code{clifford()} is the formal creation mechanism for
-\code{clifford} objects
+    \item Function \code{clifford()} is the formal creation mechanism
+    for \code{clifford} objects
 
-\item Function \code{as.clifford()} is much more user-friendly and
-attempts to coerce a range of input arguments to clifford form
+    \item Function \code{as.clifford()} is much more user-friendly and
+    attempts to coerce a range of input arguments to clifford form
 
-\item Functions \code{blades()} and \code{coeffs()} are the extraction
-methods.  These are unordered vectors but the ordering is consistent
-between them (an extended discussion of this phenomenon is presented in
-the \code{mvp} package)
+    \item Functions \code{blades()} and \code{coeffs()} are the
+    extraction methods.  These are unordered vectors but the ordering is
+    consistent between them (an extended discussion of this phenomenon
+    is presented in the \code{mvp} package)
 
-\item Function \code{nbits()} returns the number of bits required in the
-low-level C routines to store the blades (this is the largest entry in
-the list of blades)
+    \item Function \code{nbits()} returns the number of bits required in
+    the low-level C routines to store the blades (this is the largest
+    entry in the list of blades)
 
-\item Function \code{nterms()} returns the number of terms in the
-expression
-\item Function \code{is_ok_clifford()} is a helper function that checks
-for consistency of its arguments}
+    \item Function \code{nterms()} returns the number of terms in the
+    expression
+    
+    \item Function \code{is_ok_clifford()} is a helper function that checks
+    for consistency of its arguments
+  }
 }
 \references{
 Snygg 2012.  \dQuote{A new approach to differential geometry using
-  Clifford's geometric algebra}.  Birkh\"{a}user; Springer
+  Clifford's geometric algebra}.  Birkhauser; Springer
 Science+Business.
 }
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{Ops.clifford}}}
 \examples{
 
-rcliff(7,6)
+x <- clifford(list(1,2,1:4),1:3)   # Formal creation method
+x 
+
+as.clifford(1:5)   # 1-vector
+
+y <- rcliff(include.fewer=TRUE)
+y
+blades(y+100)
+
+
+z <- as.1vector(4:2)
+
+(x*y)*z == x*(y*z)  # should be true
+x*(y+z) == x*y + x*z  # should be true
+
+
 }
