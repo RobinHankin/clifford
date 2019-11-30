@@ -19,6 +19,7 @@ as.scalar(x=1)
 is.scalar(C)
 pseudoscalar(n,x=1)
 as.pseudoscalar(n,x=1)
+is.pseudoscalar(C)
 }
 \arguments{
   \item{x}{Numeric vector}
@@ -35,7 +36,8 @@ as.pseudoscalar(n,x=1)
   \code{x}.
 
   Function \code{pseudoscalar(n)} returns a pseudoscalar of
-  dimensionality \code{n}.
+  dimensionality \code{n} and function \code{is.pseudoscalar()} checks
+  for a Clifford object being a pseudoscalar.
   
   Function \code{numeric_to_vector()} dispatches to either
   \code{as.scalar()} for length-one vectors or \code{as.1vector()}
