@@ -2,7 +2,7 @@
 \alias{grade}
 \alias{grades}
 \title{The grade of a clifford object}
-\description{The grade of a blade is the number of basis vectors in it}
+\description{The grade of a blade is the number of basis vectors in it.}
 \usage{
 grade(C, n)
 grades(x)
@@ -13,9 +13,13 @@ grades(x)
 }
 \details{
 
-The grade of a blade is the number of basis vectors in it.  Thus the
-grade of \eqn{e_1}{e1} is 1, and the grade of \eqn{e_1 e_2 e_5}{e1 e2
-e5} is 3.
+A \emph{blade} is a single term of a Clifford object.  It has a
+coefficient and is described by the basis vectors it comprises.  Thus
+\code{4e_234} is a blade but \code{1e3 + 2e5} is not.
+  
+The \emph{grade} of a blade is the number of basis vectors in it.  Thus
+the grade of \eqn{e_1}{e1} is 1, and the grade of
+\eqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.
 
 Function \code{grades()} returns an (unordered) vector specifying the
 grades of the constituent blades.
@@ -28,6 +32,10 @@ Function \code{c_grade()} is a helper function that is documented at
 
 }
 \author{Robin K. S. Hankin}
+\note{
+  In the C code, \dQuote{blade} has a slightly different meaning,
+  referring to the vectors without the associated coefficient.
+}
 \examples{
 
 a <- clifford(sapply(seq_len(7),seq_len),seq_len(7))

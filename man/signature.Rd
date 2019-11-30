@@ -18,7 +18,7 @@ The function is modelled on \code{lorentz::sol()} which gets and sets
 the speed of light.
 
 Clifford algebras require a bilinear form on \eqn{R^n}
-\eqn{\left<\dot,\cdot\right>}{<.,.>}, usually written
+\eqn{\left<\cdot,\cdot\right>}{<.,.>}, usually written
 
 \deqn{\left<{\mathbf x},{\mathbf x}\right>=x_1^2+x_2^2+\cdots
   +x_p^2-x_{p+1}^2-\cdots -x_{p+q}^2
@@ -28,7 +28,7 @@ Clifford algebras require a bilinear form on \eqn{R^n}
 
 where \eqn{p+q=n}.  With this quadratic form the vector space is denoted
 \eqn{R^{p,q}}, and we say that \eqn{p} is the signature of the bilinear
-form \eqn{\left<\dot,\cdot\right>}{<.,.>}.  This gives rise to the
+form \eqn{\left<\cdot,\cdot\right>}{<.,.>}.  This gives rise to the
 Clifford algebra \eqn{C_{p,q}}.
 
 If the quadratic form is positive-definite, package idiom is to use the

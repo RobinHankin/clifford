@@ -23,7 +23,9 @@ Maintainer: \packageMaintainer{clifford}
 \seealso{\code{\link{clifford}}}
 \examples{
 
-rcliff()
+as.1vector(1:4)
+
+as.1vector(1:4) * rcliff()
 
 
 }

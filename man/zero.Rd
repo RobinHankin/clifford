@@ -28,5 +28,5 @@ although note that \code{scalar(0)} will work too.
 \seealso{\code{\link{scalar}}}
 \examples{
 
-rcliff(7,6)
+is.zero(rcliff())
 }
