@@ -67,17 +67,12 @@ Science+Business.
 \seealso{\code{\link{Ops.clifford}}}
 \examples{
 
-x <- clifford(list(1,2,1:4),1:3)   # Formal creation method
-x 
+(x <- clifford(list(1,2,1:4),1:3))   # Formal creation method
+(y <- as.1vector(4:2))
+(z <- rcliff(include.fewer=TRUE))
 
-as.clifford(1:5)   # 1-vector
-
-y <- rcliff(include.fewer=TRUE)
-y
-blades(y+100)
-
-
-z <- as.1vector(4:2)
+blades(x+100)
+coeffs(z)
 
 (x*y)*z == x*(y*z)  # should be true
 x*(y+z) == x*y + x*z  # should be true
