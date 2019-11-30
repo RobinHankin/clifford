@@ -173,13 +173,10 @@ where
 \end{equation}
 
 for $1\leqslant p\leqslant n$; usually we also specify $p+q=n$ and
-write (this is a slight modification of Snygg, for R idiom reasons).
-Notations differ but the Clifford algebra specified by equations
-\ref{gencliff1} and \ref{gencliff2} is denoted by $\mathbb{R}_{p,q}$
-(sometimes ${\mathcal C}_{p,q}$).
-
-Annoyingly enough, the metric tensor $\eta$ as used in relativity
-(usually) has the negative sign first:
+write $\mathbb{R}_{p,q}$ (sometimes ${\mathcal C}_{p,q}$) for the
+Clifford algebra specified by equations \ref{gencliff1} and
+\ref{gencliff2}.  Annoyingly enough, the metric tensor $\eta$ as used
+in relativity (usually) has the negative sign first:
 
 \begin{equation}\eta=
   \begin{bmatrix}
