@@ -93,6 +93,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// c_getcoeffs
+NumericVector c_getcoeffs(const List& L, const NumericVector& c, const NumericVector& m, const List& B);
+RcppExport SEXP _clifford_c_getcoeffs(SEXP LSEXP, SEXP cSEXP, SEXP mSEXP, SEXP BSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const List& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c(cSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
+    Rcpp::traits::input_parameter< const List& >::type B(BSEXP);
+    rcpp_result_gen = Rcpp::wrap(c_getcoeffs(L, c, m, B));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_identity", (DL_FUNC) &_clifford_c_identity, 3},
@@ -101,6 +115,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_power", (DL_FUNC) &_clifford_c_power, 5},
     {"_clifford_c_grade", (DL_FUNC) &_clifford_c_grade, 4},
     {"_clifford_c_equal", (DL_FUNC) &_clifford_c_equal, 5},
+    {"_clifford_c_getcoeffs", (DL_FUNC) &_clifford_c_getcoeffs, 4},
     {NULL, NULL, 0}
 };
 

@@ -45,7 +45,7 @@ is.pseudoscalar(C)
 
 }
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{clifford}}}
+\seealso{\code{\link{getcoeffs}}}
 \examples{
 
 as.scalar(6)

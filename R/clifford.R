@@ -7,7 +7,24 @@
 }
 
 `blades` <- function(x){ x[[1]] }  # accessor methods start
-`coeffs` <- function(x){ x[[2]] }  # accessor methods end
+`coeffs` <- function(x){ x[[2]] }
+
+`getcoeffs` <- function(C,B){ # accessor methods end
+    c_getcoeffs(
+        L = blades(C),
+        c = coeffs(C),
+        m = maxyblade(C,C),
+        B = B)
+}
+
+`const` <- function(C){getcoeffs(C,list(numeric(0)))}
+
+`const<-` <- function(x,value){UseMethod("const<-")}
+`const<-.clifford` <- function(x,value){
+    stopifnot(length(value) == 1)
+    x <- x-const(x)
+    return(x+value)
+}
 
 `mymax` <- function(s){
     if(length(s)==0){

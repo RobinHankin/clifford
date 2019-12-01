@@ -52,3 +52,12 @@ bool c_equal(
           ){
   return c_equal(prepare(L1,c1,m),prepare(L2,c2,m));
 }
+
+// [[Rcpp::export]]
+NumericVector c_getcoeffs(
+          const List &L, const NumericVector &c,  // c[12] = coeffs
+          const NumericVector &m,
+          const List &B
+          ){
+  return c_coeffs_of_blades(prepare(L,c,m),B,m);
+}

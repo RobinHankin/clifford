@@ -11,6 +11,7 @@
 \alias{c_power}
 \alias{c_equal}
 \alias{c_grade}
+\alias{c_getcoeffs}
 \alias{clifford_negative}
 \alias{clifford_times_clifford}
 \alias{clifford_times_scalar}

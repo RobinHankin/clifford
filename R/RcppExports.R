@@ -25,3 +25,7 @@ c_equal <- function(L1, c1, L2, c2, m) {
     .Call(`_clifford_c_equal`, L1, c1, L2, c2, m)
 }
 
+c_getcoeffs <- function(L, c, m, B) {
+    .Call(`_clifford_c_getcoeffs`, L, c, m, B)
+}
+

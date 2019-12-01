@@ -198,3 +198,19 @@ clifford c_grade(const clifford C, const NumericVector &n){
     return out;
 }
 
+NumericVector c_coeffs_of_blades(clifford C,
+                                 const List &B,
+                                 const NumericVector &m
+                                 ){  
+    Rcpp::NumericVector out;
+    for(unsigned int i=0 ; i< B.size() ; ++i){
+        blade b;
+        b.resize(m[0]+1);  //off-by-one; note that this code also appears in prepare()
+        const IntegerVector iv = B[i];
+        for(int j=0 ; j < iv.size(); j++){
+            b[iv[j]] = 1;
+        }
+        out.push_back(C[b]);
+    }
+    return out;
+}
