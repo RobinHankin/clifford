@@ -9,12 +9,22 @@ test_that("Test suite aab.R",{
 
 checker1 <- function(x){
 
+  expect_true(x == +x)
+  expect_true(x == -(-x))
+  expect_error(!x)
+    
   expect_true(x+x == 2*x)
   expect_true(x+x == x*2)
 
+  expect_true(x-x == as.clifford(0))
+  expect_true(is.zero(x-x))
+  expect_true(x-x == as.clifford(0))
   expect_true(x+x+x == 3*x)
   expect_true(x+x+x == x*3)
 
+  expect_true(x/2 + x/2 == x)
+
+  expect_error(x&x)
   expect_true(x*x == x^2)
 }
 
