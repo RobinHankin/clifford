@@ -60,7 +60,7 @@
 
 \begin{document}
 
-<<echo=FALSE,print=FALSE>>=
+<<setup,echo=FALSE,print=FALSE>>=
 library("clifford")
 options("width"=80)
 @ 
@@ -192,15 +192,14 @@ in relativity (usually) has the negative sign first:
 
 Suppose we want to work with $\ei{1} + 2\ei{2} + 3\ei{3}$.  In R idiom this would be
 
-<<>>=
-library("clifford")
+<<simpleexample>>=
 (x <- clifford(list(1,2,3),1:3))
 @ 
 
 Function \code{clifford()} takes a list of blades and a vector of
 coefficients.  Addition and subtraction work as expected:
 
-<<>>=
+<<xminusy>>=
 y <- clifford(list(1),1)
 x-y
 @ 
@@ -208,14 +207,14 @@ x-y
 In the above, see how the $\ei{1}$ blade has vanished.  We can
 multiply Clifford elements using natural R idiom:
 
-<<>>=
+<<xtimesy>>=
 x*y
 @ 
 
 (Multiplication that Snygg denotes by juxtaposition is here indicated
 with a \code{*}).  We can consider arbitrarily high dimensional data:
 
-<<>>=
+<<ztimesx>>=
 (z <- as.1vector(1:7))
 z*x
 @ 
@@ -223,14 +222,14 @@ z*x
 In the above, we coerce a vector to a Clifford 1-vector.  The package
 includes many functions to generate Clifford objects:
 
-<<>>=
+<<firstuseofrcliff>>=
 rcliff()
 @ 
 
 The defaults for \code{rcliff()} specify that the object is a sum of
 grade-4 blades but this can be altered:
 
-<<>>=
+<<anotherrcliff>>=
 (x <- rcliff(d=7,r=5,include.fewer=TRUE))
 grades(x)
 @ 
@@ -240,7 +239,7 @@ grades(x)
 The signature of the metric may be altered.  Starting with the
 Euclidean case we have:
     
-<<>>=
+<<e1e2cliff>>=
 e1 <- clifford(list(1),1)
 e2 <- clifford(list(2),1)
 e1*e1
@@ -251,7 +250,7 @@ e2*e2
 but if we wish to consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$,
 the package idiom is to use the \code{signature()} function:
 
-<<>>=
+<<trysig>>=
 signature(1)  # signature +-
 e1*e1 # as before
 e2*e2 # sign changes
@@ -262,7 +261,7 @@ Suppose we wish to use a signature $+++-$, corresponding to the
 Minkowski metric in special relativity; this would be
 \code{signature(3)}:
 
-<<>>=
+<<sigthree>>=
 (x <- rcliff(d=4,r=3,include.fewer=TRUE))
 y <- rcliff(d=4,r=3,include.fewer=TRUE)
 x*y

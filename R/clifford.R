@@ -20,13 +20,14 @@
 `is_ok_clifford` <- function(blades,coeffs){
     stopifnot(is.list(blades))
     blade_elements <- c(blades,recursive = TRUE)
+    stopifnot(length(blades) == length(coeffs))
 
     if(!is.null(blade_elements)){
       stopifnot(all(blade_elements > 0))
     }
     
     blade_elements_increase <- c(lapply(blades,diff),recursive=TRUE)
-    stopifnot(length(blades) == length(coeffs))
+    stopifnot(all(blade_elements_increase > 0))
 
     return(TRUE)
 
@@ -79,7 +80,7 @@
   } else {
     f <- function(r){r}
   }
-  clifford(replicate(n,sample(d,f(r)),simplify=FALSE),sample(n))
+  clifford(replicate(n,sort(sample(d,f(r))),simplify=FALSE),sample(n))
 } 
   
 `rev.clifford` <- function(x){
