@@ -91,6 +91,8 @@
     (length(blades(C))==1) && all(blades(C)==seq_along(blades(C)))
 }
 
+`basis` <- function(n,x=1){clifford(list(n),x)}
+
 `rcliff` <- function(n=9,d=6,r=4,include.fewer=FALSE){
   if(include.fewer){
     f <- function(r){sample(r,1)}

@@ -5,6 +5,7 @@
 \alias{is.scalar}
 \alias{as.scalar}
 \alias{scalar}
+\alias{basis}
 \alias{pseudoscalar}
 \alias{as.pseudoscalar}
 \alias{is.pseudoscalar}
@@ -17,6 +18,7 @@ as.1vector(x)
 scalar(x=1)
 as.scalar(x=1)
 is.scalar(C)
+basis(n,x=1)
 pseudoscalar(n,x=1)
 as.pseudoscalar(n,x=1)
 is.pseudoscalar(C)
@@ -42,6 +44,9 @@ is.pseudoscalar(C)
   Function \code{numeric_to_vector()} dispatches to either
   \code{as.scalar()} for length-one vectors or \code{as.1vector()}
   if the length is greater than one.
+
+  Function \code{basis()} returns a clifford element comprising of
+  single blade with grade 1.
 
 }
 \author{Robin K. S. Hankin}
