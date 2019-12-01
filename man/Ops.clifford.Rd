@@ -40,7 +40,7 @@ clifford_times_clifford(C1,C2)
 clifford_times_scalar(C,x)
 clifford_plus_clifford(C1,C2)
 clifford_eq_clifford(C1,C2)
-maxyblade(C1,C2)
+maxyblade(C1,C2=as.clifford(0))
 C1 \%.\% C2
 C1 \%^\% C2
 }

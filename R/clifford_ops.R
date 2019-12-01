@@ -27,7 +27,7 @@
     }
 }
 
-maxyblade <- function(C1,C2){
+maxyblade <- function(C1,C2=as.clifford(0)){
     return(max(c(0,blades(C1),blades(C2),recursive=TRUE)))
 }
                
@@ -142,7 +142,7 @@ clifford_power_scalar <- function(C,n){
   } else {
     return(as.clifford(c_power(
       L   = blades(C), c = coeffs(C),
-      m   = maxyblade(C,C),
+      m   = maxyblade(C),
       p   = n,
       sig = signature()
   )))

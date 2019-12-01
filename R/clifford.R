@@ -13,7 +13,7 @@
     c_getcoeffs(
         L = blades(C),
         c = coeffs(C),
-        m = maxyblade(C,C),
+        m = maxyblade(C),
         B = B)
 }
 
@@ -149,5 +149,5 @@
 }
 
 `grade` <- function(C,n){
-    as.clifford(c_grade(blades(C),coeffs(C),maxyblade(C,C),n))
+    as.clifford(c_grade(blades(C),coeffs(C),maxyblade(C),n))
 }
