@@ -141,8 +141,10 @@ clifford c_prod(const clifford C1, const clifford C2, const NumericVector &signa
     blade b;
     int sign;
     for(ic1=C1.begin(); ic1 != C1.end(); ++ic1){
+        const blade b1 = ic1->first;
         for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
-            tie(b, sign) = juxtapose(ic1->first, ic2->first, signature[0]);
+            const blade b2 = ic2->first;
+            tie(b, sign) = juxtapose(b1, b2, signature[0]);
             out[b] += sign*(ic1->second)*(ic2->second); // the meat
         }
     }
