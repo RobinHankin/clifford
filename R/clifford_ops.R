@@ -28,11 +28,7 @@
 }
 
 maxyblade <- function(C1,C2){
-  if(is.scalar(C1) & is.scalar(C2)){
-    return(0)
-  } else {
-    return(max(c(blades(C1),blades(C2),recursive=TRUE)))
-  }
+    return(max(c(0,blades(C1),blades(C2),recursive=TRUE)))
 }
                
 "Ops.clifford" <- function (e1, e2 = NULL) 
