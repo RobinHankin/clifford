@@ -258,15 +258,31 @@ e2*e2 # sign changes
 
 
 Suppose we wish to use a signature $+++-$, corresponding to the
-Minkowski metric in special relativity; this would be
-\code{signature(3)}:
+Minkowski metric in special relativity; this would be indicated in
+pacakge idiom by \code{signature(3)}.  Note that the clifford objects
+themselves do not store the signature; it is used only by the product
+operation \code{*}.
 
-<<sigthree>>=
-(x <- rcliff(d=4,r=3,include.fewer=TRUE))
+<<sigthree1>>=
+x <- rcliff(d=4,r=3,include.fewer=TRUE)
 y <- rcliff(d=4,r=3,include.fewer=TRUE)
+@ 
+
+Then we may multiply these two clifford objects using either the
+default positive-definite inner product, or the Minkowski metric:
+
+<<sigthree2>>=
 x*y
-signature(3)  # metric +++-
+signature(3)  # switch to signature +++-
 x*y
+@ 
+
+In the above, see how the products are different using the two inner
+products.  Function \code{signature()} takes the special value zero to
+return to a positive-definite inner product:
+
+<<sigzero>>=
+signature(0)
 @ 
 
 \section{Conclusions and further work}
