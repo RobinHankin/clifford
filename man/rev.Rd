@@ -30,7 +30,7 @@ prove that
 We can also show that
 
 \deqn{
-  \left<AB\right>_r=(-1)^{r(r-1)/2}\left<B^dag A^\dag\right>_r
+  \left<AB\right>_r=(-1)^{r(r-1)/2}\left<B^\dag A^\dag\right>_r
 }
 }
 
