@@ -19,8 +19,33 @@ coefficient and is described by the basis vectors it comprises.  Thus
   
 The \emph{grade} of a blade is the number of basis vectors in it.  Thus
 the grade of \eqn{e_1}{e1} is 1, and the grade of
-\eqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.
+\eqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.  The grade operator
+\eqn{\left<\cdot\right>_r}{<.>_r} is used to extract terms of a
+particular grade, with
 
+\deqn{
+  A=\left<A\right>_0 + 
+    \left<A\right>_1 + 
+    \left<A\right>_2 + \cdots = \sum_r\left<A\right>_r
+}{
+  A = <A>_0 + <A>_1 + <A>_2 +... = sum <A>_r
+}
+
+for any Clifford object \eqn{A}.  Thus \eqn{\left<A\right>_r}{<A>_r} is
+said to be homogenous of grade \eqn{r}.  Hestenes sometimes writes
+subscripts that specify grades using an overbar as in
+\eqn{\left<A\right>_{\overline{r}}}{omitted}.
+
+We have
+
+\deqn{
+\left<A+B\right>_r=\left<A\right>_r\qquad
+\left<\lambda A\right>_r=\lambda\left<A\right>_r\qquad
+\left<\left<A\right>_r\right>_s=\left<A\right>_r\delta_{rs}.
+}{
+  omitted; see PDF
+}
+  
 Function \code{grades()} returns an (unordered) vector specifying the
 grades of the constituent blades.
 
