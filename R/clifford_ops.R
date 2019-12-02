@@ -157,7 +157,35 @@ clifford_power_scalar <- function(C,n){
   )
 }
 
+`clifford_wedge_clifford` <- function(C1,C2){
+    if(is.zero(C1) || is.zero(C2)){
+    return(as.clifford(0))
+    s <- getOption("signature")
+  } else {
+    return(as.clifford(c_outerprod(
+        L1  = blades(C1), c1 = coeffs(C1),
+        L2  = blades(C2), c2 = coeffs(C2),
+        m   = maxyblade(C1,C2),
+        sig = signature()
+    )))
+  }
+}
+
+`clifford_dot_clifford` <- function(C1,C2){
+    if(is.zero(C1) || is.zero(C2)){
+    return(as.clifford(0))
+    s <- getOption("signature")
+  } else {
+    return(as.clifford(c_innerprod(
+        L1  = blades(C1), c1 = coeffs(C1),
+        L2  = blades(C2), c2 = coeffs(C2),
+        m   = maxyblade(C1,C2),
+        sig = signature()
+    )))
+  }
+}
+
 "%.%" <- function(C1,C2){UseMethod("%.%")}
-"%.%.clifford" <- function(C1,C2){(C1*C2+C2*C1)/2}
+"%.%.clifford" <- function(C1,C2){clifford_dot_clifford(C1,C2)}
 "%^%" <- function(C1,C2){UseMethod("%^%")}
-"%^%.clifford" <- function(C1,C2){(C1*C2-C2*C1)/2}
+"%^%.clifford" <- function(C1,C2){clifford_wedge_clifford(C1,C2)}

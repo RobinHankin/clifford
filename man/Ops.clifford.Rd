@@ -12,6 +12,8 @@
 \alias{c_equal}
 \alias{c_grade}
 \alias{c_getcoeffs}
+\alias{c_innerprod}
+\alias{c_outerprod}
 \alias{clifford_negative}
 \alias{clifford_times_clifford}
 \alias{clifford_times_scalar}
@@ -20,6 +22,10 @@
 \alias{clifford_plus_scalar}
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
+\alias{dot}
+\alias{wedge}
+\alias{clifford_dot_clifford}
+\alias{clifford_wedge_clifford}
 \alias{maxyblade}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
 \description{
@@ -40,6 +46,8 @@ clifford_times_clifford(C1,C2)
 clifford_times_scalar(C,x)
 clifford_plus_clifford(C1,C2)
 clifford_eq_clifford(C1,C2)
+clifford_dot_clifford(C1,C2)
+clifford_wedge_clifford(C1,C2)
 maxyblade(C1,C2=as.clifford(0))
 C1 \%.\% C2
 C1 \%^\% C2
@@ -61,8 +69,9 @@ C1 \%^\% C2
   operators \dQuote{\code{+}}, \dQuote{\code{-}}, \dQuote{\code{*}} and
   \dQuote{\code{^}} to the appropriate specialist function.
 
-  Idiom \code{x \%.\% y} returns the inner product \code{(xy+yx)/2} and
-  \code{x \%^\% y} returns the wedge product \code{(xy-yx)/2}.
+  Idiom \code{x \%.\% y} returns the inner product and \code{x \%^\% y}
+  returns the wedge product.   Denoting Clifford object  \eqn{A} has grade
+
   
   Functions \code{c_foo()} are low-level helper functions that wrap the
   \code{C} code; function \code{maxyblade()} returns the maximum index

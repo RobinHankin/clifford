@@ -216,3 +216,39 @@ NumericVector c_coeffs_of_blades(clifford C,
     }
     return out;
 }
+
+clifford outerprod(const clifford C1, const clifford C2, const NumericVector &signature){
+    clifford out;
+    clifford::const_iterator ic1,ic2;
+    blade b;
+    int sign;
+    for(ic1=C1.begin(); ic1 != C1.end(); ++ic1){
+        const blade b1 = ic1->first;
+        for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
+            const blade b2 = ic2->first;
+            if(((b1&b2).count() == 0) ){
+                tie(b, sign) = juxtapose(b1, b2, signature[0]);
+                out[b] += sign*(ic1->second)*(ic2->second); // the meat
+            }
+        }
+    }
+    return remove_zeros(out);
+}
+
+clifford innerprod(const clifford C1, const clifford C2, const NumericVector &signature){
+    clifford out;
+    clifford::const_iterator ic1,ic2;
+    blade b;
+    int sign;
+    for(ic1=C1.begin(); ic1 != C1.end(); ++ic1){
+        const blade b1 = ic1->first;
+        for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
+            const blade b2 = ic2->first;
+            if(((b1 & ~b2).count() == 0  | (~b1 & b2).count() == 0) && (b1.count()>0) && (b2.count()>0)){
+                tie(b, sign) = juxtapose(b1, b2, signature[0]);
+                out[b] += sign*(ic1->second)*(ic2->second); // the meat
+            }
+        }
+    }
+    return remove_zeros(out);
+}

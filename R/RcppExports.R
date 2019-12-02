@@ -29,3 +29,11 @@ c_getcoeffs <- function(L, c, m, B) {
     .Call(`_clifford_c_getcoeffs`, L, c, m, B)
 }
 
+c_outerprod <- function(L1, c1, L2, c2, m, sig) {
+    .Call(`_clifford_c_outerprod`, L1, c1, L2, c2, m, sig)
+}
+
+c_innerprod <- function(L1, c1, L2, c2, m, sig) {
+    .Call(`_clifford_c_innerprod`, L1, c1, L2, c2, m, sig)
+}
+

@@ -61,3 +61,24 @@ NumericVector c_getcoeffs(
           ){
   return c_coeffs_of_blades(prepare(L,c,m),B,m);
 }
+
+// [[Rcpp::export]]
+List c_outerprod(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const NumericVector &m,
+	  const NumericVector &sig
+          ){
+  return retval(outerprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+}
+
+// [[Rcpp::export]]
+List c_innerprod(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const NumericVector &m,
+	  const NumericVector &sig
+          ){
+  return retval(innerprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+}
+

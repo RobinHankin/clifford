@@ -107,6 +107,38 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// c_outerprod
+List c_outerprod(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m, const NumericVector& sig);
+RcppExport SEXP _clifford_c_outerprod(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP, SEXP sigSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const List& >::type L1(L1SEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c1(c1SEXP);
+    Rcpp::traits::input_parameter< const List& >::type L2(L2SEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c2(c2SEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type sig(sigSEXP);
+    rcpp_result_gen = Rcpp::wrap(c_outerprod(L1, c1, L2, c2, m, sig));
+    return rcpp_result_gen;
+END_RCPP
+}
+// c_innerprod
+List c_innerprod(const List& L1, const NumericVector& c1, const List& L2, const NumericVector& c2, const NumericVector& m, const NumericVector& sig);
+RcppExport SEXP _clifford_c_innerprod(SEXP L1SEXP, SEXP c1SEXP, SEXP L2SEXP, SEXP c2SEXP, SEXP mSEXP, SEXP sigSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const List& >::type L1(L1SEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c1(c1SEXP);
+    Rcpp::traits::input_parameter< const List& >::type L2(L2SEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c2(c2SEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type sig(sigSEXP);
+    rcpp_result_gen = Rcpp::wrap(c_innerprod(L1, c1, L2, c2, m, sig));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_identity", (DL_FUNC) &_clifford_c_identity, 3},
@@ -116,6 +148,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_grade", (DL_FUNC) &_clifford_c_grade, 4},
     {"_clifford_c_equal", (DL_FUNC) &_clifford_c_equal, 5},
     {"_clifford_c_getcoeffs", (DL_FUNC) &_clifford_c_getcoeffs, 4},
+    {"_clifford_c_outerprod", (DL_FUNC) &_clifford_c_outerprod, 6},
+    {"_clifford_c_innerprod", (DL_FUNC) &_clifford_c_innerprod, 6},
     {NULL, NULL, 0}
 };
 
