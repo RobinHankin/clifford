@@ -93,7 +93,7 @@
 
 `basis` <- function(n,x=1){clifford(list(n),x)}
 
-`rcliff` <- function(n=9,d=6,r=4,include.fewer=FALSE){
+`rcliff` <- function(n=9,d=6,r=4,include.fewer=TRUE){
   if(include.fewer){
     f <- function(r){sample(r,1)}
   } else {
