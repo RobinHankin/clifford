@@ -21,10 +21,15 @@ given by \code{mod(A)}.
 
 }
 \usage{
-scalprod(C1,C2)
+scalprod(C1,C2=rev(C1),drop=TRUE)
 mod(C)
 }
-\arguments{ \item{C,C1,C2}{Clifford objects}}
+\arguments{
+  \item{C,C1,C2}{Clifford objects}
+  \item{drop}{Boolean, with default \code{TRUE} meaning to return the
+    constant coerced to numeric, and \code{FALSE} meaning to return a
+    (constant) Clifford object}
+}
 \author{Robin K. S. Hankin}
 \note{
 Hestenes uses an asterisk for scalar product as in \eqn{A*B}, but in
