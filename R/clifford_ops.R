@@ -65,8 +65,12 @@ maxyblade <- function(C1,C2=as.clifford(0)){
     } else if (.Generic == "/") {
         if(lclass * !rclass){
             return(clifford_times_scalar(e1,1/e2))
+        } else if (!lclass & rclass){
+            return(clifford_times_scalar(clifford_inverse(e2),e1))
+        } else if (lclass & rclass){
+            return(clifford_times_clifford(e1,clifford_inverse(e2)))
         } else {
-            stop("Generic '/' not implemented in this case")
+            oddfunc()
         }
     } else if (.Generic == "+") {
          return(clifford_plus_clifford(as.clifford(e2), as.clifford(e1)))
@@ -117,6 +121,11 @@ maxyblade <- function(C1,C2=as.clifford(0)){
 
 `clifford_times_scalar` <- function(C,x){
     clifford(blades(C),x*coeffs(C))
+}
+
+`clifford_inverse` <- function(C){
+    stopifnot(is.blade(C))
+    return(clifford_times_scalar(rev(C),1/scalprod(C)))
 }
 
 `clifford_plus_clifford` <- function(C1,C2){

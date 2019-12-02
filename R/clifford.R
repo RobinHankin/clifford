@@ -26,7 +26,7 @@
   }
 }
   
-
+`is.blade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
 `const<-` <- function(x,value){UseMethod("const<-")}
 `const<-.clifford` <- function(x,value){
     stopifnot(length(value) == 1)
@@ -55,7 +55,6 @@
     stopifnot(all(blade_elements_increase > 0))
 
     return(TRUE)
-
 }
 
 `as.clifford` <- function(x){
@@ -181,4 +180,4 @@
 }
 
 `scalprod` <- function(C1,C2=rev(C1),drop=TRUE){grade(C1*C2,0,drop=drop)}
-`mod` <- function(C){sqrt(scalprod(rev(A),A))}
+`mod` <- function(C){sqrt(scalprod(rev(C),C))}
