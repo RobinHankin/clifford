@@ -179,3 +179,6 @@
         return(FALSE)
     }
 }
+
+`scalprod` <- function(C1,C2=rev(C1),drop=TRUE){grade(C1*C2,0,drop=drop)}
+`mod` <- function(C){sqrt(scalprod(rev(A),A))}
