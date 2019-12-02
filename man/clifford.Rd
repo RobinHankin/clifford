@@ -60,8 +60,9 @@ nterms(x)
     for consistency of its arguments
 
     \item Function \code{is.blade()} returns \code{TRUE} if its argument
-    is a single blade; the zero clifford object is not considered to be
-    a blade.
+    is a single blade or a nonzero scalar; the zero clifford object is
+    not considered to be a blade.
+
   }
 }
 \references{
