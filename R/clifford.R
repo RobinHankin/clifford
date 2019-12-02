@@ -169,3 +169,13 @@
   if(drop){out <- drop(out)}
   return(out)
 }
+
+`is.homog` <- function(C){
+    if(is.scalar(C)){ return(TRUE) }
+    g <- grades(C)
+    if(min(g) == max(g)){
+        return(TRUE)
+    } else {
+        return(FALSE)
+    }
+}
