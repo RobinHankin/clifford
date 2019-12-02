@@ -4,12 +4,15 @@
 \title{The grade of a clifford object}
 \description{The grade of a blade is the number of basis vectors in it.}
 \usage{
-grade(C, n)
+grade(C, n, drop=TRUE)
 grades(x)
 }
 \arguments{
   \item{C,x}{Clifford object}
   \item{n}{Integer}
+  \item{drop}{Boolean, with default \code{TRUE} meaning to coerce a
+    constant Clifford object to numeric, and \code{FALSE} meaning not
+    to}
 }
 \details{
 

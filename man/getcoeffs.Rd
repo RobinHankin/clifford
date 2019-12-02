@@ -12,13 +12,16 @@ Access specific coeefficents of a Clifford object using a list of blades.
 }
 \usage{
 getcoeffs(C, B)
-const(C)
+const(C,drop=TRUE)
 \method{const}{clifford}(x) <- value
 }
 \arguments{
   \item{C,x}{Clifford object}
   \item{B}{List of blades}
   \item{value}{Replacement value}
+  \item{drop}{Boolean, with default \code{TRUE} meaning to return the
+    constant coerced to numeric, and \code{FALSE} meaning to return a
+    (constant) Clifford object}
 }
 \details{
 

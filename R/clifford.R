@@ -17,7 +17,15 @@
         B = B)
 }
 
-`const` <- function(C){getcoeffs(C,list(numeric(0)))}
+`const` <- function(C,drop=TRUE){
+  out <- getcoeffs(C,list(numeric(0)))
+  if(drop){
+    return(out)
+  } else {
+    return(as.clifford(out))
+  }
+}
+  
 
 `const<-` <- function(x,value){UseMethod("const<-")}
 `const<-.clifford` <- function(x,value){
@@ -148,6 +156,16 @@
   return(x)
 }
 
-`grade` <- function(C,n){
-    as.clifford(c_grade(blades(C),coeffs(C),maxyblade(C),n))
+`drop` <- function(C){
+  if(is.scalar(C)){
+    return(const(C))
+  } else {
+    return(C)
+  }
+}
+
+`grade` <- function(C,n,drop=TRUE){
+  out <- as.clifford(c_grade(blades(C),coeffs(C),maxyblade(C),n))
+  if(drop){out <- drop(out)}
+  return(out)
 }
