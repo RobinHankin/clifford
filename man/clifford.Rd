@@ -6,6 +6,7 @@
 \alias{coeffs}
 \alias{nbits}
 \alias{nterms}
+\alias{is.blade}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
@@ -21,6 +22,7 @@ is_ok_clifford(blades, coeffs)
 as.clifford(x)
 is.clifford(x)
 blades(x)
+is.blade(x)
 coeffs(x)
 nbits(x)
 nterms(x)
@@ -56,6 +58,10 @@ nterms(x)
     
     \item Function \code{is_ok_clifford()} is a helper function that checks
     for consistency of its arguments
+
+    \item Function \code{is.blade()} returns \code{TRUE} if its argument
+    is a single blade; the zero clifford object is not considered to be
+    a blade.
   }
 }
 \references{

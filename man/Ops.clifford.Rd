@@ -22,6 +22,7 @@
 \alias{clifford_plus_scalar}
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
+\alias{clifford_inverse}
 \alias{dot}
 \alias{wedge}
 \alias{clifford_dot_clifford}
@@ -46,6 +47,7 @@ clifford_times_clifford(C1,C2)
 clifford_times_scalar(C,x)
 clifford_plus_clifford(C1,C2)
 clifford_eq_clifford(C1,C2)
+clifford_inverse(C)
 clifford_dot_clifford(C1,C2)
 clifford_wedge_clifford(C1,C2)
 maxyblade(C1,C2=as.clifford(0))
@@ -66,12 +68,12 @@ C1 \%^\% C2
 \details{
 
   The function \code{Ops.clifford()} passes unary and binary arithmetic
-  operators \dQuote{\code{+}}, \dQuote{\code{-}}, \dQuote{\code{*}} and
-  \dQuote{\code{^}} to the appropriate specialist function.
+  operators \dQuote{\code{+}}, \dQuote{\code{-}}, \dQuote{\code{*}},
+  \dQuote{\code{/}} and \dQuote{\code{^}} to the appropriate specialist
+  function.
 
   Idiom \code{x \%.\% y} returns the inner product and \code{x \%^\% y}
-  returns the wedge product.   Denoting Clifford object  \eqn{A} has grade
-
+  returns the wedge product.
   
   Functions \code{c_foo()} are low-level helper functions that wrap the
   \code{C} code; function \code{maxyblade()} returns the maximum index
