@@ -194,7 +194,16 @@ clifford_power_scalar <- function(C,n){
   }
 }
 
+
+`clifford_cross_clifford` <- function(C1,C2){(C1*C2-C2*C1)/2}
+`clifford_star_clifford` <- scalprod
+
 "%.%" <- function(C1,C2){UseMethod("%.%")}
-"%.%.clifford" <- function(C1,C2){clifford_dot_clifford(C1,C2)}
 "%^%" <- function(C1,C2){UseMethod("%^%")}
+"%X%" <- function(C1,C2){UseMethod("%X%")}
+"%star%" <- function(C1,C2){UseMethod("%star%")}
+
+"%.%.clifford" <- function(C1,C2){clifford_dot_clifford(C1,C2)}
 "%^%.clifford" <- function(C1,C2){clifford_wedge_clifford(C1,C2)}
+"%X%.clifford" <- function(C1,C2){clifford_cross_clifford(C1,C2)}
+"%star%.clifford" <- function(C1,C2){scalprod(C1,C2)}

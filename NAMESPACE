@@ -3,13 +3,16 @@ exportPattern("^[[:alpha:]]+")
 
 export("%.%")
 export("%^%")
-
+export("%X%")
+export("%star%")
 
 
 importFrom(Rcpp, evalCpp)
 
 S3method("%.%",clifford)
 S3method("%^%",clifford)
+S3method("%X%",clifford)
+S3method("%star%",clifford)
 S3method(Ops,clifford)
 S3method(print,clifford)
 S3method(rev,clifford)

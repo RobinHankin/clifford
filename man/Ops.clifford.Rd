@@ -1,8 +1,12 @@
 \name{Ops.clifford}
 \alias{\%.\%}
 \alias{\%^\%}
+\alias{\%X\%}
+\alias{\%star\%}
 \alias{\%.\%.clifford}
 \alias{\%^\%.clifford}
+\alias{\%X\%.clifford}
+\alias{\%star\%.clifford}
 \alias{Ops.clifford}
 \alias{Ops}
 \alias{c_identity}
@@ -20,6 +24,8 @@
 \alias{clifford_plus_clifford}
 \alias{clifford_plus_numeric}
 \alias{clifford_plus_scalar}
+\alias{clifford_star_clifford}
+\alias{clifford_cross_clifford}
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
 \alias{clifford_inverse}
@@ -53,6 +59,8 @@ clifford_wedge_clifford(C1,C2)
 maxyblade(C1,C2=as.clifford(0))
 C1 \%.\% C2
 C1 \%^\% C2
+C1 \%X\% C2
+C1 \%star\% C2
 }
 \arguments{
   \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}
@@ -72,12 +80,26 @@ C1 \%^\% C2
   \dQuote{\code{/}} and \dQuote{\code{^}} to the appropriate specialist
   function.
 
-  Idiom \code{x \%.\% y} returns the inner product and \code{x \%^\% y}
-  returns the wedge product.
-  
   Functions \code{c_foo()} are low-level helper functions that wrap the
   \code{C} code; function \code{maxyblade()} returns the maximum index
   in the blades of its arguments.
+
+  The package has several binary operators:
+  \itemize{
+    \item \code{x * y}, \eqn{xy}{xy}, geometric product, also
+    \code{clifford_times_clifford(x,y)}
+    \item \code{x \%.\% y}, \eqn{x\cdot y}{x.y}, inner product, also
+    \code{clifford_dot_clifford(x,y)} 
+    \item \code{x \%^\% y}, \eqn{x\wedge y}{x^y}, outer product, also
+    \code{clifford_wedge_clifford(x,y)} 
+    \item \code{x \%X\% y}, \eqn{x\times y}{x X y}, cross product, also
+    \code{clifford_cross_clifford(x,y)} 
+    \item \code{x \%star\% y}, \eqn{x*y}, scalar product, also
+    \code{clifford_star_clifford()} 
+  }
+
+  The geometric product has to be indicated with a \dQuote{\code{*}}; so
+  we need a different idiom for scalar product.
 
 }
 \value{
