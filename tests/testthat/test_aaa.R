@@ -10,6 +10,10 @@ test_that("Test suite aaa.R",{
     expect_true(maxyblade(as.clifford(0),as.clifford(0))==0)
     expect_true(maxyblade(as.clifford(0),as.clifford(1))==0)
 
+    expect_true(is.zero(as.clifford(1) %.% as.clifford(1)))
+    expect_true(is.zero(as.clifford(1) %.% as.clifford(0)))
+    expect_true(is.zero(as.clifford(0) %.% as.clifford(1)))
+    expect_true(is.zero(as.clifford(0) %.% as.clifford(0)))
 
 
     expect_silent(signature())
@@ -17,6 +21,9 @@ test_that("Test suite aaa.R",{
     signature(0)
     expect_true(basis(1)*basis(1) == as.scalar( 1))
     expect_true(basis(2)*basis(2) == as.scalar( 1))
+
+
+
 
     signature(1)
     expect_true(basis(1)*basis(1) == as.scalar( 1))

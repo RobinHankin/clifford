@@ -26,6 +26,9 @@ checker1 <- function(x){
 
   expect_error(x&x)
   expect_true(x*x == x^2)
+
+  expect_true(is.zero(x %^% as.clifford(0)))
+  expect_true(is.zero(x %.% as.clifford(0)))
 }
 
 checker2 <- function(x,y){
@@ -37,6 +40,11 @@ checker3 <- function(x,y,z){
   expect_true(x*(y*z) == (x*y)*z)
   expect_true(x*(y+z) == x*y + x*z)
   expect_true((x+y)*z == x*z + y*z)
+
+  expect_true(x %^% (y %^% z) == (x %^% y) %^% z)
+  expect_true(x %^% (y + z) == x %^% y + x %^% z)
+
+  
 }
   
   
