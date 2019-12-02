@@ -100,13 +100,13 @@
 
 `basis` <- function(n,x=1){clifford(list(n),x)}
 
-`rcliff` <- function(n=9,d=6,r=4,include.fewer=TRUE){
+`rcliff` <- function(n=9,d=6,grade=4,include.fewer=TRUE){
   if(include.fewer){
-    f <- function(r){sample(r,1)}
+    f <- function(grade){sample(grade,1)}
   } else {
-    f <- function(r){r}
+    f <- function(grade){grade}
   }
-  clifford(replicate(n,sort(sample(d,f(r))),simplify=FALSE),sample(n))
+  clifford(replicate(n,sort(sample(d,f(grade))),simplify=FALSE),sample(n))
 } 
   
 `rev.clifford` <- function(x){
