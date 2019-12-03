@@ -39,6 +39,10 @@ checker1 <- function(x){
   expect_true(x^2 ==   x*x)
   expect_true(x^3 == x*x*x)
   
+  expect_true(is.homog(grade(x,1)))
+  expect_true(is.homog(grade(x,2)))
+  expect_true(is.homog(grade(x,3)))
+
   
 }
 
