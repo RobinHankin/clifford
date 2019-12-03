@@ -47,10 +47,10 @@ checker1 <- function(A){
   expect_true(rev(rev(A)) == A)
 
   
-  for(r in 0:3){
+  for(r in rstloop){
     expect_true(grade(grade(A,r,drop=FALSE),r) == grade(A,r)) # 1.12; grade() is idempotent
     expect_true(rev(grade(A,0)) == grade(A,0))
-    for(lam in 0:2){
+    for(lam in lamloop){
       expect_true(grade(lam*A,r,drop=FALSE) == lam*grade(A,r,drop=FALSE))  # 1.11
     }
   }
@@ -63,20 +63,67 @@ checker1 <- function(A){
   expect_true(grade(grade(A,1,drop=FALSE)*grade(A,1,drop=FALSE),0)>=0) # 1.13
   expect_true(grade(rev(A),0) == grade(A,0)) # 1.17c
   expect_true(rev(grade(A,1)) == grade(A,1)) # 1.17d
-}
+
+  for(lambda in lamloop){
+    Ar <- grade(A,r,drop=FALSE)
+    expect_equal(lambda*Ar, Ar %^% lambda) # 1.22b
+  }
+  
+}   # checker1() closes
   
 checker2 <- function(A,B){
   expect_true(A+B == B+A) # 1.1
   expect_true(A+2*B == B+B+A)
-  for(r in 0:3){
+  for(r in rstloop){
     expect_true(grade(A+B,r) == grade(A,r)+grade(B,r))  # 1.10
+
   }
 
   expect_true(rev(A*B) == rev(B)*rev(A))  # 1.17a
   expect_true(rev(A + B) == rev(B) + rev(A)) # 1.17b
 
 
-}
+  for(r in rstloop){
+    for(s in rstloop){
+      LHS <- grade(A,r,drop=FALSE) %.% grade(B,s,drop=FALSE)
+      RHS <- grade(grade(A,r,drop=FALSE)*grade(B,s,drop=FALSE),abs(r-s),drop=FALSE)
+      expect_true(LHS == RHS) # 1.21a
+
+      if((r==0) | (s==0)){
+        LHS <-  grade(A,r,drop=FALSE) %.% grade(B,s,drop=FALSE)
+        RHS <- as.clifford(0)
+        expect_true(LHS == RHS)
+      }
+      
+      Ar <- grade(A,r,drop=FALSE)
+      Bs <- grade(B,s,drop=FALSE)
+      expect_equal(Ar %^% Bs , grade(Ar*Bs,r+s,drop=FALSE)) # 1.22a
+      if(r<=s){
+        expect_equal(Ar %.% Bs , (-1)^(r*(s-1))*Bs %.% Ar)  # 1.23a
+      }
+      expect_equal(Ar %^% Bs, (-1)^(r*s)*Bs %^% Ar)         # 1.23b
+
+
+
+    } # s loop closes
+  } # r loop closes
+
+  dotprod <- as.clifford(0)
+    cprod <- as.clifford(0)
+  for(r in unique(grades(A))){
+    for(s in unique(grades(B))){
+      dotprod <- dotprod + grade(A,r,drop=FALSE) %.% grade(B,s,drop=FALSE)
+      cprod   <-   cprod + grade(A,r,drop=FALSE) %^% grade(B,s,drop=FALSE)
+    }
+  }
+  expect_true(dotprod == A %.% B)  # 1.21c
+  expect_true(cprod == A %^% B)  # 1.21c
+
+  
+
+
+
+}   # checker2() closes
 
 checker3 <- function(A,B,C){
   expect_true(A+(B+C) == (A+B)+C)  # addition is associative; 1.2
@@ -86,14 +133,29 @@ checker3 <- function(A,B,C){
   expect_true(A*(B+C) == A*B + A*C) # left distributive; 1.4
   expect_true((A+B)*C == A*C + B*C) # right distributive; 1.5
 
-  expect_true(A %^% (B %^% C) == (A %^% B) %^% C)
-  expect_true(A %^% (B + C) == A %^% B + A %^% C)
+  expect_equal( A %.% (B+C) , A %.% B + A %.% C)  # 1.24a
 
-  
+  expect_true(A %^% (B %^% C) == (A %^% B) %^% C) # 1.25a
+  expect_true(A %^% (B + C) == A %^% B + A %^% C) # 1.24b
+
+
+  for(r in rstloop){
+    for(s in rstloop){
+      for(t in rstloop){
+        if((r+s <=t) & (r>0) & (s>0)){
+          Ar <- grade(A,r,drop=FALSE)
+          Bs <- grade(B,s,drop=FALSE)
+          Ct <- grade(C,t,drop=FALSE)
+          expect_equal(Ar %.% (Bs %.% Ct) , (Ar %^% Bs) %.% Ct) # 1.25b
+        }
+      }
+    }
+  }
 }
   
-  
-for(i in 1:100){
+for(i in 1:10){
+    rstloop <- 0:4
+    lamloop <- 0:2
     A <- rcliff(include.fewer=TRUE)
     B <- rcliff(5)
     C <- rcliff(5)
