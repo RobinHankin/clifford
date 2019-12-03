@@ -86,7 +86,11 @@
 `nbits` <- function(x){max(c(blades(x),recursive=TRUE))}
 `grades` <- function(x){unlist(lapply(blades(x),length))}
 `is.scalar` <- function(C){
-  (length(blades(C))==1) && (length(blades(C)[[1]])==0)
+  if(is.zero(C)){
+    return(TRUE)
+  } else {
+    return((length(blades(C))==1) && (length(blades(C)[[1]])==0))
+  }
 }
 
 `scalar` <- function(x=1){clifford(list(numeric(0)),x)}

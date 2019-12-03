@@ -8,6 +8,8 @@ test_that("Test suite aaa.R",{
     expect_error(as.clifford("o"))
     expect_true(numeric_to_clifford(1:3) == clifford(list(1,2,3),1:3))
 
+    expect_true(is.scalar(as.clifford(0)))
+    expect_true(is.scalar(as.clifford(1)))
     expect_true(all(grades(clifford(list(1,2,3),1:3))==1))
 
     expect_true(maxyblade(as.clifford(0),as.clifford(0))==0)
