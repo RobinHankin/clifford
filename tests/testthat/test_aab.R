@@ -100,6 +100,8 @@ for(i in 1:100){
     z <- rcliff(5)
     
     checker1(x)
+    checker2(x,y)
+    checker3(x,y,z)
 }
 
 })
