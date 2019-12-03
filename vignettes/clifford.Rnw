@@ -230,7 +230,7 @@ The defaults for \code{rcliff()} specify that the object is a sum of
 grade-4 blades but this can be altered:
 
 <<anotherrcliff>>=
-(x <- rcliff(d=7,r=5,include.fewer=TRUE))
+(x <- rcliff(d=7,grade=5,include.fewer=TRUE))
 grades(x)
 @ 
 
@@ -264,8 +264,8 @@ themselves do not store the signature; it is used only by the product
 operation \code{*}.
 
 <<sigthree1>>=
-x <- rcliff(d=4,r=3,include.fewer=TRUE)
-y <- rcliff(d=4,r=3,include.fewer=TRUE)
+x <- rcliff(d=4,grade=3,include.fewer=TRUE)
+y <- rcliff(d=4,grade=3,include.fewer=TRUE)
 @ 
 
 Then we may multiply these two clifford objects using either the
