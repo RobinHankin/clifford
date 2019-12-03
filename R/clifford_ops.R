@@ -192,7 +192,6 @@ clifford_power_scalar <- function(C,n){
   }
 }
 
-
 `clifford_cross_clifford` <- function(C1,C2){(C1*C2-C2*C1)/2}
 `clifford_star_clifford` <- scalprod
 
