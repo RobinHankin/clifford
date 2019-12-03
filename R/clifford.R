@@ -156,11 +156,13 @@
 }
 
 `drop` <- function(C){
-  if(is.scalar(C)){
-    return(const(C))
-  } else {
-    return(C)
-  }
+    if(is.zero(C)){
+        return(0)
+    } else if(is.scalar(C)){
+        return(const(C))
+    } else {
+        return(C)
+    }
 }
 
 `grade` <- function(C,n,drop=TRUE){

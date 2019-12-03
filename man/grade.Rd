@@ -9,7 +9,7 @@ grades(x)
 }
 \arguments{
   \item{C,x}{Clifford object}
-  \item{n}{Integer}
+  \item{n}{Integer vector specifying grades to extract}
   \item{drop}{Boolean, with default \code{TRUE} meaning to coerce a
     constant Clifford object to numeric, and \code{FALSE} meaning not
     to}
@@ -53,7 +53,7 @@ Function \code{grades()} returns an (unordered) vector specifying the
 grades of the constituent blades.
 
 Function \code{grade(C,n)} returns a clifford object with just the
-elements of grade \code{n}.
+elements of grade \code{g}, where \code{g \%in\% n}.
 
 Function \code{c_grade()} is a helper function that is documented at
 \code{Ops.clifford.Rd}.
