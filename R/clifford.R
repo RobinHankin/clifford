@@ -166,6 +166,7 @@
 }
 
 `grade` <- function(C,n,drop=TRUE){
+  C <- as.clifford(C)
   out <- as.clifford(c_grade(blades(C),coeffs(C),maxyblade(C),n))
   if(drop){out <- drop(out)}
   return(out)
