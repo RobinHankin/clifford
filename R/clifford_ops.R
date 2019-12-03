@@ -169,7 +169,6 @@ clifford_power_scalar <- function(C,n){
 `clifford_wedge_clifford` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
-    s <- getOption("signature")
   } else {
     return(as.clifford(c_outerprod(
         L1  = blades(C1), c1 = coeffs(C1),
@@ -183,7 +182,6 @@ clifford_power_scalar <- function(C,n){
 `clifford_dot_clifford` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
-    s <- getOption("signature")
   } else {
     return(as.clifford(c_innerprod(
         L1  = blades(C1), c1 = coeffs(C1),
