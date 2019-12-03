@@ -170,6 +170,7 @@
 }
 
 `is.homog` <- function(C){
+    if(is.zero(C)){return (TRUE)}
     if(is.scalar(C)){ return(TRUE) }
     g <- grades(C)
     if(min(g) == max(g)){

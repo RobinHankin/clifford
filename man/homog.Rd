@@ -5,8 +5,11 @@
 \alias{homogenous}
 \title{Homogenous Clifford objects}
 \description{
+
 A clifford object is homogenous if all its blades are the same grade.  A
-scalar is considered to be homogenous.
+scalar (including the zero clifford object) is considered to be
+homogenous, but it is not clear to me whether this is appropriate.
+
 }
 \usage{
 is.homog(C)
