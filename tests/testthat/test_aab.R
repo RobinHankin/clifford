@@ -12,6 +12,10 @@ checker1 <- function(x){
   expect_true(x == +x)
   expect_true(x == -(-x))
   expect_error(!x)
+
+  expect_true(x == x+0)
+  expect_false(x == 1+x)
+  expect_false(x == x+1)
     
   expect_true(x+x == 2*x)
   expect_true(x+x == x*2)
@@ -29,6 +33,13 @@ checker1 <- function(x){
 
   expect_true(is.zero(x %^% as.clifford(0)))
   expect_true(is.zero(x %.% as.clifford(0)))
+
+  expect_true(x^0 == as.clifford(1))
+  expect_true(x^1 ==     x)
+  expect_true(x^2 ==   x*x)
+  expect_true(x^3 == x*x*x)
+  
+  
 }
 
 checker2 <- function(x,y){
