@@ -172,6 +172,7 @@
 }
 
 `is.homog` <- function(C){
+    C <- as.clifford(C)
     if(is.zero(C)){return (TRUE)}
     if(is.scalar(C)){ return(TRUE) }
     g <- grades(C)
