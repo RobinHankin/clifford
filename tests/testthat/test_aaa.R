@@ -59,6 +59,10 @@ test_that("Test suite aaa.R",{
     expect_true(is.clifford(jj))
 
     expect_true(is.blade(basis(3)))
+
+    expect_true(is.homog(as.clifford(0)))
+    expect_true(is.homog(as.clifford(1)))
+
     
     expect_silent(signature())
     expect_silent(signature(Inf))
