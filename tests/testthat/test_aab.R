@@ -60,7 +60,6 @@ checker1 <- function(x){
     total <- total + grade(x,r)
   }
   expect_true(x == total)  # 1.9
-
   expect_true(grade(grade(x,1,drop=FALSE)*grade(x,1,drop=FALSE),0)>=0) # 1.13
   expect_true(grade(rev(x),0) == grade(x,0)) # 1.17c
   expect_true(rev(grade(x,1)) == grade(x,1)) # 1.17d
