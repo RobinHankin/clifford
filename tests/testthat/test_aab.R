@@ -68,7 +68,7 @@ checker1 <- function(x){
   
 checker2 <- function(x,y){
   expect_true(x+y == y+x) # 1.1
-  expect_true(x+2*y == y+x+x)
+  expect_true(x+2*y == y+y+x)
   for(r in 0:3){
     expect_true(grade(x+y,r) == grade(x,r)+grade(y,r))  # 1.10
   }
