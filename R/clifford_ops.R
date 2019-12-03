@@ -167,6 +167,7 @@ clifford_power_scalar <- function(C,n){
 }
 
 `clifford_wedge_clifford` <- function(C1,C2){
+    C2 <- as.clifford(C2)
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
