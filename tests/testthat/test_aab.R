@@ -7,100 +7,100 @@
 
 test_that("Test suite aab.R",{
 
-checker1 <- function(x){
+checker1 <- function(A){
 
-  expect_true(x == +x)
-  expect_true(x == -(-x))
-  expect_error(!x)
+  expect_true(A == +A)
+  expect_true(A == -(-A))
+  expect_error(!A)
 
-  expect_true(x == x+0) # 1.6
-  expect_false(x == 1+x) # 1.7
-  expect_false(x == x+1)
+  expect_true(A == A+0) # 1.6
+  expect_false(A == 1+A) # 1.7
+  expect_false(A == A+1)
     
-  expect_true(x+x == 2*x)
-  expect_true(x+x == x*2)
+  expect_true(A+A == 2*A)
+  expect_true(A+A == A*2)
 
-  expect_true(x-x == as.clifford(0))  # 1.8
-  expect_true(is.zero(x-x))    # 1.8
-  expect_true(x-x == as.clifford(0)) # 1.8
-  expect_true(x+x+x == 3*x)
-  expect_true(x+x+x == x*3)
+  expect_true(A-A == as.clifford(0))  # 1.8
+  expect_true(is.zero(A-A))    # 1.8
+  expect_true(A-A == as.clifford(0)) # 1.8
+  expect_true(A+A+A == 3*A)
+  expect_true(A+A+A == A*3)
 
-  expect_true(x/2 + x/2 == x)
+  expect_true(A/2 + A/2 == A)
 
-  expect_error(x&x)
-  expect_true(x*x == x^2)
+  expect_error(A&A)
+  expect_true(A*A == A^2)
 
-  expect_true(is.zero(x %^% as.clifford(0)))
-  expect_true(is.zero(x %.% as.clifford(0)))
+  expect_true(is.zero(A %^% as.clifford(0)))
+  expect_true(is.zero(A %.% as.clifford(0)))
 
-  expect_true(x^0 == as.clifford(1))
-  expect_true(x^1 ==     x)
-  expect_true(x^2 ==   x*x)
-  expect_true(x^3 == x*x*x)
+  expect_true(A^0 == as.clifford(1))
+  expect_true(A^1 ==     A)
+  expect_true(A^2 ==   A*A)
+  expect_true(A^3 == A*A*A)
 
-  expect_true(is.homog(grade(x,0)))
-  expect_true(is.homog(grade(x,1)))
-  expect_true(is.homog(grade(x,2)))
-  expect_true(is.homog(grade(x,3)))
+  expect_true(is.homog(grade(A,0)))
+  expect_true(is.homog(grade(A,1)))
+  expect_true(is.homog(grade(A,2)))
+  expect_true(is.homog(grade(A,3)))
 
-  expect_true(rev(rev(x)) == x)
+  expect_true(rev(rev(A)) == A)
 
   
   for(r in 0:3){
-    expect_true(grade(grade(x,r,drop=FALSE),r) == grade(x,r)) # 1.12; grade() is idempotent
-    expect_true(rev(grade(x,0)) == grade(x,0))
+    expect_true(grade(grade(A,r,drop=FALSE),r) == grade(A,r)) # 1.12; grade() is idempotent
+    expect_true(rev(grade(A,0)) == grade(A,0))
     for(lam in 0:2){
-      expect_true(grade(lam*x,r,drop=FALSE) == lam*grade(x,r,drop=FALSE))  # 1.11
+      expect_true(grade(lam*A,r,drop=FALSE) == lam*grade(A,r,drop=FALSE))  # 1.11
     }
   }
 
   total <- as.clifford(0)
-  for(r in unique(grades(x))){
-    total <- total + grade(x,r)
+  for(r in unique(grades(A))){
+    total <- total + grade(A,r)
   }
-  expect_true(x == total)  # 1.9
-  expect_true(grade(grade(x,1,drop=FALSE)*grade(x,1,drop=FALSE),0)>=0) # 1.13
-  expect_true(grade(rev(x),0) == grade(x,0)) # 1.17c
-  expect_true(rev(grade(x,1)) == grade(x,1)) # 1.17d
+  expect_true(A == total)  # 1.9
+  expect_true(grade(grade(A,1,drop=FALSE)*grade(A,1,drop=FALSE),0)>=0) # 1.13
+  expect_true(grade(rev(A),0) == grade(A,0)) # 1.17c
+  expect_true(rev(grade(A,1)) == grade(A,1)) # 1.17d
 }
   
-checker2 <- function(x,y){
-  expect_true(x+y == y+x) # 1.1
-  expect_true(x+2*y == y+y+x)
+checker2 <- function(A,B){
+  expect_true(A+B == B+A) # 1.1
+  expect_true(A+2*B == B+B+A)
   for(r in 0:3){
-    expect_true(grade(x+y,r) == grade(x,r)+grade(y,r))  # 1.10
+    expect_true(grade(A+B,r) == grade(A,r)+grade(B,r))  # 1.10
   }
 
-  expect_true(rev(x*y) == rev(y)*rev(x))  # 1.17a
-  expect_true(rev(x + y) == rev(y) + rev(x)) # 1.17b
+  expect_true(rev(A*B) == rev(B)*rev(A))  # 1.17a
+  expect_true(rev(A + B) == rev(B) + rev(A)) # 1.17b
 
 
 }
 
-checker3 <- function(x,y,z){
-  expect_true(x+(y+z) == (x+y)+z)  # addition is associative; 1.2
-  expect_true(x*(y*z) == (x*y)*z)  # geometric product is associative; 1.3
+checker3 <- function(A,B,C){
+  expect_true(A+(B+C) == (A+B)+C)  # addition is associative; 1.2
+  expect_true(A*(B*C) == (A*B)*C)  # geometric product is associative; 1.3
 
 
-  expect_true(x*(y+z) == x*y + x*z) # left distributive; 1.4
-  expect_true((x+y)*z == x*z + y*z) # right distributive; 1.5
+  expect_true(A*(B+C) == A*B + A*C) # left distributive; 1.4
+  expect_true((A+B)*C == A*C + B*C) # right distributive; 1.5
 
-  expect_true(x %^% (y %^% z) == (x %^% y) %^% z)
-  expect_true(x %^% (y + z) == x %^% y + x %^% z)
+  expect_true(A %^% (B %^% C) == (A %^% B) %^% C)
+  expect_true(A %^% (B + C) == A %^% B + A %^% C)
 
   
 }
   
   
 for(i in 1:100){
-    x <- rcliff(include.fewer=TRUE)
-    y <- rcliff(5)
-    z <- rcliff(5)
+    A <- rcliff(include.fewer=TRUE)
+    B <- rcliff(5)
+    C <- rcliff(5)
     
-    checker1(x)
-    checker2(x,y)
-    checker3(x,y,z)
+    checker1(A)
+    checker2(A,B)
+    checker3(A,B,C)
 }
 
 })
