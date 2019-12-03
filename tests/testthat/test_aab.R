@@ -38,7 +38,7 @@ checker1 <- function(x){
   expect_true(x^1 ==     x)
   expect_true(x^2 ==   x*x)
   expect_true(x^3 == x*x*x)
-  
+
   expect_true(is.homog(grade(x,0)))
   expect_true(is.homog(grade(x,1)))
   expect_true(is.homog(grade(x,2)))
@@ -48,10 +48,10 @@ checker1 <- function(x){
 
   
   for(r in 0:3){
-    expect_true(grade(grade(x,r),r) == grade(x,r)) # 1.12; grade() is idempotent
+    expect_true(grade(grade(x,r,drop=FALSE),r) == grade(x,r)) # 1.12; grade() is idempotent
     expect_true(rev(grade(x,0)) == grade(x,0))
     for(lam in 0:2){
-      expect_true(grade(lam*x,r) == lam*grade(x,r))  # 1.11
+      expect_true(grade(lam*x,r,drop=FALSE) == lam*grade(x,r,drop=FALSE))  # 1.11
     }
   }
 
@@ -61,12 +61,9 @@ checker1 <- function(x){
   }
   expect_true(x == total)  # 1.9
 
-  expect_true(grade(grade(x,1)*grade(x,1),0)>=0) # 1.13
-  
+  expect_true(grade(grade(x,1,drop=FALSE)*grade(x,1,drop=FALSE),0)>=0) # 1.13
   expect_true(grade(rev(x),0) == grade(x,0)) # 1.17c
   expect_true(rev(grade(x,1)) == grade(x,1)) # 1.17d
-
-
 }
   
 checker2 <- function(x,y){
@@ -97,7 +94,7 @@ checker3 <- function(x,y,z){
 }
   
   
-for(i in 1:2){
+for(i in 1:100){
     x <- rcliff(include.fewer=TRUE)
     y <- rcliff(5)
     z <- rcliff(5)
