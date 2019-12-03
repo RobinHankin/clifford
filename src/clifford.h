@@ -190,7 +190,6 @@ bool c_equal(clifford C1, clifford C2){
 
 clifford c_grade(const clifford C, const NumericVector &n){
     clifford out;
-    unsigned int grade;
     for(int i=0 ; i < n.length() ; ++i){
         for(clifford::const_iterator ic=C.begin() ; ic != C.end() ; ++ic){
             const blade b = ic->first;
