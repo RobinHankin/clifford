@@ -75,13 +75,14 @@ checker2 <- function(A,B){
   expect_true(A+B == B+A) # 1.1
   expect_true(A+2*B == B+B+A)
   for(r in rstloop){
-    expect_true(grade(A+B,r) == grade(A,r)+grade(B,r))  # 1.10
-
+    Ar <- grade(A,r,drop=FALSE)
+    Br <- grade(B,r,drop=FALSE)
+    expect_true(grade(A+B,r,drop=FALSE) == Ar+Br)  # 1.10
+    expect_equal(as.clifford(Ar %star% Br), Ar %.% Br) # 1.45b
   }
 
   expect_true(rev(A*B) == rev(B)*rev(A))  # 1.17a
   expect_true(rev(A + B) == rev(B) + rev(A)) # 1.17b
-
 
   for(r in rstloop){
     for(s in rstloop){
@@ -102,25 +103,37 @@ checker2 <- function(A,B){
         expect_equal(Ar %.% Bs , (-1)^(r*(s-1))*Bs %.% Ar)  # 1.23a
       }
       expect_equal(Ar %^% Bs, (-1)^(r*s)*Bs %^% Ar)         # 1.23b
-
-
-
     } # s loop closes
   } # r loop closes
 
-  dotprod <- as.clifford(0)
-    cprod <- as.clifford(0)
+   dotprod <- as.clifford(0)
+     cprod <- as.clifford(0)
+  starprod <- 0
   for(r in unique(grades(A))){
     for(s in unique(grades(B))){
-      dotprod <- dotprod + grade(A,r,drop=FALSE) %.% grade(B,s,drop=FALSE)
-      cprod   <-   cprod + grade(A,r,drop=FALSE) %^% grade(B,s,drop=FALSE)
-    }
-  }
-  expect_true(dotprod == A %.% B)  # 1.21c
-  expect_true(cprod == A %^% B)  # 1.21c
-
+      Ar <- grade(A,r,drop=FALSE)
+      Bs <- grade(B,s,drop=FALSE)
+      dotprod <-   dotprod + Ar %.% Bs
+      cprod   <-     cprod + Ar %^% Bs
+      if(r !=s){
+        expect_true(Ar %star% Bs == 0) # 1.45a
+      } else {
+        starprod <- starprod + Ar %star% Bs
+      }
+    } # s loop closes
+  } # r loop closes
+  expect_true(dotprod == A %.% B)     # 1.21c
+  expect_true(  cprod == A %^% B)     # 1.22c
+  expect_true(starprod == A %star% B) # 1.46
   
+  
+  expect_true(A %star% B == grade(A*B,0))  # 1.44
 
+  expect_true(A %star% B == grade(A*B,0)) # 1.47a
+  expect_true(A %star% B == grade(B*A,0)) # 1.47a
+  expect_true(A %star% B == B %star% A)   # 1.47a
+
+  expect_true(A %star% B == rev(A) %star% rev(B)) # 1.48
 
 
 }   # checker2() closes
@@ -137,6 +150,9 @@ checker3 <- function(A,B,C){
 
   expect_true(A %^% (B %^% C) == (A %^% B) %^% C) # 1.25a
   expect_true(A %^% (B + C) == A %^% B + A %^% C) # 1.24b
+
+  expect_true(A %star% (2*B + 3*C) == 2*A %star% B + 3*A %star% C) # 1.47b
+
 
 
   for(r in rstloop){
