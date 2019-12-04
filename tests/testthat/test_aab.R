@@ -15,6 +15,7 @@ checker1 <- function(A){
 
   expect_true(A == A+0) # 1.6
   expect_false(A == 1+A) # 1.7
+  expect_false(1+A == A) # 1.7
   expect_false(A == A+1)
     
   expect_true(A+A == 2*A)

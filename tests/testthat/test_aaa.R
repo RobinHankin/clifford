@@ -8,6 +8,8 @@ test_that("Test suite aaa.R",{
     expect_error(as.clifford("o"))
     expect_true(numeric_to_clifford(1:3) == clifford(list(1,2,3),1:3))
 
+
+    expect_false(clifford(list(1,1:2),1:2) == clifford(list(1,1:2),c(1,3)))
     expect_true(is.scalar(as.clifford(0)))
     expect_true(is.scalar(as.clifford(1)))
     expect_true(all(grades(clifford(list(1,2,3),1:3))==1))
@@ -64,6 +66,7 @@ test_that("Test suite aaa.R",{
 
     expect_true(is.homog(as.clifford(0)))
     expect_true(is.homog(as.clifford(1)))
+    expect_false(is.homog(1+basis(2)))
 
     
     expect_true(is.pseudoscalar(as.clifford(0)))
@@ -96,6 +99,8 @@ test_that("Test suite aaa.R",{
     options("show_signature" = TRUE)
     signature(2)
     expect_output(print( rcliff()))
+    expect_output(print( rcliff(include.fewer=TRUE)))
+    expect_output(print( rcliff(include.fewer=FALSE)))
     expect_output(print(-rcliff()))
     expect_output(print(+rcliff()))
 
