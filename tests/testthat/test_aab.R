@@ -60,7 +60,9 @@ checker1 <- function(A){
     total <- total + grade(A,r)
   }
   expect_true(A == total)  # 1.9
-  expect_true(grade(grade(A,1,drop=FALSE)*grade(A,1,drop=FALSE),0)>=0) # 1.13
+  if(signature()==0){
+      expect_true(grade(grade(A,1,drop=FALSE)*grade(A,1,drop=FALSE),0)>=0) # 1.13
+  }
   expect_true(grade(rev(A),0) == grade(A,0)) # 1.17c
   expect_true(rev(grade(A,1)) == grade(A,1)) # 1.17d
 
@@ -175,15 +177,18 @@ checker3 <- function(A,B,C){
 }
   
 for(i in 1:10){
-    rstloop <- 0:4
-    lamloop <- 0:2
-    A <- rcliff(include.fewer=TRUE)
-    B <- rcliff(5)
-    C <- rcliff(5)
-    
-    checker1(A)
-    checker2(A,B)
-    checker3(A,B,C)
+    for(sigs in 0:2){
+        signature(sigs)
+        rstloop <- 0:4
+        lamloop <- 0:2
+        A <- rcliff(include.fewer=TRUE)
+        B <- rcliff(5)
+        C <- rcliff(5)
+        
+        checker1(A)
+        checker2(A,B)
+        checker3(A,B,C)
+    }
 }
 
 })
