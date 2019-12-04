@@ -66,6 +66,14 @@ test_that("Test suite aaa.R",{
     expect_true(is.homog(as.clifford(1)))
 
     
+    expect_true(is.pseudoscalar(as.clifford(0)))
+    expect_true(is.pseudoscalar(as.clifford(1)))
+    expect_true(is.pseudoscalar(pseudoscalar(1)))
+    expect_true(is.pseudoscalar(pseudoscalar(2)))
+    expect_true(is.pseudoscalar(pseudoscalar(3)))
+    expect_false(is.pseudoscalar(1+pseudoscalar(3)))
+    
+
     expect_silent(signature())
     expect_silent(signature(Inf))
     signature(0)

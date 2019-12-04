@@ -99,7 +99,12 @@
 `pseudoscalar` <- function(n,x=1){clifford(list(seq_len(n)),x)}
 `as.pseudoscalar` <- `pseudoscalar`
 `is.pseudoscalar` <- function(C){
-    (length(blades(C))==1) && all(blades(C)==seq_along(blades(C)))
+    if(is.zero(C)){return(TRUE)}
+    return(
+        is.clifford(C)         &&
+        (length(blades(C))==1) &&
+        all(blades(C)[[1]] == seq_along(blades(C)[[1]]))
+    )
 }
 
 `basis` <- function(n,x=1){clifford(list(n),x)}
