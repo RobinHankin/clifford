@@ -27,7 +27,7 @@ clifford remove_zeros(clifford &C){
             ++it; // increment anyway
         }
     } 
-    return(C);
+    return C;
 }
 
 clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
@@ -65,7 +65,7 @@ List Rblades(const clifford C){  // takes a clifford object, returns a list of w
     for(ic=C.begin(); ic != C.end(); ++ic){
         out.push_back(which(ic->first));
     }
-    return(out);
+    return out;
 }
 
 NumericVector coeffs(const clifford C){  // takes a clifford object, returns the coefficients
