@@ -190,3 +190,17 @@
 
 `scalprod` <- function(C1,C2=rev(C1),drop=TRUE){grade(C1*C2,0,drop=drop)}
 `mod` <- function(C){sqrt(scalprod(rev(C),C))}
+
+`is.even` <- function(C){all(grades(C)%%2==0)}
+`is.odd`  <- function(C){all(grades(C)%%2==1)}
+
+`evenpart` <- function(C){
+    wanted <- which(unlist(lapply(blades(C),length))%%2==0)
+    clifford(blades(C)[wanted],coeffs=coeffs(C)[wanted])
+}
+
+`oddpart` <- function(C){
+    wanted <- which(unlist(lapply(blades(C),length))%%2==1)
+    clifford(blades(C)[wanted],coeffs=coeffs(C)[wanted])
+}
+
