@@ -68,6 +68,9 @@ checker1 <- function(A){
     Ar <- grade(A,r,drop=FALSE)
     expect_equal(lambda*Ar, Ar %^% lambda) # 1.22b
   }
+
+
+  expect_true(A %X% B + B %X% A == as.clifford(0))
   
 }   # checker1() closes
   
@@ -154,6 +157,8 @@ checker3 <- function(A,B,C){
   expect_true(A %star% (2*B + 3*C) == 2*A %star% B + 3*A %star% C) # 1.47b
 
 
+  expect_true(is.zero(A %X% (B %X% C) + B %X% (C %X% A) + C %X% (A %X% B))) # 1.56c
+  expect_true(A %X% (B*C) == (A %X% B)*C + B*(A %X% C))  # 1.57
 
   for(r in rstloop){
     for(s in rstloop){
