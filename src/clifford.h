@@ -255,3 +255,11 @@ clifford innerprod(const clifford C1, const clifford C2, const NumericVector &si
     }
     return remove_zeros(out);
 }
+
+clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
+    clifford::const_iterator i;
+    for(i=C2.begin(); i != C2.end(); ++i){
+        C1[i->first] = i->second;
+    }
+    return C1;
+}

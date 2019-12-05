@@ -37,3 +37,7 @@ c_innerprod <- function(L1, c1, L2, c2, m, sig) {
     .Call(`_clifford_c_innerprod`, L1, c1, L2, c2, m, sig)
 }
 
+c_overwrite <- function(L1, c1, L2, c2, m) {
+    .Call(`_clifford_c_overwrite`, L1, c1, L2, c2, m)
+}
+

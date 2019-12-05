@@ -9,6 +9,8 @@ export("%star%")
 
 importFrom(Rcpp, evalCpp)
 
+S3method("[", clifford)
+S3method("[<-", clifford)
 S3method("%.%",clifford)
 S3method("%^%",clifford)
 S3method("%X%",clifford)

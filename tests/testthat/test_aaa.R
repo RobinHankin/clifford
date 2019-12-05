@@ -40,6 +40,17 @@ test_that("Test suite aaa.R",{
 
     expect_true(basis(1)/basis(2) == clifford(list(1:2),1))
 
+    A <- clifford(list(1,1:2,1:3),1:3)
+    B <- clifford(list(1:2,1:6),c(44,45))
+    
+    expect_silent(A[1,c(1,3,4)])
+    expect_silent(A[2:3, 4] <- 99)
+    expect_silent(A[] <- B)
+    expect_silent(A[] <- 3)
+
+    expect_true(is.1vector(clifford(list(1,2,3),1:3)))
+
+    
     jj <- clifford(list(1,1:2,1:3,1:4),1:4)
     expect_true(getcoeffs(jj,list(1:2))==2)
     expect_error(jj == 0)

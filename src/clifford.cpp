@@ -82,3 +82,12 @@ List c_innerprod(
   return retval(innerprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
 }
 
+// [[Rcpp::export]]
+List c_overwrite(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,
+          const NumericVector &m
+          ){
+	return retval(overwrite(prepare(L1,c1,m),prepare(L2,c2,m)));
+}
+

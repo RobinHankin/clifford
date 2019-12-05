@@ -18,6 +18,7 @@
 \alias{c_getcoeffs}
 \alias{c_innerprod}
 \alias{c_outerprod}
+\alias{c_overwrite}
 \alias{clifford_negative}
 \alias{clifford_times_clifford}
 \alias{clifford_times_scalar}
@@ -48,6 +49,7 @@ c_add(L1, c1, L2, c2, m)
 c_multiply(L1, c1, L2, c2, m, sig)
 c_power(L, c, m, p, sig)
 c_equal(L1, c1, L2, c2, m)
+c_overwrite(L1, c1, L2, c2, m)
 clifford_negative(C)
 clifford_times_clifford(C1,C2)
 clifford_times_scalar(C,x)
