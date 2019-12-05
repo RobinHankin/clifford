@@ -72,6 +72,16 @@ checker1 <- function(A){
     expect_equal(lambda*Ar, Ar %^% lambda) # 1.22b
   }
 
+  expect_true(is.even(evenpart(A)))
+  expect_equal(evenpart(evenpart(A)),evenpart(A))
+
+  expect_true(is.odd(oddpart(A)))
+  expect_equal(oddpart(oddpart(A)),oddpart(A))
+
+  expect_equal(A,evenpart(A)+oddpart(A))
+
+  expect_true(is.odd(A - evenpart(A)))
+  expect_true(is.even(A - oddpart(A)))
 
   
 }   # checker1() closes
