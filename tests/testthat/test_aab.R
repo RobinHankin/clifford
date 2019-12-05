@@ -73,7 +73,6 @@ checker1 <- function(A){
   }
 
 
-  expect_true(A %X% B + B %X% A == as.clifford(0))
   
 }   # checker1() closes
   
@@ -140,6 +139,8 @@ checker2 <- function(A,B){
   expect_true(A %star% B == B %star% A)   # 1.47a
 
   expect_true(A %star% B == rev(A) %star% rev(B)) # 1.48
+
+  expect_true(A %X% B + B %X% A == as.clifford(0))
 
 
 }   # checker2() closes
