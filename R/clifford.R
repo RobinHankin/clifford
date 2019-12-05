@@ -26,6 +26,7 @@
   }
 }
   
+`is.1vector` <- function(x){all(grades(x)==1)}
 `is.blade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
 `const<-` <- function(x,value){UseMethod("const<-")}
 `const<-.clifford` <- function(x,value){

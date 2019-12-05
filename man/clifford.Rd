@@ -7,6 +7,7 @@
 \alias{nbits}
 \alias{nterms}
 \alias{is.blade}
+\alias{is.1vector}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
@@ -23,6 +24,7 @@ as.clifford(x)
 is.clifford(x)
 blades(x)
 is.blade(x)
+is.1vector(x)
 coeffs(x)
 nbits(x)
 nterms(x)
@@ -62,6 +64,9 @@ nterms(x)
     \item Function \code{is.blade()} returns \code{TRUE} if its argument
     is a single blade or a nonzero scalar; the zero clifford object is
     not considered to be a blade.
+
+    \item Function \code{is.1vector()} returns \code{TRUE} if every
+    blade is of grade 1.
 
   }
 }
