@@ -1,0 +1,60 @@
+---
+title: "The clifford package: Clifford algebra in R"
+output:
+  github_document:
+    pandoc_args: --webtex
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
+<!-- badges: start -->
+[![Build Status](https://travis-ci.org/RobinHankin/clifford.svg?branch=master)](https://travis-ci.org/RobinHankin/clifford)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
+[![Rdoc](http://www.rdocumentation.org/badges/version/clifford)](http://www.rdocumentation.org/packages/clifford)
+[![Codecov test coverage](https://codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/clifford/branch/master)
+<!-- badges: end -->
+
+# Overview
+
+The ``clifford` package provides R-centric functionality for working
+with Clifford algebras of arbitrary dimension and signature.  A
+detailed vignette is provided in the package.
+
+# Installation
+
+You can install the released version of the clifford package from
+[CRAN](https://CRAN.R-project.org) with:
+
+```{r, message=FALSE}
+# install.packages("clifford")  # uncomment this to install the package
+library("clifford")
+set.seed(0)
+```
+
+# The `clifford` package in use
+
+```{r cliff1}
+a <- rcliff()
+a
+```
+
+# References
+
+  - D. Hestenes 1987. _Clifford algebra to geometric calculus_, Kluwer.
+  - J. Snygg 2010. _A new approach to differential geometry using Clifford's geometric algebra_.  Berghauser.
+
+# Further information
+
+For more detail, see the package vignette
+
+```vignette("clifford")```
