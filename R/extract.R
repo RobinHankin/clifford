@@ -1,6 +1,10 @@
-`[.clifford` <- function(C, ...){
-  dots <- list(...)
-  clifford(dots,getcoeffs(C,dots))
+`[.clifford` <- function(C, index, ...){
+    if(is.list(index)){
+        dots <- index
+    } else {
+        dots <- c(list(index),list(...))
+    }
+    clifford(dots,getcoeffs(C,dots))
 }  
 
 `[<-.clifford` <- function(C, index, ..., value){

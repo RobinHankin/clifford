@@ -10,7 +10,7 @@
   Extract or replace subsets of cliffords.
 }
 \usage{
-\method{[}{clifford}(C, \dots)
+\method{[}{clifford}(C, index, \dots)
 \method{[}{clifford}(C, index, \dots) <- value
  }
 \arguments{
@@ -24,6 +24,9 @@
 Experimental extraction and replacement methods.  The extraction method
 uses \code{getcoeffs()} and the replacement method uses low-level helper
 function \code{c_overwrite()}.
+
+In the extraction function \code{a[index]}, if \code{index} is a list,
+further arguments are ignored.  If not, the dots are used.
 
 Idiom such as \code{a[] <- b} follows the \code{spray} package.
   
