@@ -18,9 +18,12 @@ is a list of integer vectors representing blades, and the second is a
 numeric vector of coefficients.
 
 The print method has special dispensation for length-zero clifford
-objects.  It is sensitive to the value of \code{option(separate)} which,
-if \code{TRUE} prints the basis vectors separately and otherwise prints
-in a compact form.
+objects.  It is sensitive to the value of \code{options("separate")}
+which, if \code{TRUE} prints the basis vectors separately and otherwise
+prints in a compact form.  The indices of the basis vectors are
+separated with \code{option("basissep")} which is usually \code{NULL}
+but if \eqn{n>9}, then setting \code{options("basissep" = ",")} might
+look good.
 
 }
 \seealso{\code{\link{clifford}}}  

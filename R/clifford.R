@@ -138,7 +138,9 @@
       if(isTRUE(getOption("separate"))){
         return(paste("e",a,collapse=" ",sep=""))
       } else {
-        return(paste("e_",paste(a,collapse=""),sep=""))
+          jj <- getOption("basissep")
+          if(is.null(jj)){jj <- ""}
+        return(paste("e_",paste(a,collapse=jj),sep=""))
       }
     }
   }
