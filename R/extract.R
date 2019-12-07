@@ -1,5 +1,7 @@
 `[.clifford` <- function(C, index, ...){
-    if(is.list(index)){
+    if(is.clifford(index)){
+        stop("cannot extract a clifford; try A[blades(B)]")
+    } else if(is.list(index)){
         dots <- index
     } else {
         dots <- c(list(index),list(...))
