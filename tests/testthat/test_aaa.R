@@ -50,6 +50,27 @@ test_that("Test suite aaa.R",{
 
     expect_true(is.1vector(clifford(list(1,2,3),1:3)))
 
+    A <- clifford(list(1,1:2,1:3),1:3)
+    expect_true(A[1] == basis(1))
+    expect_true(A[1,1:2] == basis(1) + 2*basis(1)*basis(2))
+
+    A[1] <- 20
+    expect_true(A == clifford(list(1,1:2,1:3),c(20,2,3)))
+    A[1] <- 0
+    expect_true(A == clifford(list(1:2,1:3),2:3))
+
+    A <- clifford(list(1,1:2,1:3),1:3)
+    A[1,1:2] <- 33
+    expect_true(A == clifford(list(1,1:2,1:3),c(33,33,3)))
+
+    A <- clifford(list(1,1:2,1:3),1:3)
+    A[1,1:2] <- 0
+    expect_true(A == clifford(list(1:3),3))
+
+    A <- clifford(list(1,1:2,1:3),1:3)
+    A[] <- 0
+    expect_true(is.zero(A))
+    
     
     jj <- clifford(list(1,1:2,1:3,1:4),1:4)
     expect_true(getcoeffs(jj,list(1:2))==2)

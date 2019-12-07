@@ -28,6 +28,9 @@ function \code{c_overwrite()}.
 In the extraction function \code{a[index]}, if \code{index} is a list,
 further arguments are ignored.  If not, the dots are used.
 
+Replacement methods using list-valued \code{index}, as in \code{A[i] <-
+value} uses an ugly hack if \code{value} is zero.
+
 Idiom such as \code{a[] <- b} follows the \code{spray} package.
   
 }
