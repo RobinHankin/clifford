@@ -4,6 +4,8 @@
 \alias{is.clifford}
 \alias{blades}
 \alias{coeffs}
+\alias{coeffs<-}
+\alias{coeffs<-.clifford}
 \alias{nbits}
 \alias{nterms}
 \alias{is.blade}
@@ -26,6 +28,7 @@ blades(x)
 is.blade(x)
 is.1vector(x)
 coeffs(x)
+coeffs(x) <- value
 nbits(x)
 nterms(x)
 }
@@ -33,7 +36,7 @@ nterms(x)
   \item{blades}{A list of integer vectors with strictly increasing
     entries corresponding to the basis vectors of the underlying vector
     space}
-  \item{coeffs}{Numeric vector of coefficients}
+  \item{value,coeffs}{Numeric vector of coefficients}
   \item{x}{Object of class \code{clifford}}
 }
 \details{
@@ -49,7 +52,11 @@ nterms(x)
     \item Functions \code{blades()} and \code{coeffs()} are the
     extraction methods.  These are unordered vectors but the ordering is
     consistent between them (an extended discussion of this phenomenon
-    is presented in the \code{mvp} package)
+    is presented in the \code{mvp} package).
+
+    \item Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets
+    all coefficients of \code{a} to \code{b}.  This has the same effect
+    as \code{a[] <- b}.
 
     \item Function \code{nbits()} returns the number of bits required in
     the low-level C routines to store the blades (this is the largest
@@ -89,5 +96,6 @@ coeffs(z)
 (x*y)*z == x*(y*z)  # should be true
 x*(y+z) == x*y + x*z  # should be true
 
+coeffs(z) <- 1999
 
 }

@@ -26,15 +26,25 @@
     return(as.clifford(out))
   }
 }
-  
+
+
 `is.1vector` <- function(x){all(grades(x)==1)}
 `is.blade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
+
+`coeffs<-` <- function(x,value){UseMethod("coeffs<-")}
+`coeffs<-.clifford` <- function(x,value){
+    stopifnot(length(value) == 1)
+    return(clifford(blades(x),value + 0*coeffs(x)))
+}
+
 `const<-` <- function(x,value){UseMethod("const<-")}
 `const<-.clifford` <- function(x,value){
     stopifnot(length(value) == 1)
     x <- x-const(x)
     return(x+value)
 }
+
+
 
 `mymax` <- function(s){
     if(length(s)==0){

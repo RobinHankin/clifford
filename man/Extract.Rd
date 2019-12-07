@@ -31,10 +31,14 @@ further arguments are ignored.  If not, the dots are used.
 Replacement methods using list-valued \code{index}, as in \code{A[i] <-
 value} uses an ugly hack if \code{value} is zero.
 
-Idiom such as \code{a[] <- b} follows the \code{spray} package.
+Idiom such as \code{a[] <- b} follows the \code{spray} package.  If
+\code{b} is a length-one scalar, then \code{coeffs(a) <- b} has the same
+effect as \code{a[] <- b}.
+
+
   
 }
-\seealso{\code{\link{Ops.clifford}}}
+\seealso{\code{\link{Ops.clifford}},\code{\link{clifford}}}
 \examples{
 A <- clifford(list(1,1:2,1:3),1:3)
 B <- clifford(list(1:2,1:6),c(44,45))
