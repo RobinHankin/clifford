@@ -23,7 +23,9 @@
 
 Experimental extraction and replacement methods.  The extraction method
 uses \code{getcoeffs()} and the replacement method uses low-level helper
-function \code{c_overwrite()}. 
+function \code{c_overwrite()}.
+
+Idiom such as \code{a[] <- b} follows the \code{spray} package.
   
 }
 \seealso{\code{\link{Ops.clifford}}}
