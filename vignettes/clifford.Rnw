@@ -285,6 +285,26 @@ return to a positive-definite inner product:
 signature(0)
 @ 
 
+\subsection{Higher dimensional spaces}
+
+\cite{ablamowicz2012} consider high-dimensional Clifford algebras and
+consider the following two elements of the 1024-dimensional Clifford
+algebra spanned by $e_1,\ldots-{10}$ which are implemented in the
+current package as follows:
+
+<<abramandfauser>>=
+(x <- clifford(list(1:3,c(1,5,7,8,10)),c(4,-10)) + 2)
+(y <- clifford(list(c(1,2,3,7),c(1,5,6,8),c(1,4,6,7)),c(4,1,-3)) - 1)
+@ 
+
+Their geometric product is given in the package as
+
+<<geomprod>>=
+x*y
+@ 
+
+in agreement with \cite{ablamowicz2012}.
+
 \section{Conclusions and further work}
 
 The \pkg{clifford} package furnishes a consistent and documented suite
