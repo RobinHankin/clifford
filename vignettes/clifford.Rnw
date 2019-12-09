@@ -188,9 +188,24 @@ in relativity (usually) has the negative sign first:
 \end{equation}
 
 
+\subsection{Wedge product of the exterior algebra is a special case
+  of the geometric product}
+
+If we specify that the quadratic form is identically zero then
+equation \ref{gencliff1} becomes
+
+\begin{equation}\label{specwedge}
+\ei{i}\ei{j}+\ei{j}\ei{i}=0,\qquad 1\leqslant i,j\leqslant p
+\end{equation}
+
+which implies that $\ei{i}\ei{i}=0$.  Geometric products become wedge
+products (although linearity means that we may add terms of different
+grades, unlike conventional Grassman algebra).
+
 \section{The package in use}
 
-Suppose we want to work with $\ei{1} + 2\ei{2} + 3\ei{3}$.  In R idiom this would be
+Suppose we want to work with $\ei{1} + 2\ei{2} + 3\ei{3}$.  In R idiom
+this would be
 
 <<simpleexample>>=
 (x <- clifford(list(1,2,3),1:3))

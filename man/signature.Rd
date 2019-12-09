@@ -32,7 +32,12 @@ form \eqn{\left<\cdot,\cdot\right>}{<.,.>}.  This gives rise to the
 Clifford algebra \eqn{C_{p,q}}.
 
 If the quadratic form is positive-definite, package idiom is to use the
-default special value \eqn{p=0}.
+default special value \eqn{p=0} (which means that zero entries on the
+main diagonal are negative).
+
+Specifying a \emph{negative} value for \eqn{p} sets the quadratic form
+to be identically zero, reducing the geometric product to the exterior
+wedge product.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.

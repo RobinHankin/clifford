@@ -103,7 +103,7 @@ clifford c_add(clifford cliff1, clifford cliff2){
     }
 }
 
-blade_and_sign juxtapose(blade b1, blade b2, const unsigned int signature){//juxtaposes two blades, returns reduction and sign
+blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxtaposes two blades, returns reduction and sign
     int sign = 1;
     blade bout;
     const unsigned int m = max(b1.size(),b2.size());
@@ -122,6 +122,10 @@ blade_and_sign juxtapose(blade b1, blade b2, const unsigned int signature){//jux
                 if(i>signature){  // NB check for off-by-one error
                     sign *= -1;
                 }
+            } else if(signature < 0){
+                sign = 0; // exterior product, repeated index -> 0
+            } else { // signature == 0
+                ;  // no swaps!
             }
         }
     }
