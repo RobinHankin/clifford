@@ -120,6 +120,11 @@ test_that("Test suite aaa.R",{
     expect_output(print(-rcliff()))
     expect_output(print(+rcliff()))
 
+    expect_true(
+        clifford(sapply(1:5,seq_len),1)[sapply(1:2,seq_len)] ==
+        blade(1) + blade(1:2)
+    )
+
     expect_error(signature(1:2))
     expect_error(signature(0.5))
 
