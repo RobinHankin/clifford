@@ -304,8 +304,8 @@ signature(0)
 
 \cite{ablamowicz2012} consider high-dimensional Clifford algebras and
 consider the following two elements of the 1024-dimensional Clifford
-algebra spanned by $e_1,\ldots-{10}$ which are implemented in the
-current package as follows:
+algebra spanned by $\ei{1},\ldots,\ei{10}$ which are implemented in
+the current package as follows:
 
 <<abramandfauser>>=
 options("basissep" = ",")
