@@ -34,7 +34,9 @@ clifford_to_quaternion(x1)
  library("onion")
  Q1 <- rquat(1)
  Q2 <- rquat(1)
- clifford_to_quaternion(quaternion_to_clifford(Q1) * quaternion_to_clifford(Q2)) - Q1*Q2  # zero to numerical precision
+ LHS <- clifford_to_quaternion(quaternion_to_clifford(Q1) * quaternion_to_clifford(Q2))
+ RHS <- Q1*Q2  
+ LHS - RHS # zero to numerical precision
 }
 
 }
