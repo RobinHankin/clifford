@@ -139,7 +139,7 @@
 }
 
 `print.clifford` <- function(x,...){
-  cat("Element of a Clifford  algebra, equal to\n")
+  cat("Element of a Clifford algebra, equal to\n")
 
   f <- function(a){
     if(length(a)==0){
