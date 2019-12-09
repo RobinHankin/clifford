@@ -108,7 +108,6 @@ maxyblade <- function(C1,C2=as.clifford(0)){
 `clifford_times_clifford` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
-    s <- getOption("signature")
   } else {
     return(as.clifford(c_multiply(
         L1  = blades(C1), c1 = coeffs(C1),
