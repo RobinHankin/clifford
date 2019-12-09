@@ -30,7 +30,7 @@
 
 `is.1vector` <- function(x){all(grades(x)==1)}
 `is.blade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
-
+`blade` <- function(B){clifford(list(B),1)}
 `coeffs<-` <- function(x,value){UseMethod("coeffs<-")}
 `coeffs<-.clifford` <- function(x,value){
     stopifnot(length(value) == 1)

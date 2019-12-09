@@ -2,6 +2,7 @@
 \alias{clifford}
 \alias{as.clifford}
 \alias{is.clifford}
+\alias{blade}
 \alias{blades}
 \alias{coeffs}
 \alias{coeffs<-}
@@ -25,6 +26,7 @@ is_ok_clifford(blades, coeffs)
 as.clifford(x)
 is.clifford(x)
 blades(x)
+blade(B)
 is.blade(x)
 is.1vector(x)
 coeffs(x)
@@ -38,6 +40,7 @@ nterms(x)
     space}
   \item{value,coeffs}{Numeric vector of coefficients}
   \item{x}{Object of class \code{clifford}}
+  \item{B}{Integer vector specifying a blade}
 }
 \details{
 
@@ -54,6 +57,9 @@ nterms(x)
     consistent between them (an extended discussion of this phenomenon
     is presented in the \code{mvp} package).
 
+    \item Function \code{blade()} returns clifford object that comprises
+    a single blade with unit coefficient.
+    
     \item Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets
     all coefficients of \code{a} to \code{b}.  This has the same effect
     as \code{a[] <- b}.
