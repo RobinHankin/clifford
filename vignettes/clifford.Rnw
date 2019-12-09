@@ -73,40 +73,37 @@ object with a rich structure that has varied applications to physics.
 \subsection{Existing work}
 
 Computational support for working with the Clifford algebras is part
-of a number of algebra systems including Sage~\citep{sagemath2019},
-\proglang{sympy}~\citep{sympy2017}.  Here I provide R-centric
-functionality for Clifford algebras.  Notation
-follows~\cite{snygg2010}.
+of a number of algebra systems including Sage~\citep{sagemath2019} and
+\proglang{sympy}~\citep{sympy2017}.  Here I introduce the
+\pkg{clifford} package, which provides R-centric functionality for
+Clifford algebras.  Notation follows~\cite{snygg2010}.
 
 
 \newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 \newcommand{\bx}{\ensuremath{{\bf x}}}
 \newcommand{\by}{\ensuremath{{\bf y}}}
 
-Given vectors
+Given a basis $\ei{1},\ei{2},\ei{3}$, we can consider linear
+combinations such as
 
 \begin{eqnarray}
 \bx = x^1\ei{1} + x^2\ei{2} + x^3\ei{3}\nonumber\\
-\by = y^1\ei{1} + y^2\ei{2} + y^3\ei{3}
+\by = y^1\ei{1} + y^2\ei{2} + y^3\ei{3}.
 \end{eqnarray} 
 
-we can define a formal product using the relations
+This is a vector space but a clifford algebra allows us to define a
+formal product using the relations
 
-\begin{equation}\label{square}
+\begin{eqnarray}\label{square}
 \left(\ei{1}\right)^2=
 \left(\ei{2}\right)^2=
-\left(\ei{3}\right)^2=1
-\end{equation}
-  
-  and
-  
-\begin{equation}\label{sumprod}
-\ei{2}\ei{3} + \ei{3}\ei{2} = 
+\left(\ei{3}\right)^2=1\\
+\ei{2}\ei{3} + \ei{3}\ei{2} = \label{sumprod}
 \ei{1}\ei{3} + \ei{3}\ei{1} = 
 \ei{2}\ei{1} + \ei{1}\ei{2} = 0
-\end{equation}
+\end{eqnarray}
 
-to give
+This gives:
   
 \begin{eqnarray}
 \bx\by &=&
@@ -255,15 +252,15 @@ The signature of the metric may be altered.  Starting with the
 Euclidean case we have:
     
 <<e1e2cliff>>=
-e1 <- clifford(list(1),1)
-e2 <- clifford(list(2),1)
+e1 <- basis(1)
+e2 <- basis(2)
 e1*e1
 e2*e2
 @ 
 
-
-but if we wish to consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$,
-the package idiom is to use the \code{signature()} function:
+(package idiom \code{basis(i)} returns $\ei{i}$).  However, if we wish
+to consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$, the package
+idiom is to use the \code{signature()} function:
 
 <<trysig>>=
 signature(1)  # signature +-
@@ -300,6 +297,10 @@ return to a positive-definite inner product:
 signature(0)
 @ 
 
+With this, $\ei{i}\ei{i}=1$ for any $i$:
+<<>>=
+basis(5)^2
+@ 
 
 \subsection{Wedge products}
 
