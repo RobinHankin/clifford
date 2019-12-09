@@ -113,4 +113,15 @@ test_that("Test suite aaa.R",{
     expect_equal(mod(as.clifford(0)),0)
     expect_equal(mod(as.clifford(1)),1)
 
+
+    expect_output(print( rcliff()))
+    expect_output(print( rcliff(include.fewer=TRUE)))
+    expect_output(print( rcliff(include.fewer=FALSE)))
+    expect_output(print(-rcliff()))
+    expect_output(print(+rcliff()))
+
+    expect_error(signature(1:2))
+    expect_error(signature(0.5))
+
+
 })
