@@ -247,7 +247,7 @@ clifford innerprod(const clifford C1, const clifford C2, const NumericVector &si
         const blade b1 = ic1->first;
         for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
             const blade b2 = ic2->first;
-            if(((b1 & ~b2).count() == 0  | (~b1 & b2).count() == 0) && (b1.count()>0) && (b2.count()>0)){
+            if((((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0)) && (b1.count()>0) && (b2.count()>0)){
                 tie(b, sign) = juxtapose(b1, b2, signature[0]);
                 out[b] += sign*(ic1->second)*(ic2->second); // the meat
             }
