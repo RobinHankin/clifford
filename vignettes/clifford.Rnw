@@ -62,7 +62,6 @@
 
 <<setup,echo=FALSE,print=FALSE>>=
 library("clifford")
-options("width"=80)
 @ 
 
 \section{Introduction}
@@ -83,16 +82,16 @@ Clifford algebras.  Notation follows~\cite{snygg2010}.
 \newcommand{\bx}{\ensuremath{{\bf x}}}
 \newcommand{\by}{\ensuremath{{\bf y}}}
 
-Given a basis $\ei{1},\ei{2},\ei{3}$, we can consider linear
-combinations such as
+Considering a vector space of dimension 3, and given a basis
+$\ei{1},\ei{2},\ei{3}$, we can consider linear combinations such as
 
 \begin{eqnarray}
 \bx = x^1\ei{1} + x^2\ei{2} + x^3\ei{3}\nonumber\\
 \by = y^1\ei{1} + y^2\ei{2} + y^3\ei{3}.
 \end{eqnarray} 
 
-This is a vector space but a clifford algebra allows us to define a
-formal product using the relations
+A Clifford algebra includes a formal product on such sums, defined using the
+relations
 
 \begin{eqnarray}\label{square}
 \left(\ei{1}\right)^2=
@@ -115,9 +114,10 @@ This gives:
        \left(x^1y^2-x^2y^1\right)\ei{1}\ei{2}
 \end{eqnarray}
   
-Multiplication is associative by design.  Snygg goes on to consider
-the algebra spanned by products of $\ei{1},\ei{2},\ei{3}$ and shows
-that this is an eight dimensional space spanned by
+Multiplication is associative by design.  \citeauthor{snygg2010} goes
+on to consider the algebra spanned by products of
+$\ei{1},\ei{2},\ei{3}$ and shows that this is an eight dimensional
+space spanned by
 
 \begin{equation}
 \left\{
@@ -148,14 +148,35 @@ thus, for example,
 
 (observe how associativity is assumed).
 
+\subsection{Generalization to arbitrary dimensions}
+
+Generalization to higher dimensional vector spaces is easy.  Suppose
+we consider a nine-dimensional vector space spanned by
+$\ei{1},\ldots,\ei{n}$.  Then an arbitrary vector in this space will
+be $a^1\ei{1}+\cdots+a^n\ei{n}$.  The associated Clifford algebra will
+be of dimension $2^n$, spanned by elements like
+$\ei{1}\ei{3}\ei{5}=\ei{135}$ and
+$\ei{1}\ei{2}\ei{3}\ei{5}=\ei{1235}$.  The defining relations would be
+
+\begin{equation}\label{posdefcliff}
+\ei{i}\ei{j}+\ei{j}\ei{i}=2n_{ij}
+\end{equation}
+where  
+\begin{equation}\label{posdefcliff2}
+  n_{ij} = \begin{cases}
+    1, & i=j\\
+    0 &i\neq j
+  \end{cases}
+\end{equation}
+
+
 
 \subsection{Clifford algebra in a pseudo-Euclidean space}
 
-Equations~\ref{square} and~\ref{sumprod} defined a positive-definite
-inner product on the vector space spanned by~$\ei{1},\ei{2},\ei{3}$.
-This is readily generalized in two ways: firstly, we consider
-$\ei{1},\ldots,\ei{n}$, and secondly allow a more general inner
-product.  Conventionally we define
+Equations~\ref{posdefcliff} and~\ref{posdefcliff2} defined a
+positive-definite inner product on the vector space spanned
+by~$\ei{1},\ei{2},\ei{3}$.  This is readily generalized to allow a
+more general inner product.  Conventionally we define
 
 \begin{equation}\label{gencliff1}
 \ei{i}\ei{j}+\ei{j}\ei{i}=2n_{ij}
@@ -246,6 +267,7 @@ grade-4 blades but this can be altered:
 grades(x)
 @ 
 
+
 \subsection{Pseudo-Euclidean spaces}
 
 The signature of the metric may be altered.  Starting with the
@@ -302,6 +324,10 @@ With this, $\ei{i}\ei{i}=1$ for any $i$:
 basis(5)^2
 @ 
 
+
+
+
+
 \subsection{Wedge products}
 
 As noted above, if the underlying quadratic form is identically zero,
@@ -327,11 +353,22 @@ blade(5:7) * blade(1:3) # negative because of swaps
 
 \cite{ablamowicz2012} consider high-dimensional Clifford algebras and
 consider the following two elements of the 1024-dimensional Clifford
-algebra spanned by $\ei{1},\ldots,\ei{10}$ which are implemented in
-the current package as follows:
+algebra which we may treat as ${\mathcal C}_{7,3}$ spanned by
+$\ei{1},\ldots,\ei{10}$ and perform a calculation which I reproduce
+below (although \citeauthor{ablamowicz2012} exploited Bott
+periodicity, a feature not considered here).
+
+Firstly we change the default print method slightly:
+
+<<printmethodchange>>=
+options("basissep" = ",")
+@ 
+
+(this separates the subscripts of the basis vectors with a comma,
+which is useful for clarity if $n>9$).  We then define clifford
+elements $x,y$:
 
 <<abramandfauser>>=
-options("basissep" = ",")
 (x <- clifford(list(1:3,c(1,5,7,8,10)),c(4,-10)) + 2)
 (y <- clifford(list(c(1,2,3,7),c(1,5,6,8),c(1,4,6,7)),c(4,1,-3)) - 1)
 @ 
@@ -339,10 +376,12 @@ options("basissep" = ",")
 Their geometric product is given in the package as
 
 <<geomprod>>=
+signature(7)
 x*y
 @ 
 
-in agreement with \cite{ablamowicz2012}.
+in agreement with \cite{ablamowicz2012}, although the terms appear in
+a different order.
 
 \section{Conclusions and further work}
 
