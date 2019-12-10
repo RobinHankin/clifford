@@ -1,4 +1,4 @@
-`clifford` <- function(blades,coeffs){
+`clifford` <- function(blades,coeffs=1){
     if(length(coeffs)==1){coeffs <- coeffs+numeric(length(blades))}
     stopifnot(is_ok_clifford(blades,coeffs))
     m <- mymax(c(blades,recursive=TRUE))

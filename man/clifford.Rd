@@ -21,7 +21,7 @@ mathematics
 }
 
 \usage{
-clifford(blades, coeffs)
+clifford(blades, coeffs=1)
 is_ok_clifford(blades, coeffs)
 as.clifford(x)
 is.clifford(x)
