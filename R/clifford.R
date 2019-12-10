@@ -224,5 +224,5 @@
 }
 
 `allcliff` <- function(n){
-    clifford(apply(expand.grid(rep(list(0:1),5))>0,1,which),1)
+    clifford(apply(expand.grid(rep(list(0:1),n))>0,1,which),1)
 }
