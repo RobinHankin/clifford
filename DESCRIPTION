@@ -8,7 +8,8 @@ Description: A suite of routines for Clifford algebras, using the
    'Map' class of the Standard Template Library.  Notation follows
    J. Snygg (2012, ISBN:978-0-8176-8282-8). "A new approach to
    differential geometry using Clifford's geometric Algebra",
-   Birkhauser.
+   Birkhauser.  Special cases including Lorentz transforms and quaternion
+   multiplication are discussed.
 License: GPL (>= 2)
 LazyData: yes
 Suggests: knitr,testthat
