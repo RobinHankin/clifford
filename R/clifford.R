@@ -162,16 +162,15 @@
       pm <- " + " # pm = plus or minus
     } else {
       pm <- " - "
-      co <- abs(co)
     }
-
+    co <- capture.output(cat(abs(co)))
     jj <- f(blades(x)[[i]])
     out <- paste(out, pm, co, jj, sep="")
   }
   if(is.zero(x)){
       out <- "the zero clifford element (0)"
   } else if(is.scalar(x)){
-      out <- paste("scalar (",coeffs(x),")")
+      out <- paste("scalar (",capture.output(cat(coeffs(x))),")")
   }
   cat(paste(strwrap(out, getOption("width")), collapse="\n"))
   cat("\n")
