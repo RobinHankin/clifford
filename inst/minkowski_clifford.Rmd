@@ -241,7 +241,7 @@ B*rev(B)
 Then we can apply the transformation $\overline{s}=B^{-1}sB$:
 
 ```{r,dsdasdfds}
-rev(B)*scliff*B
+zap(rev(B)*scliff*B)
 ```
 
 Comparing with the result from the `lorentz` package
