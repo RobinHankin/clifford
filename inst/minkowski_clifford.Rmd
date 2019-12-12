@@ -21,7 +21,7 @@ four-vector:
 u <- c(0.2,0.3,0.4)  # a three-velocity
 ```
 
-We wish to consider the effect of transforming `s` by the following boosts:
+We wish to consider the effect of transforming `s` by the following boost:
 
 ```{r,b1b2}
 (Bmat <- boost(u))  # Bmat = "B-matrix"
@@ -56,7 +56,7 @@ t\\x\end{pmatrix}
 $$
 
 where $\gamma=(1-v^2)^{-1/2}$.  Writing $\cosh\phi=\gamma$ and noting
-that $\phi$ is real (sometimes $\phi$ is knowns as the _rapidity_) we
+that $\phi$ is real (sometimes $\phi$ is known as the _rapidity_) we
 get
 
 $$
@@ -251,3 +251,10 @@ Bmat %*% fourvec
 ```
 
 we see agreement to within numerical precision.
+
+```{r,checkinterval}
+jj <- rev(B)*scliff*B
+scalprod(jj,jj)
+```
+matching the untransformed square interval.
+
