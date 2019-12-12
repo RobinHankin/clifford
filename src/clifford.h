@@ -108,9 +108,9 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
     blade bout;
     const unsigned int m = max(b1.size(),b2.size());
 
-    b1.resize(m);
-    b2.resize(m);
-    bout.resize(m);        
+    b1.resize(m, false);
+    b2.resize(m, false);
+    bout.resize(m, false);
 
     for(int i=0 ; i<m ; ++i){
         
