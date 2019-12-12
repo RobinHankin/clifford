@@ -74,7 +74,7 @@ formalism this appears as
 
 ```{r,cliff1}
 (scliff <- as.1vector(fourvec))
- ```
+```
 
 Algebraically this would be
 $1\mathbf{e}_1+5\mathbf{e}_2+3\mathbf{e}_3+2\mathbf{e}_4$ (Snygg would
@@ -250,7 +250,8 @@ Comparing with the result from the `lorentz` package
 Bmat %*% fourvec
 ```
 
-we see agreement to within numerical precision.
+we see agreement to within numerical precision.  We can further verify
+thatthe square interval is unchanged:
 
 ```{r,checkinterval}
 jj <- rev(B)*scliff*B
