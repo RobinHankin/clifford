@@ -132,7 +132,11 @@ test_that("Test suite aaa.R",{
         blade(1) + blade(1:2)
     )
 
-    
+    expect_true(allcliff(1) == 1+blade(1))
+
+    expect_true(zap(blade(1)) == blade(1))
+    expect_false(zap(pi*blade(1)) == pi*blade(1))
+
     expect_error(signature(1:2))
     expect_error(signature(0.5))
 
