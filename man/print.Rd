@@ -1,13 +1,19 @@
 \name{print}
 \alias{print.clifford}
+\alias{as.character}
+\alias{as.character.clifford}
+\alias{catblade}
 \title{Print clifford objects}
 \description{Print methods for Clifford algebra}
 \usage{
 \method{print}{clifford}(x,...)
+\method{as.character}{clifford}(x,...)
+catblade(a)
 }
 \arguments{
   \item{x}{Object of class \code{clifford} in the print method}
   \item{...}{Further arguments, currently ignored}
+  \item{a}{Integer vector representing a blade}
 }
 \author{Robin K. S. Hankin}
 \note{
@@ -24,6 +30,12 @@ prints in a compact form.  The indices of the basis vectors are
 separated with \code{option("basissep")} which is usually \code{NULL}
 but if \eqn{n>9}, then setting \code{options("basissep" = ",")} might
 look good.
+
+Function \code{as.character.clifford()} is also sensitive to these
+options.
+
+Function \code{catblade()} is a low-level helper function.
+
 
 }
 \seealso{\code{\link{clifford}}}  
