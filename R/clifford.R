@@ -141,20 +141,6 @@
 `print.clifford` <- function(x,...){
   cat("Element of a Clifford algebra, equal to\n")
 
-  f <- function(a){
-    if(length(a)==0){
-      return("")
-    } else {
-      if(isTRUE(getOption("separate"))){
-        return(paste("e",a,collapse=" ",sep=""))
-      } else {
-          jj <- getOption("basissep")
-          if(is.null(jj)){jj <- ""}
-        return(paste("e_",paste(a,collapse=jj),sep=""))
-      }
-    }
-  }
-
   out <- ""
   for(i in seq_along(blades(x))){
     co <- coeffs(x)[i]
@@ -164,7 +150,7 @@
       pm <- " - "
     }
     co <- capture.output(cat(abs(co)))
-    jj <- f(blades(x)[[i]])
+    jj <- catblade(blades(x)[[i]])
     out <- paste(out, pm, co, jj, sep="")
   }
   if(is.zero(x)){
@@ -228,4 +214,40 @@
 
 `zap` <- function(x,digits=getOption("digits")){
   clifford(blades(x),base::zapsmall(coeffs(x),digits=digits))
+}
+
+`catblade` <- function(a){
+  if(length(a)==0){
+    return("")
+  } else {
+    if(isTRUE(getOption("separate"))){
+      return(paste("e",a,collapse=" ",sep=""))
+    } else {
+      jj <- getOption("basissep")
+      if(is.null(jj)){jj <- ""}
+      return(paste("e_",paste(a,collapse=jj),sep=""))
+    }
+  }
+}
+
+`as.character.clifford` <- function(x,...){
+  out <- ""
+  for(i in seq_along(blades(x))){
+    co <- coeffs(x)[i]
+    if(co>0){
+      pm <- " + " # pm = plus or minus
+    } else {
+      pm <- " - "
+    }
+    co <- abs(co)
+    jj <- catblade(blades(x)[[i]])
+    out <- paste(out, pm, co, jj, sep="")
+  }
+
+  if(is.zero(x)){
+    out <- "0 "
+  } else if(is.scalar(x)){
+    out <- as.character(coeffs(x))
+  } 
+  return(out)
 }

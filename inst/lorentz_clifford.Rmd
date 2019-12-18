@@ -212,10 +212,10 @@ this boost in terms of Clifford objects, using a specialist function
 
 ```{r,speedtocliff}
 f <- function(u){
-	phi <- acosh(gam(as.3vel(u)))      # rapidity
-	k <- u/sqrt(sum(u^2))              # direction cosines
-	return(
-	   	   cosh(phi/2)	               # t
+	phi <- acosh(gam(u))               # rapidity
+	k <- cosines(u)                    # direction cosines
+ 	return(
+	       cosh(phi/2)                 # t
 	+ k[1]*sinh(phi/2)*blade(c(1,2))   # x
 	+ k[2]*sinh(phi/2)*blade(c(1,3))   # y
 	+ k[3]*sinh(phi/2)*blade(c(1,4))   # z
@@ -226,7 +226,7 @@ f <- function(u){
 Thus we can express the Lorentz transform as a Clifford object:
 
 ```{r,dasadx}
-u <- -c(0.2,0.3,0.4)  # negative (passive transform)
+u <- as.3vel(-c(0.2,0.3,0.4))  # negative (passive transform)
 options(digits=5)
 (B <- f(u))
 ```
@@ -259,3 +259,64 @@ scalprod(jj,jj)
 ```
 matching the untransformed square interval.
 
+
+## Multiple boosts
+
+Successive Lorentz boosts can induce a rotation as well as a
+translation.
+
+```{r,defv}
+u <- as.3vel(c(0.2, 0.3,  0.4))
+v <- as.3vel(c(0.5, 0.0, -0.4))
+w <- as.3vel(c(0.0, 0.7,  0.1))
+Buvw <- f(u)*f(v)*f(w)
+zap(Buvw)
+```
+
+In the above, note that Clifford object `Buvw` has a nonzero scalar
+component, and also a nonzero `e_1234` component.  However, it
+represents a consistent Lorentz transformation:
+
+```{r,checkbuvw}
+zap(Buvw*rev(Buvw))
+```
+
+We can now apply this transform to a four-velocity:
+
+```{r,testiton1000}
+n <- as.1vector(c(1,0,0,0))
+zap(rev(Buvw) * n * Buvw)
+```
+
+
+## Algebra of Clifford representations
+
+
+We can shed some light on this representation of Lorentz transforms as follows:
+
+```{r,algecliff}
+signature(1)
+L <- list(
+    C     = blade(numeric()),
+    e12   = blade(c(1,2)),
+    e13   = blade(c(1,3)),
+    e14   = blade(c(1,4)),
+    e23   = blade(c(2,3)),
+    e24   = blade(c(2,4)),
+    e34   = blade(c(3,4)),
+    e1234 = blade(1:4)
+) 
+
+out <- noquote(matrix("",8,8))
+rownames(out) <- names(L)
+colnames(out) <- names(L)
+for(i in 1:8){
+  for(j in 1:8){
+    out[i,j] <- gsub(' ','',as.character(L[[i]]*L[[j]]))
+  }
+}
+options("width" = 110)
+out
+```
+
+Thus we can see, for example, that `e12*e13 = -e23` and `e13*e12 = +e23`.
