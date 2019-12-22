@@ -99,8 +99,20 @@ Science+Business.
 blades(x+100)
 coeffs(z)
 
+## Clifford objects may be added and multiplied:
+
+x + y
+x*y
+
+
+
+## They are associative and distributive:
+
 (x*y)*z == x*(y*z)  # should be true
 x*(y+z) == x*y + x*z  # should be true
+
+
+## Other forms of manipulation are included:
 
 coeffs(z) <- 1999
 
