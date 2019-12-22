@@ -297,12 +297,9 @@ We can shed some light on this representation of Lorentz transforms as follows:
 signature(1)
 L <- list(
     C     = blade(numeric()),
-    e12   = blade(c(1,2)),
-    e13   = blade(c(1,3)),
-    e14   = blade(c(1,4)),
-    e23   = blade(c(2,3)),
-    e24   = blade(c(2,4)),
-    e34   = blade(c(3,4)),
+    e12   = blade(c(1,2)), e13 = blade(c(1,3)),
+    e14   = blade(c(1,4)), e23 = blade(c(2,3)),
+    e24   = blade(c(2,4)), e34 = blade(c(3,4)),
     e1234 = blade(1:4)
 ) 
 
@@ -311,7 +308,7 @@ rownames(out) <- names(L)
 colnames(out) <- names(L)
 for(i in 1:8){
   for(j in 1:8){
-    out[i,j] <- gsub(' ','',as.character(L[[i]]*L[[j]]))
+    out[i,j] <- gsub('[_ ]','',as.character(L[[i]]*L[[j]]))
   }
 }
 options("width" = 110)
