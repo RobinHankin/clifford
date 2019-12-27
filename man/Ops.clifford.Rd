@@ -122,10 +122,16 @@ u*v
 u^3
 
 
-u*v == u\%.\%v + u\%^\%v        # should be TRUE
-u \%^\% v == u \%^\% (v + 3*v)  # should be TRUE 
 u+(v+w) == (u+v)+w              # should be TRUE 
+u*(v*w) == (u*v)*w              # should be TRUE 
 u \%^\% v == (u*v-v*u)/2        # should be TRUE 
+
+# Now if x,y,z are _vectors_ we would have:
+
+x <- as.1vector(5)
+y <- as.1vector(5)
+x*y == x\%.\%y + x\%^\%y        # should be TRUE
+x \%^\% y == x \%^\% (y + 3*x)  # should be TRUE 
 
 }
 
