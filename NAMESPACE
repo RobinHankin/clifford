@@ -5,6 +5,7 @@ export("%.%")
 export("%^%")
 export("%X%")
 export("%star%")
+export("% %")
 
 
 importFrom(Rcpp, evalCpp)

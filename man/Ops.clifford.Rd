@@ -3,10 +3,12 @@
 \alias{\%^\%}
 \alias{\%X\%}
 \alias{\%star\%}
+\alias{\% \%}
 \alias{\%.\%.clifford}
 \alias{\%^\%.clifford}
 \alias{\%X\%.clifford}
 \alias{\%star\%.clifford}
+\alias{\% \%.clifford}
 \alias{Ops.clifford}
 \alias{Ops}
 \alias{c_identity}
@@ -63,6 +65,7 @@ C1 \%.\% C2
 C1 \%^\% C2
 C1 \%X\% C2
 C1 \%star\% C2
+C1 \% \% C2
 }
 \arguments{
   \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}
@@ -89,7 +92,9 @@ C1 \%star\% C2
   The package has several binary operators:
   \itemize{
     \item \code{x * y}, \eqn{xy}{xy}, geometric product, also
-    \code{clifford_times_clifford(x,y)}
+    \code{clifford_times_clifford(x,y)}.  Because geometric product is
+    often indicated by juxtaposition, idiom \code{x \% \% y} returns the
+    geometric product.
     \item \code{x \%.\% y}, \eqn{x\cdot y}{x.y}, inner product, also
     \code{clifford_dot_clifford(x,y)} 
     \item \code{x \%^\% y}, \eqn{x\wedge y}{x^y}, outer product, also
@@ -111,6 +116,7 @@ C1 \%star\% C2
 
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{scalprod}}}
 \examples{
 
 u <- rcliff(5)
