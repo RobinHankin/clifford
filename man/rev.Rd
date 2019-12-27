@@ -39,7 +39,7 @@ We can also show that
 }
 \arguments{\item{x}{Clifford object}}
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{grade}}}
+\seealso{\code{\link{grade}},\code{\link{Conj}}}
 \examples{
 
 x <- rcliff()

@@ -1,11 +1,15 @@
 \name{grade}
 \alias{grade}
 \alias{grades}
+\alias{gradesplus}
+\alias{gradesminus}
 \title{The grade of a clifford object}
 \description{The grade of a blade is the number of basis vectors in it.}
 \usage{
 grade(C, n, drop=TRUE)
 grades(x)
+gradesplus(x)
+gradesminus(x)
 }
 \arguments{
   \item{C,x}{Clifford object}
@@ -51,6 +55,10 @@ We have
   
 Function \code{grades()} returns an (unordered) vector specifying the
 grades of the constituent blades.
+
+Function \code{gradesplus()} returns the same but counting only basis
+vectors that square to \eqn{+1}, and \code{gradesminus()} counts only
+basis vectors that square to \eqn{-1}.
 
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{g}, where \code{g \%in\% n}.

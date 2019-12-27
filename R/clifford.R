@@ -138,6 +138,14 @@
   )
 }
 
+`Conj.clifford` <- function(z){
+  z <- rev(z)
+  clifford(
+      blades(z),
+      coeffs(z) * ifelse(gradesminus(z)%%2==0,1,-1)
+  )
+}
+
 `print.clifford` <- function(x,...){
   cat("Element of a Clifford algebra, equal to\n")
 
@@ -251,3 +259,18 @@
   } 
   return(out)
 }
+
+`gradesplus` <- function(x){
+    sig <- signature()
+    if(sig==0){
+        return(grades(x))
+    } else if(sig>0){
+        return(unlist(lapply(blades(x),function(o){sum(o <= sig)})))
+    } else if(sig<0){
+        return(grades(x)*NA)
+    } else {
+        stop("this cannot happen")
+    }
+}
+
+ `gradesminus` <- function(x){ grades(x) - gradesplus(x) }
