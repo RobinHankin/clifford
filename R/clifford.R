@@ -29,7 +29,8 @@
 
 
 `is.1vector` <- function(x){all(grades(x)==1)}
-`is.blade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
+`is.basisblade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
+`is.blade` <- function(x){ min(grades(x)) == max(grades(x))}
 `blade` <- function(B){clifford(list(B),1)}
 `coeffs<-` <- function(x,value){UseMethod("coeffs<-")}
 `coeffs<-.clifford` <- function(x,value){

@@ -10,6 +10,7 @@
 \alias{nbits}
 \alias{nterms}
 \alias{is.blade}
+\alias{is.basisblade}
 \alias{is.1vector}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
@@ -28,6 +29,7 @@ is.clifford(x)
 blades(x)
 blade(B)
 is.blade(x)
+is.basisblade(x)
 is.1vector(x)
 coeffs(x)
 coeffs(x) <- value
@@ -74,9 +76,12 @@ nterms(x)
     \item Function \code{is_ok_clifford()} is a helper function that checks
     for consistency of its arguments
 
-    \item Function \code{is.blade()} returns \code{TRUE} if its argument
-    is a single blade or a nonzero scalar; the zero clifford object is
-    not considered to be a blade.
+    \item Function \code{is.blade()} returns \code{TRUE} if all terms of
+    its argument have the same grade.
+
+    \item Function \code{is.basisblade()} returns \code{TRUE} if its
+    argument has only a single term, or is a nonzero scalar; the zero
+    clifford object is not considered to be a basis blade.
 
     \item Function \code{is.1vector()} returns \code{TRUE} if every
     blade is of grade 1.

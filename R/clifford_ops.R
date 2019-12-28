@@ -124,7 +124,7 @@ maxyblade <- function(C1,C2=as.clifford(0)){
 
 `clifford_inverse` <- function(C){
     if(signature()<0){stop("inverses not defined for Grassman algebra")}
-    stopifnot(is.blade(C))
+    stopifnot(is.basisblade(C))
     return(clifford_times_scalar(Conj(C),1/eucprod(C)))
 }
 
