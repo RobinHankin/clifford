@@ -275,4 +275,6 @@
     }
 }
 
- `gradesminus` <- function(x){ grades(x) - gradesplus(x) }
+`gradesminus` <- function(x){ grades(x) - gradesplus(x) }
+
+`dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
