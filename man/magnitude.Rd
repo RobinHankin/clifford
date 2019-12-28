@@ -45,8 +45,8 @@ scalprod(C1,C2=rev(C1),drop=TRUE)
   In package idiom the Euclidean scalar product is given by \code{A\%
   esp\%B} or \code{eucprod(A,B)}.
 
-  Note that \eqn{A\ast A} might be negative, but \eqn{A\star A\geq
-  0}{see PDF}.
+  Note that the scalar product \eqn{A\ast A} might be negative, but the
+  Euclidean product \eqn{A\star A\geq 0}{A*A >=0}
   
   We define the \dfn{magnitude} \eqn{\left|\left|A\right|\right|}{||A||}
   of a clifford object \eqn{A} to be \eqn{\sqrt{A\star A}}{see PDF}; in
@@ -58,9 +58,9 @@ scalprod(C1,C2=rev(C1),drop=TRUE)
 Hestenes uses an asterisk for scalar product as in \eqn{A*B}, but in
 package idiom, the asterisk is reserved for geometric product.
 
-If you want \eqn{\left|A\right|^2}{|A|^2} and not
+If you want the square, \eqn{\left|A\right|^2}{|A|^2} and not
 \eqn{\left|A\right|}{|A|}, it is faster and more accurate to use
-\code{scalprod(A)} (because \code{mod(A)^2} takes a needless square
+\code{scalprod(A)}, because \code{Mod(A)^2} takes a needless square
 root).
 
 }
