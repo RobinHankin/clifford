@@ -2,15 +2,11 @@
 \alias{clifford}
 \alias{as.clifford}
 \alias{is.clifford}
-\alias{blade}
-\alias{blades}
 \alias{coeffs}
 \alias{coeffs<-}
 \alias{coeffs<-.clifford}
 \alias{nbits}
 \alias{nterms}
-\alias{is.blade}
-\alias{is.basisblade}
 \alias{is.1vector}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
@@ -26,10 +22,6 @@ clifford(blades, coeffs=1)
 is_ok_clifford(blades, coeffs)
 as.clifford(x)
 is.clifford(x)
-blades(x)
-blade(B)
-is.blade(x)
-is.basisblade(x)
 is.1vector(x)
 coeffs(x)
 coeffs(x) <- value
@@ -42,7 +34,6 @@ nterms(x)
     space}
   \item{value,coeffs}{Numeric vector of coefficients}
   \item{x}{Object of class \code{clifford}}
-  \item{B}{Integer vector specifying a blade}
 }
 \details{
 
