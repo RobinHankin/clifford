@@ -1,34 +1,57 @@
 \name{magnitude}
 \alias{magnitude}
 \alias{mod}
+\alias{Mod}
+\alias{Mod.clifford}
 \alias{scalprod}
 \alias{scalar_product}
+\alias{eucprod}
+\alias{euclid\_product}
+\alias{euclidean\_product}
 \title{Scalar products of clifford objects}
-\description{
-
-  The scalar product of two clifford objects is defined as the
-  zero-grade component of their geometric product:
-
-  \deqn{
-    A*B=\left<AB\right>_0
-  }{
-    A*B=<AB>_0
-  }
-
-The magnitude \eqn{\left|A\right|}{|A|} of a clifford object \eqn{A} is
-defined by \eqn{\left|A\right|^2=A^\dag *A}{?}; in package idiom it is
-given by \code{mod(A)}.
-
-}
 \usage{
 scalprod(C1,C2=rev(C1),drop=TRUE)
-mod(C)
+\method{Mod}{clifford}(z)
 }
 \arguments{
-  \item{C,C1,C2}{Clifford objects}
+  \item{C1,C2,z}{Clifford objects}
   \item{drop}{Boolean, with default \code{TRUE} meaning to return the
     constant coerced to numeric, and \code{FALSE} meaning to return a
     (constant) Clifford object}
+}
+\description{
+
+  The \dfn{scalar product} of two clifford objects is defined as the
+  zero-grade component of their geometric product:
+  
+  \deqn{
+    A\ast B=\left<AB\right>_0
+  }{
+    A\ast B=<AB>_0
+  }
+
+  In package idiom the scalar product is given by \code{A \%star\% B} or
+  \code{scalprod(A,B)}.
+  
+  The \dfn{Euclidean product} (or \dfn{Euclidean scalar product}) of two
+  clifford objects is defined as 
+
+  \deqn{
+    A\star B=A\ast B^\dag=\left<AB^\dag\right>_0
+  }{
+    omitted: see PDF
+  }
+
+  In package idiom the Euclidean scalar product is given by \code{A\%
+  esp\%B} or \code{eucprod(A,B)}.
+
+  Note that \eqn{A\ast A} might be negative, but \eqn{A\star A\geq
+  0}{see PDF}.
+  
+  We define the \dfn{magnitude} \eqn{\left|\left|A\right|\right|}{||A||}
+  of a clifford object \eqn{A} to be \eqn{\sqrt{A\star A}}{see PDF}; in
+  package idiom it is given by \code{Mod(A)}.
+
 }
 \author{Robin K. S. Hankin}
 \note{
@@ -45,6 +68,6 @@ root).
 \examples{
 
 
-mod(rcliff())
+Mod(rcliff())
 }
 

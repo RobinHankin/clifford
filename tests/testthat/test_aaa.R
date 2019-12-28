@@ -117,8 +117,8 @@ test_that("Test suite aaa.R",{
     expect_false(is.pseudoscalar(1+pseudoscalar(3)))
 
 
-    expect_equal(mod(as.clifford(0)),0)
-    expect_equal(mod(as.clifford(1)),1)
+    expect_equal(Mod(as.clifford(0)),0)
+    expect_equal(Mod(as.clifford(1)),1)
 
 
     expect_output(print( rcliff()))

@@ -201,7 +201,9 @@
 }
 
 `scalprod` <- function(C1,C2=rev(C1),drop=TRUE){grade(C1*C2,0,drop=drop)}
-`mod` <- function(C){sqrt(scalprod(rev(C),C))}
+`eucprod` <- function(C1,C2=Conj(C1),drop=TRUE){grade(C1*C2,0,drop=drop)}
+
+`Mod.clifford` <- function(z){sqrt(scalprod(Conj(z),z))}
 
 `is.even` <- function(C){all(grades(C)%%2==0)}
 `is.odd`  <- function(C){all(grades(C)%%2==1)}
