@@ -7,14 +7,13 @@
 \alias{coeffs<-.clifford}
 \alias{nbits}
 \alias{nterms}
-\alias{is.1vector}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
 
-A clifford object is a member of a Clifford Algebra.  These objects may
+A clifford object is a member of a Clifford algebra.  These objects may
 be added and multiplied, and have various applications in physics and
-mathematics
+mathematics.
 }
 
 \usage{
@@ -22,7 +21,6 @@ clifford(terms, coeffs=1)
 is_ok_clifford(terms, coeffs)
 as.clifford(x)
 is.clifford(x)
-is.1vector(x)
 coeffs(x)
 coeffs(x) <- value
 nbits(x)
@@ -50,9 +48,6 @@ nterms(x)
     consistent between them (an extended discussion of this phenomenon
     is presented in the \code{mvp} package).
 
-    \item Function \code{term()} returns clifford object that comprises
-    a single term with unit coefficient.
-    
     \item Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets
     all coefficients of \code{a} to \code{b}.  This has the same effect
     as \code{a[] <- b}.
@@ -68,15 +63,7 @@ nterms(x)
     for consistency of its arguments
 
     \item Function \code{is.term()} returns \code{TRUE} if all terms of
-    its argument have the same grade.
-
-    \item Function \code{is.basisblade()} returns \code{TRUE} if its
-    argument has only a single term, or is a nonzero scalar; the zero
-    clifford object is not considered to be a basis term.
-
-    \item Function \code{is.1vector()} returns \code{TRUE} if every
-    term is of grade 1.
-
+    its argument have the same grade
   }
 }
 \references{
