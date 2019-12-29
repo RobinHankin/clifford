@@ -9,12 +9,17 @@
 \description{
 
 By \dfn{basis vector}, I mean one of the basis vectors of the underlying
-vector space \eqn{R^n}.  A \dfn{term} (sometimes a \dfn{basis blade} or
-\dfn{simple blade} is a wedge product of basis vectors (or a geometric
-product of linearly independent basis vectors).
+vector space \eqn{R^n}, that is, an element of the set
+\eqn{\left\{e_1,\ldots,e_n\right\}}{{e_1,...,e_n}}.  A \dfn{term}
+(sometimes a \dfn{basis blade} or \dfn{simple blade} is a wedge product
+of basis vectors (or a geometric product of linearly independent basis
+vectors), something like \eqn{e_{12}}{e_12} or \eqn{e_{12569}}{e_12569}.
   
 From Perwass: a \dfn{blade} is the outer product of a number of
-1-vectors.
+1-vectors (or, equivalently, the wedge product of linearly independent
+1-vectors).  Thus \eqn{e_{12}=e_1\wedge e_2}{e_12=e_1 ^ e_2} and
+\eqn{e_{12} + e_{13}=e_1\wedge(e_2+e_3)}{e_12+e_13=e1^(e2+e3)} are
+blades, but \eqn{e_{12} + e_{34}}{e_12+e_34} is not.
 
 Function \code{is.blade()} is not currently implemented: there is no
 easy way to detect whether a Clifford object is a product of 1-vectors.
