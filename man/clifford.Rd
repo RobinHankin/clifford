@@ -2,9 +2,6 @@
 \alias{clifford}
 \alias{as.clifford}
 \alias{is.clifford}
-\alias{coeffs}
-\alias{coeffs<-}
-\alias{coeffs<-.clifford}
 \alias{nbits}
 \alias{nterms}
 \alias{is_ok_clifford}
@@ -21,8 +18,6 @@ clifford(terms, coeffs=1)
 is_ok_clifford(terms, coeffs)
 as.clifford(x)
 is.clifford(x)
-coeffs(x)
-coeffs(x) <- value
 nbits(x)
 nterms(x)
 }
@@ -30,7 +25,7 @@ nterms(x)
   \item{terms}{A list of integer vectors with strictly increasing
     entries corresponding to the basis vectors of the underlying vector
     space}
-  \item{value,coeffs}{Numeric vector of coefficients}
+  \item{coeffs}{Numeric vector of coefficients}
   \item{x}{Object of class \code{clifford}}
 }
 \details{
@@ -42,15 +37,6 @@ nterms(x)
 
     \item Function \code{as.clifford()} is much more user-friendly and
     attempts to coerce a range of input arguments to clifford form
-
-    \item Functions \code{terms()} and \code{coeffs()} are the
-    extraction methods.  These are unordered vectors but the ordering is
-    consistent between them (an extended discussion of this phenomenon
-    is presented in the \code{mvp} package).
-
-    \item Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets
-    all coefficients of \code{a} to \code{b}.  This has the same effect
-    as \code{a[] <- b}.
 
     \item Function \code{nbits()} returns the number of bits required in
     the low-level C routines to store the terms (this is the largest
