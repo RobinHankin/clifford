@@ -1,20 +1,20 @@
-`clifford` <- function(blades,coeffs=1){
-    if(length(coeffs)==1){coeffs <- coeffs+numeric(length(blades))}
-    stopifnot(is_ok_clifford(blades,coeffs))
-    m <- mymax(c(blades,recursive=TRUE))
-    out <- c_identity(blades,coeffs,m)
+`clifford` <- function(terms,coeffs=1){
+    if(length(coeffs)==1){coeffs <- coeffs+numeric(length(terms))}
+    stopifnot(is_ok_clifford(terms,coeffs))
+    m <- mymax(c(terms,recursive=TRUE))
+    out <- c_identity(terms,coeffs,m)
     class(out) <- "clifford"  # this is the only place class clifford is set
     return(out)
 }
 
-`blades` <- function(x){ x[[1]] }  # accessor methods start
+`terms` <- function(x){ x[[1]] }  # accessor methods start
 `coeffs` <- function(x){ x[[2]] }
 
 `getcoeffs` <- function(C,B){ # accessor methods end
     c_getcoeffs(
-        L = blades(C),
+        L = terms(C),
         c = coeffs(C),
-        m = maxyblade(C),
+        m = maxyterm(C),
         B = B)
 }
 
@@ -30,12 +30,11 @@
 
 `is.1vector` <- function(x){all(grades(x)==1)}
 `is.basisblade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
-`is.blade` <- function(x){ min(grades(x)) == max(grades(x))}
-`blade` <- function(B){clifford(list(B),1)}
+`is.blade` <- function(x){stop("Not implemented: factorization is hard")}
 `coeffs<-` <- function(x,value){UseMethod("coeffs<-")}
 `coeffs<-.clifford` <- function(x,value){
     stopifnot(length(value) == 1)
-    return(clifford(blades(x),value + 0*coeffs(x)))
+    return(clifford(terms(x),value + 0*coeffs(x)))
 }
 
 `const<-` <- function(x,value){UseMethod("const<-")}
@@ -55,17 +54,17 @@
     }
 }
 
-`is_ok_clifford` <- function(blades,coeffs){
-    stopifnot(is.list(blades))
-    blade_elements <- c(blades,recursive = TRUE)
-    stopifnot(length(blades) == length(coeffs))
+`is_ok_clifford` <- function(terms,coeffs){
+    stopifnot(is.list(terms))
+    term_elements <- c(terms,recursive = TRUE)
+    stopifnot(length(terms) == length(coeffs))
 
-    if(!is.null(blade_elements)){
-      stopifnot(all(blade_elements > 0))
+    if(!is.null(term_elements)){
+      stopifnot(all(term_elements > 0))
     }
     
-    blade_elements_increase <- c(lapply(blades,diff),recursive=TRUE)
-    stopifnot(all(blade_elements_increase > 0))
+    term_elements_increase <- c(lapply(terms,diff),recursive=TRUE)
+    stopifnot(all(term_elements_increase > 0))
 
     return(TRUE)
 }
@@ -96,13 +95,13 @@
 
 `nterms` <- function(x){length(coeffs(x))}
 `is.zero` <- function(C){nterms(C)==0}
-`nbits` <- function(x){max(c(blades(x),recursive=TRUE))}
-`grades` <- function(x){unlist(lapply(blades(x),length))}
+`nbits` <- function(x){max(c(terms(x),recursive=TRUE))}
+`grades` <- function(x){unlist(lapply(terms(x),length))}
 `is.scalar` <- function(C){
   if(is.zero(C)){
     return(TRUE)
   } else {
-    return((length(blades(C))==1) && (length(blades(C)[[1]])==0))
+    return((length(terms(C))==1) && (length(terms(C)[[1]])==0))
   }
 }
 
@@ -115,8 +114,8 @@
     if(is.zero(C)){return(TRUE)}
     return(
         is.clifford(C)         &&
-        (length(blades(C))==1) &&
-        all(blades(C)[[1]] == seq_along(blades(C)[[1]]))
+        (length(terms(C))==1) &&
+        all(terms(C)[[1]] == seq_along(terms(C)[[1]]))
     )
 }
 
@@ -126,7 +125,7 @@
 }
 
 `is.antivector` <- function(C){
-    (nterms(C)==1) || (is.homog(C) && (max(unlist(blades(C)))==maxyblade(C)))
+    (nterms(C)==1) || (is.homog(C) && (max(unlist(terms(C)))==maxyterm(C)))
 }
 
 `basis` <- function(n,x=1){clifford(list(n),x)}
@@ -143,15 +142,15 @@
 `rev.clifford` <- function(x){
   f <- function(u){ifelse(length(u)%%4 %in% 0:1, 1,-1)}
   clifford(
-      blades(x),
-      coeffs(x) * unlist(lapply(blades(x),f))
+      terms(x),
+      coeffs(x) * unlist(lapply(terms(x),f))
   )
 }
 
 `Conj.clifford` <- function(z){
   z <- rev(z)
   clifford(
-      blades(z),
+      terms(z),
       coeffs(z) * ifelse(gradesminus(z)%%2==0,1,-1)
   )
 }
@@ -160,7 +159,7 @@
   cat("Element of a Clifford algebra, equal to\n")
 
   out <- ""
-  for(i in seq_along(blades(x))){
+  for(i in seq_along(terms(x))){
     co <- coeffs(x)[i]
     if(co>0){
       pm <- " + " # pm = plus or minus
@@ -168,7 +167,7 @@
       pm <- " - "
     }
     co <- capture.output(cat(abs(co)))
-    jj <- catblade(blades(x)[[i]])
+    jj <- catterm(terms(x)[[i]])
     out <- paste(out, pm, co, jj, sep="")
   }
   if(is.zero(x)){
@@ -193,7 +192,7 @@
 
 `grade` <- function(C,n,drop=TRUE){
   C <- as.clifford(C)
-  out <- as.clifford(c_grade(blades(C),coeffs(C),maxyblade(C),n))
+  out <- as.clifford(c_grade(terms(C),coeffs(C),maxyterm(C),n))
   if(drop){out <- drop(out)}
   return(out)
 }
@@ -219,13 +218,13 @@
 `is.odd`  <- function(C){all(grades(C)%%2==1)}
 
 `evenpart` <- function(C){
-    wanted <- which(unlist(lapply(blades(C),length))%%2==0)
-    clifford(blades(C)[wanted],coeffs=coeffs(C)[wanted])
+    wanted <- which(unlist(lapply(terms(C),length))%%2==0)
+    clifford(terms(C)[wanted],coeffs=coeffs(C)[wanted])
 }
 
 `oddpart` <- function(C){
-    wanted <- which(unlist(lapply(blades(C),length))%%2==1)
-    clifford(blades(C)[wanted],coeffs=coeffs(C)[wanted])
+    wanted <- which(unlist(lapply(terms(C),length))%%2==1)
+    clifford(terms(C)[wanted],coeffs=coeffs(C)[wanted])
 }
 
 `allcliff` <- function(n){
@@ -233,10 +232,10 @@
 }
 
 `zap` <- function(x,digits=getOption("digits")){
-  clifford(blades(x),base::zapsmall(coeffs(x),digits=digits))
+  clifford(terms(x),base::zapsmall(coeffs(x),digits=digits))
 }
 
-`catblade` <- function(a){
+`catterm` <- function(a){
   if(length(a)==0){
     return("")
   } else {
@@ -252,7 +251,7 @@
 
 `as.character.clifford` <- function(x,...){
   out <- ""
-  for(i in seq_along(blades(x))){
+  for(i in seq_along(terms(x))){
     co <- coeffs(x)[i]
     if(co>0){
       pm <- " + " # pm = plus or minus
@@ -260,7 +259,7 @@
       pm <- " - "
     }
     co <- abs(co)
-    jj <- catblade(blades(x)[[i]])
+    jj <- catterm(terms(x)[[i]])
     out <- paste(out, pm, co, jj, sep="")
   }
 
@@ -277,7 +276,7 @@
     if(sig==0){
         return(grades(x))
     } else if(sig>0){
-        return(unlist(lapply(blades(x),function(o){sum(o <= sig)})))
+        return(unlist(lapply(terms(x),function(o){sum(o <= sig)})))
     } else if(sig<0){
         return(grades(x)*NA)
     } else {

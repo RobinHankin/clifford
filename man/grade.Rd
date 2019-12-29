@@ -4,7 +4,7 @@
 \alias{gradesplus}
 \alias{gradesminus}
 \title{The grade of a clifford object}
-\description{The grade of a blade is the number of basis vectors in it.}
+\description{The grade of a term is the number of basis vectors in it.}
 \usage{
 grade(C, n, drop=TRUE)
 grades(x)
@@ -20,11 +20,11 @@ gradesminus(x)
 }
 \details{
 
-A \emph{blade} is a single term of a Clifford object.  It has a
+A \emph{term} is a single expression in a Clifford object.  It has a
 coefficient and is described by the basis vectors it comprises.  Thus
-\code{4e_234} is a blade but \code{1e3 + 2e5} is not.
+\code{4e_234} is a term but \code{1e3 + 2e5} is not.
   
-The \emph{grade} of a blade is the number of basis vectors in it.  Thus
+The \emph{grade} of a term is the number of basis vectors in it.  Thus
 the grade of \eqn{e_1}{e1} is 1, and the grade of
 \eqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.  The grade operator
 \eqn{\left<\cdot\right>_r}{<.>_r} is used to extract terms of a
@@ -54,7 +54,7 @@ We have
 }
   
 Function \code{grades()} returns an (unordered) vector specifying the
-grades of the constituent blades.
+grades of the constituent terms.
 
 Function \code{gradesplus()} returns the same but counting only basis
 vectors that square to \eqn{+1}, and \code{gradesminus()} counts only

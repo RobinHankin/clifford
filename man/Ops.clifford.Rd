@@ -36,7 +36,7 @@
 \alias{wedge}
 \alias{clifford_dot_clifford}
 \alias{clifford_wedge_clifford}
-\alias{maxyblade}
+\alias{maxyterm}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
 \description{
   Allows arithmetic operators to be used for
@@ -60,7 +60,7 @@ clifford_eq_clifford(C1,C2)
 clifford_inverse(C)
 clifford_dot_clifford(C1,C2)
 clifford_wedge_clifford(C1,C2)
-maxyblade(C1,C2=as.clifford(0))
+maxyterm(C1,C2=as.clifford(0))
 C1 \%.\% C2
 C1 \%^\% C2
 C1 \%X\% C2
@@ -70,9 +70,9 @@ C1 \% \% C2
 \arguments{
   \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}
   \item{x}{Scalar, length one numeric vector}
-  \item{L,L1,L2}{Lists of blades}
+  \item{L,L1,L2}{Lists of terms}
   \item{c1,c2,c}{Numeric vectors of coefficients}
-  \item{m}{Maximum entry of blades}
+  \item{m}{Maximum entry of terms}
   \item{n}{Grade to extract}
   \item{p}{Integer power}
   \item{sig}{Positive integer representing number of \eqn{+1} on main
@@ -86,8 +86,8 @@ C1 \% \% C2
   function.
 
   Functions \code{c_foo()} are low-level helper functions that wrap the
-  \code{C} code; function \code{maxyblade()} returns the maximum index
-  in the blades of its arguments.
+  \code{C} code; function \code{maxyterm()} returns the maximum index
+  in the terms of its arguments.
 
   The package has several binary operators:
   \itemize{

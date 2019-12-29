@@ -7,22 +7,22 @@ test_that("Test suite aaa.R",{  # tests of signature
     signature(0)
     expect_true(basis(1)*basis(1) == as.scalar(1))
     expect_true(basis(2)*basis(2) == as.scalar(1))
-    expect_true(basis(1)*basis(2) ==  blade(1:2))
-    expect_true(basis(2)*basis(1) == -blade(1:2))
+    expect_true(basis(1)*basis(2) ==  basis(1:2))
+    expect_true(basis(2)*basis(1) == -basis(1:2))
 
     signature(1)
     expect_true(basis(1)*basis(1) ==  as.scalar(1))
     expect_true(basis(2)*basis(2) == -as.scalar(1))
-    expect_true(basis(1)*basis(2) ==  blade(1:2))
-    expect_true(basis(2)*basis(1) == -blade(1:2))
+    expect_true(basis(1)*basis(2) ==  basis(1:2))
+    expect_true(basis(2)*basis(1) == -basis(1:2))
     expect_true(1/basis(1) ==  basis(1))
     expect_true(1/basis(2) == -basis(2))
 
     signature(-1)  # reduces to Grassman algebra
     expect_true(basis(1)*basis(1) == as.clifford(0))
     expect_true(basis(2)*basis(2) == as.clifford(0))
-    expect_true(basis(1)*basis(2) ==  blade(1:2))
-    expect_true(basis(2)*basis(1) == -blade(1:2))
+    expect_true(basis(1)*basis(2) ==  basis(1:2))
+    expect_true(basis(2)*basis(1) == -basis(1:2))
     expect_error(1/basis(1))
     expect_error(1/basis(2))
 

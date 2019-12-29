@@ -1,6 +1,6 @@
 \name{allcliff}
 \alias{allcliff}
-\title{Clifford object containing all possible blades}
+\title{Clifford object containing all possible terms}
 \description{
 The Clifford algebra on basis vectors \eqn{e_1,e_2,\ldots,
   e_n}{e1,e2,...,en} has \eqn{2^n} independent multivectors.  Function

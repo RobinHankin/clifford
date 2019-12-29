@@ -7,10 +7,10 @@
 \arguments{
   \item{n}{Number of terms}
   \item{d}{Dimensionality of Clifford algebra}
-  \item{grade}{Maximum grade of any blade}
+  \item{grade}{Maximum grade of any term}
   \item{include.fewer}{Boolean, with \code{FALSE} meaning to
     return a clifford object with exactly \code{grade} basis vectors in
-    each blade, and default \code{TRUE} meaning to include blades with
+    each term, and default \code{TRUE} meaning to include terms with
     fewer than \code{r} basis vectors}
 }
 \author{Robin K. S. Hankin}

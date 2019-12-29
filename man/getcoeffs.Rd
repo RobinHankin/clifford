@@ -8,7 +8,7 @@
 \alias{constant<-.clifford}
 \title{Get coefficients of a Clifford object}
 \description{
-Access specific coeefficents of a Clifford object using a list of blades.
+Access specific coeefficents of a Clifford object using a list of terms.
 }
 \usage{
 getcoeffs(C, B)
@@ -17,7 +17,7 @@ const(C,drop=TRUE)
 }
 \arguments{
   \item{C,x}{Clifford object}
-  \item{B}{List of blades}
+  \item{B}{List of terms}
   \item{value}{Replacement value}
   \item{drop}{Boolean, with default \code{TRUE} meaning to return the
     constant coerced to numeric, and \code{FALSE} meaning to return a
@@ -25,7 +25,7 @@ const(C,drop=TRUE)
 }
 \details{
 
-Extractor method for specific blades.  Function \code{const()} returns
+Extractor method for specific terms.  Function \code{const()} returns
 the constant element of a Clifford object.
 
 The slightly awkward R idiom in \code{const<-()} is to ensure numerical

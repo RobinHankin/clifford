@@ -27,8 +27,8 @@
     }
 }
 
-maxyblade <- function(C1,C2=as.clifford(0)){
-    return(max(c(0,blades(C1),blades(C2),recursive=TRUE)))
+maxyterm <- function(C1,C2=as.clifford(0)){
+    return(max(c(0,terms(C1),terms(C2),recursive=TRUE)))
 }
                
 "Ops.clifford" <- function (e1, e2 = NULL) 
@@ -101,7 +101,7 @@ maxyblade <- function(C1,C2=as.clifford(0)){
     if(is.zero(C)){
         return(C)
     } else {
-        return(clifford(blades(C),-coeffs(C)))
+        return(clifford(terms(C),-coeffs(C)))
     }
 }
 
@@ -110,16 +110,16 @@ maxyblade <- function(C1,C2=as.clifford(0)){
     return(as.clifford(0))
   } else {
     return(as.clifford(c_multiply(
-        L1  = blades(C1), c1 = coeffs(C1),
-        L2  = blades(C2), c2 = coeffs(C2),
-        m   = maxyblade(C1,C2),
+        L1  = terms(C1), c1 = coeffs(C1),
+        L2  = terms(C2), c2 = coeffs(C2),
+        m   = maxyterm(C1,C2),
         sig = signature()
     )))
   }
 }
 
 `clifford_times_scalar` <- function(C,x){
-    clifford(blades(C),x*coeffs(C))
+    clifford(terms(C),x*coeffs(C))
 }
 
 `clifford_inverse` <- function(C){
@@ -135,9 +135,9 @@ maxyblade <- function(C1,C2=as.clifford(0)){
         return(C1)
     } else {
         return(as.clifford(c_add(
-      L1 = blades(C1), c1 = coeffs(C1),
-      L2 = blades(C2), c2 = coeffs(C2),
-      m  = maxyblade(C1,C2)
+      L1 = terms(C1), c1 = coeffs(C1),
+      L2 = terms(C2), c2 = coeffs(C2),
+      m  = maxyterm(C1,C2)
       )))
     }
 }
@@ -150,8 +150,8 @@ clifford_power_scalar <- function(C,n){
     return(as.clifford(1))
   } else {
     return(as.clifford(c_power(
-      L   = blades(C), c = coeffs(C),
-      m   = maxyblade(C),
+      L   = terms(C), c = coeffs(C),
+      m   = maxyterm(C),
       p   = n,
       sig = signature()
   )))
@@ -160,9 +160,9 @@ clifford_power_scalar <- function(C,n){
         
 `clifford_eq_clifford` <- function(C1,C2){
   c_equal(
-      L1  = blades(C1), c1 = coeffs(C1),
-      L2  = blades(C2), c2 = coeffs(C2),
-      m   = maxyblade(C1,C2)
+      L1  = terms(C1), c1 = coeffs(C1),
+      L2  = terms(C2), c2 = coeffs(C2),
+      m   = maxyterm(C1,C2)
   )
 }
 
@@ -172,9 +172,9 @@ clifford_power_scalar <- function(C,n){
     return(as.clifford(0))
   } else {
     return(as.clifford(c_outerprod(
-        L1  = blades(C1), c1 = coeffs(C1),
-        L2  = blades(C2), c2 = coeffs(C2),
-        m   = maxyblade(C1,C2),
+        L1  = terms(C1), c1 = coeffs(C1),
+        L2  = terms(C2), c2 = coeffs(C2),
+        m   = maxyterm(C1,C2),
         sig = signature()
     )))
   }
@@ -185,9 +185,9 @@ clifford_power_scalar <- function(C,n){
     return(as.clifford(0))
   } else {
     return(as.clifford(c_innerprod(
-        L1  = blades(C1), c1 = coeffs(C1),
-        L2  = blades(C2), c2 = coeffs(C2),
-        m   = maxyblade(C1,C2),
+        L1  = terms(C1), c1 = coeffs(C1),
+        L2  = terms(C2), c2 = coeffs(C2),
+        m   = maxyterm(C1,C2),
         sig = signature()
     )))
   }
