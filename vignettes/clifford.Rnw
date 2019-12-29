@@ -233,7 +233,7 @@ Function \code{clifford()} takes a list of terms and a vector of
 coefficients.  Addition and subtraction work as expected:
 
 <<xminusy>>=
-y <- clifford(list(1),1)
+y <- clifford(list(1),2)
 x-y
 @ 
 
