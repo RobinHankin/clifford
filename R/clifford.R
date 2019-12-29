@@ -120,6 +120,15 @@
     )
 }
 
+`antivector` <- function(v,n=length(v)){
+    stopifnot(n>=length(v))
+    clifford(sapply(seq_along(v),function(i){seq_len(n)[-i]},simplify=FALSE),v)
+}
+
+`is.antivector` <- function(C){
+    (nterms(C)==1) || (is.homog(C) && (max(unlist(blades(C)))==maxyblade(C)))
+}
+
 `basis` <- function(n,x=1){clifford(list(n),x)}
 
 `rcliff` <- function(n=9,d=6,grade=4,include.fewer=TRUE){
@@ -279,3 +288,4 @@
 `gradesminus` <- function(x){ grades(x) - gradesplus(x) }
 
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
+
