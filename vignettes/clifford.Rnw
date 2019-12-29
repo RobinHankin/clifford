@@ -293,7 +293,7 @@ e2*e2 # sign changes
 
 Suppose we wish to use a signature $+++-$, corresponding to the
 Minkowski metric in special relativity; this would be indicated in
-pacakge idiom by \code{signature(3)}.  Note that the clifford objects
+package idiom by \code{signature(3)}.  Note that the clifford objects
 themselves do not store the signature; it is used only by the product
 operation \code{*}.
 
@@ -321,7 +321,7 @@ zero inner product.  Package idiom is to use a negative signature:
 
 <<grassmanalgebra,results=hide>>=
 signature(-1)  # specify null inner product
-<<results=verbatim>>
+<<print=TRUE,results=verbatim>>=
 is.zero(basis(5)^2)     # should be TRUE
 @ 
 
@@ -377,7 +377,7 @@ signature(0)
 
 With this, $\ei{i}\ei{i}=1$ for any $i$:
 <<>>=
-basis(5)^2
+basis(53)^2
 @ 
 
 
