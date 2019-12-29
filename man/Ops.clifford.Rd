@@ -106,8 +106,15 @@ C1 \% \% C2
   }
 
   The geometric product has to be indicated with a \dQuote{\code{*}}; so
-  we need a different idiom for scalar product.
+  we need a different idiom for scalar product.  Because geometric
+  product is often denoted by juxtaposition, package idiom includes
+  \code{ a \% \% b} for geometric product.
 
+  Function \code{clifford_inverse()} is problematic as nonnull blades
+  always have an inverse; but function \code{is.blade()} is not yet
+  implemented.  Blades (including null blades) have a pseudoinverse, but
+  this is not implemented yet either.
+  
 }
 \value{
 
