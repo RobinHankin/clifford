@@ -5,13 +5,13 @@
 \description{Random Clifford algebra elements, intended as quick
   \dQuote{get you going} examples of \code{clifford} objects}
 \usage{
-rcliff(n=9, d=6, grade=4, include.fewer=TRUE)
-rblade(n=9, d=4, factors=FALSE)
+rcliff(n=9, d=6, g=4, include.fewer=TRUE)
+rblade(n=9, g=4, factors=FALSE)
 }
 \arguments{
   \item{n}{Number of terms}
-  \item{d}{Grade of Clifford algebra}
-  \item{grade}{Maximum grade of any term}
+  \item{d}{Dimensionality of underlying vector space}
+  \item{g}{Maximum grade of any term}
   \item{include.fewer}{Boolean, with \code{FALSE} meaning to
     return a clifford object with exactly \code{grade} basis vectors in
     each term, and default \code{TRUE} meaning to include terms with
@@ -25,7 +25,7 @@ rblade(n=9, d=4, factors=FALSE)
 \examples{
 
 rcliff()
-rcliff(d=3,grade=2)
+rcliff(d=3,g=2)
 rcliff(3,10,7)
 rcliff(3,10,7,include=TRUE)
 

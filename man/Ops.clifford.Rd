@@ -147,9 +147,9 @@ x*y == x\%.\%y + x\%^\%y        # should be TRUE
 x \%^\% y == x \%^\% (y + 3*x)  # should be TRUE 
 
 ## Inner product is "%.%" is not associative:
- rcliff(5,grade=2) -> x
- rcliff(5,grade=2) -> y
- rcliff(5,grade=2) -> z
+ rcliff(5,g=2) -> x
+ rcliff(5,g=2) -> y
+ rcliff(5,g=2) -> z
 x \%.\% (y \%.\% z)
 (x \%.\% y) \%.\% z
 

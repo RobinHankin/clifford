@@ -130,21 +130,21 @@
 
 `basis` <- function(n,x=1){clifford(list(n),x)}
 
-`rcliff` <- function(n=9,d=6,grade=4,include.fewer=TRUE){
+`rcliff` <- function(n=9,d=6,g=4,include.fewer=TRUE){
   if(include.fewer){
-    f <- function(grade){sample(grade,1)}
+    f <- function(grade){sample(g,1)}
   } else {
-    f <- function(grade){grade}
+    f <- function(grade){g}
   }
   clifford(replicate(n,sort(sample(d,f(grade))),simplify=FALSE),sample(n))
 } 
 
-`rblade` <- function(n=9, d=4, factors=FALSE){
+`rblade` <- function(n=9, g=4, factors=FALSE){
     x <- seq_len(n)
-    v <- sample(d,n,replace=TRUE)
+    v <- sample(g,n,replace=TRUE)
     out <- as.scalar(1)
     vectors <- list()
-    for(i in seq_len(d)){
+    for(i in seq_len(g)){
         wanted <- v==i
         if(any(wanted)){
             jj <- clifford(as.list(x[wanted]),rnorm(sum(wanted)))
