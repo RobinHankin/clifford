@@ -40,4 +40,11 @@ rblade()
 rblade(factors=TRUE)
 Reduce(`*`,rblade(factors=TRUE))
 
+# We can invert blades easily:
+a <- rblade()
+ainv <- rev(a)/scalprod(a)
+
+zap(a*ainv)  # should be = 1
+zap(ainv*a)  # should be = 1
+
 }
