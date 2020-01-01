@@ -138,7 +138,30 @@
   }
   clifford(replicate(n,sort(sample(d,f(grade))),simplify=FALSE),sample(n))
 } 
-  
+
+`rblade` <- function(n=9, d=4, factors=FALSE){
+    x <- seq_len(n)
+    v <- sample(d,n,replace=TRUE)
+    out <- as.scalar(1)
+    vectors <- list()
+    for(i in seq_len(d)){
+        wanted <- v==i
+        if(any(wanted)){
+            jj <- clifford(as.list(x[wanted]),rnorm(sum(wanted)))
+        } else {
+            jj <- as.scalar(1)
+        }
+            out <- out*jj
+            if(factors){vectors[[i]] <- jj}
+    }
+
+    if(factors){
+        return(vectors)
+    } else {
+        return(out)
+    }
+}
+
 `rev.clifford` <- function(x){
   f <- function(u){ifelse(length(u)%%4 %in% 0:1, 1,-1)}
   clifford(
