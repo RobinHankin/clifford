@@ -222,26 +222,26 @@ grades, unlike conventional Grassman algebra).
 
 \section{The package in use}
 
-Suppose we want to work with $\ei{1} + 2\ei{2} + 3\ei{3}$.  In R idiom
-this would be
+Suppose we want to work with arbitrary Clifford object
+$1+2\ei{1}+3\ei{2}+4\ei{2}\ei{3}$.  In R idiom this would be
 
 <<simpleexample>>=
-(x <- clifford(list(1,2,3),1:3))
+(x <- clifford(list(numeric(0),1,2,2:3),1:4))
 @ 
 
-Function \code{clifford()} takes a list of blades and a vector of
+Function \code{clifford()} takes a list of terms and a vector of
 coefficients.  Addition and subtraction work as expected:
 
 <<xminusy>>=
-y <- clifford(list(1),1)
+y <- clifford(list(1),2)
 x-y
 @ 
 
-In the above, see how the $\ei{1}$ blade has vanished.  We can
+In the above, see how the $\ei{1}$ term has vanished.  We can
 multiply Clifford elements using natural R idiom:
 
 <<xtimesy>>=
-x*y
+x*x
 @ 
 
 (Multiplication that Snygg denotes by juxtaposition is here indicated
@@ -260,10 +260,10 @@ rcliff()
 @ 
 
 The defaults for \code{rcliff()} specify that the object is a sum of
-grade-4 blades but this can be altered:
+grade-4 terms but this can be altered:
 
 <<anotherrcliff>>=
-(x <- rcliff(d=7,grade=5,include.fewer=TRUE))
+(x <- rcliff(d=7,g=5,include.fewer=TRUE))
 grades(x)
 @ 
 
@@ -293,13 +293,13 @@ e2*e2 # sign changes
 
 Suppose we wish to use a signature $+++-$, corresponding to the
 Minkowski metric in special relativity; this would be indicated in
-pacakge idiom by \code{signature(3)}.  Note that the clifford objects
+package idiom by \code{signature(3)}.  Note that the clifford objects
 themselves do not store the signature; it is used only by the product
 operation \code{*}.
 
 <<sigthree1>>=
-x <- rcliff(d=4,grade=3,include.fewer=TRUE)
-y <- rcliff(d=4,grade=3,include.fewer=TRUE)
+x <- rcliff(d=4,g=3,include.fewer=TRUE)
+y <- rcliff(d=4,g=3,include.fewer=TRUE)
 @ 
 
 Then we may multiply these two clifford objects using either the
@@ -312,7 +312,63 @@ x*y
 @ 
 
 In the above, see how the products are different using the two inner
-products.  Function \code{signature()} takes the special value zero to
+products.  
+
+\subsection{Grassman algebra}
+
+A Grassman algebra corresponds to a Clifford algebra with identically
+zero inner product.  Package idiom is to use a negative signature:
+
+<<grassmanalgebra,results=hide>>=
+signature(-1)  # specify null inner product
+<<print=TRUE,results=verbatim>>=
+is.zero(basis(5)^2)     # should be TRUE
+@ 
+
+This is a somewhat clunky way of reproducing the functionality of the
+\pkg{wedge} package.  If we have
+
+<<reproducewedge>>=
+x <- clifford(list(1:3, c(2,3,7)), 3:4)
+y <- clifford(list(1:3, c(1,4,5), c(4,5,6)), 1:3)
+x %^% y
+@ 
+
+then the \pkg{wedge} idiom for this would be:
+
+\begin{Schunk}
+\begin{Sinput}
+> (x <- as.kform(rbind(1:3,c(2,3,7)),3:4))
+\end{Sinput}
+\begin{Soutput}
+           val
+ 2 3 7  =    4
+ 1 2 3  =    3
+\end{Soutput}
+\begin{Sinput}
+> (y <- as.kform(rbind(1:3,c(1,4,5),4:6),1:3))
+\end{Sinput}
+\begin{Soutput}
+           val
+ 1 2 3  =    1
+ 1 4 5  =    2
+ 4 5 6  =    3
+\end{Soutput}
+\begin{Sinput}
+> x %^% y
+\end{Sinput}
+\begin{Soutput}
+                 val
+ 1 2 3 4 5 6  =    9
+ 2 3 4 5 6 7  =  -12
+ 1 2 3 4 5 7  =   -8
+\end{Soutput}
+\end{Schunk}
+
+
+\subsection{Positive-definite inner product}
+
+Function \code{signature()} takes the special value zero to
 return to a positive-definite inner product:
 
 <<sigzero>>=
@@ -321,33 +377,10 @@ signature(0)
 
 With this, $\ei{i}\ei{i}=1$ for any $i$:
 <<>>=
-basis(5)^2
+basis(53)^2
 @ 
 
 
-
-
-
-\subsection{Wedge products}
-
-As noted above, if the underlying quadratic form is identically zero,
-then the geometric product formally reduces to the exterior wedge
-product.  
-
-
-To recover the wedge product we use a negative signature:
-
-<<setnegsig>>=
-signature(-1)  # sets quadratic form to zero
-blade(1:5)     # blade() gives a coefficient 1 blade
-@ 
-
-and then geometric product becomes wedge product:
-<<geomiswedge>>=
-blade(1:3) * blade(7:9) 
-blade(1:5) * blade(5:7) # zero because of repeated basis
-blade(5:7) * blade(1:3) # negative because of swaps
-@ 
 
 \subsection{Higher dimensional spaces}
 

@@ -2,6 +2,7 @@
 \alias{numeric_to_clifford}
 \alias{as.cliffvector}
 \alias{as.1vector}
+\alias{is.1vector}
 \alias{is.scalar}
 \alias{as.scalar}
 \alias{scalar}
@@ -15,6 +16,7 @@ Given a numeric value or vector, return a Clifford algebra element}
 \usage{
 numeric_to_clifford(x)
 as.1vector(x)
+is.1vector(x)
 scalar(x=1)
 as.scalar(x=1)
 is.scalar(C)
@@ -33,9 +35,10 @@ is.pseudoscalar(C)
   Function \code{as.scalar()} takes a length-one numeric vector and
   returns a Clifford scalar of that value.
 
-  Function \code{as.1vector()} takes a numeric vector and returns
-  the linear sum of length-one blades with coefficients given by
-  \code{x}.
+  Function \code{as.1vector()} takes a numeric vector and returns the
+  linear sum of length-one blades with coefficients given by \code{x};
+  function \code{is.1vector()} returns \code{TRUE} if every term is of
+  grade 1.
 
   Function \code{pseudoscalar(n)} returns a pseudoscalar of
   dimensionality \code{n} and function \code{is.pseudoscalar()} checks

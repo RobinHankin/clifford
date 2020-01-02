@@ -250,7 +250,8 @@ Comparing with the result from the `lorentz` package
 Bmat %*% fourvec
 ```
 
-we see agreement to within numerical precision.
+we see agreement to within numerical precision.  We can further verify
+thatthe square interval is unchanged:
 
 ```{r,checkinterval}
 jj <- rev(B)*scliff*B

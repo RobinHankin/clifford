@@ -3,10 +3,12 @@
 \alias{\%^\%}
 \alias{\%X\%}
 \alias{\%star\%}
+\alias{\% \%}
 \alias{\%.\%.clifford}
 \alias{\%^\%.clifford}
 \alias{\%X\%.clifford}
 \alias{\%star\%.clifford}
+\alias{\% \%.clifford}
 \alias{Ops.clifford}
 \alias{Ops}
 \alias{c_identity}
@@ -34,7 +36,7 @@
 \alias{wedge}
 \alias{clifford_dot_clifford}
 \alias{clifford_wedge_clifford}
-\alias{maxyblade}
+\alias{maxyterm}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
 \description{
   Allows arithmetic operators to be used for
@@ -58,18 +60,19 @@ clifford_eq_clifford(C1,C2)
 clifford_inverse(C)
 clifford_dot_clifford(C1,C2)
 clifford_wedge_clifford(C1,C2)
-maxyblade(C1,C2=as.clifford(0))
+maxyterm(C1,C2=as.clifford(0))
 C1 \%.\% C2
 C1 \%^\% C2
 C1 \%X\% C2
 C1 \%star\% C2
+C1 \% \% C2
 }
 \arguments{
   \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}
   \item{x}{Scalar, length one numeric vector}
-  \item{L,L1,L2}{Lists of blades}
+  \item{L,L1,L2}{Lists of terms}
   \item{c1,c2,c}{Numeric vectors of coefficients}
-  \item{m}{Maximum entry of blades}
+  \item{m}{Maximum entry of terms}
   \item{n}{Grade to extract}
   \item{p}{Integer power}
   \item{sig}{Positive integer representing number of \eqn{+1} on main
@@ -83,13 +86,15 @@ C1 \%star\% C2
   function.
 
   Functions \code{c_foo()} are low-level helper functions that wrap the
-  \code{C} code; function \code{maxyblade()} returns the maximum index
-  in the blades of its arguments.
+  \code{C} code; function \code{maxyterm()} returns the maximum index
+  in the terms of its arguments.
 
   The package has several binary operators:
   \itemize{
     \item \code{x * y}, \eqn{xy}{xy}, geometric product, also
-    \code{clifford_times_clifford(x,y)}
+    \code{clifford_times_clifford(x,y)}.  Because geometric product is
+    often indicated by juxtaposition, idiom \code{x \% \% y} returns the
+    geometric product.
     \item \code{x \%.\% y}, \eqn{x\cdot y}{x.y}, inner product, also
     \code{clifford_dot_clifford(x,y)} 
     \item \code{x \%^\% y}, \eqn{x\wedge y}{x^y}, outer product, also
@@ -101,8 +106,15 @@ C1 \%star\% C2
   }
 
   The geometric product has to be indicated with a \dQuote{\code{*}}; so
-  we need a different idiom for scalar product.
+  we need a different idiom for scalar product.  Because geometric
+  product is often denoted by juxtaposition, package idiom includes
+  \code{ a \% \% b} for geometric product.
 
+  Function \code{clifford_inverse()} is problematic as nonnull blades
+  always have an inverse; but function \code{is.blade()} is not yet
+  implemented.  Blades (including null blades) have a pseudoinverse, but
+  this is not implemented yet either.
+  
 }
 \value{
 
@@ -111,6 +123,7 @@ C1 \%star\% C2
 
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{scalprod}}}
 \examples{
 
 u <- rcliff(5)
@@ -122,10 +135,28 @@ u*v
 u^3
 
 
-u*v == u\%.\%v + u\%^\%v        # should be TRUE
-u \%^\% v == u \%^\% (v + 3*v)  # should be TRUE 
 u+(v+w) == (u+v)+w              # should be TRUE 
+u*(v*w) == (u*v)*w              # should be TRUE 
 u \%^\% v == (u*v-v*u)/2        # should be TRUE 
+
+# Now if x,y,z are _vectors_ we would have:
+
+x <- as.1vector(5)
+y <- as.1vector(5)
+x*y == x\%.\%y + x\%^\%y        # should be TRUE
+x \%^\% y == x \%^\% (y + 3*x)  # should be TRUE 
+
+## Inner product is "%.%" is not associative:
+ rcliff(5,g=2) -> x
+ rcliff(5,g=2) -> y
+ rcliff(5,g=2) -> z
+x \%.\% (y \%.\% z)
+(x \%.\% y) \%.\% z
+
+## Geometric product *is* associative:
+x * (y * z)
+(x * y) * z
+
 
 }
 

@@ -2,45 +2,31 @@
 \alias{clifford}
 \alias{as.clifford}
 \alias{is.clifford}
-\alias{blade}
-\alias{blades}
-\alias{coeffs}
-\alias{coeffs<-}
-\alias{coeffs<-.clifford}
 \alias{nbits}
 \alias{nterms}
-\alias{is.blade}
-\alias{is.1vector}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
 
-A clifford object is a member of a Clifford Algebra.  These objects may
+A clifford object is a member of a Clifford algebra.  These objects may
 be added and multiplied, and have various applications in physics and
-mathematics
+mathematics.
 }
 
 \usage{
-clifford(blades, coeffs=1)
-is_ok_clifford(blades, coeffs)
+clifford(terms, coeffs=1)
+is_ok_clifford(terms, coeffs)
 as.clifford(x)
 is.clifford(x)
-blades(x)
-blade(B)
-is.blade(x)
-is.1vector(x)
-coeffs(x)
-coeffs(x) <- value
 nbits(x)
 nterms(x)
 }
 \arguments{
-  \item{blades}{A list of integer vectors with strictly increasing
+  \item{terms}{A list of integer vectors with strictly increasing
     entries corresponding to the basis vectors of the underlying vector
     space}
-  \item{value,coeffs}{Numeric vector of coefficients}
+  \item{coeffs}{Numeric vector of coefficients}
   \item{x}{Object of class \code{clifford}}
-  \item{B}{Integer vector specifying a blade}
 }
 \details{
 
@@ -52,21 +38,9 @@ nterms(x)
     \item Function \code{as.clifford()} is much more user-friendly and
     attempts to coerce a range of input arguments to clifford form
 
-    \item Functions \code{blades()} and \code{coeffs()} are the
-    extraction methods.  These are unordered vectors but the ordering is
-    consistent between them (an extended discussion of this phenomenon
-    is presented in the \code{mvp} package).
-
-    \item Function \code{blade()} returns clifford object that comprises
-    a single blade with unit coefficient.
-    
-    \item Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets
-    all coefficients of \code{a} to \code{b}.  This has the same effect
-    as \code{a[] <- b}.
-
     \item Function \code{nbits()} returns the number of bits required in
-    the low-level C routines to store the blades (this is the largest
-    entry in the list of blades)
+    the low-level C routines to store the terms (this is the largest
+    entry in the list of terms)
 
     \item Function \code{nterms()} returns the number of terms in the
     expression
@@ -74,13 +48,8 @@ nterms(x)
     \item Function \code{is_ok_clifford()} is a helper function that checks
     for consistency of its arguments
 
-    \item Function \code{is.blade()} returns \code{TRUE} if its argument
-    is a single blade or a nonzero scalar; the zero clifford object is
-    not considered to be a blade.
-
-    \item Function \code{is.1vector()} returns \code{TRUE} if every
-    blade is of grade 1.
-
+    \item Function \code{is.term()} returns \code{TRUE} if all terms of
+    its argument have the same grade
   }
 }
 \references{
@@ -96,7 +65,7 @@ Science+Business.
 (y <- as.1vector(4:2))
 (z <- rcliff(include.fewer=TRUE))
 
-blades(x+100)
+terms(x+100)
 coeffs(z)
 
 ## Clifford objects may be added and multiplied:

@@ -3,8 +3,8 @@
 \alias{rev}
 \title{Reverse of a Clifford object}
 \description{
-The \dQuote{reverse} of a blade is simply the basis vectors written in
-reverse order; this changes the sign of the blade if the number of basis
+The \dQuote{reverse} of a term is simply the basis vectors written in
+reverse order; this changes the sign of the term if the number of basis
 vectors is 2 or 3 (modulo 4).  Taking the reverse is a linear
 operation.  Hestenes uses \eqn{A^\dag}{?} to denote the reverse of
 \eqn{A} and we have
@@ -39,7 +39,7 @@ We can also show that
 }
 \arguments{\item{x}{Clifford object}}
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{grade}}}
+\seealso{\code{\link{grade}},\code{\link{Conj}}}
 \examples{
 
 x <- rcliff()

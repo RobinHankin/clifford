@@ -14,8 +14,8 @@ test_that("Test suite aaa.R",{
     expect_true(is.scalar(as.clifford(1)))
     expect_true(all(grades(clifford(list(1,2,3),1:3))==1))
 
-    expect_true(maxyblade(as.clifford(0),as.clifford(0))==0)
-    expect_true(maxyblade(as.clifford(0),as.clifford(1))==0)
+    expect_true(maxyterm(as.clifford(0),as.clifford(0))==0)
+    expect_true(maxyterm(as.clifford(0),as.clifford(1))==0)
 
     expect_true(is.zero(as.clifford(1) %.% as.clifford(1)))
     expect_true(is.zero(as.clifford(1) %.% as.clifford(0)))
@@ -102,7 +102,7 @@ test_that("Test suite aaa.R",{
     expect_true(const(jj,drop=FALSE) == as.clifford(3))
     expect_true(is.clifford(jj))
 
-    expect_true(is.blade(basis(3)))
+    expect_true(is.basisblade(basis(3)))
 
     expect_true(is.homog(as.clifford(0)))
     expect_true(is.homog(as.clifford(1)))
@@ -117,8 +117,8 @@ test_that("Test suite aaa.R",{
     expect_false(is.pseudoscalar(1+pseudoscalar(3)))
 
 
-    expect_equal(mod(as.clifford(0)),0)
-    expect_equal(mod(as.clifford(1)),1)
+    expect_equal(Mod(as.clifford(0)),0)
+    expect_equal(Mod(as.clifford(1)),1)
 
 
     expect_output(print( rcliff()))
@@ -129,13 +129,13 @@ test_that("Test suite aaa.R",{
 
     expect_true(
         clifford(sapply(1:5,seq_len),1)[sapply(1:2,seq_len)] ==
-        blade(1) + blade(1:2)
+        basis(1) + basis(1:2)
     )
 
-    expect_true(allcliff(1) == 1+blade(1))
+    expect_true(allcliff(1) == 1+basis(1))
 
-    expect_true(zap(blade(1)) == blade(1))
-    expect_false(zap(pi*blade(1)) == pi*blade(1))
+    expect_true(zap(basis(1)) == basis(1))
+    expect_false(zap(pi*basis(1)) == pi*basis(1))
 
     expect_error(signature(1:2))
     expect_error(signature(0.5))
