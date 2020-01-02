@@ -58,7 +58,8 @@ grades of the constituent terms.
 
 Function \code{gradesplus()} returns the same but counting only basis
 vectors that square to \eqn{+1}, and \code{gradesminus()} counts only
-basis vectors that square to \eqn{-1}.
+basis vectors that square to \eqn{-1}.  These defined by Perwass, page
+57.
 
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{g}, where \code{g \%in\% n}.
@@ -72,6 +73,9 @@ Function \code{c_grade()} is a helper function that is documented at
   In the C code, \dQuote{blade} has a slightly different meaning,
   referring to the vectors without the associated coefficient.
 }
+\references{C. Perwass 2009. \dQuote{Geometric algebra with applications
+    in engineering}.  Springer.
+  }
 \examples{
 
 a <- clifford(sapply(seq_len(7),seq_len),seq_len(7))
