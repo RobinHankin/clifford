@@ -311,3 +311,5 @@
 
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
 
+
+`neg` <- function(C,n){clifford(terms(C),coeffs(C)*ifelse(grades(C) %in% n,-1,1))}
