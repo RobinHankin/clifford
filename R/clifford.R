@@ -132,11 +132,11 @@
 
 `rcliff` <- function(n=9,d=6,g=4,include.fewer=TRUE){
   if(include.fewer){
-    f <- function(grade){sample(g,1)}
+    f <- function(...){sample(g,1)}
   } else {
-    f <- function(grade){g}
+    f <- function(...){g}
   }
-  clifford(replicate(n,sort(sample(d,f(grade))),simplify=FALSE),sample(n))
+  clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n))
 } 
 
 `rblade` <- function(n=9, g=4, factors=FALSE){
