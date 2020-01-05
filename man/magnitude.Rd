@@ -55,8 +55,10 @@ scalprod(C1,C2=rev(C1),drop=TRUE)
 }
 \author{Robin K. S. Hankin}
 \note{
-Hestenes uses an asterisk for scalar product as in \eqn{A*B}, but in
-package idiom, the asterisk is reserved for geometric product.
+
+Hestenes and Perwass both use an asterisk for scalar product as in
+\eqn{A*B}, but in package idiom, the asterisk is reserved for geometric
+product.
 
 If you want the square, \eqn{\left|A\right|^2}{|A|^2} and not
 \eqn{\left|A\right|}{|A|}, it is faster and more accurate to use
