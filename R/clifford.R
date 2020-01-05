@@ -139,27 +139,8 @@
   clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n))
 } 
 
-`rblade` <- function(n=9, g=4, factors=FALSE){
-    x <- seq_len(n)
-    v <- sample(g,n,replace=TRUE)
-    out <- as.scalar(1)
-    vectors <- list()
-    for(i in seq_len(g)){
-        wanted <- v==i
-        if(any(wanted)){
-            jj <- clifford(as.list(x[wanted]),rnorm(sum(wanted)))
-        } else {
-            jj <- as.scalar(1)
-        }
-            out <- out*jj
-            if(factors){vectors[[i]] <- jj}
-    }
-
-    if(factors){
-        return(vectors)
-    } else {
-        return(out)
-    }
+`rblade` <- function(d=9, g=4){
+  Reduce(`%^%`,sapply(seq_len(g),function(...){as.1vector(rnorm(d))},simplify=FALSE))
 }
 
 `rev.clifford` <- function(x){

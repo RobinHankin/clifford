@@ -27,7 +27,7 @@ scalprod(C1,C2=rev(C1),drop=TRUE)
   \deqn{
     A\ast B=\left<AB\right>_0
   }{
-    A\ast B=<AB>_0
+    A asterisk B=<AB>_0
   }
 
   In package idiom the scalar product is given by \code{A \%star\% B} or
@@ -63,11 +63,24 @@ If you want the square, \eqn{\left|A\right|^2}{|A|^2} and not
 \code{scalprod(A)}, because \code{Mod(A)^2} takes a needless square
 root).
 
+There is a nice example of scalar product at \code{rcliff.Rd}.
+
 }
-\seealso{\code{\link{Ops.clifford}}}
+\seealso{\code{\link{Ops.clifford}},\code{\link{rcliff}}
+}
 \examples{
 
 
 Mod(rcliff())
+
+
+# Perwass, p68, asserts that if A is a k-blade, then (in his notation)
+# AA == A*A.
+
+# In package idiom, A*A == A \%star\% A:
+
+A <- rblade()
+Mod(A*A - A \%star\% A)  # should be small
+
 }
 
