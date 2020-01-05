@@ -3,11 +3,16 @@
 \alias{rev}
 \title{Reverse of a Clifford object}
 \description{
+
 The \dQuote{reverse} of a term is simply the basis vectors written in
 reverse order; this changes the sign of the term if the number of basis
-vectors is 2 or 3 (modulo 4).  Taking the reverse is a linear
-operation.  Hestenes uses \eqn{A^\dag}{?} to denote the reverse of
-\eqn{A} and we have
+vectors is 2 or 3 (modulo 4).  Taking the reverse is a linear operation.
+
+
+Hestenes uses a dagger to denote the reverse of \eqn{A}, as in
+\eqn{A^\dag}{omitted}; while Perwass uses a tilde to denote the reverse
+of \eqn{A}, as in \eqn{\tilde{A}}{omitted} or sometimes
+\eqn{A^\sim}{omitted}
 
 \deqn{
   \left(A^\dag\right)^\dag=A\qquad
@@ -46,8 +51,8 @@ x <- rcliff()
 rev(x)
 
 
-A <- rcliff(include=TRUE)
-B <- rcliff(include=TRUE)
-rev(A*B) == rev(B) * rev(A)   # should be TRUE
-
+A <- rblade(g=3)
+B <- rblade(g=4)
+rev(A \%^\% B) == rev(B) \%^\% rev(A)   # should be small
+rev(A * B) == rev(B) * rev(A)           # should be small
 }
