@@ -214,7 +214,7 @@
 }
 
 `scalprod` <- function(C1,C2=rev(C1),drop=TRUE){grade(C1*C2,0,drop=drop)}
-`eucprod` <- function(C1,C2=Conj(C1),drop=TRUE){grade(C1*Conj(C2),0,drop=drop)}
+`eucprod` <- function(C1,C2=C1,drop=TRUE){grade(C1*Conj(C2),0,drop=drop)}
 
 `Mod.clifford` <- function(z){sqrt(scalprod(Conj(z),z))}
 
