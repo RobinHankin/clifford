@@ -1,10 +1,10 @@
 \name{neg}
 \alias{neg}
-\title{Grade r Negation}
+\title{Grade negation}
 \description{
 The grade \eqn{r} negation operation applied to Clifford multivector
 \eqn{A} changes the sign of the grade \eqn{r} component of \eqn{A}.  It
-is formally defined as \eqn{A-2\left<A\right>_r}{A-2<A>_r}
+is formally defined as \eqn{A-2\left<A\right>_r}{A-2<A>_r}.
 }
 \usage{
 neg(C, n)
