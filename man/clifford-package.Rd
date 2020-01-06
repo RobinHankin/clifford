@@ -19,6 +19,19 @@ The DESCRIPTION file:
 
 Maintainer: \packageMaintainer{clifford}
 }
+\references{
+  \itemize{
+    \item J. Snygg (2012).  \emph{A new approach to differential
+      geometry using Clifford's geometric Algebra}, Birkhauser.  ISBN
+    978-0-8176-8282-8
+    \item D. Hestenes (1987). \emph{Clifford algebra to geometric
+      calculus},  Kluwer. ISBN 90-277-1673-0
+    \item C. Perwass (2009). \emph{Geometric algebra with applications
+      in engineering}, Springer.  ISBN 978-3-540-89068-3
+    \item D. Hildenbrand (2013). \emph{Foundations of geometric
+      algebra computing}.  Springer, ISBN 978-3-642-31794-1
+  }
+}
 \keyword{ package }
 \seealso{\code{\link{clifford}}}
 \examples{
