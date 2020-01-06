@@ -17,14 +17,14 @@
   \deqn{\left|\left|A\right|\right| = \sqrt{A\ast A}}{omitted; see PDF}
   
   Where \eqn{A\ast A}{?} denotes the Euclidean scalar product
-  \code{eucprod()}.
- 
+  \code{eucprod()}.  Recall that the Euclidean scalar product is never
+  negative.
 }
 \author{Robin K. S. Hankin}
 \note{
 
 If you want the square, \eqn{\left|A\right|^2}{||A||^2} and not
-\eqn{\left|\left|A\right|\right|}{|A|}, it is faster and more accurate
+\eqn{\left|\left|A\right|\right|}{||A||}, it is faster and more accurate
 to use \code{eucprod(A)}, because this avoids a needless square root.
 
 There is a nice example of scalar product at \code{rcliff.Rd}.
