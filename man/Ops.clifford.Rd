@@ -166,10 +166,6 @@ The \dfn{scalar product} of two clifford objects is defined as the
   product is guaranteed to be non-negative [that is, \code{A \%euc\% A}
   is always positive or zero].
   
-  We define the \dfn{magnitude} \eqn{\left|\left|A\right|\right|}{||A||}
-  of a clifford object \eqn{A} to be \eqn{\sqrt{A\star A}}{see PDF}; in
-  package idiom it is given by \code{Mod(A)}, which is never negative.
-
 
 }
 \value{
