@@ -201,9 +201,11 @@ clifford_power_scalar <- function(C,n){
 "%X%" <- function(C1,C2){UseMethod("%X%")}
 "%star%" <- function(C1,C2){UseMethod("%star%")}
 "% %" <- function(C1,C2){UseMethod("% %")}
+"%euc%" <- function(C1,C2){UseMethod("%euc%")}
 
 "%.%.clifford" <- function(C1,C2){clifford_dot_clifford(C1,C2)}
 "%^%.clifford" <- function(C1,C2){clifford_wedge_clifford(C1,C2)}
 "%X%.clifford" <- function(C1,C2){clifford_cross_clifford(C1,C2)}
 "%star%.clifford" <- function(C1,C2){scalprod(C1,C2)}
 "% %.clifford" <- function(C1,C2){clifford_times_clifford(C1,C2)}
+"%euc%.clifford" <- function(C1,C2){eucprod(C1,C2)}
