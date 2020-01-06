@@ -4,11 +4,13 @@
 \alias{\%X\%}
 \alias{\%star\%}
 \alias{\% \%}
+\alias{\%euc\%}
 \alias{\%.\%.clifford}
 \alias{\%^\%.clifford}
 \alias{\%X\%.clifford}
 \alias{\%star\%.clifford}
 \alias{\% \%.clifford}
+\alias{\%euc\%.clifford}
 \alias{Ops.clifford}
 \alias{Ops}
 \alias{c_identity}
@@ -37,6 +39,11 @@
 \alias{clifford_dot_clifford}
 \alias{clifford_wedge_clifford}
 \alias{maxyterm}
+\alias{scalprod}
+\alias{scalar_product}
+\alias{eucprod}
+\alias{euclid\_product}
+\alias{euclidean\_product}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
 \description{
   Allows arithmetic operators to be used for
@@ -60,12 +67,15 @@ clifford_eq_clifford(C1,C2)
 clifford_inverse(C)
 clifford_dot_clifford(C1,C2)
 clifford_wedge_clifford(C1,C2)
+scalprod(C1,C2=rev(C1),drop=TRUE)
+eucprod(C1,C2=C1,drop=TRUE)
 maxyterm(C1,C2=as.clifford(0))
 C1 \%.\% C2
 C1 \%^\% C2
 C1 \%X\% C2
 C1 \%star\% C2
 C1 \% \% C2
+C1 \%euc\% C2
 }
 \arguments{
   \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}
@@ -77,6 +87,9 @@ C1 \% \% C2
   \item{p}{Integer power}
   \item{sig}{Positive integer representing number of \eqn{+1} on main
     diagonal of quadratic form}
+  \item{drop}{Boolean, with default \code{TRUE} meaning to return the
+    constant coerced to numeric, and \code{FALSE} meaning to return a
+    (constant) Clifford object}
 }
 \details{
 
@@ -102,7 +115,9 @@ C1 \% \% C2
     \item \code{x \%X\% y}, \eqn{x\times y}{x X y}, cross product, also
     \code{clifford_cross_clifford(x,y)} 
     \item \code{x \%star\% y}, \eqn{x*y}, scalar product, also
-    \code{clifford_star_clifford()} 
+    \code{clifford_star_clifford()}
+    \item \code{x \%euc\% y}, \eqn{x\ast y}, the Euclidean product, also
+    \code{eucprod(x,y)}
   }
 
   The geometric product has to be indicated with a \dQuote{\code{*}}; so
@@ -115,6 +130,47 @@ C1 \% \% C2
   implemented.  Blades (including null blades) have a pseudoinverse, but
   this is not implemented yet either.
   
+The \dfn{scalar product} of two clifford objects is defined as the
+  zero-grade component of their geometric product:
+  
+  \deqn{
+    A\ast B=\left<AB\right>_0\qquad{\mbox{NB: notation used by both Perwass
+    and Hestenes}}
+  }{
+    omitted; see PDF
+  }
+
+  In package idiom the scalar product is given by \code{A \%star\% B} or
+  \code{scalprod(A,B)}.  Hestenes and Perwass both use an asterisk for
+  scalar product as in \dQuote{\eqn{A*B}}, but in package idiom, the
+  asterisk is reserved for geometric product.
+
+  \strong{Note: in the package, \code{A*B} is the geometric product}.
+  
+  The \dfn{Euclidean product} (or \dfn{Euclidean scalar product}) of two
+  clifford objects is defined as 
+
+  \deqn{
+    A\star B=A\ast B^\dag=\left<AB^\dag\right>_0\qquad{\mbox{Perwass}}
+  }{
+    omitted: see PDF
+  }
+
+  where \eqn{B^\dag}{?} denotes Conjugate [as in \code{Conj(a)}].  In
+  package idiom the Euclidean scalar product is given by
+  \code{eucprod(A,B)} or \code{A \%euc\% B}, both of which return
+  \code{A * Conj(B)}.
+
+  Note that the scalar product \eqn{A\ast A} can be positive or negative
+  [that is, \code{A \%star\% A} may be any sign], but the Euclidean
+  product is guaranteed to be non-negative [that is, \code{A \%euc\% A}
+  is always positive or zero].
+  
+  We define the \dfn{magnitude} \eqn{\left|\left|A\right|\right|}{||A||}
+  of a clifford object \eqn{A} to be \eqn{\sqrt{A\star A}}{see PDF}; in
+  package idiom it is given by \code{Mod(A)}, which is never negative.
+
+
 }
 \value{
 
