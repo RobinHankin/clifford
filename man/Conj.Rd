@@ -81,6 +81,21 @@ Conj(A \%^\% B) - Conj(B) \%^\% Conj(A)      # should be small
 Conj(A * B) - Conj(B) * Conj(A)          # should be small
 
 
+x1 <- rblade(d=9,g=2)
+x2 <- rblade(d=9,g=2)
+x3 <- rblade(d=9,g=2)
+x4 <- rblade(d=9,g=2)
+
+LHS <- Conj(x1 \%^\% x2 \%^\% x3 \%^\% x4)
+RHS <- Conj(x4) \%^\% Conj(x3) \%^\% Conj(x2) \%^\% Conj(x1) 
+Mod(LHS - RHS) # should be small
+
+
+LHS <- Conj(x1 * x2 * x3 * x4)
+RHS <- Conj(x4) * Conj(x3) * Conj(x2) * Conj(x1) 
+Mod(LHS - RHS) # should be small
+
+
 signature(0)
 
 }
