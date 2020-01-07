@@ -3,6 +3,8 @@
 // [[Rcpp::depends(BH)]]
 
 
+// NB: terminology.  Here "blade" means "basis blade"
+
 #include <map>
 #include <iostream>
 #include <Rcpp.h>
@@ -57,7 +59,6 @@ Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
     }
     return out;
 }
-
 
 List Rblades(const clifford C){  // takes a clifford object, returns a list of which(blades); used in retval()
     List out;
@@ -114,7 +115,7 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
 
     for(int i=0 ; i<m ; ++i){
         
-        if       (((bool)~b1[i]) & ((bool)~b2[i])){ bout[i] = false;   // neither
+        if       (((bool)~b1[i]) & ((bool)~b2[i])){ bout[i] = false;  // neither
         } else if(((bool) b1[i]) & ((bool)~b2[i])){ bout[i] = true;   // just b1
         } else if(((bool)~b1[i]) & ((bool) b2[i])){ bout[i] = true;   // just b2
         } else if(((bool) b1[i]) & ((bool) b2[i])){ bout[i] = false;  // both, but...
