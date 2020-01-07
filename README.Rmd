@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 # Overview
 
-The ``clifford` package provides R-centric functionality for working
+The `clifford` package provides R-centric functionality for working
 with Clifford algebras of arbitrary dimension and signature.  A
 detailed vignette is provided in the package.
 
@@ -43,10 +43,74 @@ set.seed(0)
 
 # The `clifford` package in use
 
+The basic creation function is `clifford()`, which takes a list of
+basis blades and a vector of coefficients:
+
 ```{r cliff1}
-a <- rcliff()
-a
+(a <- clifford(list(1,2,1:4,2:3),1:4))
+(b <- clifford(list(2,2:3,1:2),c(-2,3,-3)))
 ```
+
+So `a` and `b` are multivectors.  Clifford objects are a vector space
+and we can add them using `+`:
+
+```{r,cliff2}
+a+b
+```
+
+See how the `e2` term vanishes and the `e_23` term is summed.
+The package includes a large number of products:
+
+
+```{r,cliffprods}
+a*b        # geometric product (also "a % % b")
+a %^% b    # outer product
+a %.% b    # inner product
+a %star% b # scalar product
+a %euc% b  # Euclidean product
+```
+
+The package can deal with non positive-definite inner products.
+Suppose we wish to deal with an inner product of 
+
+\[
+\begin{pmatrix}
++1 & 0 & 0 & 0 & 0\\
+ 0 &+1 & 0 & 0 & 0\\
+ 0 & 0 &+1 & 0 & 0\\
+ 0 & 0 & 0 &-1 & 0\\
+ 0 & 0 & 0 & 0 &-1
+\end{pmatrix}
+\]
+
+where the diagonal is a number of $+1$ terms followed by a number of
+$-1$ terms.  The package idiom for this would be to use `signature()`:
+
+```{r,clifsig}
+signature(3)
+```
+
+Function `signature()` is based on `lorentz::sol()` and its argument
+specifes the number of basis blades that square to $+1$, the others
+squaring to $-1$.  Thus $e_1^2=e_2^2=e_3^2=1$ and $e_4^2=e_5^2=-1$:
+
+```{r,showsig}
+basis(1)
+basis(1)^2
+basis(4)
+basis(4)^2
+```
+
+The package uses the STL map class with dynamic bitset keys for
+efficiency and speed and can deal with objects of arbitrary
+dimensions.  Thus:
+
+```{r}
+options("basissep" = ",")
+(x <- rcliff(d=20))
+x^3
+```
+
 
 # References
 
