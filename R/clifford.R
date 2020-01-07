@@ -292,5 +292,30 @@
 
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
 
-
 `neg` <- function(C,n){clifford(terms(C),coeffs(C)*ifelse(grades(C) %in% n,-1,1))}
+
+`first_n_last` <- function(x){
+  n <- nterms(x)
+  paste(
+      as.character(clifford(list(x[[1]][[1]]),x[[2]][1])), " ...",
+      as.character(clifford(list(x[[1]][[n]]),x[[2]][n]))
+  )
+}
+
+`summary.clifford` <- function(object, ...){
+  out <- list(
+      first_n_last = first_n_last(object),
+      nterms       = nterms(object),
+      magnitude    = eucprod(object)
+  )
+  class(out) <- "summary.clifford"
+  return(out)
+}
+
+"print.summary.clifford" <- function(x, ...){
+  cat("Element of a Clifford algebra \n")  
+  cat("Typical terms: ", x[[1]],"\n") 
+  cat("Number of terms:", x[[2]],"\n") 
+  cat("Magnitude:", x[[3]],"\n") 
+}
+

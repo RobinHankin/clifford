@@ -108,7 +108,7 @@ dimensions.  Thus:
 ```{r}
 options("basissep" = ",")
 (x <- rcliff(d=20))
-x^3
+summary(x^3)
 ```
 
 
