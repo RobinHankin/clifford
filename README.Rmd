@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 # Overview
 
-The ``clifford` package provides R-centric functionality for working
+The `clifford` package provides R-centric functionality for working
 with Clifford algebras of arbitrary dimension and signature.  A
 detailed vignette is provided in the package.
 
