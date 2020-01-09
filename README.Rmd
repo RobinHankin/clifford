@@ -116,6 +116,8 @@ summary(x^3)
 
   - D. Hestenes 1987. _Clifford algebra to geometric calculus_, Kluwer.
   - J. Snygg 2010. _A new approach to differential geometry using Clifford's geometric algebra_.  Berghauser.
+  - C. Perwass 2009. _Geometric algebra with applications
+      in engineering_. Springer.
 
 # Further information
 

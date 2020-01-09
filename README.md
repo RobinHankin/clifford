@@ -59,7 +59,8 @@ package includes a large number of products:
 ``` r
 a*b        # geometric product (also "a % % b")
 #> Element of a Clifford algebra, equal to
-#> - 16 + 6e_1 - 3e_2 - 2e_12 + 14e_3 + 12e_13 + 3e_123 - 9e_14 + 9e_34 - 6e_134
+#> - 16 + 6e_1 - 3e_2 - 2e_12 + 14e_3 + 12e_13 + 3e_123 - 9e_14 + 9e_34 -
+#> 6e_134
 a %^% b    # outer product
 #> Element of a Clifford algebra, equal to
 #> - 2e_12 + 3e_123
@@ -137,20 +138,13 @@ Thus:
 options("basissep" = ",")
 (x <- rcliff(d=20))
 #> Element of a Clifford algebra, equal to
-#> + 6e_5 + 8e_1,3,6 + 4e_10 + 5e_6,10 + 3e_10,12 + 2e_14 + 7e_10,14 + 1e_5,9,15 +
-#> 9e_1,19
-x^3
-#> Element of a Clifford algebra, equal to
-#> + 30e_5 - 140e_6 - 872e_1,3,6 - 240e_5,6 + 676e_10 - 168e_5,10 + 480e_1,3,5,10
-#> + 455e_6,10 - 224e_1,3,6,10 + 84e_12 - 240e_1,3,12 + 144e_5,12 + 192e_1,3,6,12
-#> + 657e_10,12 + 202e_14 - 560e_1,3,14 + 336e_5,14 + 80e_6,14 + 448e_1,3,6,14 +
-#> 1589e_10,14 - 160e_1,3,10,14 - 48e_12,14 - 69e_5,9,15 - 96e_1,3,6,9,15 -
-#> 40e_5,6,9,15 + 48e_9,10,15 + 28e_5,9,10,15 - 80e_1,3,5,9,10,15 + 180e_6,9,10,15
-#> - 24e_5,9,12,15 - 108e_9,10,12,15 + 24e_9,14,15 - 56e_5,9,14,15 -
-#> 252e_9,10,14,15 - 2421e_1,19 + 864e_3,5,6,19 - 720e_3,10,19 - 576e_3,6,10,19 -
-#> 1620e_1,5,6,10,19 - 972e_1,5,10,12,19 - 288e_3,6,14,19 - 2268e_1,5,10,14,19 -
-#> 540e_1,6,10,14,19 - 324e_1,10,12,14,19 - 324e_1,9,15,19 + 144e_3,5,6,9,15,19 +
-#> 270e_1,5,6,9,10,15,19 - 162e_1,5,9,10,12,15,19 - 378e_1,5,9,10,14,15,19
+#> + 6e_5 + 8e_1,3,6 + 4e_10 + 5e_6,10 + 3e_10,12 + 2e_14 + 7e_10,14 +
+#> 1e_5,9,15 + 9e_1,19
+summary(x^3)
+#> Element of a Clifford algebra 
+#> Typical terms:   + 30e_5  ...   - 378e_1,5,9,10,14,15,19 
+#> Number of terms: 49 
+#> Magnitude: 22747521
 ```
 
 # References
@@ -158,6 +152,8 @@ x^3
   - D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
   - J. Snygg 2010. *A new approach to differential geometry using
     Clifford’s geometric algebra*. Berghauser.
+  - C. Perwass 2009. *Geometric algebra with applications in
+    engineering*. Springer.
 
 # Further information
 
