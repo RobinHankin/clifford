@@ -42,4 +42,7 @@ test_that("Test suite aaa.R",{  # tests of signature
 
     signature(0)
 
+    x <- clifford(list(6,8,9,22),1:4)
+    expect_true(as.1vector(as.vector(x)) == x)
+
 })

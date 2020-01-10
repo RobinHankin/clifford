@@ -319,3 +319,12 @@
   cat("Magnitude:", x[[3]],"\n") 
 }
 
+`as.vector.clifford` <- function(x, mode="any"){
+    tx <- terms(x)
+    stopifnot(all(lapply(tx,length)==1))
+    tx <- unlist(tx)
+    out <- rep(0,max(tx))
+    out[tx] <- coeffs(x)
+    return(out)
+}
+
