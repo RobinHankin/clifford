@@ -30,13 +30,13 @@ objects and vice-versa.
 x1 <- clifford(list(numeric(0),c(1,2),c(1,3),c(2,3)),1:4)
 clifford_to_quaternion(x1)
 
-\dontrun{  # needs the onion package
- library("onion")
- Q1 <- rquat(1)
- Q2 <- rquat(1)
- LHS <- clifford_to_quaternion(quaternion_to_clifford(Q1) * quaternion_to_clifford(Q2))
- RHS <- Q1*Q2  
- LHS - RHS # zero to numerical precision
-}
+# Following needs quaternion package
+# library("onion")
+# Q1 <- rquat(1)
+# Q2 <- rquat(1)
+# LHS <- clifford_to_quaternion(quaternion_to_clifford(Q1) * quaternion_to_clifford(Q2))
+# RHS <- Q1*Q2  
+# LHS - RHS # zero to numerical precision
+
 
 }
