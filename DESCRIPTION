@@ -6,10 +6,10 @@ Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cr
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: A suite of routines for Clifford algebras, using the
    'Map' class of the Standard Template Library.  Canonical
-   reference: Hestenes (1987, ISBN 90-277-1673-0).  Special cases
-   including Lorentz transforms, quaternion multiplication, and
-   Grassman algebra, are discussed.  Conformal geometric algebra
-   theory is implemented.
+   reference: Hestenes (1987, ISBN 90-277-1673-0, "Clifford algebra
+   to geometric calculus").  Special cases including Lorentz transforms,
+   quaternion multiplication, and Grassman algebra, are discussed.
+   Conformal geometric algebra theory is implemented.
 License: GPL (>= 2)
 LazyData: yes
 Suggests: knitr,testthat,onion,lorentz
