@@ -79,22 +79,27 @@ C1 \%euc\% C2
   in the terms of its arguments.
 
   The package has several binary operators:
-  \itemize{
-    \item \code{x * y}, \eqn{xy}{xy}, geometric product, also
-    \code{clifford_times_clifford(x,y)}.  Because geometric product is
-    often indicated by juxtaposition, idiom \code{x \% \% y} returns the
-    geometric product.
-    \item \code{x \%.\% y}, \eqn{x\cdot y}{x.y}, inner product, also
-    \code{clifford_dot_clifford(x,y)} 
-    \item \code{x \%^\% y}, \eqn{x\wedge y}{x^y}, outer product, also
-    \code{clifford_wedge_clifford(x,y)} 
-    \item \code{x \%X\% y}, \eqn{x\times y}{x X y}, cross product, also
-    \code{clifford_cross_clifford(x,y)} 
-    \item \code{x \%star\% y}, \eqn{x*y}, scalar product, also
-    \code{clifford_star_clifford()}
-    \item \code{x \%euc\% y}, \eqn{x\ast y}, the Euclidean product, also
-    \code{eucprod(x,y)}
+
+  \tabular{lll}{\cr
+    Geometric product \tab \code{A*B = clifford_times_clifford(A,B)} \tab
+    \eqn{\displaystyle AB=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle}{see PDF}\cr
+    Inner product\tab \code{A \%.\% B = clifford_dot_clifford(A,B)}\tab
+    \eqn{\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne 0}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{\left|s-r\right|}}{see PDF}\cr
+    Outer product\tab\code{A \%^\% B = clifford_wedge_clifford(A,B)}\tab
+    \eqn{\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{s+r}}{see PDF}\cr
+    Cross product\tab\code{A \%X\% B = clifford_cross_clifford(A,B)}\tab
+    \eqn{\displaystyle A\times B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)}\cr
+    Scalar product\tab\code{A \%star\% B = clifford_star_clifford(A,B)}\tab
+    \eqn{\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_0}{see PDF}\cr
+    Euclidean product\tab\code{A \%euc\% B = eucprod(A,B)}\tab
+    \eqn{\displaystyle A\star B= A\ast B^\dag}
   }
+
+
 
   The geometric product has to be indicated with a \dQuote{\code{*}}; so
   we need a different idiom for scalar product.  Because geometric
