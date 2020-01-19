@@ -33,7 +33,8 @@ is.pseudoscalar(C)
 \details{
 
   Function \code{as.scalar()} takes a length-one numeric vector and
-  returns a Clifford scalar of that value.
+  returns a Clifford scalar of that value (to extract the scalar
+  component of a multivector, use \code{const()}).
 
   Function \code{as.1vector()} takes a numeric vector and returns the
   linear sum of length-one blades with coefficients given by \code{x};
