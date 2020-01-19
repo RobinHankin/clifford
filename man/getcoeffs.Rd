@@ -26,7 +26,8 @@ const(C,drop=TRUE)
 \details{
 
 Extractor method for specific terms.  Function \code{const()} returns
-the constant element of a Clifford object.
+the constant element of a Clifford object.  Note that \code{const(C)}
+returns the same as \code{grade(C,0)}, but is faster.
 
 The slightly awkward R idiom in \code{const<-()} is to ensure numerical
 accuracy; see examples.
