@@ -140,7 +140,7 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
     return std::make_tuple(bout,sign);
 }
 
-clifford c_prod(const clifford C1, const clifford C2, const NumericVector signature){
+clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVector signature){
 
     clifford out;
     clifford::const_iterator ic1,ic2;
@@ -167,7 +167,7 @@ clifford c_power(const clifford C, const NumericVector &power, const NumericVect
     } else {
         out = C; 
         for( ; p>1; p--){
-            out = c_prod(C,out,signature);
+            out = c_geometricprod(C,out,signature);
         }
     }
     return out;

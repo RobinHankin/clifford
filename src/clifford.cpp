@@ -22,7 +22,7 @@ List c_multiply(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(c_prod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  return retval(c_geometricprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
 }
 
 // [[Rcpp::export]]
