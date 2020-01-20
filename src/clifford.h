@@ -150,8 +150,10 @@ clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVect
         const blade b1 = ic1->first;
         for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
             const blade b2 = ic2->first;
-            tie(b, sign) = juxtapose(b1, b2, signature[0]);
-            out[b] += sign*(ic1->second)*(ic2->second); // the meat
+            if(true){
+                tie(b, sign) = juxtapose(b1, b2, signature[0]);
+                out[b] += sign*(ic1->second)*(ic2->second); // the meat
+            }
         }
     }
     return remove_zeros(out);
