@@ -37,7 +37,8 @@ main diagonal are negative).
 
 Specifying a \emph{negative} value for \eqn{p} sets the quadratic form
 to be identically zero, reducing the geometric product to the exterior
-wedge product.
+wedge product and thus a Grassman algebra.  But use the \pkg{wedge}
+package for this, which is much more efficient and uses nicer idiom.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.
