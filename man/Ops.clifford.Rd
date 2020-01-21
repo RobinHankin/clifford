@@ -107,8 +107,8 @@ C1 \%|_\% C2
 
   \tabular{lll}{\cr
     Geometric product \tab \code{A*B = geoprod(A,B)} \tab
-    \eqn{\displaystyle AB=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle}{see PDF}\cr
+    \eqn{\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s}{see PDF}\cr
     Inner product\tab \code{A \%.\% B = cliffdotprod(A,B)}\tab
     \eqn{\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne 0}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{\left|s-r\right|}}{see PDF}\cr
