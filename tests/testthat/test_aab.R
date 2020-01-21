@@ -189,7 +189,18 @@ checker3 <- function(A,B,C){
       }
     }
   }
-}
+
+  ## Following checks from Chisholm, "Geometric algebra", arXiv:1205.5935v1, 27 May 2012
+  expect_true(A %_|% (B %|_% C) == (A %_|% B) %|_% C)  # eqn 83
+  expect_true(A %_|% (B %_|% C) == (A %^%  B) %_|% C)
+  expect_true(A %|_% (B %^%  C) == (A %|_% B) %|_% C)
+  
+  ## Following checks from Dorst 
+  expect_true((A %^% B) %star% C == A %star% (B %_|% C))   # 2.2.4
+  expect_true(C %star% (B %^% C) == (C %|_% B) %star% C)
+
+
+}  # checker3() closes
   
 for(i in 1:10){
     for(sigs in 0:2){
