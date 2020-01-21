@@ -105,13 +105,6 @@ C1 \%|_\% C2
     Outer product\tab\code{A \%^\% B = clifford_wedge_clifford(A,B)}\tab
     \eqn{\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{s+r}}{see PDF}\cr
-    Cross product\tab\code{A \%X\% B = clifford_cross_clifford(A,B)}\tab
-    \eqn{\displaystyle A\times B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)}\cr
-    Scalar product\tab\code{A \%star\% B = clifford_star_clifford(A,B)}\tab
-    \eqn{\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle_0}{see PDF}\cr
-    Euclidean product\tab\code{A \%euc\% B = eucprod(A,B)}\tab
-    \eqn{\displaystyle A\star B= A\ast B^\dag}\cr
     Fat dot product\tab\code{A \%o\% B = clifford_fatdot_clifford(A,B)}\tab
     \eqn{\displaystyle A\bullet B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{\left|s-r\right|}}{see PDF}\cr
@@ -121,6 +114,13 @@ C1 \%|_\% C2
     Right contraction\tab\code{A \%|_\% B = clifford_righttick_clifford(A,B)}\tab
     \eqn{\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{r-s}}{see PDF}\cr
+    Cross product\tab\code{A \%X\% B = clifford_cross_clifford(A,B)}\tab
+    \eqn{\displaystyle A\times B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)}\cr
+    Scalar product\tab\code{A \%star\% B = clifford_star_clifford(A,B)}\tab
+    \eqn{\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_0}{see PDF}\cr
+    Euclidean product\tab\code{A \%euc\% B = eucprod(A,B)}\tab
+    \eqn{\displaystyle A\star B= A\ast B^\dag}\cr
   }
 
   The geometric product has to be indicated with a \dQuote{\code{*}}; so
