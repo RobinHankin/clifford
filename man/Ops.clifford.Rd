@@ -111,10 +111,17 @@ C1 \%|_\% C2
     \eqn{\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_0}{see PDF}\cr
     Euclidean product\tab\code{A \%euc\% B = eucprod(A,B)}\tab
-    \eqn{\displaystyle A\star B= A\ast B^\dag}
+    \eqn{\displaystyle A\star B= A\ast B^\dag}\cr
+    Fat dot product\tab\code{A \%o\% B = clifford_fatdot_clifford(A,B)}\tab
+    \eqn{\displaystyle A\bullet B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{\left|s-r\right|}}{see PDF}\cr
+    Left contraction\tab\code{A \%_|\% B = clifford_lefttick_clifford(A,B)}\tab
+    \eqn{\displaystyle A\rfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{s-r}}{see PDF}\cr
+    Right contraction\tab\code{A \%|_\% B = clifford_righttick_clifford(A,B)}\tab
+    \eqn{\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{r-s}}{see PDF}\cr
   }
-
-
 
   The geometric product has to be indicated with a \dQuote{\code{*}}; so
   we need a different idiom for scalar product.  Because geometric
