@@ -81,6 +81,33 @@ List c_innerprod(
           ){
   return retval(innerprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
 }
+// [[Rcpp::export]]
+List c_fatdotprod(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const NumericVector &m,
+	  const NumericVector &sig
+          ){
+  return retval(fatdotprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+}
+// [[Rcpp::export]]
+List c_lefttickprod(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const NumericVector &m,
+	  const NumericVector &sig
+          ){
+  return retval(lefttickprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+}
+// [[Rcpp::export]]
+List c_righttickprod(
+          const List &L1, const NumericVector &c1,
+          const List &L2, const NumericVector &c2,  // c[12] = coeffs
+          const NumericVector &m,
+	  const NumericVector &sig
+          ){
+  return retval(righttickprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+}
 
 // [[Rcpp::export]]
 List c_overwrite(

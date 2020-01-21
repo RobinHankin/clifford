@@ -223,6 +223,15 @@ bool outerproductchooser(const blade b1, const blade b2){
 bool innerproductchooser(const blade b1, const blade b2){
     return ((((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0)) && (b1.count()>0) && (b2.count()>0));
 }
+bool fatdotchooser(const blade b1, const blade b2){
+    return (((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0));
+}
+bool lefttickchooser(const blade b1, const blade b2){
+    return ((b1 & ~b2).count() == 0);
+}
+bool righttickchooser(const blade b1, const blade b2){
+    return ((~b1 & b2).count() == 0);
+}
 
 clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVector &signature){
     return c_general_prod(C1, C2, signature, &geometricproductchooser);
@@ -233,6 +242,18 @@ clifford outerprod(const clifford C1, const clifford C2, const NumericVector &si
 
 clifford innerprod(const clifford C1, const clifford C2, const NumericVector &signature){
     return c_general_prod(C1, C2, signature, &innerproductchooser);
+}
+
+clifford fatdotprod(const clifford C1, const clifford C2, const NumericVector &signature){
+    return c_general_prod(C1, C2, signature, &fatdotchooser);
+}
+
+clifford lefttickprod(const clifford C1, const clifford C2, const NumericVector &signature){
+    return c_general_prod(C1, C2, signature, &lefttickchooser);
+}
+
+clifford righttickprod(const clifford C1, const clifford C2, const NumericVector &signature){
+    return c_general_prod(C1, C2, signature, &righttickchooser);
 }
 
 clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2

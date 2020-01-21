@@ -5,12 +5,18 @@
 \alias{\%star\%}
 \alias{\% \%}
 \alias{\%euc\%}
+\alias{\%o\%}
+\alias{\%_|\%}
+\alias{\%|_\%}
 \alias{\%.\%.clifford}
 \alias{\%^\%.clifford}
 \alias{\%X\%.clifford}
 \alias{\%star\%.clifford}
 \alias{\% \%.clifford}
 \alias{\%euc\%.clifford}
+\alias{\%o\%.clifford}
+\alias{\%_|\%.clifford}
+\alias{\%|_\%.clifford}
 \alias{Ops.clifford}
 \alias{Ops}
 \alias{clifford_negative}
@@ -21,6 +27,9 @@
 \alias{clifford_plus_scalar}
 \alias{clifford_star_clifford}
 \alias{clifford_cross_clifford}
+\alias{clifford_fatdot_clifford}
+\alias{clifford_lefttick_clifford}
+\alias{clifford_righttick_clifford}
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
 \alias{clifford_inverse}
@@ -49,6 +58,9 @@ clifford_plus_clifford(C1,C2)
 clifford_eq_clifford(C1,C2)
 clifford_inverse(C)
 clifford_dot_clifford(C1,C2)
+clifford_fatdot_clifford(C1,C2)
+clifford_lefttick_clifford(C1,C2)
+clifford_righttick_clifford(C1,C2)
 clifford_wedge_clifford(C1,C2)
 scalprod(C1,C2=rev(C1),drop=TRUE)
 eucprod(C1,C2=C1,drop=TRUE)
@@ -59,6 +71,9 @@ C1 \%X\% C2
 C1 \%star\% C2
 C1 \% \% C2
 C1 \%euc\% C2
+C1 \%o\% C2
+C1 \%_|\% C2
+C1 \%|_\% C2
 }
 \arguments{
   \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}

@@ -8,6 +8,9 @@
 \alias{c_getcoeffs}
 \alias{c_innerprod}
 \alias{c_outerprod}
+\alias{c_fatdotprod}
+\alias{c_lefttickprod}
+\alias{c_righttickprod}
 \alias{c_overwrite}
 \title{Low-level helper functions for \code{clifford} objects}
 \description{

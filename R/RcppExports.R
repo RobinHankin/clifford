@@ -37,6 +37,18 @@ c_innerprod <- function(L1, c1, L2, c2, m, sig) {
     .Call(`_clifford_c_innerprod`, L1, c1, L2, c2, m, sig)
 }
 
+c_fatdotprod <- function(L1, c1, L2, c2, m, sig) {
+    .Call(`_clifford_c_fatdotprod`, L1, c1, L2, c2, m, sig)
+}
+
+c_lefttickprod <- function(L1, c1, L2, c2, m, sig) {
+    .Call(`_clifford_c_lefttickprod`, L1, c1, L2, c2, m, sig)
+}
+
+c_righttickprod <- function(L1, c1, L2, c2, m, sig) {
+    .Call(`_clifford_c_righttickprod`, L1, c1, L2, c2, m, sig)
+}
+
 c_overwrite <- function(L1, c1, L2, c2, m) {
     .Call(`_clifford_c_overwrite`, L1, c1, L2, c2, m)
 }

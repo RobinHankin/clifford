@@ -196,12 +196,54 @@ clifford_power_scalar <- function(C,n){
 `clifford_cross_clifford` <- function(C1,C2){(C1*C2-C2*C1)/2}
 `clifford_star_clifford` <- scalprod
 
+`clifford_fatdot_clifford` <- function(C1,C2){
+    if(is.zero(C1) || is.zero(C2)){
+    return(as.clifford(0))
+  } else {
+    return(as.clifford(c_fatdotprod(
+        L1  = terms(C1), c1 = coeffs(C1),
+        L2  = terms(C2), c2 = coeffs(C2),
+        m   = maxyterm(C1,C2),
+        sig = signature()
+    )))
+  }
+}
+
+`clifford_lefttick_clifford` <- function(C1,C2){
+    if(is.zero(C1) || is.zero(C2)){
+    return(as.clifford(0))
+  } else {
+    return(as.clifford(c_lefttickprod(
+        L1  = terms(C1), c1 = coeffs(C1),
+        L2  = terms(C2), c2 = coeffs(C2),
+        m   = maxyterm(C1,C2),
+        sig = signature()
+    )))
+  }
+}
+
+`clifford_righttick_clifford` <- function(C1,C2){
+    if(is.zero(C1) || is.zero(C2)){
+    return(as.clifford(0))
+  } else {
+    return(as.clifford(c_righttickprod(
+        L1  = terms(C1), c1 = coeffs(C1),
+        L2  = terms(C2), c2 = coeffs(C2),
+        m   = maxyterm(C1,C2),
+        sig = signature()
+    )))
+  }
+}
+
 "%.%" <- function(C1,C2){UseMethod("%.%")}
 "%^%" <- function(C1,C2){UseMethod("%^%")}
 "%X%" <- function(C1,C2){UseMethod("%X%")}
 "%star%" <- function(C1,C2){UseMethod("%star%")}
 "% %" <- function(C1,C2){UseMethod("% %")}
 "%euc%" <- function(C1,C2){UseMethod("%euc%")}
+"%o%" <- function(C1,C2){UseMethod("%o%")}
+"%_|%" <- function(C1,C2){UseMethod("%_|%")}
+"%|_%" <- function(C1,C2){UseMethod("%|_%")}
 
 "%.%.clifford" <- function(C1,C2){clifford_dot_clifford(C1,C2)}
 "%^%.clifford" <- function(C1,C2){clifford_wedge_clifford(C1,C2)}
@@ -209,3 +251,8 @@ clifford_power_scalar <- function(C,n){
 "%star%.clifford" <- function(C1,C2){scalprod(C1,C2)}
 "% %.clifford" <- function(C1,C2){clifford_times_clifford(C1,C2)}
 "%euc%.clifford" <- function(C1,C2){eucprod(C1,C2)}
+"%o%.clifford" <- function(C1,C2){clifford_fatdot_clifford(C1,C2)}
+"%_|%.clifford" <- function(C1,C2){clifford_lefttick_clifford(C1,C2)}
+"%|_%.clifford" <- function(C1,C2){clifford_righttick_clifford(C1,C2)}
+
+

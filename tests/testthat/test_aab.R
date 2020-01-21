@@ -152,6 +152,9 @@ checker2 <- function(A,B){
 
   expect_true(A %X% B + B %X% A == as.clifford(0))
 
+  ## Now some checks of the Dorst products:
+  expect_true(Conj(A %|_% B) == Conj(B) %_|% Conj(A))
+  expect_true(A %_|% B + A %|_%B == A %star% B + A %o% B)
 
 }   # checker2() closes
 
