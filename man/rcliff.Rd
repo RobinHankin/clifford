@@ -13,9 +13,9 @@ rblade(d=9, g=4)
   \item{d}{Dimensionality of underlying vector space}
   \item{g}{Maximum grade of any term}
   \item{include.fewer}{Boolean, with \code{FALSE} meaning to
-    return a clifford object with exactly \code{grade} basis vectors in
-    each term, and default \code{TRUE} meaning to include terms with
-    fewer than \code{r} basis vectors}
+    return a clifford object comprisig only terms of grade \code{g},
+    and default \code{TRUE} meaning to include terms with
+    grades less than \code{g}}
 }
 \details{
 
