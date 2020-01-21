@@ -140,7 +140,7 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
     return std::make_tuple(bout,sign);
 }
 
-clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVector signature){
+clifford c_general_prod(const clifford C1, const clifford C2, const NumericVector signature, bool (*chooser)(const blade, const blade)){
 
     clifford out;
     clifford::const_iterator ic1,ic2;
@@ -150,7 +150,7 @@ clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVect
         const blade b1 = ic1->first;
         for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
             const blade b2 = ic2->first;
-            if(true){
+            if(chooser(b1,b2)){
                 tie(b, sign) = juxtapose(b1, b2, signature[0]);
                 out[b] += sign*(ic1->second)*(ic2->second); // the meat
             }
@@ -159,21 +159,6 @@ clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVect
     return remove_zeros(out);
 }
 
-clifford c_power(const clifford C, const NumericVector &power, const NumericVector &signature){  // p for power
-    clifford out;
-    unsigned int p = power[0];
-
-    if(p<1){throw std::range_error("power cannot be <1");} 
-    if(p==1){
-        return C;
-    } else {
-        out = C; 
-        for( ; p>1; p--){
-            out = c_geometricprod(C,out,signature);
-        }
-    }
-    return out;
-}
 
 bool c_equal(clifford C1, clifford C2){
     // modelled on spray_equality()
@@ -227,40 +212,27 @@ NumericVector c_coeffs_of_blades(clifford C,
     return out;
 }
 
+bool geometricproductchooser(const blade b1, const blade b2){
+    return true;
+}
+
+bool outerproductchooser(const blade b1, const blade b2){
+    return ((b1&b2).count() == 0);
+}
+
+bool innerproductchooser(const blade b1, const blade b2){
+    return ((((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0)) && (b1.count()>0) && (b2.count()>0));
+}
+
+clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVector &signature){
+    return c_general_prod(C1, C2, signature, &geometricproductchooser);
+}
 clifford outerprod(const clifford C1, const clifford C2, const NumericVector &signature){
-    clifford out;
-    clifford::const_iterator ic1,ic2;
-    blade b;
-    int sign;
-    for(ic1=C1.begin(); ic1 != C1.end(); ++ic1){
-        const blade b1 = ic1->first;
-        for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
-            const blade b2 = ic2->first;
-            if(((b1&b2).count() == 0) ){
-                tie(b, sign) = juxtapose(b1, b2, signature[0]);
-                out[b] += sign*(ic1->second)*(ic2->second); // the meat
-            }
-        }
-    }
-    return remove_zeros(out);
+    return c_general_prod(C1, C2, signature, &outerproductchooser);
 }
 
 clifford innerprod(const clifford C1, const clifford C2, const NumericVector &signature){
-    clifford out;
-    clifford::const_iterator ic1,ic2;
-    blade b;
-    int sign;
-    for(ic1=C1.begin(); ic1 != C1.end(); ++ic1){
-        const blade b1 = ic1->first;
-        for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
-            const blade b2 = ic2->first;
-            if((((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0)) && (b1.count()>0) && (b2.count()>0)){
-                tie(b, sign) = juxtapose(b1, b2, signature[0]);
-                out[b] += sign*(ic1->second)*(ic2->second); // the meat
-            }
-        }
-    }
-    return remove_zeros(out);
+    return c_general_prod(C1, C2, signature, &innerproductchooser);
 }
 
 clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
@@ -269,4 +241,20 @@ clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
         C1[i->first] = i->second;
     }
     return C1;
+}
+
+clifford c_power(const clifford C, const NumericVector &power, const NumericVector &signature){  // p for power
+    clifford out;
+    unsigned int p = power[0];
+
+    if(p<1){throw std::range_error("power cannot be <1");} 
+    if(p==1){
+        return C;
+    } else {
+        out = C; 
+        for( ; p>1; p--){
+            out = c_geometricprod(C,out, signature);
+        }
+    }
+    return out;
 }
