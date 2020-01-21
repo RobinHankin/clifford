@@ -83,6 +83,8 @@ checker1 <- function(A){
   expect_true(is.odd(A - evenpart(A)))
   expect_true(is.even(A - oddpart(A)))
 
+  expect_visible(summary(A))
+  expect_visible(as.character(A))
   
 }   # checker1() closes
   
