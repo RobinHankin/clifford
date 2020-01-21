@@ -54,7 +54,7 @@ maxyterm <- function(C1,C2=as.clifford(0)){
 
     if (.Generic == "*") {
         if (lclass && rclass) {
-            return(clifford_times_clifford(e1, e2))
+            return(geoprod(e1, e2))
         } else if (lclass) {
             return(clifford_times_scalar(e1, e2))
         } else if (rclass) {
@@ -68,7 +68,7 @@ maxyterm <- function(C1,C2=as.clifford(0)){
         } else if (!lclass & rclass){
             return(clifford_times_scalar(clifford_inverse(e2),e1))
         } else if (lclass & rclass){
-            return(clifford_times_clifford(e1,clifford_inverse(e2)))
+            return(geoprod(e1,clifford_inverse(e2)))
         } else {
             oddfunc()
         }
@@ -105,7 +105,7 @@ maxyterm <- function(C1,C2=as.clifford(0)){
     }
 }
 
-`clifford_times_clifford` <- function(C1,C2){
+`geoprod` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
@@ -166,7 +166,7 @@ clifford_power_scalar <- function(C,n){
   )
 }
 
-`clifford_wedge_clifford` <- function(C1,C2){
+`wedge` <- function(C1,C2){
     C2 <- as.clifford(C2)
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
@@ -180,7 +180,7 @@ clifford_power_scalar <- function(C,n){
   }
 }
 
-`clifford_dot_clifford` <- function(C1,C2){
+`cliffdotprod` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
@@ -193,10 +193,10 @@ clifford_power_scalar <- function(C,n){
   }
 }
 
-`clifford_cross_clifford` <- function(C1,C2){(C1*C2-C2*C1)/2}
-`clifford_star_clifford` <- scalprod
+`cross` <- function(C1,C2){(C1*C2-C2*C1)/2}
+star <- scalprod
 
-`clifford_fatdot_clifford` <- function(C1,C2){
+`fatdot` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
@@ -209,7 +209,7 @@ clifford_power_scalar <- function(C,n){
   }
 }
 
-`clifford_lefttick_clifford` <- function(C1,C2){
+`lefttick` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
@@ -222,7 +222,7 @@ clifford_power_scalar <- function(C,n){
   }
 }
 
-`clifford_righttick_clifford` <- function(C1,C2){
+`righttick` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
@@ -245,14 +245,14 @@ clifford_power_scalar <- function(C,n){
 "%_|%" <- function(C1,C2){UseMethod("%_|%")}
 "%|_%" <- function(C1,C2){UseMethod("%|_%")}
 
-"%.%.clifford" <- function(C1,C2){clifford_dot_clifford(C1,C2)}
-"%^%.clifford" <- function(C1,C2){clifford_wedge_clifford(C1,C2)}
-"%X%.clifford" <- function(C1,C2){clifford_cross_clifford(C1,C2)}
+"%.%.clifford" <- function(C1,C2){cliffdotprod(C1,C2)}
+"%^%.clifford" <- function(C1,C2){wedge(C1,C2)}
+"%X%.clifford" <- function(C1,C2){cross(C1,C2)}
 "%star%.clifford" <- function(C1,C2){scalprod(C1,C2)}
-"% %.clifford" <- function(C1,C2){clifford_times_clifford(C1,C2)}
+"% %.clifford" <- function(C1,C2){geoprod(C1,C2)}
 "%euc%.clifford" <- function(C1,C2){eucprod(C1,C2)}
-"%o%.clifford" <- function(C1,C2){clifford_fatdot_clifford(C1,C2)}
-"%_|%.clifford" <- function(C1,C2){clifford_lefttick_clifford(C1,C2)}
-"%|_%.clifford" <- function(C1,C2){clifford_righttick_clifford(C1,C2)}
+"%o%.clifford" <- function(C1,C2){fatdot(C1,C2)}
+"%_|%.clifford" <- function(C1,C2){lefttick(C1,C2)}
+"%|_%.clifford" <- function(C1,C2){righttick(C1,C2)}
 
 
