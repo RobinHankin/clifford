@@ -8,11 +8,9 @@ The \dQuote{reverse} of a term is simply the basis vectors written in
 reverse order; this changes the sign of the term if the number of basis
 vectors is 2 or 3 (modulo 4).  Taking the reverse is a linear operation.
 
-
-Hestenes uses a dagger to denote the reverse of \eqn{A}, as in
-\eqn{A^\dag}{omitted}; while Perwass uses a tilde to denote the reverse
-of \eqn{A}, as in \eqn{\tilde{A}}{omitted} or sometimes
-\eqn{A^\sim}{omitted}
+Both Hestenes and Chisholm use a dagger to denote the reverse of
+\eqn{A}, as in \eqn{A^\dag}{omitted}.  But both Perwass and Dorst use a
+tilde, as in \eqn{\tilde{A}}{omitted}.
 
 \deqn{
   \left(A^\dag\right)^\dag=A\qquad
