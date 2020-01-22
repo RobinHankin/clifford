@@ -140,5 +140,12 @@ test_that("Test suite aaa.R",{
     expect_error(signature(1:2))
     expect_error(signature(0.5))
 
+    expect_error(is.blade(as.clifford(4)))
 
+    expect_error(antivector(1:5,3))
+    expect_true(is.antivector(antivector(1:5,5)))
+    expect_true(is.clifford(rblade()))
+
+    expect_visible(as.character(as.clifford(0)))
+    
 })

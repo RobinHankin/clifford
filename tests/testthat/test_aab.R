@@ -85,6 +85,7 @@ checker1 <- function(A){
 
   expect_visible(summary(A))
   expect_visible(as.character(A))
+  expect_visible(as.character(-A))
   
 }   # checker1() closes
   
