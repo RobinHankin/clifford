@@ -125,12 +125,13 @@ C1 \%|_\% C2
     \eqn{\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{r-s}}{see PDF}\cr
     Cross product\tab\code{A \%X\% B = cross(A,B)}\tab
-    \eqn{\displaystyle A\times B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)}\cr
+    \eqn{\displaystyle A\times
+    B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)}{see PDF}\cr
     Scalar product\tab\code{A \%star\% B = star(A,B)}\tab
     \eqn{\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_0}{see PDF}\cr
     Euclidean product\tab\code{A \%euc\% B = eucprod(A,B)}\tab
-    \eqn{\displaystyle A\star B= A\ast B^\dag}\cr
+    \eqn{\displaystyle A\star B= A\ast B^\dag}{see PDF}\cr
   }
 
   The geometric product \code{geoprod(.,.)} has to be indicated with a
