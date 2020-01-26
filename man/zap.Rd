@@ -6,10 +6,12 @@
 \title{Zap small values in a clifford object}
 \description{Generic version of \code{zapsmall()}}
 \usage{
-zap(x, digits = getOption("digits"))
+zap(x, drop=TRUE, digits = getOption("digits"))
 }
 \arguments{
   \item{x}{Clifford object}
+  \item{drop}{Boolean with default \code{TRUE} meaning to 
+    coerce the output to numeric with \code{drop()}}
   \item{digits}{number of digits to retain}
 }
 \details{
@@ -20,7 +22,7 @@ zap(x, digits = getOption("digits"))
 
   The function should be called \code{zapsmall()}, and dispatch to the
   appropriate base function, but I could not figure out how to do this
-  with S3 (the docs were singularly unhelpul) and gave up. 
+  with S3 (the docs were singularly unhelpful) and gave up. 
 
   Note, this function actually changes the numeric value, it is not just
   a print method.
@@ -35,4 +37,9 @@ zap(a)
 
 
 a-zap(a)   # nonzero
+
+B <- rblade(g=3)
+mB <- B*rev(B)
+zap(mB)
+drop(mB)
 }
