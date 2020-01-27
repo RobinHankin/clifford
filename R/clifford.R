@@ -124,7 +124,7 @@
     clifford(sapply(seq_along(v),function(i){seq_len(n)[-i]},simplify=FALSE),v)
 }
 
-`is.antivector` <- function(C,include.pseudoscalar=FALSE){
+`is.antivector` <- function(C, include.pseudoscalar=FALSE){
 
   if(!is.homog(C)){return(FALSE)}
   if(include.pseudoscalar && is.pseudoscalar(C)){return(TRUE)}
