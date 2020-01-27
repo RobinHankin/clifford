@@ -251,7 +251,7 @@ Bmat %*% fourvec
 ```
 
 we see agreement to within numerical precision.  We can further verify
-thatthe square interval is unchanged:
+that the squared interval is unchanged:
 
 ```{r,checkinterval}
 jj <- rev(B)*scliff*B
