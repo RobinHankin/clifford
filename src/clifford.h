@@ -212,12 +212,12 @@ NumericVector c_coeffs_of_blades(clifford C,
     return out;
 }
 
-bool geometricproductchooser(const blade b1, const blade b2){return true; }
-bool outerproductchooser    (const blade b1, const blade b2){ return ((b1&b2).count() == 0);}
-bool innerproductchooser    (const blade b1, const blade b2){ return ((((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0)) && (b1.count()>0) && (b2.count()>0));}
-bool fatdotchooser(const blade b1, const blade b2){ return (((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0));}
-bool lefttickchooser(const blade b1, const blade b2){    return ((b1 & ~b2).count() == 0);}
-bool righttickchooser(const blade b1, const blade b2){    return ((~b1 & b2).count() == 0);}
+bool geometricproductchooser(const blade b1, const blade b2){return true;}
+bool outerproductchooser    (const blade b1, const blade b2){return ((  b1 &  b2).count() == 0)                                                                  ;}
+bool innerproductchooser    (const blade b1, const blade b2){return ((((b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0)) && (b1.count()>0) && (b2.count()>0));}
+bool fatdotchooser          (const blade b1, const blade b2){return ((( b1 & ~b2).count() == 0) | ((~b1 & b2).count() == 0))                                     ;}
+bool lefttickchooser        (const blade b1, const blade b2){return ( ( b1 & ~b2).count() == 0)                                                                  ;}
+bool righttickchooser       (const blade b1, const blade b2){return ( (~b1 &  b2).count() == 0)                                                                  ;}
 
 clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &geometricproductchooser);}
 clifford outerprod      (const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &outerproductchooser    );}
