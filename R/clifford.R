@@ -124,8 +124,11 @@
     clifford(sapply(seq_along(v),function(i){seq_len(n)[-i]},simplify=FALSE),v)
 }
 
-`is.antivector` <- function(C){
-    (nterms(C)==1) || (is.homog(C) && (max(unlist(terms(C)))==maxyterm(C)))
+`is.antivector` <- function(C,include.pseudoscalar=FALSE){
+
+  if(!is.homog(C)){return(FALSE)}
+  if(include.pseudoscalar && is.pseudoscalar(C)){return(TRUE)}
+  return(grades(C)[1] == maxyterm(C)-1)
 }
 
 `basis` <- function(n,x=1){clifford(list(n),x)}
