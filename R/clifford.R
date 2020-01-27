@@ -235,8 +235,10 @@
     clifford(apply(expand.grid(rep(list(0:1),n))>0,1,which),1)
 }
 
-`zap` <- function(x,digits=getOption("digits")){
-  clifford(terms(x),base::zapsmall(coeffs(x),digits=digits))
+`zap` <- function(x,drop=TRUE,digits=getOption("digits")){
+    out <- clifford(terms(x),base::zapsmall(coeffs(x),digits=digits))
+    if(drop){out <- drop(out)}
+    return(out)
 }
 
 `catterm` <- function(a){
