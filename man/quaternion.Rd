@@ -30,7 +30,7 @@ objects and vice-versa.
 x1 <- clifford(list(numeric(0),c(1,2),c(1,3),c(2,3)),1:4)
 clifford_to_quaternion(x1)
 
-# Following needs quaternion package
+# Following needs the onion package (it is discouraged to load both):
 # library("onion")
 # Q1 <- rquat(1)
 # Q2 <- rquat(1)
