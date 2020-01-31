@@ -7,6 +7,7 @@
 \alias{as.scalar}
 \alias{scalar}
 \alias{basis}
+\alias{e}
 \alias{pseudoscalar}
 \alias{as.pseudoscalar}
 \alias{is.pseudoscalar}
@@ -21,6 +22,7 @@ scalar(x=1)
 as.scalar(x=1)
 is.scalar(C)
 basis(n,x=1)
+e(n,x=1)
 pseudoscalar(n,x=1)
 as.pseudoscalar(n,x=1)
 is.pseudoscalar(C)
@@ -50,7 +52,7 @@ is.pseudoscalar(C)
   if the length is greater than one.
 
   Function \code{basis()} returns a clifford element comprising of
-  single blade with grade 1.
+  single blade with grade 1; function \code{e()} is a synonym.
 
 }
 \author{Robin K. S. Hankin}
@@ -59,6 +61,8 @@ is.pseudoscalar(C)
 
 as.scalar(6)
 as.1vector(1:8)
+
+Reduce(`+`,sapply(seq_len(7),function(n){e(seq_len(n))},simplify=FALSE))
 
 pseudoscalar(6)
 
