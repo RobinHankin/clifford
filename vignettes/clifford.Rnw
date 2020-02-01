@@ -268,7 +268,7 @@ grades(x)
 @ 
 
 
-\subsection{Pseudo-Euclidean spaces}
+\section{Pseudo-Euclidean spaces}
 
 The signature of the metric may be altered.  Starting with the
 Euclidean case we have:
@@ -314,7 +314,7 @@ x*y
 In the above, see how the products are different using the two inner
 products.  
 
-\subsection{Grassman algebra}
+\section{Grassman algebra}
 
 A Grassman algebra corresponds to a Clifford algebra with identically
 zero inner product.  Package idiom is to use a negative signature:
@@ -366,7 +366,7 @@ then the \pkg{stokes} idiom for this would be:
 \end{Schunk}
 
 
-\subsection{Positive-definite inner product}
+\section{Positive-definite inner product}
 
 Function \code{signature()} takes the special value zero to
 return to a positive-definite inner product:
@@ -381,8 +381,66 @@ basis(53)^2
 @ 
 
 
+\section{Left and right contraction}
 
-\subsection{Higher dimensional spaces}
+\cite{chisholm2012} defines the left contraction $A\rfloor B$ and
+right contraction $A\lfloor B$ as follows.
+
+\begin{eqnarray}
+\displaystyle A\rfloor B = \sum_{r,s}\left\langle\left\langle
+A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s-r}\\
+\displaystyle A\lfloor B = \sum_{r,s}\left\langle\left\langle
+A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}
+\end{eqnarray}
+
+Package idiom for these would be \code{A\%_|\%B} and \code{A\%|_\%B}
+(or \code{lefttick(A,B)} and \code{righttick(A,B)} respectively.
+Thus:
+
+<<>>=
+(A <- rcliff())
+(B <- rcliff())
+A %_|% B
+A %|_% B
+@ 
+
+One thing to be wary of is the order of operations.  Thus
+$\ei{2}\rfloor\ei{12}=-\ei{1}$ (in a positive-definite space) but
+
+<<>>=
+e(2) %_|% e(1)*e(2)
+@ 
+
+but this is parsed as $(\ei{2}\rfloor\ei{1})\ei{2}=0\ei{2}=0$ so in
+this case we need to include brackets:
+
+<<>>=
+e(2) %_|% (e(1)*e(2))
+@ 
+
+although in this case it might be preferable to create the terms directly:
+
+<<>>=
+e(2) %_|% e(1:2)
+@ 
+
+Chisholm gives a number of identities for these products including
+
+\begin{eqnarray}
+  A\rfloor(B\lfloor C) &=& (A\rfloor B)\lfloor C\\
+  A\rfloor(B\rfloor C) &=& (A\wedge B)\rfloor C\\
+  A\lfloor(B\wedge  C) &=& (A\lfloor B)\lfloor C
+\end{eqnarray}
+
+In package idiom:
+
+<<>>=
+A <- rcliff();  B <- rcliff();  C <- rcliff()
+A %_|% (B %|_% C) == (A %_|% B) %|_% C
+A %_|% (B %_|% C) == (A %^%  B) %_|% C
+A %|_% (B %^%  C) == (A %|_% B) %|_% C
+@ 
+\section{Higher dimensional spaces}
 
 \cite{ablamowicz2012} consider high-dimensional Clifford algebras and
 consider the following two elements of the 1024-dimensional Clifford
