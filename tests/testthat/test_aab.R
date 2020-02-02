@@ -199,7 +199,7 @@ checker3 <- function(A,B,C){
   expect_true(A %|_% (B %^%  C) == (A %|_% B) %|_% C)
   
   ## Following checks from Dorst 
-  expect_true((A %^% B) %star% C == A %star% (B %_|% C))   # 2.2.4
+  expect_true((A %^% B) %star% C == A %star% (B %_|% C))   # 2.2.4  NB the LHS takes much longer to evaluate than the RHS
   expect_true(C %star% (B %^% C) == (C %|_% B) %star% C)
 
 
