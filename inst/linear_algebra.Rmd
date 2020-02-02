@@ -1,5 +1,5 @@
 ---
-title: "Linear algebra with the clifford package"
+title: "Linear algebra with the `clifford` package"
 author: "Robin K. S. Hankin"
 date: "`r Sys.Date()`"
 vignette: >
@@ -10,9 +10,60 @@ vignette: >
 
 
 This short document shows a nice application of Clifford algebras to
-linear algebra.  Considering first $\mathcal{R}^3$ as a vector space
-and given vectors $a, b, c$ spanning the space we can express any
-vector $x\in\mathcal{R}^3$ as
+linear algebra.  Suppose we have vectors $a, b, c$ spanning
+$x\in\mathcal{R}^3$ and wish to write $x=\alpha a+\beta b+\gamma c$.
+The traditional Cramer's rule would be
+
+\[
+\alpha=\frac{
+	\det\begin{bmatrix}
+	x_1&b_1&c_1\\
+	x_2&b_2&c_2\\
+	x_3&b_3&c_3
+	\end{bmatrix}
+	}{
+	\det\begin{bmatrix}
+	a_1&b_1&c_1\\
+	a_2&b_2&c_2\\
+	a_3&b_3&c_3
+	\end{bmatrix}
+}
+\qquad\beta=\frac{
+	\det\begin{bmatrix}
+	a_1&x_1&c_1\\
+	a_2&x_2&c_2\\
+	a_3&x_3&c_3
+	\end{bmatrix}
+	}{
+	\det\begin{bmatrix}
+	a_1&b_1&c_1\\
+	a_2&b_2&c_2\\
+	a_3&b_3&c_3
+	\end{bmatrix}
+}
+\qquad
+\gamma=\frac{
+	\det\begin{bmatrix}
+	a_1&b_1&x_1\\
+	a_2&b_2&x_2\\
+	a_3&b_3&x_3
+	\end{bmatrix}
+	}{
+	\det\begin{bmatrix}
+	a_1&b_1&c_1\\
+	a_2&b_2&c_2\\
+	a_3&b_3&c_3
+	\end{bmatrix}
+}.
+\]
+
+However, observe that this solution, while accurate, requires one to
+take a coordinate basis; and offers little in the way of intuition.
+
+## Using Clifford algebra
+
+Considering $\mathcal{R}^3$ as a vector space and given vectors $a, b,
+c$ spanning the space we can express any vector $x\in\mathcal{R}^3$ as
 
 \[
 \left(\frac{x\wedge b\wedge c}{a\wedge b\wedge c}\right)a+
@@ -52,8 +103,8 @@ print(Mod(x-xabc))
 
 
 
-Conversely, we might know the coefficients and try to determine them
-using package idiom:
+Conversely, we might know the coefficients [here we will use
+$1,2,3$] and try to determine them using package idiom:
 
 ```{r}
 y <- a*1 + b*2 + c*3
