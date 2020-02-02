@@ -381,10 +381,11 @@ basis(53)^2
 @ 
 
 
-\section{Left and right contraction}
+\section{Left and right contractions}
 
-\cite{chisholm2012} defines the left contraction $A\rfloor B$ and
-right contraction $A\lfloor B$ as follows.
+\cite{dorst2002} defines the left contraction $A\rfloor B$ and right
+contraction $A\lfloor B$ (\cite{chisholm2012} calls these left and
+right inner products) as follows:
 
 \begin{eqnarray}
 \displaystyle A\rfloor B = \sum_{r,s}\left\langle\left\langle
@@ -392,6 +393,7 @@ A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s-r}\\
 \displaystyle A\lfloor B = \sum_{r,s}\left\langle\left\langle
 A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}
 \end{eqnarray}
+
 
 Package idiom for these would be \code{A\%_|\%B} and \code{A\%|_\%B}
 (or \code{lefttick(A,B)} and \code{righttick(A,B)} respectively.
@@ -411,8 +413,8 @@ $\ei{2}\rfloor\ei{12}=-\ei{1}$ (in a positive-definite space) but
 e(2) %_|% e(1)*e(2)
 @ 
 
-but this is parsed as $(\ei{2}\rfloor\ei{1})\ei{2}=0\ei{2}=0$ so in
-this case we need to include brackets:
+because this is parsed as $(\ei{2}\rfloor\ei{1})\ei{2}=0\ei{2}=0$.  To
+evaluate this as intended we need to include brackets:
 
 <<>>=
 e(2) %_|% (e(1)*e(2))
@@ -423,6 +425,9 @@ although in this case it might be preferable to create the terms directly:
 <<>>=
 e(2) %_|% e(1:2)
 @ 
+
+
+\subsection{Numerical verification of left and right inner product identities}
 
 Chisholm gives a number of identities for these products including
 

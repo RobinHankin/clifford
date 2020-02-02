@@ -145,7 +145,7 @@ C1 \%|_\% C2
   implemented.  Blades (including null blades) have a pseudoinverse, but
   this is not implemented yet either.
   
-The \dfn{scalar product} of two clifford objects is defined as the
+  The \dfn{scalar product} of two clifford objects is defined as the
   zero-grade component of their geometric product:
   
   \deqn{
@@ -180,7 +180,10 @@ The \dfn{scalar product} of two clifford objects is defined as the
   [that is, \code{A \%star\% A} may be any sign], but the Euclidean
   product is guaranteed to be non-negative [that is, \code{A \%euc\% A}
   is always positive or zero].
-  
+
+  Dorst defines the left and right contraction (Chisholm calls these the
+  left and right inner product) as \eqn{A\rfloor B}{see PDF} and
+  \eqn{A\lfloor B}.  See the vignette for more details.
 
 }
 \value{
