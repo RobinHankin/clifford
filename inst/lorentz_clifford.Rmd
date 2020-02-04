@@ -55,7 +55,7 @@ $$
 t\\x\end{pmatrix}
 $$
 
-where $\gamma=(1-v^2)^{-1/2}$.  Writing $\cosh\phi=\gamma$ and noting
+where $\gamma=(1-u^2)^{-1/2}$.  Writing $\cosh\phi=\gamma$ and noting
 that $\phi$ is real (sometimes $\phi$ is known as the _rapidity_) we
 get
 
