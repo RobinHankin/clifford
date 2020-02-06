@@ -10,6 +10,23 @@ test_that("Test suite aaa.R",{
 
 
     expect_false(clifford(list(1,1:2),1:2) == clifford(list(1,1:2),c(1,3)))
+
+    expect_true(as.clifford(0) == as.clifford(0))
+    expect_true(as.clifford(1) == as.clifford(1))
+    expect_false(e(1)+e(2) == e(1) + e(2) + e(3))
+    expect_false(e(1)+e(2) + e(3)== e(1) + e(2))
+
+    expect_false(e(1) + 2*e(2) ==  e(1) + e(2))
+    expect_false(2*e(1) + e(2) ==  e(1) + e(2))
+    
+    expect_false(1 + e(1) ==  as.clifford(1))
+    expect_false(1 + e(1) ==  e(1))
+
+    expect_false(e(1) + e(2) == e(1) + e(3))
+    expect_false(e(1) + e(2) == e(2) + e(4))
+
+    expect_false(e(1) + e(2) == e(1) - e(2))
+
     expect_true(is.scalar(as.clifford(0)))
     expect_true(is.scalar(as.clifford(1)))
     expect_true(all(grades(clifford(list(1,2,3),1:3))==1))

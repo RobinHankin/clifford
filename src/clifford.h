@@ -170,16 +170,10 @@ bool c_equal(clifford C1, clifford C2){
         blade b = ic->first;
         if(C1[b] != C2[b]){
             return false;
-        } else {
-            C2.erase(b);
         }
     }
     
-    if(C2.empty()){
-        return true;
-    } else {
-        return false;
-    }
+    return true;
 }
 
 clifford c_grade(const clifford C, const NumericVector &n){
