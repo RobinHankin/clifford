@@ -41,7 +41,9 @@ particular grade, with
 for any Clifford object \eqn{A}.  Thus \eqn{\left<A\right>_r}{<A>_r} is
 said to be homogenous of grade \eqn{r}.  Hestenes sometimes writes
 subscripts that specify grades using an overbar as in
-\eqn{\left<A\right>_{\overline{r}}}{omitted}.
+\eqn{\left<A\right>_{\overline{r}}}{omitted}.  It is conventional to
+denote the zero-grade object \eqn{\left<A\right>_0}{<A>_0} as simply
+\eqn{\left<A\right>}{<A>}.
 
 We have
 
