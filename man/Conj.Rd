@@ -1,6 +1,7 @@
 \name{Conj}
 \alias{Conj.clifford}
 \alias{Conj}
+\alias{dagger}
 \title{Conjugate of a Clifford object}
 \description{The \dQuote{conjugate} of a Clifford object is defined by
   Perwass in definition 2.9, p59.}
