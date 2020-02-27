@@ -134,11 +134,13 @@ C1 \%|_\% C2
     \eqn{\displaystyle A\star B= A\ast B^\dag}{see PDF}\cr
   }
 
-  The geometric product \code{geoprod(.,.)} has to be indicated with a
-  \dQuote{\code{*}} and the binary operator must be \code{\%*\%}; so we
-  need a different idiom for scalar product.  Because geometric product
-  is often denoted by juxtaposition, package idiom includes \code{ a \%
-  \% b} for geometric product.
+  In R idiom, the geometric product \code{geoprod(.,.)} has to be
+  indicated with a \dQuote{\code{*}} (as in \code{A*B}) and so the
+  binary operator must be \code{\%*\%}: we need a different idiom for
+  scalar product, which is why \code{\%star\%} is used.
+
+  Because geometric product is often denoted by juxtaposition, package
+  idiom includes \code{ a \% \% b} for geometric product.
 
   Function \code{clifford_inverse()} is problematic as nonnull blades
   always have an inverse; but function \code{is.blade()} is not yet
