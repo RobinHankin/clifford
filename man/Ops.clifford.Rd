@@ -140,7 +140,7 @@ C1 \%|_\% C2
   scalar product, which is why \code{\%star\%} is used.
 
   Because geometric product is often denoted by juxtaposition, package
-  idiom includes \code{ a \% \% b} for geometric product.
+  idiom includes \code{a \% \% b} for geometric product.
 
   Function \code{clifford_inverse()} is problematic as nonnull blades
   always have an inverse; but function \code{is.blade()} is not yet
