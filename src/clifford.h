@@ -34,7 +34,7 @@ clifford remove_zeros(clifford &C){
 
 clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     clifford out;
-    const unsigned n=L.size();
+    const int n=L.size();
     for(int i=0 ; i<n ; i++){
         if(d[i] != 0){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
@@ -107,7 +107,7 @@ clifford c_add(clifford cliff1, clifford cliff2){
 blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxtaposes two blades, returns reduction and sign
     int sign = 1;
     blade bout;
-    const unsigned int m = max(b1.size(),b2.size());
+    const int m = max(b1.size(),b2.size());
 
     b1.resize(m, false);
     b2.resize(m, false);
@@ -178,7 +178,7 @@ bool c_equal(clifford C1, clifford C2){
 
 clifford c_grade(const clifford C, const NumericVector &n){
     clifford out;
-    for(int i=0 ; i < n.length() ; ++i){
+    for(unsigned int i=0 ; i < n.length() ; ++i){
         for(clifford::const_iterator ic=C.begin() ; ic != C.end() ; ++ic){
             const blade b = ic->first;
             if(b.count() == (int) n[i]){
@@ -194,7 +194,7 @@ NumericVector c_coeffs_of_blades(clifford C,
                                  const NumericVector &m
                                  ){  
     Rcpp::NumericVector out;
-    for(unsigned int i=0 ; i< B.size() ; ++i){
+    for(int i=0 ; i< B.size() ; ++i){
         blade b;
         b.resize(m[0]+1);  //off-by-one; note that this code also appears in prepare()
         const IntegerVector iv = B[i];
