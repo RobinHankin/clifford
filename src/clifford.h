@@ -34,7 +34,7 @@ clifford remove_zeros(clifford &C){
 
 clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     clifford out;
-    const int n=L.size();
+    const size_t n=L.size();
     for(size_t i=0 ; i<n ; i++){
         if(d[i] != 0){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
@@ -107,7 +107,7 @@ clifford c_add(clifford cliff1, clifford cliff2){
 blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxtaposes two blades, returns reduction and sign
     int sign = 1;
     blade bout;
-    const int m = max(b1.size(),b2.size());
+    const size_t m = max(b1.size(),b2.size());
 
     b1.resize(m, false);
     b2.resize(m, false);
@@ -120,7 +120,7 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
         } else if(((bool)~b1[i]) & ((bool) b2[i])){ bout[i] = true;   // just b2
         } else if(((bool) b1[i]) & ((bool) b2[i])){ bout[i] = false;  // both, but...
             if(signature>0){ // ...swap sign!  
-                if(i>signature){  // NB check for off-by-one error
+                if((signed int) i > (signed int) signature){ // NB check for off-by-one error
                     sign *= -1;
                 }
             } else if(signature < 0){
@@ -178,7 +178,7 @@ bool c_equal(clifford C1, clifford C2){
 
 clifford c_grade(const clifford C, const NumericVector &n){
     clifford out;
-    for(unsigned int i=0 ; i < n.length() ; ++i){
+    for(size_t i=0 ; i < (size_t) n.length() ; ++i){
         for(clifford::const_iterator ic=C.begin() ; ic != C.end() ; ++ic){
             const blade b = ic->first;
             if(b.count() == (size_t) n[i]){
@@ -194,11 +194,11 @@ NumericVector c_coeffs_of_blades(clifford C,
                                  const NumericVector &m
                                  ){  
     Rcpp::NumericVector out;
-    for(size_t i=0 ; i< B.size() ; ++i){
+    for(size_t i=0 ; i < (size_t) B.size() ; ++i){
         blade b;
         b.resize(m[0]+1);  //off-by-one; note that this code also appears in prepare()
         const IntegerVector iv = B[i];
-        for(int j=0 ; j < iv.size(); j++){
+        for(size_t j=0 ; j < (size_t) iv.size(); j++){
             b[iv[j]] = 1;
         }
         out.push_back(C[b]);
