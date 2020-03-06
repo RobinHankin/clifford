@@ -35,7 +35,7 @@ clifford remove_zeros(clifford &C){
 clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     clifford out;
     const int n=L.size();
-    for(int i=0 ; i<n ; i++){
+    for(size_t i=0 ; i<n ; i++){
         if(d[i] != 0){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
             blade b;
@@ -113,7 +113,7 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
     b2.resize(m, false);
     bout.resize(m, false);
 
-    for(int i=0 ; i<m ; ++i){
+    for(size_t i=0 ; i<m ; ++i){
         
         if       (((bool)~b1[i]) & ((bool)~b2[i])){ bout[i] = false;  // neither
         } else if(((bool) b1[i]) & ((bool)~b2[i])){ bout[i] = true;   // just b1
@@ -131,8 +131,8 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
         }
     }
         
-    for(int i=0 ; i<m ; ++i){
-        for(int j=i ; j<m ; ++j){
+    for(size_t i=0 ; i<m ; ++i){
+        for(size_t j=i ; j<m ; ++j){
             if((b2[i] & b1[j]) && (i<j)){
                 sign *= -1;}
         }
@@ -181,7 +181,7 @@ clifford c_grade(const clifford C, const NumericVector &n){
     for(unsigned int i=0 ; i < n.length() ; ++i){
         for(clifford::const_iterator ic=C.begin() ; ic != C.end() ; ++ic){
             const blade b = ic->first;
-            if(b.count() == (int) n[i]){
+            if(b.count() == (size_t) n[i]){
                 out[b] = ic->second;
             }
         }
@@ -194,7 +194,7 @@ NumericVector c_coeffs_of_blades(clifford C,
                                  const NumericVector &m
                                  ){  
     Rcpp::NumericVector out;
-    for(int i=0 ; i< B.size() ; ++i){
+    for(size_t i=0 ; i< B.size() ; ++i){
         blade b;
         b.resize(m[0]+1);  //off-by-one; note that this code also appears in prepare()
         const IntegerVector iv = B[i];
