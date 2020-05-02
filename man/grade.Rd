@@ -66,6 +66,9 @@ basis vectors that square to \eqn{-1}.  These defined by Perwass, page
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{g}, where \code{g \%in\% n}.
 
+The zero grade term, \code{grade(C,0)}, is given more naturally by
+\code{const(C)}.
+
 Function \code{c_grade()} is a helper function that is documented at
 \code{Ops.clifford.Rd}.
 

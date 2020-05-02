@@ -10,11 +10,13 @@
 
 By \dfn{basis vector}, I mean one of the basis vectors of the underlying
 vector space \eqn{R^n}, that is, an element of the set
-\eqn{\left\{e_1,\ldots,e_n\right\}}{{e_1,...,e_n}}.  A \dfn{term}
-(sometimes a \dfn{basis blade} or \dfn{simple blade} is a wedge product
-of basis vectors (or a geometric product of linearly independent basis
-vectors), something like \eqn{e_{12}}{e_12} or \eqn{e_{12569}}{e_12569}.
-  
+\eqn{\left\{e_1,\ldots,e_n\right\}}{{e_1,...,e_n}}.  A \dfn{term} is a
+wedge product of basis vectors (or a geometric product of linearly
+independent basis vectors), something like \eqn{e_{12}}{e_12} or
+\eqn{e_{12569}}{e_12569}.  Sometimes I use the word \dQuote{term} to
+mean a wedge product of basis vectors together with its associated
+coefficient: so \eqn{7e_{12}}{7e_12} would be described as a term.
+
 From Perwass: a \dfn{blade} is the outer product of a number of
 1-vectors (or, equivalently, the wedge product of linearly independent
 1-vectors).  Thus \eqn{e_{12}=e_1\wedge e_2}{e_12=e_1 ^ e_2} and
@@ -43,7 +45,7 @@ is.basisblade(x)
     consistent between them (an extended discussion of this phenomenon
     is presented in the \code{mvp} package).
 
-    \item Function \code{term()} returns clifford object that comprises
+    \item Function \code{term()} returns a clifford object that comprises
     a single term with unit coefficient.
     
     \item Function \code{is.basisterm()} returns \code{TRUE} if its
