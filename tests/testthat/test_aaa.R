@@ -39,6 +39,17 @@ test_that("Test suite aaa.R",{
     expect_true(is.zero(as.clifford(0) %.% as.clifford(1)))
     expect_true(is.zero(as.clifford(0) %.% as.clifford(0)))
 
+    expect_true (is.zero(as.clifford(0) %o% as.clifford(0)))
+    expect_true (is.zero(as.clifford(1) %o% as.clifford(0)))
+    expect_true (is.zero(as.clifford(0) %o% as.clifford(1)))
+    expect_false(is.zero(as.clifford(1) %o% as.clifford(1)))
+
+    expect_true (is.zero(as.clifford(0) % % as.clifford(0)))
+    expect_true (is.zero(as.clifford(1) % % as.clifford(0)))
+    expect_true (is.zero(as.clifford(0) % % as.clifford(1)))
+    expect_false(is.zero(as.clifford(1) % % as.clifford(1)))
+
+
     expect_true(as.clifford(0) == +as.clifford(0))
     expect_true(as.clifford(0) == -as.clifford(0))
 

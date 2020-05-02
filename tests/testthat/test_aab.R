@@ -92,6 +92,10 @@ checker1 <- function(A){
 checker2 <- function(A,B){
   expect_true(A+B == B+A) # 1.1
   expect_true(A+2*B == B+B+A)
+
+  expect_true(A*B == A % % B)
+  expect_true(A %euc% B == const(A * Conj(B)))
+
   for(r in rstloop){
     Ar <- grade(A,r,drop=FALSE)
     Br <- grade(B,r,drop=FALSE)
