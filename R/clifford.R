@@ -274,7 +274,7 @@
   }
 
   if(is.zero(x)){
-    out <- "0 "
+    out <- "0"
   } else if(is.scalar(x)){
     out <- as.character(coeffs(x))
   } 

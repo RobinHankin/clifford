@@ -175,5 +175,7 @@ test_that("Test suite aaa.R",{
     expect_true(is.clifford(rblade()))
 
     expect_visible(as.character(as.clifford(0)))
-    
+    expect_true(as.character(as.clifford(0)) == "0")
+    expect_true(as.character(as.clifford(4)) == "4")
+     
 })
