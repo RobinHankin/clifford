@@ -209,8 +209,8 @@ u*v
 u^3
 
 
-u+(v+w) == (u+v)+w              # should be TRUE 
-u*(v*w) == (u*v)*w              # should be TRUE 
+u+(v+w) == (u+v)+w            # should be TRUE 
+u*(v*w) == (u*v)*w            # should be TRUE 
 u \%^\% v == (u*v-v*u)/2        # should be TRUE 
 
 # Now if x,y,z are _vectors_ we would have:
