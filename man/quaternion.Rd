@@ -14,11 +14,12 @@ clifford_to_quaternion(C)
   \item{C}{Clifford object}
   \item{Q}{Quaternion}
 }
-\details{
+\details{\loadmathjax
   
-Given a quaternion \eqn{a+bi+cj+dk}, one may identify \eqn{i} with
-\eqn{-e_{12}}{-e_12}, \eqn{j} with \eqn{-e_{13}}{-e_13}, and \eqn{k}
-with \eqn{-e_{23}}{-e_23} (the constant term is of course \eqn{e_0}).
+  Given a quaternion \mjeqn{a+bi+cj+dk}{a+bi+cj+dk}, one may identify
+\mjeqn{i}{i} with \mjeqn{-e_{12}}{-e_12}, \mjeqn{j}{j} with
+\mjeqn{-e_{13}}{-e_13}, and \mjeqn{k}{k} with \mjeqn{-e_{23}}{-e_23}
+(the constant term is of course \mjeqn{e_0}{e_0}).
 
 The functions documented here convert from quaternions to clifford
 objects and vice-versa.
