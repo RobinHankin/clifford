@@ -66,8 +66,9 @@ library("clifford")
 
 \section{Introduction}
 
-Clifford algebras are an interesting and instructive mathematical
-object with a rich structure that has varied applications to physics.
+Clifford algebras are interesting and instructive mathematical
+objects.  The class has a rich structure that has varied applications
+to physics.
 
 \subsection{Existing work}
 
@@ -396,7 +397,7 @@ A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}
 
 
 Package idiom for these would be \code{A\%_|\%B} and \code{A\%|_\%B}
-(or \code{lefttick(A,B)} and \code{righttick(A,B)} respectively.
+---or \code{lefttick(A,B)} and \code{righttick(A,B)}---respectively.
 Thus:
 
 <<>>=
