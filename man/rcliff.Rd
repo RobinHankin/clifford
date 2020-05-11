@@ -17,14 +17,14 @@ rblade(d=9, g=4)
     and default \code{TRUE} meaning to include terms with
     grades less than \code{g}}
 }
-\details{
+\details{\loadmathjax
 
   Perwass gives the following lemma:
 
-  Given blades \eqn{A_{\langle r\rangle}, B_{\langle
-    s\rangle}, C_{\langle t\rangle}}{see PDF}, then
+  Given blades \mjeqn{A_{\langle r\rangle}, B_{\langle s\rangle},
+    C_{\langle t\rangle}}{see PDF}, then
 
-  \deqn{
+  \mjdeqn{
     \langle
     A_{\langle r\rangle}
     B_{\langle s\rangle}
@@ -42,7 +42,7 @@ rblade(d=9, g=4)
 
   In the proof he notes in an intermediate step that 
 
-    \deqn{
+    \mjdeqn{
     \langle
     A_{\langle r\rangle}
     B_{\langle s\rangle}

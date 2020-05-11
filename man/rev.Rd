@@ -2,41 +2,43 @@
 \alias{rev.clifford}
 \alias{rev}
 \title{Reverse of a Clifford object}
-\description{
+\description{\loadmathjax
 
 The \dQuote{reverse} of a term is simply the basis vectors written in
 reverse order; this changes the sign of the term if the number of basis
 vectors is 2 or 3 (modulo 4).  Taking the reverse is a linear operation.
 
 Both Hestenes and Chisholm use a dagger to denote the reverse of
-\eqn{A}, as in \eqn{A^\dag}{omitted}.  But both Perwass and Dorst use a
-tilde, as in \eqn{\tilde{A}}{omitted}.
+\mjeqn{A}{A}, as in \mjeqn{A^\dagger}{omitted}.  But both Perwass and Dorst use a
+tilde, as in \mjeqn{\tilde{A}}{omitted}.
 
-\deqn{
-  \left(A^\dag\right)^\dag=A\qquad
-  \left(AB\right)^\dag=B^\dag A^\dag\qquad
-  \left(A+B\right)^\dag=A^\dag+B^\dag\qquad
-  \left<A^\dag\right>=\left<A\right>
+\mjdeqn{
+  \left(A^\dagger\right)^\dagger=A\qquad
+  \left(AB\right)^\dagger=B^\dagger A^\dagger\qquad
+  \left(A+B\right)^\dagger=A^\dagger+B^\dagger\qquad
+  \left\langle A^\dagger\right>=\left\langle A\right\rangle
 }{
   omitted
 }
 
-where \eqn{\left<A\right>}{<A>} is the grade operator; and it is easy to
-prove that
+where \mjeqn{\left\langle A\right\rangle}{<A>} is the grade operator;
+and it is easy to prove that
 
-\deqn{
-  \left<A^\dag\right>_r=\left<A\right>^\dag_r=(-1)^{r(r-1)/2}\left<A\right>_r
+\mjdeqn{
+  \left\langle A^\dagger\right\rangle_r=\left\langle
+  A\right\rangle^\dagger_r=(-1)^{r(r-1)/2}\left\langle A\right\rangle_r
 }{
   omitted
 }
 
 We can also show that
 
-\deqn{
-  \left<AB\right>_r=(-1)^{r(r-1)/2}\left<B^\dag A^\dag\right>_r
+\mjdeqn{
+  \left\langle AB\right\rangle_r=(-1)^{r(r-1)/2}\left\langle B^\dagger A^\dagger\right\rangle_r
+}{
+  omitted
 }
 }
-
 \usage{
 \method{rev}{clifford}(x)
 }

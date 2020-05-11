@@ -13,23 +13,23 @@ mymax(s)
   \item{s}{Integer, specifying number of positive elements on the
     diagonal of the quadratic form}
 }
-\details{
+\details{\loadmathjax
 The function is modelled on \code{lorentz::sol()} which gets and sets
 the speed of light.
 
-Clifford algebras require a bilinear form on \eqn{R^n}
-\eqn{\left<\cdot,\cdot\right>}{<.,.>}, usually written
+Clifford algebras require a bilinear form on \mjeqn{R^n}{R^n}
+\mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}, usually written
 
-\deqn{\left<{\mathbf x},{\mathbf x}\right>=x_1^2+x_2^2+\cdots
+\mjdeqn{\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
   +x_p^2-x_{p+1}^2-\cdots -x_{p+q}^2
 }{
   <x,x>=x_1^2+...+x_p^2-x_{p+1}^2-...-x_{p+q}^2
 }
 
-where \eqn{p+q=n}.  With this quadratic form the vector space is denoted
-\eqn{R^{p,q}}, and we say that \eqn{p} is the signature of the bilinear
-form \eqn{\left<\cdot,\cdot\right>}{<.,.>}.  This gives rise to the
-Clifford algebra \eqn{C_{p,q}}.
+where \mjeqn{p+q=n}{p+q=n}.  With this quadratic form the vector space
+is denoted \eqn{R^{p,q}}, and we say that \eqn{p} is the signature of
+the bilinear form \eqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}.
+This gives rise to the Clifford algebra \mjeqn{C_{p,q}}{C_{p,q}}.
 
 If the quadratic form is positive-definite, package idiom is to use the
 default special value \eqn{p=0} (which means that zero entries on the
