@@ -4,7 +4,7 @@
 \title{Reverse of a Clifford object}
 \description{\loadmathjax
 
-The \dQuote{reverse} of a term is simply the basis vectors written in
+The \dfn{reverse} of a term is simply the basis vectors written in
 reverse order; this changes the sign of the term if the number of basis
 vectors is 2 or 3 (modulo 4).  Taking the reverse is a linear operation.
 
