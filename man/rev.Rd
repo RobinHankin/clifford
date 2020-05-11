@@ -53,6 +53,6 @@ rev(x)
 
 A <- rblade(g=3)
 B <- rblade(g=4)
-rev(A \%^\% B) == rev(B) \%^\% rev(A)   # should be small
-rev(A * B) == rev(B) * rev(A)         # should be small
+rev(A \%^\% B) == rev(B) \%^\% rev(A)  # should be small
+rev(A * B) == rev(B) * rev(A)            # should be small
 }
