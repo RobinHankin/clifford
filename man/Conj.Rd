@@ -3,15 +3,21 @@
 \alias{Conj}
 \alias{dagger}
 \title{Conjugate of a Clifford object}
-\description{The \dQuote{conjugate} of a Clifford object is defined by
+\description{\loadmathjax
+  The \dQuote{conjugate} of a Clifford object is defined by
   Perwass in definition 2.9, p59.}
 \usage{\method{Conj}{clifford}(z)}
 \arguments{\item{z}{Clifford object}}
 \details{
 
-  Perwass uses a dagger to indicate Conjugates, as in \eqn{A^\dag}.  If
+  Perwass uses a dagger to indicate Conjugates, as in
+  \mjeqn{A^\dagger}{Ad} (this does not render in text versions; see a
+  PDF).  Conjugation is linear in the sense that
+  \mjeqn{\left(A+B\right)^\dagger=A^\dagger+B^\dagger}{(A+B)d=Ad+Bd} and
+  \mjeqn{\left(xA\right)^\dagger=x\left(A^\dagger\right)}{(xA)d=x(Ad)}.
+  So it suffices to consider only single terms.  If
 
-  \deqn{
+  \mjdeqn{
     A_{\langle k\rangle}
     =
     \bigwedge_{i=1}^k a_i
@@ -21,44 +27,44 @@
 
   Then
     
-  \deqn{
-    A_{\langle k\rangle}^\dag
+  \mjdeqn{
+    A_{\langle k\rangle}^\dagger
     =
-    \left(a_1\wedge\ldots\wedge a_k\right)^\dag
+    \left(a_1\wedge\ldots\wedge a_k\right)^\dagger
     =
-    a_k^\dag\wedge\ldots\wedge a_1^\dag
+    a_k^\dagger\wedge\ldots\wedge a_1^\dagger
     =
-    \bigwedge_{i=1}^k a_i^\dag
+    \bigwedge_{i=1}^k a_i^\dagger
   }{
     omitted
   }
 
   He  gives the following theorem (3.58, p70]:
   
-  Given blades \eqn{A_{\langle k\rangle}, B_{\langle l\rangle}}{see
-    PDF}, then
+  Given blades \mjeqn{A_{\langle k\rangle}, B_{\langle l\rangle}}{A_<k>,
+  B_<k>}, then
   
-  \deqn{
+  \mjdeqn{
     \left(
     A_{\langle k\rangle}\wedge B_{\langle l\rangle}
-    \right)^\dag
+    \right)^\dagger
     = 
-    B_{\langle l\rangle}^\dag
+    B_{\langle l\rangle}^\dagger
     \wedge
-    A_{\langle k\rangle}^\dag
+    A_{\langle k\rangle}^\dagger
   }{
     omitted; see PDF
   }
   
   and 
 
-  \deqn{
+  \mjdeqn{
     \left(
     A_{\langle k\rangle} B_{\langle l\rangle}
-    \right)^\dag
+    \right)^\dagger
     = 
-    B_{\langle l\rangle}^\dag
-    A_{\langle k\rangle}^\dag
+    B_{\langle l\rangle}^\dagger
+    A_{\langle k\rangle}^\dagger
   }{
     omitted; see PDF
   }
