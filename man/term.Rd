@@ -10,12 +10,13 @@
 
 By \dfn{basis vector}, I mean one of the basis vectors of the underlying
 vector space \mjeqn{R^n}{R^n}, that is, an element of the set
-\mjeqn{\left\\{e_1,\ldots,e_n\right\\}}{{e_1,...,e_n}}.  A \dfn{term} is a
-wedge product of basis vectors (or a geometric product of linearly
-independent basis vectors), something like \mjeqn{e_{12}}{e_12} or
-\mjeqn{e_{12569}}{e_12569}.  Sometimes I use the word \dQuote{term} to
-mean a wedge product of basis vectors together with its associated
-coefficient: so \mjeqn{7e_{12}}{7e_12} would be described as a term.
+\mjeqn{\left\lbrace e_1,\ldots,e_n\right\rbrace}{{e_1,...,e_n}}.  A
+\dfn{term} is a wedge product of basis vectors (or a geometric product
+of linearly independent basis vectors), something like
+\mjeqn{e_{12}}{e_12} or \mjeqn{e_{12569}}{e_12569}.  Sometimes I use the
+word \dQuote{term} to mean a wedge product of basis vectors together
+with its associated coefficient: so \mjeqn{7e_{12}}{7e_12} would be
+described as a term.
 
 From Perwass: a \dfn{blade} is the outer product of a number of
 1-vectors (or, equivalently, the wedge product of linearly independent
