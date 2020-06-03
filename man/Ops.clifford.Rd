@@ -213,14 +213,16 @@ u+(v+w) == (u+v)+w            # should be TRUE
 u*(v*w) == (u*v)*w            # should be TRUE 
 u \%^\% v == (u*v-v*u)/2        # should be TRUE 
 
-# Now if x,y,z are _vectors_ we would have:
+# Now if x,y,z are _vectors_ we have:
 
 x <- as.1vector(5)
 y <- as.1vector(5)
-x*y == x\%.\%y + x\%^\%y        # should be TRUE
-x \%^\% y == x \%^\% (y + 3*x)  # should be TRUE 
+x*y == x\%.\%y + x\%^\%y
+x \%^\% y == x \%^\% (y + 3*x)  
+#  above are TRUE for x,y vectors (but not in general)
 
-## Inner product is "%.%" is not associative:
+
+## Inner product "%.%" is not associative:
  rcliff(5,g=2) -> x
  rcliff(5,g=2) -> y
  rcliff(5,g=2) -> z
