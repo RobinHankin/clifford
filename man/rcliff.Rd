@@ -13,12 +13,22 @@ rblade(d=9, g=4)
   \item{d}{Dimensionality of underlying vector space}
   \item{g}{Maximum grade of any term}
   \item{include.fewer}{Boolean, with \code{FALSE} meaning to
-    return a clifford object comprisig only terms of grade \code{g},
+    return a clifford object comprising only terms of grade \code{g},
     and default \code{TRUE} meaning to include terms with
     grades less than \code{g}}
 }
 \details{\loadmathjax
 
+  Function \code{rcliff()} gives a quick nontrivial Clifford object,
+  typically with terms having a range of grades (see \file{grade.Rd});
+  argument \code{include.fewer=FALSE} ensures that all terms are of the
+  same grade.
+
+  Function \code{rblade()} gives a Clifford object that is a
+  \emph{blade} (see \file{term.Rd}).  It returns the wedge product of a
+  number of 1-vectors, for example
+  \mjeqn{\left(e_1+2e_2\right)\wedge\left(e_1+3e_5\right)}{(e1+2e2)^(e1+3e5)}.
+  
   Perwass gives the following lemma:
 
   Given blades \mjeqn{A_{\langle r\rangle}, B_{\langle s\rangle},
@@ -66,10 +76,9 @@ rblade(d=9, g=4)
 
   Package idiom is shown in the examples.
 
-  
-
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{term}},\code{\link{grade}}}
 \examples{
 
 rcliff()
@@ -90,8 +99,8 @@ rblade()
 a <- rblade()
 ainv <- rev(a)/scalprod(a)
 
-zap(a*ainv)  # should be = 1
-zap(ainv*a)  # should be = 1
+zap(a*ainv)  # 1 (to numerical precision)
+zap(ainv*a)  # 1 (to numerical precision)
 
 # Perwass 2009, lemma 3.9:
 
@@ -100,7 +109,9 @@ A <- rblade(g=4)  # r=4
 B <- rblade(g=5)  # s=5
 C <- rblade(g=6)  # t=6
 
-grade(A*B*C,0)-grade(C*A*B,0)   # geometric product uses '*'
+grade(A*B*C,0)-grade(C*A*B,0)   # zero to numerical precision
+
+
 
 # Intermediate step
 
@@ -108,6 +119,6 @@ x1 <- grade(A*B,7) \%star\% C
 x2 <- C \%star\% grade(A*B,7)
 x3 <- grade(C*A*B,0)
 
-max(x1,x2,x3) - min(x1,x2,x3)   # should be small
+max(x1,x2,x3) - min(x1,x2,x3)   # zero to numerical precision
 
 }

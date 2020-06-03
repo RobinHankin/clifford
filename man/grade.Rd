@@ -75,7 +75,7 @@ Function \code{c_grade()} is a helper function that is documented at
 }
 \author{Robin K. S. Hankin}
 \note{
-  In the C code, \dQuote{blade} has a slightly different meaning,
+  In the C code, \dQuote{term} has a slightly different meaning,
   referring to the vectors without the associated coefficient.
 }
 \references{C. Perwass 2009. \dQuote{Geometric algebra with applications

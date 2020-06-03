@@ -197,7 +197,6 @@ C1 \%|_\% C2
 
 }
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{scalprod}}}
 \examples{
 
 u <- rcliff(5)

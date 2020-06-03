@@ -8,7 +8,7 @@
 \alias{constant<-.clifford}
 \title{Get coefficients of a Clifford object}
 \description{
-Access specific coefficents of a Clifford object using a list of terms.
+Access specific coefficients of a Clifford object using a list of terms.
 }
 \usage{
 getcoeffs(C, B)

@@ -3,6 +3,7 @@
 \alias{term}
 \alias{terms}
 \alias{is.term}
+\alias{blade}
 \alias{is.blade}
 \alias{is.basisblade}
 \title{Deal with terms}
@@ -23,6 +24,9 @@ From Perwass: a \dfn{blade} is the outer product of a number of
 1-vectors).  Thus \mjeqn{e_{12}=e_1\wedge e_2}{e_12=e_1 ^ e_2} and
 \mjeqn{e_{12} + e_{13}=e_1\wedge(e_2+e_3)}{e_12+e_13=e1^(e2+e3)} are
 blades, but \mjeqn{e_{12} + e_{34}}{e_12+e_34} is not.
+
+Function \code{rblade()}, documented at \file{rcliff.Rd}, returns a
+random blade.
 
 Function \code{is.blade()} is not currently implemented: there is no
 easy way to detect whether a Clifford object is a product of 1-vectors.
@@ -60,7 +64,7 @@ is.basisblade(x)
   engineering}.   Springer, 2009.
 }
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{clifford}}}
+\seealso{\code{\link{clifford}},\code{\link{rblade}}}
 \examples{
 
 x <- rcliff()

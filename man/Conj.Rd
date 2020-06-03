@@ -39,7 +39,7 @@
     omitted
   }
 
-  He  gives the following theorem (3.58, p70]:
+  Perwass gives the following theorem (3.58, p70]:
   
   Given blades \mjeqn{A_{\langle k\rangle}, B_{\langle l\rangle}}{A_<k>,
   B_<k>}, then
@@ -84,8 +84,8 @@ signature(2)
 A <- rblade(g=3)
 B <- rblade(g=4)
 
-Conj(A \%^\% B) - Conj(B) \%^\% Conj(A)      # should be small
-Conj(A * B) - Conj(B) * Conj(A)          # should be small
+Conj(A \%^\% B) - Conj(B) \%^\% Conj(A)      # zero to numerical precision
+Conj(A * B) - Conj(B) * Conj(A)          # zero to numerical precision
 
 
 x1 <- rblade(d=9,g=2)
@@ -95,12 +95,12 @@ x4 <- rblade(d=9,g=2)
 
 LHS <- Conj(x1 \%^\% x2 \%^\% x3 \%^\% x4)
 RHS <- Conj(x4) \%^\% Conj(x3) \%^\% Conj(x2) \%^\% Conj(x1) 
-Mod(LHS - RHS) # should be small
+Mod(LHS - RHS) # zero to numerical precision
 
 
 LHS <- Conj(x1 * x2 * x3 * x4)
 RHS <- Conj(x4) * Conj(x3) * Conj(x2) * Conj(x1) 
-Mod(LHS - RHS) # should be small
+Mod(LHS - RHS) # zero to numerical precision
 
 
 signature(0)
