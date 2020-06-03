@@ -29,8 +29,20 @@ Extractor method for specific terms.  Function \code{const()} returns
 the constant element of a Clifford object.  Note that \code{const(C)}
 returns the same as \code{grade(C,0)}, but is faster.
 
-The slightly awkward R idiom in \code{const<-()} is to ensure numerical
-accuracy; see examples.
+The R idiom in \code{const<-()} is slightly awkward:
+
+\preformatted{
+> body(`const<-.clifford`)
+{
+  stopifnot(length(value) == 1)
+  x <- x - const(x)
+  return(x + value)
+}
+}
+
+The reason that it is not simply \code{return(x-const(x)+value)} or
+\code{return(x+value-const(x))} is to ensure numerical accuracy; see
+examples.
 
 }
 \author{Robin K. S. Hankin}
@@ -48,4 +60,11 @@ const(X) # should be 1e300
 const(X) <- 0.6
 const(X) # should be 0.6, no numerical error
 
+# compare naive approach:
+
+X <- clifford(list(1,1:2,1:3,3:5),6:9)+1e300
+X+0.6-const(X)  # constant gets lost in the numerics
+
+X <- clifford(list(1,1:2,1:3,3:5),6:9)+1e-300
+X-const(X)+0.6  # answer correct by virtue of left-associativity
 }
