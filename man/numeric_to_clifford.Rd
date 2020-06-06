@@ -51,16 +51,21 @@ is.pseudoscalar(C)
   \code{as.scalar()} for length-one vectors or \code{as.1vector()}
   if the length is greater than one.
 
-  Function \code{basis()} returns a clifford element comprising of
-  single blade with grade 1; function \code{e()} is a synonym.
+  Function \code{basis()} returns a wedge product of basis vectors;
+  function \code{e()} is a synonym.
+
+  Function \code{antivector()} should arguably be described here but is
+  actually documented at \code{antivector.Rd}.
 
 }
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{getcoeffs}}}
+\seealso{\code{\link{getcoeffs}},\code{\link{antivector}}}
 \examples{
 
 as.scalar(6)
 as.1vector(1:8)
+
+e(5:8)
 
 Reduce(`+`,sapply(seq_len(7),function(n){e(seq_len(n))},simplify=FALSE))
 
