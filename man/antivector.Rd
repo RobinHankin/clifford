@@ -55,4 +55,9 @@ One could argue that \code{A} should be an antivector as it is a term in
 \author{Robin K. S. Hankin}
 \examples{
 antivector(1:5)
+
+as.1vector(c(1,1,2)) \%X\% as.1vector(c(3,2,2))
+c(1*2-2*2, 2*3-1*2, 1*2-1*3)  # note sign of e_13
+
+
 }
