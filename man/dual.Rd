@@ -1,23 +1,24 @@
 \name{dual}
 \alias{dual}
 \title{The dual of a clifford object}
-\description{The dual of a clifford object \eqn{C}, written \eqn{C^*}}
+\description{\loadmathjax
+  The dual of a clifford object \mjseqn{C}, written \mjseqn{C^*}}
 \usage{dual(C, n)}
 \arguments{
   \item{C}{Clifford object}
   \item{n}{Dimensionality of underlying vector space}
 }
 \details{
-The dual of clifford object \eqn{C} is  \eqn{CI^{-1}}{CI^-1} where
-\eqn{I} is the pseudoscalar.
+The dual of clifford object \mjseqn{C} is  \mjeqn{CI^{-1}}{CI^-1} where
+\mjseqn{I} is the pseudoscalar.
 
 The dual is sensitive to the signature.  Note that applying the dual
-operation four times successively will return
-
+operation four times successively to clifford object \mjseqn{x} will
+return \mjseqn{x}.
 }
 \references{
 C. Perwass. \dQuote{Geometric algebra with applications in
-  engineering}.   Springer, 2009.
+  engineering}.  Springer, 2009.
 }
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{pseudoscalar}}}
