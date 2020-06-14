@@ -86,7 +86,11 @@ checker1 <- function(A){
   expect_visible(summary(A))
   expect_visible(as.character(A))
   expect_visible(as.character(-A))
-  
+
+  for(n in 0:maxyterm(A)){
+      expect_true(dual(dual(dual(dual(A,n),n),n),n) == A)
+  }
+    
 }   # checker1() closes
   
 checker2 <- function(A,B){
