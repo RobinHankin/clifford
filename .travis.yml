@@ -11,4 +11,4 @@ r_packages:
   - covr
 
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'library(covr); codecov(line_exclusions=list("R/clifford_opts.R" = c(36,63,73)))'
