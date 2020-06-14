@@ -9,8 +9,8 @@ reverse order; this changes the sign of the term if the number of basis
 vectors is 2 or 3 (modulo 4).  Taking the reverse is a linear operation.
 
 Both Hestenes and Chisholm use a dagger to denote the reverse of
-\mjeqn{A}{A}, as in \mjeqn{A^\dagger}{omitted}.  But both Perwass and Dorst use a
-tilde, as in \mjeqn{\tilde{A}}{omitted}.
+\mjeqn{A}{A}, as in \mjeqn{A^\dagger}{omitted}.  But both Perwass and
+Dorst use a tilde, as in \mjeqn{\tilde{A}}{omitted}.
 
 \mjdeqn{
   \left(A^\dagger\right)^\dagger=A\qquad
