@@ -34,7 +34,7 @@
     =
     a_k^\dagger\wedge\ldots\wedge a_1^\dagger
     =
-    \bigwedge_{i=1}^k a_i^\dagger
+    \bigwedge_{i=k}^1 a_i^\dagger
   }{
     omitted
   }
