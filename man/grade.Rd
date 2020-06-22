@@ -30,30 +30,31 @@ coefficient and is described by the basis vectors it comprises.  Thus
 The \emph{grade} of a term is the number of basis vectors in it.  Thus
 the grade of \eqn{e_1}{e1} is 1, and the grade of
 \eqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.  The grade operator
-\mjeqn{\left<\cdot\right>_r}{<.>_r} is used to extract terms of a
-particular grade, with
+\mjeqn{\left\langle\cdot\right\rangle_r}{<.>_r} is used to extract terms
+of a particular grade, with
 
 \mjdeqn{
-  A=\left<A\right>_0 + 
-    \left<A\right>_1 + 
-    \left<A\right>_2 + \cdots = \sum_r\left<A\right>_r
+  A=\left\langle A\right\rangle_0 + 
+    \left\langle A\right\rangle_1 + 
+    \left\langle A\right\rangle_2 + \cdots = \sum_r\left\langle A\right\rangle_r
 }{
   A = <A>_0 + <A>_1 + <A>_2 +... = sum <A>_r
 }
 
-for any Clifford object \eqn{A}.  Thus \mjeqn{\left<A\right>_r}{<A>_r} is
-said to be homogenous of grade \eqn{r}.  Hestenes sometimes writes
-subscripts that specify grades using an overbar as in
-\mjeqn{\left<A\right>_{\overline{r}}}{omitted}.  It is conventional to
-denote the zero-grade object \mjeqn{\left<A\right>_0}{<A>_0} as simply
-\mjeqn{\left<A\right>}{<A>}.
+for any Clifford object \eqn{A}.  Thus \mjeqn{\left\langle
+A\right\rangle_r}{<A>_r} is said to be homogenous of grade \eqn{r}.
+Hestenes sometimes writes subscripts that specify grades using an
+overbar as in \mjeqn{\left\langle
+A\right\rangle_{\overline{r}}}{omitted}.  It is conventional to denote
+the zero-grade object \mjeqn{\left\langle A\right\rangle_0}{<A>_0} as
+simply \mjeqn{\left\langle A\right\rangle}{<A>}.
 
 We have
 
 \mjdeqn{
-\left<A+B\right>_r=\left<A\right>_r\qquad
-\left<\lambda A\right>_r=\lambda\left<A\right>_r\qquad
-\left<\left<A\right>_r\right>_s=\left<A\right>_r\delta_{rs}.
+\left\langle A+B\right\rangle_r=\left\langle A\right\rangle_r + \left\langle B\right\rangle_r\qquad
+\left\langle\lambda A\right\rangle_r=\lambda\left\langle A\right\rangle_r\qquad
+\left\langle\left\langle A\right\rangle_r\right\rangle_s=\left\langle A\right\rangle_r\delta_{rs}.
 }{
   omitted; see PDF
 }
