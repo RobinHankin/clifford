@@ -3,8 +3,11 @@
 \alias{grades}
 \alias{gradesplus}
 \alias{gradesminus}
+\alias{gradeplus}
+\alias{grademinus}
 \title{The grade of a clifford object}
-\description{The grade of a term is the number of basis vectors in it.}
+\description{\loadmathjax
+The grade of a term is the number of basis vectors in it.}
 \usage{
 grade(C, n, drop=TRUE)
 grades(x)
@@ -27,10 +30,10 @@ coefficient and is described by the basis vectors it comprises.  Thus
 The \emph{grade} of a term is the number of basis vectors in it.  Thus
 the grade of \eqn{e_1}{e1} is 1, and the grade of
 \eqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.  The grade operator
-\eqn{\left<\cdot\right>_r}{<.>_r} is used to extract terms of a
+\mjeqn{\left<\cdot\right>_r}{<.>_r} is used to extract terms of a
 particular grade, with
 
-\deqn{
+\mjdeqn{
   A=\left<A\right>_0 + 
     \left<A\right>_1 + 
     \left<A\right>_2 + \cdots = \sum_r\left<A\right>_r
@@ -38,16 +41,16 @@ particular grade, with
   A = <A>_0 + <A>_1 + <A>_2 +... = sum <A>_r
 }
 
-for any Clifford object \eqn{A}.  Thus \eqn{\left<A\right>_r}{<A>_r} is
+for any Clifford object \eqn{A}.  Thus \mjeqn{\left<A\right>_r}{<A>_r} is
 said to be homogenous of grade \eqn{r}.  Hestenes sometimes writes
 subscripts that specify grades using an overbar as in
-\eqn{\left<A\right>_{\overline{r}}}{omitted}.  It is conventional to
-denote the zero-grade object \eqn{\left<A\right>_0}{<A>_0} as simply
-\eqn{\left<A\right>}{<A>}.
+\mjeqn{\left<A\right>_{\overline{r}}}{omitted}.  It is conventional to
+denote the zero-grade object \mjeqn{\left<A\right>_0}{<A>_0} as simply
+\mjeqn{\left<A\right>}{<A>}.
 
 We have
 
-\deqn{
+\mjdeqn{
 \left<A+B\right>_r=\left<A\right>_r\qquad
 \left<\lambda A\right>_r=\lambda\left<A\right>_r\qquad
 \left<\left<A\right>_r\right>_s=\left<A\right>_r\delta_{rs}.
