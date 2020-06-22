@@ -28,8 +28,8 @@ coefficient and is described by the basis vectors it comprises.  Thus
 \code{4e_234} is a term but \code{1e3 + 2e5} is not.
   
 The \emph{grade} of a term is the number of basis vectors in it.  Thus
-the grade of \eqn{e_1}{e1} is 1, and the grade of
-\eqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.  The grade operator
+the grade of \mjeqn{e_1}{e1} is 1, and the grade of
+\mjeqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.  The grade operator
 \mjeqn{\left\langle\cdot\right\rangle_r}{<.>_r} is used to extract terms
 of a particular grade, with
 
