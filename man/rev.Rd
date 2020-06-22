@@ -48,7 +48,7 @@ and it is easy to prove that
 }
 
 Compare the Conjugate (documented at \code{Conj.Rd}), which is dependent
-on the signature of Clifford algebra.
+on the signature of the Clifford algebra.
 
 }
 \usage{
