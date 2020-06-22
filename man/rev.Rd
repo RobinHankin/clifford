@@ -31,7 +31,7 @@ reverse is the identity operation.  We have
 
 
 \mjdeqn{
-  \left\langle A^\sim\right>=\left\langle A\right\rangle\qquad
+  \left\langle A^\sim\right\rangle=\left\langle A\right\rangle\qquad
   \left\langle A^\sim\right\rangle_r=\widetilde{\left\langle
   A\right\rangle_r}=(-1)^{r(r-1)/2}\left\langle A\right\rangle_r
 }{
