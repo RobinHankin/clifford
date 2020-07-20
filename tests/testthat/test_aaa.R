@@ -174,6 +174,12 @@ test_that("Test suite aaa.R",{
     expect_true(is.antivector(antivector(1:5,5)))
     expect_true(is.clifford(rblade()))
 
+    expect_false(is.antivector(allcliff(2)))
+    expect_false(is.antivector(allcliff(3)))
+
+    expect_false(is.antivector(pseudoscalar(3),include.pseudoscalar=FALSE))
+    expect_true (is.antivector(pseudoscalar(3),include.pseudoscalar=TRUE ))
+
     expect_visible(as.character(as.clifford(0)))
     expect_true(as.character(as.clifford(0)) == "0")
     expect_true(as.character(as.clifford(4)) == "4")
