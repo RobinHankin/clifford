@@ -94,7 +94,7 @@
 `is.clifford` <- function(x){inherits(x,"clifford")}
 
 `nterms` <- function(x){length(coeffs(x))}
-`is.zero` <- function(C){nterms(C)==0}
+`is.zero` <- function(C){nterms(as.clifford(C))==0}
 `nbits` <- function(x){max(c(terms(x),recursive=TRUE))}
 `grades` <- function(x){unlist(lapply(terms(x),length))}
 `is.scalar` <- function(C){
