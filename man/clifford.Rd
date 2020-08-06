@@ -8,10 +8,9 @@
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
 
-A clifford object is a member of a Clifford algebra.  These objects may
-be added and multiplied, and have various applications in physics and
-mathematics.
-}
+An object of class \code{clifford} is a member of a Clifford algebra.
+These objects may be added and multiplied, and have various applications
+in physics and mathematics.}
 
 \usage{
 clifford(terms, coeffs=1)
