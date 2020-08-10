@@ -143,8 +143,10 @@
   clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n))
 } 
 
-`rblade` <- function(d=9, g=4){
-  Reduce(`%^%`,sapply(seq_len(g),function(...){as.1vector(rnorm(d))},simplify=FALSE))
+`rblade` <- function(d=7,g=3){
+    Reduce(`%^%`, sapply(seq_len(g), function(...) {
+        as.1vector(sample(1:5,d,replace=TRUE))
+    }, simplify = FALSE))
 }
 
 `rev.clifford` <- function(x){

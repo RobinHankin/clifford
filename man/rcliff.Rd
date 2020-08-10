@@ -6,7 +6,7 @@
   \dQuote{get you going} examples of \code{clifford} objects}
 \usage{
 rcliff(n=9, d=6, g=4, include.fewer=TRUE)
-rblade(d=9, g=4)
+rblade(d=7, g=3)
 }
 \arguments{
   \item{n}{Number of terms}
@@ -105,9 +105,9 @@ zap(ainv*a)  # 1 (to numerical precision)
 # Perwass 2009, lemma 3.9:
 
 
-A <- rblade(g=4)  # r=4
-B <- rblade(g=5)  # s=5
-C <- rblade(g=6)  # t=6
+A <- rblade(d=9,g=4)  
+B <- rblade(d=9,g=5)  
+C <- rblade(d=9,g=6)  
 
 grade(A*B*C,0)-grade(C*A*B,0)   # zero to numerical precision
 
@@ -115,8 +115,8 @@ grade(A*B*C,0)-grade(C*A*B,0)   # zero to numerical precision
 
 # Intermediate step
 
-x1 <- grade(A*B,7) \%star\% C
-x2 <- C \%star\% grade(A*B,7)
+x1 <- grade(A*B,3) \%star\% C
+x2 <- C \%star\% grade(A*B,3)
 x3 <- grade(C*A*B,0)
 
 max(x1,x2,x3) - min(x1,x2,x3)   # zero to numerical precision
