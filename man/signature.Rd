@@ -1,5 +1,6 @@
 \name{signature}
 \alias{signature}
+\alias{sig}
 \alias{is_ok_sig}
 \alias{mymax}
 \title{The signature of the Clifford algebra}
