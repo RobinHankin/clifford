@@ -78,26 +78,17 @@ and a basis blade \mjeqn{e_\mathbb{A}}{e_A} with
 \mjeqn{\mathbb{A}\subseteq\left\lbrace
 1,\ldots,p+q\right\rbrace}{omitted}, then
 
-\mjdeqn{
-  \mathrm{gr}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
-  1\leq a\leq p+q\right\rbrace\right|
+\mjdeqn{\begin{align}
+  \mathrm{gr}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon
+  1\leq a\leq p+q\right\rbrace\right|&  \\\\\
+  \mathrm{gr}_{+}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon
+  1\leq a\leq p\right\rbrace\right|& \\\\\
+  \mathrm{gr}_{-}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon
+  p < a\leq p+q\right\rbrace\right|&
+  \end{align}
 }{
   omitted
 }
-\mjdeqn{
-  \mathrm{gr}_{+}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
-  1\leq a\leq p\right\rbrace\right|
-}{
-  omitted
-}
-
-\mjdeqn{
-  \mathrm{gr}_{-}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
-  p < a\leq p+q\right\rbrace\right|
-}{
-  omitted
-}
-
 
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{g}, where \code{g \%in\% n}.
