@@ -74,11 +74,21 @@ square to \eqn{+1} and which to \eqn{-1} is controlled by
   <x,x>=x_1^2+...+x_p^2-x_{p+1}^2-...-x_{p+q}^2
 }
 
-and a basis blade \mjeqn{e_\mathbb{A}}{e_A} with
-\mjeqn{\mathbb{A}\subseteq\left\lbrace
+and a basis blade \mjteqn{e_A}{e_\mathbb{A}}{e_A} with
+\mjteqn{A\subseteq\left\lbrace
+1,\ldots,p+q\right\rbrace}{\mathbb{A}\subseteq\left\lbrace
 1,\ldots,p+q\right\rbrace}{omitted}, then
 
-\mjdeqn{\begin{align}
+
+\mjtdeqn{
+  \mathrm{gr}(e_A) = \left|\left\lbrace a\in A\colon
+  1\leq a\leq p+q\right\rbrace\right|  \qquad
+  \mathrm{gr}_{+}(e_A) = \left|\left\lbrace a\in A\colon
+  1\leq a\leq p\right\rbrace\right| \qquad
+  \mathrm{gr}_{-}(e_A) = \left|\left\lbrace a\in A\colon
+  p < a\leq p+q\right\rbrace\right|
+}{
+\begin{align}
   \mathrm{gr}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon
   1\leq a\leq p+q\right\rbrace\right|&  \\\\\
   \mathrm{gr}_{+}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon

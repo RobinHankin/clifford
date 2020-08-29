@@ -18,7 +18,7 @@ mymax(s)
 The function is modelled on \code{lorentz::sol()} which gets and sets
 the speed of light.
 
-Clifford algebras require a bilinear form on \mjeqn{\mathbb{R}^n}{R^n}
+Clifford algebras require a bilinear form on \mjteqn{R^n}{\mathbb{R}^n}{R^n}
 \mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}, usually written
 
 \mjdeqn{\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
@@ -28,8 +28,8 @@ Clifford algebras require a bilinear form on \mjeqn{\mathbb{R}^n}{R^n}
 }
 
 where \mjeqn{p+q=n}{p+q=n}.  With this quadratic form the vector space
-is denoted \mjeqn{\mathbb{R}^{p,q}}{R^{p,q}} and we say that \eqn{p} is
-the signature of the bilinear form
+is denoted \mjteqn{R^{p,q}}{\mathbb{R}^{p,q}}{R^{p,q}} and we say that
+\eqn{p} is the signature of the bilinear form
 \mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}.  This gives rise to
 the Clifford algebra \mjeqn{C_{p,q}}{C_{p,q}}.
 
