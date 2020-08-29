@@ -25,7 +25,7 @@ gradesminus(x)
 
 A \emph{term} is a single expression in a Clifford object.  It has a
 coefficient and is described by the basis vectors it comprises.  Thus
-\code{4e_234} is a term but \code{1e3 + 2e5} is not.
+\mjeqn{4e_{234}}{4e_123} is a term but \mjseqn{e_3 + e_5} is not.
   
 The \emph{grade} of a term is the number of basis vectors in it.  Thus
 the grade of \mjeqn{e_1}{e1} is 1, and the grade of
@@ -64,8 +64,40 @@ grades of the constituent terms.
 
 Function \code{gradesplus()} returns the same but counting only basis
 vectors that square to \eqn{+1}, and \code{gradesminus()} counts only
-basis vectors that square to \eqn{-1}.  These defined by Perwass, page
-57.
+basis vectors that square to \eqn{-1}.  Controlling which basis vectors
+square to \eqn{+1} and which to \eqn{-1} is controlled by
+\code{signature()}.  From Perwass, page 57, given a bilinear form
+
+\mjdeqn{\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
+  +x_p^2-x_{p+1}^2-\cdots -x_{p+q}^2
+}{
+  <x,x>=x_1^2+...+x_p^2-x_{p+1}^2-...-x_{p+q}^2
+}
+
+and a basis blade \mjeqn{e_\mathbb{A}}{e_A} with
+\mjeqn{\mathbb{A}\subseteq\left\lbrace
+1,\ldots,p+q\right\rbrace}{omitted}, then
+
+\mjdeqn{
+  \mathrm{gr}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
+  1\leq a\leq p+q\right\rbrace\right|
+}{
+  omitted
+}
+\mjdeqn{
+  \mathrm{gr}_{+}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
+  1\leq a\leq p\right\rbrace\right|
+}{
+  omitted
+}
+
+\mjdeqn{
+  \mathrm{gr}_{-}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
+  p < a\leq p+q\right\rbrace\right|
+}{
+  omitted
+}
+
 
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{g}, where \code{g \%in\% n}.
@@ -82,6 +114,7 @@ Function \code{c_grade()} is a helper function that is documented at
   In the C code, \dQuote{term} has a slightly different meaning,
   referring to the vectors without the associated coefficient.
 }
+\seealso{\code{\link{signature}}}
 \references{C. Perwass 2009. \dQuote{Geometric algebra with applications
     in engineering}.  Springer.
   }
