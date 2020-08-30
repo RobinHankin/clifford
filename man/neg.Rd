@@ -27,6 +27,6 @@ A. Acus and A. Dargys 2018.  \dQuote{The inverse of a multivector:
 \examples{
 
 A <- rcliff()
-neg(A,1:2) == A-grade(A,1:2)  # should be TRUE
+neg(A,1:2) == A - 2*grade(A,1:2)  # should be TRUE
 
 }
