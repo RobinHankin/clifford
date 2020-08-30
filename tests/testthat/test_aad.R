@@ -3,6 +3,8 @@ test_that("Test suite aaa.R",{  # tests of signature
     expect_silent(signature())
     expect_silent(signature(Inf))
 
+    expect_error(signature(1:2))
+    expect_error(signature(0.5))
     
     signature(0)
     expect_true(basis(1)*basis(1) == as.scalar(1))
@@ -26,6 +28,9 @@ test_that("Test suite aaa.R",{  # tests of signature
     expect_error(1/basis(1))
     expect_error(1/basis(2))
 
+    expect_true(all(is.na(gradesplus(basis(1)))))
+    expect_true(all(is.na(gradesminus(basis(1)))))
+    
     signature(0)
     expect_true(1/basis(1) == basis(1))
     expect_true(1/basis(2) == basis(2))

@@ -91,6 +91,20 @@ checker1 <- function(A){
       expect_true(dual(dual(dual(dual(A,n),n),n),n) == A)
   }
     
+
+    expect_true(is.zero(righttick(A,0)))
+    expect_true(is.zero(righttick(0,A)))
+
+
+    expect_true(A == neg(neg(A,1  ),1  ))
+    expect_true(A == neg(neg(A,2  ),2  ))
+    expect_true(A == neg(neg(A,3  ),3  ))
+    expect_true(A == neg(neg(A,1:2),1:2))
+
+    expect_true(neg(A,1  ) == A - 2*grade(A,1  ))
+    expect_true(neg(A,2  ) == A - 2*grade(A,2  ))
+    expect_true(neg(A,1:2) == A - 2*grade(A,1:2))
+
 }   # checker1() closes
   
 checker2 <- function(A,B){

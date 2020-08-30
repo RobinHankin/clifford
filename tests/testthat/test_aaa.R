@@ -155,6 +155,8 @@ test_that("Test suite aaa.R",{
     expect_output(print(-rcliff()))
     expect_output(print(+rcliff()))
 
+    expect_output(print(summary(rcliff())))
+
     expect_true(
         clifford(sapply(1:5,seq_len),1)[sapply(1:2,seq_len)] ==
         basis(1) + basis(1:2)
@@ -164,9 +166,6 @@ test_that("Test suite aaa.R",{
 
     expect_true(zap(basis(1)) == basis(1))
     expect_false(zap(pi*basis(1)) == pi*basis(1))
-
-    expect_error(signature(1:2))
-    expect_error(signature(0.5))
 
     expect_error(is.blade(as.clifford(4)))
 
