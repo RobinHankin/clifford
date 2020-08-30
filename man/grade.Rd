@@ -100,6 +100,11 @@ and a basis blade \mjteqn{e_A}{e_\mathbb{A}}{e_A} with
   omitted
 }
 
+If the signature is strictly negative, then the Clifford algebra reduces
+to a Grassman algebra and products match the wedge product of exterior
+calculus.  In this case, functions \code{gradesplus()} and
+\code{gradesminus()} return \code{NA}.
+
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{g}, where \code{g \%in\% n}.
 
