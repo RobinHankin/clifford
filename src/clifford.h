@@ -6,12 +6,7 @@
 // NB: terminology.  Here "blade" means "basis blade"
 
 #include <map>
-#include <iostream>
 #include <Rcpp.h>
-#include <iterator>
-#include <vector>
-#include <assert.h>
-#include <tuple>
 #include <boost/dynamic_bitset.hpp>
 
 using namespace std;
