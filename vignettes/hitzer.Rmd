@@ -1,0 +1,83 @@
+---
+title: "Clifford involutions following Hitzer and Sangwine"
+author: "Robin KS Hankin"
+date: "02/09/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Clifford inverses
+
+Hitzer and Sangwine set up a number of involutions which I reproduce
+for convenience below.  Given $M\in Cl(p,q)$ and 
+
+\newcommand{\abr}[1]{\left\langle #1\right\rangle}
+
+$$M=
+\abr{M}_0+
+\abr{M}_1+
+\abr{M}_2+\cdots+\abr{M}_0
+$$
+
+we have
+
+* The main grade involution
+$\displaystyle\widehat{M}=\sum_{k=0}^n(-1)^k\abr{M}_k\qquad\mbox{\tt gradeinv(M)}$
+* Reversion $\displaystyle\widetilde{M}=\sum_{k=0}^n(-1)^{k(k-1)/2}\abr{M}_k\qquad\mbox{\tt rev(M)}$
+* Clifford conjugation $\displaystyle\overline{M}=\sum_{k=0}^n(-1)^{k(k+1)/2}\abr{M}_k\qquad\mbox{\tt cliffconj(M)}$
+* Grade specific maps $\displaystyle m_{\overline{j},\overline{k}}(M)=M-2\left(\abr(M)_j+\abr{M}_k\right)\qquad\mbox{\tt neg(M)}$
+
+
+H\&S  assert that
+
+$$\overline{M} = \widehat{\widetilde{M}} = \widetilde{\widehat{M}}
+=
+\sum_{k=0}^n(-1)^{k(k+1)/2}\abr{M}_k
+$$
+
+which we may verify numerically:
+
+```{r,loadcliffordlibrary,echo=TRUE,print=FALSE,message=FALSE}
+library(clifford)
+```
+
+
+```{r,label=equation2.6}
+(M <- rcliff())
+a1 <- cliffconj(M)
+a2 <- gradeinv(rev(M))
+a3 <- rev(gradeinv(M))
+is.zero(a2-a1) & is.zero(a3-a1)
+```
+
+We now consider the case $p+q=3$.  If $x\in Cl(p,q)$ with $p+q=3$ then
+equation 6.2 asserts that $x\overline{x}=r_0 +r_3 e_1e_2e_3$ for some
+$r_0,r_3\in\mathbb{R}$:
+
+```{r,label=equation6.2}
+(x <- rcliff(d=3,g=3))
+x*cliffconj(x)
+```
+
+and equation 6.3 asserts that $x\overline{x}(x\overline{x})^\sim\in\mathbb{R}$:
+
+```{r,label=equation6.3}
+	f <- function(x){
+	jj <- x*cliffconj(x)
+	jj*rev(jj)  # NB use is.real() when I getaround to implementing it...
+}
+```
+
+```{r}
+signature(0)
+f(rcliff(d=3,g=3))
+signature(1)
+f(rcliff(d=3,g=3))
+signature(2)
+f(rcliff(d=3,g=3))
+signature(3)
+f(rcliff(d=3,g=3))
+```
