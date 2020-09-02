@@ -1,9 +1,18 @@
 ---
 title: "Clifford involutions following Hitzer and Sangwine"
-author: "Robin KS Hankin"
+author: "Robin K. S. Hankin"
 date: "02/09/2020"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+bibliography: clifford.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{involutions}
+  %\usepackage[utf8]{inputenc}
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -67,7 +76,7 @@ and equation 6.3 asserts that $x\overline{x}(x\overline{x})^\sim\in\mathbb{R}$:
 ```{r,label=equation6.3}
 	f <- function(x){
 	jj <- x*cliffconj(x)
-	jj*rev(jj)  # NB use is.real() when I getaround to implementing it...
+	is.real(jj*rev(jj))
 }
 ```
 
