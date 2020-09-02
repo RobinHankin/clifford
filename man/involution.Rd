@@ -5,9 +5,11 @@
 \alias{Conj.clifford}
 \alias{conjugate}
 \alias{conj}
+\alias{cliffconj}
 \alias{rev}
 \alias{rev.clifford}
 \alias{reverse}
+\alias{gradeinv}
 \alias{neg}
 \title{Clifford involutions}
 \description{\loadmathjax
@@ -64,45 +66,47 @@
     [NB I have changed Perwass's notation].
 
     \item The \dfn{main (grade) involution} or \dfn{grade involution}
-    \mjeqn{\widehat{A}}{omitted} is given by
-    \code{FUNCTION_NOT_WRITTEN()}.  This changes the sign of any term
-    with odd grade: \mjdeqn{ \widehat{\left\langle A\right\rangle_r}
-    =(-1)^r\left\langle A\right\rangle_r}{omitted} (I don't see this in
-    Perwass or Hestenes; notation follows Hitzer and Sangwine).
+    \mjeqn{\widehat{A}}{omitted} is given by \code{gradeinv()}.  This
+    changes the sign of any term with odd grade: \mjdeqn{
+    \widehat{\left\langle A\right\rangle_r} =(-1)^r\left\langle
+    A\right\rangle_r}{omitted} (I don't see this in Perwass or Hestenes;
+    notation follows Hitzer and Sangwine).  It is a special case of
+    grade negation.
 
     \item The \dfn{grade \eqn{r}-negation}
     \mjeqn{A_{\overline{r}}}{omitted}
     is given by \code{neg()}.  This
     changes the sign of the grade \eqn{r} component of \eqn{A}.  It is
     formally defined as \mjeqn{A-2\left\langle
-    A\right\rangle_r}{A-2<A>_r}.  It is possible to negate terms with
+      A\right\rangle_r}{A-2<A>_r}.  It is possible to negate terms with
     grades belonging to a subset of \mjteqn{N}{\mathbb{N}}{N}.
-
+    
+    \item The \dfn{Clifford conjugate} \mjeqn{\overline{A}}{omitted} is
+    given by \code{cliffconj()}.  It is distinct from conjugation
+    \mjeqn{A^\dagger}{omitted}, and is defined in Hitzer and Sangwine as
+    
+    \mjdeqn{\overline{\left\langle A\right\rangle_r} =
+      (-1)^{r(r+1)/2}\left\langle A\right\rangle_r.}{omitted}
+    
+    }
 }
-  \tabular{rlll}{
-    \tab reverse   \tab numeric \tab Ozone (ppb)\cr
-    \tab conjugate \tab numeric \tab Solar R (lang)\cr
-    \tab grade negation \tab numeric \tab Wind (mph)\cr
-    \tab main involution   \tab numeric \tab Temperature (degrees F)\cr
-    \tab Month   \tab numeric \tab Month (1--12)\cr
-    \tab Day     \tab numeric \tab Day of month (1--31)
-  }
-}
+  
 
 \usage{
 \method{rev}{clifford}(x)
 \method{Conj}{clifford}(z)
+cliffconj(z)
 neg(C,n)
+gradeinv(C)
 }
 \arguments{
   \item{C,x,z}{Clifford object}
   \item{n}{Integer vector specifying grades to be negated in \code{neg()}}
-
 }
 
 
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{grade}},\code{\link{Conj}}}
+\seealso{\code{\link{grade}}}
 \examples{
 
 x <- rcliff()

@@ -165,6 +165,13 @@
   )
 }
 
+`cliffconj` <- function(z){
+  clifford(
+      terms(z),
+      coeffs(z) * ifelse(grades(z)%%4 %in% 1:2,-1,1)
+  )
+}
+
 `print.clifford` <- function(x,...){
   cat("Element of a Clifford algebra, equal to\n")
 
@@ -301,6 +308,8 @@
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
 
 `neg` <- function(C,n){clifford(terms(C),coeffs(C)*ifelse(grades(C) %in% n,-1,1))}
+
+`gradeinv` <- function(C){clifford(terms(C),coeffs(C)*ifelse(grades(C)%%2==1,-1,1))}
 
 `first_n_last` <- function(x){
   n <- nterms(x)
