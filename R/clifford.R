@@ -96,15 +96,10 @@
 `nterms` <- function(x){length(coeffs(x))}
 `is.zero` <- function(C){nterms(as.clifford(C))==0}
 `is.real` <- function(C){length(c(terms(C),recursive=TRUE))==0}
+`is.scalar` <- is.real
 `nbits` <- function(x){max(c(terms(x),recursive=TRUE))}
 `grades` <- function(x){unlist(lapply(terms(x),length))}
-`is.scalar` <- function(C){
-  if(is.zero(C)){
-    return(TRUE)
-  } else {
-    return((length(terms(C))==1) && (length(terms(C)[[1]])==0))
-  }
-}
+
 
 `scalar` <- function(x=1){clifford(list(numeric(0)),x)}
 `as.scalar` <- `scalar`

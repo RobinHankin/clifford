@@ -38,6 +38,9 @@ is.pseudoscalar(C)
   returns a Clifford scalar of that value (to extract the scalar
   component of a multivector, use \code{const()}).
 
+  Function \code{is.scalar()} is a synonym for \code{is.real()} which is
+  documented at \code{const.Rd}.
+
   Function \code{as.1vector()} takes a numeric vector and returns the
   linear sum of length-one blades with coefficients given by \code{x};
   function \code{is.1vector()} returns \code{TRUE} if every term is of
@@ -59,7 +62,7 @@ is.pseudoscalar(C)
 
 }
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{getcoeffs}},\code{\link{antivector}}}
+\seealso{\code{\link{getcoeffs}},\code{\link{antivector}},\code{\link{const}}}
 \examples{
 
 as.scalar(6)
