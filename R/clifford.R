@@ -95,6 +95,7 @@
 
 `nterms` <- function(x){length(coeffs(x))}
 `is.zero` <- function(C){nterms(as.clifford(C))==0}
+`is.real` <- function(C){length(c(terms(C),recursive=TRUE))==0}
 `nbits` <- function(x){max(c(terms(x),recursive=TRUE))}
 `grades` <- function(x){unlist(lapply(terms(x),length))}
 `is.scalar` <- function(C){
