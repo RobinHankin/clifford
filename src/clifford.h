@@ -12,7 +12,7 @@
 using namespace std;
 using namespace Rcpp;
 
-typedef boost::dynamic_bitset<> blade;  
+typedef boost::dynamic_bitset<> blade;
 typedef map<blade, long double> clifford;
 typedef std::tuple<blade, int> blade_and_sign;
 
@@ -23,7 +23,7 @@ clifford remove_zeros(clifford &C){
         } else {
             ++it; // increment anyway
         }
-    } 
+    }
     return C;
 }
 
@@ -68,7 +68,7 @@ NumericVector coeffs(const clifford C){  // takes a clifford object, returns the
     NumericVector out(C.size());
     unsigned int i=0;
     clifford::const_iterator ic;   // it iterates through a hyper2 object
-    
+
     for(ic=C.begin(); ic != C.end(); ++ic){
         out[i] = ic->second;
         i++;
@@ -87,13 +87,13 @@ clifford c_add(clifford cliff1, clifford cliff2){
     if(cliff1.size() > cliff2.size()){ // #1 is bigger, so iterate through #2
         for (ic=cliff2.begin(); ic != cliff2.end(); ++ic){
             const blade b = ic->first;
-            cliff1[b] += cliff2[b];  
+            cliff1[b] += cliff2[b];
         }
         return remove_zeros(cliff1);
     } else {  // L2 is bigger
         for (ic=cliff1.begin(); ic != cliff1.end(); ++ic){
             const blade b = ic->first;
-            cliff2[b] += cliff1[b];  
+            cliff2[b] += cliff1[b];
         }
         return remove_zeros(cliff2);
     }
@@ -109,12 +109,12 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
     bout.resize(m, false);
 
     for(size_t i=0 ; i<m ; ++i){
-        
+
         if       (((bool)~b1[i]) & ((bool)~b2[i])){ bout[i] = false;  // neither
         } else if(((bool) b1[i]) & ((bool)~b2[i])){ bout[i] = true;   // just b1
         } else if(((bool)~b1[i]) & ((bool) b2[i])){ bout[i] = true;   // just b2
         } else if(((bool) b1[i]) & ((bool) b2[i])){ bout[i] = false;  // both, but...
-            if(signature>0){ // ...swap sign!  
+            if(signature>0){ // ...swap sign!
                 if((signed int) i > (signed int) signature){ // NB check for off-by-one error
                     sign *= -1;
                 }
@@ -125,7 +125,7 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
             }
         }
     }
-        
+
     for(size_t i=0 ; i<m ; ++i){
         for(size_t j=i ; j<m ; ++j){
             if((b2[i] & b1[j]) && (i<j)){
@@ -167,7 +167,7 @@ bool c_equal(clifford C1, clifford C2){
             return false;
         }
     }
-    
+
     return true;
 }
 
@@ -187,7 +187,7 @@ clifford c_grade(const clifford C, const NumericVector &n){
 NumericVector c_coeffs_of_blades(clifford C,
                                  const List &B,
                                  const NumericVector &m
-                                 ){  
+                                 ){
     Rcpp::NumericVector out;
     for(size_t i=0 ; i < (size_t) B.size() ; ++i){
         blade b;
@@ -227,14 +227,47 @@ clifford c_power(const clifford C, const NumericVector &power, const NumericVect
     clifford out;
     unsigned int p = power[0];
 
-    if(p<1){throw std::range_error("power cannot be <1");} 
+    if(p<1){throw std::range_error("power cannot be <1");}
     if(p==1){
         return C;
     } else {
-        out = C; 
+        out = C;
         for( ; p>1; p--){
             out = c_geometricprod(C,out, signature);
         }
     }
+    return out;
+}
+
+clifford cartan(const clifford C, const NumericVector &n){
+    clifford out;
+
+    for (clifford::const_iterator ic=C.begin(); ic != C.end(); ++ic){
+        blade c = ic->first;
+        if(c.size() < 5){c.resize(5);}
+        const blade b = c;
+        const long double v = ic->second;
+        const size_t o = n[0]-1; // "-1" so the numbers match
+
+
+        if      (!b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 0000 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // 1 -> 1
+                (!b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 0001 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4,false); out[c] = +v;} else if // e4 -> e123
+                (!b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 0010 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e3 -> -e124
+                (!b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 0011 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4, true); out[c] = -v;} else if // e34 -> -e34
+                (!b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 0100 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else if // e2 -> e134
+                (!b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 0101 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e24 -> -e24
+                (!b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 0110 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e23 -> -e23
+                (!b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 0111 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // e234 -> e1
+                ( b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 1000 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = -v;} else if // e1 -> -e234
+                ( b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 1001 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e14 -> -e14
+                ( b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 1010 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e13 -> -e13
+                ( b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 1011 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e134 -> -e2
+                ( b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 1100 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e12 -> -e12
+                ( b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 1101 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4,false); out[c] = +v;} else if // e124 -> e3
+                ( b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 1110 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e1234 -> e1234
+                ( b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 1111 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else {
+            throw("this cannot happen");
+              }
+    } // main clifford loop closes
     return out;
 }

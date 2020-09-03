@@ -53,3 +53,7 @@ c_overwrite <- function(L1, c1, L2, c2, m) {
     .Call(`_clifford_c_overwrite`, L1, c1, L2, c2, m)
 }
 
+c_cartan <- function(L, c, m, n) {
+    .Call(`_clifford_c_cartan`, L, c, m, n)
+}
+

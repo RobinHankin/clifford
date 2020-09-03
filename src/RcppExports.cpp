@@ -202,6 +202,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// c_cartan
+List c_cartan(const List& L, const NumericVector& c, const NumericVector& m, const NumericVector& n);
+RcppExport SEXP _clifford_c_cartan(SEXP LSEXP, SEXP cSEXP, SEXP mSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const List& >::type L(LSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type c(cSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type m(mSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(c_cartan(L, c, m, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_identity", (DL_FUNC) &_clifford_c_identity, 3},
@@ -217,6 +231,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_clifford_c_lefttickprod", (DL_FUNC) &_clifford_c_lefttickprod, 6},
     {"_clifford_c_righttickprod", (DL_FUNC) &_clifford_c_righttickprod, 6},
     {"_clifford_c_overwrite", (DL_FUNC) &_clifford_c_overwrite, 5},
+    {"_clifford_c_cartan", (DL_FUNC) &_clifford_c_cartan, 4},
     {NULL, NULL, 0}
 };
 
