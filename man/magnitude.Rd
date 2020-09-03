@@ -10,23 +10,23 @@
 \arguments{
   \item{z}{Clifford objects}
 }
-\description{
+\description{\loadmathjax
 
   Following Perwass, the magnitude of a multivector is defined as
   
-  \deqn{\left|\left|A\right|\right| = \sqrt{A\ast A}}{omitted; see PDF}
+  \mjdeqn{\left|\left|A\right|\right| = \sqrt{A\ast A}}{omitted; see PDF}
   
-  Where \eqn{A\ast A}{?} denotes the Euclidean scalar product
+  Where \mjeqn{A\ast A}{?} denotes the Euclidean scalar product
   \code{eucprod()}.  Recall that the Euclidean scalar product is never
   negative.
 }
 \author{Robin K. S. Hankin}
 \note{
 
-If you want the square, \eqn{\left|\left|A\right|\right|^2}{||A||^2} and
-not \eqn{\left|\left|A\right|\right|}{||A||}, it is faster and more
-accurate to use \code{eucprod(A)}, because this avoids a needless square
-root.
+If you want the square, 
+\mjeqn{\left|\left|A\right|\right|^2}{||A||^2} and not
+\mjeqn{\left|\left|A\right|\right|}{||A||}, it is faster and more accurate
+to use \code{eucprod(A)}, because this avoids a needless square root.
 
 There is a nice example of scalar product at \code{rcliff.Rd}.
 
