@@ -108,8 +108,6 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
     b2.resize(m, false);
     bout.resize(m, false);
 
-    cout << "sig = " << signature << "\n";
-    
     for(size_t i=0 ; i<m ; ++i){
 
         if       (((bool)~b1[i]) & ((bool)~b2[i])){ bout[i] = false;  // neither
