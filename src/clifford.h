@@ -108,24 +108,24 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
     b2.resize(m, false);
     bout.resize(m, false);
 
+    cout << "sig = " << signature << "\n";
+    
     for(size_t i=0 ; i<m ; ++i){
 
         if       (((bool)~b1[i]) & ((bool)~b2[i])){ bout[i] = false;  // neither
         } else if(((bool) b1[i]) & ((bool)~b2[i])){ bout[i] = true;   // just b1
         } else if(((bool)~b1[i]) & ((bool) b2[i])){ bout[i] = true;   // just b2
         } else if(((bool) b1[i]) & ((bool) b2[i])){ bout[i] = false;  // both, but...
-            if(signature>0){ // ...swap sign!
+            if(signature >= 0){
                 if((signed int) i > (signed int) signature){ // NB check for off-by-one error
                     sign *= -1;
                 }
             } else if(signature < 0){
                 sign = 0; // exterior product, repeated index -> 0
-            } else { // signature == 0
-                ;  // no swaps!
             }
         }
     }
-
+        
     for(size_t i=0 ; i<m ; ++i){
         for(size_t j=i ; j<m ; ++j){
             if((b2[i] & b1[j]) && (i<j)){

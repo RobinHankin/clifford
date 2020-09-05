@@ -1,14 +1,12 @@
 `signature` <- function(s){
     if(missing(s)){  # return SOL
         jj <- getOption("signature")
-        if(!is.null(jj)){
-            return(jj)
-        } else {
-            return(0)
-        }
+        if(is.null(jj)){jj <- .Machine$integer.max}
+        if(is.infinite(jj)){jj <- .Machine$integer.max}
+        return(jj)
     } else { # set signature
         stopifnot(is_ok_sig(s))
-        if(is.infinite(s)){s <- 0}
+        if(is.infinite(s)){s <- .Machine$integer.max}
         options("signature" = s)
         if(isTRUE(getOption("show_signature"))){
             options("prompt" = paste(s, "> "))
