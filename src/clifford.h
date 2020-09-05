@@ -264,8 +264,8 @@ clifford cartan(const clifford C, const NumericVector &n){
                 ( b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 1011 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e134 -> -e2
                 ( b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 1100 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e12 -> -e12
                 ( b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 1101 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4,false); out[c] = +v;} else if // e124 -> e3
-                ( b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 1110 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e1234 -> e1234
-                ( b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 1111 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else {
+                ( b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 1110 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e123 -> -e4
+                ( b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 1111 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else {  // e1234  -> e1234
             throw("this cannot happen");
               }
     } // main clifford loop closes
