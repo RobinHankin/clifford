@@ -18,7 +18,9 @@
   
   Where \mjeqn{A\ast A}{?} denotes the Euclidean scalar product
   \code{eucprod()}.  Recall that the Euclidean scalar product is never
-  negative.
+  negative (the function body is \code{sqrt(abs(eucprod(z)))}; the
+  \code{abs()} is needed to avoid numerical roundoff errors in
+  \code{eucprod()} giving a negative value).
 }
 \author{Robin K. S. Hankin}
 \note{
