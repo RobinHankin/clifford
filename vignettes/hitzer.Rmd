@@ -189,3 +189,44 @@ for(i in seq_along(sigs)){
 diffl
 diffr
 ```
+
+
+
+# Cartan isomoporhism
+
+
+```{r}
+a <- rcliff()
+b <- rcliff()
+
+signature(4)
+cartan(a*b,1)
+
+signature(0)
+cartan(a,1) * cartan(b,1)
+```
+
+Now try 5 goes to 1:
+
+```{r}
+signature(5)
+cartan(a*b,2)
+
+signature(1)
+cartan(a,2) * cartan(b,2)
+```
+
+OK slightly more streamlined version:
+
+
+
+```{r}
+signature(5)
+before <- cartan(a*b,2)
+
+signature(1)
+after <- cartan(a,2) * cartan(b,2)
+
+before-after
+```
+
