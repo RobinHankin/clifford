@@ -192,41 +192,36 @@ diffr
 
 
 
-# Cartan isomoporhism
+# Cartan isomorphism
 
+We will carry out Cartan's isomorphism from $Cl(p,q)$ to $Cl(p-4,q+4)$
+numerically.  Here we specify $p+q=7$ by calling `rcliff()` with
+argument `d=7`, and force $p=4$ by executing `signature(4)`:
 
 ```{r}
-a <- rcliff()
-b <- rcliff()
+a <- rcliff(d=7)   # Cl(4,3)
+b <- rcliff(d=7)   # Cl(4,3)
+signature(4)       # e1^2 = e2^2 = e3^2 = e4^2 = +1; e5^2 = ... = -1
+ab <- a*b          # multiplication in Cl(4,3)
 
-signature(4)
-cartan(a*b,1)
-
-signature(0)
-cartan(a,1) * cartan(b,1)
+signature(0)   # e1^2 = ... = -1
+cartan(a)*cartan(b) == cartan(ab) # multiplication in Cl(0,7)
 ```
 
-Now try 5 goes to 1:
+and again using `cartan_inverse()`:
+
 
 ```{r}
-signature(5)
-cartan(a*b,2)
-
-signature(1)
-cartan(a,2) * cartan(b,2)
+cartan_inverse(cartan(a) * cartan(b)) == ab  # precalculated product!
 ```
 
-OK slightly more streamlined version:
-
-
+Now try mapping $Cl(5,2)\longrightarrow Cl(1,7)$:
 
 ```{r}
-signature(5)
-before <- cartan(a*b,2)
+signature(5); ab_sig5 <- a*b
 
 signature(1)
-after <- cartan(a,2) * cartan(b,2)
-
-before-after
+cartan(a,2) * cartan(b,2)  == cartan(ab_sig5,2)
+cartan_inverse(cartan(a,2) * cartan(b,2),2)  == ab_sig5
 ```
 

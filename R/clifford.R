@@ -340,4 +340,3 @@
     out[tx] <- coeffs(x)
     return(out)
 }
-

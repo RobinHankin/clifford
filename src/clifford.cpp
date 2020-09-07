@@ -129,3 +129,13 @@ List c_cartan(
         return retval(cartan(prepare(L,c,m),n));
 }
 
+// [[Rcpp::export]]
+List c_cartan_inverse(
+          const List &L,
+	  const NumericVector &c,
+          const NumericVector &m,
+          const NumericVector &n
+          ){
+        return retval(cartan_inverse(prepare(L,c,m),n));
+}
+

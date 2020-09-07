@@ -57,3 +57,7 @@ c_cartan <- function(L, c, m, n) {
     .Call(`_clifford_c_cartan`, L, c, m, n)
 }
 
+c_cartan_inverse <- function(L, c, m, n) {
+    .Call(`_clifford_c_cartan_inverse`, L, c, m, n)
+}
+

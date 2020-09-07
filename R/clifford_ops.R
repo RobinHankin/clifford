@@ -252,11 +252,3 @@ star <- scalprod
 "%o%.clifford" <- function(C1,C2){fatdot(C1,C2)}
 "%_|%.clifford" <- function(C1,C2){lefttick(C1,C2)}
 "%|_%.clifford" <- function(C1,C2){righttick(C1,C2)}
-
-
-`cartan` <- function(C,n){
-    as.clifford(c_cartan(
-        L = terms(C), c = coeffs(C),
-        m = maxyterm(C),
-        n = n))
-}
