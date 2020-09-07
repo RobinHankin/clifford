@@ -73,15 +73,15 @@ x*cliffconj(x)
 
 and equation 6.3 asserts that $x\overline{x}(x\overline{x})^\sim\in\mathbb{R}$:
 
-```{r,label=equation6.3}
-	f <- function(x){
+```{r,label=defineequation6.3}
+f <- function(x){
 	jj <- x*cliffconj(x)
 	is.real(jj*rev(jj))
 }
 ```
 
-```{r}
-signature(0)
+```{r,label=executeequation6.3}
+signature(Inf)
 f(rcliff(d=3,g=3))
 signature(1)
 f(rcliff(d=3,g=3))
@@ -90,3 +90,138 @@ f(rcliff(d=3,g=3))
 signature(3)
 f(rcliff(d=3,g=3))
 ```
+
+Thus equation 6.5:
+
+```{r,label=defineequation6.5}
+RI3 <- function(x){ # right inverse
+	jj <- cliffconj(x)*gradeinv(x)*rev(x)
+	return(jj/drop(x*jj))
+}
+
+```{r}
+a <- 5+rcliff(d=3,g=3)
+a
+RI3(a)
+zap(a*RI3(a))
+zap(RI3(a)*a)
+```
+
+
+Now equation 7.7:
+
+```{r,label=defineequation7.7}
+f77 <- function(x){
+	jj <- cliffconj(x)*neg(x*cliffconj(x),3:4)
+	return(jj/drop(x*jj))
+}
+
+f78 <- function(x){
+	jj <- neg(cliffconj(x)*x,3:4)*cliffconj(x)
+	return(jj/drop(jj*x))
+}
+
+a <- 3 + rcliff(d=4)
+a
+f77(a)
+zap(a*f77(a))
+zap(f77(a)*a)
+```
+
+Try the different signatures:
+
+```{r}
+set.seed(0)
+sigs <- 0:4
+left <- rep(NA,5)
+right <- rep(NA,5)
+diff <- rep(NA,5)
+for(i in seq_along(sigs)){
+	signature(sigs[i])
+	a <- sample(1:9,1) + rcliff(d=4)
+	left[i]  <- Mod(a*f77(a) -1)
+	right[i] <- Mod(f77(a)*a -1)
+	diff[i] <- Mod(f77(a)-f78(a))
+}
+left
+right
+diff
+```
+
+Just to be explicit, the following DOES NOT WORK:
+
+```
+a <- rcliff()
+a*f77(a)   # (denominator not real)
+```
+
+Now the case $p+q\leq 5$.
+
+```{r,label=section8}
+f8 <- function(x){
+	jj <- cliffconj(x)*gradeinv(x)*rev(x)
+	jj <- jj*neg(x*jj,c(1L,4L))
+	jj/drop(zap(x*jj))
+}
+```
+
+```{r}
+a <- 7+rcliff(d=5,g=5)
+a
+f8(a)
+zap(a*f8(a))
+zap(f8(a)*a)
+```
+
+And a similar set of verifications:
+
+
+```{r}
+sigs <- 0:6
+diffl <- rep(NA,5)
+diffr <- rep(NA,5)
+for(i in seq_along(sigs)){
+	signature(sigs[i])
+	a <- sample(1:9,1) + rcliff(d=5)
+	diffl[i] <- Mod(a*f8(a)-1)
+	diffr[i] <- Mod(f8(a)*a-1)
+}
+diffl
+diffr
+```
+
+
+
+# Cartan isomorphism
+
+We will carry out Cartan's isomorphism from $Cl(p,q)$ to $Cl(p-4,q+4)$
+numerically.  Here we specify $p+q=7$ by calling `rcliff()` with
+argument `d=7`, and force $p=4$ by executing `signature(4)`:
+
+```{r}
+a <- rcliff(d=7)   # Cl(4,3)
+b <- rcliff(d=7)   # Cl(4,3)
+signature(4)       # e1^2 = e2^2 = e3^2 = e4^2 = +1; e5^2 = ... = -1
+ab <- a*b          # multiplication in Cl(4,3)
+
+signature(0)   # e1^2 = ... = -1
+cartan(a)*cartan(b) == cartan(ab) # multiplication in Cl(0,7)
+```
+
+and again using `cartan_inverse()`:
+
+
+```{r}
+cartan_inverse(cartan(a) * cartan(b)) == ab  # precalculated product!
+```
+
+Now try mapping $Cl(5,2)\longrightarrow Cl(1,7)$:
+
+```{r}
+signature(5); ab_sig5 <- a*b
+
+signature(1)
+cartan(a,2) * cartan(b,2)  == cartan(ab_sig5,2)
+cartan_inverse(cartan(a,2) * cartan(b,2),2)  == ab_sig5
+```
+

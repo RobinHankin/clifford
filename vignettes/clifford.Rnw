@@ -298,7 +298,6 @@ e1*e1 # as before
 e2*e2 # sign changes
 @ 
 
-
 Suppose we wish to use a signature $+++-$, corresponding to the
 Minkowski metric in special relativity; this would be indicated in
 package idiom by \code{signature(3)}.  Note that the clifford objects
@@ -376,14 +375,17 @@ then the \pkg{stokes} idiom for this would be:
 
 \section{Positive-definite inner product}
 
-Function \code{signature()} takes the special value zero to
-return to a positive-definite inner product:
+Function \code{signature()} takes an infinite argument to make the
+inner product positive-definite:
 
 <<sigzero>>=
-signature(0)
+signature(Inf)
 @ 
 
-With this, $\ei{i}\ei{i}=1$ for any $i$:
+(internally the package sets the signature to
+\code{.Machine$integer.max}, a near-infinite integer).  With this,
+$\ei{i}\ei{i}=+1$ for any $i$:
+
 <<>>=
 basis(53)^2
 @ 

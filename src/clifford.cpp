@@ -118,3 +118,24 @@ List c_overwrite(
 	return retval(overwrite(prepare(L1,c1,m),prepare(L2,c2,m)));
 }
 
+
+// [[Rcpp::export]]
+List c_cartan(
+          const List &L,
+	  const NumericVector &c,
+          const NumericVector &m,
+          const NumericVector &n
+          ){
+        return retval(cartan(prepare(L,c,m),n));
+}
+
+// [[Rcpp::export]]
+List c_cartan_inverse(
+          const List &L,
+	  const NumericVector &c,
+          const NumericVector &m,
+          const NumericVector &n
+          ){
+        return retval(cartan_inverse(prepare(L,c,m),n));
+}
+

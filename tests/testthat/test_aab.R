@@ -61,7 +61,7 @@ checker1 <- function(A){
     total <- total + grade(A,r)
   }
   expect_true(A == total)  # 1.9
-  if(signature()==0){
+  if(signature() >= .Machine$integer.max){  # positive-definite
       expect_true(grade(grade(A,1,drop=FALSE)*grade(A,1,drop=FALSE),0)>=0) # 1.13
   }
   expect_true(grade(rev(A),0) == grade(A,0)) # 1.17c
@@ -228,7 +228,7 @@ checker3 <- function(A,B,C){
 }  # checker3() closes
   
 for(i in 1:10){
-    for(sigs in 0:2){
+    for(sigs in c(0:2,Inf)){
         signature(sigs)
         rstloop <- 0:4
         lamloop <- 0:2
