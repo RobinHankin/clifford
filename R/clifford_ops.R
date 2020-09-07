@@ -1,19 +1,31 @@
 `signature` <- function(s){
     if(missing(s)){  # return SOL
-        jj <- getOption("signature")
-        if(is.null(jj)){jj <- .Machine$integer.max}
-        if(is.infinite(jj)){jj <- .Machine$integer.max}
-        return(jj)
+        s <- getOption("signature")
+        if(is.null(s)){s <- .Machine$integer.max}
+        if(is.infinite(s)){s <- .Machine$integer.max}
+        showsig(s)
+        return(s)
     } else { # set signature
         stopifnot(is_ok_sig(s))
         if(is.infinite(s)){s <- .Machine$integer.max}
         options("signature" = s)
-        if(isTRUE(getOption("show_signature"))){
-            options("prompt" = paste(s, "> "))
-        }
-        return(s)
+        showsig(s)
+        return(invisible(s))
     }
 }
+
+`showsig` <- function(s){
+    if(isTRUE(getOption("show_signature"))){
+        if(s == .Machine$integer.max){
+            options("prompt" = "sig Inf> ")
+        } else if (s < 0){
+            options("prompt" = "Grassman > ")
+        } else {
+            options("prompt" = paste("sig", s, "> "))
+        }
+    } 
+}
+
 
 `is_ok_sig` <- function(s){
     if(length(s) != 1){

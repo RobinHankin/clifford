@@ -2,6 +2,7 @@
 \alias{signature}
 \alias{sig}
 \alias{is_ok_sig}
+\alias{showsig}
 \alias{mymax}
 \title{The signature of the Clifford algebra}
 \description{Getting and setting the signature of the Clifford algebra}
@@ -9,14 +10,16 @@
 signature(s)
 is_ok_sig(s)
 mymax(s)
+showsig(s)
 }
 \arguments{
   \item{s}{Integer, specifying number of positive elements on the
     diagonal of the quadratic form}
 }
 \details{\loadmathjax
-The function is modelled on \code{lorentz::sol()} which gets and sets
-the speed of light.
+
+The signature functionality is modelled on \code{lorentz::sol()} which
+gets and sets the speed of light.
 
 Clifford algebras require a bilinear form on \mjteqn{R^n}{\mathbb{R}^n}{R^n}
 \mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}, usually written
@@ -57,6 +60,13 @@ operation reduces to the wedge product of a Grassman algebra.  Package
 idiom for this is to specify a \emph{negative} value for \eqn{p}.  But
 this is not recommended: use the \pkg{wedge} package for Grassman
 algebras, which is much more efficient and uses nicer idiom.
+
+Function \code{signature(foo)} returns the signature silently; but
+setting option \code{show_signature} to \code{TRUE} makes
+\code{signature()} have the side-effect of calling \code{showsig()}.
+This changes the default prompt to display the signature, much like
+\code{showSOL} in the \code{lorentz} package.  There is special
+dispensation for \dQuote{infinite} signatures and negative sigatures.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.
