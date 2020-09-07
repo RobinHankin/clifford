@@ -16,8 +16,8 @@
 
   An \dfn{involution} is a function that is its own inverse, or
   equivalently \mjseqn{f(f(x))=x}.  There are several important
-  involutions; these commute past the grade operator with
-  \mjeqn{f(\left\langle A\right\rangle_r)=\left\langle
+  involutions on Clifford objects; these commute past the grade operator
+  with \mjeqn{f(\left\langle A\right\rangle_r)=\left\langle
   f(A)\right\rangle_r}{omitted} and are linear: \mjeqn{f(\alpha A+\beta
   B)=\alpha f(A)+\beta f(B)}{omitted}.
   
@@ -56,9 +56,9 @@
     \mjteqn{e_A}{e_\mathbb{A}}{e_A} with \mjteqn{A\subseteq\left\lbrace
     1,\ldots,p+q\right\rbrace}{\mathbb{A}\subseteq\left\lbrace
     1,\ldots,p+q\right\rbrace}{omitted}, then we have \mjteqn{
-    e_A^\dagger = (-1)^m {e_A}^\sim }{ e_\mathbb{A}^\dagger = (-1)^m
-    {e_\mathbb{A}}^\sim }{ omitted}, where \mjteqn{ m=\mathrm{gr}_{-}(A)
-    }{ r=\mathrm{gr}_{-}(\mathbb{A}) }{ omitted }.  Alternatively, we
+    e_A^\dagger = (-1)^m {e_A}^\sim}{e_\mathbb{A}^\dagger = (-1)^m
+    {e_\mathbb{A}}^\sim}{omitted}, where \mjteqn{m=\mathrm{gr}_{-}(A)
+    }{m=\mathrm{gr}_{-}(\mathbb{A})}{omitted}.  Alternatively, we
     might say \mjdeqn{\left(\left\langle
     A\right\rangle_r\right)^\dagger=(-1)^m(-1)^{r(r-1)/2}\left\langle
     A\right\rangle_r }{omitted} where
