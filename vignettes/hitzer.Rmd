@@ -37,7 +37,8 @@ we have
 $\displaystyle\widehat{M}=\sum_{k=0}^n(-1)^k\abr{M}_k\qquad\mbox{\tt gradeinv(M)}$
 * Reversion $\displaystyle\widetilde{M}=\sum_{k=0}^n(-1)^{k(k-1)/2}\abr{M}_k\qquad\mbox{\tt rev(M)}$
 * Clifford conjugation $\displaystyle\overline{M}=\sum_{k=0}^n(-1)^{k(k+1)/2}\abr{M}_k\qquad\mbox{\tt cliffconj(M)}$
-* Grade specific maps $\displaystyle m_{\overline{j},\overline{k}}(M)=M-2\left(\abr(M)_j+\abr{M}_k\right)\qquad\mbox{\tt neg(M)}$
+* Grade specific maps $\displaystyle m_{\overline{j},\overline{k}}(M)=M-2\left(\abr{M}_j+\abr{M}_k\right)\qquad\mbox{\tt neg(M)}$ 
+* The generalised grade specific map $\displaystyle m_A(M)=M-\sum_{i\in A}\abr{M}i\qquad\mbox{\tt neg(M)}$
 
 
 H\&S  assert that
