@@ -98,7 +98,7 @@
 `is.real` <- function(C){length(c(terms(C),recursive=TRUE))==0}
 `is.scalar` <- is.real
 `nbits` <- function(x){
-    if(is.real(x)){
+    if(clifford::is.real(x)){
         return(0)
     } else {
         return(max(c(terms(x),recursive=TRUE)))
