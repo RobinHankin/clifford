@@ -5,6 +5,7 @@
 \alias{nbits}
 \alias{nterms}
 \alias{dim}
+\alias{dim.clifford}
 \alias{dimension}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
