@@ -31,7 +31,7 @@ $$M=
 \abr{M}_2+\cdots+\abr{M}_0
 $$
 
-we have
+we have a number of involutions, documented at `involutions.Rd`:
 
 * The main grade involution
 $\displaystyle\widehat{M}=\sum_{k=0}^n(-1)^k\abr{M}_k\qquad\mbox{\tt gradeinv(M)}$
