@@ -104,6 +104,10 @@
         return(max(c(terms(x),recursive=TRUE)))
     }
 }
+
+setGeneric("dim")
+`dim.clifford` <- function(x){max(c(terms(x),recursive=TRUE))}
+
 `grades` <- function(x){unlist(lapply(terms(x),length))}
 
 

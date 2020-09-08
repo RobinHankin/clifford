@@ -4,6 +4,8 @@
 \alias{is.clifford}
 \alias{nbits}
 \alias{nterms}
+\alias{dim}
+\alias{dimension}
 \alias{is_ok_clifford}
 \title{Create, coerce, and test for \code{clifford} objects}
 \description{
@@ -19,6 +21,7 @@ as.clifford(x)
 is.clifford(x)
 nbits(x)
 nterms(x)
+\method{dim}{clifford}(x)
 }
 \arguments{
   \item{terms}{A list of integer vectors with strictly increasing
