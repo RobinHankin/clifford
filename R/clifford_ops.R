@@ -4,6 +4,7 @@
         if(is.null(s)){s <- .Machine$integer.max}
         if(is.infinite(s)){s <- .Machine$integer.max}
         showsig(s)
+        class(s) <- "sigobj"
         return(s)
     } else { # set signature
         stopifnot(is_ok_sig(s))
@@ -24,6 +25,10 @@
             options("prompt" = paste("sig", s, "> "))
         }
     } 
+}
+
+`print.sigobj` <- function(x,...){
+    print(ifelse(x == .Machine$integer.max, Inf, x))
 }
 
 

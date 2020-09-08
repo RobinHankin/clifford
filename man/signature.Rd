@@ -3,6 +3,7 @@
 \alias{sig}
 \alias{is_ok_sig}
 \alias{showsig}
+\alias{print.sigobj}
 \alias{mymax}
 \title{The signature of the Clifford algebra}
 \description{Getting and setting the signature of the Clifford algebra}
@@ -11,10 +12,13 @@ signature(s)
 is_ok_sig(s)
 mymax(s)
 showsig(s)
+\method{print}{sigobj}(x,...)
 }
 \arguments{
   \item{s}{Integer, specifying number of positive elements on the
     diagonal of the quadratic form}
+  \item{x}{Object of class \code{sigobj}}
+  \item{...}{Further arguments, currently ignored}
 }
 \details{\loadmathjax
 
@@ -66,7 +70,10 @@ setting option \code{show_signature} to \code{TRUE} makes
 \code{signature()} have the side-effect of calling \code{showsig()}.
 This changes the default prompt to display the signature, much like
 \code{showSOL} in the \code{lorentz} package.  There is special
-dispensation for \dQuote{infinite} signatures and negative sigatures.
+dispensation for \dQuote{infinite} signatures and negative sigatures;
+the \code{sigobj} class ensures that a near-infinite integer
+such as \code{.Machine$integer.max} will be printed as
+\dQuote{\code{Inf}} rather than \dQuote{\code{2147483647}}.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.
