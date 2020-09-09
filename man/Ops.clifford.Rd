@@ -143,10 +143,12 @@ C1 \%|_\% C2
   Because geometric product is often denoted by juxtaposition, package
   idiom includes \code{a \% \% b} for geometric product.
 
-  Function \code{clifford_inverse()} is problematic as nonnull blades
-  always have an inverse; but function \code{is.blade()} is not yet
-  implemented.  Blades (including null blades) have a pseudoinverse, but
-  this is not implemented yet either.
+  Function \code{clifford_inverse()} returns an inverse for nonnull
+  Clifford objects \mjseqn{Cl(p,q)} for \mjeqn{p+q\leq 5}{p+5 <= 5}, and
+  a few other special cases.  The functionality is problematic as
+  nonnull blades always have an inverse; but function \code{is.blade()}
+  is not yet implemented.  Blades (including null blades) have a
+  pseudoinverse, but this is not implemented yet either.
   
   The \dfn{scalar product} of two clifford objects is defined as the
   zero-grade component of their geometric product:

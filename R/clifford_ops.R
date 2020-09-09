@@ -139,8 +139,15 @@ maxyterm <- function(C1,C2=as.clifford(0)){
 
 `clifford_inverse` <- function(C){
     if(signature()<0){stop("inverses not defined for Grassman algebra")}
-    stopifnot((all(grades(C)==1)) || is.pseudoscalar(C))
-    return(clifford_times_scalar(Conj(C),1/eucprod(C)))
+
+    if((all(grades(C)==1)) || is.pseudoscalar(C)){
+        return(clifford_times_scalar(Conj(C),1/eucprod(C)))
+    }
+
+    if(nbits(C)>5){stop("inverses only defined for p+q <=5")}
+    jj <- cliffconj(C)*gradeinv(C)*rev(C)
+    jj <- jj*neg(C*jj,c(1L,4L))
+    jj/drop(zap(C*jj))
 }
 
 `clifford_plus_clifford` <- function(C1,C2){
