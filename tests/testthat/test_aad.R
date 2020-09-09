@@ -1,4 +1,4 @@
-test_that("Test suite aaa.R",{  # tests of signature
+test_that("Test suite aad.R",{  # tests of signature
 
     expect_silent(signature())
     expect_silent(signature(Inf))

@@ -5,7 +5,7 @@
 ## a test is failed.  Function checker1() has one argument, checker2()
 ## two, and checker3() has three.  
 
-test_that("Test suite aab.R",{
+test_that("Test suite aac.R",{
 
   x <- clifford(list(1,2,1:4),1:3)
   expect_true(all(grades(grade(x,4)) == 4))
