@@ -242,10 +242,10 @@ clifford cartan(const clifford C, const NumericVector &n){ // Appendix B of Hitz
 
     for (clifford::const_iterator ic=C.begin(); ic != C.end(); ++ic){
         blade c = ic->first;
-        if(c.size() < 5){c.resize(5);}
+        const size_t o = n[0]-1; // "-1" so the numbers match
+        if(c.size() < o+5){c.resize(o+5);}
         const blade b = c;
         const long double v = ic->second;
-        const size_t o = n[0]-1; // "-1" so the numbers match
 
 
         if      (!b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 0000 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // 1 -> 1
@@ -275,10 +275,10 @@ clifford cartan_inverse(const clifford C, const NumericVector &n){ // Appendix B
 
     for (clifford::const_iterator ic=C.begin(); ic != C.end(); ++ic){
         blade c = ic->first;
-        if(c.size() < 5){c.resize(5);}
+        const size_t o = n[0]-1; // "-1" so the numbers match
+        if(c.size() < o+5){c.resize(o+5);}
         const blade b = c;
         const long double v = ic->second;
-        const size_t o = n[0]-1; // "-1" so the numbers match
 
 
         if      (!b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 0000 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // 1 -> 1
