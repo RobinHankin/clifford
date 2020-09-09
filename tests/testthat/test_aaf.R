@@ -1,4 +1,4 @@
-test_that("Test suite aag.R",{  # tests of division
+test_that("Test suite aaf.R",{  # tests of division
     small <- 1e-4
     tiny <- 1e-10
     checker1 <- function(A){
@@ -22,5 +22,9 @@ test_that("Test suite aag.R",{  # tests of division
         checker1(A)
         checker2(A,B)
     }
+
+    # Some spot checks:
+    expect_error(1/(1+e(1:6)))
+
 })
 
