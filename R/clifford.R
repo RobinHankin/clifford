@@ -74,6 +74,8 @@
         return(x)
     } else if(is.list(x)){
         return(clifford(x[[1]],x[[2]]))
+    } else if(onion::is.quaternion(x)){
+        return(quaternion_to_clifford(x))
     } else if(is.numeric(x)){
         return(numeric_to_clifford(x))
     } else if(is.null(x)){
