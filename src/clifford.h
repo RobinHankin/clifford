@@ -242,7 +242,7 @@ clifford cartan(const clifford C, const NumericVector &n){ // Appendix B of Hitz
 
     for (clifford::const_iterator ic=C.begin(); ic != C.end(); ++ic){
         blade c = ic->first;
-        const size_t o = n[0]-1; // "-1" so the numbers match
+        const size_t o = n[0]-1; // "-1" so the numbers match; off-by-one
         if(c.size() < o+5){c.resize(o+5);}
         const blade b = c;
         const long double v = ic->second;
