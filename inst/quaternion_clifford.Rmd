@@ -9,7 +9,6 @@ library("clifford")
 library("onion")
 ```
 
-
 The Broome Bridge insight:
 
 \[
@@ -32,32 +31,44 @@ general quaternion is of the form
 $a+\mathbf{i}b+\mathbf{j}c+\mathbf{k}d$; addition is componentwise and
 multiplication follows from the above.
 
-A rotation operator $\mathbf{R}$ is generally written in the form
+
+To express quaternionic multiplication using Clifford algebra we
+identify $\mathbb{H}$ with $Cl(3,0)$ as follows:
 
 \[
-\mathbf{R}=\cos\frac{\theta}{2} - \left(
-n^1\mathbf{i}+
-n^2\mathbf{j}+
-n^3\mathbf{k}
-\right)\sin\frac{\theta}{2}
+\mathbf{i}\leftrightarrow -e_{12}\\
+\mathbf{j}\leftrightarrow -e_{13}\\
+\mathbf{k}\leftrightarrow -e_{23}\\
 \]
 
-In the theory of Clifford algebra, a rotor $\mathbf{R}$ is represented as
+Thus, for example,
+$\mathbf{ii}=(-e_{12})(-e_{12})=+e_{1212}=-e_{1122}=-1$ and
+$\mathbf{ij}=(-e_{12})(-e_{13})=+e_{1213}=-e_{1123}=-e_{23}=\mathbf{k}$.
+We might wish to multiply $q_1=1+2\mathbf{i}+3\mathbf{j}+4\mathbf{k}$
+by $q_2=-2+\mathbf{i}-2\mathbf{j}+\mathbf{k}$:
 
-\newcommand{\e}[1]{\mathbf{e}_{#1}}
 
-\[
-\mathbf{R}=\cos\frac{\theta}{2} + \left(
-n^1\e{23}+
-n^2\e{31}+
-n^3\e{12}
-\right)\sin\frac{\theta}{2}
-\]
 
-and this suggests that we identify $\mathbf{i},\mathbf{j},\mathbf{k}$
-with $-\e{23},-\e{31},-\e{12}$ respectively.  Thus for example we may
-verify that $\mathbf{i}\mathbf{j}=\mathbf{k}$:
+```{r}
+q1 <- +1 + 2* -e(c(1,2)) + 3*-e(c(1,3)) + 4*-e(c(2,3))
+q1
+q2 <- -2 + 1* -e(c(1,2)) - 2*-e(c(1,3)) + 1*-e(c(2,3))
+q2
+q1*q2
+```
 
-\[
-(-\e{23})(-\e{31})=\e{2331}=\e{21}=-\e{12}=\mathbf{k}
-\]
+The product would correspond to $-2+8\mathbf{i} -6\mathbf{j}
+-14\mathbf{k}$.  However, it is possible to coerce a Clifford object
+to quaternion, and then use the `onion` package to carry out
+quaternion multiplication directly (but don't actually do it, you
+crazy fool):
+
+```{r}
+library(onion)
+q1*q2 == as.clifford(clifford_to_quaternion(q1)*clifford_to_quaternion(q2))
+```
+
+Note that in package idiom the asterisk, "`*`" represents Clifford
+geometric product on the left hand side, and Hamilton's quaternionic
+multiplication on the right hand side.
+
