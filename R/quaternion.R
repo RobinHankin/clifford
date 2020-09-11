@@ -1,7 +1,11 @@
 `clifford_to_quaternion` <- function(C){
-  stopifnot(identical(sort(grades(C)),c(0L,2L,2L,2L)))
-  out <- matrix(c(const(C), -getcoeffs(C,list(c(1,2),c(1,3),c(2,3)) )))
-  class(out) <- c("onion","quaternion")
+    C <- as.clifford(C)
+    stopifnot(all(c(terms(C),recursive=TRUE) <= 3))
+    jj <- unlist(lapply(terms(C),length))
+    stopifnot(all(jj <= 2))
+    stopifnot(all(jj%%2 == 0))
+    out <- matrix(c(const(C), -getcoeffs(C,list(c(1,2),c(1,3),c(2,3)) )))
+    class(out) <- c("onion","quaternion")
   return(out)
 }
 
