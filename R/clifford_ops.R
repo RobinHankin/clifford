@@ -98,16 +98,16 @@ maxyterm <- function(C1,C2=as.clifford(0)){
             stop("Generic '^' not implemented in this case")
         }
     } else if (.Generic == "==") {
-        if(lclass && rclass){
+        if(lclass || rclass){
             return(clifford_eq_clifford(as.clifford(e1),as.clifford(e2)))
         } else {
-            stop("Generic '==' only compares two clifford objects with one another")
+            stop("Generic '==' called inappropriately")
         }
     } else if (.Generic == "!=") {
-         if(lclass && rclass){
+         if(lclass || rclass){
             return(!clifford_eq_clifford(as.clifford(e1),as.clifford(e2)))
         } else {
-            stop("Generic '==' only compares two clifford objects with one another")
+            stop("Generic '!=' called inappropriately")
         }
     }
 }
