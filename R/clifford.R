@@ -96,7 +96,15 @@
 `is.clifford` <- function(x){inherits(x,"clifford")}
 
 `nterms` <- function(x){length(coeffs(x))}
-`is.zero` <- function(C){nterms(as.clifford(C))==0}
+`is.zero` <- function(C){
+    if(is.clifford(C)){
+        out <- nterms(C)==0
+    } else {
+        out <- C==0
+    }
+    return(out)
+}
+
 `is.real` <- function(C){length(c(terms(C),recursive=TRUE))==0}
 `is.scalar` <- is.real
 `nbits` <- function(x){
