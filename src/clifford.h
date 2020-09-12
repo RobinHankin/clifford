@@ -248,22 +248,22 @@ clifford cartan(const clifford C, const NumericVector &n){ // Appendix B of Hitz
         const long double v = ic->second;
 
 
-        if      (!b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 0000 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // 1 -> 1
-                (!b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 0001 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4,false); out[c] = +v;} else if // e4 -> e123
-                (!b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 0010 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e3 -> -e124
-                (!b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 0011 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4, true); out[c] = -v;} else if // e34 -> -e34
-                (!b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 0100 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else if // e2 -> e134
-                (!b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 0101 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e24 -> -e24
-                (!b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 0110 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e23 -> -e23
-                (!b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 0111 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // e234 -> e1
-                ( b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 1000 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = -v;} else if // e1 -> -e234
-                ( b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 1001 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e14 -> -e14
-                ( b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 1010 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e13 -> -e13
-                ( b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 1011 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e134 -> -e2
-                ( b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 1100 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e12 -> -e12
-                ( b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 1101 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4,false); out[c] = +v;} else if // e124 -> e3
-                ( b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 1110 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e123 -> -e4
-                ( b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 1111 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else {  // e1234  -> e1234
+        if      (!b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 0000 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3,false); c.set(o+4,false); out[c] = +v;} else if // 1 -> 1
+                (!b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 0001 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3, true); c.set(o+4,false); out[c] = +v;} else if // e4 -> e123
+                (!b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 0010 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3,false); c.set(o+4, true); out[c] = -v;} else if // e3 -> -e124
+                (!b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 0011 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3, true); c.set(o+4, true); out[c] = -v;} else if // e34 -> -e34
+                (!b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 0100 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3, true); c.set(o+4, true); out[c] = +v;} else if // e2 -> e134
+                (!b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 0101 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3,false); c.set(o+4, true); out[c] = -v;} else if // e24 -> -e24
+                (!b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 0110 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3, true); c.set(o+4,false); out[c] = -v;} else if // e23 -> -e23
+                (!b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 0111 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3,false); c.set(o+4,false); out[c] = +v;} else if // e234 -> e1
+                ( b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 1000 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3, true); c.set(o+4, true); out[c] = -v;} else if // e1 -> -e234
+                ( b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 1001 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3,false); c.set(o+4, true); out[c] = -v;} else if // e14 -> -e14
+                ( b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 1010 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3, true); c.set(o+4,false); out[c] = -v;} else if // e13 -> -e13
+                ( b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 1011 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3,false); c.set(o+4,false); out[c] = -v;} else if // e134 -> -e2
+                ( b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 1100 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3,false); c.set(o+4,false); out[c] = -v;} else if // e12 -> -e12
+                ( b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 1101 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3, true); c.set(o+4,false); out[c] = +v;} else if // e124 -> e3
+                ( b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 1110 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3,false); c.set(o+4, true); out[c] = -v;} else if // e123 -> -e4
+                ( b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 1111 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3, true); c.set(o+4, true); out[c] = +v;} else {  // e1234  -> e1234
             throw("this cannot happen");
               }
     } // main clifford loop closes
@@ -281,22 +281,22 @@ clifford cartan_inverse(const clifford C, const NumericVector &n){ // Appendix B
         const long double v = ic->second;
 
 
-        if      (!b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 0000 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // 1 -> 1
-                (!b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 0001 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e4 -> -e123
-                (!b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 0010 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4, true); out[c] = +v;} else if // e3 -> +e124
-                (!b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 0011 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4, true); out[c] = -v;} else if // e34 -> -e34
-                (!b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 0100 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4, true); out[c] = -v;} else if // e2 -> -e134
-                (!b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 0101 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e24 -> -e24
-                (!b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 0110 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e23 -> -e23
-                (!b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 0111 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e234 -> -e1
-                ( b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 1000 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else if // e1 -> +e234
-                ( b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 1001 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = -v;} else if // e14 -> -e14
-                ( b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 1010 */ c.set(o+1, true) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e13 -> -e13
-                ( b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 1011 */ c.set(o+1,false) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = +v;} else if // e134 -> +e2
-                ( b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 1100 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3,false) ;c.set(o+4,false); out[c] = -v;} else if // e12 -> -e12
-                ( b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 1101 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3, true) ;c.set(o+4,false); out[c] = -v;} else if // e124 -> -e3
-                ( b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 1110 */ c.set(o+1,false) ; c.set(o+2,false); c.set(o+3,false) ;c.set(o+4, true); out[c] = +v;} else if // e123 -> +e4
-                ( b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 1111 */ c.set(o+1, true) ; c.set(o+2, true); c.set(o+3, true) ;c.set(o+4, true); out[c] = +v;} else {  // e1234  -> e1234
+        if      (!b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 0000 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3,false); c.set(o+4,false); out[c] = +v;} else if // 1 -> 1
+                (!b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 0001 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3, true); c.set(o+4,false); out[c] = -v;} else if // e4 -> -e123
+                (!b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 0010 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3,false); c.set(o+4, true); out[c] = +v;} else if // e3 -> +e124
+                (!b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 0011 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3, true); c.set(o+4, true); out[c] = -v;} else if // e34 -> -e34
+                (!b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 0100 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3, true); c.set(o+4, true); out[c] = -v;} else if // e2 -> -e134
+                (!b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 0101 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3,false); c.set(o+4, true); out[c] = -v;} else if // e24 -> -e24
+                (!b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 0110 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3, true); c.set(o+4,false); out[c] = -v;} else if // e23 -> -e23
+                (!b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 0111 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3,false); c.set(o+4,false); out[c] = -v;} else if // e234 -> -e1
+                ( b[o+1] & !b[o+2] & !b[o+3] & !b[o+4]) {/* 1000 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3, true); c.set(o+4, true); out[c] = +v;} else if // e1 -> +e234
+                ( b[o+1] & !b[o+2] & !b[o+3] &  b[o+4]) {/* 1001 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3,false); c.set(o+4, true); out[c] = -v;} else if // e14 -> -e14
+                ( b[o+1] & !b[o+2] &  b[o+3] & !b[o+4]) {/* 1010 */ c.set(o+1, true); c.set(o+2,false); c.set(o+3, true); c.set(o+4,false); out[c] = -v;} else if // e13 -> -e13
+                ( b[o+1] & !b[o+2] &  b[o+3] &  b[o+4]) {/* 1011 */ c.set(o+1,false); c.set(o+2, true); c.set(o+3,false); c.set(o+4,false); out[c] = +v;} else if // e134 -> +e2
+                ( b[o+1] &  b[o+2] & !b[o+3] & !b[o+4]) {/* 1100 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3,false); c.set(o+4,false); out[c] = -v;} else if // e12 -> -e12
+                ( b[o+1] &  b[o+2] & !b[o+3] &  b[o+4]) {/* 1101 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3, true); c.set(o+4,false); out[c] = -v;} else if // e124 -> -e3
+                ( b[o+1] &  b[o+2] &  b[o+3] & !b[o+4]) {/* 1110 */ c.set(o+1,false); c.set(o+2,false); c.set(o+3,false); c.set(o+4, true); out[c] = +v;} else if // e123 -> +e4
+                ( b[o+1] &  b[o+2] &  b[o+3] &  b[o+4]) {/* 1111 */ c.set(o+1, true); c.set(o+2, true); c.set(o+3, true); c.set(o+4, true); out[c] = +v;} else {  // e1234  -> e1234
             throw("this cannot happen");
               }
     } // main clifford loop closes
