@@ -1,3 +1,6 @@
+# This follows Hildenbrand 2013, "Foundations of geometric algebra
+# computing", Springer.
+
 dimension <- 3
 signature(dimension + 1)
 eplus <- basis(dimension+1)
