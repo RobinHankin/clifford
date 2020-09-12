@@ -6,6 +6,7 @@
 \alias{conjugate}
 \alias{conj}
 \alias{cliffconj}
+\alias{dual}
 \alias{rev}
 \alias{rev.clifford}
 \alias{reverse}
@@ -20,7 +21,11 @@
   with \mjeqn{f(\left\langle A\right\rangle_r)=\left\langle
   f(A)\right\rangle_r}{omitted} and are linear: \mjeqn{f(\alpha A+\beta
   B)=\alpha f(A)+\beta f(B)}{omitted}.
-  
+
+  The \dfn{dual} is documented here for convenience, even though it is
+  not an involution (applying the dual \emph{four} times is the
+  identity).
+
   \itemize{
 
     \item The \dfn{reverse} \mjeqn{A^\sim}{omitted} is given by
@@ -87,9 +92,18 @@
     
     \mjdeqn{\overline{\left\langle A\right\rangle_r} =
       (-1)^{r(r+1)/2}\left\langle A\right\rangle_r.}{omitted}
-    
-    }
+
+    \item The \dfn{dual} \mjseqn{C^*} of a clifford object \mjseqn{C} is
+    given by \code{dual(C,n)}; argument \code{n} is the dimension of the
+    underlying vector space.  Perwass gives
+    \mjdeqn{C^*=CI^{-1}}{omitted}
+
+    where \mjeqn{I=e_1e_2\ldots e_n}{omitted} is the unit pseudoscalar.
+    The dual is sensitive to the signature of the Clifford algebra
+    \emph{and} the dimension of the underlying vector space.
+  }
 }
+ 
   
 
 \usage{
@@ -117,4 +131,8 @@ A <- rblade(g=3)
 B <- rblade(g=4)
 rev(A \%^\% B) == rev(B) \%^\% rev(A)  # should be small
 rev(A * B) == rev(B) * rev(A)            # should be small
+
+a <- rcliff()
+dual(dual(dual(dual(a,8),8),8),8) == a # should be TRUE
+
 }
