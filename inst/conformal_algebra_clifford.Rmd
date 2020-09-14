@@ -1,0 +1,281 @@
+---
+title: "Conformal geometry with Clifford algebra"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("clifford")
+```
+
+
+
+# Conformal algebra
+
+
+\newcommand{\grad}[2]{\left\langle #1\right\rangle_{#2}}
+\newcommand{\ak}{\grad{\mathbf{A}}{k}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bS}{\mathbf{S}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\einf}{\mathbf{e}_\infty}
+\newcommand{\ezero}{\mathbf{e}_0}
+
+This follows Hildenbrand with occasional notation and concepts
+following Perwass.  Here we work in $\operatorname{Cl}(p,q)$, which
+Perwass denotes $\mathbb{G}_{p,q}$.  The set of grade-$k$ object is
+denoted $\mathbb{G}_{p,q}^k$.  First we define the IPNS and OPNS
+[inner product null space and outer product null space] of $\ak$:
+
+\[
+\mathbb{NI}(\ak)=\left\lbrace bx\in\mathbb{G}^1_{p,q}\colon\bx\cdot\ak=0\right\rbrace
+\]
+
+\[
+\mathbb{NO}(\ak)=\left\lbrace bx\in\mathbb{G}^1_{p,q}\colon\bx\wedge\ak=0\right\rbrace
+\]
+
+Thus if $\ak=\bigwedge_{i=1}^k\ba_i$, then
+$\mathbb{NO}(\ak)=\operatorname{span}(\ba_1,\ldots,\ba_k)\subseteq\mathbb{R}^{p,q}$.
+Further, $\mathbb{NO}(\ak)$ is linear in the sense that
+$\bx,\by\in\mathbb{NO}(\ak)$ implies
+$\alpha\bx+\beta\by\in\mathbb{NO}(\ak)\forall\alpha,\beta\in\mathbb{R}$.
+
+
+To work in R, we first set up some basic features of conformal
+geometry:
+
+
+```{r}
+dimension <- 3
+signature(dimension + 1)
+eplus <- basis(dimension+1)
+eminus <- basis(dimension + 2)
+e0 <-  (eminus - eplus)/2
+einf <- eminus + eplus
+E <- e0 %^% einf
+```
+
+So
+
+```{r}
+e0
+einf
+E
+```
+
+Now we can consider Euclidean vectors $\ba,\bb\in\mathbb{R}^3$ and
+conformal embeddings $\bA,\bB$ given by
+
+\[
+\bA=C(\ba)=\ba+\ba^2\einf/2 +\ezero\qquad\bB=C(\bb)=\bb+\bb^2\einf/2 +\ezero
+\]
+
+
+```{r}
+point <- function(x){ as.1vector(x) + sum(x^2)*einf/2 + e0 }
+```
+
+Then, for example
+
+
+```{r}
+a <- c(1,2,5)
+b <- c(2,2,2)
+point(a)
+point(b)
+```
+
+
+It can be shown that
+$\bA\cdot\bB=-\left\lVert\ba-\bb\right\rVert^2/2$.  Package idiom to
+verify this would be
+
+
+```{r}
+c(drop(point(a)  %.% point(b)), -sum((a-b)^2)/2)
+```
+
+## Sphere, IPNS
+
+We can define a sphere with center $\ba$ and radius $\rho$ as 
+
+\[
+\bS=C(\ba) - \rho^2\einf/2
+\]
+
+and then the sphere is just the inner product null space of $\bS$,
+that is $\left\lbrace\bx\colon\bS\cdot\bX=0\right\rbrace$.  The radius
+$\rho$ can be calculated from a given sphere from $\bS^2=\rho^2$ and
+the point is given by $P=\bS\einf\bS$.  Package idiom:
+
+
+```{r}
+sphere <- function(x,r){ point(x) - r^2*einf/2}
+S <- sphere(1:3,5)  # center (1,2,3) radius 5:
+S
+```
+
+The radius $\rho$ can be calculated from a given sphere from
+$\bS^2=\rho^2$ and the point is given by $P=\bS\einf\bS$.  Package
+idiom:
+
+
+```{r}
+drop(S^2)   # 5^2 = 25
+```
+
+Finding the center of the sphere is slightly more involved:
+
+
+```{r}
+S*einf*S
+```
+
+Hildenbrand shows that the scaling factor is $-2$ so this gives us
+
+```{r}
+-S*einf*S/2
+```
+
+which we recognise as the point $(1,2,3)$:
+
+```{r}
+point(1:3)
+```
+
+
+## Sphere, OPNS
+
+We can also consider the OPNS for a sphere, defined in terms of four
+points that lie on it:
+
+\[
+S^*=P_1\wedge P_2\wedge P_3\wedge P_4
+\]
+
+
+Then points that lie on the sphere are the set
+
+\[\left\lbrace\bx\colon\bx\wedge S^*=0\right\rbrace\]
+
+
+```{r}
+spherestar <- function(...){ # OPNS
+    jj <- list(...)
+    stopifnot(length(jj) == dimension+1)
+    Reduce(`%^%`,jj)
+}
+```
+
+For example, if our four points are $(0,0,0)$, $(1,0,0)$, $(0,1,0)$,
+$(0,0,1)$ we would have
+
+```{r}
+spherestar(point(c(0,0,0)),point(c(1,0,0)),point(c(0,1,0)),point(c(0,0,1)))
+point(c(0,0,0)) %^% point(c(1,0,0)) %^% point(c(0,1,0)) %^% point(c(0,0,1))
+```
+
+# Planes
+
+A plane is defined as $\bn + d\einf$, where $\bn$ is the unit normal
+and $d$ the distance to the origin.
+
+
+```{r}
+plane <- function(n,d){ # IPNS
+    stopifnot(length(n)==dimension)
+    stopifnot(length(d) == 1)
+    as.1vector(n/sqrt(sum(n^2))) + d*einf
+}
+```
+
+For example, we consider the unit normal
+$\frac{1}{\sqrt{3}}\left(1,2,3\right)$ with distance 5:
+
+```{r}
+pl <- plane(1:3,5)
+pl
+```
+
+A plane can also be thought of as a sphere that touches the point at
+infinity; the OPNS of plane is given by
+
+\[
+\pi^\star = P_1\wedge P_2\wedge P_3\wedge\einf
+\]
+
+
+```{r}
+planestar <- function(...){ # OPNS; A^B^C^Inf
+	jj <- list(...)
+    stopifnot(length(jj) == dimension)
+    Reduce(`%^%`,lapply(jj,point)) %^% einf
+}
+```
+
+For example
+
+```{r}
+planestar(1:3,3:1,c(2,2,7))
+```
+
+
+# Circle
+
+a circle is defined as the intersection of two spheres:
+
+
+```{r}
+circle <- function(S1,S2){  # IPNS
+    S1 %^% S2
+}
+```
+
+For example
+
+```{r}
+circle(sphere(1:3,5),sphere(c(1.1,2.1,3.4),6))
+```
+
+A circle may be represented in the OPNS by specifying three points
+that lie on it:
+
+\[ Z^*=P_1\wedge P_2\wedge P_3\]
+
+
+```{r}
+circlestar <- function(...){  # OPNS; A^B^C
+	jj <- list(...)
+    stopifnot(length(jj) == dimension)
+    Reduce(`%^%`,lapply(jj,point))
+}
+
+circlestar(c(1,2,3),c(5,6,3),c(8,8,-2))
+```
+
+## Line
+
+
+```{r}
+line <- function(P1,P2){  # IPNS
+    P1 %^% P2
+}
+
+pointpair <- function(A,B){ # OPNS
+    A %^% B
+}
+```
+
+
+## References
+
+D. Hildenbrand 2013.  Foundations of Geometric Algebra Computing.
+Springer-Verlag
