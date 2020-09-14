@@ -36,8 +36,10 @@
 \alias{fatdot}
 \alias{clifford_lefttick_clifford}
 \alias{lefttick}
+\alias{left_contraction}
 \alias{clifford_righttick_clifford}
 \alias{righttick}
+\alias{right contraction}
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
 \alias{clifford_inverse}
