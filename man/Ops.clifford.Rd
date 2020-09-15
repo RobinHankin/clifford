@@ -193,6 +193,12 @@ C1 \%|_\% C2
   left and right inner product) as \mjeqn{A\rfloor B}{see PDF} and
   \mjeqn{A\lfloor B}{see PDF}.  See the vignette for more details.
 
+  Division, as in idiom \code{x/y}, is defined as
+  \code{x*clifford_inverse(y)}.  Function \code{clifford_inverse()} uses
+  the method set out by Hitzer and Sangwine but is limited to
+  \mjeqn{p+q\leq 5}{p+q <= 5}.
+
+  
 }
 \value{
 
@@ -201,6 +207,11 @@ C1 \%|_\% C2
 
 }
 \author{Robin K. S. Hankin}
+\references{
+E. Hitzer and S. Sangwine 2017.  \dQuote{Multivector and multivector
+  matrix inverses in real Clifford algebras}.  \emph{Applied Mathematics
+  and Computation} 311:375-389
+  }
 \examples{
 
 u <- rcliff(5)
