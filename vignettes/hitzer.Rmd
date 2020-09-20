@@ -63,6 +63,8 @@ a3 <- rev(gradeinv(M))
 is.zero(a2-a1) & is.zero(a3-a1)
 ```
 
+# $p+q=3$, three-dimensional vector spaces.
+
 We now consider the case $p+q=3$.  If $x\in Cl(p,q)$ with $p+q=3$ then
 equation 6.2 asserts that $x\overline{x}=r_0 +r_3 e_1e_2e_3$ for some
 $r_0,r_3\in\mathbb{R}$:
@@ -72,7 +74,8 @@ $r_0,r_3\in\mathbb{R}$:
 x*cliffconj(x)
 ```
 
-and equation 6.3 asserts that $x\overline{x}(x\overline{x})^\sim\in\mathbb{R}$:
+and equation 6.3 asserts that
+$x\overline{x}(x\overline{x})^\sim\in\mathbb{R}$:
 
 ```{r,label=defineequation6.3}
 f <- function(x){
@@ -92,7 +95,15 @@ signature(3)
 f(rcliff(d=3,g=3))
 ```
 
-Thus equation 6.5:
+Thus equation 6.5, which asserts that the right inverse $x_r^{-1}$ is
+
+\[
+x_r^{-1}=\frac{
+	 \overline{x}\hat{x}\tilde{x}      }{
+	x\overline{x}\hat{x}\tilde{x}
+		},\qquad xx_r^{-1}=1
+\]
+
 
 ```{r,label=defineequation6.5}
 RI3 <- function(x){ # right inverse
@@ -109,7 +120,27 @@ zap(RI3(a)*a)
 ```
 
 
-Now equation 7.7:
+Now equations 7.7 and 7.8, which assert that if
+$x\overline{x}m_{\overline{3},\overline{4}}(x\overline{x})$ is
+nonzero, we have
+
+\[
+x_r^{-1} = \frac{
+     \overline{x}m_{\overline{3},\overline{4}}(x\overline{x})  }{
+    x\overline{x}m_{\overline{3},\overline{4}}(x\overline{x})
+	},\qquad xx_r^{-1}=1
+\]
+
+and 
+		
+\[
+x_l^{-1} = \frac{
+     \overline{x}m_{\overline{3},\overline{4}}(x\overline{x})  }{
+     \overline{x}m_{\overline{3},\overline{4}}(x\overline{x})x
+	},\qquad x_l^{-1}x=1
+\]
+
+Numerical verification:		
 
 ```{r,label=defineequation7.7}
 f77 <- function(x){
@@ -156,10 +187,23 @@ a <- rcliff()
 a*f77(a)   # (denominator not real)
 ```
 
-Now the case $p+q\leq 5$.
+# The case $p+q\leq 5$
+
+## Right inverse
+
+Equation 8.21 asserts that, if $p+q\leq 5$ then
+$z=x\overline{x}\hat{x}\tilde{x}m_{\overline{1},\overline{4}}(x\overline{x}\hat{x}\tilde{x})\in\mathbb{R}$.  
+Equation 8.22 asserts that, if $z$ is nonzero, then
+
+\[
+x_r^{-1}=\frac{
+ \overline{x}\hat{x}\tilde{x}m_{\overline{1},\overline{4}}(x\overline{x}\hat{x}\tilde{x})}{
+x\overline{x}\hat{x}\tilde{x}m_{\overline{1},\overline{4}}(x\overline{x}\hat{x}\tilde{x})
+},xx_r^{-1}=1.
+\]
 
 ```{r,label=section8}
-f8 <- function(x){
+f822 <- function(x){
 	jj <- cliffconj(x)*gradeinv(x)*rev(x)
 	jj <- jj*neg(x*jj,c(1L,4L))
 	jj/drop(zap(x*jj))
@@ -167,11 +211,11 @@ f8 <- function(x){
 ```
 
 ```{r}
-a <- 7+rcliff(d=5,g=5)
+a <- 7+clifford(list(1,3,5,1:2,c(1,5),c(3,4),1:3,2:4,c(2,3,5),1:4,2:5,c(1,2,3,5),1:5),1:13)
 a
-f8(a)
-zap(a*f8(a))
-zap(f8(a)*a)
+f822(a)
+zap(a*f822(a))
+zap(f822(a)*a)
 ```
 
 And a similar set of verifications:
@@ -184,14 +228,58 @@ diffr <- rep(NA,5)
 for(i in seq_along(sigs)){
 	signature(sigs[i])
 	a <- sample(1:9,1) + rcliff(d=5)
-	diffl[i] <- Mod(a*f8(a)-1)
-	diffr[i] <- Mod(f8(a)*a-1)
+	diffl[i] <- Mod(a*f822(a)-1)
+	diffr[i] <- Mod(f822(a)*a-1)
 }
 diffl
 diffr
 ```
 
+## Left inverse
 
+Similarly, equation 8.23 asserts that , if $p+q\leq 5$ then $z'=
+m_{\overline{1},\overline{4}}(\tilde{x}\hat{x}\overline{x}x)
+\tilde{x}\hat{x}\overline{x}x\in\mathbb{R}$.  And if $z'\neq 0$
+equation 8.24 asserts that
+
+\[
+x_l^{-1} = \frac{
+m_{\overline{1},\overline{4}}(\tilde{x}\hat{x}\overline{x}x)\tilde{x}\hat{x}\overline{x} }{
+m_{\overline{1},\overline{4}}(\tilde{x}\hat{x}\overline{x}x)\tilde{x}\hat{x}\overline{x}x},\qquad
+x_l^{-1}x = 1.
+\]
+
+The R idiom would be
+
+```{r}
+f824 <- function(x){  # left inverse
+	jj <- rev(x)*gradeinv(x)*cliffconj(x)
+	jj <- neg(jj*x,c(1L,4L))*jj
+	jj/drop(zap(jj*x))
+}
+```
+
+Check:
+
+```{r}
+zap(f824(x)*x)
+zap(f822(x)*x)
+```
+
+It turns out that the left and right inverses coincide:
+
+```{r}
+signature(0)
+Mod(f822(x) - f824(x))
+signature(1)
+Mod(f822(x) - f824(x))
+signature(2)
+Mod(f822(x) - f824(x))
+signature(3)
+Mod(f822(x) - f824(x))
+signature(4)
+Mod(f822(x) - f824(x))
+```
 
 # Cartan isomorphism
 
