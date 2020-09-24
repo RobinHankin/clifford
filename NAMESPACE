@@ -16,6 +16,9 @@ importFrom(Rcpp, evalCpp)
 importFrom("utils", "capture.output")
 importFrom("stats", "rnorm")
 
+import(mathjaxr)
+
+
 S3method("[", clifford)
 S3method("[<-", clifford)
 S3method("%.%",clifford)

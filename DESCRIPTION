@@ -12,9 +12,9 @@ Description: A suite of routines for Clifford algebras, using the
    Conformal geometric algebra theory is implemented.
 License: GPL (>= 2)
 LazyData: yes
-Suggests: knitr,rmarkdown,testthat,onion,lorentz,mathjaxr
+Suggests: knitr,rmarkdown,testthat,onion,lorentz
 VignetteBuilder: knitr
-Imports: Rcpp (>= 0.12.5)
+Imports: Rcpp (>= 0.12.5),mathjaxr
 LinkingTo: Rcpp,BH
 SystemRequirements: C++11
 URL: https://github.com/RobinHankin/clifford.git
