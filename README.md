@@ -8,7 +8,7 @@ The clifford package: Clifford algebra in R
 [![Build
 Status](https://travis-ci.org/RobinHankin/clifford.svg?branch=master)](https://travis-ci.org/RobinHankin/clifford)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
-[![Rdoc](http://www.rdocumentation.org/badges/version/clifford)](http://www.rdocumentation.org/packages/clifford)
+[![Rdoc](https://www.rdocumentation.org/badges/version/clifford)](https://www.rdocumentation.org/packages/clifford)
 [![Codecov test
 coverage](https://codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/clifford/branch/master)
 <!-- badges: end -->
@@ -59,8 +59,7 @@ package includes a large number of products:
 ``` r
 a*b        # geometric product (also "a % % b")
 #> Element of a Clifford algebra, equal to
-#> - 16 + 6e_1 - 3e_2 - 2e_12 + 14e_3 + 12e_13 + 3e_123 - 9e_14 + 9e_34 -
-#> 6e_134
+#> - 16 + 6e_1 - 3e_2 - 2e_12 + 14e_3 + 12e_13 + 3e_123 - 9e_14 + 9e_34 - 6e_134
 a %^% b    # outer product
 #> Element of a Clifford algebra, equal to
 #> - 2e_12 + 3e_123
@@ -77,15 +76,10 @@ The package can deal with non positive-definite inner products. Suppose
 we wish to deal with an inner product of
 
   
-![
-\\begin{pmatrix}
-\+1 & 0 & 0 & 0 & 0\\\\
-0 &+1 & 0 & 0 & 0\\\\
-0 & 0 &+1 & 0 & 0\\\\
-0 & 0 & 0 &-1 & 0\\\\
-0 & 0 & 0 & 0 &-1
-\\end{pmatrix}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%0A%2B1%20%26%200%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%2B1%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%2B1%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26-1%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26%200%20%26-1%0A%5Cend%7Bpmatrix%7D%0A
+![&#10;\\begin{pmatrix}&#10;+1 & 0 & 0 & 0 & 0\\\\&#10; 0 &+1 & 0 & 0
+& 0\\\\&#10; 0 & 0 &+1 & 0 & 0\\\\&#10; 0 & 0 & 0 &-1 & 0\\\\&#10; 0 & 0
+& 0 & 0
+&-1&#10;\\end{pmatrix}&#10;](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%0A%2B1%20%26%200%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%2B1%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%2B1%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26-1%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26%200%20%26-1%0A%5Cend%7Bpmatrix%7D%0A
 "
 \\begin{pmatrix}
 +1 & 0 & 0 & 0 & 0\\\\
@@ -103,7 +97,6 @@ The package idiom for this would be to use `signature()`:
 
 ``` r
 signature(3)
-#> [1] 3
 ```
 
 Function `signature()` is based on `lorentz::sol()` and its argument
@@ -138,11 +131,11 @@ Thus:
 options("basissep" = ",")
 (x <- rcliff(d=20))
 #> Element of a Clifford algebra, equal to
-#> + 6e_5 + 8e_1,3,6 + 4e_10 + 5e_6,10 + 3e_10,12 + 2e_14 + 7e_10,14 +
-#> 1e_5,9,15 + 9e_1,19
+#> + 6e_5 + 8e_1,3,6 + 4e_10 + 5e_6,10 + 3e_10,12 + 2e_14 + 7e_10,14 + 1e_5,9,15 +
+#> 9e_1,19
 summary(x^3)
 #> Element of a Clifford algebra 
-#> Typical terms:   + 30e_5  ...   - 378e_1,5,9,10,14,15,19 
+#> Typical terms:   + 30e_5  ...  - 378e_1,5,9,10,14,15,19 
 #> Number of terms: 49 
 #> Magnitude: 22747521
 ```
