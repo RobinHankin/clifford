@@ -155,32 +155,40 @@ point(1:3)
 ## Sphere, OPNS
 
 We can also consider the OPNS for a sphere, defined in terms of four
-points that lie on it:
+points that lie on it.  For example, if our four points are $(0,0,0)$,
+$(1,0,0)$, $(0,1,0)$, $(0,0,1)$ we would have a rather involved
+algebraic calculation resulting in a sphere of radius
+$\frac{\sqrt{3}}{2}$ and center
+$\left(\frac{1}{2},\frac{1}{2},\frac{1}{2}\right)$.
+
+The conformal representation for a sphere in OPNS would be 
 
 \[
 S^*=P_1\wedge P_2\wedge P_3\wedge P_4
 \]
 
+and points that lie on the sphere are the set
 
-Then points that lie on the sphere are the set
+\[\left\lbrace\bx\colon\bx\wedge S^*=0\right\rbrace.\]
 
-\[\left\lbrace\bx\colon\bx\wedge S^*=0\right\rbrace\]
 
+The R idiom for this is straightforward:
 
 ```{r}
-spherestar <- function(...){ # OPNS
-    jj <- list(...)
-    stopifnot(length(jj) == dimension+1)
-    Reduce(`%^%`,jj)
-}
+origin <- point(c(0,0,0))
+px <- point(c(1,0,0))
+py <- point(c(0,1,0))
+pz <- point(c(0,0,1))
+
+origin %^% px %^% py %^% pz
 ```
 
-For example, if our four points are $(0,0,0)$, $(1,0,0)$, $(0,1,0)$,
-$(0,0,1)$ we would have
+And this is the representation for a sphere (translating this into a
+center and radius is not yet implemented).  Slightly slicker R idiom might be:
 
 ```{r}
-spherestar(point(c(0,0,0)),point(c(1,0,0)),point(c(0,1,0)),point(c(0,0,1)))
-point(c(0,0,0)) %^% point(c(1,0,0)) %^% point(c(0,1,0)) %^% point(c(0,0,1))
+spherestar <- function(...){Reduce(`%^%`,list(...))}
+spherestar(origin, px, py, pz)
 ```
 
 # Planes
