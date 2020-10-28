@@ -100,8 +100,10 @@ verify this would be
 
 
 ```{r}
-c(drop(point(a)  %.% point(b)), -sum((a-b)^2)/2)
+c(conformal=drop(point(a)  %.% point(b)), Euclidean = -sum((a-b)^2)/2)
 ```
+
+showing that the two results match.
 
 ## Sphere, IPNS
 
