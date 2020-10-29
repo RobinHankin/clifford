@@ -79,12 +79,16 @@
     grade negation.
 
     \item The \dfn{grade \eqn{r}-negation}
-    \mjeqn{A_{\overline{r}}}{omitted}
-    is given by \code{neg()}.  This
+    \mjeqn{A_{\overline{r}}}{omitted} is given by \code{neg()}.  This
     changes the sign of the grade \eqn{r} component of \eqn{A}.  It is
     formally defined as \mjeqn{A-2\left\langle
-      A\right\rangle_r}{A-2<A>_r}.  It is possible to negate terms with
-    grades belonging to a subset of \mjteqn{N}{\mathbb{N}}{N}.
+    A\right\rangle_r}{A-2<A>_r} but function \code{neg()} uses a more
+    efficient method.  It is possible to negate all terms with specified
+    grades, so for example we might have \mjeqn{\left\langle
+    A\right\rangle_{\overline{\left\lbrace 1,2,5\right\rbrace}} =
+    A-2\left( \left\langle A\right\rangle_1 +\left\langle
+    A\right\rangle_2+\left\langle A\right\rangle_5\right)}{omitted} and
+    the R idiom would be \code{neg(A,c(1,2,5))}.
     
     \item The \dfn{Clifford conjugate} \mjeqn{\overline{A}}{omitted} is
     given by \code{cliffconj()}.  It is distinct from conjugation
