@@ -104,4 +104,16 @@ e2*e2   #note sign
 signature(Inf)
 e2*e2
 
+
+# Nice mapping from Cl(0,2) to the quaternions (loading clifford and
+# onion simultaneously is discouraged):
+
+# library("onion")
+# signature(0)
+# Q1 <- rquat(1)
+# Q2 <- rquat(1)
+# f <- function(H){Re(H)+i(H)*e(1)+j(H)*e(2)+k(H)*e(1:2)}
+# f(Q1)*f(Q2) - f(Q1*Q2) # zero to numerical precision
+# signature(Inf)
+
 }

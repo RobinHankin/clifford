@@ -26,6 +26,11 @@ objects and vice-versa.
 
 }
 \author{Robin K. S. Hankin}
+\note{
+  A different mapping, from the quaternions to \mjseqn{Cl(0,2)} is
+  given at \code{signature.Rd}.
+}
+\seealso{\code{\link{signature}}}
 \examples{
 
 x1 <- clifford(list(numeric(0),c(1,2),c(1,3),c(2,3)),1:4)
