@@ -78,7 +78,7 @@ rblade(d=7, g=3)
 
 }
 \author{Robin K. S. Hankin}
-\note{If the grade exceeds the dimensionality, \mjeqn{g>d}, then
+\note{If the grade exceeds the dimensionality, \mjseqn{g>d}, then
   the result is arguably zero; \code{rcliff()} returns an error.}
 \seealso{\code{\link{term}},\code{\link{grade}}}
 \examples{
