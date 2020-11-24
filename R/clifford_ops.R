@@ -221,6 +221,8 @@ clifford_power_scalar <- function(C,n){
 star <- scalprod
 
 `fatdot` <- function(C1,C2){
+    C1 <- as.clifford(C1)
+    C2 <- as.clifford(C2)
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
@@ -234,6 +236,8 @@ star <- scalprod
 }
 
 `lefttick` <- function(C1,C2){
+    C1 <- as.clifford(C1)
+    C2 <- as.clifford(C2)
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {
@@ -247,6 +251,8 @@ star <- scalprod
 }
 
 `righttick` <- function(C1,C2){
+    C1 <- as.clifford(C1)
+    C2 <- as.clifford(C2)
     if(is.zero(C1) || is.zero(C2)){
     return(as.clifford(0))
   } else {

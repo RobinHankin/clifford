@@ -88,7 +88,8 @@ C1 \%_|\% C2
 C1 \%|_\% C2
 }
 \arguments{
-  \item{e1,e2,C,C1,C2}{Objects of class \code{clifford}}
+  \item{e1,e2,C,C1,C2}{Objects of class \code{clifford} or coerced if
+    needed}
   \item{x}{Scalar, length one numeric vector}
   \item{drop}{Boolean, with default \code{TRUE} meaning to return the
     constant coerced to numeric, and \code{FALSE} meaning to return a
