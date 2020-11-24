@@ -201,10 +201,9 @@ C1 \%|_\% C2
   
 }
 \value{
-
-  The high-level functions documented here return an object of
-  \code{clifford}.  But don't use the low-level functions.
-
+  The high-level functions documented here return a \code{clifford}
+  object.  The low-level functions are not really intended for the
+  end-user.
 }
 \author{Robin K. S. Hankin}
 \references{
