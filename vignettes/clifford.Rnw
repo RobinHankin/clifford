@@ -194,8 +194,9 @@ where
 for $1\leqslant p\leqslant n$; usually we also specify $p+q=n$ and
 write $\mathbb{R}_{p,q}$ for the $p+q$-dimensional vector space with
 inner product given by equation~\ref{gencliff1}.  The Clifford algebra
-${\mathcal C}_{p,q}$) is then the algebra formed by $\mathbb{R}_{p,q}$
-together with formal products of basis vectors.
+${\mathcal C}_{p,q}$ (other notations include $Cl(p,q)$) is then the
+algebra formed by $\mathbb{R}_{p,q}$ together with formal products of
+basis vectors.
 
 
 Note carefully that the diagonal matrix of the inner product specified
@@ -282,20 +283,20 @@ The signature of the metric may be altered.  Starting with the
 Euclidean case we have:
     
 <<e1e2cliff>>=
-e1 <- basis(1)
-e2 <- basis(2)
+e1 <- e(1)
+e2 <- e(2)
 e1*e1
 e2*e2
 @ 
 
-(package idiom \code{basis(i)} returns $\ei{i}$).  However, if we wish
-to consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$, the package
-idiom is to use the \code{signature()} function:
+(function \code{e(i)} returns $\ei{i}$).  However, if we wish to
+consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$, the package idiom
+is to use the \code{signature()} function:
 
 <<trysig>>=
 signature(1)  # signature +-
-e1*e1 # as before
-e2*e2 # sign changes
+e1*e1 # as before, returns +1
+e2*e2 # should return -1
 @ 
 
 Suppose we wish to use a signature $+++-$, corresponding to the
@@ -329,7 +330,7 @@ zero inner product.  Package idiom is to use a negative signature:
 <<grassmanalgebra,results=hide>>=
 signature(-1)  # specify null inner product
 <<print=TRUE,results=verbatim>>=
-is.zero(basis(5)^2)     # should be TRUE
+is.zero(e(5)^2)     # should be TRUE
 @ 
 
 This is a somewhat clunky way of reproducing the functionality of the
@@ -387,7 +388,7 @@ signature(Inf)
 $\ei{i}\ei{i}=+1$ for any $i$:
 
 <<>>=
-basis(53)^2
+e(53)^2
 @ 
 
 
