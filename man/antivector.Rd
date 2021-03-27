@@ -18,7 +18,8 @@ is.antivector(C, include.pseudoscalar=FALSE)
 }
 \details{
 An \dfn{antivector} is an \eqn{n}-dimensional Clifford object of all of
-whose terms are of grade \eqn{n-1}.   
+whose terms are of grade \eqn{n-1}.  An antivector has \eqn{n} degrees
+of freedom.
 
 The pseudoscalar is a peculiar edge case.  Consider:
 
