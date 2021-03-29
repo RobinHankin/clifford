@@ -1,5 +1,7 @@
 test_that("Test suite aae.R",{  # quaternions
 
+  ## test removed for 1.0-4
+  if(FALSE){
   c1 <- clifford(list(numeric(0),c(1,2),c(1,3),c(2,3)),1:4)
   c2 <- clifford(list(numeric(0),c(1,2),c(1,3),c(2,3)),4:1)
 
@@ -40,5 +42,5 @@ k  -12
       quaternion_to_clifford(clifford_to_quaternion(c2*c1)) ==
       quaternion_to_clifford(c(-12,-6,-24,-12))
       )
-    
+ }  
 })
