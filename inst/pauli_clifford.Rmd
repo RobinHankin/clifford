@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 library("onion")
 library("jordan")
+library("emulator")
 ```
 
 The Pauli matrices are as follows:
@@ -154,13 +155,14 @@ M
 matrix_to_clifford(M)
 ```
 
-But the real test is whether Clifford multiplication and matrix multiplication commute:
+We can now test whether `matrix_to_clifford()` is a group
+homomorphism:
 
 ```{r}
 M1 <- rmat()
 M2 <- rmat()
 
-diff <- matrix_to_clifford(M1) * matrix_to_clifford(M2)-matrix_to_clifford(M1 %*% M2)
+diff <- matrix_to_clifford(M1)*matrix_to_clifford(M2) - matrix_to_clifford(M1 %*% M2)
 diff
 Mod(diff)
 ```
@@ -169,16 +171,6 @@ We see agreement to numerical precision.  Now we can coerce from a
 Clifford to a matrix:
 
 ```{r}
-
-`clifford_to_matrix1` <- function(C){
-matrix(c(
-  const(C)             + getcoeffs(C,list(    3) ) + 1i*( getcoeffs(C,list(1:3)) + getcoeffs(C,list(1:2))),
-  getcoeffs(C,list(1)) - getcoeffs(C,list(c(1,3))) + 1i*(-getcoeffs(C,list(2)  ) + getcoeffs(C,list(2:3))),
-  getcoeffs(C,list(1)) + getcoeffs(C,list(c(1,3))) + 1i*( getcoeffs(C,list(2)  ) + getcoeffs(C,list(2:3))),
-  const(C)             - getcoeffs(C,list(    3) ) + 1i*( getcoeffs(C,list(1:3)) - getcoeffs(C,list(1:2)))
-  ),byrow=TRUE,2,2)
-}
-
 `clifford_to_matrix` <- function(C){
    return(
                           const(C)*s0 + getcoeffs(C,list(1))*sx 
@@ -189,23 +181,55 @@ matrix(c(
 } 
 ```
 
-and the test is whether or not the two coercion functions are inverses of one another:
-
-```{r}
-clifford_to_matrix(matrix_to_clifford(M)) -M 
-```
-
-and of course the inversion should operate both ways:
-
 ```{r}
 rc <- function(...){rcliff(100,d=3,g=3)}
 C <- 104 + rc()
 C
-matrix_to_clifford(clifford_to_matrix(C))-C
+clifford_to_matrix(C)
 ```
+
+Now test that the two coercion functions are inverses of one another:
+
+```{r}
+clifford_to_matrix(matrix_to_clifford(M)) - M 
+matrix_to_clifford(clifford_to_matrix(C))- C
+```
+
+Now we can establish that  `clifford_to_matrix()` is a homomorphism:
 
 ```{r}
 C1 <- 222 + rc()
 C2 <- 333 + rc()
-clifford_to_matrix(C1 * C2)-clifford_to_matrix(C1) %*% clifford_to_matrix(C2)
+clifford_to_matrix(C1*C2) - clifford_to_matrix(C1)%*%clifford_to_matrix(C2)
+```
+
+## Closure
+
+The reason that Pauli matrices are useful in physics is that they are
+closed under the Jordan operation $x\circ y=(xy+yx)/2$, which we will
+verify for matrices and their Clifford represenatation.
+
+```{r}
+M1 <- as.1matrix(rchm(1,2))
+M2 <- as.1matrix(rchm(1,2))
+M1
+M2
+p1 <- (M1 %*% M2 + M2 %*% M1)/2
+p1 - ht(p1)  # zero for Hermitian matrices
+```
+
+Above, see how $M_1\circ M_2$ is Hermitian.  Now, in Clifford form:
+
+```{r}
+C1 <- matrix_to_clifford(M1)
+C2 <- matrix_to_clifford(M2)
+p2 <- (C1 * C2 + C2 * C1)/2
+p2
+```
+
+above, see how the clifford product `p2` is a pure Pauli matrix as its
+only nonzero coefficients are those of the scalar and the grade-one blades:
+
+```{r}
+grades(p2)
 ```
