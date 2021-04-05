@@ -40,10 +40,10 @@ Idiom such as \code{a[] <- b} follows the \code{spray} package.  If
 \code{b} is a length-one scalar, then \code{coeffs(a) <- b} has the same
 effect as \code{a[] <- b}.
 
-Functions \code{terms()} [see \code{term.Rd}]and \code{coeffs()} are the
-extraction methods.  These are unordered vectors but the ordering is
-consistent between them (an extended discussion of this phenomenon is
-presented in the \code{mvp} package).
+Functions \code{terms()} [see \code{term.Rd}] and \code{coeffs()} are
+the extraction methods.  These functions return \emph{unordered vectors}
+but the ordering is consistent between them (an extended discussion of
+this phenomenon is presented in the \code{mvp} package).
 
 Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets all
 coefficients of \code{a} to \code{b}.  This has the same effect as
