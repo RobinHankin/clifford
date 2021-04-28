@@ -6,6 +6,7 @@
 // NB: terminology.  Here "blade" means "basis blade"
 
 #include <map>
+#define STRICT_R_HEADERS
 #include <Rcpp.h>
 #include <boost/dynamic_bitset.hpp>
 
