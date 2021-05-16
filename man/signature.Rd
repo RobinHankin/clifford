@@ -62,7 +62,7 @@ for all \mjseqn{i}.  Logically this corresponds to
 If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
 operation reduces to the wedge product of a Grassman algebra.  Package
 idiom for this is to specify a \emph{negative} value for \eqn{p}.  But
-this is not recommended: use the \pkg{wedge} package for Grassman
+this is not recommended: use the \pkg{stokes} package for Grassman
 algebras, which is much more efficient and uses nicer idiom.
 
 Function \code{signature(foo)} returns the signature silently; but
