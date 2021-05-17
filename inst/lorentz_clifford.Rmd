@@ -130,9 +130,9 @@ note that $B^{-1}=\cosh(\phi/2)-{\mathbf e}_{12}\sinh(\phi/2)$.
 Numerically:
 
 ```{r}
-phi <- 2.1234534
+phi <- 2.1234534   # just a made-up random value
 B <- cosh(phi/2) + sinh(phi/2)*e(1:2) 
-Binv <- cosh(phi/2)- sinh(phi/2)*e(1:2)
+Binv <- rev(B) # cosh(phi/2)- sinh(phi/2)*e(1:2)
 B*Binv
 ```
 
@@ -178,25 +178,27 @@ B3 <- function(phi,k){cosh(phi/2) + (
      +k[2]*sinh(phi/2)*e(c(1,3))
      +k[3]*sinh(phi/2)*e(c(1,4))
    )}
-k <- function(kx,ky){c(kx^2,ky^2,sqrt(1-kx^2-ky^2))}
+k <- function(kx,ky){c(kx, ky, sqrt(1-kx^2-ky^2))}
 kx <- +0.23
 ky <- -0.38
 
 
 k1 <- k(kx=0.23, ky=-0.38)
 sum(k1^2) # verify; should be = 1
-B3(0.3,k1)*B3(1.9,k1)
-B3(0.3+1.9,k1) # should match (up to numerical accuracy)
+zap(B3(0.3,k1)*B3(1.9,k1))
+zap(B3(0.3+1.9,k1)) # should match (up to numerical accuracy)
 ```
 
-But look:
+But look if the two boosts have different direction cosines, the
+result is more complicated:
 
 ```{r}
 k2 <- k(-0.5,0.1)
-B3(2.4,k1) * B3(1.9,k2)
+zap(B3(2.4,k1) * B3(1.9,k2))
 ```
 
-Above, we see new terms not present in the pure boosts.
+Above, we see new terms not present in the pure boosts which
+correspond to rotation.
 
 Now we consider a general four-vector
 $s=s^1\mathbf{e}_1+s^2\mathbf{e}_2+s^3\mathbf{e}_3+s^4\mathbf{e}_4$
