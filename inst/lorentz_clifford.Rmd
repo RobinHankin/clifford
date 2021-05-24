@@ -6,14 +6,16 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
-library("lorentz")
 library("emulator")
 ```
 
 
-# Lorentz transforms
+# Lorentz transforms in the `lorentz` package, following Snygg
 
-(throughout, we use units in which $c=1$).  Consider the following
+(throughout, we use units in which $c=1$).
+
+
+Consider the following
 four-vector:
 
 ```{r,define4vec}
@@ -21,13 +23,14 @@ four-vector:
 u <- c(0.2,0.3,0.4)  # a three-velocity
 ```
 
-We wish to consider the effect of transforming `s` by the following boost:
+We wish to consider the effect of a Lorentz transformation of `s`. This is done by the `boost()` function of the `lorentz` package:
 
 ```{r,b1b2}
+library("lorentz")
 (Bmat <- boost(u))  # Bmat = "B-matrix"
 ```
 
-This is simply matrix multiplication:
+The transformation itself is simply matrix multiplication:
 
 ```{r,matmultb}
 Bmat %*% fourvec
@@ -169,7 +172,7 @@ B_{xyz}=
 $$
 
 and we can use standard Clifford algebra (together with the fact that
-$k_x^2+k_y^2+k_z^2=1$) to demonstrate the expected rules.
+$k_x^2+k_y^2+k_z^2=1$) to demonstrate the transformations.
 Numerically:
 
 ```{r}
@@ -185,12 +188,12 @@ ky <- -0.38
 
 k1 <- k(kx=0.23, ky=-0.38)
 sum(k1^2) # verify; should be = 1
-zap(B3(0.3,k1)*B3(1.9,k1))
-zap(B3(0.3+1.9,k1)) # should match (up to numerical accuracy)
+zap(B3(0.3,k1)*B3(1.9,k1))  # zap() kills terms with small coefficients
+zap(B3(0.3+1.9,k1)) # should match previous line (up to numerical accuracy)
 ```
 
-But look if the two boosts have different direction cosines, the
-result is more complicated:
+But if the two boosts have different direction cosines, the result is
+more complicated:
 
 ```{r}
 k2 <- k(-0.5,0.1)
@@ -218,22 +221,8 @@ B^{-1}sB &=& \exp(-\mathbf{e}_{12}\phi/2)(s^1\mathbf{e}_1+s^2\mathbf{e}_2+s^3\ma
 
 as required (it matches the matrix version).  If we have two boosts
 $B_1$ and $B_2$ then the combined boost is either $B_1B_2$ (for $B_1$
-followed by $B_2$) or $B_2B_1$ (for $B_2$ followed by $B_1$).  Let's
-consider a simple case with $B_1$ being a boost of rapidity $\phi_1$
-in the $x$-direction and $B_2$ being a boost of rapidity $\phi_2$ in
-the $y$-direction.  Then the combined boost $B_1$ followed by $B_2$
-will be
-
-$$
-\exp(\mathbf{e}_{12}\phi_1/2)\exp(\mathbf{e}_{13}\phi_2/2) =
-\exp(\mathbf{e}_{12}\phi_1/2+\mathbf{e}_{13}\phi_2/2)\\
-$$
-
-And we further note that the right hand side of the above expression
-is a dog's breakfast (observe that
-$\exp\left(x\mathbf{e}_{12}+y\mathbf{e}_{13}\right)$ is a nightmare).
-However, numerical methods are straightforward as I will demonstrate
-below.
+followed by $B_2$) or $B_2B_1$ (for $B_2$ followed by $B_1$).
+Numerical methods are straightforward as I will demonstrate below.
 
 ## Numerical methods: Lorentz transforms using the Clifford package
 
