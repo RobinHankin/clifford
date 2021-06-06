@@ -1,5 +1,5 @@
 ---
-title: "Linear algebra with the `clifford` package"
+title: "Linear algebra with the `clifford` package: Cramer's rule in civilised form"
 author: "Robin K. S. Hankin"
 date: "`r Sys.Date()`"
 vignette: >
@@ -10,9 +10,11 @@ vignette: >
 
 
 This short document shows a nice application of Clifford algebras to
-linear algebra.  Suppose we have vectors $a, b, c$ spanning
-$x\in\mathcal{R}^3$ and wish to write $x=\alpha a+\beta b+\gamma c$.
-The traditional Cramer's rule would be
+linear algebra.  Suppose we have vectors ${\mathbf a}, {\mathbf b},
+{\mathbf c}$ spanning ${\mathbf x}\in\mathcal{R}^3$ and wish to write
+${\mathbf x}=\alpha {\mathbf a}+\beta {\mathbf b}+\gamma {\mathbf c}$
+for some $\alpha,\beta,\gamma\in\mathcal{R}$.  The traditional
+Cramer's rule would be
 
 \[
 \alpha=\frac{
@@ -54,21 +56,24 @@ The traditional Cramer's rule would be
 	a_2&b_2&c_2\\
 	a_3&b_3&c_3
 	\end{bmatrix}
-}.
+}
 \]
 
+where ${\mathbf x}=(x_1,x_2,x_3)^T$, ${\mathbf a}=(a_1,a_2,a_3)^T$,
+${\mathbf b}=(b_1,b_2,b_3)^T$ and ${\mathbf c}=(c_1,c_2,c_3)^T$.
 However, observe that this solution, while accurate, requires one to
 take a coordinate basis; and offers little in the way of intuition.
 
 ## Using Clifford algebra
 
-Considering $\mathcal{R}^3$ as a vector space and given vectors $a, b,
-c$ spanning the space we can express any vector $x\in\mathcal{R}^3$ as
+Considering $\mathcal{R}^3$ as a vector space and given vectors
+${\mathbf a}, {\mathbf b}, {\mathbf c}$ spanning the space we can
+express any vector ${\mathbf x}\in\mathcal{R}^3$ as
 
 \[
-\left(\frac{x\wedge b\wedge c}{a\wedge b\wedge c}\right)a+
-\left(\frac{a\wedge x\wedge c}{a\wedge b\wedge c}\right)b+
-\left(\frac{a\wedge b\wedge x}{a\wedge b\wedge c}\right)c
+\left(\frac{{\mathbf x}\wedge{\mathbf b}\wedge{\mathbf c}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf a}+
+\left(\frac{{\mathbf a}\wedge{\mathbf x}\wedge{\mathbf c}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf b}+
+\left(\frac{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf x}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf c}
 \]
 
 which is Cramer's rule expressed directly in vector form (rather than
@@ -95,7 +100,8 @@ b*(a %^% x%^% c)/abc  +
 c*(a %^% b%^% x)/abc  
 ```
 
-Thus we have expressed $x$ as a linear combination of $a,b,c$.  To verify:
+Thus we have expressed ${\mathbf x}$ as a linear combination of
+${\mathbf a},{\mathbf b},{\mathbf c}$.  To verify:
 
 ```{r}
 print(Mod(x-xabc))
@@ -117,7 +123,8 @@ drop((a %^% b %^% y)/abc))
 
 # Higher dimensional space
 
-To accomplish this in arbitrary-dimensional space:
+To accomplish this in arbitrary-dimensional space is straightforward.
+Here we consider $\mathcal{R}^{13}$:
 
 ```{r}
 n <- 13                                                # dimensionality of space
