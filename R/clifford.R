@@ -1,16 +1,19 @@
 `clifford` <- function(terms,coeffs=1){
-    if(length(coeffs)==1){coeffs <- coeffs+numeric(length(terms))}
     stopifnot(is_ok_clifford(terms,coeffs))
+    terms <- elements(terms)
+    coeffs <- elements(coeffs)
+    if(length(coeffs)==1){coeffs <- coeffs+numeric(length(terms))}
+
     m <- mymax(c(terms,recursive=TRUE))
     out <- c_identity(terms,coeffs,m)
     class(out) <- "clifford"  # this is the only place class clifford is set
     return(out)
 }
 
-`terms` <- function(x){ x[[1]] }  # accessor methods start
-`coeffs` <- function(x){ x[[2]] }
-
-`getcoeffs` <- function(C,B){ # accessor methods end
+`hash` <- function(x){digest::digest(x)}
+`terms` <- function(x){ disord(x[[1]], hash(x))}  # accessor methods start ...
+`coeffs` <- function(x){ disord(x[[2]],hash(x))}  # ... continue ...
+`getcoeffs` <- function(C,B){                     # ... accessor methods end
     c_getcoeffs(
         L = terms(C),
         c = coeffs(C),
@@ -33,8 +36,14 @@
 `is.blade` <- function(x){stop("Not implemented: factorization is hard")}
 `coeffs<-` <- function(x,value){UseMethod("coeffs<-")}
 `coeffs<-.clifford` <- function(x,value){
-    stopifnot(length(value) == 1)
-    return(clifford(terms(x),value + 0*coeffs(x)))
+  jj <- coeffs(x)
+  if(is.disord(value)){
+    stopifnot(consistent(terms(x),value))
+    jj <- value
+  } else {
+    jj[] <- value  # the meat
+  }
+  clifford(elements(terms(x)),elements(jj))
 }
 
 `const<-` <- function(x,value){UseMethod("const<-")}
@@ -43,8 +52,6 @@
     x <- x-const(x)
     return(x+value)
 }
-
-
 
 `mymax` <- function(s){
     if(length(s)==0){
@@ -55,9 +62,18 @@
 }
 
 `is_ok_clifford` <- function(terms,coeffs){
+
+    if(is.disord(terms) | is.disord(coeffs)){
+        stopifnot(disordR::consistent(terms,coeffs))
+    }
+
+    terms <- elements(terms)
+    coeffs <- elements(coeffs)
+
     stopifnot(is.list(terms))
+  
     term_elements <- c(terms,recursive = TRUE)
-    stopifnot(length(terms) == length(coeffs))
+
 
     if(!is.null(term_elements)){
       stopifnot(all(term_elements > 0))
@@ -103,7 +119,7 @@
     return(out)
 }
 
-`is.real` <- function(C){length(c(terms(C),recursive=TRUE))==0}
+`is.real` <- function(C){length(c(elements(terms(C)),recursive=TRUE))==0}
 `is.scalar` <- is.real
 `nbits` <- function(x){
     if(clifford::is.real(x)){
@@ -116,7 +132,7 @@
 setGeneric("dim")
 `dim.clifford` <- function(x){max(c(terms(x),recursive=TRUE))}
 
-`grades` <- function(x){unlist(lapply(terms(x),length))}
+`grades` <- function(x){disord(unlist(lapply(terms(x),length)),hash(x))}
 
 
 `scalar` <- function(x=1){clifford(list(numeric(0)),x)}
@@ -142,7 +158,7 @@ setGeneric("dim")
 
   if(!is.homog(C)){return(FALSE)}
   if(include.pseudoscalar && is.pseudoscalar(C)){return(TRUE)}
-  return(grades(C)[1] == maxyterm(C)-1)
+  return(all(grades(C) == maxyterm(C)-1))
 }
 
 `basis` <- function(n,x=1){clifford(list(n),x)}
@@ -154,7 +170,7 @@ setGeneric("dim")
   } else {
     f <- function(...){g}
   }
-  clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n))
+  clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n)-round(n/2))
 } 
 
 `rblade` <- function(d=7,g=3){
@@ -166,23 +182,35 @@ setGeneric("dim")
 `rev.clifford` <- function(x){
   f <- function(u){ifelse(length(u)%%4 %in% 0:1, 1,-1)}
   clifford(
-      terms(x),
-      coeffs(x) * unlist(lapply(terms(x),f))
+      elements(terms(x)),
+      elements(coeffs(x)) * unlist(lapply(elements(terms(x)),f))
   )
+}
+
+`rev2.clifford` <- function(x){
+  swap <- (grades(x)%%4) %in% 2:3
+  coeffs(x)[swap] <- -coeffs(x)[swap]
+  return(x)
 }
 
 `Conj.clifford` <- function(z){
   z <- rev(z)
   clifford(
-      terms(z),
-      coeffs(z) * ifelse(gradesminus(z)%%2==0,1,-1)
+      elements(terms(z)),
+      elements(elements(coeffs(z))) * ifelse(elements(gradesminus(z))%%2==0,1,-1)
   )
+}
+
+`Conj2.clifford` <- function(z){
+  z <- rev(z)
+  coeffs(z)[gradesminus(z)%%2==0] <- -coeffs(z)[gradesminus(z)%%2==0] 
+  return(z)
 }
 
 `cliffconj` <- function(z){
   clifford(
-      terms(z),
-      coeffs(z) * ifelse(grades(z)%%4 %in% 1:2,-1,1)
+      elements(terms(z)),
+      elements(coeffs(z)) * ifelse(elements(grades(z))%%4 %in% 1:2,-1,1)   # could use coeffs(z) <- blahblah
   )
 }
 
@@ -191,20 +219,20 @@ setGeneric("dim")
 
   out <- ""
   for(i in seq_along(terms(x))){
-    co <- coeffs(x)[i]
+    co <- elements(coeffs(x))[i]
     if(co>0){
       pm <- " + " # pm = plus or minus
     } else {
       pm <- " - "
     }
     co <- capture.output(cat(abs(co)))
-    jj <- catterm(terms(x)[[i]])
+    jj <- catterm(elements(terms(x))[[i]])
     out <- paste(out, pm, co, jj, sep="")
   }
   if(is.zero(x)){
       out <- "the zero clifford element (0)"
   } else if(is.scalar(x)){
-      out <- paste("scalar (",capture.output(cat(coeffs(x))),")")
+      out <- paste("scalar (",capture.output(cat(elements(coeffs(x)))),")")
   }
   cat(paste(strwrap(out, getOption("width")), collapse="\n"))
   cat("\n")
@@ -258,13 +286,13 @@ setGeneric("dim")
 `is.odd`  <- function(C){all(grades(C)%%2==1)}
 
 `evenpart` <- function(C){
-    wanted <- which(unlist(lapply(terms(C),length))%%2==0)
-    clifford(terms(C)[wanted],coeffs=coeffs(C)[wanted])
+    wanted <- which(unlist(lapply(elements(terms(C)),length))%%2==0)
+    clifford(elements(terms(C))[wanted],coeffs=elements(coeffs(C))[wanted])
 }
 
 `oddpart` <- function(C){
-    wanted <- which(unlist(lapply(terms(C),length))%%2==1)
-    clifford(terms(C)[wanted],coeffs=coeffs(C)[wanted])
+    wanted <- which(unlist(lapply(elements(terms(C)),length))%%2==1)
+    clifford(elements(terms(C))[wanted],coeffs=elements(coeffs(C))[wanted])
 }
 
 `allcliff` <- function(n){
