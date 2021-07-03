@@ -125,15 +125,21 @@
     if(clifford::is.real(x)){
         return(0)
     } else {
-        return(max(c(terms(x),recursive=TRUE)))
+        return(max(c(elements(terms(x)),recursive=TRUE)))
     }
 }
 
 setGeneric("dim")
 `dim.clifford` <- function(x){max(c(terms(x),recursive=TRUE))}
 
-`grades` <- function(x){disord(unlist(lapply(terms(x),length)),hash(x))}
-
+`grades` <- function(x){  #special dispensation for the zero clifford object
+    if(is.zero(x)){
+        out <- numeric(0)
+    } else {
+        out <- unlist(lapply(terms(x),length))
+    } 
+    return(disord(out,hash(x)))
+}
 
 `scalar` <- function(x=1){clifford(list(numeric(0)),x)}
 `as.scalar` <- `scalar`
@@ -179,7 +185,7 @@ setGeneric("dim")
     }, simplify = FALSE))
 }
 
-`rev.clifford` <- function(x){
+`rev_old.clifford` <- function(x){
   f <- function(u){ifelse(length(u)%%4 %in% 0:1, 1,-1)}
   clifford(
       elements(terms(x)),
@@ -187,13 +193,13 @@ setGeneric("dim")
   )
 }
 
-`rev2.clifford` <- function(x){
+`rev.clifford` <- function(x){
   swap <- (grades(x)%%4) %in% 2:3
   coeffs(x)[swap] <- -coeffs(x)[swap]
   return(x)
 }
 
-`Conj.clifford` <- function(z){
+`Conj_old.clifford` <- function(z){
   z <- rev(z)
   clifford(
       elements(terms(z)),
@@ -201,17 +207,24 @@ setGeneric("dim")
   )
 }
 
-`Conj2.clifford` <- function(z){
+`minus` <- function(x){-x}
+
+`Conj.clifford` <- function(z){
   z <- rev(z)
-  coeffs(z)[gradesminus(z)%%2==0] <- -coeffs(z)[gradesminus(z)%%2==0] 
+  coeffs(z)[gradesminus(z)%%2 != 0] %<>% minus
   return(z)
 }
 
-`cliffconj` <- function(z){
+`cliffconj_old` <- function(z){
   clifford(
       elements(terms(z)),
       elements(coeffs(z)) * ifelse(elements(grades(z))%%4 %in% 1:2,-1,1)   # could use coeffs(z) <- blahblah
   )
+}
+
+`cliffconj` <- function(z){
+    coeffs(z)[grades(z)%%4 %in% 1:2] %<>% minus
+    return(z)
 }
 
 `print.clifford` <- function(x,...){
@@ -321,15 +334,17 @@ setGeneric("dim")
 
 `as.character.clifford` <- function(x,...){
   out <- ""
-  for(i in seq_along(terms(x))){
-    co <- coeffs(x)[i]
+  tx <- elements(terms(x))
+  cx <- elements(coeffs(x))
+  for(i in seq_along(tx)){
+    co <- cx[i]
     if(co>0){
       pm <- " + " # pm = plus or minus
     } else {
       pm <- " - "
     }
     co <- abs(co)
-    jj <- catterm(terms(x)[[i]])
+    jj <- catterm(tx[[i]])
     out <- paste(out, pm, co, jj, sep="")
   }
 
@@ -342,11 +357,12 @@ setGeneric("dim")
 }
 
 `gradesplus` <- function(x){
+    if(is.zero(x)){return(disord(numeric(0),hash(x)))}
     sig <- signature()
     if(sig==0){
         return(grades(x))
     } else if(sig>0){
-        return(unlist(lapply(terms(x),function(o){sum(o <= sig)})))
+        return(disord(unlist(lapply(terms(x),function(o){sum(o <= sig)})),hash(x)))
     } else if(sig<0){
         return(grades(x)*NA)
     } else {
@@ -358,9 +374,17 @@ setGeneric("dim")
 
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
 
-`neg` <- function(C,n){clifford(terms(C),coeffs(C)*ifelse(grades(C) %in% n,-1,1))}
+`neg_old` <- function(C,n){clifford(terms(C),coeffs(C)*ifelse(grades(C) %in% n,-1,1))}
+`neg` <- function(C,n){
+    coeffs(C)[grades(C) %in% n] %<>% minus
+    return(C)
+}
 
-`gradeinv` <- function(C){clifford(terms(C),coeffs(C)*ifelse(grades(C)%%2==1,-1,1))}
+`gradeinv_old` <- function(C){clifford(elements(terms(C)),elements(coeffs(C))*ifelse(elements(grades(C))%%2==1,-1,1))}
+`gradeinv` <- function(C){
+    coeffs(C)[grades(C)%%2==1] %<>% minus
+    return(C)
+}
 
 `first_n_last` <- function(x){
   n <- nterms(x)

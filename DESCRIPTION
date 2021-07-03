@@ -14,7 +14,7 @@ License: GPL (>= 2)
 LazyData: yes
 Suggests: knitr,rmarkdown,testthat,onion,lorentz
 VignetteBuilder: knitr
-Imports: Rcpp (>= 0.12.5),mathjaxr,disordR (>= 0.0-4)
+Imports: Rcpp (>= 0.12.5),mathjaxr,disordR (>= 0.0-5), magrittr,digest
 LinkingTo: Rcpp,BH
 SystemRequirements: C++11
 URL: https://github.com/RobinHankin/clifford.git

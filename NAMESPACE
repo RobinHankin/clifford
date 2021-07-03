@@ -23,8 +23,11 @@ importFrom("disordR","elements")
 importFrom("digest", "digest")
 importFrom("disordR","is.disord")
 importFrom("disordR","consistent")
+importFrom("disordR","%in%")
+importFrom("disordR","lapply")
 
-
+importFrom("magrittr", "%>%")
+importFrom("magrittr", "%<>%")
 
 
 S3method("[", clifford)
