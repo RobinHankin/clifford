@@ -10,9 +10,8 @@
     return(out)
 }
 
-`hash` <- function(x){digest::digest(x)}
-`terms` <- function(x){ disord(x[[1]], hash(x))}  # accessor methods start ...
-`coeffs` <- function(x){ disord(x[[2]],hash(x))}  # ... continue ...
+`terms` <- function(x){disord(x[[1]], hashcal(x))}  # accessor methods start ...
+`coeffs` <- function(x){ disord(x[[2]],hashcal(x))}  # ... continue ...
 `getcoeffs` <- function(C,B){                     # ... accessor methods end
     c_getcoeffs(
         L = terms(C),
@@ -138,7 +137,7 @@ setGeneric("dim")
     } else {
         out <- unlist(lapply(terms(x),length))
     } 
-    return(disord(out,hash(x)))
+    return(disord(out,hashcal(x)))
 }
 
 `scalar` <- function(x=1){clifford(list(numeric(0)),x)}
@@ -357,12 +356,12 @@ setGeneric("dim")
 }
 
 `gradesplus` <- function(x){
-    if(is.zero(x)){return(disord(numeric(0),hash(x)))}
+    if(is.zero(x)){return(disord(numeric(0),hashcal(x)))}
     sig <- signature()
     if(sig==0){
         return(grades(x))
     } else if(sig>0){
-        return(disord(unlist(lapply(terms(x),function(o){sum(o <= sig)})),hash(x)))
+        return(disord(unlist(lapply(terms(x),function(o){sum(o <= sig)})),hashcal(x)))
     } else if(sig<0){
         return(grades(x)*NA)
     } else {
