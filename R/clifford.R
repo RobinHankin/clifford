@@ -207,13 +207,6 @@ setGeneric("dim")
   return(z)
 }
 
-`cliffconj_old` <- function(z){
-  clifford(
-      elements(terms(z)),
-      elements(coeffs(z)) * ifelse(elements(grades(z))%%4 %in% 1:2,-1,1)   # could use coeffs(z) <- blahblah
-  )
-}
-
 `cliffconj` <- function(z){
     coeffs(z)[grades(z)%%4 %in% 1:2] %<>% minus
     return(z)
