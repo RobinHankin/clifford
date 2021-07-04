@@ -373,7 +373,7 @@ setGeneric("dim")
 
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
 
-`neg_old` <- function(C,n){clifford(elements(terms(C)),elements(coeffs(C))*ifelse(elements(grades(C)) %in% n,-1,1))}
+#`neg_old` <- function(C,n){clifford(elements(terms(C)),elements(coeffs(C))*ifelse(elements(grades(C)) %in% n,-1,1))}
 `neg` <- function(C,n){
     coeffs(C)[grades(C) %in% n] %<>% minus
     return(C)
