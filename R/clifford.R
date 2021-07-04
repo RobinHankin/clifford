@@ -184,14 +184,6 @@ setGeneric("dim")
     }, simplify = FALSE))
 }
 
-`rev_old.clifford` <- function(x){
-  f <- function(u){ifelse(length(u)%%4 %in% 0:1, 1,-1)}
-  clifford(
-      elements(terms(x)),
-      elements(coeffs(x)) * unlist(lapply(elements(terms(x)),f))
-  )
-}
-
 `rev.clifford` <- function(x){
   swap <- (grades(x)%%4) %in% 2:3
   coeffs(x)[swap] <- -coeffs(x)[swap]
