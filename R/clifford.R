@@ -379,7 +379,7 @@ setGeneric("dim")
     return(C)
 }
 
-`gradeinv_old` <- function(C){clifford(elements(terms(C)),elements(coeffs(C))*ifelse(elements(grades(C))%%2==1,-1,1))}
+#`gradeinv_old` <- function(C){clifford(elements(terms(C)),elements(coeffs(C))*ifelse(elements(grades(C))%%2==1,-1,1))}
 `gradeinv` <- function(C){
     coeffs(C)[grades(C)%%2==1] %<>% minus
     return(C)
