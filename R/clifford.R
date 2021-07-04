@@ -198,13 +198,6 @@ setGeneric("dim")
   return(x)
 }
 
-`Conj_old.clifford` <- function(z){
-  z <- rev(z)
-  clifford(
-      elements(terms(z)),
-      elements(elements(coeffs(z))) * ifelse(elements(gradesminus(z))%%2==0,1,-1)
-  )
-}
 
 `minus` <- function(x){-x}
 
