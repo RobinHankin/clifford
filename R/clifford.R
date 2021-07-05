@@ -129,7 +129,7 @@
 }
 
 setGeneric("dim")
-`dim.clifford` <- function(x){max(c(terms(x),recursive=TRUE))}
+`dim.clifford` <- function(x){max(c(elements(terms(x)),recursive=TRUE))}
 
 `grades` <- function(x){  #special dispensation for the zero clifford object
     if(is.zero(x)){
