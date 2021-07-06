@@ -5,6 +5,8 @@
 ## a test is failed.  Function checker1() has one argument, checker2()
 ## two, and checker3() has three.  Equation numbers are from Hestenes.
 
+big_test <- FALSE # set to TRUE for a more in-depth workout
+
 test_that("Test suite aab.R",{
 
 checker1 <- function(A){
@@ -227,18 +229,30 @@ checker3 <- function(A,B,C){
 
 }  # checker3() closes
   
-for(i in 1:10){
-    for(sigs in c(0:2,Inf)){
+
+if(big_test){
+  iloop <- seq_len(10)
+  sigloop <- c(0:4,Inf)
+  rstloop <- 0:4
+  lamloop <- 0:4
+} else {  # shorter, for CRAN
+  iloop <- seq_len(1)
+  sigloop <- c(1,Inf)
+  rstloop <- 1
+  lamloop <- 1
+}
+  
+
+for(i in seq_len(1)){
+    for(sigs in sigloop){
         signature(sigs)
-        rstloop <- 0:4
-        lamloop <- 0:2
         A <- rcliff(include.fewer=TRUE)
         B <- rcliff(5)
         C <- rcliff(5)
         
-        checker1(A)
-        checker2(A,B)
-        checker3(A,B,C)
+        if(big_test){checker1(A)}
+        if(big_test){checker2(A,B)}
+        print(system.time(checker3(A,B,C)))
     }
 }
 

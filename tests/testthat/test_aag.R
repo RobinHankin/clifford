@@ -1,3 +1,5 @@
+big_test <- FALSE  # set to TRUE for a more in-depth workout
+
 test_that("Test suite aag.R",{  # tests of cartan's isomorphism
     checker1 <- function(A,n){
         expect_true(cartan(cartan_inverse(A,n),n) == A)
@@ -16,9 +18,15 @@ test_that("Test suite aag.R",{  # tests of cartan's isomorphism
             expect_true(cartan_inverse(cartan(A,n)*cartan(B,n),n) == AB)
         }
     }
+
+    if(big_test){
+      reps <- 9
+    } else {
+      reps <- 1
+    }
     
-    for(i in 1:9){
-        for(n in 1:9){
+    for(i in seq_len(reps)){
+        for(n in seq_len(reps)){
             A <- rcliff()
             B <- rcliff()
             checker1(A,n)
