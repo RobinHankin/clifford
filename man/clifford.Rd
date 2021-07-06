@@ -1,5 +1,6 @@
 \name{clifford}
 \alias{clifford}
+\alias{clifford-class}
 \alias{as.clifford}
 \alias{is.clifford}
 \alias{nbits}

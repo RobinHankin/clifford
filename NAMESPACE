@@ -29,6 +29,7 @@ importFrom("disordR","lapply")
 importFrom("magrittr", "%>%")
 importFrom("magrittr", "%<>%")
 
+importFrom("methods","setOldClass")
 
 S3method("[", clifford)
 S3method("[<-", clifford)
