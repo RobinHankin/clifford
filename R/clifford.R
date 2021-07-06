@@ -10,6 +10,7 @@
     return(out)
 }
 
+setOldClass("clifford")
 `terms` <- function(x){disord(x[[1]], hashcal(x))}  # accessor methods start ...
 `coeffs` <- function(x){ disord(x[[2]],hashcal(x))}  # ... continue ...
 `getcoeffs` <- function(C,B){                     # ... accessor methods end
@@ -229,15 +230,16 @@ setGeneric("dim")
   return(x)
 }
 
-`drop` <- function(C){
-    if(is.zero(C)){
+setGeneric("drop")
+setMethod("drop","clifford", function(x){
+    if(is.zero(x)){
         return(0)
-    } else if(is.scalar(C)){
-        return(const(C))
+    } else if(is.scalar(x)){
+        return(const(x))
     } else {
-        return(C)
+        return(x)
     }
-}
+})
 
 `grade` <- function(C,n,drop=TRUE){
   C <- as.clifford(C)
