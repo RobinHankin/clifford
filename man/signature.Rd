@@ -8,15 +8,14 @@
 \title{The signature of the Clifford algebra}
 \description{Getting and setting the signature of the Clifford algebra}
 \usage{
-signature(s)
+signature(p,q=0)
 is_ok_sig(s)
-mymax(s)
 showsig(s)
 \method{print}{sigobj}(x,...)
 }
 \arguments{
-  \item{s}{Integer, specifying number of positive elements on the
-    diagonal of the quadratic form}
+  \item{s,p,q}{Integers, specifying number of positive elements on the
+    diagonal of the quadratic form, with \code{s=c(p,q)}}
   \item{x}{Object of class \code{sigobj}}
   \item{...}{Further arguments, currently ignored}
 }
@@ -44,47 +43,44 @@ If the signature is \mjeqn{p\geq 0}{p,p >=0}, then we have
 
 \mjdeqn{
   e_i e_i = \cases{
-  +1 & if $i\leq p$\cr
-  -1 & if $i>p$.\cr
+  +1 & if $1\leq i\leq p$\cr
+  -1 & if $p+1\leq i\leq p+q$\cr
+  0  $ if $i>p+q.\cr
   }
 }{
   omitted
 }
 
 Note that \mjseqn{p=0} corresponds to a negative-definite quadratic form
-in which \mjeqn{e_ie_i=-1}{omitted} for all \mjseqn{i}.  If the
-quadratic form is positive-definite, we have \mjeqn{e_ie_i=+1}{omitted}
-for all \mjseqn{i}.  Logically this corresponds to
-\mjeqn{p=\infty}{omitted}.  Package idiom for this case is to use
-\code{signature(Inf)}, although internally the signature is set to
-\code{.Machine$integer.max} (a near-infinite integer).
+in which \mjeqn{e_ie_i=-1}{omitted} for all \mjeqn{i\leq p}{i<=p}.  If
+the quadratic form is positive-definite, we have
+\mjeqn{e_ie_i=+1}{omitted} for all \mjseqn{i}.  Logically this
+corresponds to \mjeqn{p=\infty}{omitted}.  Package idiom for this case
+is to use \code{signature(Inf)}, although internally the signature is
+set to \code{.Machine$integer.max} (a near-infinite integer).
 
 If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
 operation reduces to the wedge product of a Grassman algebra.  Package
-idiom for this is to specify a \emph{negative} value for \eqn{p}.  But
-this is not recommended: use the \pkg{stokes} package for Grassman
-algebras, which is much more efficient and uses nicer idiom.
+idiom for this is to specify \mjseqn{p=0,q=0}, but this is not
+recommended: use the \pkg{stokes} package for Grassman algebras, which
+is much more efficient and uses nicer idiom.
 
-Function \code{signature(foo)} returns the signature silently; but
+Function \code{signature(p,q)} returns the signature silently; but
 setting option \code{show_signature} to \code{TRUE} makes
 \code{signature()} have the side-effect of calling \code{showsig()}.
 This changes the default prompt to display the signature, much like
 \code{showSOL} in the \code{lorentz} package.  There is special
-dispensation for \dQuote{infinite} signatures and negative sigatures;
-the \code{sigobj} class ensures that a near-infinite integer
-such as \code{.Machine$integer.max} will be printed as
-\dQuote{\code{Inf}} rather than \dQuote{\code{2147483647}}.
+dispensation for \dQuote{infinite} \mjseqn{p} or \mjseqn{q}; the
+\code{sigobj} class ensures that a near-infinite integer such as
+\code{.Machine$integer.max} will be printed as \dQuote{\code{Inf}}
+rather than \dQuote{\code{2147483647}}.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.
 
-Function \code{mymax()} is a helper function that avoids warnings from
-\code{max()} when given an empty argument.
-
 }
 \author{Robin K. S. Hankin}
 \examples{
-
 
 
 e1 <- clifford(list(1),1)

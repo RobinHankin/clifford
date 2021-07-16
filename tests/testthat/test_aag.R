@@ -9,11 +9,11 @@ test_that("Test suite aag.R",{  # tests of cartan's isomorphism
     
     checker2 <- function(A,B,n){
         {
-            signature(n+3)
+            signature(n+3,Inf)
             AB <- A*B
         }
         {
-            signature(n-1)
+            signature(n-1,Inf)
             expect_true(cartan(A,n)*cartan(B,n) == cartan(AB,n))
             expect_true(cartan_inverse(cartan(A,n)*cartan(B,n),n) == AB)
         }

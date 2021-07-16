@@ -100,11 +100,14 @@ clifford c_add(clifford cliff1, clifford cliff2){
     }
 }
 
-blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxtaposes two blades, returns reduction and sign
-    int sign = 1;
+blade_and_sign juxtapose(blade b1, blade b2, const NumericVector signature){//juxtaposes two blades, returns reduction and sign
+    signed int sign = 1;
     blade bout;
     const size_t m = max(b1.size(),b2.size());
 
+    const int p = (int) signature[0];
+    const int q = (int) signature[1];
+    
     b1.resize(m, false);
     b2.resize(m, false);
     bout.resize(m, false);
@@ -115,11 +118,11 @@ blade_and_sign juxtapose(blade b1, blade b2, const signed int signature){//juxta
         } else if(((bool) b1[i]) & ((bool)~b2[i])){ bout[i] = true;   // just b1
         } else if(((bool)~b1[i]) & ((bool) b2[i])){ bout[i] = true;   // just b2
         } else if(((bool) b1[i]) & ((bool) b2[i])){ bout[i] = false;  // both, but...
-            if(signature >= 0){
-                if((signed int) i > (signed int) signature){ // NB check for off-by-one error
-                    sign *= -1;
-                }
-            } else if(signature < 0){
+            if(i <= p){
+             /* sign *= +1;   */
+            } else if (i <= p+q){
+                sign *= -1;
+            } else {
                 sign = 0; // exterior product, repeated index -> 0
             }
         }
@@ -145,14 +148,13 @@ clifford c_general_prod(const clifford C1, const clifford C2, const NumericVecto
         for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
             const blade b2 = ic2->first;
             if(chooser(b1,b2)){
-                tie(b, sign) = juxtapose(b1, b2, signature[0]);
+                tie(b, sign) = juxtapose(b1, b2, signature);
                 out[b] += sign*(ic1->second)*(ic2->second); // the meat
             }
         }
     }
     return remove_zeros(out);
 }
-
 
 bool c_equal(clifford C1, clifford C2){
     // modelled on spray_equality()

@@ -337,16 +337,8 @@ setMethod("drop","clifford", function(x){
 
 `gradesplus` <- function(x){
     if(is.zero(x)){return(disord(numeric(0),hashcal(x)))}
-    sig <- signature()
-    if(sig==0){
-        return(grades(x))
-    } else if(sig>0){
-        return(disord(unlist(lapply(terms(x),function(o){sum(o <= sig)})),hashcal(x)))
-    } else if(sig<0){
-        return(grades(x)*NA)
-    } else {
-        stop("this cannot happen")
-    }
+    p <- signature()[1]
+    return(disord(unlist(lapply(terms(x),function(o){sum(o <= p)})),hashcal(x)))
 }
 
 `gradesminus` <- function(x){ grades(x) - gradesplus(x) }

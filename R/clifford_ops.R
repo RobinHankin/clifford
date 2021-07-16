@@ -1,28 +1,31 @@
-`signature` <- function(s){
-    if(missing(s)){  # return SOL
-        s <- getOption("signature")
-        if(is.null(s)){s <- .Machine$integer.max}
-        if(is.infinite(s)){s <- .Machine$integer.max}
+`signature` <- function(p,q=0){
+    if(missing(p)){  # get: signature() returns c(p,q)
+        s <- getOption("signature") # s=c(p,q)
+        if(is.null(s)){
+            s <- c(.Machine$integer.max,0)
+        }
         showsig(s)
         class(s) <- "sigobj"
         return(s)
-    } else { # set signature
+    } else { # p not missing, set signature
+        s <- c(p,q)
+        p <- min(s[1], .Machine$integer.max)
+        q <- min(s[2], .Machine$integer.max)
         stopifnot(is_ok_sig(s))
-        if(is.infinite(s)){s <- .Machine$integer.max}
-        options("signature" = s)
+        options("signature" = c(p,q))
         showsig(s)
         return(invisible(s))
     }
 }
 
-`showsig` <- function(s){
+`showsig` <- function(s){ # s=c(p,q)
     if(isTRUE(getOption("show_signature"))){
-        if(s == .Machine$integer.max){
-            options("prompt" = "sig Inf> ")
-        } else if (s < 0){
+        if(s[1] == .Machine$integer.max){
+            options("prompt" = "Cl(Inf) > ")
+        } else if(all(s==0)){
             options("prompt" = "Grassman > ")
         } else {
-            options("prompt" = paste("sig", s, "> "))
+            options("prompt" = paste("Cl(", s[1],",", s[2],") > "))
         }
     } 
 }
@@ -31,14 +34,15 @@
     print(ifelse(x == .Machine$integer.max, Inf, x))
 }
 
-
 `is_ok_sig` <- function(s){
-    if(length(s) != 1){
-        stop("signature must have length 1")
-    } else if(s != round(s)){
+    if(length(s) != 2){
+        stop("signature must have length 2, s=c(p,q)")
+    } else if(any(s != round(s))){
       stop("signature must be an integer")
+    } else if(any(s<0)){
+        stop("p and q must be >=0")
     } else {
-      return(TRUE)
+        return(TRUE)
     }
 }
 
@@ -138,7 +142,7 @@ maxyterm <- function(C1,C2=as.clifford(0)){
 }
 
 `clifford_inverse` <- function(C){
-    if(signature()<0){stop("inverses not defined for Grassman algebra")}
+    if(all(signature()==0)){stop("inverses not defined for Grassman algebra")}
 
     if((all(grades(C)==1)) || is.pseudoscalar(C)){
         return(clifford_times_scalar(Conj(C),1/eucprod(C)))
