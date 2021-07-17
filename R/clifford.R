@@ -341,7 +341,16 @@ setMethod("drop","clifford", function(x){
     return(disord(unlist(lapply(terms(x),function(o){sum(o <= p)})),hashcal(x)))
 }
 
-`gradesminus` <- function(x){ grades(x) - gradesplus(x) }
+`gradesminus` <- function(x){
+    if(is.zero(x)){return(disord(numeric(0),hashcal(x)))}
+    p <- signature()[1]
+    q <- signature()[2]
+    return(disord(unlist(lapply(terms(x),
+                                function(o){
+                                    sum((o > p) &&(o <= p+q))
+                                }
+                                )),hashcal(x)))
+}
 
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
 

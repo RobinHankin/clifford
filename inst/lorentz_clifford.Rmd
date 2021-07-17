@@ -98,8 +98,8 @@ $$
 the metric, so the signature of the above matrix would be $(1,3)$ [or
 sometimes ${+}{-}{-}{-}$], because it has one positive and three
 negative eigenvalues.  In package idiom, "signature" means the number
-of basis vectors that square to $+1$, the others squaring to $-1$, so
-we would implement this metric using a signature of $1$].
+of basis vectors that square to $+1$ and $-1$, so we would implement
+this metric using a signature of $(1,3)$].
 
 The squared interval for our four-vector would be given by
  
@@ -119,7 +119,7 @@ The Clifford equivalent would be `scalprod()` [remembering to set the
 signature to 1]:
 
 ```{r,usescalprod}
-signature(1)
+signature(1,3)
 scalprod(scliff,scliff)
 ```
 
@@ -315,7 +315,7 @@ zap(rev(Buvw) * n * Buvw)
 We can shed some light on this representation of Lorentz transforms as follows:
 
 ```{r,algecliff}
-signature(1)
+signature(1,3)
 L <- list(
     C     = basis(numeric()),
     e12   = basis(c(1,2)), e13 = basis(c(1,3)),

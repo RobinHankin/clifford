@@ -49,8 +49,9 @@ Conversion functions would be
 ```{r definecoercion}
 `clifford_to_quaternion` <- function(C){
     C <- as.clifford(C)
-    stopifnot(all(c(terms(C),recursive=TRUE) <= 3))
-    jj <- unlist(lapply(terms(C),length))
+    tC <- disordR::elements(terms(C))
+    stopifnot(all(c(tC,recursive=TRUE) <= 3))
+    jj <- unlist(lapply(tC,length))
     stopifnot(all(jj <= 2))
     stopifnot(all(jj%%2 == 0))
     out <- matrix(c(const(C), -getcoeffs(C,list(c(1,2),c(1,3),c(2,3)) )))

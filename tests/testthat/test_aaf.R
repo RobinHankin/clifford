@@ -2,7 +2,7 @@
 test_that("Test suite aaf.R",{  # tests of division
     small <- 1e-4
     tiny <- 1e-10
-    signature(c(Inf,0))
+    signature(Inf,0)
     checker1 <- function(A){
         if(Mod(A)>small){
             expect_true(Mod(A/A-1) < tiny)

@@ -294,14 +294,14 @@ consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$, the package idiom
 is to use the \code{signature()} function:
 
 <<trysig>>=
-signature(1)  # signature +-
+signature(1,1)  # signature +-
 e1*e1 # as before, returns +1
 e2*e2 # should return -1
 @ 
 
 Suppose we wish to use a signature $+++-$, corresponding to the
 Minkowski metric in special relativity; this would be indicated in
-package idiom by \code{signature(3)}.  Note that the clifford objects
+package idiom by \code{signature(3,1)}.  Note that the clifford objects
 themselves do not store the signature; it is used only by the product
 operation \code{*}.
 
@@ -315,7 +315,7 @@ default positive-definite inner product, or the Minkowski metric:
 
 <<sigthree2>>=
 x*y
-signature(3)  # switch to signature +++-
+signature(3,1)  # switch to signature +++-
 x*y
 @ 
 
@@ -325,10 +325,10 @@ products.
 \section{Grassman algebra}
 
 A Grassman algebra corresponds to a Clifford algebra with identically
-zero inner product.  Package idiom is to use a negative signature:
+zero inner product.  Package idiom is to use a zero signature:
 
 <<grassmanalgebra,results=hide>>=
-signature(-1)  # specify null inner product
+signature(0,0)  # specify null inner product
 <<print=TRUE,results=verbatim>>=
 is.zero(e(5)^2)     # should be TRUE
 @ 

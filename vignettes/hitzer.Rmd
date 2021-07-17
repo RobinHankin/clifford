@@ -85,13 +85,13 @@ f <- function(x){
 ```
 
 ```{r,label=executeequation6.3}
-signature(Inf)
+signature(0,3)
 f(rcliff(d=3,g=3))
-signature(1)
+signature(1,2)
 f(rcliff(d=3,g=3))
-signature(2)
+signature(2,1)
 f(rcliff(d=3,g=3))
-signature(3)
+signature(3,0)
 f(rcliff(d=3,g=3))
 ```
 
@@ -237,7 +237,7 @@ diffr
 
 ## Left inverse
 
-Similarly, equation 8.23 asserts that , if $p+q\leq 5$ then $z'=
+Similarly, equation 8.23 asserts that, if $p+q\leq 5$ then $z'=
 m_{\overline{1},\overline{4}}(\tilde{x}\hat{x}\overline{x}x)
 \tilde{x}\hat{x}\overline{x}x\in\mathbb{R}$.  And if $z'\neq 0$
 equation 8.24 asserts that
@@ -269,15 +269,15 @@ zap(f822(x)*x)
 It turns out that the left and right inverses coincide:
 
 ```{r}
-signature(0)
+signature(0,5)
 Mod(f822(x) - f824(x))
-signature(1)
+signature(1,4)
 Mod(f822(x) - f824(x))
-signature(2)
+signature(2,3)
 Mod(f822(x) - f824(x))
-signature(3)
+signature(3,2)
 Mod(f822(x) - f824(x))
-signature(4)
+signature(4,1)
 Mod(f822(x) - f824(x))
 ```
 
@@ -290,15 +290,14 @@ argument `d=7`, and force $p=4$ by executing `signature(4)`:
 ```{r}
 a <- rcliff(d=7)   # Cl(4,3)
 b <- rcliff(d=7)   # Cl(4,3)
-signature(4)       # e1^2 = e2^2 = e3^2 = e4^2 = +1; e5^2 = ... = -1
+signature(4,3)     # e1^2 = e2^2 = e3^2 = e4^2 = +1; e5^2 = ... = -1
 ab <- a*b          # multiplication in Cl(4,3)
 
-signature(0)   # e1^2 = ... = -1
+signature(0,7)   # e1^2 = ... = -1
 cartan(a)*cartan(b) == cartan(ab) # multiplication in Cl(0,7)
 ```
 
 and again using `cartan_inverse()`:
-
 
 ```{r}
 cartan_inverse(cartan(a) * cartan(b)) == ab  # precalculated product!
@@ -307,9 +306,9 @@ cartan_inverse(cartan(a) * cartan(b)) == ab  # precalculated product!
 Now try mapping $Cl(5,2)\longrightarrow Cl(1,7)$:
 
 ```{r}
-signature(5); ab_sig5 <- a*b
+signature(5,2); ab_sig5 <- a*b
 
-signature(1)
+signature(1,7)
 cartan(a,2) * cartan(b,2)  == cartan(ab_sig5,2)
 cartan_inverse(cartan(a,2) * cartan(b,2),2)  == ab_sig5
 ```

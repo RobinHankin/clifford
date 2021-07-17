@@ -61,9 +61,9 @@ set to \code{.Machine$integer.max} (a near-infinite integer).
 
 If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
 operation reduces to the wedge product of a Grassman algebra.  Package
-idiom for this is to specify \mjseqn{p=0,q=0}, but this is not
-recommended: use the \pkg{stokes} package for Grassman algebras, which
-is much more efficient and uses nicer idiom.
+idiom for this is to set \mjseqn{p=0,q=0}, but this is not recommended:
+use the \pkg{stokes} package for Grassman algebras, which is much more
+efficient and uses nicer idiom.
 
 Function \code{signature(p,q)} returns the signature silently; but
 setting option \code{show_signature} to \code{TRUE} makes
@@ -105,7 +105,7 @@ e2*e2
 # onion simultaneously is discouraged):
 
 # library("onion")
-# signature(0)
+# signature(0,2)
 # Q1 <- rquat(1)
 # Q2 <- rquat(1)
 # f <- function(H){Re(H)+i(H)*e(1)+j(H)*e(2)+k(H)*e(1:2)}
