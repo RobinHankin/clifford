@@ -25,7 +25,7 @@
         } else if(all(s==0)){
             options("prompt" = "Grassman > ")
         } else {
-            options("prompt" = paste("Cl(", s[1],",", s[2],") > "))
+            options("prompt" = paste("Cl(", s[1],",", s[2],") > ",sep=""))
         }
     } 
 }
