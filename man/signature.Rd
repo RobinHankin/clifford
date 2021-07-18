@@ -35,29 +35,33 @@ Clifford algebras require a bilinear form on \mjteqn{R^n}{\mathbb{R}^n}{R^n}
 
 where \mjeqn{p+q=n}{p+q=n}.  With this quadratic form the vector space
 is denoted \mjteqn{R^{p,q}}{\mathbb{R}^{p,q}}{R^{p,q}} and we say that
-\eqn{p} is the \dfn{signature} of the bilinear form
+\mjseqn{(p,q)} is the \dfn{signature} of the bilinear form
 \mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}.  This gives rise to
 the Clifford algebra \mjeqn{C_{p,q}}{C_{p,q}}.
 
-If the signature is \mjeqn{p\geq 0}{p,p >=0}, then we have
+If the signature is \mjseqn{(p,q)}, then we have
 
 \mjdeqn{
   e_i e_i = \cases{
   +1 & if $1\leq i\leq p$\cr
   -1 & if $p+1\leq i\leq p+q$\cr
-  0  $ if $i>p+q.\cr
+  0  & if $i>p+q$.\cr
   }
 }{
   omitted
 }
 
-Note that \mjseqn{p=0} corresponds to a negative-definite quadratic form
-in which \mjeqn{e_ie_i=-1}{omitted} for all \mjeqn{i\leq p}{i<=p}.  If
-the quadratic form is positive-definite, we have
-\mjeqn{e_ie_i=+1}{omitted} for all \mjseqn{i}.  Logically this
-corresponds to \mjeqn{p=\infty}{omitted}.  Package idiom for this case
-is to use \code{signature(Inf)}, although internally the signature is
-set to \code{.Machine$integer.max} (a near-infinite integer).
+Note that \mjseqn{(p,0)} corresponds to a positive-semidefinite
+quadratic form in which \mjeqn{e_ie_i=+1}{omitted} for all \mjeqn{i\leq
+p}{i<=p} and \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i > p}.
+Similarly, \mjseqn{(0,q)} corresponds to a negative-semidefinite
+quadratic form in which \mjeqn{e_ie_i=-1}{omitted} for all \mjeqn{i\leq
+q}{i<=q} and \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i > q}.
+
+Package idiom for a strictly positive-definite quadratic form would be
+to specify infinite \mjseqn{p} [in which case \mjseqn{q} is irrelevant]
+and for a strictly negative-definite quadratic form we would need
+\mjeqn{p=0,q=\infty}{omitted}.
 
 If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
 operation reduces to the wedge product of a Grassman algebra.  Package
