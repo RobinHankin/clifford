@@ -77,7 +77,7 @@ This changes the default prompt to display the signature, much like
 dispensation for \dQuote{infinite} \mjseqn{p} or \mjseqn{q}; the
 \code{sigobj} class ensures that a near-infinite integer such as
 \code{.Machine$integer.max} will be printed as \dQuote{\code{Inf}}
-rather than \dQuote{\code{2147483647}}.
+rather than, for example, \dQuote{\code{2147483647}}.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.
@@ -87,22 +87,22 @@ proper signature.
 \examples{
 
 
-e1 <- clifford(list(1),1)
-e2 <- clifford(list(2),1)
-
-
 signature()
 
-
-e1*e1
-e2*e2
+e(1)^2
+e(2)^2
 
 signature(1)
-e1*e1
-e2*e2   #note sign
+e(1)^2
+e(2)^2   # note sign
 
-signature(Inf)
-e2*e2
+signature(3,4)
+sapply(1:10,function(i){drop(e(i)^2)})
+
+
+signature(Inf)   # restore default
+
+
 
 
 # Nice mapping from Cl(0,2) to the quaternions (loading clifford and
