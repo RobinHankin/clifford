@@ -1,0 +1,72 @@
+---
+title: "Dual numbers implemented using Clifford algebra"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("clifford")
+library("onion")
+```
+
+From wikipedia, dual numbers are expressions of the form
+$a+b\epsilon$, with $a,b\in\mathcal{R}$ and $\epsilon^2=0$.  If we
+define
+
+$$\begin{eqnarray}
+(a+b\epsilon) + (c+d\epsilon) &=& (a+c) + (b+d)\epsilon\\
+(a+b\epsilon)(c+d\epsilon) &=& ac + (ad+bc)\epsilon
+\end{eqnarray}$$
+
+
+then we recover distributivity and associativity.  Actually
+associativity of the product is not entirely trivial.  We seek to
+prove $\left[(a+b\epsilon)(c+d\epsilon)\right](e+f\epsilon)=
+(a+b\epsilon)\left[(c+d\epsilon)(e+f\epsilon)\right]$.
+
+$$\begin{eqnarray}
+LHS&=&\left[(a+b\epsilon)(c+d\epsilon)\right](e+f\epsilon)\\
+&=&\left[ac+(ad+bc)\epsilon\right](e+f\epsilon)\\
+&=& ace +  (acf+ade+bce)\epsilon\\[5mm]
+RHS&=&(a+b\epsilon)\left[(c+d\epsilon)(e+f\epsilon)\right]\\
+&=&(a+b\epsilon)\left[ce+(cf+de)\epsilon\right]\\
+&=&ace + (acf+ade+bce)\epsilon\\
+&=&RHS
+\end{eqnarray}$$
+
+
+
+The Clifford representation is easy, first setting the signature to
+zero:
+
+```{r}
+library(clifford)
+signature(0)
+e(1)^2
+```
+
+Then, to calculate say $(3+4\epsilon)(5-6\epsilon)$:
+
+```{r}
+(3+4*e(1))*(5-6*e(1))
+```
+
+Numerical verification of algebraic identities is straightforward:
+
+```{r}
+rdual <- function(...){rnorm(1) + rnorm(1)*e(1)}
+x <- rdual()
+y <- rdual()
+z <- rdual()
+```
+
+Then
+
+```{r}
+Mod(x*(y*z) - (x*y)*z)
+Mod(x*(y+z) - (x*y+x*z))
+Mod((x+y)*z - (x*z+y*z))
+```
+
+The above shows zero to within numerical tolerance.
+
