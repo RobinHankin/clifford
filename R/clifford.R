@@ -347,7 +347,7 @@ setMethod("drop","clifford", function(x){
     q <- signature()[2]
     return(disord(unlist(lapply(terms(x),
                                 function(o){
-                                    sum((o > p) &&(o <= p+q))
+                                    sum((o > p) & (o <= p+q))
                                 }
                                 )),hashcal(x)))
 }
