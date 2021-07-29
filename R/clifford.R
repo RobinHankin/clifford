@@ -352,6 +352,17 @@ setMethod("drop","clifford", function(x){
                                 )),hashcal(x)))
 }
 
+`gradeszero` <- function(x){
+    if(is.zero(x)){return(disord(numeric(0),hashcal(x)))}
+    p <- signature()[1]
+    q <- signature()[2]
+    return(disord(unlist(lapply(terms(x),
+                                function(o){
+                                    sum(o > p+q)
+                                }
+                                )),hashcal(x)))
+}
+
 `dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
 
 #`neg_old` <- function(C,n){clifford(elements(terms(C)),elements(coeffs(C))*ifelse(elements(grades(C)) %in% n,-1,1))}

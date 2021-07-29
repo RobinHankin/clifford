@@ -3,8 +3,10 @@
 \alias{grades}
 \alias{gradesplus}
 \alias{gradesminus}
+\alias{gradeszero}
 \alias{gradeplus}
 \alias{grademinus}
+\alias{gradezero}
 \title{The grade of a clifford object}
 \description{\loadmathjax
 The grade of a term is the number of basis vectors in it.}
@@ -13,6 +15,7 @@ grade(C, n, drop=TRUE)
 grades(x)
 gradesplus(x)
 gradesminus(x)
+gradeszero(x)
 }
 \arguments{
   \item{C,x}{Clifford object}
@@ -100,6 +103,10 @@ and a basis blade \mjteqn{e_A}{e_\mathbb{A}}{e_A} with
   omitted
 }
 
+Function \code{gradeszero()} counts only the basis vectors squaring to
+zero (I have not seen this anywhere else, but it is a logical
+suggestion).
+
 If the signature is zero, then the Clifford algebra reduces to a
 Grassman algebra and products match the wedge product of exterior
 calculus.  In this case, functions \code{gradesplus()} and
@@ -130,5 +137,9 @@ a <- clifford(sapply(seq_len(7),seq_len),seq_len(7))
 grades(a)
 grade(a,5)
 
+
+signature(2,2)
+x <- rcliff()
+drop(gradesplus(x) + gradesminus(x) + gradeszero(x) - grades(x))
 
 }
