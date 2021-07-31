@@ -1,3 +1,14 @@
+list_modifier <- function(a){
+    lapply(a,
+           function(x){
+               if(identical(round(x),0)){
+                   return(numeric(0))
+               } else {
+                   return(x)
+               }
+           } )
+}
+
 `[.clifford` <- function(C, index, ...){
     if(is.clifford(index)){
         stop("cannot extract a clifford; try A[terms(B)]")
@@ -6,13 +17,13 @@
     } else {
         dots <- c(list(index),list(...))
     }
-    clifford(dots,getcoeffs(C,dots))
+    clifford(list_modifier(dots),getcoeffs(C,list_modifier(dots)))
 }  
 
 `[<-.clifford` <- function(C, index, ..., value){
     
     if(missing(index)){ # C[] <- value
-        dots <- list(...)
+        dots <- list_modifier(list(...))
         if(is.clifford(value)){
             return(as.clifford(c_overwrite(
                 terms(C),coeffs(C),
@@ -24,7 +35,7 @@
             return(clifford(terms(C),value + numeric(length(coeffs(C)))))
         }
     } else {  # index supplied, dots interpreted as more terms
-        dots <- c(list(index),list(...))
+        dots <- list_modifier(c(list(index),list(...)))
         if(value==0){
             jj <- clifford(dots,1)
             return(as.clifford(c_overwrite(

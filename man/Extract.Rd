@@ -6,6 +6,7 @@
 \alias{replace}
 \alias{[<-.clifford}
 \alias{coeffs}
+\alias{list_modifier}
 \alias{coeffs<-}
 \alias{coeffs<-.clifford}
 \title{Extract or Replace Parts of a clifford}
@@ -17,11 +18,13 @@
 \method{[}{clifford}(C, index, \dots) <- value
 coeffs(x)
 coeffs(x) <- value
+list_modifier(a)
 }
 \arguments{
   \item{C,x}{A clifford object}
   \item{index}{elements to extract or replace}
   \item{value}{replacement value}
+  \item{a}{A list of terms}
   \item{...}{Further arguments}
 }
 \details{
@@ -48,7 +51,10 @@ this phenomenon is presented in the \code{mvp} package).
 Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets all
 coefficients of \code{a} to \code{b}.  This has the same effect as
 \code{a[] <- b}.
- 
+
+Extraction and replacement methods treat \code{0} specially, translating
+it (via \code{list_modifier()}) to \code{numeric(0)}.
+
 }
 \seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}
 \examples{
