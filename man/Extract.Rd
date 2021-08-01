@@ -6,6 +6,7 @@
 \alias{replace}
 \alias{[<-.clifford}
 \alias{coeffs}
+\alias{list_modifier}
 \alias{coeffs<-}
 \alias{coeffs<-.clifford}
 \title{Extract or Replace Parts of a clifford}
@@ -17,11 +18,13 @@
 \method{[}{clifford}(C, index, \dots) <- value
 coeffs(x)
 coeffs(x) <- value
+list_modifier(a)
 }
 \arguments{
   \item{C,x}{A clifford object}
   \item{index}{elements to extract or replace}
   \item{value}{replacement value}
+  \item{a}{A list of terms}
   \item{...}{Further arguments}
 }
 \details{
@@ -48,7 +51,15 @@ this phenomenon is presented in the \code{mvp} package).
 Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets all
 coefficients of \code{a} to \code{b}.  This has the same effect as
 \code{a[] <- b}.
- 
+
+Extraction and replacement methods treat \code{0} specially, translating
+it (via \code{list_modifier()}) to \code{numeric(0)}.
+
+Extracting or replacing a list with a repeated elements is usually a Bad
+Idea (tm).  However, if option \code{warn_on_repeats} is set to
+\code{FALSE}, no warning will be given (and the coefficient will be the
+sum of the coefficients of the term; see the examples).
+
 }
 \seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}
 \examples{
@@ -59,6 +70,14 @@ A[1,c(1,3,4)]
 
 A[2:3, 4] <- 99
 A[] <- B
+
+# clifford(list(1,1:2,1:2),1:3)  # would give a warning
+
+options("warn_on_repeats" = FALSE)
+clifford(list(1,1:2,1:2),1:3)  # works; 1e1 + 5e_12
+
+options("warn_on_repeats" = TRUE) # return to default behaviour.
+
 
 }
 

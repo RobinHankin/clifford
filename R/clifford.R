@@ -4,6 +4,10 @@
     coeffs <- elements(coeffs)
     if(length(coeffs)==1){coeffs <- coeffs+numeric(length(terms))}
 
+    if(!isFALSE(getOption("warn_on_repeats")) & anyDuplicated(terms)>0){
+        warning("repeated element in terms")
+    }
+
     m <- mymax(c(terms,recursive=TRUE))
     out <- c_identity(terms,coeffs,m)
     class(out) <- "clifford"  # this is the only place class clifford is set
@@ -167,7 +171,13 @@ setGeneric("dim")
   return(all(grades(C) == maxyterm(C)-1))
 }
 
-`basis` <- function(n,x=1){clifford(list(n),x)}
+`basis` <- function(n,x=1){
+    if(n==0){
+        return(scalar(1))
+    } else {
+        return(clifford(list(n),x))
+    }
+}
 `e` <- basis
 
 `rcliff` <- function(n=9,d=6,g=4,include.fewer=TRUE){

@@ -55,7 +55,8 @@ is.pseudoscalar(C)
   if the length is greater than one.
 
   Function \code{basis()} returns a wedge product of basis vectors;
-  function \code{e()} is a synonym.
+  function \code{e()} is a synonym.  There is special dispensation for
+  zero, so \code{e(0)} returns the Clifford scalar 1.
 
   Function \code{antivector()} should arguably be described here but is
   actually documented at \code{antivector.Rd}.
