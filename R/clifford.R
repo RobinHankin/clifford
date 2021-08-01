@@ -4,6 +4,10 @@
     coeffs <- elements(coeffs)
     if(length(coeffs)==1){coeffs <- coeffs+numeric(length(terms))}
 
+    if(!isFALSE(getOption("warn_on_repeats")) & anyDuplicated(terms)>0){
+        warning("repeated element in terms")
+    }
+
     m <- mymax(c(terms,recursive=TRUE))
     out <- c_identity(terms,coeffs,m)
     class(out) <- "clifford"  # this is the only place class clifford is set
