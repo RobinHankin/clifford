@@ -13,7 +13,7 @@ Description: A suite of routines for Clifford algebras, using the
 License: GPL (>= 2)
 Suggests: knitr,rmarkdown,testthat,onion,lorentz
 VignetteBuilder: knitr
-Imports: Rcpp (>= 0.12.5),mathjaxr,disordR (>= 0.0-6), magrittr, methods
+Imports: Rcpp (>= 0.12.5),mathjaxr,disordR (>= 0.0-7), magrittr, methods
 LinkingTo: Rcpp,BH
 SystemRequirements: C++11
 URL: https://github.com/RobinHankin/clifford.git
