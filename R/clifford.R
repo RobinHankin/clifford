@@ -172,7 +172,7 @@ setGeneric("dim")
 }
 
 `basis` <- function(n,x=1){
-    if(n==0){
+    if(identical(as.integer(n),0L)){
         return(scalar(1))
     } else {
         return(clifford(list(n),x))
