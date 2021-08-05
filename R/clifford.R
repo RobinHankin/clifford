@@ -223,26 +223,31 @@ setGeneric("dim")
   cat("Element of a Clifford algebra, equal to\n")
 
   out <- ""
-  for(i in seq_along(terms(x))){
-    co <- elements(coeffs(x))[i]
+  tx <- terms(x)
+  cx <- coeffs(x)
+  for(i in seq_along(tx)){
+    co <- elements(cx)[i]
     if(co>0){
       pm <- " + " # pm = plus or minus
     } else {
       pm <- " - "
     }
     co <- capture.output(cat(abs(co)))
-    jj <- catterm(elements(terms(x))[[i]])
+    jj <- catterm(elements(tx)[[i]])
     out <- paste(out, pm, co, jj, sep="")
   }
   if(is.zero(x)){
       out <- "the zero clifford element (0)"
   } else if(is.scalar(x)){
-      out <- paste("scalar (",capture.output(cat(elements(coeffs(x)))),")")
+      out <- paste("scalar (",capture.output(cat(cx)),")")
   }
   cat(paste(strwrap(out, getOption("width")), collapse="\n"))
   cat("\n")
   return(x)
 }
+
+
+
 
 setGeneric("drop")
 setMethod("drop","clifford", function(x){
