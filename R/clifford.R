@@ -186,7 +186,11 @@ setGeneric("dim")
   } else {
     f <- function(...){g}
   }
-  clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n)-round(n/2))
+  op <- options() 
+  options(warn=0)
+  out <- clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n)-round(n/2))
+  options(op)
+  return(out)
 } 
 
 `rblade` <- function(d=7,g=3){
