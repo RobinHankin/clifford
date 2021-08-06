@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+# clifford <img src="man/figures/clifford.png" width = "150" align="right" />
 
 <!-- badges: start -->
 [![Build Status](https://travis-ci.org/RobinHankin/clifford.svg?branch=master)](https://travis-ci.org/RobinHankin/clifford)
@@ -24,7 +25,6 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/clifford/branch/master)
 <!-- badges: end -->
 
-# Overview
 
 The `clifford` package provides R-centric functionality for working
 with Clifford algebras of arbitrary dimension and signature.  A

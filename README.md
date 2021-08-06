@@ -3,6 +3,8 @@ The clifford package: Clifford algebra in R
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# clifford <img src="man/figures/clifford.png" width = "150" align="right" />
+
 <!-- badges: start -->
 
 [![Build
@@ -12,8 +14,6 @@ Status](https://travis-ci.org/RobinHankin/clifford.svg?branch=master)](https://t
 [![Codecov test
 coverage](https://codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/clifford/branch/master)
 <!-- badges: end -->
-
-# Overview
 
 The `clifford` package provides R-centric functionality for working with
 Clifford algebras of arbitrary dimension and signature. A detailed
@@ -75,12 +75,7 @@ a %euc% b  # Euclidean product
 The package can deal with non positive-definite inner products. Suppose
 we wish to deal with an inner product of
 
-  
-![&#10;\\begin{pmatrix}&#10;+1 & 0 & 0 & 0 & 0\\\\&#10; 0 &+1 & 0 & 0
-& 0\\\\&#10; 0 & 0 &+1 & 0 & 0\\\\&#10; 0 & 0 & 0 &-1 & 0\\\\&#10; 0 & 0
-& 0 & 0
-&-1&#10;\\end{pmatrix}&#10;](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%0A%2B1%20%26%200%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%2B1%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%2B1%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26-1%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26%200%20%26-1%0A%5Cend%7Bpmatrix%7D%0A
-"
+![
 \\begin{pmatrix}
 +1 & 0 & 0 & 0 & 0\\\\
  0 &+1 & 0 & 0 & 0\\\\
@@ -88,7 +83,15 @@ we wish to deal with an inner product of
  0 & 0 & 0 &-1 & 0\\\\
  0 & 0 & 0 & 0 &-1
 \\end{pmatrix}
-")  
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%0A%2B1%20%26%200%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%2B1%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%2B1%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26-1%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26%200%20%26-1%0A%5Cend%7Bpmatrix%7D%0A "
+\begin{pmatrix}
++1 & 0 & 0 & 0 & 0\\
+ 0 &+1 & 0 & 0 & 0\\
+ 0 & 0 &+1 & 0 & 0\\
+ 0 & 0 & 0 &-1 & 0\\
+ 0 & 0 & 0 & 0 &-1
+\end{pmatrix}
+")
 
 where the diagonal is a number of
 ![+1](https://latex.codecogs.com/png.latex?%2B1 "+1") terms followed by
@@ -103,10 +106,9 @@ Function `signature()` is based on `lorentz::sol()` and its argument
 specifes the number of basis blades that square to
 ![+1](https://latex.codecogs.com/png.latex?%2B1 "+1"), the others
 squaring to ![-1](https://latex.codecogs.com/png.latex?-1 "-1"). Thus
-![e\_1^2=e\_2^2=e\_3^2=1](https://latex.codecogs.com/png.latex?e_1%5E2%3De_2%5E2%3De_3%5E2%3D1
-"e_1^2=e_2^2=e_3^2=1") and
-![e\_4^2=e\_5^2=-1](https://latex.codecogs.com/png.latex?e_4%5E2%3De_5%5E2%3D-1
-"e_4^2=e_5^2=-1"):
+![e\_1^2=e\_2^2=e\_3^2=1](https://latex.codecogs.com/png.latex?e_1%5E2%3De_2%5E2%3De_3%5E2%3D1 "e_1^2=e_2^2=e_3^2=1")
+and
+![e\_4^2=e\_5^2=-1](https://latex.codecogs.com/png.latex?e_4%5E2%3De_5%5E2%3D-1 "e_4^2=e_5^2=-1"):
 
 ``` r
 basis(1)
@@ -120,7 +122,7 @@ basis(4)
 #> + 1e_4
 basis(4)^2
 #> Element of a Clifford algebra, equal to
-#> scalar ( -1 )
+#> the zero clifford element (0)
 ```
 
 The package uses the STL map class with dynamic bitset keys for
@@ -131,21 +133,20 @@ Thus:
 options("basissep" = ",")
 (x <- rcliff(d=20))
 #> Element of a Clifford algebra, equal to
-#> + 6e_5 + 8e_1,3,6 + 4e_10 + 5e_6,10 + 3e_10,12 + 2e_14 + 7e_10,14 + 1e_5,9,15 +
-#> 9e_1,19
+#> + 2 + 5e_2 + 1e_5 - 2e_4,7 + 2e_11 + 4e_14 - 1e_10,14 + 3e_5,9,15 - 3e_18,19
 summary(x^3)
 #> Element of a Clifford algebra 
-#> Typical terms:   + 30e_5  ...  - 378e_1,5,9,10,14,15,19 
-#> Number of terms: 49 
-#> Magnitude: 22747521
+#> Typical terms:  158  ...  + 54e_5,9,10,14,15,18,19 
+#> Number of terms: 40 
+#> Magnitude: 59189
 ```
 
 # References
 
-  - D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
-  - J. Snygg 2010. *A new approach to differential geometry using
+-   D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
+-   J. Snygg 2010. *A new approach to differential geometry using
     Clifford’s geometric algebra*. Berghauser.
-  - C. Perwass 2009. *Geometric algebra with applications in
+-   C. Perwass 2009. *Geometric algebra with applications in
     engineering*. Springer.
 
 # Further information
