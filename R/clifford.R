@@ -190,7 +190,8 @@ setGeneric("dim")
   options(warn=0)
   out <- clifford(replicate(n,sort(sample(d,f())),simplify=FALSE),sample(n)-round(n/2))
   options(op)
-  return(round(1+mean(coeffs(out)))+out)
+  if(include.fewer){out <- out + round(1+mean(abs(coeffs(out))))}
+  return(out)
 } 
 
 `rblade` <- function(d=7,g=3){

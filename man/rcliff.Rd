@@ -15,7 +15,8 @@ rblade(d=7, g=3)
   \item{include.fewer}{Boolean, with \code{FALSE} meaning to
     return a clifford object comprising only terms of grade \code{g},
     and default \code{TRUE} meaning to include terms with
-    grades less than \code{g}}
+    grades less than \code{g} (including a term of grade zero, that
+    is, a scalar)}
 }
 \details{\loadmathjax
 
