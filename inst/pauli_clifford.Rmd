@@ -11,6 +11,10 @@ library("jordan")
 library("emulator")
 ```
 
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
 The Pauli matrices are as follows:
 
 \[

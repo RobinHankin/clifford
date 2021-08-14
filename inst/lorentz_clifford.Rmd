@@ -9,6 +9,10 @@ library("clifford")
 library("emulator")
 ```
 
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
 
 # Lorentz transforms in the `lorentz` package, following Snygg
 

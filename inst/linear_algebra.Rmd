@@ -8,6 +8,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
+
 
 This short document shows a nice application of Clifford algebras to
 linear algebra.  Suppose we have vectors ${\mathbf a}, {\mathbf b},

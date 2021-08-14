@@ -9,6 +9,11 @@ library("clifford")
 library("onion")
 ```
 
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
+
 From wikipedia, dual numbers are expressions of the form
 $a+b\epsilon$, with $a,b\in\mathcal{R}$ and $\epsilon^2=0$.  If we
 define
