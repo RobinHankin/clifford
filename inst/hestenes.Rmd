@@ -1,0 +1,159 @@
+---
+title: "A companion to *David Hestenes and Garret Sobczyk 1987: _Clifford algebra to geometric calculus_*"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("clifford")
+library("onion")
+```
+
+\newcommand{\gr}[1]{\left\langle #1\right\rangle}
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
+
+This document goes through Hestenes and Sobczyk illustrating the
+various theorems and functions using package idiom.  Each page has a
+separate section, in which variables are defined at the beginning.
+
+
+# Page 3
+
+```{r}
+A <- +2 + 5*e(1) -7*e(1:2) + e(3)
+B <- -3 + 2*e(3) -7*e(2:3) + e(4)
+C <-    + 5*e(2) -e(c(1,3))
+A
+B
+C
+```
+
+Addition is commutative:
+
+$A+B=B+A\qquad (1.1)$
+
+```{r}
+A+B == B+A
+```
+
+Addition and multiplication are associative:
+
+$(A+B)+C =A+(B+C)\qquad (1.2)$
+
+$(AB)C =A(BC)\qquad (1.3)$
+
+
+```{r}
+(A+B)+C == A+(B+C)
+(A*B)*C == A*(B*C)
+```
+
+Multiplication is distributive with respect to addition:
+
+$A(B+C)=A*B+A*C\qquad (1.4)$ 
+
+$(B+C)A=BA + CA\qquad (1.5)$ 
+
+```{r}
+A*(B+C) == A*B + A*C
+(B+C)*A == B*A + C*A
+```
+
+There exist unique additive and multiplicative identities 0 and 1:
+
+$A+0=A\qquad (1.6)$
+
+$1A=A\qquad (1.7)$
+
+
+```{r}
+A + 0 == A
+1*A == A
+```
+
+Every multivector has a unique additive inverse $-A$:
+
+$A + (-A)=0\qquad (1.8)$
+
+```{r}
+is.zero(A + (-A))
+is.zero(A - A ) # same idiom
+```
+
+Geometric algebra is set apart by _grades_:
+
+$A=\gr{A}_0+\gr{A}_1+\gr{A}_2+\cdots=\sum_r\gr{A}_r\qquad (1.9)$
+
+```{r}
+A
+grade(A,0)
+grade(A,1)
+grade(A,2)
+```
+
+\newpage
+
+# Page 4
+
+```{r}
+(A <- 3 + 4*e(1) -7*e(3) + 8*e(1:4))
+(B <- -e(1:3)  + 6*e(c(1,3,4)))
+(V <- e(1) + 5*e(2) -7*e(5))
+```
+
+$\ldots$ if $A=\gr{A}_r$ for some positive integer $r$, we say $A$ is
+_homogeneous_ of grade $r$
+
+```{r}
+is.homog(A)
+is.homog(B)
+```
+
+
+The _grade operator_ $\gr{\cdot}_r$ enjoys the properties:
+
+$\gr{A+B}_r=\gr{A}_r+\gr{B}_r\qquad (1.10)$
+
+$\gr{\lambda A}_r=\lambda\gr{A}_r = \gr{A}_r\lambda$~$\qquad$~if $\lambda=\gr{\lambda}_0\qquad (1.11)$ 
+
+$\gr{\gr{A}_r}=\gr{A}_r\qquad (1.12)$
+
+```{r}
+all(grade(A+B,2) == grade(A,2) + grade(B,2),grade(A*4,2) == 4*grade(A,2),grade(grade(A,2),2) == grade(A,2))
+```
+
+[a _vector_ is a homogeneous multivector of grade 1].
+
+```{r}
+is.1vector(A)
+is.1vector(V)
+```
+
+"the square of any nonzero vector $a$ is $\ldots$ real":
+
+```{r}
+V*V
+Mod(V)
+```
+
+"A multivector $A_r$ is called an _$r$-blade_ if it can be factored
+into a product of $r$ anticommuting vectors $a_1,\ldots,a_r$:
+
+$A_r = a_1a_2\ldots a_r,\qquad(1.14a)$
+
+where
+
+$a_ja_k=-a_ka_j$ for $i\neq j$.  In the package we can create blades
+as (scalar multiples of) products of basis vectors as in
+
+```{r}
+(X <- 4*e(1)*e(2)*e(6))
+is.blade(X)
+```
