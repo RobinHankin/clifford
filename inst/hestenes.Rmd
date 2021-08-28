@@ -21,7 +21,9 @@ library("onion")
 
 This document goes through Hestenes and Sobczyk illustrating the
 various theorems and functions using package idiom.  Each page has a
-separate section, in which variables are defined at the beginning.
+separate self-contained section, in which variables are defined at the
+beginning.  Direct quotes are shown in <span style="color:
+darkblue">dark blue.</span>
 
 
 # Page 3
@@ -35,7 +37,9 @@ B
 C
 ```
 
+<span style="color: darkblue">
 Addition is commutative:
+</span>
 
 $A+B=B+A\qquad (1.1)$
 
@@ -43,7 +47,8 @@ $A+B=B+A\qquad (1.1)$
 A+B == B+A
 ```
 
-Addition and multiplication are associative:
+<span style="color: darkblue">
+Addition and multiplication are associative:</span>
 
 $(A+B)+C =A+(B+C)\qquad (1.2)$
 
@@ -55,7 +60,8 @@ $(AB)C =A(BC)\qquad (1.3)$
 (A*B)*C == A*(B*C)
 ```
 
-Multiplication is distributive with respect to addition:
+<span style="color: darkblue">
+Multiplication is distributive with respect to addition:</span>
 
 $A(B+C)=A*B+A*C\qquad (1.4)$ 
 
@@ -66,7 +72,9 @@ A*(B+C) == A*B + A*C
 (B+C)*A == B*A + C*A
 ```
 
+<span style="color: darkblue">
 There exist unique additive and multiplicative identities 0 and 1:
+</span>
 
 $A+0=A\qquad (1.6)$
 
@@ -115,9 +123,8 @@ _homogeneous_ of grade $r$
 is.homog(A)
 is.homog(B)
 ```
-
-
-The _grade operator_ $\gr{\cdot}_r$ enjoys the properties:
+<span style="color: darkblue">
+The _grade operator_ $\gr{\cdot}_r$ enjoys the properties:</span>
 
 $\gr{A+B}_r=\gr{A}_r+\gr{B}_r\qquad (1.10)$
 
@@ -136,15 +143,18 @@ is.1vector(A)
 is.1vector(V)
 ```
 
-"the square of any nonzero vector $a$ is $\ldots$ real":
+<span style="color: darkblue">
+the square of any nonzero vector $a$ is $\ldots$ real":</span>
 
 ```{r}
 V*V
 Mod(V)
 ```
 
-"A multivector $A_r$ is called an _$r$-blade_ if it can be factored
+<span style="color: darkblue">
+A multivector $A_r$ is called an _$r$-blade_ if it can be factored
 into a product of $r$ anticommuting vectors $a_1,\ldots,a_r$:
+</span>
 
 $A_r = a_1a_2\ldots a_r,\qquad(1.14a)$
 
@@ -155,5 +165,306 @@ as (scalar multiples of) products of basis vectors as in
 
 ```{r}
 (X <- 4*e(1)*e(2)*e(6))
+```
+
+But testing for an object being a blade is not yet implemented:
+
+```{r,error=TRUE}
 is.blade(X)
+```
+
+
+# Page 5
+
+```{r}
+A <- +2 + 5*e(1) -7*e(1:2) + e(3)
+B <- -3 + 2*e(3) -7*e(2:3) + e(4)
+C <-      5*e(2)
+A
+B
+C
+```
+
+<span style="color: darkblue">We have the two notations
+</span>
+
+$A_\overline{r} =\gr{A}_r\qquad (1.15)$
+
+
+<span style="color: darkblue">Also the scalar grade operator is sufficiently distinctive to merit its own notation
+</span>
+
+$\gr{A}=\gr{A}_0=A_\overline{0}\qquad (1.16)$
+
+<span style="color: darkblue">the operation of _reversion_:</span>
+
+$\left(AB\right)^\dagger=B^\dagger A^\dagger\qquad (1.17a)$
+
+$\left(A+B\right)^\dagger=A^\dagger+B^\dagger\qquad (1.17b)$
+
+$\gr{A^\dagger}=\gr{A}\qquad(1.17c)$
+
+$a=a^\dagger,\qquad a=\gr{a}_1\qquad(1.17d)$
+
+In the package we use `rev()`:
+
+```{r}
+rev(A*B) == rev(B)*rev(A)
+rev(A+B) == rev(A) + rev(B)
+const(A) == const(rev(A))
+rev(C)   == C
+```
+
+# Page 6
+
+
+```{r}
+A <- +2 + 5*e(1) -7*e(1:2) + e(1:3) - e(1:4)
+B <- -3 + 7*e(1:2) +3*e(1:4)
+C <-      5*e(2)
+A
+B
+C
+``` 
+
+<span style="color: darkblue">immediate corollaries:</span>
+
+$\gr{AB_rC}_r = \gr{C^\dagger B_rA^\dagger}_r\qquad(1.20c)$
+
+```{r}
+grade(A*grade(B,2)*C,2) == grade(rev(C)*grade(B,2)*rev(A),2)
+```
+
+<span style="color: darkblue">We define the _inner product_ of
+homogenous multivectors by:</span>
+
+$A_r\cdot B=\gr{A_rB_s}_{\left|r-s\right|}$ if $r,s>0\qquad(1.21a)$
+
+$A_r\cdot B_s=0$ if $rs=0\qquad(1.21b)$
+
+For arbitrary multivectors we invoke linearity:
+
+$A\cdot B=\sum_r\sum_sA_\overline{r}\cdot B_\overline{s}\qquad(1.21c)$
+
+In the package:
+
+
+```{r cdpw}
+cliffdotprod(A,B)  # usual idiom A %.% B buggers up rmarkdown
+```
+
+
+<span style="color: darkblue">we define the _outer product_ of
+homogenous multivectors by:</span>
+
+$A_r\wedge B_s = \gr{A_rB_s}_{r+s}\qquad(1.22a)$
+
+and in general
+
+$A\wedge B=\sum_r\sum_sA_\overline{r}\wedge B_\overline{s}\qquad(1.22c)$
+
+
+In the package:
+
+```{r}
+A %^% B
+```
+
+# Page 7
+
+(many algebraic properties of dot and wedge products)
+
+```{r}
+A <- +2 + 5*e(1) -7*e(1:2) + e(1:3) - e(1:4)
+B <- -3 + 7*e(1:2) +3*e(1:4)
+C <-      5*e(2)
+```
+
+
+$(A\wedge B)C=A\wedge BC\neq A\wedge(BC)$ 
+
+
+```{r}
+(A %^% B)*C == A %^%  B*C  
+(A %^% B)*C == A %^% (B*C)
+```
+
+# Page 8 
+
+```{r}
+a <- as.1vector(1:5)
+A <- +2 + 5*e(1) -7*e(1:2) + e(1:3) - e(1:4)
+B <- -3 + 7*e(1:2) +3*e(1:4)
+C <-      5*e(2)
+```
+
+(following page 7) Also inner product which is usually denoted `%.%`
+but here is `%dot%`:
+
+$(A\cdot B)C=A\cdot BC\neq A\cdot(BC)$
+
+
+```{r}
+(A %dot% B)*C == A %dot% B*C 
+(A %dot% B)*C == A %dot% (B*C)
+```
+
+Note that `%.%` causes problems for rmarkdown:
+
+```{r error=TRUE}
+A %.% B
+```
+
+I have no idea why this occurs.
+
+
+<span style="color: darkblue">We say that a multivector $A_+$ is
+_even_ if $\gr{A}_r=0$ for all odd values of $r$.  Similarly $A_-$ is
+_odd_ of $\gr{A}_r=0$ for even $r$.</span>
+
+
+$A=A_- + A_+\qquad(1.29)$
+
+In the package:
+
+```{r}
+is.even(evenpart(A))
+is.odd(oddpart(A))
+A == evenpart(A) + oddpart(A)
+```
+
+(similarly we have `oddpart()` and `is.odd()`).
+
+
+If $a$ is a vector and $A$ any multivector:
+
+$aA = a\cdot A + a\wedge A\qquad(1.31)$
+
+
+```{r}
+a*A == a %dot% A + a %^% A
+```
+
+
+# Page 9
+
+```{r}
+a <- as.1vector(1:5)
+b <- as.1vector(c(3,2,7))
+```
+
+$a\cdot b=\gr{ab}=\frac{1}{2}(ab + ba)\qquad(1.32)$
+
+```{r}
+a %dot% b  # see how it is real
+const(a*b)  # or grade(a*b,0)
+(a*b + b*a)/2
+```
+
+$a\cdot(a_1a_2\ldots a_r) = \sum_{k=1}^r(-1)^{k+1}a\cdot a_k(a_1\ldots\check{a_k}\ldots a_r)\qquad(1.33)$
+
+To illustrate package idiom I will use $n=9$ and $k=6$:
+
+```{r}
+a <- as.1vector(rnorm(9))
+a1 <- as.1vector(rnorm(9))
+a2 <- as.1vector(rnorm(9))
+a3 <- as.1vector(rnorm(9))
+a4 <- as.1vector(rnorm(9))
+a5 <- as.1vector(rnorm(9))
+a
+```
+
+Then
+
+```{r}
+LHS <- a %dot% (a1*a2*a3*a4)
+RHS <- (
+       +(a %dot% a1)*(   a2*a3*a4)
+       -(a %dot% a2)*(a1   *a3*a4)
+       +(a %dot% a3)*(a1*a2*   a4)
+       -(a %dot% a4)*(a1*a2*a3   )
+  )      
+Mod(LHS)
+Mod(RHS)
+Mod(LHS-RHS)
+```
+
+# Page 10
+
+```{r}
+a <- as.1vector(rnorm(9))
+a1 <- a2 <- a3 <- a4 <- rep(0,9)
+a1[1:2] <- rnorm(2)
+a2[3:5] <- rnorm(3)
+a3[6:7] <- rnorm(2)
+a4[8:9] <- rnorm(2)
+a1 <- as.1vector(a1)
+a2 <- as.1vector(a2)
+a3 <- as.1vector(a3)
+a4 <- as.1vector(a4)
+A4 <- a1*a2*a3*a4
+```
+
+$a\wedge A_r=aA_r-a\cdot A_r = bA_r\qquad(1.35)$
+
+where $b=a-\sum_{k=1}^ra\cdot a_k a_k^{-1}$.  In package idiom:
+
+
+```{r}
+b <- a - ((a%dot%a1)/a1 + (a%dot%a2)/a2 + (a%dot%a3)/a3 + (a%dot%a4)/a4)
+x1 <- a %^% A4
+x2 <- a*A4-a %dot% A4
+x3 <- b*A4
+c(Mod(x1-x2),Mod(x1-x3))
+```
+
+the above showing that the discrepancy is zero to within numerical
+tolerance.
+
+
+<span style="color: darkblue">We are now in a position to prove 
+</span>
+
+$A_rB_s=\gr{A_rB_s}_{|r-s|} + \gr{A_rB_s}_{|r-s|+2}+\cdots + \gr{A_rB_s}_{|r+s|}\qquad(1.36)$
+
+Because of linearity the relation holds for any multivectors.
+
+```{R}
+
+A <- rcliff(d=9,g=3,include.fewer=FALSE)
+B <- rcliff(d=9,g=4,include.fewer=FALSE)
+p <- A*B
+LHS <- p
+RHS <- grade(p,1)+grade(p,3)+grade(p,5)+grade(p,7)
+Mod(LHS-RHS)
+```
+
+# Page 11
+
+```{r}
+a <- as.1vector(rnorm(9))
+a1 <- a2 <- a3 <- a4 <- rep(0,9)
+a1[1:2] <- rnorm(2)
+a2[3:5] <- rnorm(3)
+a3[6:7] <- rnorm(2)
+a4[8:9] <- rnorm(2)
+a1 <- as.1vector(a1)
+a2 <- as.1vector(a2)
+a3 <- as.1vector(a3)
+a4 <- as.1vector(a4)
+```
+
+$a\cdot(a_1\wedge a_2\wedge\ldots\wedge a_r)=\sum_{k=1}^r(-1)^{k+1}a\cdot a_k a_1\wedge\ldots\wedge\check{a_k}\wedge\ldots\wedge a_r\qquad(1.38)$
+
+```{r}
+LHS <- a %dot% (a1 %^% a2 %^% a3 %^% a4)
+RHS <- (
+       +(a %dot% a1) %^% (       a2 %^% a3 %^% a4)
+       -(a %dot% a1) %^% (a1        %^% a3 %^% a4)
+       +(a %dot% a1) %^% (a1 %^% a2        %^% a4)
+       -(a %dot% a1) %^% (a1 %^% a2 %^% a3       )
+)
+Mod(LHS)
+Mod(LHS-RHS)
 ```
