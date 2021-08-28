@@ -270,6 +270,7 @@ star <- scalprod
 }
 
 "%.%" <- function(C1,C2){UseMethod("%.%")}
+"%dot%" <- function(C1,C2){UseMethod("%.%")}
 "%^%" <- function(C1,C2){UseMethod("%^%")}
 "%X%" <- function(C1,C2){UseMethod("%X%")}
 "%star%" <- function(C1,C2){UseMethod("%star%")}

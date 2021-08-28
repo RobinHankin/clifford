@@ -1,5 +1,6 @@
 \name{Ops.clifford}
 \alias{\%.\%}
+\alias{\%dot\%}
 \alias{\%^\%}
 \alias{\%X\%}
 \alias{\%star\%}
@@ -78,6 +79,7 @@ scalprod(C1,C2=rev(C1),drop=TRUE)
 eucprod(C1,C2=C1,drop=TRUE)
 maxyterm(C1,C2=as.clifford(0))
 C1 \%.\% C2
+C1 \%dot\% C2
 C1 \%^\% C2
 C1 \%X\% C2
 C1 \%star\% C2
@@ -144,7 +146,10 @@ C1 \%|_\% C2
   scalar product, which is why \code{\%star\%} is used.
 
   Because geometric product is often denoted by juxtaposition, package
-  idiom includes \code{a \% \% b} for geometric product.
+  idiom includes \code{a \% \% b} for geometric product.  The dot
+
+  Binary operator \code{\%dot\%} is a synonym for \code{\%.\%}, which
+  causes problems for rmarkdown.
 
   Function \code{clifford_inverse()} returns an inverse for nonnull
   Clifford objects \mjseqn{Cl(p,q)} for \mjeqn{p+q\leq 5}{p+5 <= 5}, and

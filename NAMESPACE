@@ -2,6 +2,7 @@ useDynLib(clifford, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
 
 export("%.%")
+export("%dot%")
 export("%^%")
 export("%X%")
 export("%star%")
