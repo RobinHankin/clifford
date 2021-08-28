@@ -127,7 +127,7 @@ Function \code{c_grade()} is a helper function that is documented at
   In the C code, \dQuote{term} has a slightly different meaning,
   referring to the vectors without the associated coefficient.
 }
-\seealso{\code{\link{signature}}}
+\seealso{\code{\link{signature}}, \code{\link{const}}}
 \references{C. Perwass 2009. \dQuote{Geometric algebra with applications
     in engineering}.  Springer.
   }

@@ -46,7 +46,12 @@ examples.
 
 }
 \author{Robin K. S. Hankin}
-\seealso{\code{\link{clifford}},\code{\link{getcoeffs}},\code{\link{is.zero}}}
+\seealso{
+  \code{\link{grade}},
+  \code{\link{clifford}},
+  \code{\link{getcoeffs}},
+  \code{\link{is.zero}}
+}
 \examples{
 
 X <- clifford(list(1,1:2,1:3,3:5),6:9)
