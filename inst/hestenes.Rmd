@@ -10,6 +10,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 library("onion")
+library("matlib") # needed for GramSchmidt()
+library("partitions") # needed for allbinom()
 ```
 
 \newcommand{\gr}[1]{\left\langle #1\right\rangle}
@@ -63,9 +65,9 @@ $(AB)C =A(BC)\qquad (1.3)$
 <span style="color: darkblue">
 Multiplication is distributive with respect to addition:</span>
 
-$A(B+C)=A*B+A*C\qquad (1.4)$ 
+$A(B+C)=A*B+A*C\qquad (1.4)$
 
-$(B+C)A=BA + CA\qquad (1.5)$ 
+$(B+C)A=BA + CA\qquad (1.5)$
 
 ```{r}
 A*(B+C) == A*B + A*C
@@ -128,7 +130,7 @@ The _grade operator_ $\gr{\cdot}_r$ enjoys the properties:</span>
 
 $\gr{A+B}_r=\gr{A}_r+\gr{B}_r\qquad (1.10)$
 
-$\gr{\lambda A}_r=\lambda\gr{A}_r = \gr{A}_r\lambda$~$\qquad$~if $\lambda=\gr{\lambda}_0\qquad (1.11)$ 
+$\gr{\lambda A}_r=\lambda\gr{A}_r = \gr{A}_r\lambda$~$\qquad$~if $\lambda=\gr{\lambda}_0\qquad (1.11)$
 
 $\gr{\gr{A}_r}=\gr{A}_r\qquad (1.12)$
 
@@ -206,7 +208,8 @@ $\gr{A^\dagger}=\gr{A}\qquad(1.17c)$
 
 $a=a^\dagger,\qquad a=\gr{a}_1\qquad(1.17d)$
 
-In the package we use `rev()`:
+In the package we use `rev()` [notation in the package is detailed 
+in `rev.Rd`]:
 
 ```{r}
 rev(A*B) == rev(B)*rev(A)
@@ -225,7 +228,7 @@ C <-      5*e(2)
 A
 B
 C
-``` 
+```
 
 <span style="color: darkblue">immediate corollaries:</span>
 
@@ -280,36 +283,18 @@ B <- -3 + 7*e(1:2) +3*e(1:4)
 C <-      5*e(2)
 ```
 
-
-$(A\wedge B)C=A\wedge BC\neq A\wedge(BC)$ 
+$(A\wedge B)C=A\wedge BC\neq A\wedge(BC)$
 
 
 ```{r}
-(A %^% B)*C == A %^%  B*C  
+(A %^% B)*C == A %^%  B*C
 (A %^% B)*C == A %^% (B*C)
 ```
 
-# Page 8 
-
-```{r}
-a <- as.1vector(1:5)
-A <- +2 + 5*e(1) -7*e(1:2) + e(1:3) - e(1:4)
-B <- -3 + 7*e(1:2) +3*e(1:4)
-C <-      5*e(2)
-```
-
-(following page 7) Also inner product which is usually denoted `%.%`
-but here is `%dot%`:
-
 $(A\cdot B)C=A\cdot BC\neq A\cdot(BC)$
 
-
-```{r}
-(A %dot% B)*C == A %dot% B*C 
-(A %dot% B)*C == A %dot% (B*C)
-```
-
-Note that `%.%` causes problems for rmarkdown:
+Note that in package idiom, the inner product is usually denoted `%.%`
+but here is `%dot%` (the shorter form causes problems for markdown):
 
 ```{r error=TRUE}
 A %.% B
@@ -317,6 +302,35 @@ A %.% B
 
 I have no idea why this occurs.
 
+
+```{r}
+(A %dot% B)*C == A %dot%  B*C
+(A %dot% B)*C == A %dot% (B*C)
+```
+
+
+# Page 8
+
+```{r}
+a <- as.1vector(1:5)
+A <- -7*e(c(1,2)) + e(c(1,3)) - 5*e(c(4,5))
+B <-  3*e(c(1,2)) +3*e(c(2,5)) -3*e(c(3,4))
+C <-    e(c(2,4)) + 8*e(c(1,5))
+```
+
+$A\cdot(B\wedge C) = A\cdot B\wedge C\neq (A\cdot B)\wedge C$
+
+
+<span style="color: red">Unfortunately the dot product and wedge
+product do not have the correct priority:
+</span>
+
+```{r}
+A %dot% (B %^% C)
+A %dot% B %^% C
+(A %dot% B) %^% C
+c(Mod(A %dot% (B %^% C) - A %dot% B %^% C),Mod((A %dot% B) %^% C - A %dot% B %^% C))
+```
 
 <span style="color: darkblue">We say that a multivector $A_+$ is
 _even_ if $\gr{A}_r=0$ for all odd values of $r$.  Similarly $A_-$ is
@@ -384,7 +398,7 @@ RHS <- (
        -(a %dot% a2)*(a1   *a3*a4)
        +(a %dot% a3)*(a1*a2*   a4)
        -(a %dot% a4)*(a1*a2*a3   )
-  )      
+  )
 Mod(LHS)
 Mod(RHS)
 Mod(LHS-RHS)
@@ -394,15 +408,13 @@ Mod(LHS-RHS)
 
 ```{r}
 a <- as.1vector(rnorm(9))
-a1 <- a2 <- a3 <- a4 <- rep(0,9)
-a1[1:2] <- rnorm(2)
-a2[3:5] <- rnorm(3)
-a3[6:7] <- rnorm(2)
-a4[8:9] <- rnorm(2)
-a1 <- as.1vector(a1)
-a2 <- as.1vector(a2)
-a3 <- as.1vector(a3)
-a4 <- as.1vector(a4)
+jj <- GramSchmidt(matrix(rnorm(81),9,9),normalize=FALSE)
+max(abs(jj[row(jj) != col(jj)])) # zero -> cols of jj are orthogonal
+a1 <- as.1vector(jj[,1])
+a2 <- as.1vector(jj[,2])
+a3 <- as.1vector(jj[,3])
+a4 <- as.1vector(jj[,4])
+a1*a2 + a2*a1 # verify anticommutivity
 A4 <- a1*a2*a3*a4
 ```
 
@@ -423,15 +435,14 @@ the above showing that the discrepancy is zero to within numerical
 tolerance.
 
 
-<span style="color: darkblue">We are now in a position to prove 
+<span style="color: darkblue">We are now in a position to prove
 </span>
 
 $A_rB_s=\gr{A_rB_s}_{|r-s|} + \gr{A_rB_s}_{|r-s|+2}+\cdots + \gr{A_rB_s}_{|r+s|}\qquad(1.36)$
 
 Because of linearity the relation holds for any multivectors.
 
-```{R}
-
+```{r}
 A <- rcliff(d=9,g=3,include.fewer=FALSE)
 B <- rcliff(d=9,g=4,include.fewer=FALSE)
 p <- A*B
@@ -444,15 +455,13 @@ Mod(LHS-RHS)
 
 ```{r}
 a <- as.1vector(rnorm(9))
-a1 <- a2 <- a3 <- a4 <- rep(0,9)
-a1[1:2] <- rnorm(2)
-a2[3:5] <- rnorm(3)
-a3[6:7] <- rnorm(2)
-a4[8:9] <- rnorm(2)
-a1 <- as.1vector(a1)
-a2 <- as.1vector(a2)
-a3 <- as.1vector(a3)
-a4 <- as.1vector(a4)
+
+a <- as.1vector(rnorm(9))
+jj <- GramSchmidt(matrix(rnorm(81),9,9),normalize=FALSE)
+a1 <- as.1vector(jj[,1])
+a2 <- as.1vector(jj[,2])
+a3 <- as.1vector(jj[,3])
+a4 <- as.1vector(jj[,4])
 ```
 
 $a\cdot(a_1\wedge a_2\wedge\ldots\wedge a_r)=\sum_{k=1}^r(-1)^{k+1}a\cdot a_k a_1\wedge\ldots\wedge\check{a_k}\wedge\ldots\wedge a_r\qquad(1.38)$
@@ -460,11 +469,289 @@ $a\cdot(a_1\wedge a_2\wedge\ldots\wedge a_r)=\sum_{k=1}^r(-1)^{k+1}a\cdot a_k a_
 ```{r}
 LHS <- a %dot% (a1 %^% a2 %^% a3 %^% a4)
 RHS <- (
-       +(a %dot% a1) %^% (       a2 %^% a3 %^% a4)
-       -(a %dot% a1) %^% (a1        %^% a3 %^% a4)
-       +(a %dot% a1) %^% (a1 %^% a2        %^% a4)
-       -(a %dot% a1) %^% (a1 %^% a2 %^% a3       )
+       +(a %dot% a1) * (       a2 %^% a3 %^% a4)
+       -(a %dot% a2) * (a1        %^% a3 %^% a4)
+       +(a %dot% a3) * (a1 %^% a2        %^% a4)
+       -(a %dot% a4) * (a1 %^% a2 %^% a3       )
 )
 Mod(LHS)
 Mod(LHS-RHS)
 ```
+
+# Page 12
+
+```{r}
+a <- as.1vector(rnorm(6))
+Ar <- rcliff(g=3, include.fewer=FALSE)  # r=3
+B <- rcliff()  # general multivector
+```
+
+<span style="color: darkblue">To our arsenal of formulas, we can add
+one more group of identities</span>
+
+$$\begin{aligned}
+a\cdot(A_rB) &= a\cdot A_rB + (-1)^rA_ra\cdot B\qquad &(1.41a)\\
+&= a\wedge A_rB - (-1)^rA_ra\wedge B\qquad &(1.41b)
+\end{aligned}$$
+
+and
+
+$$\begin{aligned}
+a\wedge(A_rB) &= a\wedge A_rB + (-1)^rA_ra\cdot B\qquad &(1.41a)\\
+&= a\cdot A_rB - (-1)^rA_ra\wedge B\qquad &(1.41b)
+\end{aligned}$$
+
+
+Here we have $r=3$.  For (1.41a) and (1.41b):
+
+```{r}
+LHS <- a %dot% (Ar*B)  # note bracketing ; usual idiom would be  a %.% (Ar*B)
+RHS1 <- a %dot% Ar*B - Ar*a %dot% B
+RHS2 <- a %^% Ar*B + Ar*a %^% B
+c(Mod(LHS),Mod(LHS-RHS1),Mod(LHS-RHS2))
+```
+
+For (1.42a) and (1.42b):
+
+```{r}
+LHS <- a %^% (Ar*B)  # note bracketing
+RHS1 <- a %^% Ar*B + Ar*a %dot% B   # usual idiom a%^% Ar*B + Ar*a%.%B
+RHS2 <- a %dot% Ar*B - Ar*a %^% B
+c(Mod(LHS),Mod(LHS-RHS1),Mod(LHS-RHS2))
+```
+
+
+# Page 12
+
+
+```{r}
+A <- rcliff(g=4) + as.1vector(rnorm(4))
+B <- rcliff(g=4) + as.1vector(rnorm(4))
+A
+B
+```
+
+
+$A*B=\gr{AB}\qquad(1.44)$
+
+$A*B=\gr{A}\gr{B} + \sum_r\gr{A}_\overline{r}\gr{B}_\overline{r}\qquad(1.46)$
+
+
+Thus
+
+```{r starstuff}
+LHS <- A %star% B
+```
+
+```{r rhsstuff}
+RHS <- drop(
+     const(A) * const(B)                               + 
+     grade(A,1,drop=FALSE) %dot% grade(B,1,drop=FALSE) +   
+     grade(A,2,drop=FALSE) %dot% grade(B,2,drop=FALSE) +
+     grade(A,3,drop=FALSE) %dot% grade(B,3,drop=FALSE) +
+     grade(A,4,drop=FALSE) %dot% grade(B,4,drop=FALSE)
+    )    
+c(LHS,Mod(LHS-RHS))
+```
+
+<span style="color: darkblue">we can associate with any multivector
+$A$ a unique positive scalar _magnitude_ $|A|$ defined by</span>
+
+$|A|^2=A^\dagger\star A=\sum_r\left|A_\overline{r}\right|^2\geq 0\qquad(1.49)$
+
+In the package, `Mod(x)` is defined as `sqrt(abs(eucprod(x,x)))` and
+`eucprod()` is the Euclidean product with
+`eucprod(x,y)=grade(x,Conj(y),0)`.  Thus
+
+
+```{r}
+LHS <- Mod(A)^2
+RHS <- Conj(A) %star% A
+c(LHS,Mod(LHS-RHS))
+```
+
+# Page 14
+
+```{R}
+A <- rcliff()
+B <- rcliff()
+C <- rcliff()
+```
+
+
+<span style="color: darkblue">leads immediately to the `law of
+cosines':</span>
+
+$\left|A+B\right|^2 = \left|A\right|^2 + 2A^\dagger*B \left|B\right|^2\qquad(1.53a)$
+
+```{r}
+LHS <- Mod(A+B)^2
+RHS <- Mod(A)^2 + Mod(B)^2 + 2*rev(A) %star% B
+c(LHS,RHS-LHS)
+```
+
+<span style="color: darkblue">Sometines it is convenient to employ the
+_commutator_ product:</span>
+
+
+$A\times B=\frac{1}{2}(AB-BA)\qquad (1.55)$
+
+```{r e1.55}
+A %X% B
+```
+
+
+<span style="color: darkblue">Jacobi identity:</span>
+
+$A\times(B\times C) + B\times(C\times A)+C\times(A\times B)\qquad(1.56c)$
+
+
+```{r e1.56c}
+Mod(A %X% (B %X% C) + B %X% (C %X% A) + C %X% (A %X% B))
+```
+
+<span style="color: darkblue">In addition, the commutator is related
+to the geometric product by:</span>
+
+$A\times(BC)=(A\times B)C+B(A\times C)\qquad(1.57)$
+
+```{r e1.57}
+LHS <- A %X% (B*C)
+RHS <- (A %X% B)*C + B*(A %X% C)
+c(Mod(LHS),Mod(LHS-RHS))
+```
+
+# Page 15
+
+```{r}
+a <- as.1vector(rnorm(7))
+b <- as.1vector(rnorm(7))
+d <- as.1vector(rnorm(7)) # not c
+A <- rcliff(n=50,d=5)
+A <- A-grade(A,1)   # need <A>_1=0
+B <- clifford(asplit(allbinom(5,2),2),rnorm(10))
+```
+
+
+<span style="color: darkblue">we get the Jacobi identity for vectors:</span>
+
+$a\cdot(b\wedge c) + c\cdot(d\wedge a)+c\cdot(a\wedge b)=0\qquad(1.61)$
+
+
+```{r e1.61}
+Mod(a %dot% (b %^% d) + b %dot% (d %^% a) + d %dot% (a %^% b))  # d not c
+```
+
+<span style="color: darkblue">Thus we have quite generally</span>
+
+$BA=B\cdot A + B\times A + B\wedge A\qquad (1.63)$
+
+
+
+```{r e1.63}
+LHS <- B*A
+RHS <- B %dot% A + B %X% A + B %^% A
+c(Mod(LHS),Mod(LHS-RHS))
+```
+
+# Page 16
+
+```{r p16}
+A <- rcliff()
+B <- clifford(asplit(allbinom(5,2),2),rnorm(10))
+C <- rcliff()
+a1 <- as.1vector(rnorm(5))
+a2 <- as.1vector(rnorm(5))
+a3 <- as.1vector(rnorm(5))
+b1 <- as.1vector(rnorm(5))
+c1 <- as.1vector(rnorm(5))
+d1 <- as.1vector(rnorm(5))
+```
+
+$B\times(A\cdot C) = (B\times A)\cdot C+ A\cdot(B\times C)\qquad(1.65)$
+
+$B\times(A\wedge C) = (B\times A)\wedge C+ A\wedge(B\times C)\qquad(1.66)$
+
+```{r e1.65}
+LHS <- B %X% (A %dot% C)
+RHS <- (B %X% A) %dot% C + A %dot% (B %X% C)
+c(Mod(LHS),Mod(LHS-RHS))
+```
+
+```{r e1.66}
+LHS <- B %X% (A %^% C)
+RHS <- (B %X% A) %^% C + A %^% (B %X% C)
+c(Mod(LHS),Mod(LHS-RHS))
+```
+
+$B\times(a_1\wedge\cdots\wedge a_r)=\sum_{k=1}^r(-1)^{k+1}(B\cdot a_k)\wedge a_1\wedge\cdots\check{a_k}\cdots\wedge a_r\qquad (1.67)$
+
+```{r e1.67}
+LHS <- B %X% (a1 %^% a2 %^% a3 %^% a4)
+RHS <- (
+        +(B %dot% a1)        %^% a2 %^% a3 %^% a4 
+        -(B %dot% a2) %^% a1        %^% a3 %^% a4  
+        +(B %dot% a3) %^% a1 %^% a2        %^% a4  
+        -(B %dot% a4) %^% a1 %^% a2 %^% a3
+       )	 
+c(Mod(LHS),Mod(LHS-RHS))
+```
+
+$(a\wedge b)\times(c\wedge d)=a\wedge(b\cdot c\wedge d)-b\wedge(a\cdot c\wedge d)\qquad(1.68)$
+
+```{r e1.68}
+LHS <- (a1 %^% b1) %X% (c1 %^% d1)
+RHS <- a1 %^% (b1 %dot% (c1 %^% d1)) - b1 %^% (a1 %dot% (c1 %^% d1))
+c(Mod(LHS),Mod(LHS-RHS))
+```
+
+NB: Bracketing is important here, the wedge product should be carried
+out before the dot product.
+
+
+$(a\wedge b) \times (c\wedge b)=(a\wedge b\wedge c)\cdot b\qquad(1.69)$
+
+```{r e1.69}
+LHS <- (a1 %^% b1) %X% (c1 %^% b1)
+RHS <- (a1 %^% b1 %^% c1) %dot% b1
+c(Mod(LHS),Mod(LHS-RHS))
+```
+
+# Page 17
+
+```{r}
+a1 <- as.1vector(rnorm(4))
+a2 <- as.1vector(rnorm(4))
+a3 <- as.1vector(rnorm(4))
+a4 <- as.1vector(rnorm(4))
+```
+
+
+$a_1\wedge a_2\wedge\cdots\wedge a_n=\lambda I\qquad(2.2)$ 
+
+
+First establish that the wedge product of these four vectors is a
+multiple of $I$:
+
+```{r e2.2}
+A <- a1 %^% a2 %^% a3 %^% a4
+A
+```
+
+Now we take a wedge product of a linear combination of `a1 a2 a3`:
+
+```{r}
+c(
+Mod((a1 + a2 + a3) %^% (a1-4*a2) %^% (-4*a1 + a2-6*a3) %^% (a2-a3),
+Mod(a1 %^% a2 %^% a3 %^% (rnorm(1)*a1 + rnorm(1)*a2 + rnorm(1)*a3)
+)
+```
+
+$a_k\wedge A=0\qquad(2.4)$
+
+```{r eq2.4}
+c(Mod(a1 %^% A), Mod(a2 %^% A), Mod(a3 %^% A), Mod(a4 %^% A))
+```
+
+
+
