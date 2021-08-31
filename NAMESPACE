@@ -16,6 +16,7 @@ export("%|_%")
 importFrom(Rcpp, evalCpp)
 importFrom("utils", "capture.output")
 importFrom("stats", "rnorm")
+importFrom("partitions", "allbinom")
 
 import(mathjaxr)
 

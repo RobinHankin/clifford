@@ -7,8 +7,12 @@ The Clifford algebra on basis vectors \eqn{e_1,e_2,\ldots,
   \code{allcliff()} generates a clifford object with a nonzero
   coefficient for each multivector.
 }
-\usage{allcliff(n)}
-\arguments{\item{n}{Integer}}
+\usage{allcliff(n,grade)}
+\arguments{
+  \item{n}{Integer specifying dimension of underlying vector space}
+  \item{grade}{Grade of multivector to be returned.  If missing,
+    multivector contains every term of every grade \eqn{\leq n}{<=n}}
+}
 \author{Robin K. S. Hankin}
 \examples{
 allcliff(6)

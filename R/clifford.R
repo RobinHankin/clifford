@@ -307,8 +307,13 @@ setMethod("drop","clifford", function(x){
     clifford(elements(terms(C))[wanted],coeffs=elements(coeffs(C))[wanted])
 }
 
-`allcliff` <- function(n){
-    clifford(apply(expand.grid(rep(list(0:1),n))>0,1,which),1)
+`allcliff` <- function(n,grade){
+    if(missing(grade)){
+        out <- clifford(apply(expand.grid(rep(list(0:1),n))>0,1,which),1)
+    } else {
+        out <- clifford(asplit(partitions::allbinom(n,grade),2))
+    }
+    return(out)
 }
 
 `zap` <- function(x,drop=TRUE,digits=getOption("digits")){
