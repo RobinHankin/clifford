@@ -7,11 +7,15 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+set.seed(0)
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 library("onion")
 library("matlib") # needed for GramSchmidt()
 library("partitions") # needed for allbinom()
+comp <- function(LHS,RHS){
+  c(`Mod(LHS)` = Mod(LHS), `Mod(RHS)`=Mod(RHS), `Mod(LHS-RHS)` = Mod(LHS-RHS))
+}
 ```
 
 \newcommand{\gr}[1]{\left\langle #1\right\rangle}
@@ -30,7 +34,7 @@ darkblue">dark blue.</span>
 
 # Page 3
 
-```{r}
+```{r p3}
 A <- +2 + 5*e(1) -7*e(1:2) + e(3)
 B <- -3 + 2*e(3) -7*e(2:3) + e(4)
 C <-    + 5*e(2) -e(c(1,3))
@@ -45,7 +49,7 @@ Addition is commutative:
 
 $A+B=B+A\qquad (1.1)$
 
-```{r}
+```{r pa}
 A+B == B+A
 ```
 
@@ -362,14 +366,14 @@ a*A == a %dot% A + a %^% A
 
 # Page 9
 
-```{r}
+```{r p9}
 a <- as.1vector(1:5)
 b <- as.1vector(c(3,2,7))
 ```
 
 $a\cdot b=\gr{ab}=\frac{1}{2}(ab + ba)\qquad(1.32)$
 
-```{r}
+```{r p9a}
 a %dot% b  # see how it is real
 const(a*b)  # or grade(a*b,0)
 (a*b + b*a)/2
@@ -399,9 +403,7 @@ RHS <- (
        +(a %dot% a3)*(a1*a2*   a4)
        -(a %dot% a4)*(a1*a2*a3   )
   )
-Mod(LHS)
-Mod(RHS)
-Mod(LHS-RHS)
+comp(LHS,RHS)
 ```
 
 # Page 10
@@ -446,9 +448,7 @@ Because of linearity the relation holds for any multivectors.
 A <- rcliff(d=9,g=3,include.fewer=FALSE)
 B <- rcliff(d=9,g=4,include.fewer=FALSE)
 p <- A*B
-LHS <- p
-RHS <- grade(p,1)+grade(p,3)+grade(p,5)+grade(p,7)
-Mod(LHS-RHS)
+comp(LHS=p, RHS=grade(p,1)+grade(p,3)+grade(p,5)+grade(p,7))
 ```
 
 # Page 11
@@ -474,8 +474,7 @@ RHS <- (
        +(a %dot% a3) * (a1 %^% a2        %^% a4)
        -(a %dot% a4) * (a1 %^% a2 %^% a3       )
 )
-Mod(LHS)
-Mod(LHS-RHS)
+comp(LHS,RHS)
 ```
 
 # Page 12
@@ -508,7 +507,8 @@ Here we have $r=3$.  For (1.41a) and (1.41b):
 LHS <- a %dot% (Ar*B)  # note bracketing ; usual idiom would be  a %.% (Ar*B)
 RHS1 <- a %dot% Ar*B - Ar*a %dot% B
 RHS2 <- a %^% Ar*B + Ar*a %^% B
-c(Mod(LHS),Mod(LHS-RHS1),Mod(LHS-RHS2))
+comp(LHS,RHS1)
+comp(LHS,RHS2)
 ```
 
 For (1.42a) and (1.42b):
@@ -719,7 +719,7 @@ c(Mod(LHS),Mod(LHS-RHS))
 
 # Page 17
 
-```{r}
+```{r p17}
 a1 <- as.1vector(rnorm(4))
 a2 <- as.1vector(rnorm(4))
 a3 <- as.1vector(rnorm(4))
@@ -742,8 +742,8 @@ Now we take a wedge product of a linear combination of `a1 a2 a3`:
 
 ```{r}
 c(
-Mod((a1 + a2 + a3) %^% (a1-4*a2) %^% (-4*a1 + a2-6*a3) %^% (a2-a3),
-Mod(a1 %^% a2 %^% a3 %^% (rnorm(1)*a1 + rnorm(1)*a2 + rnorm(1)*a3)
+Mod((a1 + a2 + a3) %^% (a1-4*a2) %^% (-4*a1 + a2-6*a3) %^% (a2-a3)),
+Mod(a1 %^% a2 %^% a3 %^% (rnorm(1)*a1 + rnorm(1)*a2 + rnorm(1)*a3))
 )
 ```
 
@@ -754,4 +754,167 @@ c(Mod(a1 %^% A), Mod(a2 %^% A), Mod(a3 %^% A), Mod(a4 %^% A))
 ```
 
 
+
+# Page 18
+
+```{r p18}
+a1 <- as.1vector(rnorm(5))
+a2 <- as.1vector(rnorm(5))
+a3 <- as.1vector(rnorm(5))
+a4 <- as.1vector(rnorm(5))
+b  <- as.1vector(rnorm(9))
+```
+
+
+$b=bAA^{-1} = (b\cdot A+b\wedge A)A^{-1}$
+
+$b= b_\parallel + b_\perp\qquad(2.8a)$
+
+where
+
+$b_\parallel = P_A(b) = b\cdot AA^{-1}\qquad(2.8b)$
+
+and 
+
+$b_\perp= p_A^\perp(b)=b\wedge AA^{-1}\qquad(2.8c)$
+
+```{r eq2.8b}
+A <- a1 %^% a2 %^% a3 %^% a4
+A
+b_parallel <- (b %dot% A)/A
+b_perp <- (b %^% A)/A
+zap(b_parallel)
+zap(b_perp)
+Mod(b-(b_parallel + b_perp))  # zero to numerical precision
+```
+
+
+# Page 19
+
+$\operatorname{dim}\mathcal{G}(A) =
+\sum_{r=0}^n\operatorname{dim}\mathcal{G}^r(A)=\sum_{r=0}^n{n\choose r}=2^n$
+
+Try $n=5$:
+
+```{r p16a}
+allcliff(5)
+nterms(allcliff(7))
+```
+
+# Page 20
+
+```{r p20}
+A <- as.1vector(rnorm(5)) %^% as.1vector(rnorm(5)) %^% as.1vector(rnorm(5))
+I <- A/Mod(A)
+Ainv <- -A/eucprod(A)
+c(Mod(A*Ainv-1),Mod(Ainv*A-1))
+B <- rcliff()
+B
+```
+
+$P_A(B) = (B\cdot A)\cdot A^{-1} = A^{-1}\cdot(A\cdot B)\qquad(2.9a)$ 
+
+Now the text points out that $P(\gr{B}) = P(\gr{B}_n) = 0$ and indeed:
+
+```{r}
+P <- function(B){Ainv %dot% (A %dot% B)}
+P(scalar(4444))
+P(e(1:3))
+```
+
+However, the following equations specify the desired behaviour:
+
+$P(\gr{B}) = \gr{B}\qquad(2.9b)$
+
+$P(\gr{B}_n) = \gr{B}_n\cdot AA^{-1}\qquad(2.9c)$
+
+and Hestenes suggests a couple of ways to ensure desired behaviour.
+But in the package, it is easier to use the "fat dot product" `%o%`:
+
+
+```{r wantedandgot}
+x_wanted <- (e(1:3) %dot% A) * Ainv # usual idiom "%.%"
+x_got <-  Ainv %o% (A %o% e(1:3))
+Mod(x_wanted - x_got)
+```
+
+More generally:
+
+```{r discrepancywanted}
+disc <- function(B){
+  x_wanted <- (B %dot% A) * Ainv # usual idiom "%.%"
+  x_got <-  Ainv %o% (A %o% B)
+  Mod(x_wanted - x_got)
+}
+
+c(
+disc(e(c(1,2,3))),
+disc(e(c(1,2,4))),
+disc(e(c(1,2,5))),
+disc(e(c(1,3,4))),
+disc(e(c(1,3,5))),
+disc(e(c(1,4,5))),
+disc(e(c(2,3,4))),
+disc(e(c(2,3,5))),
+disc(e(c(2,4,5))),
+disc(e(c(3,4,5)))
+)
+```
+
+
+<span style="color: darkblue">let us consider </span>
+
+
+$P_A(B_\overline{s})=0\qquad\mbox{if} s>n\qquad(2.10a)$:
+
+```{r defineP}
+P <- function(B){Ainv %o% (A %o% B)}
+Mod(P(e(1:4))) # should be zero
+```
+
+# Page 21
+
+
+```{r p21}
+A <- as.1vector(rnorm(5)) %^% as.1vector(rnorm(5)) %^% as.1vector(rnorm(5))
+Ainv <- -A/eucprod(A)
+P <- function(B){Ainv %o% (A %o% B)}  # NB %o% not %.% 
+
+(B <- rcliff())
+C <- rcliff()
+```
+
+$P(\alpha B+\beta C)=\alpha P(A)+\beta P(C)\qquad(2.13a)$
+
+$P(\gr{B}_r)=\gr{P(B)}_r\qquad(2.13b)$
+
+$P(P(B))=P(B)\qquad(2.13c)$
+
+$P(C\wedge B)=P(C)\wedge P(B)\qquad(2.13e)$
+
+$P(BC)=BP(C)\qquad\mbox{if } P(B)\qquad(2.13e)$
+
+```{r p21verify}
+comp(P(1.1*B + 2.5234*C), 1.1*P(B) + 2.5234*P(C))
+comp(P(grade(B,2)), grade(P(B),2))
+comp(P(B),P(P(B)))
+comp(P(C %^% B),P(C) %^% P(B))
+comp(P(P(B)*C), P(B)*P(C))
+```
+
+<span style="color: darkblue">two important special cases </span>
+
+$BA=B\wedge A\qquad(2.14a)$
+
+$P_{BA}=P_B+P_A\qquad(2.14b)$
+
+$P_BP_A=P_AP_B=0\qquad(2.14c)$
+
+```{r p21eq2.14}
+A <- e(1) + e(1:2)
+B <- 2 - e(3)
+Ainv <- 
+
+comp(A*B, A%^%B)
+```
 
