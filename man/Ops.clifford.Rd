@@ -146,7 +146,7 @@ C1 \%|_\% C2
   scalar product, which is why \code{\%star\%} is used.
 
   Because geometric product is often denoted by juxtaposition, package
-  idiom includes \code{a \% \% b} for geometric product.  The dot
+  idiom includes \code{a \% \% b} for geometric product.
 
   Binary operator \code{\%dot\%} is a synonym for \code{\%.\%}, which
   causes problems for rmarkdown.
