@@ -12,6 +12,8 @@
 \alias{reverse}
 \alias{gradeinv}
 \alias{neg}
+\alias{tilde}
+\alias{dagger}
 \title{Clifford involutions}
 \description{\loadmathjax
 
@@ -88,7 +90,9 @@
     A\right\rangle_{\overline{\left\lbrace 1,2,5\right\rbrace}} =
     A-2\left( \left\langle A\right\rangle_1 +\left\langle
     A\right\rangle_2+\left\langle A\right\rangle_5\right)}{omitted} and
-    the R idiom would be \code{neg(A,c(1,2,5))}.
+    the R idiom would be \code{neg(A,c(1,2,5))}.  Note that Hestenes
+    uses \dQuote{\mjeqn{A_{\overline{r}}}{omitted}} to mean the same as
+    \mjeqn{\left\langle A\right\rangle_r}{omitted}.
     
     \item The \dfn{Clifford conjugate} \mjeqn{\overline{A}}{omitted} is
     given by \code{cliffconj()}.  It is distinct from conjugation
