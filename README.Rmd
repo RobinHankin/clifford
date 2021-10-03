@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# clifford <img src="man/figures/clifford.png" width = "150" align="right" />
+<img src="man/figures/clifford.png" width = "150" align="right" />
 
 <!-- badges: start -->
 [![Build Status](https://travis-ci.org/RobinHankin/clifford.svg?branch=master)](https://travis-ci.org/RobinHankin/clifford)

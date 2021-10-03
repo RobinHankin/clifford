@@ -3,7 +3,7 @@ The clifford package: Clifford algebra in R
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# clifford <img src="man/figures/clifford.png" width = "150" align="right" />
+<img src="man/figures/clifford.png" width = "150" align="right" />
 
 <!-- badges: start -->
 
@@ -133,12 +133,12 @@ Thus:
 options("basissep" = ",")
 (x <- rcliff(d=20))
 #> Element of a Clifford algebra, equal to
-#> + 2 + 5e_2 + 1e_5 - 2e_4,7 + 2e_11 + 4e_14 - 1e_10,14 + 3e_5,9,15 - 3e_18,19
+#> + 4 + 5e_2 + 1e_5 - 2e_4,7 + 2e_11 + 4e_14 - 1e_10,14 + 3e_5,9,15 - 3e_18,19
 summary(x^3)
 #> Element of a Clifford algebra 
-#> Typical terms:  158  ...  + 54e_5,9,10,14,15,18,19 
+#> Typical terms:  364  ...  + 54e_5,9,10,14,15,18,19 
 #> Number of terms: 40 
-#> Magnitude: 59189
+#> Magnitude: 265721
 ```
 
 # References
