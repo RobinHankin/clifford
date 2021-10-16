@@ -106,7 +106,8 @@
     underlying vector space.  Perwass gives
     \mjdeqn{C^*=CI^{-1}}{omitted}
 
-    where \mjeqn{I=e_1e_2\ldots e_n}{omitted} is the unit pseudoscalar.
+    where \mjeqn{I=e_1e_2\ldots e_n}{omitted} is the unit pseudoscalar
+    [note that Hestenes uses \mjeqn{I}{I} to mean something different].
     The dual is sensitive to the signature of the Clifford algebra
     \emph{and} the dimension of the underlying vector space.
   }
