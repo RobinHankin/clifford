@@ -26,8 +26,8 @@ comp <- function(LHS,RHS){
 
 
 This document goes through Hestenes and Sobczyk illustrating the
-various theorems and functions using package idiom.  Each page has a
-separate self-contained section, in which variables are defined at the
+various theorems and functions using package idiom.  Each page is a
+self-contained document, in which variables are defined at the
 beginning.  Direct quotes are shown in <span style="color:
 darkblue">dark blue.</span>
 
@@ -906,15 +906,43 @@ comp(P(P(B)*C), P(B)*P(C))
 
 $BA=B\wedge A\qquad(2.14a)$
 
+implies 
+
 $P_{BA}=P_B+P_A\qquad(2.14b)$
+
+and
 
 $P_BP_A=P_AP_B=0\qquad(2.14c)$
 
 ```{r p21eq2.14}
-A <- e(1) + e(1:2)
-B <- 2 - e(3)
-Ainv <- 
+
+A <- e(1) + e(2)
+B <- e(1) - e(2)
+
+Ainv <- A/2
+Binv <- B/2
 
 comp(A*B, A%^%B)
 ```
 
+So we would expect $P_{BA}= P_B+P_A$:
+
+```{r pbapbpluspa}
+P_A <- function(x){Ainv %o% (A %o% x)} 
+P_B <- function(x){Binv %o% (B %o% x)} 
+P_AB <- function(x){(Binv*Ainv) %o% ((A*B) %o% x)} 
+P_BA <- function(x){(Ainv*Binv) %o% ((B*A) %o% x)} 
+P_AP_B <- function(x){P_A(P_B(x))}
+P_BP_A <- function(x){P_B(P_A(x))}
+x <- rcliff(d=4)
+
+A*Ainv
+Ainv*A
+B*Binv
+Binv*B
+(A*B)*(Binv*Ainv)
+
+comp(P_BA(x),P_B(x)+P_A(x))
+
+P_A(x) * P_B(x)  # should be zero
+```
