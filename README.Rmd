@@ -123,4 +123,4 @@ summary(x^3)
 
 For more detail, see the package vignette
 
-```vignette("clifford")```
+`vignette("clifford")`
