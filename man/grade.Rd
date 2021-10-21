@@ -67,9 +67,10 @@ grades of the constituent terms.
 
 Function \code{gradesplus()} returns the same but counting only basis
 vectors that square to \eqn{+1}, and \code{gradesminus()} counts only
-basis vectors that square to \eqn{-1}.  Controlling which basis vectors
-square to \eqn{+1} and which to \eqn{-1} is controlled by
-\code{signature()}.  From Perwass, page 57, given a bilinear form
+basis vectors that square to \eqn{-1}.  Function \code{signature()}
+controls which basis vectors square to \eqn{+1} and which to \eqn{-1}.
+
+From Perwass, page 57, given a bilinear form
 
 \mjdeqn{\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
   +x_p^2-x_{p+1}^2-\cdots -x_{p+q}^2
