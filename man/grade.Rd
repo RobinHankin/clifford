@@ -9,7 +9,7 @@
 \alias{gradezero}
 \title{The grade of a clifford object}
 \description{\loadmathjax
-The grade of a term is the number of basis vectors in it.}
+  The \dfn{grade} of a term is the number of basis vectors in it.}
 \usage{
 grade(C, n, drop=TRUE)
 grades(x)
@@ -26,11 +26,11 @@ gradeszero(x)
 }
 \details{
 
-A \emph{term} is a single expression in a Clifford object.  It has a
+A \dfn{term} is a single expression in a Clifford object.  It has a
 coefficient and is described by the basis vectors it comprises.  Thus
 \mjeqn{4e_{234}}{4e_123} is a term but \mjseqn{e_3 + e_5} is not.
   
-The \emph{grade} of a term is the number of basis vectors in it.  Thus
+The \dfn{grade} of a term is the number of basis vectors in it.  Thus
 the grade of \mjeqn{e_1}{e1} is 1, and the grade of
 \mjeqn{e_{125}=e_1e_2e_5}{e_125=e1 e2 e5} is 3.  The grade operator
 \mjeqn{\left\langle\cdot\right\rangle_r}{<.>_r} is used to extract terms
@@ -82,7 +82,6 @@ and a basis blade \mjteqn{e_A}{e_\mathbb{A}}{e_A} with
 \mjteqn{A\subseteq\left\lbrace
 1,\ldots,p+q\right\rbrace}{\mathbb{A}\subseteq\left\lbrace
 1,\ldots,p+q\right\rbrace}{omitted}, then
-
 
 \mjtdeqn{
   \mathrm{gr}(e_A) = \left|\left\lbrace a\in A\colon
