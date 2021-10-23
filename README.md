@@ -9,8 +9,7 @@ The clifford package: Clifford algebra in R
 
 [![Build
 Status](https://travis-ci.org/RobinHankin/clifford.svg?branch=master)](https://travis-ci.org/RobinHankin/clifford)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
-[![Rdoc](https://www.rdocumentation.org/badges/version/clifford)](https://www.rdocumentation.org/packages/clifford)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
 [![Codecov test
 coverage](https://codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/clifford/branch/master)
 <!-- badges: end -->
@@ -106,9 +105,9 @@ Function `signature()` is based on `lorentz::sol()` and its argument
 specifes the number of basis blades that square to
 ![+1](https://latex.codecogs.com/png.latex?%2B1 "+1"), the others
 squaring to ![-1](https://latex.codecogs.com/png.latex?-1 "-1"). Thus
-![e\_1^2=e\_2^2=e\_3^2=1](https://latex.codecogs.com/png.latex?e_1%5E2%3De_2%5E2%3De_3%5E2%3D1 "e_1^2=e_2^2=e_3^2=1")
+![e_1^2=e_2^2=e_3^2=1](https://latex.codecogs.com/png.latex?e_1%5E2%3De_2%5E2%3De_3%5E2%3D1 "e_1^2=e_2^2=e_3^2=1")
 and
-![e\_4^2=e\_5^2=-1](https://latex.codecogs.com/png.latex?e_4%5E2%3De_5%5E2%3D-1 "e_4^2=e_5^2=-1"):
+![e_4^2=e_5^2=-1](https://latex.codecogs.com/png.latex?e_4%5E2%3De_5%5E2%3D-1 "e_4^2=e_5^2=-1"):
 
 ``` r
 basis(1)
