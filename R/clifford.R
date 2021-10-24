@@ -164,6 +164,7 @@ setGeneric("dim")
     clifford(sapply(seq_along(v),function(i){seq_len(n)[-i]},simplify=FALSE),v)
 }
 
+`as.antivector` <- function(v){antivector(v)}
 `is.antivector` <- function(C, include.pseudoscalar=FALSE){
 
   if(!is.homog(C)){return(FALSE)}
