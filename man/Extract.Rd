@@ -34,19 +34,33 @@ Extraction and replacement methods.  The extraction method uses
 function \code{c_overwrite()}.
 
 In the extraction function \code{a[index]}, if \code{index} is a list,
-further arguments are ignored.  If not, the dots are used.
+further arguments are ignored; if not, the dots are used.  If
+\code{index} is a list, its elements are interpreted as integer vectors
+indicating which terms to be extracted (even if it is a \code{disord}
+object).  If \code{index} is a \code{disord} object, standard
+consistency rules are applied.  The extraction methods are designed so
+that idiom such as \code{a[coeffs(a)>3]} works.
 
-Replacement methods using list-valued \code{index}, as in \code{A[i] <-
-value} uses an ugly hack if \code{value} is zero.
+For replacement methods, the standard use-case is \code{a[i] <- b} in
+which argument \code{i} is a list of integer vectors and \code{b} a
+length-one numeric vector.  Otherwise, to manipulate parts of a clifford
+object, use \code{coeffs(a) <- value}; this effectively leverages
+\code{disord} formalism.  Idiom such as \code{a[coeffs(a)<2] <- 0} is
+not currently implemented (to do this, use \code{coeffs(a)[coeffs(a)<2]
+<- 0}).  Replacement using a list-valued index, as in \code{A[i] <-
+value} uses an ugly hack if \code{value} is zero.  Replacement methods
+are not yet finalised and not yet fully integrated with the
+\code{disordR} package.
 
 Idiom such as \code{a[] <- b} follows the \code{spray} package.  If
 \code{b} is a length-one scalar, then \code{coeffs(a) <- b} has the same
 effect as \code{a[] <- b}.
 
-Functions \code{terms()} [see \code{term.Rd}] and \code{coeffs()} are
-the extraction methods.  These functions return \emph{unordered vectors}
-but the ordering is consistent between them (an extended discussion of
-this phenomenon is presented in the \code{mvp} package).
+Functions \code{terms()} [see \code{term.Rd}] and \code{coeffs()}
+extract the terms and coefficients from a clifford object.  These
+functions return \code{disord} objects but the ordering is consistent
+between them (an extended discussion of this phenomenon is presented in
+the \code{mvp} package).
 
 Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets all
 coefficients of \code{a} to \code{b}.  This has the same effect as

@@ -12,8 +12,13 @@ list_modifier <- function(a){
 `[.clifford` <- function(C, index, ...){
     if(is.clifford(index)){
         stop("cannot extract a clifford; try A[terms(B)]")
+    } else if(is.disord(index)){
+        if(is.list(index)){
+            dots <- elements(index)
+        } else {
+            return(clifford(elements(terms(C)[index]),elements(coeffs(C)[index])))
+        }
     } else if(is.list(index)){
-        if(is.disord(index)){index <- elements(index)}
         dots <- index
     } else {
         dots <- c(list(index),list(...))
