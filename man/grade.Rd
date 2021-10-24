@@ -1,5 +1,6 @@
 \name{grade}
 \alias{grade}
+\alias{grade<-}
 \alias{grades}
 \alias{gradesplus}
 \alias{gradesminus}
@@ -12,6 +13,7 @@
   The \dfn{grade} of a term is the number of basis vectors in it.}
 \usage{
 grade(C, n, drop=TRUE)
+grade(C,n) <- value
 grades(x)
 gradesplus(x)
 gradesminus(x)
@@ -20,6 +22,7 @@ gradeszero(x)
 \arguments{
   \item{C,x}{Clifford object}
   \item{n}{Integer vector specifying grades to extract}
+  \item{value}{Replacement value, a numeric vector}
   \item{drop}{Boolean, with default \code{TRUE} meaning to coerce a
     constant Clifford object to numeric, and \code{FALSE} meaning not
     to}
@@ -63,7 +66,9 @@ We have
 }
   
 Function \code{grades()} returns an (unordered) vector specifying the
-grades of the constituent terms.
+grades of the constituent terms.  Function \code{grades<-()} allows
+idiom such as \code{grade(x,1:2) <- 7} to operate as expected [here to
+set all coefficients of terms with grades 1 or 2 to value 7].
 
 Function \code{gradesplus()} returns the same but counting only basis
 vectors that square to \eqn{+1}, and \code{gradesminus()} counts only
