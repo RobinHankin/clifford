@@ -3,6 +3,7 @@
 \alias{as.character}
 \alias{as.character.clifford}
 \alias{catterm}
+\alias{basissep}
 \title{Print clifford objects}
 \description{Print methods for Clifford algebra}
 \usage{
