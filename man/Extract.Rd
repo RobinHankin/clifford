@@ -9,6 +9,7 @@
 \alias{list_modifier}
 \alias{coeffs<-}
 \alias{coeffs<-.clifford}
+\alias{getcoeffs}
 \title{Extract or Replace Parts of a clifford}
 \description{
   Extract or replace subsets of cliffords.
@@ -19,6 +20,7 @@
 coeffs(x)
 coeffs(x) <- value
 list_modifier(a)
+getcoeffs(C, B)
 }
 \arguments{
   \item{C,x}{A clifford object}
@@ -73,6 +75,10 @@ Extracting or replacing a list with a repeated elements is usually a Bad
 Idea (tm).  However, if option \code{warn_on_repeats} is set to
 \code{FALSE}, no warning will be given (and the coefficient will be the
 sum of the coefficients of the term; see the examples).
+
+Function \code{getcoeffs()} is a lower-level helper function that lacks
+the succour offered by \code{[.clifford()}.  It returns a numeric
+vector.
 
 }
 \seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}
