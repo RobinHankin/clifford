@@ -19,14 +19,14 @@
 \method{[}{clifford}(C, index, \dots) <- value
 coeffs(x)
 coeffs(x) <- value
-list_modifier(a)
+list_modifier(B)
 getcoeffs(C, B)
 }
 \arguments{
   \item{C,x}{A clifford object}
   \item{index}{elements to extract or replace}
   \item{value}{replacement value}
-  \item{a}{A list of terms}
+  \item{B}{A list of integer vectors, terms}
   \item{...}{Further arguments}
 }
 \details{
@@ -77,8 +77,9 @@ Idea (tm).  However, if option \code{warn_on_repeats} is set to
 sum of the coefficients of the term; see the examples).
 
 Function \code{getcoeffs()} is a lower-level helper function that lacks
-the succour offered by \code{[.clifford()}.  It returns a numeric
-vector.
+the succour offered by \code{[.clifford()}.  It returns a numeric vector
+[not a \code{disord} object: the order of the elements is determined by
+the order of argument \code{B}].
 
 }
 \seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}

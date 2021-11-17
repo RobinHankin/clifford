@@ -1,5 +1,5 @@
-list_modifier <- function(a){
-    lapply(a,
+list_modifier <- function(B){
+    lapply(B,
            function(x){
                if(identical(round(x),0)){
                    return(numeric(0))
