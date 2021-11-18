@@ -105,8 +105,11 @@ blade_and_sign juxtapose(blade b1, blade b2, const NumericVector signature){//ju
     blade bout;
     const size_t m = max(b1.size(),b2.size());
 
-    const int p = (int) signature[0];
-    const int q = (int) signature[1];
+    assert(signature[0] >= 0);  /* technically redundant: is_ok_sig() also ensures this */
+    assert(signature[1] >= 0);
+    
+    const unsigned int p = (unsigned int) signature[0];
+    const unsigned int q = (unsigned int) signature[1];
     
     b1.resize(m, false);
     b2.resize(m, false);
