@@ -2,3 +2,14 @@
 ^\.Rproj\.user$
 ^README\.Rmd
 ^\.travis\.yml$
+inst/clifford_blue.png$
+inst/clifford_stickermaker.R$
+inst/conformal_algebra_clifford.Rmd$
+inst/conformal_algebra.R$
+inst/dual_numbers_clifford.Rmd$
+inst/hestenes.Rmd$
+inst/inverse.R$
+inst/linear_algebra.Rmd$
+inst/lorentz_clifford.Rmd$
+inst/pauli_clifford.Rmd$
+inst/quaternion_clifford.Rmd$
