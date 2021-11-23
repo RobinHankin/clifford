@@ -1,0 +1,84 @@
+---
+title: "Complex arithmetic using Clifford algebra"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("clifford")
+library("onion")
+```
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
+Recall that complex numbers are a two-dimensional algebra over the
+reals, with $(a,b)\cdot(c,d)=(ac-bd,ad+bc)$; we usually write $(a,b)$
+as "a+bi". There are two natural ways to identify complex numbers with
+Clifford objects; but because they use different signatures it is more
+convenient to treat them separately.
+
+## First method
+
+We use $Cl(0,1)$, so $e_1^2=-1$.  Package idiom is straightforward:
+
+```{r}
+signature(0,1)
+complex_to_clifford <- function(z){Re(z) + clifford(list(1),Im(z))}
+clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,1)}
+```
+
+Then numerical verification:
+
+```{r}
+z1 <- 35 + 67i
+z2 <- -2 + 12i
+complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
+```
+
+```{r}
+C1 <- 23 + 7*e(1)
+C2 <- 2  - 8*e(1)
+clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
+```
+
+## Second method
+
+We use $Cl(2)$, so $e_1^2=e_2^2=1$, and identify the imaginary unit
+$i$ with $e_{12}$.  Then
+$e_{12}^2=e_{12}e_{12}=e_{1212}=-e_{1122}=-e_1^2e_2^2=-1$.
+
+
+```{r}
+signature(2)
+complex_to_clifford <- function(z){Re(z) + clifford(list(1:2),Im(z))}
+clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,list(1:2))}
+```
+
+
+Then numerical verification:
+
+```{r}
+z1 <- 35 + 67i
+z2 <- -2 + 12i
+complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
+```
+
+```{r}
+C1 <- 23 + 7*e(1:2)
+C2 <- 2  - 8*e(1:2)
+clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
+```
+
+[The identification is a homomorphism provided whenever
+$e_1^2e_1^2=1$.  This is satisfied if $e_1^2=e_2^2=-1$, so we can use
+$i\longrightarrow e_{12}$ in $Cl(0,2)$:
+
+```{r}
+signature(0,2)
+c(
+complex_to_clifford(z1)*complex_to_clifford(z2) == complex_to_clifford(z1*z2),
+clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
+)
+```
