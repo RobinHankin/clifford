@@ -36,8 +36,9 @@ $a+\mathbf{i}b+\mathbf{j}c+\mathbf{k}d$; addition is componentwise and
 multiplication follows from the above.
 
 To express quaternionic multiplication using Clifford algebra we
-identify $\mathbb{H}$ with $Cl(3,0)$ [technically we do
-not need to call `signature()` but it is probably defensive programming to call it anyway]
+identify $\mathbb{H}$ with $Cl(3,0)$ [technically we do not need to
+call `signature()` but it is probably defensive programming to call it
+anyway]
 
 ```{r}
 signature(3,0)
