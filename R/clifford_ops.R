@@ -22,6 +22,8 @@
     if(isTRUE(getOption("show_signature"))){
         if(s[1] == .Machine$integer.max){
             options("prompt" = "Cl(Inf) > ")
+        } else if(s[2] == .Machine$integer.max){
+            options("prompt" = paste("Cl(",s[1],",Inf) > ",sep=""))
         } else if(all(s==0)){
             options("prompt" = "Grassman > ")
         } else {
