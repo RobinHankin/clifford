@@ -147,4 +147,7 @@ signature(2,2)
 x <- rcliff()
 drop(gradesplus(x) + gradesminus(x) + gradeszero(x) - grades(x))
 
+a <- rcliff()
+a == Reduce(`+`,sapply(unique(grades(a)),function(g){grade(a,g)}))
+
 }
