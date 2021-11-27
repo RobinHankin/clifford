@@ -65,7 +65,7 @@ and for a strictly negative-definite quadratic form we would need
 
 If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
 operation reduces to the wedge product of a Grassman algebra.  Package
-idiom for this is to set \mjseqn{p=0,q=0}, but this is not recommended:
+idiom for this is to set \mjseqn{p=q=0}, but this is not recommended:
 use the \pkg{stokes} package for Grassman algebras, which is much more
 efficient and uses nicer idiom.
 
