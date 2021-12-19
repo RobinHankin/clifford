@@ -248,9 +248,6 @@ setGeneric("dim")
   return(x)
 }
 
-
-
-
 setGeneric("drop")
 setMethod("drop","clifford", function(x){
     if(is.zero(x)){
