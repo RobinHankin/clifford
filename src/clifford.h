@@ -166,7 +166,7 @@ bool c_equal(clifford C1, clifford C2){
     }
 
     for (clifford::const_iterator ic=C1.begin(); ic != C1.end(); ++ic){
-        blade b = ic->first;
+        const blade b = ic->first;
         if(C1[b] != C2[b]){
             return false;
         }
