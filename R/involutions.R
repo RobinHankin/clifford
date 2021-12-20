@@ -1,8 +1,7 @@
 `minus` <- function(x){-x}
 
 `rev.clifford` <- function(x){
-  swap <- (grades(x)%%4) %in% 2:3
-  coeffs(x)[swap] <- -coeffs(x)[swap]
+  coeffs(x)[(grades(x)%%4) %in% 2:3] %<>% minus
   return(x)
 }
 
