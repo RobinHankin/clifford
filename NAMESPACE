@@ -28,7 +28,6 @@ importFrom("disordR","consistent")
 importFrom("disordR","%in%")
 importFrom("disordR","lapply")
 
-importFrom("magrittr", "%>%")
 importFrom("magrittr", "%<>%")
 
 importFrom("methods","setOldClass")
