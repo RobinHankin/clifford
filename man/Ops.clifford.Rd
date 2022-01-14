@@ -212,6 +212,20 @@ C1 \%|_\% C2
   end-user.
 }
 \author{Robin K. S. Hankin}
+\note{
+
+  In the \pkg{clifford} package the caret \dQuote{\code{^}} is reserved
+  for multiplicative powers, as in \code{A^3=A*A*A}.  All the different
+  Clifford products have binary operators for convenience including the
+  wedge product \code{\%^\%}.  Compare the \pkg{stokes} package, where
+  multiplicative powers do not really make sense and \code{A^B} is
+  interpreted as a wedge product of differential forms \mjseqn{A} and
+  \mjseqn{B}.  In \pkg{stokes}, the wedge product is the \emph{sine qua
+  non} for the whole package and needs a terse idiomatic representation
+  (although there \code{A\%^\%B} returns the wedge product too).
+
+
+  }
 \references{
 E. Hitzer and S. Sangwine 2017.  \dQuote{Multivector and multivector
   matrix inverses in real Clifford algebras}.  \emph{Applied Mathematics
