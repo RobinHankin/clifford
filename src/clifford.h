@@ -36,7 +36,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
             blade b;
             b.resize(m[0]+1);  //off-by-one
-            for(int j=0 ; j < iv.size(); j++){
+            for(size_t j=0 ; j < iv.size(); j++){
                 b[iv[j]] = 1;
             }
             out[b] += d[i];  // the meat
@@ -47,8 +47,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
 
 Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
     Rcpp::IntegerVector out;
-    unsigned int i;
-    for(i=0 ; i<b.size() ; ++i){
+    for(int i=0 ; i<b.size() ; ++i){
         if((bool) b[i]){
             out.push_back(i); // the meat; off-by-one here
         }
@@ -58,8 +57,8 @@ Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
 
 List Rblades(const clifford C){  // takes a clifford object, returns a list of which(blades); used in retval()
     List out;
-    clifford::const_iterator ic;
-    for(ic=C.begin(); ic != C.end(); ++ic){
+
+    for(auto ic=C.begin(); ic != C.end(); ++ic){
         out.push_back(which(ic->first));
     }
     return out;
@@ -68,9 +67,8 @@ List Rblades(const clifford C){  // takes a clifford object, returns a list of w
 NumericVector coeffs(const clifford C){  // takes a clifford object, returns the coefficients
     NumericVector out(C.size());
     unsigned int i=0;
-    clifford::const_iterator ic;   // it iterates through a hyper2 object
 
-    for(ic=C.begin(); ic != C.end(); ++ic){
+    for(auto ic=C.begin(); ic != C.end(); ++ic){
         out[i] = ic->second;
         i++;
     }
@@ -84,15 +82,14 @@ List retval(const clifford &C){  // used to return a list to R
 }
 
 clifford c_add(clifford cliff1, clifford cliff2){
-    clifford::iterator ic;
     if(cliff1.size() > cliff2.size()){ // #1 is bigger, so iterate through #2
-        for (ic=cliff2.begin(); ic != cliff2.end(); ++ic){
+        for (auto ic=cliff2.begin(); ic != cliff2.end(); ++ic){
             const blade b = ic->first;
             cliff1[b] += cliff2[b];
         }
         return remove_zeros(cliff1);
     } else {  // L2 is bigger
-        for (ic=cliff1.begin(); ic != cliff1.end(); ++ic){
+        for (auto ic=cliff1.begin(); ic != cliff1.end(); ++ic){
             const blade b = ic->first;
             cliff2[b] += cliff1[b];
         }
@@ -143,12 +140,11 @@ blade_and_sign juxtapose(blade b1, blade b2, const NumericVector signature){//ju
 clifford c_general_prod(const clifford C1, const clifford C2, const NumericVector signature, bool (*chooser)(const blade, const blade)){
 
     clifford out;
-    clifford::const_iterator ic1,ic2;
     blade b;
     int sign;
-    for(ic1=C1.begin(); ic1 != C1.end(); ++ic1){
+    for(auto ic1=C1.begin(); ic1 != C1.end(); ++ic1){
         const blade b1 = ic1->first;
-        for(ic2=C2.begin(); ic2 != C2.end(); ++ic2){
+        for(auto ic2=C2.begin(); ic2 != C2.end(); ++ic2){
             const blade b2 = ic2->first;
             if(chooser(b1,b2)){
                 tie(b, sign) = juxtapose(b1, b2, signature);
@@ -165,7 +161,7 @@ bool c_equal(clifford C1, clifford C2){
         return false;
     }
 
-    for (clifford::const_iterator ic=C1.begin(); ic != C1.end(); ++ic){
+    for (auto ic=C1.begin(); ic != C1.end(); ++ic){
         const blade b = ic->first;
         if(C1[b] != C2[b]){
             return false;
@@ -178,7 +174,7 @@ bool c_equal(clifford C1, clifford C2){
 clifford c_grade(const clifford C, const NumericVector &n){
     clifford out;
     for(size_t i=0 ; i < (size_t) n.length() ; ++i){
-        for(clifford::const_iterator ic=C.begin() ; ic != C.end() ; ++ic){
+        for(auto ic=C.begin() ; ic != C.end() ; ++ic){
             const blade b = ic->first;
             if(b.count() == (size_t) n[i]){
                 out[b] = ic->second;
@@ -220,8 +216,7 @@ clifford lefttickprod   (const clifford C1, const clifford C2, const NumericVect
 clifford righttickprod  (const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &righttickchooser       );}
 
 clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
-    clifford::const_iterator i;
-    for(i=C2.begin(); i != C2.end(); ++i){
+    for(auto i=C2.begin(); i != C2.end(); ++i){
         C1[i->first] = i->second;
     }
     return C1;
@@ -246,7 +241,7 @@ clifford c_power(const clifford C, const NumericVector &power, const NumericVect
 clifford cartan(const clifford C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p-4,q+4)
     clifford out;
 
-    for (clifford::const_iterator ic=C.begin(); ic != C.end(); ++ic){
+    for (auto ic=C.begin(); ic != C.end(); ++ic){
         blade c = ic->first;
         const size_t o = n[0]-1; // "-1" so the numbers match; off-by-one
         if(c.size() < o+5){c.resize(o+5);}
@@ -279,7 +274,7 @@ clifford cartan(const clifford C, const NumericVector &n){ // Appendix B of Hitz
 clifford cartan_inverse(const clifford C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p+4,q-4)
     clifford out;
 
-    for (clifford::const_iterator ic=C.begin(); ic != C.end(); ++ic){
+    for (auto ic=C.begin(); ic != C.end(); ++ic){
         blade c = ic->first;
         const size_t o = n[0]-1; // "-1" so the numbers match
         if(c.size() < o+5){c.resize(o+5);}
