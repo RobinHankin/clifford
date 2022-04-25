@@ -401,3 +401,6 @@ setMethod("drop","clifford", function(x){
     out[tx] <- coeffs(x)
     return(out)
 }
+
+`horner` <- function(P,v){Reduce(v, right=TRUE, f=function(a,b){b*P + a})}
+
