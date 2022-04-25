@@ -36,7 +36,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
             blade b;
             b.resize(m[0]+1);  //off-by-one
-            for(size_t j=0 ; j < iv.size(); j++){
+            for(unsigned int j=0 ; j < iv.size(); j++){
                 b[iv[j]] = 1;
             }
             out[b] += d[i];  // the meat
@@ -47,7 +47,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
 
 Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
     Rcpp::IntegerVector out;
-    for(int i=0 ; i<b.size() ; ++i){
+    for(unsigned int i=0 ; i<b.size() ; ++i){
         if((bool) b[i]){
             out.push_back(i); // the meat; off-by-one here
         }
