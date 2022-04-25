@@ -1,6 +1,7 @@
 \name{Extract.clifford}
 \alias{[.clifford}
 \alias{extract.clifford}
+\alias{warn_on_repeats}
 \alias{extract}
 \alias{replace.clifford}
 \alias{replace}
