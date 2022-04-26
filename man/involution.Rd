@@ -131,6 +131,7 @@ gradeinv(C)
 \examples{
 
 x <- rcliff()
+x
 rev(x)
 
 

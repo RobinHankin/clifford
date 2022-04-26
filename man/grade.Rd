@@ -139,6 +139,7 @@ Function \code{c_grade()} is a helper function that is documented at
 \examples{
 
 a <- clifford(sapply(seq_len(7),seq_len),seq_len(7))
+a
 grades(a)
 grade(a,5)
 

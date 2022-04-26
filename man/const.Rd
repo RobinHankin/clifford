@@ -55,8 +55,9 @@ examples.
 \examples{
 
 X <- clifford(list(1,1:2,1:3,3:5),6:9)
-
-X <- X+1e300
+X
+X <- X + 1e300
+X
 
 const(X) # should be 1e300
 

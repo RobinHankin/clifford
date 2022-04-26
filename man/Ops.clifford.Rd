@@ -237,34 +237,36 @@ u <- rcliff(5)
 v <- rcliff(5)
 w <- rcliff(5)
 
+u
+v
 u*v
 
-u^3
+u+(v+w) == (u+v)+w            # should be TRUE by associativity of "+"
+u*(v*w) == (u*v)*w            # should be TRUE by associativity of "*"
+u*(v+w) == u*v + u*w          # should be TRUE by distributivity
 
+# Now if x,y are _vectors_ we have:
 
-u+(v+w) == (u+v)+w            # should be TRUE 
-u*(v*w) == (u*v)*w            # should be TRUE 
-u \%^\% v == (u*v-v*u)/2        # should be TRUE 
-
-# Now if x,y,z are _vectors_ we have:
-
-x <- as.1vector(5)
-y <- as.1vector(5)
+x <- as.1vector(sample(5))
+y <- as.1vector(sample(5))
 x*y == x\%.\%y + x\%^\%y
 x \%^\% y == x \%^\% (y + 3*x)  
-#  above are TRUE for x,y vectors (but not in general)
+x \%^\% y == (x*y-x*y)/2        # should be TRUE 
+
+#  above are TRUE for x,y vectors (but not for multivectors, in general)
 
 
 ## Inner product "%.%" is not associative:
- rcliff(5,g=2) -> x
- rcliff(5,g=2) -> y
- rcliff(5,g=2) -> z
-x \%.\% (y \%.\% z)
-(x \%.\% y) \%.\% z
+x <- rcliff(5,g=2)
+y <- rcliff(5,g=2)
+z <- rcliff(5,g=2)
+x \%.\% (y \%.\% z) == (x \%.\% y) \%.\% z
 
-## Geometric product *is* associative:
-x * (y * z)
-(x * y) * z
+## Other products should work as expected:
+
+x \%|_\% y   ## left contraction
+x \%_|\% y   ## right contraction
+x \%o\% y    ## fat dot product
 
 
 }

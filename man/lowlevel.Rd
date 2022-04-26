@@ -1,4 +1,5 @@
 \name{lowlevel}
+\alias{lowlevel}
 \alias{c_identity}
 \alias{c_add}
 \alias{c_multiply}
