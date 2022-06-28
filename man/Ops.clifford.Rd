@@ -102,11 +102,8 @@ C1 \%|_\% C2
   The function \code{Ops.clifford()} passes unary and binary arithmetic
   operators \dQuote{\code{+}}, \dQuote{\code{-}}, \dQuote{\code{*}},
   \dQuote{\code{/}} and \dQuote{\code{^}} to the appropriate specialist
-  function.
-
-  Functions \code{c_foo()} are low-level helper functions that wrap the
-  \code{C} code; function \code{maxyterm()} returns the maximum index
-  in the terms of its arguments.
+  function.  Function \code{maxyterm()} returns the maximum index in the
+  terms of its arguments.
 
   The package has several binary operators:
 
@@ -204,6 +201,9 @@ C1 \%|_\% C2
   the method set out by Hitzer and Sangwine but is limited to
   \mjeqn{p+q\leq 5}{p+q <= 5}.
 
+  Many of the functions documented here use low-level helper functions
+  that wrap \proglang{C} code.  For example, \code{fatdot()} uses
+  \code{c_fatdotprod()}.  These are documented at \code{lowlevel.Rd}.
   
 }
 \value{

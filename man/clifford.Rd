@@ -46,7 +46,7 @@ nterms(x)
     the low-level C routines to store the terms (this is the largest
     entry in the list of terms).  For a scalar, this is zero and for the
     zero clifford object it (currently) returns zero as well although
-    a case could be made for \code{NULL}.
+    a case could be made for \code{NULL}
 
     \item Function \code{nterms()} returns the number of terms in the
     expression
