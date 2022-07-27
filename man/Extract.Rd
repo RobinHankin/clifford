@@ -80,7 +80,8 @@ sum of the coefficients of the term; see the examples).
 Function \code{getcoeffs()} is a lower-level helper function that lacks
 the succour offered by \code{[.clifford()}.  It returns a numeric vector
 [not a \code{disord} object: the order of the elements is determined by
-the order of argument \code{B}].
+the order of argument \code{B}].  Compare standard extraction, eg
+\code{a[index]}, which returns a clifford object.
 
 }
 \seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}
