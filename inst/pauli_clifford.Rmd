@@ -52,8 +52,9 @@ Because any $2\times 2$ Hermitian matrix may be expressed as
 $A\sigma_0+B\sigma_x+C\sigma_y+D\sigma_z$ for $A,B,C,D\in\mathbb{R}$,
 we observe that the anticommutation relations imply that the Pauli
 matrices are closed under the Jordan operator $x\circ y=(xy+yx)/2$.
-
-The general multiplication rule is
+For more details, see the `jordan` package which implements this
+operation in a more general context.  The Jordan multiplication rule
+is
 
 
 \[
