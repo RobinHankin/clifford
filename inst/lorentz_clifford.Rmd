@@ -9,18 +9,17 @@ library("clifford")
 library("emulator")
 ```
 
+(throughout, we use units in which $c=1$.  Notation follows Snygg)
+
 <p style="text-align: right;">
 ![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
 </p>
 
 
-# Lorentz transforms in the `lorentz` package, following Snygg
-
-(throughout, we use units in which $c=1$).
 
 
-Consider the following
-four-vector:
+
+Consider the following four-vector:
 
 ```{r,define4vec}
 (fourvec <- c(1,5,3,2))  # a four-vector
