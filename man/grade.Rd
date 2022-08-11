@@ -90,20 +90,30 @@ and a basis blade \mjteqn{e_A}{e_\mathbb{A}}{e_A} with
 
 \mjtdeqn{
   \mathrm{gr}(e_A) = \left|\left\lbrace a\in A\colon
-  1\leq a\leq p+q\right\rbrace\right|  \qquad
+  1\leq a\leq p+q\right\rbrace\right|
+}{
+  \mathrm{gr}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
+  1\leq a\leq p+q\right\rbrace\right|
+}{
+  omitted
+}
+
+\mjtdeqn{
   \mathrm{gr}_{+}(e_A) = \left|\left\lbrace a\in A\colon
-  1\leq a\leq p\right\rbrace\right| \qquad
+  1\leq a\leq p\right\rbrace\right|
+}{
+  \mathrm{gr}_{+}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
+  1\leq a\leq p\right\rbrace\right|
+}{
+  omitted
+}
+    
+\mjtdeqn{
   \mathrm{gr}_{-}(e_A) = \left|\left\lbrace a\in A\colon
   p < a\leq p+q\right\rbrace\right|
 }{
-\begin{align}
-  \mathrm{gr}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon
-  1\leq a\leq p+q\right\rbrace\right|&  \\\\\
-  \mathrm{gr}_{+}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon
-  1\leq a\leq p\right\rbrace\right|& \\\\\
-  \mathrm{gr}_{-}(e_\mathbb{A}) &=& &\left|\left\lbrace a\in\mathbb{A}\colon
-  p < a\leq p+q\right\rbrace\right|&
-  \end{align}
+  \mathrm{gr}_{-}(e_\mathbb{A}) = \left|\left\lbrace a\in\mathbb{A}\colon
+  p < a\leq p+q\right\rbrace\right|
 }{
   omitted
 }

@@ -1,7 +1,7 @@
 Package: clifford
 Type: Package
 Title: Arbitrary Dimensional Clifford Algebras
-Version: 1.0-7
+Version: 1.0-8
 Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
 Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
 Description: A suite of routines for Clifford algebras, using the
