@@ -42,12 +42,10 @@ the Clifford algebra \mjeqn{C_{p,q}}{C_{p,q}}.
 If the signature is \mjseqn{(p,q)}, then we have
 
 \mjdeqn{
-  e_i e_i = \cases{
-  +1 & if $1\leq i\leq p$\cr
-  -1 & if $p+1\leq i\leq p+q$\cr
-  0  & if $i>p+q$.\cr
-  }
-}{
+  e_i e_i =   +1\, (\mbox{if } 1\leq i\leq p), 
+              -1\, (\mbox{if } p+1\leq i\leq p+q),
+               0\, (\mbox{if } i>p+q).
+  }{
   omitted
 }
 
