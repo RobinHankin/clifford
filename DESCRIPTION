@@ -10,7 +10,7 @@ Description: A suite of routines for Clifford algebras, using the
    to geometric calculus").  Special cases including Lorentz transforms,
    quaternion multiplication, and Grassman algebra, are discussed.
    Conformal geometric algebra theory is implemented.  Uses 'disordR'
-   discipine.
+   discipline.
 License: GPL (>= 2)
 Suggests: knitr,rmarkdown,testthat,onion,lorentz
 VignetteBuilder: knitr
