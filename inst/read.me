@@ -1,0 +1,15 @@
+File clifford_arxiv.Rnw is basically the same as the vignette
+(vignette/clifford.Rnw) but modified for arxiv.  To process it, you
+will need a couple of auxiliary files:
+
+orcid.png, arxiv.sty from https://github.com/kourgeorge/arxiv-style
+clifford.bib copied from the vignette directory of the clifford
+package.
+
+
+NOTE:  the tex file, cifford_arxiv.tex, is NOT under version control.
+
+
+Process clifford_arxiv.Rnw with something like
+
+R CMD Sweave clifford_arxiv.Rnw && pdflatex clifford_arxiv
