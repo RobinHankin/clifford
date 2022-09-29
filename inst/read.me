@@ -1,15 +1,31 @@
 File clifford_arxiv.Rnw is basically the same as the vignette
-(vignette/clifford.Rnw) but modified for arxiv.  To process it, you
-will need a couple of auxiliary files:
+(vignette/clifford.Rnw) but modified for arxiv.  I have changed the
+header and also \pkg{foo}, \proglang{bar} and \code{baz} to {\tt foo}
+{\tt bar} and {\tt baz} respectively.  Do this for the Rnw file and
+also the bib file (modified version not under version control).  There
+might be a better way to do this.
 
-orcid.png, arxiv.sty from https://github.com/kourgeorge/arxiv-style
-clifford.bib copied from the vignette directory of the clifford package.
-clifford.png, the hexsticker, copied from man/figures
+Weave  'clifford_arxiv.Rnw' with something like
+
+R CMD Sweave clifford_arxiv.Rnw
+
+This will create clifford_arxiv.tex
+
+Then 
+
+pdflatex clifford_arxiv
+
+will create clifford_arxiv.pdf
+
+To latex clifford_arxiv.tex, you will need a couple of auxiliary files:
+
+* orcid.png, arxiv.sty from https://github.com/kourgeorge/arxiv-style
+* clifford.bib copied from the vignette directory of the clifford package.
+* clifford.png, the hexsticker, copied from man/figures
 
 
-NOTE:  the tex file, cifford_arxiv.tex, is NOT under version control.
+NOTE: the tex file, cifford_arxiv.tex, is NOT under version control,
+nor is clifford.bib
 
 
-Process clifford_arxiv.Rnw with something like
 
-R CMD Sweave clifford_arxiv.Rnw && pdflatex clifford_arxiv
