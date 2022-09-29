@@ -6,3 +6,11 @@
 
 - minor bugfixes
 - sticker added and used in vignettes
+
+# 1.0-7
+
+- minor bugfixes
+
+# 1.0-8
+
+- arXiv citation added
