@@ -29,4 +29,19 @@ nor is clifford.bib (it might be better to use emacs to import
 the .bbl file, not sure about that).
 
 
+I have directly inserted the bbl file to avoid messing about with .bib
+files, not sure if this is the best way to do it
 
+% I have had difficulty submitting to arXiv using bibtex.  To change
+% the bibliography below, follow the following steps:
+%
+% 1. edit foo.bib
+% 2. strip out everything between \begin{thebibliography}{}
+%      and \end{thebibliography}
+% 3. add the line \bibliography{foo}
+% 4. run bibtex spray_arxiv to create foo_arxiv.bbl
+% 5. insert the bbl file with C-x i
+%
+% This will recreate the bibliography as it appears below, using the
+% edited foo.bib.  You will have to run latex twice to make the
+% references appear correctly.
