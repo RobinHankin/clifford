@@ -214,15 +214,21 @@ C1 \%|_\% C2
 \author{Robin K. S. Hankin}
 \note{
 
-  In the \pkg{clifford} package the caret \dQuote{\code{^}} is reserved
-  for multiplicative powers, as in \code{A^3=A*A*A}.  All the different
-  Clifford products have binary operators for convenience including the
-  wedge product \code{\%^\%}.  Compare the \pkg{stokes} package, where
-  multiplicative powers do not really make sense and \code{A^B} is
-  interpreted as a wedge product of differential forms \mjseqn{A} and
-  \mjseqn{B}.  In \pkg{stokes}, the wedge product is the \emph{sine qua
-  non} for the whole package and needs a terse idiomatic representation
-  (although there \code{A\%^\%B} returns the wedge product too).
+  All the different Clifford products have binary operators for
+  convenience including the wedge product \code{\%^\%}.  However, as an
+  experimental facility, the caret \dQuote{\code{^}} returns either
+  multiplicative powers [as in \code{A^3=A*A*A}], or a wedge product [as
+  in \code{A^B = A \%^\% B = wedge(A,B)}] depending on the class of the
+  second argument.  I don't see that \dQuote{\code{A ^ B}} is at all
+  ambiguous but OTOH I might withdraw it if it proves unsatisfactory for
+  some reason.
+
+  Compare the \pkg{stokes} package, where multiplicative powers do not
+  really make sense and \code{A^B} is interpreted as a wedge product of
+  differential forms \mjseqn{A} and \mjseqn{B}.  In \pkg{stokes}, the
+  wedge product is the \emph{sine qua non} for the whole package and
+  needs a terse idiomatic representation (although there \code{A\%^\%B}
+  returns the wedge product too).
 
 
   }
@@ -267,7 +273,7 @@ x \%.\% (y \%.\% z) == (x \%.\% y) \%.\% z
 x \%|_\% y   ## left contraction
 x \%_|\% y   ## right contraction
 x \%o\% y    ## fat dot product
-
+x ^ y        ## Experimental wedge product idiom, plain caret
 
 }
 

@@ -117,7 +117,7 @@ test_that("Test suite aaa.R",{
     expect_false(as.clifford(NULL) == as.clifford(1))
     expect_true(as.clifford(NULL) != as.clifford(1))
     expect_true(nbits(jj) == 4)
-    expect_error(jj^jj)
+    expect_silent(jj^jj)
     expect_error(jj^-1)
 
     expect_true(const(jj) == 0)
