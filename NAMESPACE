@@ -32,6 +32,9 @@ importFrom("magrittr", "%<>%")
 
 importFrom("methods","setOldClass")
 
+importClassesFrom("freealg", "dot")
+importMethodsFrom("freealg", "[")
+
 S3method("[", clifford)
 S3method("[<-", clifford)
 S3method("%.%",clifford)

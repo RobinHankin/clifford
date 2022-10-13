@@ -19,3 +19,4 @@
 # 1.0-9
 
 - experimental addition of "^" wedge products along with " %^%"
+- dot object implemented, commutator .[x,y] now works as expected

@@ -44,7 +44,6 @@
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
 \alias{clifford_inverse}
-\alias{dot}
 \alias{wedge}
 \alias{clifford_dot_clifford}
 \alias{cliffdotprod}
@@ -201,6 +200,10 @@ C1 \%|_\% C2
   the method set out by Hitzer and Sangwine but is limited to
   \mjeqn{p+q\leq 5}{p+q <= 5}.
 
+  The Lie bracket, \mjeqn{\left[x,y\right]}{[x,y]} is implemented in the
+  package using idiom such as \code{.[x,y]}, and this is documented at
+  \code{dot.Rd}.
+  
   Many of the functions documented here use low-level helper functions
   that wrap \proglang{C} code.  For example, \code{fatdot()} uses
   \code{c_fatdotprod()}.  These are documented at \code{lowlevel.Rd}.
@@ -212,6 +215,7 @@ C1 \%|_\% C2
   end-user.
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{dot}}}
 \note{
 
   All the different Clifford products have binary operators for
