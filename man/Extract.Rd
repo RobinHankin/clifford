@@ -94,6 +94,12 @@ A[1,c(1,3,4)]
 A[2:3, 4] <- 99
 A[] <- B
 
+
+X <- 1 + e(1)
+X[0,1:5] <- 7   # special dispensation for zero, via list_modifier()
+X
+
+
 # clifford(list(1,1:2,1:2),1:3)  # would give a warning
 
 options("warn_on_repeats" = FALSE)
