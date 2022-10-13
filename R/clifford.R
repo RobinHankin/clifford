@@ -404,3 +404,10 @@ setMethod("drop","clifford", function(x){
 
 `horner` <- function(P,v){Reduce(v, right=TRUE, f=function(a,b){b*P + a})}
 
+setOldClass("clifford")
+setMethod("[", signature(x="dot",i="clifford",j="ANY"),
+          function(x,i,j,drop){
+              j <- as.clifford(j)
+              return((i*j-j*i)/2)
+          })
+

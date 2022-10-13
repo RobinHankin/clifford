@@ -44,7 +44,6 @@
 \alias{clifford_power_scalar}
 \alias{clifford_eq_clifford}
 \alias{clifford_inverse}
-\alias{dot}
 \alias{wedge}
 \alias{clifford_dot_clifford}
 \alias{cliffdotprod}
@@ -201,6 +200,10 @@ C1 \%|_\% C2
   the method set out by Hitzer and Sangwine but is limited to
   \mjeqn{p+q\leq 5}{p+q <= 5}.
 
+  The Lie bracket, \mjeqn{\left[x,y\right]}{[x,y]} is implemented in the
+  package using idiom such as \code{.[x,y]}, and this is documented at
+  \code{dot.Rd}.
+  
   Many of the functions documented here use low-level helper functions
   that wrap \proglang{C} code.  For example, \code{fatdot()} uses
   \code{c_fatdotprod()}.  These are documented at \code{lowlevel.Rd}.
@@ -212,17 +215,24 @@ C1 \%|_\% C2
   end-user.
 }
 \author{Robin K. S. Hankin}
+\seealso{\code{\link{dot}}}
 \note{
 
-  In the \pkg{clifford} package the caret \dQuote{\code{^}} is reserved
-  for multiplicative powers, as in \code{A^3=A*A*A}.  All the different
-  Clifford products have binary operators for convenience including the
-  wedge product \code{\%^\%}.  Compare the \pkg{stokes} package, where
-  multiplicative powers do not really make sense and \code{A^B} is
-  interpreted as a wedge product of differential forms \mjseqn{A} and
-  \mjseqn{B}.  In \pkg{stokes}, the wedge product is the \emph{sine qua
-  non} for the whole package and needs a terse idiomatic representation
-  (although there \code{A\%^\%B} returns the wedge product too).
+  All the different Clifford products have binary operators for
+  convenience including the wedge product \code{\%^\%}.  However, as an
+  experimental facility, the caret \dQuote{\code{^}} returns either
+  multiplicative powers [as in \code{A^3=A*A*A}], or a wedge product [as
+  in \code{A^B = A \%^\% B = wedge(A,B)}] depending on the class of the
+  second argument.  I don't see that \dQuote{\code{A ^ B}} is at all
+  ambiguous but OTOH I might withdraw it if it proves unsatisfactory for
+  some reason.
+
+  Compare the \pkg{stokes} package, where multiplicative powers do not
+  really make sense and \code{A^B} is interpreted as a wedge product of
+  differential forms \mjseqn{A} and \mjseqn{B}.  In \pkg{stokes}, the
+  wedge product is the \emph{sine qua non} for the whole package and
+  needs a terse idiomatic representation (although there \code{A\%^\%B}
+  returns the wedge product too).
 
 
   }
@@ -267,7 +277,7 @@ x \%.\% (y \%.\% z) == (x \%.\% y) \%.\% z
 x \%|_\% y   ## left contraction
 x \%_|\% y   ## right contraction
 x \%o\% y    ## fat dot product
-
+x ^ y        ## Experimental wedge product idiom, plain caret
 
 }
 

@@ -1,0 +1,78 @@
+---
+title: "The dot: commutators and the Jacobi identity in the clifford package"
+output: bookdown::html_document2
+---
+
+```{r setup,include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(echo = TRUE)
+library("clifford")
+```
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
+
+This short document introduces the dot object and shows how it can be
+used to work with commutators and verify the Jacobi identity.  In the
+`clifford` package, we define $\left[A,B\right] := (AB-BA)/2$.  The
+factor of $\frac{1}{2}$ is to consistentify the Lie bracket with the
+cross product $A\times B$.  The prototypical `dot.Rmd` is that of the
+`freealg` package.  The dot object is a (trivial) `S4` object of class
+`dot`:
+
+```{r}
+`.` <- new("dot")
+```
+
+The point of the dot (!) is that it allows one to calculate the Lie
+bracket $[x,y]=(xy-yx)/2$ using R idiom `.[x,y]` in the `clifford`
+package.  Thus:
+
+```{r}
+(x <- 1 + 3*e(2))
+(y <- 5*e(3) - 7*e(1:3)) 
+.[x,y]
+```
+
+We see that these two clifford objects do not commute.  It is possible
+to apply the dot construction `.[x,y]` to more complicated examples.
+Here I show that the Lie bracket is nonassociative:
+
+```{r nonassociative}
+z <- 3 - e(1:4)
+.[x,.[y,z]]
+.[.[x,y],z]
+.[x,.[y,z]] == .[.[x,y],z]
+```
+
+However, it does satisfy the Jacobi identity
+$\left[x,\left[y,z\right]\right]+\left[y,\left[z,x\right]\right]+
+\left[z,\left[x,y\right]\right]=0$:
+
+```{r verifyJacobi}
+.[x,.[y,z]] + .[y,.[z,x]] + .[z,.[x,y]]
+```
+
+### Bivectors {-}
+
+It is an interesting, useful, and nontrivial fact that the commutator
+of two bivectors is a bivector:
+
+```{r showbivectorsareclosed}
+(a <- rcliff(d=9,g=2,include.fewer=FALSE))
+(b <- rcliff(d=9,g=2,include.fewer=FALSE))
+.[a,b]
+grades(.[a,b])
+```
+
+
+### Package dataset {-}
+
+Following lines create `dot.rda`, residing in the `data/` directory
+of the package.
+
+```{r,label=savedotdataset}
+save(`.`,file="dot.rda")
+```

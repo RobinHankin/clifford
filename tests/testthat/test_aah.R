@@ -2,7 +2,7 @@
 ## should return TRUE if the package works, and stop with error if
 ## a test is failed. 
 
-test_that("Test suite aac.R",{
+test_that("Test suite aah.R",{
 
   checker <- function(x){expect_true(all(gradesplus(x)+gradesminus(x)+gradeszero(x) == grades(x)))}
 

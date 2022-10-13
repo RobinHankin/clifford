@@ -13,7 +13,6 @@ vignette: >
 </p>
 
 
-
 This short document shows a nice application of Clifford algebras to
 linear algebra.  Suppose we have vectors ${\mathbf a}, {\mathbf b},
 {\mathbf c}$ spanning ${\mathbf x}\in\mathcal{R}^3$ and wish to write
@@ -97,12 +96,12 @@ b <- as.1vector(runif(3))
 c <- as.1vector(runif(3))
 
 (x <- as.1vector(1:3))
-abc <- a %^% b %^% c
+abc <- a ^ b ^ c
 
 xabc <-
-a*(x %^% b%^% c)/abc  + 
-b*(a %^% x%^% c)/abc  + 
-c*(a %^% b%^% x)/abc  
+a*(x ^ b ^ c)/abc  + 
+b*(a ^ x ^ c)/abc  + 
+c*(a ^ b ^ x)/abc  
 ```
 
 Thus we have expressed ${\mathbf x}$ as a linear combination of
@@ -120,9 +119,9 @@ $1,2,3$] and try to determine them using package idiom:
 ```{r}
 y <- a*1 + b*2 + c*3
 c(
-drop((y %^% b %^% c)/abc),
-drop((a %^% y %^% c)/abc),
-drop((a %^% b %^% y)/abc))
+drop((y ^ b ^ c)/abc),
+drop((a ^ y ^ c)/abc),
+drop((a ^ b ^ y)/abc))
 ```
 
 
@@ -137,7 +136,7 @@ x <- as.1vector(seq_len(n))                            # target vector
 L <- replicate(n,as.1vector(rnorm(n)),simplify=FALSE)  # spanning vectors
 subst <- function(L,n,x){L[[n]] <- x; return(L)}       # list substitution
 coeff <- function(n,L,x){
-      drop(Reduce(`%^%`,subst(L,n,x))/Reduce(`%^%`,L))
+      drop(Reduce(`^`,subst(L,n,x))/Reduce(`^`,L))
 }
 ```
 

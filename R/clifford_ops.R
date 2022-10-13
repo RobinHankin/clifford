@@ -98,11 +98,13 @@ maxyterm <- function(C1,C2=as.clifford(0)){
     } else if (.Generic == "-") {
             return(clifford_plus_clifford(as.clifford(e1),clifford_negative(as.clifford(e2))))
     } else if (.Generic == "^") {
-      if(lclass && !rclass){
+      if(lclass && rclass){
+        return(wedge(e1,e2)) # S^S == S%^% S
+      } else if(lclass && !rclass){
         return(clifford_power_scalar(e1,e2)) # S^n
-        } else {
-            stop("Generic '^' not implemented in this case")
-        }
+      } else {
+        stop("Generic '^' not implemented in this case")
+      }
     } else if (.Generic == "==") {
         if(lclass || rclass){
             return(clifford_eq_clifford(as.clifford(e1),as.clifford(e2)))

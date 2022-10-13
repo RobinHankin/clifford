@@ -106,7 +106,10 @@ test_that("Test suite aaa.R",{
     coeffs(A) <- 0   # can we change the zero object?
     expect_true(is.zero(A))
     
-    
+    A <- clifford(list(1,1:2,1:3),1:3)+3
+    A[0,1:6] <- 7
+    expect_true(const(A) == 7)
+    expect_true(const(A[list(0,4:8)]) == 7)
     
     jj <- clifford(list(1,1:2,1:3,1:4),1:4)
     expect_true(getcoeffs(jj,list(1:2))==2)
@@ -117,7 +120,7 @@ test_that("Test suite aaa.R",{
     expect_false(as.clifford(NULL) == as.clifford(1))
     expect_true(as.clifford(NULL) != as.clifford(1))
     expect_true(nbits(jj) == 4)
-    expect_error(jj^jj)
+    expect_silent(jj^jj)
     expect_error(jj^-1)
 
     expect_true(const(jj) == 0)

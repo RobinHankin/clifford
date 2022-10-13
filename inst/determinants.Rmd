@@ -1,0 +1,76 @@
+---
+title: "Linear algebra with the `clifford` package: determinants using wedge products"
+author: "Robin K. S. Hankin"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{linear algebra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
+This short document shows how determinants can be calculated using
+Clifford algebra as implemented by the `clifford` R package, following Hestenes.
+
+Given a square matrix $M$, we consider alternating forms on its column
+vectors.  Requiring that the identity matrix map to $+1$ gives a
+unique alternating form which we identify with the determinant of $M$.
+
+Hestenes points out that wedge products of 1-vectors are alternating
+forms and further points out [equation 4.1] that any alternating
+$r$-form $\alpha_r=\alpha_r\left(a_1,a_2,\ldots,a_r\right)$ can be
+written in the form
+
+$$\alpha_r A_r^\dagger\cdot\left(a_1\wedge a_2\wedge\cdots\wedge a_r\right)$$
+
+for some unique $r-$vector $A_r^\dagger$.  In the package this is easy
+to implement.  Considering a $3\times 3$ matrix as an example, we
+simply calculate the wedge product of its columns:
+
+```{r kickoff}
+suppressMessages(library("clifford"))
+set.seed(0)
+(M <- matrix(rnorm(9),3,3))
+det(M)
+as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3])
+```
+
+We see numerical agreement.  Note that the wedge product is given as a
+Clifford volume element, and we can extract this with `coeffs()`:
+
+```{r usecoeffs}
+coeffs(as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3]))
+```
+
+Just as a consistency check, we evaluate the wedge product of a set of
+basis vectors, effectively calculating the determinant of $I_3$:
+
+```{r detofi3}
+coeffs(e(1) ^ e(2) ^ e(3))
+```
+
+We see $+1$, as expected.  It is possible to consider larger matrices:
+
+```{r largermatrix}
+cliff_det <- function(M){
+  o <- as.1vector(M[,1])
+  for(i in 2:nrow(M)){
+    o <- o ^ as.1vector(M[,i])
+  }
+  return(coeffs(o))
+}
+```
+
+Then
+
+```{r usenewfunction}
+M <- matrix(rnorm(100),10,10)
+LHS <- det(M)
+RHS <- cliff_det(M)
+c(LHS,RHS,LHS-RHS)
+```
+
+above we see numerical agreement.
