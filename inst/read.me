@@ -14,34 +14,21 @@ This will create clifford_arxiv.tex
 Then 
 
 pdflatex clifford_arxiv
+bibtex clifford_arxiv
+pdflatex clifford_arxiv
+pdflatex clifford_arxiv
 
-will create clifford_arxiv.pdf
+will create clifford_arxiv.pdf and clifford_arxiv.bbl
+
+Remember to upload the .bbl file to arxiv.
 
 To latex clifford_arxiv.tex, you will need a couple of auxiliary files:
 
 * orcid.png, arxiv.sty from https://github.com/kourgeorge/arxiv-style
-* clifford.bib copied from the vignette directory of the clifford package.
+* clifford.bib, copied from the vignette directory of the clifford package.
 * clifford.png, the hexsticker, copied from man/figures
 
 
 NOTE: the tex file, cifford_arxiv.tex, is NOT under version control,
-nor is clifford.bib (it might be better to use emacs to import
-the .bbl file, not sure about that).
+nor is clifford.bib 
 
-
-I have directly inserted the bbl file to avoid messing about with .bib
-files, not sure if this is the best way to do it
-
-% I have had difficulty submitting to arXiv using bibtex.  To change
-% the bibliography below, follow the following steps:
-%
-% 1. edit foo.bib
-% 2. strip out everything between \begin{thebibliography}{}
-%      and \end{thebibliography}
-% 3. add the line \bibliography{foo}
-% 4. run bibtex spray_arxiv to create foo_arxiv.bbl
-% 5. insert the bbl file with C-x i
-%
-% This will recreate the bibliography as it appears below, using the
-% edited foo.bib.  You will have to run latex twice to make the
-% references appear correctly.
