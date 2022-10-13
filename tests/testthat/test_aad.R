@@ -45,7 +45,14 @@ test_that("Test suite aad.R",{  # tests of signature
     signature(0,0)
     signature(Inf,0)
 
+    expect_error(signature(0,-1))
+    expect_error(signature(-1,0))
+    expect_error(signature(c(1,2,3)))
+    
     x <- clifford(list(6,8,9,22),1:4)
     expect_true(as.1vector(as.vector(x)) == x)
+
+    expect_output(print(signature()))
+
 
 })
