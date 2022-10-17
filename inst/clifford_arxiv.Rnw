@@ -19,6 +19,7 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{doi}
+\usepackage{wrapfig}
 
 
 
@@ -55,11 +56,14 @@ pdfkeywords={Clifford algebra}
 \maketitle
 
 \begin{abstract}
-Here I present the {\tt clifford} package for working with Clifford
-algebras in the R programming language.  The algebra is described and
-package idiom is given.
-\end{abstract}
 
+Here I present the {\tt clifford} package for working with Clifford
+algebras in the R programming language.  Algebras of arbitrary
+dimension and signature can be manipulated, and a range of different
+multiplication operators is provided.  The algebra is described and
+package idiom is given.  The package is available on CRAN at
+\url{https://CRAN.R-project.org/package=clifford}.
+\end{abstract}
 
 % keywords can be removed
 \keywords{Clifford algebra}
@@ -69,29 +73,34 @@ package idiom is given.
 library("clifford")
 @ 
 
-\hfill\includegraphics[width=1in]{\Sexpr{system.file("help/figures/clifford.png",package="clifford")}}
-
 \section{Introduction}
 
+\setlength{\intextsep}{0pt}
+\begin{wrapfigure}{r}{0.2\textwidth}
+  \begin{center}
+\includegraphics[width=1in]{clifford.png}
+  \end{center}
+\end{wrapfigure}
 Clifford algebras are interesting and instructive mathematical
 objects.  The class has a rich structure that has varied applications
-to physics.
-
-\subsection{Existing work}
-
-Computational support for working with the Clifford algebras is part
-of a number of algebra systems including Sage~\citep{sagemath2019} and
-\textit{sympy}~\citep{sympy2017}.  Here I introduce the
-\textit{clifford} package, which provides R-centric functionality for
-Clifford algebras.  Notation follows~\cite{snygg2010}.
+to physics.  Computational support for working with the Clifford
+algebras is part of a number of algebra systems including
+Sage~\citep{sagemath2019} and \textit{sympy}~\citep{sympy2017}.  Here
+I introduce the \textit{clifford} package, which provides R-centric
+functionality for Clifford algebras.  Notation
+follows~\cite{snygg2010}.
 
 
 \newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 \newcommand{\bx}{\ensuremath{{\bf x}}}
 \newcommand{\by}{\ensuremath{{\bf y}}}
 
-Considering a vector space of dimension 3, and given a basis
-$\ei{1},\ei{2},\ei{3}$, we can consider linear combinations such as
+\subsection{Motivating examples in low-dimensional space}
+
+
+Following Snygg~\cite{snygg2010}, we consider a vector space of
+dimension 3, and given a basis $\ei{1},\ei{2},\ei{3}$, we can consider
+linear combinations such as
 
 \begin{eqnarray}
 \bx = x^1\ei{1} + x^2\ei{2} + x^3\ei{3}\nonumber\\
@@ -122,7 +131,7 @@ This gives:
        \left(x^1y^2-x^2y^1\right)\ei{1}\ei{2}
 \end{eqnarray}
   
-Multiplication is associative by design.  \citeauthor{snygg2010} goes
+Multiplication is associative by design.  Snygg \cite{snygg2010} goes
 on to consider the algebra spanned by products of
 $\ei{1},\ei{2},\ei{3}$ and shows that this is an eight dimensional
 space spanned by
@@ -238,18 +247,18 @@ grades, unlike conventional Grassman algebra).
 
 \section{The package in use}
 
-Suppose we want to work with arbitrary Clifford object
+Suppose we want to work with Clifford object
 $1+2\ei{1}+3\ei{2}+4\ei{2}\ei{3}$.  In R idiom this would be
 
 <<simpleexample>>=
-(x <- clifford(list(numeric(0),1,2,2:3),1:4))
-@ 
+(x <- 1 + 2*e(1) + 3*e(2) + 4*e(2:3))
+@
 
-Function {\tt clifford()} takes a list of terms and a vector of
-coefficients.  Addition and subtraction work as expected:
+Here we have used function {\tt e()} which takes an integer vector that
+specifies the term.  Addition and subtraction work as expected:
 
 <<xminusy>>=
-y <- clifford(list(1),2)
+y <- e(1) + 55*e(1:5)
 x-y
 @ 
 
@@ -506,7 +515,7 @@ package~\citep{hankin2019}.
 
 
  
-\bibliographystyle{apalike}
+\bibliographystyle{plain}
 \bibliography{clifford}
 
 \end{document}

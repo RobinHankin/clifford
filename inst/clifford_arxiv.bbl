@@ -1,37 +1,38 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 
-\bibitem[Ab\l{}amowicz and Fauser, 2012]{ablamowicz2012}
-Ab\l{}amowicz, R. and Fauser, B. (2012).
-\newblock Symbolic computations in higher dimensional clifford algebras.
+\bibitem{ablamowicz2012}
+Rafal Ab\l{}amowicz and Bertfried Fauser.
+\newblock Symbolic computations in higher dimensional clifford algebras, 2012.
 
-\bibitem[Chisholm, 2012]{chisholm2012}
-Chisholm, E. (2012).
+\bibitem{chisholm2012}
+Eric Chisolm.
+\newblock Geometric algebra, 2012.
 
-\bibitem[Dorst, 2002]{dorst2002}
-Dorst, L. (2002).
+\bibitem{dorst2002}
+L.~Dorst.
 \newblock {\em Applications of geometric algebra in computer science and
   engineering}, chapter~2, pages 35--46.
-\newblock Birkh\"{a}user.
+\newblock Birkh\"{a}user, 2002.
 
-\bibitem[Hankin, 2019]{hankin2019}
-Hankin, R. K.~S. (2019).
-\newblock {\em stokes: The Exterior Calculus}.
+\bibitem{hankin2019}
+Robin K.~S. Hankin.
+\newblock {\em stokes: The Exterior Calculus}, 2019.
 \newblock R package version 1.0-3.
 
-\bibitem[Meurer et~al., 2017]{sympy2017}
-Meurer, A. et~al. (2017).
+\bibitem{sympy2017}
+Aaron Meurer et~al.
 \newblock Sympy: symbolic computing in python.
-\newblock {\em PeerJ Computer Science}, 3:e103.
+\newblock {\em PeerJ Computer Science}, 3:e103, January 2017.
 
-\bibitem[Snygg, 2010]{snygg2010}
-Snygg, J. (2010).
+\bibitem{snygg2010}
+J.~Snygg.
 \newblock {\em A new approach to differential geometry using {C}lifford's
   geometric algebra}.
-\newblock Birkh\"{a}user.
+\newblock Birkh\"{a}user, 2010.
 
-\bibitem[{The Sage Developers}, 2019]{sagemath2019}
-{The Sage Developers} (2019).
+\bibitem{sagemath2019}
+{The Sage Developers}.
 \newblock {\em {S}ageMath, the {S}age {M}athematics {S}oftware {S}ystem
-  ({V}ersion 8.6)}.
+  ({V}ersion 8.6)}, 2019.
 
 \end{thebibliography}
