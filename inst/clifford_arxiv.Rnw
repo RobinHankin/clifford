@@ -61,8 +61,10 @@ Here I present the {\tt clifford} package for working with Clifford
 algebras in the R programming language.  Algebras of arbitrary
 dimension and signature can be manipulated, and a range of different
 multiplication operators is provided.  The algebra is described and
-package idiom is given.  The package is available on CRAN at
+package idiom is given; it obeys {\tt disordR} discipline.  The
+package is available on CRAN at
 \url{https://CRAN.R-project.org/package=clifford}.
+
 \end{abstract}
 
 % keywords can be removed
@@ -505,6 +507,25 @@ x*y
 
 in agreement with \cite{ablamowicz2012}, although the terms appear in
 a different order.
+
+\section{{\tt disordR} discipline}
+
+The {\tt clifford} package uses the {\tt STL} map class to store and
+retrieve coefficients of terms.  A ``map'' is a sorted associative
+container that contains key-value pairs with unique keys.  It is used
+because search and insertion operations have logarithmic complexity.
+Clifford objects are considered to be the sum of a finite number of
+{\bf terms}, each multiplied by a coefficient.  One reason why the
+{\tt map} class is fast is that the order in which the keys are stored
+is undefined: the compiler may store them in the order which it
+regards as most propitious.  This is not an issue for the maps
+considered here as addition and multiplication are commutative and
+associative.  The package uses {\tt disordR} discipline.
+
+The terms of a {\tt clifford} object are held in an
+implementation-specific order and dealing with this in a consistent
+way is achieved using the {\tt disordR}
+package~\cite{hankin2022_disordR}.  
 
 \section{Conclusions and further work}
 
