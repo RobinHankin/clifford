@@ -17,7 +17,7 @@
 \usepackage{microtype}      % microtypography
 \usepackage{lipsum}		% Can be removed after putting your text content
 \usepackage{graphicx}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{doi}
 \usepackage{wrapfig}
 
@@ -88,17 +88,15 @@ objects.  The class has a rich structure that has varied applications
 to physics.  Computational support for working with the Clifford
 algebras is part of a number of algebra systems including
 Sage~\citep{sagemath2019} and \textit{sympy}~\citep{sympy2017}.  Here
-I introduce the \textit{clifford} package, which provides R-centric
-functionality for Clifford algebras.  Notation
-follows~\cite{snygg2010}.
-
+I introduce the {\tt clifford} package, written in the R computing
+language~\citep{rcore2022}, which furnishes functionality for working
+with Clifford algebras.  Notation follows Snygg~\cite{snygg2010}.
 
 \newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 \newcommand{\bx}{\ensuremath{{\bf x}}}
 \newcommand{\by}{\ensuremath{{\bf y}}}
 
 \subsection{Motivating examples in low-dimensional space}
-
 
 Following Snygg~\cite{snygg2010}, we consider a vector space of
 dimension 3, and given a basis $\ei{1},\ei{2},\ei{3}$, we can consider
@@ -188,8 +186,6 @@ where
   \end{cases}
 \end{equation}
 
-
-
 \subsection{Clifford algebra in a pseudo-Euclidean space}
 
 Equations~\ref{posdefcliff} and~\ref{posdefcliff2} defined a
@@ -215,7 +211,6 @@ inner product given by equation~\ref{gencliff1}.  The Clifford algebra
 ${\mathcal C}_{p,q}$ (other notations include $Cl(p,q)$) is then the
 algebra formed by $\mathbb{R}_{p,q}$ together with formal products of
 basis vectors.
-
 
 Note carefully that the diagonal matrix of the inner product specified
 above conventionally has the the positive elements first, followed by
@@ -246,6 +241,46 @@ equation \ref{gencliff1} becomes
 which implies that $\ei{i}\ei{i}=0$.  Geometric products become wedge
 products (although linearity means that we may add terms of different
 grades, unlike conventional Grassman algebra).
+
+\section{Computational implementation and {\tt disordR} discipline}
+
+The package represents basis blades using dynamic bitset objects from
+the {\tt boost} library.  A bitset emulates an array of Boolean
+elements, but is optimized for space allocation and
+access/modification times.  The set bits specify the basis blades
+present in a term; using bitsets allows products to use fast Boolean
+operators.  An object such as $\ei{2}\ei{5}\ei{6}$ [or $\ei{256}$]
+will be a bitset with bits 2, 5, and 6 set [note the off-by-one
+  issue].  Dynamic objects are needed here as the number of bits in
+the set is specified at runtime.
+A {\tt clifford} object is an element of a Clifford algebra; this is
+set of basis blades, each with a real coefficient.  The {\tt stl} map
+class~\cite{musser2009} is used:
+
+\begin{verbatim}
+typedef boost::dynamic_bitset<> blade;
+typedef map<blade, long double> clifford;
+\end{verbatim}
+
+A ``map'' is a sorted associative container that contains key-value
+pairs with unique keys.  It is used because search and insertion
+operations have logarithmic complexity.  A {\tt clifford} object thus
+maps dynamic bitsets (basis blades) to long doubles in the same manner
+as the {\tt spray} and {\tt mvp}
+packages~\cite{hankin2022_mvp,hankin2022_spray}.  Clifford objects are
+thus considered to be the sum of a finite number of {\bf blades}, each
+multiplied by a coefficient.  One reason why the {\tt map} class is
+fast is that the order in which the keys are stored is undefined: the
+compiler may store them in the order which it regards as most
+propitious.  This is not an issue for the maps considered here as
+addition and multiplication are commutative and associative.  The
+package uses {\tt disordR} discipline.
+
+The terms of a {\tt clifford} object are held in an
+implementation-specific order and dealing with this in a consistent
+way is achieved using the {\tt disordR}
+package~\cite{hankin2022_disordR}, which presents an extended
+discussion.
 
 \section{The package in use}
 
@@ -476,12 +511,12 @@ A %|_% (B %^%  C) == (A %|_% B) %|_% C
 @ 
 \section{Higher dimensional spaces}
 
-\cite{ablamowicz2012} consider high-dimensional Clifford algebras and
-consider the following two elements of the 1024-dimensional Clifford
-algebra which we may treat as ${\mathcal C}_{7,3}$ spanned by
-$\ei{1},\ldots,\ei{10}$ and perform a calculation which I reproduce
-below (although \citeauthor{ablamowicz2012} exploited Bott
-periodicity, a feature not considered here).
+Ab\l{}amowicz and Fauser~\cite{ablamowicz2012} consider
+high-dimensional Clifford algebras and consider the following two
+elements of the 1024-dimensional Clifford algebra which we may treat
+as ${\mathcal C}_{7,3}$ spanned by $\ei{1},\ldots,\ei{10}$ and perform
+a calculation which I reproduce below (although these authors
+exploited Bott periodicity, a feature not considered here).
 
 Firstly we change the default print method slightly:
 
@@ -507,25 +542,6 @@ x*y
 
 in agreement with \cite{ablamowicz2012}, although the terms appear in
 a different order.
-
-\section{{\tt disordR} discipline}
-
-The {\tt clifford} package uses the {\tt STL} map class to store and
-retrieve coefficients of terms.  A ``map'' is a sorted associative
-container that contains key-value pairs with unique keys.  It is used
-because search and insertion operations have logarithmic complexity.
-Clifford objects are considered to be the sum of a finite number of
-{\bf terms}, each multiplied by a coefficient.  One reason why the
-{\tt map} class is fast is that the order in which the keys are stored
-is undefined: the compiler may store them in the order which it
-regards as most propitious.  This is not an issue for the maps
-considered here as addition and multiplication are commutative and
-associative.  The package uses {\tt disordR} discipline.
-
-The terms of a {\tt clifford} object are held in an
-implementation-specific order and dealing with this in a consistent
-way is achieved using the {\tt disordR}
-package~\cite{hankin2022_disordR}.  
 
 \section{Conclusions and further work}
 
