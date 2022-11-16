@@ -13,16 +13,15 @@ vignette: >
 </p>
 
 This short document shows how determinants can be calculated using
-Clifford algebra as implemented by the `clifford` R package, following Hestenes.
-
-Given a square matrix $M$, we consider alternating forms on its column
-vectors.  Requiring that the identity matrix map to $+1$ gives a
-unique alternating form which we identify with the determinant of $M$.
-
-Hestenes points out that wedge products of 1-vectors are alternating
-forms and further points out [equation 4.1] that any alternating
-$r$-form $\alpha_r=\alpha_r\left(a_1,a_2,\ldots,a_r\right)$ can be
-written in the form
+Clifford algebra as implemented by the `clifford` R package, following
+Hestenes.  Given a square matrix $M$, we consider alternating forms on
+its column vectors.  Requiring that the identity matrix map to $+1$
+gives a unique alternating form which we identify with the determinant
+of $M$.  Hestenes points out that wedge products of 1-vectors are
+alternating forms and further points out [equation 4.1] that any
+alternating $r$-form
+$\alpha_r=\alpha_r\left(a_1,a_2,\ldots,a_r\right)$ can be written in
+the form
 
 $$\alpha_r A_r^\dagger\cdot\left(a_1\wedge a_2\wedge\cdots\wedge a_r\right)$$
 
