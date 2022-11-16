@@ -1,5 +1,5 @@
 ---
-title: "Clifford involutions following Hitzer and Sangwine"
+title: "Clifford inverses following Hitzer and Sangwine"
 author: "Robin K. S. Hankin"
 date: "02/09/2020"
 output:
@@ -17,6 +17,8 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+\hfill![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
 
 ## Clifford inverses
 
