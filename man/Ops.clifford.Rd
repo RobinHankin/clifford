@@ -227,10 +227,10 @@ C1 \%|_\% C2
   ambiguous but OTOH I might withdraw it if it proves unsatisfactory for
   some reason.
 
-  Compare the \pkg{stokes} package, where multiplicative powers do not
-  really make sense and \code{A^B} is interpreted as a wedge product of
-  differential forms \mjseqn{A} and \mjseqn{B}.  In \pkg{stokes}, the
-  wedge product is the \emph{sine qua non} for the whole package and
+  Compare the \CRANpkg{stokes} package, where multiplicative powers do
+  not really make sense and \code{A^B} is interpreted as a wedge product
+  of differential forms \mjseqn{A} and \mjseqn{B}.  In \CRANpkg{stokes},
+  the wedge product is the \emph{sine qua non} for the whole package and
   needs a terse idiomatic representation (although there \code{A\%^\%B}
   returns the wedge product too).
 
