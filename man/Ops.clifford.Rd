@@ -136,7 +136,7 @@ C1 \%|_\% C2
     \mjeqn{\displaystyle A\star B= A\ast B^\dagger}{see PDF}\cr
   }
 
-  In R idiom, the geometric product \code{geoprod(.,.)} has to be
+  In \R idiom, the geometric product \code{geoprod(.,.)} has to be
   indicated with a \dQuote{\code{*}} (as in \code{A*B}) and so the
   binary operator must be \code{\%*\%}: we need a different idiom for
   scalar product, which is why \code{\%star\%} is used.

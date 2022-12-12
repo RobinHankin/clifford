@@ -16,7 +16,7 @@
 }
 \author{Robin K. S. Hankin}
 \note{
-The awkward R idiom of this function is because the terms may be stored
+The awkward \R idiom of this function is because the terms may be stored
 in any order; see the examples
 }
 \seealso{\code{\link{numeric_to_clifford}}}
