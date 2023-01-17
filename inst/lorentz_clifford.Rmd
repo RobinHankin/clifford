@@ -7,16 +7,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 library("emulator")
+library("lorentz")
 ```
 
 (throughout, we use units in which $c=1$.  Notation follows Snygg)
 
 <p style="text-align: right;">
 ![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+![](`r system.file("help/figures/lorentz.png", package = "lorentz")`){width=10%}
+![](`r system.file("help/figures/emulator.png", package = "emulator")`){width=10%}
 </p>
-
-
-
 
 
 Consider the following four-vector:
@@ -26,10 +26,10 @@ Consider the following four-vector:
 u <- c(0.2,0.3,0.4)  # a three-velocity
 ```
 
-We wish to consider the effect of a Lorentz transformation of `s`. This is done by the `boost()` function of the `lorentz` package:
+We wish to consider the effect of a Lorentz transformation of
+`s`. This is done by the `boost()` function of the `lorentz` package:
 
 ```{r,b1b2}
-library("lorentz")
 (Bmat <- boost(u))  # Bmat = "B-matrix"
 ```
 
