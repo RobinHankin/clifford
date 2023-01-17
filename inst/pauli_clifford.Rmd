@@ -13,6 +13,9 @@ library("emulator")
 
 <p style="text-align: right;">
 ![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+![](`r system.file("help/figures/onion.png", package = "onion")`){width=10%}
+![](`r system.file("help/figures/jordan.png", package = "jordan")`){width=10%}
+![](`r system.file("help/figures/emulator.png", package = "emulator")`){width=10%}
 </p>
 
 The Pauli matrices are as follows:
