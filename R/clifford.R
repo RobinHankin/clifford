@@ -411,3 +411,7 @@ setMethod("[", signature(x="dot",i="clifford",j="ANY"),
               return((i*j-j*i)/2)
           })
 
+
+setGeneric("sort")
+setGeneric("lapply")
+

@@ -27,6 +27,7 @@ importFrom("disordR","is.disord")
 importFrom("disordR","consistent")
 importFrom("disordR","%in%")
 importFrom("disordR","lapply")
+importFrom("disordR","sort")
 
 importFrom("magrittr", "%<>%")
 
