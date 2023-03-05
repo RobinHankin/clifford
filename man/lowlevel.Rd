@@ -16,7 +16,7 @@
 \alias{c_cartan}
 \alias{c_cartan_inverse}
 \title{Low-level helper functions for \code{clifford} objects}
-\description{
+\description{\loadmathjax
   Helper functions for \code{clifford} objects, written in \code{C} using the
   \code{STL} map class.
 }
@@ -56,7 +56,7 @@ c_cartan_inverse(L, c, m, n)
 }
 \value{
 
-  The high-level functions documented here return an object of
+  The high-level functions documented here return an object of class
   \code{clifford}.  But don't use the low-level functions.
 
 }
