@@ -56,18 +56,19 @@ Similarly, \mjseqn{(0,q)} corresponds to a negative-semidefinite
 quadratic form in which \mjeqn{e_ie_i=-1}{omitted} for all \mjeqn{i\leq
 q}{i<=q} and \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i > q}.
 
-Package idiom for a strictly positive-definite quadratic form would be
-to specify infinite \mjseqn{p} [in which case \mjseqn{q} is irrelevant]
-and for a strictly negative-definite quadratic form we would need
-\mjeqn{p=0,q=\infty}{omitted}.
+A strictly positive-definite quadratic form is specified by infinite
+\mjseqn{p} [in which case \mjseqn{q} is irrelevant], and
+\code{signature(Inf)} implements this.  For a strictly negative-definite
+quadratic form we would have \mjeqn{p=0,q=\infty}{omitted} which would
+be \code{signature(0,Inf)}.
 
 If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
 operation reduces to the wedge product of a Grassman algebra.  Package
-idiom for this is to set \mjseqn{p=q=0}, but this is not recommended:
-use the \pkg{stokes} package for Grassman algebras, which is much more
-efficient and uses nicer idiom.
+idiom for this is to set \mjseqn{p=q=0} with \code{signature(0,0)}, but
+this is not recommended: use the \pkg{stokes} package for Grassman
+algebras, which is much more efficient and uses nicer idiom.
 
-Function \code{signature(p,q)} returns the signature silently; but
+Function \code{signature(p,q)} returns the signature invisibly; but
 setting option \code{show_signature} to \code{TRUE} makes
 \code{signature()} have the side-effect of calling \code{showsig()},
 which changes the default prompt to display the signature, much like

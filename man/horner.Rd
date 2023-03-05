@@ -4,7 +4,7 @@
 \description{Horner's method for Clifford objects}
 \usage{horner(P,v)}
 \arguments{
-  \item{P}{Multivariate polynomial}
+  \item{P}{A Clifford object}
   \item{v}{Numeric vector of coefficients}
 }
 \details{

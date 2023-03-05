@@ -148,7 +148,7 @@ C1 \%|_\% C2
   causes problems for rmarkdown.
 
   Function \code{clifford_inverse()} returns an inverse for nonnull
-  Clifford objects \mjseqn{Cl(p,q)} for \mjeqn{p+q\leq 5}{p+5 <= 5}, and
+  Clifford objects \mjseqn{Cl(p,q)} for \mjeqn{p+q\leq 5}{p+q <= 5}, and
   a few other special cases.  The functionality is problematic as
   nonnull blades always have an inverse; but function \code{is.blade()}
   is not yet implemented.  Blades (including null blades) have a
