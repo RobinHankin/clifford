@@ -20,9 +20,9 @@ convenient to treat them separately.
 
 ## First method
 
-We use $Cl(0,1)$, so $e_1^2=-1$.  Package idiom is straightforward; to
-coerce complex numbers to Clifford objects and vice versa, we need a
-couple of functions:
+We use $\operatorname{Cl}(0,1)$, so $e_1^2=-1$.  Package idiom is
+straightforward; to coerce complex numbers to Clifford objects and
+vice versa, we need a couple of functions:
 
 ```{r label=coercionfuncs}
 signature(0,1)
@@ -66,12 +66,12 @@ clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
 
 ## Second method
 
-We use $Cl(2)$, so $e_1^2=e_2^2=1$, and identify the imaginary unit
-$i$ with $e_{12}$ (thus
+We use $\operatorname{Cl}(2)$, so $e_1^2=e_2^2=1$, and identify the
+imaginary unit $i$ with $e_{12}$ (thus
 $e_{12}^2=e_{12}e_{12}=e_{1212}=-e_{1122}=-e_1^2e_2^2=-1$).  A general
 complex number $z=x+iy$ maps to Clifford object $x + ye_{12}$.
 
-```{r}
+```{r label=secondcoercions}
 signature(2)
 complex_to_clifford <- function(z){Re(z) + clifford(list(1:2),Im(z))}
 clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,list(1:2))}
@@ -79,13 +79,13 @@ clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,list(1:2))}
 
 Then numerical verification:
 
-```{r}
+```{r label=thennumver}
 z1 <- 35 + 67i
 z2 <- -2 + 12i
 complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
 ```
 
-```{r}
+```{r label=gobackwards}
 C1 <- 23 + 7*e(1:2)
 C2 <- 2  - 8*e(1:2)
 clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
@@ -94,11 +94,11 @@ clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
 ### Note
 
 The identification $x+iy\longrightarrow x+ye_{12}$ is a homomorphism
-whenever $e_1^2e_1^2=1$; above we used $Cl(2,0)$ so $e_1^2=e_2^2=1$.
-However, the relation is also satisfied if $e_1^2=e_2^2=-1$, so we can
-equally well use $Cl(0,2)$:
+whenever $e_1^2e_1^2=1$; above we used $\operatorname{Cl}(2,0)$ so
+$e_1^2=e_2^2=1$.  However, the relation is also satisfied if
+$e_1^2=e_2^2=-1$, so we can equally well use $\operatorname{Cl}(0,2)$:
 
-```{r}
+```{r label=useothersig}
 signature(0,2)
 c(
 complex_to_clifford(z1)*complex_to_clifford(z2) == complex_to_clifford(z1*z2),
