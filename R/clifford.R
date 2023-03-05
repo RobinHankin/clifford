@@ -166,7 +166,6 @@ setGeneric("dim")
 
 `as.antivector` <- function(v){antivector(v)}
 `is.antivector` <- function(C, include.pseudoscalar=FALSE){
-
   if(!is.homog(C)){return(FALSE)}
   if(include.pseudoscalar && is.pseudoscalar(C)){return(TRUE)}
   return(all(grades(C) == maxyterm(C)-1))
@@ -179,6 +178,7 @@ setGeneric("dim")
         return(clifford(list(n),x))
     }
 }
+
 `e` <- basis
 
 `rcliff` <- function(n=9,d=6,g=4,include.fewer=TRUE){
