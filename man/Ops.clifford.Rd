@@ -148,11 +148,12 @@ C1 \%|_\% C2
   causes problems for rmarkdown.
 
   Function \code{clifford_inverse()} returns an inverse for nonnull
-  Clifford objects \mjseqn{Cl(p,q)} for \mjeqn{p+q\leq 5}{p+q <= 5}, and
-  a few other special cases.  The functionality is problematic as
-  nonnull blades always have an inverse; but function \code{is.blade()}
-  is not yet implemented.  Blades (including null blades) have a
-  pseudoinverse, but this is not implemented yet either.
+  Clifford objects \mjeqn{\operatorname{Cl}(p,q)}{Cl(p,q)} for
+  \mjeqn{p+q\leq 5}{p+q <= 5}, and a few other special cases.  The
+  functionality is problematic as nonnull blades always have an inverse;
+  but function \code{is.blade()} is not yet implemented.  Blades
+  (including null blades) have a pseudoinverse, but this is not
+  implemented yet either.
   
   The \dfn{scalar product} of two clifford objects is defined as the
   zero-grade component of their geometric product:

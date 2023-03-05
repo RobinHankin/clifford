@@ -19,7 +19,8 @@
 }
 \author{Robin K. S. Hankin}
 \note{
-  A different mapping, from the quaternions to \mjseqn{Cl(0,2)} is
-  given at \code{signature.Rd}.
+  A different mapping, from the quaternions to
+  \mjeqn{\operatorname{Cl}(0,2)}{Cl(0,2)} is given at
+  \code{signature.Rd}.
 }
 \seealso{\code{\link{signature}}}
