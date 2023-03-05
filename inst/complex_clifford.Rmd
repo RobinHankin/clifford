@@ -20,24 +20,46 @@ convenient to treat them separately.
 
 ## First method
 
-We use $Cl(0,1)$, so $e_1^2=-1$.  Package idiom is straightforward:
+We use $Cl(0,1)$, so $e_1^2=-1$.  Package idiom is straightforward; to
+coerce complex numbers to Clifford objects and vice versa, we need a
+couple of functions:
 
-```{r}
+```{r label=coercionfuncs}
 signature(0,1)
 complex_to_clifford <- function(z){Re(z) + clifford(list(1),Im(z))}
 clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,1)}
 ```
 
-Then numerical verification:
+Then numerical verification is immediate.  First we choose some
+complex numbers:
 
-```{r}
+```{r label=numversetup}
 z1 <- 35 + 67i
 z2 <- -2 + 12i
+```
+
+Then, for example:
+
+```{r label=examplecoerce}
+z1
+complex_to_clifford(z1)
+```
+
+Checking that the coercion is a homomorphism is easy:
+
+
+```{r label=numverdo}
 complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
 ```
 
-```{r}
-C1 <- 23 + 7*e(1)
+Above, note that the `*` on the left is the geometric product, while
+the `*` on the right is the usual complex multiplication.  And because
+the map is invertible we can check the other way too:
+
+
+```{r label=otherway}
+(C1 <- 23 + 7*e(1))
+clifford_to_complex(C1)
 C2 <- 2  - 8*e(1)
 clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
 ```
@@ -82,4 +104,14 @@ c(
 complex_to_clifford(z1)*complex_to_clifford(z2) == complex_to_clifford(z1*z2),
 clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
 )
+```
+
+
+### Default
+
+It is best to return the signature to its default value in order to prevent
+interference with other vignettes:
+
+```{r label=restoresig}
+signature(0,Inf)
 ```
