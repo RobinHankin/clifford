@@ -1,17 +1,15 @@
 ---
-title: "Dual numbers implemented using Clifford algebra"
+title: "Dual numbers implemented using Clifford algebra, and a case-study of automatic differentiation"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
-library("onion")
 ```
 
 <p style="text-align: right;">
 ![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-![](`r system.file("help/figures/onion.png", package = "onion")`){width=10%}
 </p>
 
 
@@ -76,3 +74,52 @@ Mod((x+y)*z - (x*z+y*z))
 
 The above shows zero to within numerical tolerance.
 
+
+## Automatic differentiation
+
+*NOTE* This vignette shows a use-case for dual numbers, as applied to
+ automatic differentiation.  If you want to actually use AD, I would
+ strongly recommend you consider the excellent `dual` package which
+ offers a nice user interface, efficient coding, and lots of examples.
+
+
+First we define a simple polynomial:
+
+```{r definasimplepoly}
+f <- function(x){5*x + 3*x^5}
+fdash <- function(f,x,d=1e-6){(f(x+d/2)-f(x-d/2))/d}
+```
+
+and observe that this can be evaluated at elements of a Clifford
+algebra:
+
+```{r, usef}
+f(pi + e(1))
+fdash(f,pi)
+```
+
+Above we see agreement.  This technique is limited by the fact that
+only polynomial functionality is implemented in the Clifford package;
+if we want to work with transcendental functions we need to supply the
+derivative explictly:
+
+
+```{r, label=mydefs}
+getim <- function(x){x-const(x)}  # should be a builtin -- I'm working on it
+my_sin <- function(x){sin(const(x)) + cos(const(x))*getim(x)}
+my_cos <- function(x){cos(const(x)) - sin(const(x))*getim(x)}
+```
+
+Then to differentiate say $f_2(x)=\sin\left(\cos(x)+x^2\right)$:
+
+```{r}
+f2 <- function(x){sin(cos(x)+x^2)}
+myf2 <- function(x){my_sin(my_cos(x)+x^2)}
+myf2(pi + e(1))
+fdash(f2,pi)
+```
+
+
+Above we see close agreement.  Observe that dual number formalism
+tracks the differential via the $e_1$ term automatically; it
+effectively uses the chain rule to differentiate.
