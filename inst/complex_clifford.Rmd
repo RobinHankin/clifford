@@ -26,6 +26,7 @@ vice versa, we need a couple of functions:
 
 ```{r label=coercionfuncs}
 signature(0,1)
+options(maxdim=1) # paranoid-level safety measure
 complex_to_clifford <- function(z){Re(z) + clifford(list(1),Im(z))}
 clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,1)}
 ```
@@ -73,6 +74,7 @@ complex number $z=x+iy$ maps to Clifford object $x + ye_{12}$.
 
 ```{r label=secondcoercions}
 signature(2)
+options(maxdim=2)  # paranoid-level safety measure
 complex_to_clifford <- function(z){Re(z) + clifford(list(1:2),Im(z))}
 clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,list(1:2))}
 ```
@@ -109,9 +111,10 @@ clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
 
 ### Default
 
-It is best to return the signature to its default value in order to prevent
-interference with other vignettes:
+It is best to return the signature and `maxdim` to their default
+values in order to prevent interference with other vignettes:
 
 ```{r label=restoresig}
-signature(0,Inf)
+signature(Inf)
+options(maxdim=NULL)
 ```
