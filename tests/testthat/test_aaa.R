@@ -185,5 +185,13 @@ test_that("Test suite aaa.R",{
     expect_visible(as.character(as.clifford(0)))
     expect_true(as.character(as.clifford(0)) == "0")
     expect_true(as.character(as.clifford(4)) == "4")
-     
+
+    options(maxdim=4)
+    expect_silent(e(1))
+    expect_silent(e(2))
+    expect_silent(34+e(1:4))
+    expect_error(e(5))
+    expect_error(1+e(6))
+    options(maxdim=NULL)
+
 })

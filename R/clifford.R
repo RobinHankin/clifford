@@ -72,6 +72,14 @@ setOldClass("clifford")
     }
 
     terms <- elements(terms)
+    d <- getOption("maxdim")
+    if(!is.null(d)){
+      jj <- c(elements(terms),recursive=TRUE)
+      if(length(jj)>0){
+        stopifnot(d >= jj)
+      }
+    }
+
     coeffs <- elements(coeffs)
 
     stopifnot(is.list(terms))

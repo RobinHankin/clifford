@@ -83,7 +83,27 @@ such as \code{.Machine$integer.max} will be printed as
 \dQuote{\code{2147483647}}.
 
 Function \code{is_ok_sig()} is a helper function that checks for a
-proper signature.
+proper signature.  If we set \code{signature(p,q)}, then technically
+\mjseqn{n>p+q} implies \mjeqn{e_n^2=0}{omitted}, but usually we are not
+interested in \mjseqn{e_n} when \mjeqn{n>p+q}{omitted} and want this to
+be an error.  Option \code{maxdim}, specifies the maximum value of
+\mjseqn{n}, with default \code{NULL} corresponding to infinity.  If
+\mjseqn{n} exceeds this, \code{is_ok_sig()} throws an error.  This
+option is intended to be a super-strict safety measure.
+
+\preformatted{
+> e(6)
+Element of a Clifford algebra, equal to
++ 1e_6
+> options(maxdim=5)
+> e(5)
+Element of a Clifford algebra, equal to
++ 1e_5
+> e(6)
+Error in is_ok_clifford(terms, coeffs) : 
+  d >= max(c(elements(terms), recursive = TRUE)) is not TRUE
+> 
+}
 
 }
 \author{Robin K. S. Hankin}
