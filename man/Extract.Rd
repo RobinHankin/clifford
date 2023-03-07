@@ -11,6 +11,10 @@
 \alias{coeffs<-}
 \alias{coeffs<-.clifford}
 \alias{getcoeffs}
+\alias{Re}
+\alias{Im}
+\alias{Re.clifford}
+\alias{Im.clifford}
 \title{Extract or Replace Parts of a clifford}
 \description{
   Extract or replace subsets of cliffords.
@@ -22,9 +26,11 @@ coeffs(x)
 coeffs(x) <- value
 list_modifier(B)
 getcoeffs(C, B)
+\method{Im}{clifford}(z)
+\method{Re}{clifford}(z)
 }
 \arguments{
-  \item{C,x}{A clifford object}
+  \item{C,x,z}{A clifford object}
   \item{index}{elements to extract or replace}
   \item{value}{replacement value}
   \item{B}{A list of integer vectors, terms}
@@ -82,6 +88,10 @@ the succour offered by \code{[.clifford()}.  It returns a numeric vector
 [not a \code{disord} object: the order of the elements is determined by
 the order of argument \code{B}].  Compare standard extraction, eg
 \code{a[index]}, which returns a clifford object.
+
+Function \code{Im()} is a generic, which sets the real component of its
+argument to zero (as per the \CRANpkg{onion} package).  Function
+\code{Re()} is a convenience synonym for \code{const()}.
 
 }
 \seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}

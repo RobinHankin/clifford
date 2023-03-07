@@ -59,5 +59,7 @@ S3method("as.character", clifford)
 S3method("print",summary.clifford)
 S3method("summary",clifford)
 S3method("as.vector",clifford)
+S3method("Re",clifford)
+S3method("Im",clifford)
 
 S3method(print,sigobj)

@@ -60,3 +60,12 @@ list_modifier <- function(B){
     }
 }
 
+
+setGeneric("Re")
+setGeneric("Im")
+
+`Re.clifford` <- function(z){const(z)}
+`Im.clifford` <- function(z){
+  const(z) <- 0
+  return(z)
+}
