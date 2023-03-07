@@ -26,8 +26,9 @@ is.real(C)
 
 Extractor method for specific terms.  Function \code{const()} returns
 the constant element of a Clifford object.  Note that \code{const(C)}
-returns the same as \code{grade(C,0)}, but is faster.
-
+returns the same as \code{grade(C,0)}, but is faster.  If \code{C} is a
+numeric vector, the first element is returned: any other elements are
+silently discarded, but this may change in future.
 
 The R idiom in \code{const<-()} is slightly awkward:
 

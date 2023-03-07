@@ -26,6 +26,7 @@ setOldClass("clifford")
 }
 
 `const` <- function(C,drop=TRUE){
+  if(is.numeric(C)){return(C[1])}
   out <- getcoeffs(C,list(numeric(0)))
   if(drop){
     return(out)
