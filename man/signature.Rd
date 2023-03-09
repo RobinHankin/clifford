@@ -5,6 +5,7 @@
 \alias{showsig}
 \alias{print.sigobj}
 \alias{mymax}
+\alias{maxdim}
 \title{The signature of the Clifford algebra}
 \description{Getting and setting the signature of the Clifford algebra}
 \usage{
