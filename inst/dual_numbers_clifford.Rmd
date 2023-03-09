@@ -23,42 +23,27 @@ $$\begin{eqnarray}
 \end{eqnarray}$$
 
 
-then we recover distributivity and associativity.  Actually
-associativity of the product is not entirely trivial.  We seek to
-prove $\left[(a+b\epsilon)(c+d\epsilon)\right](e+f\epsilon)=
-(a+b\epsilon)\left[(c+d\epsilon)(e+f\epsilon)\right]$.
-
-$$\begin{eqnarray}
-LHS&=&\left[(a+b\epsilon)(c+d\epsilon)\right](e+f\epsilon)\\
-&=&\left[ac+(ad+bc)\epsilon\right](e+f\epsilon)\\
-&=& ace +  (acf+ade+bce)\epsilon\\[5mm]
-RHS&=&(a+b\epsilon)\left[(c+d\epsilon)(e+f\epsilon)\right]\\
-&=&(a+b\epsilon)\left[ce+(cf+de)\epsilon\right]\\
-&=&ace + (acf+ade+bce)\epsilon\\
-&=&RHS
-\end{eqnarray}$$
-
-
-
-The Clifford representation is easy, first setting the signature to
-zero:
+then we recover distributivity and associativity.  The Clifford
+representation is easy, first setting the signature to zero:
 
 ```{r}
 library(clifford)
 signature(0)
-e(1)^2
+options(maxdim = 1) # safety measure
+e <- clifford(list(1))  # 'e'  is shorthand for epsilon
+e^2  # check that e^2==0
 ```
 
 Then, to calculate say $(3+4\epsilon)(5-6\epsilon)$:
 
 ```{r}
-(3+4*e(1))*(5-6*e(1))
+(3+4*e)*(5-6*e)
 ```
 
 Numerical verification of algebraic identities is straightforward:
 
 ```{r}
-rdual <- function(...){rnorm(1) + rnorm(1)*e(1)}
+rdual <- function(...){rnorm(1) + rnorm(1)*e}
 x <- rdual()
 y <- rdual()
 z <- rdual()
@@ -83,43 +68,138 @@ The above shows zero to within numerical tolerance.
  offers a nice user interface, efficient coding, and lots of examples.
 
 
-First we define a simple polynomial:
+First we define a simple polynomial, and its derivative:
 
 ```{r definasimplepoly}
 f <- function(x){5*x + 3*x^5}
-fdash <- function(f,x,d=1e-6){(f(x+d/2)-f(x-d/2))/d}
+fdash <- function(x){5 + 15*x^4}
 ```
 
-and observe that this can be evaluated at elements of a Clifford
-algebra:
+If we evaluate these at $x=2.6$, say:
+
+```{r, evaluatefatpi}
+c(value=f(2.6), gradient=fdash(2.6))
+```
+
+Above we see that the function evaluates to about 933.7 and the
+gradient is about 1466.  However, we observe that `f()` may be
+evaluated at elements of a Clifford algebra:
 
 ```{r, usef}
-f(pi + e(1))
-fdash(f,pi)
+f(2.6 + e)
 ```
 
-Above we see agreement.  This technique is limited by the fact that
-only polynomial functionality is implemented in the Clifford package;
-if we want to work with transcendental functions we need to supply the
-derivative explictly:
+Above we see the result having two components, the real part being the
+function value and the imaginary being the gradient; there is close
+agreement between the function value and gradient using the algebraic
+method and the dual number method.  We may be a little more slick and
+create functions to extract the value and gradient separately:
+
+```{r}
+valgrad <- function(f,x){
+   jj <- f(x+e)
+   return(c(value=Re(jj),gradient=coeffs(Im(jj))))
+}
+```
+
+Then
+
+```{r}
+valgrad(f,2.6)
+```
+
+However, This technique is limited by the fact that only polynomial
+functionality is implemented in the Clifford package; if we want to
+work with transcendental functions we need to supply the derivative
+explictly:
 
 
 ```{r, label=mydefs}
-getim <- function(x){x-const(x)}  # should be a builtin -- I'm working on it
-my_sin <- function(x){sin(const(x)) + cos(const(x))*getim(x)}
-my_cos <- function(x){cos(const(x)) - sin(const(x))*getim(x)}
+sin.clifford <- function(x){sin(Re(x)) + cos(Re(x))*Im(x)}
+cos.clifford <- function(x){cos(Re(x)) - sin(Re(x))*Im(x)}
+exp.clifford <- function(x){exp(Re(x)) + exp(Re(x))*Im(x)}
 ```
 
-Then to differentiate say $f_2(x)=\sin\left(\cos(x)+x^2\right)$:
+We will work with $f_2(x)=\sin\left(\cos(x)+x^2\right)$:
 
 ```{r}
 f2 <- function(x){sin(cos(x)+x^2)}
-myf2 <- function(x){my_sin(my_cos(x)+x^2)}
-myf2(pi + e(1))
-fdash(f2,pi)
+f2dash <- function(x){cos(cos(x)+ x^2)*(-sin(x)+2*x)}
 ```
 
+Above we see $f_2(x)$ defined in R idiom; let us evaluate this
+function and its gradient at $x=1.1$:
 
-Above we see close agreement.  Observe that dual number formalism
-tracks the differential via the $e_1$ term automatically; it
+```{r}
+c(value=f2(1.1), grad=f2dash(1.1))
+valgrad(f2,1.1)
+```
+
+Above we again see close agreement.  Observe that dual number
+formalism tracks the differential via the $e_1$ term automatically; it
 effectively uses the chain rule to differentiate.
+p
+Division is somewhat more problematic.  Multiplication and addition
+work directly but division requires a new operator which we will call
+`%/%`:
+
+```{r}
+`%/%` <- function(x,y){if(is.numeric(x) & is.numeric(y)){return(x/y)}
+  xr <- Re(x)
+  xd <- coeffs(Im(x))
+  yr <- Re(y)
+  yd <- coeffs(Im(y))
+  return(xr/yr + e*(xd*yr - xr*yd)/yr^2)
+}
+```
+
+Then we can define loads of functions with reasonably nice idiom.
+Here we consider $f_3(x)=\frac{\sin\left(1+x^2\right)}{2-e^x}$:
+
+```{r}
+f3 <- function(x){sin(1+x^2) %/% (2-exp(x))}
+valgrad(f3,pi)
+```
+
+Compare with the function and a numerical approximation to the
+gradient at $x=\pi$:
+
+```{r}
+d <- 1e-6  # notional "small" value
+c(value=f3(pi), grad=(f3(pi+d/2)-f3(pi-d/2))/d)
+```
+
+## Multivariate case
+
+The ideas above generalise seamlessley to the multivariate case.
+Consider $f_4(x,y) = \frac{1+\sin(x+\cos y)}{2-e^{x+y}}$, at
+$x=1.1,y=1.443$:
+
+```{r, multivariate}
+f4 <- function(x,y){(1+sin(x+cos(y))) %/% (2-exp(x+y))}
+f4dx <- function(x,y,d=1e-6){(f4(x+d,y)-f4(x,y))/d}
+f4dy <- function(x,y,d=1e-6){(f4(x,y+d)-f4(x,y))/d}
+x <- 1.1
+y <- 1.443
+c(value=f4(x,y),"df/dx"=f4dx(x,y),"df/dy"=f4dy(x,y))
+f4(x+e,y)  # f(x,y) + e*df/dx
+f4(x,y+e)  # f(x,y) + e*df/dy
+```
+
+Again we see close agreement.  This suggests a nice way to evaluate,
+say $\left(3\frac{\partial}{\partial x} + 5\frac{\partial}{\partial
+y}\right)$:
+
+
+```{r}
+f4(x+3*e,y+5*e)
+```
+
+Compare the numerical estimate
+
+
+```{r}
+(f4(x+3*d,y+5*d)-f4(x,y))/d
+```
+
+showing close agreement.
