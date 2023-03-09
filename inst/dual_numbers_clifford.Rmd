@@ -30,20 +30,21 @@ representation is easy, first setting the signature to zero:
 library(clifford)
 signature(0)
 options(maxdim = 1) # safety measure
-e <- clifford(list(1))  # 'e'  is shorthand for epsilon
-e^2  # check that e^2==0
+eps <- clifford(list(1))  # 'eps'  is shorthand for epsilon
+eps   # regular Clifford object
+drop(eps^2)  # check that eps^2==0
 ```
 
 Then, to calculate say $(3+4\epsilon)(5-6\epsilon)$:
 
 ```{r}
-(3+4*e)*(5-6*e)
+(3+4*eps)*(5-6*eps)
 ```
 
 Numerical verification of algebraic identities is straightforward:
 
 ```{r}
-rdual <- function(...){rnorm(1) + rnorm(1)*e}
+rdual <- function(...){rnorm(1) + rnorm(1)*eps}
 x <- rdual()
 y <- rdual()
 z <- rdual()
@@ -86,7 +87,7 @@ gradient is about 1466.  However, we observe that `f()` may be
 evaluated at elements of a Clifford algebra:
 
 ```{r, usef}
-f(2.6 + e)
+f(2.6 + eps)
 ```
 
 Above we see the result having two components, the real part being the
@@ -97,7 +98,7 @@ create functions to extract the value and gradient separately:
 
 ```{r}
 valgrad <- function(f,x){
-   jj <- f(x+e)
+   jj <- f(x+eps)
    return(c(value=Re(jj),gradient=coeffs(Im(jj))))
 }
 ```
@@ -149,7 +150,7 @@ work directly but division requires a new operator which we will call
   xd <- coeffs(Im(x))
   yr <- Re(y)
   yd <- coeffs(Im(y))
-  return(xr/yr + e*(xd*yr - xr*yd)/yr^2)
+  return(xr/yr + eps*(xd*yr - xr*yd)/yr^2)
 }
 ```
 
@@ -182,8 +183,8 @@ f4dy <- function(x,y,d=1e-6){(f4(x,y+d)-f4(x,y))/d}
 x <- 1.1
 y <- 1.443
 c(value=f4(x,y),"df/dx"=f4dx(x,y),"df/dy"=f4dy(x,y))
-f4(x+e,y)  # f(x,y) + e*df/dx
-f4(x,y+e)  # f(x,y) + e*df/dy
+f4(x+eps,y)  # f(x,y) + eps*df/dx
+f4(x,y+eps)  # f(x,y) + eps*df/dy
 ```
 
 Again we see close agreement.  This suggests a nice way to evaluate,
@@ -192,7 +193,7 @@ y}\right)$:
 
 
 ```{r}
-f4(x+3*e,y+5*e)
+f4(x+3*eps,y+5*eps)
 ```
 
 Compare the numerical estimate
