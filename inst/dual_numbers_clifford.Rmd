@@ -281,12 +281,15 @@ xdot <- function(x,y,z){sigma*(y-x)}
 ydot <- function(x,y,z){x*(rho-z)-y}
 zdot <- function(x,y,z){x*y-beta*z}
 
-dt <- 0.001
+dt <- 0.1
 lorenz <- function(x,y,z,n){
-for(i in seq_len(n)){
-  x <- x + dt*xdot(x,y,z)
-  y <- y + dt*ydot(x,y,z)
-  z <- z + dt*zdot(x,y,z)
+  for(i in seq_len(n)){
+    xnew <- x + dt*xdot(x,y,z)
+    ynew <- y + dt*ydot(x,y,z)
+    znew <- z + dt*zdot(x,y,z)
+    x <- xnew
+    y <- ynew
+    z <- znew
   }
   return(list(x,y,z))
 }	
@@ -295,8 +298,8 @@ for(i in seq_len(n)){
 Then
 
 ```{r lor100}
-unlist(lorenz(1,1,1,100))
-unlist(lorenz(1,1,1.0001,100))
+unlist(lorenz(1,1,1,10))
+unlist(lorenz(1,1,1.0001,10))
 ```
 
 
@@ -311,19 +314,13 @@ unlist(lorenz(1,1,1,10000))
 unlist(lorenz(1,1,1.0001,10000))
 ```
 
-```{r lor100000,cache=TRUE}
+```{r Lorenz100000,cache=TRUE}
 unlist(lorenz(1,1,1,100000))
 unlist(lorenz(1,1,1.0001,100000))
 ```
 
-```{r useduallorenz10, cache=TRUE}
+```{r usedual:orenz10, cache=TRUE}
 lorenz(1,1,1+eps,10)
 ```
 
-```{r useduallorenz100, cache=TRUE}
-lorenz(1,1,1+eps,100)
-```
 
-```{r useduallorenz10000, cache=TRUE}
-lorenz(1,1,1+eps,10000)
-```
