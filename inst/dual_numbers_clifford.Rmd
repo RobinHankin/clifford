@@ -82,8 +82,8 @@ If we evaluate these at $x=2.6$, say:
 c(value=f(2.6), gradient=fdash(2.6))
 ```
 
-Above we see that the function evaluates to about 933.7 and the
-gradient is about 1466.  However, we observe that `f()` may be
+Above we see that the function evaluates to about 369 and the
+gradient is about 690.  However, we observe that `f()` may be
 evaluated at elements of a Clifford algebra:
 
 ```{r, usef}
@@ -119,6 +119,7 @@ explictly:
 sin.clifford <- function(x){sin(Re(x)) + cos(Re(x))*Im(x)}
 cos.clifford <- function(x){cos(Re(x)) - sin(Re(x))*Im(x)}
 exp.clifford <- function(x){exp(Re(x)) + exp(Re(x))*Im(x)}
+log.clifford <- function(x){log(Re(x)) + 1/(Re(x))*Im(x)}
 ```
 
 We will work with $f_2(x)=\sin\left(\cos(x)+x^2\right)$:
@@ -204,3 +205,125 @@ Compare the numerical estimate
 ```
 
 showing close agreement.
+
+## A more realistic example
+
+Suppose I define the following sequence:
+
+$$x_0=1$$
+
+$$x_{n+1}=10-\alpha x^{1/5}-\beta x^{1/7},\qquad n\geqslant 0$$
+
+
+```{r}
+iterate <- function(start,alpha,beta,n){
+  x <- start
+  for(i in seq_len(n)){
+    x <- 10- alpha*exp(log(x)/5) - beta*exp(log(x)/7)  # exp() and log() defined above
+  }
+return(x)
+}
+```
+
+
+I am interested in $x_{20}$ for $\alpha=\beta=1$:
+
+```{r}
+iterate(1,1,1,20)
+```
+
+OK but suppose I want the gradient, that is $\frac{\partial
+x_{10}}{\partial\alpha}$.
+
+One way to do it would be to use numerical methods:
+
+```{r}
+(iterate(1,1+d,1,20) - iterate(1,1,1,20))/d  # d=1e-6
+```
+
+
+But is is soooooooooo much better to use dual numbers:
+
+```{r label=iteratedual,cache=TRUE}
+iterate(1,1+eps,1,20)
+```
+
+We get the value and the gradient.  The technique is easy to apply to
+derivatives with respect to the start value.  In this case, the system
+"forgets" the start value very quickly and so any numerical technique
+essentially gives zero:
+
+```{r itnumeric}
+(iterate(1+d,1,1,10)-iterate(1,1,1,10))/d
+```
+
+But dual numbers use IEEE numbers for the gradient, which easily
+tracks the derivative:
+
+```{r label=iteratedualeps,cache=TRUE}
+iterate(1+eps,1,1,20)
+```
+
+## Lorenz butterfly
+
+We have
+
+$$\dot{x}=\sigma(y-x)\qquad\dot{y}=x(\rho-z)-y\qquad\dot{z}=xy-\beta z$$
+
+with $\rho=28$, $\sigma=10$, $\beta=8/3$.  Setting up a simple Euler
+scheme:
+
+```{r}
+rho <- 28
+sigma <- 10
+beta <- 8/3
+xdot <- function(x,y,z){sigma*(y-x)}
+ydot <- function(x,y,z){x*(rho-z)-y}
+zdot <- function(x,y,z){x*y-beta*z}
+
+dt <- 0.001
+lorenz <- function(x,y,z,n){
+for(i in seq_len(n)){
+  x <- x + dt*xdot(x,y,z)
+  y <- y + dt*ydot(x,y,z)
+  z <- z + dt*zdot(x,y,z)
+  }
+  return(list(x,y,z))
+}	
+```
+
+Then
+
+```{r lor100}
+unlist(lorenz(1,1,1,100))
+unlist(lorenz(1,1,1.0001,100))
+```
+
+
+```{r lor1000,cache=TRUE}
+unlist(lorenz(1,1,1,1000))
+unlist(lorenz(1,1,1.0001,1000))
+```
+
+
+```{r lor10000,cache=TRUE}
+unlist(lorenz(1,1,1,10000))
+unlist(lorenz(1,1,1.0001,10000))
+```
+
+```{r lor100000,cache=TRUE}
+unlist(lorenz(1,1,1,100000))
+unlist(lorenz(1,1,1.0001,100000))
+```
+
+```{r useduallorenz10, cache=TRUE}
+lorenz(1,1,1+eps,10)
+```
+
+```{r useduallorenz100, cache=TRUE}
+lorenz(1,1,1+eps,100)
+```
+
+```{r useduallorenz10000, cache=TRUE}
+lorenz(1,1,1+eps,10000)
+```
