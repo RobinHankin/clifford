@@ -26,7 +26,7 @@ $$\begin{eqnarray}
 then we recover distributivity and associativity.  The Clifford
 representation is easy, first setting the signature to zero:
 
-```{r}
+```{r defineeps}
 library(clifford)
 signature(0)
 options(maxdim = 1) # safety measure
@@ -37,13 +37,13 @@ drop(eps^2)  # check that eps^2==0
 
 Then, to calculate say $(3+4\epsilon)(5-6\epsilon)$:
 
-```{r}
+```{r simplecheck}
 (3+4*eps)*(5-6*eps)
 ```
 
 Numerical verification of algebraic identities is straightforward:
 
-```{r}
+```{r numverif}
 rdual <- function(...){rnorm(1) + rnorm(1)*eps}
 x <- rdual()
 y <- rdual()
@@ -52,7 +52,7 @@ z <- rdual()
 
 Then
 
-```{r}
+```{r checkdistassoc}
 Mod(x*(y*z) - (x*y)*z)
 Mod(x*(y+z) - (x*y+x*z))
 Mod((x+y)*z - (x*z+y*z))
@@ -96,7 +96,7 @@ agreement between the function value and gradient using the algebraic
 method and the dual number method.  We may be a little more slick and
 create functions to extract the value and gradient separately:
 
-```{r}
+```{r defvalgrad}
 valgrad <- function(f,x){
    jj <- f(x+eps)
    return(c(value=Re(jj),gradient=coeffs(Im(jj))))
@@ -105,7 +105,7 @@ valgrad <- function(f,x){
 
 Then
 
-```{r}
+```{r usevalgrad}
 valgrad(f,2.6)
 ```
 
@@ -124,7 +124,7 @@ log.clifford <- function(x){log(Re(x)) + 1/(Re(x))*Im(x)}
 
 We will work with $f_2(x)=\sin\left(\cos(x)+x^2\right)$:
 
-```{r}
+```{r f2f2dash}
 f2 <- function(x){sin(cos(x)+x^2)}
 f2dash <- function(x){cos(cos(x)+ x^2)*(-sin(x)+2*x)}
 ```
@@ -132,7 +132,7 @@ f2dash <- function(x){cos(cos(x)+ x^2)*(-sin(x)+2*x)}
 Above we see $f_2(x)$ defined in R idiom; let us evaluate this
 function and its gradient at $x=1.1$:
 
-```{r}
+```{r f2valg}
 c(value=f2(1.1), grad=f2dash(1.1))
 valgrad(f2,1.1)
 ```
@@ -145,7 +145,7 @@ Division is somewhat more problematic.  Multiplication and addition
 work directly but division requires a new operator which we will call
 `%/%`:
 
-```{r}
+```{r definemydivision}
 `%/%` <- function(x,y){if(is.numeric(x) & is.numeric(y)){return(x/y)}
   xr <- Re(x)
   xd <- coeffs(Im(x))
@@ -158,7 +158,7 @@ work directly but division requires a new operator which we will call
 Then we can define loads of functions with reasonably nice idiom.
 Here we consider $f_3(x)=\frac{\sin\left(1+x^2\right)}{2-e^x}$:
 
-```{r}
+```{r usemydivision}
 f3 <- function(x){sin(1+x^2) %/% (2-exp(x))}
 valgrad(f3,pi)
 ```
@@ -166,7 +166,7 @@ valgrad(f3,pi)
 Compare with the function and a numerical approximation to the
 gradient at $x=\pi$:
 
-```{r}
+```{r numericalderiv}
 d <- 1e-6  # notional "small" value
 c(value=f3(pi), grad=(f3(pi+d/2)-f3(pi-d/2))/d)
 ```
@@ -193,14 +193,14 @@ say $\left(3\frac{\partial}{\partial x} + 5\frac{\partial}{\partial
 y}\right)$:
 
 
-```{r}
+```{r tryf4}
 f4(x+3*eps,y+5*eps)
 ```
 
 Compare the numerical estimate
 
 
-```{r}
+```{r tryf4again}
 (f4(x+3*d,y+5*d)-f4(x,y))/d
 ```
 
@@ -215,7 +215,7 @@ $$x_0=1$$
 $$x_{n+1}=10-\alpha x^{1/5}-\beta x^{1/7},\qquad n\geqslant 0$$
 
 
-```{r}
+```{r defineiterate}
 iterate <- function(start,alpha,beta,n){
   x <- start
   for(i in seq_len(n)){
@@ -228,7 +228,7 @@ return(x)
 
 I am interested in $x_{20}$ for $\alpha=\beta=1$:
 
-```{r}
+```{r useiterate}
 iterate(1,1,1,20)
 ```
 
@@ -237,7 +237,7 @@ x_{10}}{\partial\alpha}$.
 
 One way to do it would be to use numerical methods:
 
-```{r}
+```{r useiterateagain}
 (iterate(1,1+d,1,20) - iterate(1,1,1,20))/d  # d=1e-6
 ```
 
@@ -273,7 +273,7 @@ $$\dot{x}=\sigma(y-x)\qquad\dot{y}=x(\rho-z)-y\qquad\dot{z}=xy-\beta z$$
 with $\rho=28$, $\sigma=10$, $\beta=8/3$.  Setting up a simple Euler
 scheme:
 
-```{r}
+```{r setuplorenz}
 rho <- 28
 sigma <- 10
 beta <- 8/3
@@ -283,7 +283,7 @@ zdot <- function(x,y,z){x*y-beta*z}
 
 dt <- 0.01
 lorenz <- function(x,y,z,n,giveX=FALSE){
-xx <- rep(0,n)
+  if(giveX){xx <- rep(0,n)}
   for(i in seq_len(n)){
     xnew <- x + dt*xdot(x,y,z)
     ynew <- y + dt*ydot(x,y,z)
@@ -291,7 +291,7 @@ xx <- rep(0,n)
     x <- xnew
     y <- ynew
     z <- znew
-    xx[i] <- x
+    if(giveX){xx[i] <- x}
   }
   if(giveX){  return(xx)} else {return(x)}
 }	
@@ -306,9 +306,29 @@ plot(jj1)
 points(jj2)
 ```
 
-```{r}
-lorenz(1,1,1+eps,1000)
+```{r uselor1000, cache=TRUE}
+system.time(l300 <- lorenz(1,1,1+eps,300))
+system.time(l400 <- lorenz(1,1,1+eps,400))
+```
+
+```{r show1000}
+l300
+l400
 ```
 
 
 
+
+
+```{r uselor700,cache=TRUE}
+system.time(l700 <- lorenz(1,1,1+eps,700))
+```
+
+```{r}
+l700
+```
+
+```{r}
+d <- 1e-5
+(lorenz(1,1,1+d,700)-lorenz(1,1,1,700))/d
+```
