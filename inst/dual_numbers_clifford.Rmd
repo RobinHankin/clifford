@@ -412,17 +412,36 @@ lorenz(1,1,1+eps,2000)
 ```
 
 We see that after 2000 timesteps the derivative is quite high, about
-$1.4\times 10^{5}$, and after 5000 timesteps we have:
+$1.4\times 10^{5}$, and after $10^4$ timesteps we have:
 
-```{r uselor5000,cache=TRUE}
-system.time(l5000 <- lorenz(1,1,1+eps,5000))
+```{r uselor10000,cache=TRUE}
+system.time(l10000 <- lorenz(1,1,1+eps,10000))
 ```
 
 ```{r}
-l5000
+l10000
 ```
 
-Thus the gradient is about $-3\times 10^{17}$: chaos writ large.
+Thus the gradient is about $7\times 10^{35}$: chaos writ large.  We
+can demonstrate dynamical chaos somewhat more interestingly as follows
+by perturbing the start point very slightly and observing the result:
+
+```{r uselor10000d,cache=TRUE}
+oneplusdelta <- 1+1e-14   # slight perturbation
+system.time(l10000d <- lorenz(oneplusdelta,1,1+eps,10000))
+```
+
+```{r}
+l10000d
+```
+
+We see, as expected, that the value at $10^4$ timesteps is very
+different, but also may observe that the gradient as calculated is the
+same order of magnitude.  Of course, we would like to repeat this
+calculation many times to get an idea of the distribution of the
+gradient but it is reasonable to suppose that it is of the order of
+$10^{36}$.
+
 
 ## References
 
