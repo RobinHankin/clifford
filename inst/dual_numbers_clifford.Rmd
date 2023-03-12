@@ -71,41 +71,51 @@ $$
 recovers the chain rule if we understand that
 $f'(x)=\operatorname{Im}\left(\tilde{f}(x+\epsilon)\right)$.  We will
 use this line of reasoning in the `clifford` package using a sequence
-of examples of increasing sophistication.  First we define a simple
-polynomial, and its derivative:
+of examples of increasing sophistication.
 
-$$f(x) = 5x + 3x^5\qquad f'(x) = 5 + 15x^4$$
+## Simple powers
 
-In R idiom:
+We observe that for functions including only the operations `+`, `-`
+and `*`, we do not need to explicitly supply the derivative, as this
+is automatically calculated by dual number arithmetic.  For example,
+suppose we wish to differentiate $f(x)=x^n$.  Then we use the fact
+that $f(x+\epsilon)=(x+\epsilon)^n=x^n+\epsilon x^{n-1}=f(x)+\epsilon
+f'(x)$ [powers of $\epsilon$ above the first are discarded], and this
+is transparently evaluated in the package.  Taking $n=5$ and $x=2$ as
+an example:
+
+```{r fivepower}
+(2+eps)^5
+```
+
+and we see that this matches $f(2)=32$ [the real part] and
+$f'(2)=5\cdot 2^4=80$ [the imaginary part].
+
+
+## Polynomials
+
+The same argument applies
+to linear combinations of powers; now we define a simple polynomial,
+and its derivative:
+
+$$f(x) = 5x + 3x^5$$
+
+In R idiom: 
 
 ```{r definasimplepoly}
 f <- function(x){5*x + 3*x^5}
-fdash <- function(x){5 + 15*x^4}
 ```
-
-If we evaluate these at $x=2.6$, say:
-
-```{r, evaluatefatpi}
-c(value=f(2.6), gradient=fdash(2.6))
-```
-
-Above we see that the function evaluates to about 369 and the
-gradient is about 690.  However, we observe that `f()` may be
-evaluated at elements of a Clifford algebra:
 
 ```{r, usef}
 f(2.6 + eps)
 ```
 
-Above, observe how the R parser [working with the `clifford` package],
-when given `f()`, silently, seamlessly and correctly evaluates
-$\tilde{f}$.  The idiom does not use `fdash()` anywhere: derivatives
-arise directly from Clifford formalism and package consistency.  Above
-we see the return value of `f()` having two components, the real part
-being the function value and the imaginary being the gradient; there
-is close agreement between the function value and gradient using the
-algebraic method and the dual number method.  We may be a little more
-slick and create functions to extract the value and gradient
+The idiom does not use the symbolic result [viz $f'(x)=5+15x^4$]
+anywhere: derivatives arise directly from Clifford formalism and
+package consistency.  Above we see the return value of `f()` having
+two components, the real part being the function value of about 369,
+and the imaginary being the gradient of about 690.  We may be a little
+more slick and create functions to extract the value and gradient
 separately:
 
 ```{r defvalgrad}
@@ -121,8 +131,22 @@ Then
 valgrad(f,2.6)
 ```
 
-The next step would be to check the chain rule.  We will compose $f$
-as defined above with $g(x) = x^2$:
+Above, observe how the R parser [working with the `clifford` package],
+when given `f()`, silently, seamlessly and correctly evaluates
+$\tilde{f}$.  We may verify the result explicitly using symbolic form
+for $f'$:
+
+```{r, evaluatefatpi}
+fdash <- function(x){5 + 15*x^4}
+c(value=f(2.6), gradient=fdash(2.6))
+```
+
+
+### The chain rule
+
+The next step would be to check the chain rule:
+$(fg)'(x)=f'(g(x))g'(x)$.  As an example we will compose $f(x)$ as
+defined above with $g(x) = x^2$:
 
 ```{r checkchain}
 g <- function(x){x^2}
@@ -137,7 +161,9 @@ f(g(x + eps))
 g(f(x + eps))
 ```
 
-However, This technique is limited by the fact that only polynomial
+## Transcendental and other functions
+
+The techniques above are limited by the fact that only polynomial
 functionality is implemented in the Clifford package; if we want to
 work with transcendental functions we need to supply the derivative
 explictly:
@@ -171,10 +197,13 @@ valgrad(f2,1.1)
 Above we again see close agreement.  Observe that dual number
 formalism tracks the differential via the $e_1$ term automatically; it
 effectively uses the chain rule to differentiate.
-p
+
+
+### Division
+
 Division is somewhat more problematic.  Multiplication and addition
-work directly but division requires a new operator which we will call
-`%/%`:
+work directly but division may be included by defining a new operator
+which we will call `%/%`:
 
 ```{r definemydivision}
 `%/%` <- function(x,y){if(is.numeric(x) & is.numeric(y)){return(x/y)}
@@ -200,6 +229,30 @@ gradient at $x=\pi$:
 ```{r numericalderiv}
 d <- 1e-6  # notional "small" value
 c(value=f3(pi), grad=(f3(pi+d/2)-f3(pi-d/2))/d)
+```
+
+It is possible to implement division in a different way.  If we define
+
+```{r defineinverse}
+inv <- function(x){1/Re(x) -Im(x)/Re(x)^2}
+```
+
+
+Then `inv()` is a dual-ready version of $f(x)=x^{-1}$.  For example,
+suppose we wish to find $f'(3)=-1/9$:
+
+```{r useinv}
+inv(3 + eps)
+```
+
+Above we see that $f(3)=\frac{1}{3}$ and $f'(3)=-\frac{1}{9}$.  We can
+exploit the fact that `inv()` works in combination with other
+functions as the chain rule applies to `inv()` as for any other
+dual-ready function:
+
+```{r useinvanother}
+g <-  function(x){sin(1+x^2) * inv(2-exp(x))} # compare f(x) = sin(1+x^2) %/% (2-exp(x))
+g(pi+eps)
 ```
 
 ## Multivariate case
