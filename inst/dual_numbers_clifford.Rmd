@@ -12,10 +12,18 @@ library("clifford")
 ![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
 </p>
 
+(takes about twenty minutes to run without cache)
 
-From wikipedia, dual numbers are expressions of the form
-$a+b\epsilon$, with $a,b\in\mathcal{R}$ and $\epsilon^2=0$.  If we
-define
+*NOTE* This vignette shows a use-case for dual numbers, as applied to
+ automatic differentiation.  If you want to actually use AD, I would
+ strongly recommend you consider the excellent `dual` package (Sartore
+ 2022), which offers a nice user interface, efficient coding, and lots
+ of examples.
+
+## Dual numbers
+
+Dual numbers are expressions of the form $a+b\epsilon$, with
+$a,b\in\mathcal{R}$ and $\epsilon^2=0$.  If we define
 
 $$\begin{eqnarray}
 (a+b\epsilon) + (c+d\epsilon) &=& (a+c) + (b+d)\epsilon\\
@@ -45,11 +53,6 @@ Above, note the absence of a $-24\epsilon^2$ term, as $\epsilon^2=0$
 for dual numbers.  
 
 ## Automatic differentiation
-
-*NOTE* This vignette shows a use-case for dual numbers, as applied to
- automatic differentiation.  If you want to actually use AD, I would
- strongly recommend you consider the excellent `dual` package which
- offers a nice user interface, efficient coding, and lots of examples.
 
 The basic idea is, given a function $f(\cdot)$ we define a dual
 function [note to self: there must be a standard terminology here]
@@ -367,3 +370,7 @@ l5000
 ```
 
 Thus the gradient is about $-3\times 10^{17}$: chaos writ large.
+
+## References
+
+* Sartore L (2022). _`dual`: Automatic Differentiation with Dual  Numbers_. R package version 0.0.4,  <https://CRAN.R-project.org/package=dual>.
