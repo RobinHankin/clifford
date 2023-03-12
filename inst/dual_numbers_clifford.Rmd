@@ -41,25 +41,8 @@ Then, to calculate say $(3+4\epsilon)(5-6\epsilon)$:
 (3+4*eps)*(5-6*eps)
 ```
 
-Numerical verification of algebraic identities is straightforward:
-
-```{r numverif}
-rdual <- function(...){rnorm(1) + rnorm(1)*eps}
-x <- rdual()
-y <- rdual()
-z <- rdual()
-```
-
-Then
-
-```{r checkdistassoc}
-Mod(x*(y*z) - (x*y)*z)
-Mod(x*(y+z) - (x*y+x*z))
-Mod((x+y)*z - (x*z+y*z))
-```
-
-The above shows zero to within numerical tolerance.
-
+Above, note the absence of a $-24\epsilon^2$ term, as $\epsilon^2=0$
+for dual numbers.  
 
 ## Automatic differentiation
 
@@ -273,42 +256,57 @@ return(x)
 }
 ```
 
-I am interested in $x_{20}$ for $\alpha=\beta=1$:
+I am interested in $x_{40}$ for $\alpha=\beta=1$:
 
 ```{r useiterate}
-iterate(1,1,1,20)
+iterate(1,1,1,40)
 ```
 
 OK but suppose I want the gradient, that is $\frac{\partial
-x_{10}}{\partial\alpha}$.  One way to do it would be to use numerical
+x_{40}}{\partial\alpha}$.  One way to do it would be to use numerical
 methods:
 
 ```{r useiterateagain}
-(iterate(1,1+d,1,20) - iterate(1,1,1,20))/d  # d=1e-6
+(iterate(1,1+d,1,40) - iterate(1,1,1,40))/d  # d=1e-6
 ```
-
 
 But is is soooooooooo much better to use dual numbers:
 
 ```{r label=iteratedual,cache=TRUE}
-iterate(1,1+eps,1,20)
+iterate(1,1+eps,1,40)
 ```
 
-We get the value and the gradient.  The technique is easy to apply to
-derivatives with respect to the start value.  In this case, the system
-"forgets" the start value very quickly and so any numerical technique
-essentially gives zero:
+We get the value and the gradient (that is, $\frac{\partial
+x_{40}}{\partial\alpha}$) and see that the two methods agree to
+numerical precision.  But further, the technique is easy to apply to
+derivatives with respect to the start value (`start` in R idiom or $S$
+in algebra), here equal to 1.  Numerically:  
 
 ```{r itnumeric}
-(iterate(1+d,1,1,10)-iterate(1,1,1,10))/d
+deriv <- function(delta){
+   (iterate(1+delta,1,1,40)-iterate(1,1,1,40))/delta
+}
 ```
 
-But dual numbers use IEEE numbers for the gradient, which easily
-tracks the derivative:
+We can try different values of `delta`:
+
+```{r evaluatederiv}
+deriv(0.1)
+deriv(1000) # ludicrously large value for delta
+```
+
+Above, we see that in this case, the system "forgets" $S$ very quickly
+and so any numerical technique essentially gives zero.  But dual
+numbers use IEEE numbers for the gradient, which easily tracks the
+derivative:
 
 ```{r label=iteratedualeps,cache=TRUE}
-iterate(1+eps,1,1,20)
+iterate(1+eps,1,1,40)
 ```
+
+So AD gives a derivative of about $7\times 10^{-47}$, a value
+difficult to obtain any other way.
+
 
 ## Lorenz butterfly
 
