@@ -64,11 +64,15 @@ where $f'$ denotes the ordinary derivative $df/dx$.  The reason this
 works is that applying the rule to composition of two functions, viz
 
 $$
-\tilde{g}\left(\tilde{f}(x+\epsilon)\right)=
-g\left(f(x)+\epsilon f'(x)\right)=g(f(x))+\epsilon f'(x)g'(f(x))
+\begin{align}
+\tilde{g}\left(\tilde{f}(x+\epsilon)\right) &= g\left(f(x)+\epsilon f'(x)\right)\\
+&= g(f(x))+\epsilon f'(x)g'(f(x))\\
+&= 0
+\end{align}
 $$
 
-recovers the chain rule if we understand that
+recovers the chain rule [viz $\frac{d}{dx}f(g(x))=f'(g(x))g'(x)$] if
+we understand that
 $f'(x)=\operatorname{Im}\left(\tilde{f}(x+\epsilon)\right)$.  We will
 use this line of reasoning in the `clifford` package using a sequence
 of examples of increasing sophistication.
