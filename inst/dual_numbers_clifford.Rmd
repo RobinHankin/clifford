@@ -66,8 +66,7 @@ works is that applying the rule to composition of two functions, viz
 $$
 \begin{align}
 \tilde{g}\left(\tilde{f}(x+\epsilon)\right) &= g\left(f(x)+\epsilon f'(x)\right)\\
-&= g(f(x))+\epsilon f'(x)g'(f(x))\\
-&= 0
+&= g(f(x))+\epsilon f'(x)g'(f(x))
 \end{align}
 $$
 
@@ -83,7 +82,7 @@ We observe that for functions including only the operations `+`, `-`
 and `*`, we do not need to explicitly supply the derivative, as this
 is automatically calculated by dual number arithmetic.  For example,
 suppose we wish to differentiate $f(x)=x^n$.  Then we use the fact
-that $f(x+\epsilon)=(x+\epsilon)^n=x^n+\epsilon x^{n-1}=f(x)+\epsilon
+that $f(x+\epsilon)=(x+\epsilon)^n=x^n+\epsilon nx^{n-1}=f(x)+\epsilon
 f'(x)$ [powers of $\epsilon$ above the first are discarded], and this
 is transparently evaluated in the package.  Taking $n=5$ and $x=2$ as
 an example:
@@ -120,7 +119,7 @@ package consistency.  Above we see the return value of `f()` having
 two components, the real part being the function value of about 369,
 and the imaginary being the gradient of about 690.  We may be a little
 more slick and create functions to extract the value and gradient
-separately:
+separately, using Clifford functionality directly:
 
 ```{r defvalgrad}
 valgrad <- function(f,x){
@@ -181,8 +180,8 @@ log.clifford <- function(x){log(Re(x)) + 1/(Re(x))*Im(x)}
 
 Above we are using `S3` formalism to define methods for functions.
 Thus if `x` is a Clifford object, `sin(x)` returns
-$\widetilde{\sin}(x)=\sin x +\epsilon\sin x\cos x$.  As an example, we
-will work with a slightly more complicated example,
+$\widetilde{\sin}(x)=\sin x +\epsilon\cos x$.  As an example, we will
+work with a slightly more complicated example,
 $f_2(x)=\sin\left(\cos(x)+x^2\right)$:
 
 ```{r f2f2dash}
@@ -193,15 +192,22 @@ f2dash <- function(x){cos(cos(x)+ x^2)*(-sin(x)+2*x)}
 Above we see $f_2(x)$ defined in R idiom; let us evaluate this
 function and its gradient at $x=1.1$:
 
-```{r f2valg}
-c(value=f2(1.1), grad=f2dash(1.1))
-valgrad(f2,1.1)
+```{r f2valsymb}
+c(value=f2(1.1), grad=f2dash(1.1))  # symbolic value
+```
+
+Above we see the value of the function and its derivative as computed
+directly.  But we can compare this with the result of using Clifford
+formalism:
+
+```{r f2valcliff}
+valgrad(f2,1.1)                  
 ```
 
 Above we again see close agreement.  Observe that dual number
 formalism tracks the differential via the $e_1$ term automatically; it
-effectively uses the chain rule to differentiate.
-
+effectively uses the chain rule to differentiate.  The same technique
+can be used for functions of any complexity.
 
 ### Division
 
@@ -252,7 +258,9 @@ inv(3 + eps)
 Above we see that $f(3)=\frac{1}{3}$ and $f'(3)=-\frac{1}{9}$.  We can
 exploit the fact that `inv()` works in combination with other
 functions as the chain rule applies to `inv()` as for any other
-dual-ready function:
+dual-ready function.  Here I use R idiom to define `g()` which returns
+$f(x)=\frac{\sin(1+x^2)}{2-\exp(x)}$ as used above, but using `inv()`
+instead of `%/%`:
 
 ```{r useinvanother}
 g <-  function(x){sin(1+x^2) * inv(2-exp(x))} # compare f(x) = sin(1+x^2) %/% (2-exp(x))
@@ -383,13 +391,15 @@ sigma <- 10
 beta <- 8/3
 
 
-dt <- 0.01
-lorenz <- function(x,y,z,n,giveX=FALSE){
+lorenz <- function(x,y,z,n,dt=0.01,giveX=FALSE){
   if(giveX){xx <- rep(0,n)}
   for(i in seq_len(n)){
-    x <- x + dt * sigma*(y-x)
-    y <- y + dt * (x*(rho-z)-y)
-    z <- z + dt * (x*y-beta*z)
+    xnew <- x + dt * sigma*(y-x)
+    ynew <- y + dt * (x*(rho-z)-y)
+    znew <- z + dt * (x*y-beta*z)
+    x <- xnew
+    y <- ynew
+    z <- znew
     if(giveX){xx[i] <- x}
   }
   if(giveX){ return(xx)} else {return(x)}
@@ -400,8 +410,8 @@ Above we have a simple forward Euler method for solving the Lorenz
 butterfly equations.  We may plot the numerical solutions.
 
 ```{r lor100}
-jj1 <- unlist(lorenz(1,1,1,3000,TRUE))
-jj2 <- unlist(lorenz(1,1,1.001,3000,TRUE))
+jj1 <- unlist(lorenz(1,1,1,3000,giveX=TRUE))
+jj2 <- unlist(lorenz(1,1,1.001,3000,giveX=TRUE))
 plot(jj1,type='l',col='red')
 points(jj2,type='l',col='black')
 ```
@@ -444,7 +454,16 @@ different, but also may observe that the gradient as calculated is the
 same order of magnitude.  Of course, we would like to repeat this
 calculation many times to get an idea of the distribution of the
 gradient but it is reasonable to suppose that it is of the order of
-$10^{36}$.
+$10^{36}$.  We can further assess this by trying the same simulation
+but with a different timestep:
+
+```{r uselor1,cache=TRUE}
+system.time(ld <- lorenz(1,1,1,100,0.01,TRUE))
+```
+
+```{r}
+ld
+```
 
 
 ## References
