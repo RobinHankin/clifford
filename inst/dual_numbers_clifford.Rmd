@@ -89,8 +89,7 @@ y <- rnorm(1) + eps*rnorm(1)
 as.matrix(x) %*% as.matrix(y) - as.matrix(x*y)
 ```
 
-above we see that $\phi(xy)$ and $\phi(x)\phi(y)$ agree to within numerical precision.
-
+above we see that $\phi(xy)$ and $\phi(x)\phi(y)$ agree to within numerical precision.  Further, elementary matrix algebra gives us that $\begin{bmatrix}a&b\\0&a\end{bmatrix}^{-1}=\begin{bmatrix}a^{-1}&-ba^{-2}\\0&a^{-1}\end{bmatrix}$ so we may define $(a+b\epsilon)^{-1}=a^{-1}-ba^{-2}\epsilon$, provided $a\neq 0$.
 
 ## Automatic differentiation
 
