@@ -22,8 +22,7 @@ library("clifford")
 
 ## Dual numbers
 
-Dual numbers are expressions of the form $a+b\epsilon$, with
-$a,b\in\mathcal{R}$ and $\epsilon^2=0$.  If we define
+Dual numbers ${\mathbb D}$ are expressions of the form $a+b\epsilon$, with $a,b\in\mathbb{R}$ and $\epsilon^2=0$.  If we define
 
 $$\begin{eqnarray}
 (a+b\epsilon) + (c+d\epsilon) &=& (a+c) + (b+d)\epsilon\\
@@ -31,7 +30,7 @@ $$\begin{eqnarray}
 \end{eqnarray}$$
 
 
-then we recover distributivity and associativity.  The Clifford
+then we recover distributivity, commutativity, and associativity.  The Clifford
 representation is easy, first setting the signature to zero:
 
 ```{r defineeps}
@@ -52,11 +51,52 @@ Then, to calculate say $(3+4\epsilon)(5-6\epsilon)$:
 Above, note the absence of a $-24\epsilon^2$ term, as $\epsilon^2=0$
 for dual numbers.  
 
+## Matrix representation
+
+To represent dual numbers with $2\times 2$ matrices over the reals we define a function $\phi\colon\mathbb{D}\longrightarrow\mathbb{R}$ as follows:
+
+
+$$
+\phi(a + b\epsilon)=\begin{bmatrix}a&b\\0&a\end{bmatrix}.
+$$
+
+This mapping is a homomorphism between dual numbers and their matrix equivalents, for if $x=a+b\epsilon$ and $y=c+d\epsilon$, we have
+
+$$
+\phi(xy)=\phi((a+b\epsilon)\cdot(c+d\epsilon))=\phi(ac+(ad+bc)\epsilon)=
+\begin{bmatrix}ac&ad+bc\\0&ac\end{bmatrix}
+$$
+
+while
+
+$$
+\phi(x)\phi(y)=
+\begin{bmatrix}a&b\\0&a\end{bmatrix}\begin{bmatrix}c&d\\0&c\end{bmatrix}=
+\begin{bmatrix}ac&ad+bc\\0&ac\end{bmatrix}=\phi(xy).
+$$
+
+Numerical verification of this is straightforward:
+
+
+```{r label=verifyhomosetup}
+as.matrix.clifford <- function(x){matrix(c(Re(x),0,coeffs(Im(x)),Re(x)),2,2)}
+x <- rnorm(1) + eps*rnorm(1)
+y <- rnorm(1) + eps*rnorm(1)
+```
+
+
+```{r label=verifyhomoactual}
+as.matrix(x) %*% as.matrix(y) - as.matrix(x*y)
+```
+
+above we see that $\phi(xy)$ and $\phi(x)\phi(y)$ agree to within numerical precision.
+
+
 ## Automatic differentiation
 
-The basic idea is, given a function $f(\cdot)$ we define a dual
+The basic idea is, given a function $f\colon\mathbb{R}\longrightarrow\mathbb{R}$, we define a dual
 function [note to self: there must be a standard terminology here]
-$\tilde{f}(\cdot)$:
+$\tilde{f}\colon\mathbb{D}\longrightarrow\mathbb{D}$ as follows:
 
 $$\tilde{f}(x+\epsilon y) = f(x) + \epsilon yf'(x)$$
 
@@ -216,11 +256,12 @@ work directly but division may be included by defining a new operator
 which we will call `%/%`:
 
 ```{r definemydivision}
+mycoeffs <- function(x){if(is.numeric(x)){return(x)} else {return(coeffs(x))}}
 `%/%` <- function(x,y){if(is.numeric(x) & is.numeric(y)){return(x/y)}
   xr <- Re(x)
-  xd <- coeffs(Im(x))
+  xd <- mycoeffs(Im(x))
   yr <- Re(y)
-  yd <- coeffs(Im(y))
+  yd <- mycoeffs(Im(y))
   return(xr/yr + eps*(xd*yr - xr*yd)/yr^2)
 }
 ```
@@ -228,7 +269,7 @@ which we will call `%/%`:
 Then we can define loads of functions with reasonably nice idiom.
 Here we consider $f_3(x)=\frac{\sin\left(1+x^2\right)}{2-e^x}$:
 
-```{r usemydivision}
+```{r usemypercentdivision}
 f3 <- function(x){sin(1+x^2) %/% (2-exp(x))}
 valgrad(f3,pi)
 ```
@@ -255,7 +296,7 @@ suppose we wish to find $f'(3)=-1/9$:
 inv(3 + eps)
 ```
 
-Above we see that $f(3)=\frac{1}{3}$ and $f'(3)=-\frac{1}{9}$.  We can
+Above we see that $\operatorname{inv}(3)=\frac{1}{3}$ and $\operatorname{inv}'(3)=-\frac{1}{9}$.  We can
 exploit the fact that `inv()` works in combination with other
 functions as the chain rule applies to `inv()` as for any other
 dual-ready function.  Here I use R idiom to define `g()` which returns
@@ -266,6 +307,20 @@ instead of `%/%`:
 g <-  function(x){sin(1+x^2) * inv(2-exp(x))} # compare f(x) = sin(1+x^2) %/% (2-exp(x))
 g(pi+eps)
 ```
+
+We can further verify that this new division operator works by considering $\sec(x)=1/\cos(x)$ in different ways:
+
+```{r checksec}
+sec1 <- function(x){1/cos(Re(x)) + sin(Re(x))/cos(Re(x))^2*Im(x)}
+sec2 <- function(x){1 %/% cos(x)}
+sec3 <- function(x){inv(cos(x))}
+sec1(0.3+eps)
+sec2(0.3+eps)
+sec3(0.3+eps)
+```
+
+Above we see agreement between `sec1()`, defined using the algebraic derivative,  `sec2()`, defined using the `%/%` binary operator, and `sec3()`, defined using 
+the `inv()` function.
 
 ## Multivariate case
 
