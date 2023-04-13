@@ -509,16 +509,7 @@ same order of magnitude.  Of course, we would like to repeat this
 calculation many times to get an idea of the distribution of the
 gradient but it is reasonable to suppose that it is of the order of
 $10^{36}$.  We can further assess this by trying the same simulation
-but with a different timestep:
-
-```{r uselor1,cache=TRUE}
-system.time(ld <- lorenz(1,1,1,100,0.01,TRUE))
-```
-
-```{r}
-ld
-```
-
+but with a slightly different timestep.
 
 ## References
 
