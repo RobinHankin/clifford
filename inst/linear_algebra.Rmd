@@ -84,7 +84,7 @@ which is Cramer's rule expressed directly in vector form (rather than
 components).  Package idiom is straightforward:
 
 ```{r, label=loadlib,results="hide",include=FALSE}
-library("clifford",quietly=TRUE)
+library("clifford",quietly=TRUE)  # document requires package version 1.0-9 or above
 ```
 
 
