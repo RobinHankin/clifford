@@ -6,13 +6,14 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
+set.seed(0)
 ```
 
 <p style="text-align: right;">
 ![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
 </p>
 
-(takes about twenty minutes to run without cache)
+(takes a couple of hours to run without cache)
 
 *NOTE* This vignette shows a use-case for dual numbers, as applied to
  automatic differentiation.  If you want to actually use AD, I would
@@ -480,7 +481,7 @@ lorenz(1,1,1+eps,2000)
 ```
 
 We see that after 2000 timesteps the derivative is quite high, about
-$1.4\times 10^{5}$, and after $10^4$ timesteps we have:
+$3\times 10^{7}$, and after $10^4$ timesteps we have:
 
 ```{r uselor10000,cache=TRUE}
 system.time(l10000 <- lorenz(1,1,1+eps,10000))
@@ -490,9 +491,11 @@ system.time(l10000 <- lorenz(1,1,1+eps,10000))
 l10000
 ```
 
-Thus the gradient is about $7\times 10^{35}$: chaos writ large.  We
-can demonstrate dynamical chaos somewhat more interestingly as follows
-by perturbing the start point very slightly and observing the result:
+Thus the gradient is about $5\times 10^{41}$: chaos writ large (NB:
+this figure is subject to _extremely_ large inter-run variability).
+We can demonstrate dynamical chaos somewhat more interestingly as
+follows by perturbing the start point very slightly and observing the
+result:
 
 ```{r uselor10000d,cache=TRUE}
 oneplusdelta <- 1+1e-14   # slight perturbation
@@ -504,12 +507,12 @@ l10000d
 ```
 
 We see, as expected, that the value at $10^4$ timesteps is very
-different, but also may observe that the gradient as calculated is the
-same order of magnitude.  Of course, we would like to repeat this
-calculation many times to get an idea of the distribution of the
-gradient but it is reasonable to suppose that it is of the order of
-$10^{36}$.  We can further assess this by trying the same simulation
-but with a slightly different timestep.
+different, but also may observe that the gradient as calculated is
+about $10^{45}$, three or four orders of magnitude greater than that
+calculated in the the first trial above.  Of course, we could further
+assess this by trying the same simulation but with many slightly
+different starting values to get an idea of the distribution of the
+gradient.
 
 ## References
 
