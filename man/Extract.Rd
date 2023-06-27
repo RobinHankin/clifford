@@ -87,7 +87,10 @@ Function \code{getcoeffs()} is a lower-level helper function that lacks
 the succour offered by \code{[.clifford()}.  It returns a numeric vector
 [not a \code{disord} object: the order of the elements is determined by
 the order of argument \code{B}].  Compare standard extraction, eg
-\code{a[index]}, which returns a clifford object.
+\code{a[index]}, which returns a clifford object.  Attempting to extract
+a coefficient of a term that includes a negative index will throw an
+error.  The coefficient of a term including an index larger than
+indicated by \code{maxyterm()} will return zero.
 
 Function \code{Im()} is a generic, which sets the real component of its
 argument to zero (as per the \CRANpkg{onion} package).  Function

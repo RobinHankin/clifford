@@ -107,6 +107,8 @@ checker1 <- function(A){
     expect_true(neg(A,2  ) == A - 2*grade(A,2  ))
     expect_true(neg(A,1:2) == A - 2*grade(A,1:2))
 
+    expect_true(A[terms(A)] == A)
+
 }   # checker1() closes
   
 checker2 <- function(A,B){

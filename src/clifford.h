@@ -193,10 +193,23 @@ NumericVector c_coeffs_of_blades(clifford C,
         blade b;
         b.resize(m[0]+1);  //off-by-one; note that this code also appears in prepare()
         const IntegerVector iv = B[i];
+        bool all_in_range = true; 
         for(size_t j=0 ; j < (size_t) iv.size(); j++){
-            b[iv[j]] = 1;
+            const signed int w = iv[j];
+            if(w < 0){
+                throw std::range_error("problem in clifford.h, c_coeffs_of_blades(): cannot access negative elements of a bitset");
+            } else if(w > m[0]){
+                all_in_range = false;
+                break;
+            } else {
+                b[w] = 1;
+            }
         }
-        out.push_back(C[b]);
+        if(all_in_range){
+            out.push_back(C[b]);
+        } else {
+            out.push_back(0);
+        }
     }
     return out;
 }

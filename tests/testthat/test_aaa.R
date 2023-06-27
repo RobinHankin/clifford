@@ -71,6 +71,9 @@ test_that("Test suite aaa.R",{
     A <- clifford(list(1,1:2,1:3),1:3)
     B <- clifford(list(1:2,1:6),c(44,45))
 
+    expect_error(A[-1])
+    expect_true(A[c(1,4)] == 0)
+
     expect_error(A[B])
     expect_silent(A[1,c(1,3,4)])
     expect_silent(A[2:3, 4] <- 99)
