@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // c_identity
 List c_identity(const List& L, const NumericVector& p, const NumericVector& m);
 RcppExport SEXP _clifford_c_identity(SEXP LSEXP, SEXP pSEXP, SEXP mSEXP) {
