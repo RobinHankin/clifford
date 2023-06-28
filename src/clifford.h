@@ -184,32 +184,49 @@ clifford c_grade(const clifford C, const NumericVector &n){
     return out;
 }
 
+bool any_negative(const IntegerVector iv){
+  for(size_t j=0 ; j < (size_t) iv.size(); j++){
+    if(iv[j] < 0){
+      return(true);
+    }
+  }
+  return(false);
+}
+
+bool any_too_big(const IntegerVector iv, const unsigned int m){
+  for(size_t j=0 ; j < (size_t) iv.size(); j++){
+    if(iv[j] > m){
+      return(true);
+    }
+  }
+  return(false);
+}
+
+blade int_vec_to_blade(const IntegerVector iv, const int m){
+  blade b;
+  b.resize(m+1);
+  for(size_t j=0 ; j < (size_t) iv.size(); j++){
+    b[iv[j]] = 1;
+  }
+  return b;
+}
+
 NumericVector c_coeffs_of_blades(clifford C,
                                  const List &B,
                                  const NumericVector &m
                                  ){
     Rcpp::NumericVector out;
     for(size_t i=0 ; i < (size_t) B.size() ; ++i){
-        blade b;
-        b.resize(m[0]+1);  //off-by-one; note that this code also appears in prepare()
         const IntegerVector iv = B[i];
-        bool all_in_range = true; 
-        for(size_t j=0 ; j < (size_t) iv.size(); j++){
-            const signed int w = iv[j];
-            if(w < 0){
-                throw std::range_error("problem in clifford.h, c_coeffs_of_blades(): cannot access negative elements of a bitset");
-            } else if(w > m[0]){
-                all_in_range = false;
-                break;
-            } else {
-                b[w] = 1;
-            }
-        }
-        if(all_in_range){
-            out.push_back(C[b]);
-        } else {
-            out.push_back(0);
-        }
+
+	if(any_negative(iv)){
+	  throw std::range_error("problem in clifford.h, c_coeffs_of_blades(): cannot access negative elements of a bitset");
+	}
+	if(any_too_big(iv, m[0])){
+	  out.push_back(0);
+	} else {
+	  out.push_back(C[int_vec_to_blade(iv,m[0])]);
+	}
     }
     return out;
 }
