@@ -49,12 +49,14 @@
       A^\sim\right\rangle_r=\widetilde{\left\langle
 	A\right\rangle_r}=(-1)^{r(r-1)/2}\left\langle A\right\rangle_r
     }{
-      omitted
+      omitted: see PDF
     }
 
     Perwass shows that \mjeqn{\left\langle
       AB\right\rangle_r=(-1)^{r(r-1)/2}\left\langle\tilde{B}\tilde{A}\right\rangle_r
-      }{ omitted}.
+    }{
+      omitted: see PDF
+    }
 
     \item The \dfn{Conjugate} \mjeqn{A^\dagger}{omitted} is given by
     \code{Conj()} (we use Perwass's notation, def 2.9 p59).  This
