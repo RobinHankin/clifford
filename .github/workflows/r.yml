@@ -8,9 +8,6 @@ on:
 
 name: R-CMD-check
 
-uses: r-lib/actions/setup-tinytex@v2
-
-
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
