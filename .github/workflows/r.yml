@@ -74,4 +74,3 @@ jobs:
           pak::pkg_install('covr')
           covr::codecov()
         shell: Rscript {0}
-	
