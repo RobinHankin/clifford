@@ -34,6 +34,12 @@ jobs:
           # install full prebuilt version
           TINYTEX_INSTALLER: TinyTeX
 
+      - name: LaTeX info
+        run: |
+          tinytex::tlmgr("--version")
+          tinytex::tl_pkgs()
+        shell: Rscript {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
