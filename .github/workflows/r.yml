@@ -43,6 +43,11 @@ jobs:
         with:
           upload-snapshots: true
 
+      - name: Install TeX
+        run: |
+          apt-get update
+          apt-get install -y texlive
+
       - name: Test coverage
         if: success() && runner.os == 'Linux' && matrix.config.r == 'release'
         run: |
