@@ -14,7 +14,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
-      TINYTEX_INSTALLER: TinyTeX
+      
     steps:
       - uses: actions/checkout@v3
 
@@ -49,4 +49,3 @@ jobs:
           pak::pkg_install('covr')
           covr::codecov()
         shell: Rscript {0}
-	
