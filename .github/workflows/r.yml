@@ -45,8 +45,7 @@ jobs:
 
       - name: Install TeX
         run: |
-          apt-get update
-          apt-get install -y texlive
+          Rscript -e 'install.packages("tinytex"); tinytex::install_tinytex()'
 
       - name: Test coverage
         if: success() && runner.os == 'Linux' && matrix.config.r == 'release'
