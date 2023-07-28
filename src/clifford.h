@@ -55,7 +55,7 @@ Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
     return out;
 }
 
-List Rblades(const clifford C){  // takes a clifford object, returns a list of which(blades); used in retval()
+List Rblades(const clifford &C){  // takes a clifford object, returns a list of which(blades); used in retval()
     List out;
 
     for(auto ic=C.begin(); ic != C.end(); ++ic){
@@ -64,7 +64,7 @@ List Rblades(const clifford C){  // takes a clifford object, returns a list of w
     return out;
 }
 
-NumericVector coeffs(const clifford C){  // takes a clifford object, returns the coefficients
+NumericVector coeffs(const clifford &C){  // takes a clifford object, returns the coefficients
     NumericVector out(C.size());
     unsigned int i=0;
 
@@ -137,7 +137,7 @@ blade_and_sign juxtapose(blade b1, blade b2, const NumericVector signature){//ju
     return std::make_tuple(bout,sign);
 }
 
-clifford c_general_prod(const clifford C1, const clifford C2, const NumericVector signature, bool (*chooser)(const blade, const blade)){
+clifford c_general_prod(const clifford &C1, const clifford &C2, const NumericVector signature, bool (*chooser)(const blade, const blade)){
 
     clifford out;
     blade b;
@@ -171,7 +171,7 @@ bool c_equal(clifford C1, clifford C2){
     return true;
 }
 
-clifford c_grade(const clifford C, const NumericVector &n){
+clifford c_grade(const clifford &C, const NumericVector &n){
     clifford out;
     for(size_t i=0 ; i < (size_t) n.length() ; ++i){
         for(auto ic=C.begin() ; ic != C.end() ; ++ic){
@@ -238,12 +238,12 @@ bool fatdotchooser          (const blade b1, const blade b2){return ((( b1 & ~b2
 bool lefttickchooser        (const blade b1, const blade b2){return ( ( b1 & ~b2).count() == 0)                                                                   ;}
 bool righttickchooser       (const blade b1, const blade b2){return ( (~b1 &  b2).count() == 0)                                                                   ;}
 
-clifford c_geometricprod(const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &geometricproductchooser);}
-clifford outerprod      (const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &outerproductchooser    );}
-clifford innerprod      (const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &innerproductchooser    );}
-clifford fatdotprod     (const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &fatdotchooser          );}
-clifford lefttickprod   (const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &lefttickchooser        );}
-clifford righttickprod  (const clifford C1, const clifford C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &righttickchooser       );}
+clifford c_geometricprod(const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &geometricproductchooser);}
+clifford outerprod      (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &outerproductchooser    );}
+clifford innerprod      (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &innerproductchooser    );}
+clifford fatdotprod     (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &fatdotchooser          );}
+clifford lefttickprod   (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &lefttickchooser        );}
+clifford righttickprod  (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &righttickchooser       );}
 
 clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
     for(auto i=C2.begin(); i != C2.end(); ++i){
@@ -252,7 +252,7 @@ clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
     return C1;
 }
 
-clifford c_power(const clifford C, const NumericVector &power, const NumericVector &signature){  // p for power
+clifford c_power(const clifford &C, const NumericVector &power, const NumericVector &signature){  // p for power
     clifford out;
     unsigned int p = power[0];
 
@@ -268,7 +268,7 @@ clifford c_power(const clifford C, const NumericVector &power, const NumericVect
     return out;
 }
 
-clifford cartan(const clifford C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p-4,q+4)
+clifford cartan(const clifford &C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p-4,q+4)
     clifford out;
 
     for (auto ic=C.begin(); ic != C.end(); ++ic){
@@ -301,7 +301,7 @@ clifford cartan(const clifford C, const NumericVector &n){ // Appendix B of Hitz
     return out;
 }
 
-clifford cartan_inverse(const clifford C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p+4,q-4)
+clifford cartan_inverse(const clifford &C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p+4,q-4)
     clifford out;
 
     for (auto ic=C.begin(); ic != C.end(); ++ic){
