@@ -10,11 +10,10 @@
 #include <Rcpp.h>
 #include <boost/dynamic_bitset.hpp>
 
-using namespace std;
 using namespace Rcpp;
 
 typedef boost::dynamic_bitset<> blade;
-typedef map<blade, long double> clifford;
+typedef std::map<blade, long double> clifford;
 typedef std::tuple<blade, int> blade_and_sign;
 
 clifford remove_zeros(clifford &C){
@@ -100,7 +99,7 @@ clifford c_add(clifford cliff1, clifford cliff2){
 blade_and_sign juxtapose(blade b1, blade b2, const NumericVector signature){//juxtaposes two blades, returns reduction and sign
     signed int sign = 1;
     blade bout;
-    const size_t m = max(b1.size(),b2.size());
+    const size_t m = std::max(b1.size(),b2.size());
 
     assert(signature[0] >= 0);  /* technically redundant: is_ok_sig() also ensures this */
     assert(signature[1] >= 0);
