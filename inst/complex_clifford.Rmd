@@ -27,8 +27,10 @@ vice versa, we need a couple of functions:
 ```{r label=coercionfuncs}
 signature(0,1)
 options(maxdim=1) # paranoid-level safety measure
-complex_to_clifford <- function(z){Re(z) + clifford(list(1),Im(z))}
+complex_to_clifford <- function(z){Re(z) + e(1)*Im(z)}
 clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,1)}
+clifford_to_complex <- function(C){const(C) + 1i*coeffs(Im(C))}
+
 ```
 
 Then numerical verification is immediate.  First we choose some
@@ -75,8 +77,8 @@ complex number $z=x+iy$ maps to Clifford object $x + ye_{12}$.
 ```{r label=secondcoercions}
 signature(2)
 options(maxdim=2)  # paranoid-level safety measure
-complex_to_clifford <- function(z){Re(z) + clifford(list(1:2),Im(z))}
-clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,list(1:2))}
+complex_to_clifford <- function(z){Re(z) + e(1:2)*Im(z)}
+clifford_to_complex <- function(C){const(C) + 1i*coeffs(Im(C))}
 ```
 
 Then numerical verification:
