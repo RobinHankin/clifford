@@ -209,7 +209,7 @@ g(f(x + eps))
 The techniques above are limited by the fact that only polynomial
 functionality is implemented in the Clifford package; if we want to
 work with transcendental functions we need to supply the derivative
-explictly:
+explicitly:
 
 ```{r, label=mydefs}
 sin.clifford <- function(x){sin(Re(x)) + cos(Re(x))*Im(x)}
@@ -324,7 +324,7 @@ the `inv()` function.
 
 ## Multivariate case
 
-The ideas above generalise seamlessley to the multivariate case.
+The ideas above generalise seamlessly to the multivariate case.
 Consider $f_4(x,y) = \frac{1+\sin(x+\cos y)}{2-e^{x+y}}$, at
 $x=1.1,y=1.443$:
 
