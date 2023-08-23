@@ -86,11 +86,13 @@ such as \code{.Machine$integer.max} will be printed as
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.  If we set \code{signature(p,q)}, then technically
 \mjseqn{n>p+q} implies \mjeqn{e_n^2=0}{omitted}, but usually we are not
-interested in \mjseqn{e_n} when \mjeqn{n>p+q}{omitted} and want this to
-be an error.  Option \code{maxdim}, specifies the maximum value of
-\mjseqn{n}, with default \code{NULL} corresponding to infinity.  If
-\mjseqn{n} exceeds this, \code{is_ok_sig()} throws an error.  This
-option is intended to be a super-strict safety measure.
+interested in \mjseqn{e_n} when \mjseqn{n>p+q} and want this to be an
+error.  Option \code{maxdim} specifies the maximum value of \mjseqn{n},
+with default \code{NULL} corresponding to infinity.  If \mjseqn{n}
+exceeds this, \code{is_ok_sig()} throws an error.  Note that it is fine
+to have \code{maxdim > p+q} [and indeed this is useful in the context of
+dual numbers].  This option is intended to be a super-strict safety
+measure.
 
 \preformatted{
 > e(6)
@@ -101,9 +103,7 @@ Element of a Clifford algebra, equal to
 Element of a Clifford algebra, equal to
 + 1e_5
 > e(6)
-Error in is_ok_clifford(terms, coeffs) : 
-  d >= max(c(elements(terms), recursive = TRUE)) is not TRUE
-> 
+Error in is_ok_clifford(terms, coeffs) : option maxdim exceeded
 }
 
 }

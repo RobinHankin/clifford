@@ -76,8 +76,8 @@ setOldClass("clifford")
     d <- getOption("maxdim")
     if(!is.null(d)){
       jj <- c(elements(terms),recursive=TRUE)
-      if(length(jj)>0){
-        stopifnot(d >= jj)
+      if((length(jj)>0) && any(jj>d)){
+        stop("option maxdim exceeded")
       }
     }
 
