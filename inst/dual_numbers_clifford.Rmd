@@ -16,10 +16,11 @@ set.seed(0)
 (takes a couple of hours to run without cache)
 
 *NOTE* This vignette shows a use-case for dual numbers, as applied to
- automatic differentiation.  If you want to actually use AD, I would
- strongly recommend you consider the excellent `dual` package (Sartore
- 2022), which offers a nice user interface, efficient coding, and lots
- of examples.
+ automatic differentiation.  All it really does is illustrate that
+ dual numbers are a special case of Clifford algebra.  If you want to
+ actually use AD, I would strongly recommend you consider the
+ excellent `dual` package (Sartore 2022), which offers a nice user
+ interface, efficient coding, and lots of examples.
 
 ## Dual numbers
 
@@ -92,9 +93,10 @@ as.matrix(x) %*% as.matrix(y) - as.matrix(x*y)
 
 above we see that $\phi(xy)$ and $\phi(x)\phi(y)$ agree to within numerical precision.  Further, elementary matrix algebra gives us that $\begin{bmatrix}a&b\\0&a\end{bmatrix}^{-1}=\begin{bmatrix}a^{-1}&-ba^{-2}\\0&a^{-1}\end{bmatrix}$ so we may define $(a+b\epsilon)^{-1}=a^{-1}-ba^{-2}\epsilon$, provided $a\neq 0$.
 
-## Automatic differentiation
+## Automatic differentiation: the chain rule
 
-The basic idea is, given a function $f\colon\mathbb{R}\longrightarrow\mathbb{R}$, we define a dual
+The basic idea is, given a function
+$f\colon\mathbb{R}\longrightarrow\mathbb{R}$, we define a dual
 function [note to self: there must be a standard terminology here]
 $\tilde{f}\colon\mathbb{D}\longrightarrow\mathbb{D}$ as follows:
 
@@ -185,11 +187,11 @@ c(value=f(2.6), gradient=fdash(2.6))
 ```
 
 
-### The chain rule
+### Numerical verification of the chain rule
 
 The next step would be to check the chain rule:
-$(fg)'(x)=f'(g(x))g'(x)$.  As an example we will compose $f(x)$ as
-defined above with $g(x) = x^2$:
+$(fg)'(x)=f'(g(x))g'(x)$.  As an example we will compose
+$f(x)=5x+3x^5$ as defined above with $g(x) = x^2$:
 
 ```{r checkchain}
 g <- function(x){x^2}
@@ -200,9 +202,13 @@ $(gf)'=\frac{d}{dx}g(f(x))$, evaluated at $x=1.6$:
 
 ```{r checkchaincliff}
 x <- 1.6
-f(g(x + eps))
-g(f(x + eps))
+valgrad(function(x){f(g(x))},1.6)
+c(value=f(g(x)),gradient=(f(g(x+1e-6))-f(g(x))) / 1e-6)
 ```
+
+Above we see close agreemennt between the dual number result and the
+direct numerical estimate using $\delta x=10^{-6}$.
+
 
 ## Transcendental and other functions
 
@@ -249,11 +255,11 @@ formalism tracks the differential via the $e_1$ term automatically; it
 effectively uses the chain rule to differentiate.  The same technique
 can be used for functions of any complexity.
 
-### Division
+# Division
 
 Division is somewhat more problematic.  Multiplication and addition
-work directly but division may be included by defining a new operator
-which we will call `%/%`:
+work without modification, but division requires the definition of a
+new operator which we will call `%/%`:
 
 ```{r definemydivision}
 mycoeffs <- function(x){if(is.numeric(x)){return(x)} else {return(coeffs(x))}}
@@ -266,8 +272,12 @@ mycoeffs <- function(x){if(is.numeric(x)){return(x)} else {return(coeffs(x))}}
 }
 ```
 
-Then we can define loads of functions with reasonably nice idiom.
-Here we consider $f_3(x)=\frac{\sin\left(1+x^2\right)}{2-e^x}$:
+Above we see a representation of the quotient rule in calculus: if
+$h(x)=\frac{f(x)}{g(x)}$, then $h'(x)=
+\frac{f'(x)g(x)-f(x)g'(x)}{g(x)^2}$, and this appears in the $e_1$
+term of the return value.  With this, we can define many functions
+with reasonably nice idiom.  Here we consider
+$f_3(x)=\frac{\sin\left(1+x^2\right)}{2-e^x}$:
 
 ```{r usemypercentdivision}
 f3 <- function(x){sin(1+x^2) %/% (2-exp(x))}
@@ -282,21 +292,24 @@ d <- 1e-6  # notional "small" value
 c(value=f3(pi), grad=(f3(pi+d/2)-f3(pi-d/2))/d)
 ```
 
+## Alternative implementation of division using inverses
+
 It is possible to implement division in a different way.  If we define
 
 ```{r defineinverse}
 inv <- function(x){1/Re(x) -Im(x)/Re(x)^2}
 ```
 
-
-Then `inv()` is a dual-ready version of $f(x)=x^{-1}$.  For example,
-suppose we wish to find $f'(3)=-1/9$:
+Then `inv()` is a dual-ready version of $f(x)=x^{-1}$ with
+$f'(x)=-1/x^2$.  For example, suppose we wish to find $f'(3)=-1/9$:
 
 ```{r useinv}
 inv(3 + eps)
 ```
 
-Above we see that $\operatorname{inv}(3)=\frac{1}{3}$ and $\operatorname{inv}'(3)=-\frac{1}{9}$.  We can
+Above we see that $\operatorname{inv}(3)=\frac{1}{3}$ and
+$\operatorname{inv}'(3)=-\frac{1}{9}$ (formally one would write
+$\left.\operatorname{inv}'(x)\right|_{x=3}=-\frac{1}{9}$).  We can
 exploit the fact that `inv()` works in combination with other
 functions as the chain rule applies to `inv()` as for any other
 dual-ready function.  Here I use R idiom to define `g()` which returns
@@ -330,8 +343,8 @@ $x=1.1,y=1.443$:
 
 ```{r, multivariate}
 f4 <- function(x,y){(1+sin(x+cos(y))) %/% (2-exp(x+y))}
-f4dx <- function(x,y,d=1e-6){(f4(x+d,y)-f4(x,y))/d}
-f4dy <- function(x,y,d=1e-6){(f4(x,y+d)-f4(x,y))/d}
+f4dx <- function(x,y,d=1e-6){(f4(x+d,y)-f4(x,y))/d}  # numerical estimate
+f4dy <- function(x,y,d=1e-6){(f4(x,y+d)-f4(x,y))/d}  # numerical estimate
 x <- 1.1
 y <- 1.443
 c(value=f4(x,y),"df/dx"=f4dx(x,y),"df/dy"=f4dy(x,y))
@@ -340,7 +353,7 @@ f4(x,y+eps)  # f(x,y) + eps*df/dy
 ```
 
 Again we see close agreement.  This suggests a nice way to evaluate,
-say $\left(3\frac{\partial}{\partial x} + 5\frac{\partial}{\partial
+say, $\left(3\frac{\partial}{\partial x} + 5\frac{\partial}{\partial
 y}\right)$:
 
 
@@ -355,7 +368,9 @@ Compare the numerical estimate
 (f4(x+3*d,y+5*d)-f4(x,y))/d
 ```
 
-showing close agreement.
+showing close agreement (observe that `f4()`, although intended to be
+used with dual numbers, behaves sensibly when given a numeric
+argument).
 
 ## A more realistic example
 
