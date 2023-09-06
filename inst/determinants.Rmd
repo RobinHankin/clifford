@@ -14,33 +14,48 @@ vignette: >
 
 This short document shows how determinants can be calculated using
 Clifford algebra as implemented by the `clifford` R package, following
-Hestenes.  Given a square matrix $M$, we consider alternating forms on
-its column vectors.  Requiring that the identity matrix map to $+1$
-gives a unique alternating form which we identify with the determinant
-of $M$.  Hestenes points out that wedge products of 1-vectors are
-alternating forms and further points out [equation 4.1] that any
-alternating $r$-form
-$\alpha_r=\alpha_r\left(a_1,a_2,\ldots,a_r\right)$ can be written in
-the form
+Hestenes.  The methods shown here are not computationally efficient
+compared with bespoke linear algebra implementations (such as used in
+base R).
+
+Given a square matrix $M$, we consider alternating forms on its column
+vectors.  Requiring that the identity matrix map to $+1$ gives a
+unique alternating form which we identify with the determinant of $M$.
+Hestenes points out that wedge products of 1-vectors are alternating
+forms and further points out [equation 4.1, p33] that any alternating
+$r$-form $\alpha_r=\alpha_r\left(a_1,a_2,\ldots,a_r\right)$ can be
+written in the form
 
 $$\alpha_r\left(a_1,a_2,\ldots,a_r\right)=
 A_r^\dagger\cdot\left(a_1\wedge a_2\wedge\cdots\wedge a_r\right)
 $$
 
-for some unique $r-$vector $A_r^\dagger$.  In the package this is easy
-to implement.  Considering a $3\times 3$ matrix as an example, we
-simply calculate the wedge product of its columns:
+for some unique $r$-vector $A_r^\dagger$ .  We then define the
+determinant to be the $r$-form corresponding to $A$ being the Clifford
+$r$-volume element.  In the package this is easy to implement.
+Considering a $3\times 3$ matrix as an example, we simply calculate
+the wedge product of its columns:
 
-```{r kickoff}
+```{r formalshow}
 suppressMessages(library("clifford"))
 set.seed(0)
 (M <- matrix(rnorm(9),3,3))
-det(M)
-as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3])
+o <- as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3])
+Adag <- rev(e(seq_len(3)))
+c(drop(Adag %.% o), det(M))
 ```
 
-We see numerical agreement.  Note that the wedge product is given as a
-Clifford volume element, and we can extract this with `coeffs()`:
+Above, we see numerical agreement [as a parenthetical note, we observe
+that the dagger is needed to get the correct sign if the dimension is
+odd].  Alternatively, we can examine the wedge product directly:
+
+```{r directwedge}
+as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3])
+```		  
+
+Note that the wedge product is given as a Clifford volume element.  We
+can extract its coefficient (which would be the determinant of `M`)
+using `coeffs()`:
 
 ```{r usecoeffs}
 coeffs(as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3]))
