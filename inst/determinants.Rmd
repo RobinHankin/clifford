@@ -23,7 +23,9 @@ alternating $r$-form
 $\alpha_r=\alpha_r\left(a_1,a_2,\ldots,a_r\right)$ can be written in
 the form
 
-$$\alpha_r A_r^\dagger\cdot\left(a_1\wedge a_2\wedge\cdots\wedge a_r\right)$$
+$$\alpha_r\left(a_1,a_2,\ldots,a_r\right)=
+A_r^\dagger\cdot\left(a_1\wedge a_2\wedge\cdots\wedge a_r\right)
+$$
 
 for some unique $r-$vector $A_r^\dagger$.  In the package this is easy
 to implement.  Considering a $3\times 3$ matrix as an example, we
