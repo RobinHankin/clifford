@@ -8,9 +8,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-</p>
+
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
 
 This short document shows how determinants can be calculated using
 Clifford algebra as implemented by the `clifford` R package, following
