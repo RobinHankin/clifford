@@ -4,7 +4,7 @@ citation(auto = meta)
 
 bibentry(bibtype = "misc",
          title = "Clifford algebra in R",
-         author = person("Robin","K","S"),
+         author = person("Robin K. S. Hankin"),
          doi = "10.48550/ARXIV.2209.13659",
          url = "https://arxiv.org/abs/2209.13659",
          publisher = "arXiv",
