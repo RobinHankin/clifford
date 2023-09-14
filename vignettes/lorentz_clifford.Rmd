@@ -100,7 +100,9 @@ Algebraically this would be
 $1\mathbf{e}_1+5\mathbf{e}_2+3\mathbf{e}_3+2\mathbf{e}_4$ (Snygg would
 write $1\mathbf{e}_0+5\mathbf{e}_1+3\mathbf{e}_2+2\mathbf{e}_3$; we
 cannot use that notation here because basis vectors are numbered from
-1 in the package, not zero).  The metric would be
+1 in the package, not zero).  Also note that the vectors appear in
+implementation-specific order, as per `disordR` discipline
+[@hankin2022_disordR].  The metric would be
  
 $$
 \begin{pmatrix}
