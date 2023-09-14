@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^README\.Rmd
 ^\.travis\.yml$
+^\.github$
 inst/clifford_blue.png$
 inst/clifford_stickermaker.R$
 inst/conformal_algebra_clifford.Rmd$

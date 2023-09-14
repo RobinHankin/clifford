@@ -1,7 +1,14 @@
 ---
-title: "Lorentz transforms using Clifford algebra"
-output: html_document
+title: "Lorentz transforms via Clifford algebra"
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{lorentz}
+  %\usepackage[utf8]{inputenc}
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -10,13 +17,20 @@ library("emulator")
 library("lorentz")
 ```
 
-(throughout, we use units in which $c=1$.  Notation follows Snygg)
 
 <p style="text-align: right;">
 ![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
 ![](`r system.file("help/figures/lorentz.png", package = "lorentz")`){width=10%}
 ![](`r system.file("help/figures/emulator.png", package = "emulator")`){width=10%}
 </p>
+
+
+In this short document I show how Clifford algebra may be used to
+effect Lorentz transforms, and showcase the `clifford` R package.
+Throughout, we use units in which $c=1$.  Notation follows @snygg2010;
+to cite this work please use @hankin2022_clifford or
+@hankin2022_lorentz.
+
 
 
 Consider the following four-vector:
@@ -86,7 +100,9 @@ Algebraically this would be
 $1\mathbf{e}_1+5\mathbf{e}_2+3\mathbf{e}_3+2\mathbf{e}_4$ (Snygg would
 write $1\mathbf{e}_0+5\mathbf{e}_1+3\mathbf{e}_2+2\mathbf{e}_3$; we
 cannot use that notation here because basis vectors are numbered from
-1 in the package, not zero).  The metric would be
+1 in the package, not zero).  Also note that the vectors appear in
+implementation-specific order, as per `disordR` discipline
+[@hankin2022_disordR].  The metric would be
  
 $$
 \begin{pmatrix}
@@ -112,7 +128,7 @@ t(fourvec) %*% M %*% fourvec
 ```
  
 We might use the slightly slicker and more efficient idiom
-`quad.form()` from the `emulator` package:
+`quad.form()` from the `emulator` package [@hankin2005]:
 
 ```{r,useemulator}
 quad.form(M,fourvec)
@@ -340,3 +356,7 @@ out
 ```
 
 Thus we can see, for example, that `e12*e13 = -e23` and `e13*e12 = +e23`.
+
+```{r, echo=FALSE}
+signature(Inf) # restore default, to avoid interference with other vignettes
+```

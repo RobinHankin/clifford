@@ -9,7 +9,7 @@ The clifford package: Clifford algebra in R
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
 [![Codecov test
-coverage](https://codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://codecov.io/gh/RobinHankin/clifford/branch/master)
+coverage](https://app.codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford/branch/master)
 <!-- badges: end -->
 
 The `clifford` package provides R-centric functionality for working with
@@ -72,23 +72,19 @@ a %euc% b  # Euclidean product
 The package can deal with non positive-definite inner products. Suppose
 we wish to deal with an inner product of
 
-![
-\\begin{pmatrix}
-+1 & 0 & 0 & 0 & 0\\\\
- 0 &+1 & 0 & 0 & 0\\\\
- 0 & 0 &+1 & 0 & 0\\\\
- 0 & 0 & 0 &-1 & 0\\\\
- 0 & 0 & 0 & 0 &-1
-\\end{pmatrix}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%0A%2B1%20%26%200%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%2B1%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%2B1%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26-1%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26%200%20%26-1%0A%5Cend%7Bpmatrix%7D%0A "
-\begin{pmatrix}
+![\begin{pmatrix}
 +1 & 0 & 0 & 0 & 0\\
  0 &+1 & 0 & 0 & 0\\
  0 & 0 &+1 & 0 & 0\\
  0 & 0 & 0 &-1 & 0\\
  0 & 0 & 0 & 0 &-1
-\end{pmatrix}
-")
+\end{pmatrix}](https://latex.codecogs.com/png.latex?%5Cbegin%7Bpmatrix%7D%0A%2B1%20%26%200%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%2B1%20%26%200%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%2B1%20%26%200%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26-1%20%26%200%5C%5C%0A%200%20%26%200%20%26%200%20%26%200%20%26-1%0A%5Cend%7Bpmatrix%7D "\begin{pmatrix}
++1 & 0 & 0 & 0 & 0\\
+ 0 &+1 & 0 & 0 & 0\\
+ 0 & 0 &+1 & 0 & 0\\
+ 0 & 0 & 0 &-1 & 0\\
+ 0 & 0 & 0 & 0 &-1
+\end{pmatrix}")
 
 where the diagonal is a number of
 ![+1](https://latex.codecogs.com/png.latex?%2B1 "+1") terms followed by
@@ -140,11 +136,11 @@ summary(x^3)
 
 # References
 
--   D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
--   J. Snygg 2010. *A new approach to differential geometry using
-    Clifford’s geometric algebra*. Berghauser.
--   C. Perwass 2009. *Geometric algebra with applications in
-    engineering*. Springer.
+- D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
+- J. Snygg 2010. *A new approach to differential geometry using
+  Clifford’s geometric algebra*. Berghauser.
+- C. Perwass 2009. *Geometric algebra with applications in engineering*.
+  Springer.
 
 # Further information
 
