@@ -98,7 +98,7 @@ clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
 ### Note
 
 The identification $x+iy\longrightarrow x+ye_{12}$ is a homomorphism
-whenever $e_1^2e_1^2=1$; above we used $\operatorname{Cl}(2,0)$ so
+whenever $e_1^2e_2^2=1$; above we used $\operatorname{Cl}(2,0)$ so
 $e_1^2=e_2^2=1$.  However, the relation is also satisfied if
 $e_1^2=e_2^2=-1$, so we can equally well use $\operatorname{Cl}(0,2)$:
 
