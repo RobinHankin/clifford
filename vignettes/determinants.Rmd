@@ -14,12 +14,12 @@ vignette: >
 knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
 ```
 
-To cite the `stokes` package in publications please use
+To cite the `clifford` package in publications please use
 [@hankin2022_clifford].  This short document shows how determinants
 can be calculated using Clifford algebra as implemented by the
-`clifford` R package, following @hestenes1987.  The methods shown here
-are not computationally efficient compared with bespoke linear algebra
-implementations (such as used in base R).
+`clifford` R package; notation follows @hestenes1987.  The methods
+shown here are not computationally efficient compared with bespoke
+linear algebra implementations (such as used in base R).
 
 Given a square matrix $M$, we consider alternating forms on its column
 vectors.  Requiring that the identity matrix map to $+1$ gives a
