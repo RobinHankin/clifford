@@ -1,9 +1,10 @@
 ---
 title: "Linear algebra with the `clifford` package: determinants using wedge products"
 author: "Robin K. S. Hankin"
-date: "`r Sys.Date()`"
+output: html_vignette
+bibliography: clifford.bib
 vignette: >
-  %\VignetteIndexEntry{linear algebra}
+  %\VignetteIndexEntry{determinants}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,11 +14,12 @@ vignette: >
 knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
 ```
 
-This short document shows how determinants can be calculated using
-Clifford algebra as implemented by the `clifford` R package, following
-Hestenes.  The methods shown here are not computationally efficient
-compared with bespoke linear algebra implementations (such as used in
-base R).
+To cite the `stokes` package in publications please use
+[@hankin2022_clifford].  This short document shows how determinants
+can be calculated using Clifford algebra as implemented by the
+`clifford` R package, following @hestenes1987.  The methods shown here
+are not computationally efficient compared with bespoke linear algebra
+implementations (such as used in base R).
 
 Given a square matrix $M$, we consider alternating forms on its column
 vectors.  Requiring that the identity matrix map to $+1$ gives a
@@ -91,3 +93,5 @@ c(LHS,RHS,LHS-RHS)
 ```
 
 above we see numerical agreement.
+
+## References
