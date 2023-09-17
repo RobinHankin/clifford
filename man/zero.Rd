@@ -25,6 +25,11 @@ although note that \code{scalar(0)} will work too.
 
 }
 \author{Robin K. S. Hankin}
+\note{
+  The coefficient of the zero clifford object, as in
+  \code{coeff(scalar(0))}, is \code{numeric(0)} (but note that \code{1 +
+    NULL} also returns \code{numeric(0)}).
+}
 \seealso{\code{\link{scalar}}}
 \examples{
 
