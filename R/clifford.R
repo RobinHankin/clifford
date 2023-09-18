@@ -123,14 +123,20 @@ setOldClass("clifford")
 `is.clifford` <- function(x){inherits(x,"clifford")}
 
 `nterms` <- function(x){length(coeffs(x))}
-`is.zero` <- function(C){
-    if(is.clifford(C)){
-        out <- nterms(C)==0
+
+`is.zero.clifford` <- function(x){
+    if(is.clifford(x)){
+        out <- nterms(x)==0
     } else {
-        out <- C==0
+        out <- x==0
     }
     return(out)
 }
+
+setGeneric("is.zero",function(x){standardGeneric("is.zero")})
+setMethod("is.zero","clifford",is.zero.clifford)
+setMethod("is.zero","ANY",function(x){x==0})
+
 
 `is.real` <- function(C){length(c(elements(terms(C)),recursive=TRUE))==0}
 `is.scalar` <- is.real
