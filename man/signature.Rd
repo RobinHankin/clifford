@@ -22,8 +22,12 @@ showsig(s)
 }
 \details{\loadmathjax
 
-The signature functionality is modelled on \code{lorentz::sol()} which
-gets and sets the speed of light.
+The signature functionality is modelled on the \CRANpkg{lorentz}
+package; \code{clifford::signature()} operates in the same way as
+\code{lorentz::sol()} which gets and sets the speed of light.  The idea
+is that both the speed of light and the signature of a Clifford algebra
+are generally set once, at the beginning of an \R session, and
+subsequently change only very infrequently.
 
 Clifford algebras require a bilinear form on \mjteqn{R^n}{\mathbb{R}^n}{R^n}
 \mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}, usually written
@@ -66,14 +70,14 @@ be \code{signature(0,Inf)}.
 If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
 operation reduces to the wedge product of a Grassman algebra.  Package
 idiom for this is to set \mjseqn{p=q=0} with \code{signature(0,0)}, but
-this is not recommended: use the \pkg{stokes} package for Grassman
+this is not recommended: use the \CRANpkg{stokes} package for Grassman
 algebras, which is much more efficient and uses nicer idiom.
 
 Function \code{signature(p,q)} returns the signature invisibly; but
 setting option \code{show_signature} to \code{TRUE} makes
 \code{signature()} have the side-effect of calling \code{showsig()},
 which changes the default prompt to display the signature, much like
-\code{showSOL} in the \code{lorentz} package.  There is special
+\code{showSOL} in the \CRANpkg{lorentz} package.  There is special
 dispensation for \dQuote{infinite} \mjseqn{p} or \mjseqn{q}.
 
 Calling \code{signature()} [that is, with no arguments] returns an
