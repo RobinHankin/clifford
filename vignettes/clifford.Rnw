@@ -334,9 +334,9 @@ A Grassman algebra corresponds to a Clifford algebra with identically
 zero inner product.  Package idiom is to use a zero signature:
 
 <<grassmanalgebra,results=hide>>=
-signature(0,0)  # specify null inner product
-<<print=TRUE,results=verbatim>>=
-is.zero(e(5)^2)     # should be TRUE
+signature(0,0) # specify null inner product
+<<checkforzero print=TRUE,results=verbatim>>=
+e(5)^2 == 0    # cannot use is.zero() here because the jordan package masks clifford::is.zero()
 @ 
 
 This is a somewhat clunky way of reproducing the functionality of the

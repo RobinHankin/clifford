@@ -17,9 +17,9 @@ is.zero(x)
 }
 \details{
 
-  To test for a Clifford object's being zero, use \proglang{S4} generic
-  \code{is.zero()}.  Idiom such as \code{x==0} will also work but often
-  one prefers the functional form.
+  To test for a Clifford object's being zero, use \code{is.zero()}.
+  Idiom such as \code{x==0} will work irregardless, but sometimes one
+  might prefer the functional form for stylistic reasons.
 
   To create the zero object \emph{ab initio}, use
 
@@ -33,6 +33,13 @@ is.zero(x)
   The coefficient of the zero clifford object, as in
   \code{coeff(scalar(0))}, is \code{numeric(0)} (but note that \code{1 +
     NULL} also returns \code{numeric(0)}).
+
+Function \code{is.zero()} is problematic if another package which also
+  has an \code{is.zero()} generic is loaded, for this will mask
+  \code{clifford::is.zero()}.  Specifically, the \CRANpkg{jordan}
+  package includes \code{jordan::is.zero()} and the two do not play
+  nicely together.
+
 }
 \seealso{\code{\link{scalar}}}
 \examples{
