@@ -1,17 +1,23 @@
 ---
 title: "Conformal geometry with Clifford algebra"
-output: html_document
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteIndexEntry{conformal_algebra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 ```
 
-
-
-# Conformal algebra
-
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
 
 \newcommand{\grad}[2]{\left\langle #1\right\rangle_{#2}}
 \newcommand{\ak}{\grad{\mathbf{A}}{k}}
@@ -28,11 +34,15 @@ library("clifford")
 \newcommand{\einf}{\mathbf{e}_\infty}
 \newcommand{\ezero}{\mathbf{e}_0}
 
-This follows Hildenbrand with occasional notation and concepts
-following Perwass.  Here we work in $\operatorname{Cl}(p,q)$, which
-Perwass denotes $\mathbb{G}_{p,q}$.  The set of grade-$k$ object is
-denoted $\mathbb{G}_{p,q}^k$.  First we define the IPNS and OPNS
-[inner product null space and outer product null space] of $\ak$:
+
+To cite the `clifford` package in publications please use
+[@hankin2022_clifford].  This short document shows how Clifford
+algebra can be applied to conformal geometry, and uses `clifford` R
+package; notation follows @hildenbrand2013 and @perwass2009.  Here we
+work in $\operatorname{Cl}(p,q)$, which Perwass denotes
+$\mathbb{G}_{p,q}$.  The set of grade-$k$ object is denoted
+$\mathbb{G}_{p,q}^k$.  First we define the IPNS and OPNS [inner
+product null space and outer product null space] of $\ak$:
 
 \[
 \mathbb{NI}(\ak)=\left\lbrace bx\in\mathbb{G}^1_{p,q}\colon\bx\cdot\ak=0\right\rbrace
@@ -55,12 +65,14 @@ geometry:
 
 ```{r}
 dimension <- 3
-signature(dimension + 1)
+options("maxdim" = dimension+2)  # paranoid safety measure
+signature(dimension + 1,1)
 eplus <- basis(dimension+1)
 eminus <- basis(dimension + 2)
+
 e0 <-  (eminus - eplus)/2
 einf <- eminus + eplus
-E <- e0 %^% einf
+E <- e0 ^ einf
 ```
 
 So
@@ -114,7 +126,7 @@ We can define a sphere with center $\ba$ and radius $\rho$ as
 \]
 
 and then the sphere is just the inner product null space of $\bS$,
-that is $\left\lbrace\bx\colon\bS\cdot\bX=0\right\rbrace$.  The radius
+that is $\left\lbrace\bx\colon\bS\cdot\bx=0\right\rbrace$.  The radius
 $\rho$ can be calculated from a given sphere from $\bS^2=\rho^2$ and
 the point is given by $P=\bS\einf\bS$.  Package idiom:
 
@@ -284,8 +296,10 @@ pointpair <- function(A,B){ # OPNS
 }
 ```
 
+```{r}
+options("maxdim" = NULL) # restore default
+```
+
 
 ## References
 
-D. Hildenbrand 2013.  Foundations of Geometric Algebra Computing.
-Springer-Verlag
