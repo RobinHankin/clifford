@@ -1,9 +1,8 @@
 ---
-title: "Linear algebra with the `clifford` package: Cramer's rule in civilised form"
+title: "Cramer's rule in civilised form with Clifford algebra"
 author: "Robin K. S. Hankin"
-date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{linear algebra}
+  %\VignetteIndexEntry{cramer}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
