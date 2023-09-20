@@ -5,7 +5,7 @@ output: html_vignette
 bibliography: clifford.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{lorentz}
+  %\VignetteIndexEntry{Lorentz transforms via Clifford algebra}
   %\usepackage[utf8]{inputenc}
 ---
 

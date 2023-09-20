@@ -1,21 +1,33 @@
 ---
 title: "Complex arithmetic using Clifford algebra"
-output: html_document
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteIndexEntry{Complex arithmetic using Clifford algebra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 ```
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-</p>
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
 
-Recall that complex numbers are a two-dimensional algebra over the
-reals, with $(a,b)\cdot(c,d)=(ac-bd,ad+bc)$; we usually write $(a,b)$
-as $a+bi$. There are two natural ways to identify complex numbers with
-Clifford objects; but because they use different signatures it is more
+To cite the `clifford` package in publications please use
+[@hankin2022_clifford].  This short document shows how complex
+arithmetic may be implemented using Clifford algebra (of course, if
+one really wants to use complex numbers, base R is much more efficient
+and uses nicer idiom than the methods presented here).  Recall that
+complex numbers are a two-dimensional algebra over the reals, with
+$(a,b)\cdot(c,d)=(ac-bd,ad+bc)$; we usually write $(a,b)$ as $a+bi$.
+There are two natural ways to identify complex numbers with Clifford
+objects; but because they use different signatures it is more
 convenient to treat them separately.
 
 ## First method
@@ -120,3 +132,6 @@ values in order to prevent interference with other vignettes:
 signature(Inf)
 options(maxdim=NULL)
 ```
+
+
+## References

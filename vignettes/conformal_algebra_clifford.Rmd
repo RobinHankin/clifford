@@ -4,7 +4,7 @@ author: "Robin K. S. Hankin"
 output: html_vignette
 bibliography: clifford.bib
 vignette: >
-  %\VignetteIndexEntry{conformal_algebra}
+  %\VignetteIndexEntry{Conformal geometry with Clifford algebra}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
