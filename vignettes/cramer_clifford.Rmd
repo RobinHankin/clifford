@@ -1,22 +1,23 @@
 ---
 title: "Cramer's rule in civilised form with Clifford algebra"
 author: "Robin K. S. Hankin"
+bibliography: clifford.bib
 vignette: >
   %\VignetteIndexEntry{Cramer's rule using Clifford algebra}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-</p>
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
 
-
-This short document shows a nice application of Clifford algebras to
-linear algebra.  Suppose we have vectors ${\mathbf a}, {\mathbf b},
-{\mathbf c}$ spanning $\mathbb{R}^3$ and are given ${\mathbf
-x}\in\mathbb{R}^3$.  We wish to write ${\mathbf x}=\alpha {\mathbf
-a}+\beta {\mathbf b}+\gamma {\mathbf c}$ for some
+To cite the `clifford` package in publications please use
+@hankin2022_clifford.  This short document shows a nice application of
+Clifford algebras to linear algebra.  Suppose we have vectors
+${\mathbf a}, {\mathbf b}, {\mathbf c}$ spanning $\mathbb{R}^3$ and
+are given ${\mathbf x}\in\mathbb{R}^3$.  We wish to write ${\mathbf
+x}=\alpha {\mathbf a}+\beta {\mathbf b}+\gamma {\mathbf c}$ for some
 $\alpha,\beta,\gamma\in\mathbb{R}$.  The traditional Cramer's rule for
 finding $\alpha,\beta,\gamma$ would be
 
@@ -177,3 +178,5 @@ sapply(seq_len(n),coeff,L,x)
 ```
 
 Above we see that the original coefficients are recovered, up to numerical accuracy.
+
+## References

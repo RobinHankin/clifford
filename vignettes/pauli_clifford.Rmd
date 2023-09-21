@@ -18,14 +18,13 @@ library("jordan")
 library("emulator")
 ```
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-![](`r system.file("help/figures/jordan.png", package = "jordan")`){width=10%}
-</p>
-
+```{r out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+knitr::include_graphics(system.file("help/figures/jordan.png", package = "jordan"))
+```
 
 To cite the `clifford` package in publications please use
-[@hankin2022_clifford].  This short document shows how the Pauli
+@hankin2022_clifford.  This short document shows how the Pauli
 matrices, often used in quantum mechanics, can be calculated using
 Clifford algebra as implemented by the `clifford` R package.  The
 Pauli matrices are as follows:

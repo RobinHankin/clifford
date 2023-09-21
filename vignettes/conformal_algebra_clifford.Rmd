@@ -36,7 +36,7 @@ knitr::include_graphics(system.file("help/figures/clifford.png", package = "clif
 
 
 To cite the `clifford` package in publications please use
-[@hankin2022_clifford].  This short document shows how Clifford
+@hankin2022_clifford.  This short document shows how Clifford
 algebra can be applied to conformal geometry, and uses `clifford` R
 package; it follows @hildenbrand2013 and @perwass2009.  Here we
 work in $\operatorname{Cl}(p,q)$, which Perwass denotes

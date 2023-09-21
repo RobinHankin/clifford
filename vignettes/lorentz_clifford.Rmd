@@ -18,22 +18,18 @@ library("lorentz")
 ```
 
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-![](`r system.file("help/figures/lorentz.png", package = "lorentz")`){width=10%}
-![](`r system.file("help/figures/emulator.png", package = "emulator")`){width=10%}
-</p>
+```{r out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+knitr::include_graphics(system.file("help/figures/jordan.png", package = "jordan"))
+knitr::include_graphics(system.file("help/figures/emulator.png", package = "emulator"))
+```
 
-
-In this short document I show how Clifford algebra may be used to
-effect Lorentz transforms, and showcase the `clifford` R package.
-Throughout, we use units in which $c=1$.  Notation follows @snygg2010;
-to cite this work please use @hankin2022_clifford or
-@hankin2022_lorentz.
-
-
-
-Consider the following four-vector:
+To cite this work please use @hankin2022_clifford,
+@hankin2022_lorentz, or @hankin2005.  In this short document I show
+how Clifford algebra may be used to effect Lorentz transforms, and
+showcase the `clifford` R package.  Throughout, we use units in which
+$c=1$.  Notation follows @snygg2010.  Consider the following
+four-vector:
 
 ```{r,define4vec}
 (fourvec <- c(1,5,3,2))  # a four-vector
@@ -360,3 +356,6 @@ Thus we can see, for example, that `e12*e13 = -e23` and `e13*e12 = +e23`.
 ```{r, echo=FALSE}
 signature(Inf) # restore default, to avoid interference with other vignettes
 ```
+
+
+## References
