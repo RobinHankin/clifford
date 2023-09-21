@@ -50,13 +50,7 @@ $a+\mathbf{i}b+\mathbf{j}c+\mathbf{k}d$; addition is componentwise and
 multiplication follows from the above.
 
 To express quaternionic multiplication using Clifford algebra we
-identify $\mathbb{H}$ with $\operatorname{Cl}(3,0)$ [technically we do
-not need to call `signature()` but it is probably defensive
-programming to call it anyway]
-
-```{r}
-signature(3,0)
-```
+make the following identifications:
 
 \[
 \mathbf{i}\leftrightarrow -e_{12}\\
@@ -67,32 +61,16 @@ signature(3,0)
 Thus, for example,
 $\mathbf{ii}=(-e_{12})(-e_{12})=+e_{1212}=-e_{1122}=-1$ and
 $\mathbf{ij}=(-e_{12})(-e_{13})=+e_{1213}=-e_{1123}=-e_{23}=\mathbf{k}$.
+The default signature [in which $e_i^2=+1$] is fine here, but as a
+safety meaure we can set `maxdim` to 3:
 
-Conversion functions would be
-
-```{r definecoercion}
-`clifford_to_quaternion` <- function(C){
-    C <- as.clifford(C)
-    tC <- disordR::elements(terms(C))
-    stopifnot(all(c(tC,recursive=TRUE) <= 3))
-    jj <- unlist(lapply(tC,length))
-    stopifnot(all(jj <= 2))
-    stopifnot(all(jj%%2 == 0))
-    out <- matrix(c(const(C), -getcoeffs(C,list(c(1,2),c(1,3),c(2,3)) )))
-    as.quaternion(out)
-}
-
-`quaternion_to_clifford` <- function(Q){
-  Q <- as.numeric(Q)
-  stopifnot(length(Q)==4)
-  clifford(list(numeric(0),c(1,2),c(1,3),c(2,3)),c(Q[1],-Q[2:4]))
-}
+```{r}
+options(maxdim=3)  # paranoid safety measure
 ```
 
 We might wish to multiply $q_1=1+2\mathbf{i}+3\mathbf{j}+4\mathbf{k}$
 by $q_2=-2+\mathbf{i}-2\mathbf{j}+\mathbf{k}$:
   
-
 ```{r}
 q1 <- +1 + 2* -e(c(1,2)) + 3*-e(c(1,3)) + 4*-e(c(2,3))
 q1
@@ -101,21 +79,69 @@ q2
 q1*q2
 ```
 
-The product would correspond to $-2+8\mathbf{i} -6\mathbf{j}
--14\mathbf{k}$.  However, it is possible to coerce a Clifford object
-to a quaternion, and then use the `onion` package to carry out
-quaternion multiplication directly (but don't actually do it, you
-crazy fool):
 
-```{r}
-library(onion)
-q1*q2 == quaternion_to_clifford(clifford_to_quaternion(q1)*clifford_to_quaternion(q2))
+The product would correspond to $-2+8\mathbf{i} -6\mathbf{j}
+-14\mathbf{k}$.  Note that the "`*`" in "`q1*q2`" is a _clifford_
+product.  It is possible to leverage the `onion` package and coerce
+between `clifford` objects and quaternions (but don't actually do it,
+you crazy fool):
+
+```{r clifftoquat}
+`clifford_to_quaternion` <- function(C){
+    C <- as.clifford(C)
+    tC <- disordR::elements(terms(C))
+    stopifnot(all(c(tC,recursive=TRUE) <= 3))
+    jj <- unlist(lapply(tC,length))
+    stopifnot(all(jj <= 2))    # safety check
+    stopifnot(all(jj%%2 == 0)) # safety check
+    out <- matrix(c(const(C), -getcoeffs(C,list(c(1,2),c(1,3),c(2,3)) )))
+    as.quaternion(out)
+}
 ```
 
-Note that in package idiom the asterisk, "`*`" represents Clifford
-geometric product on the left hand side, and Hamilton's quaternionic
-multiplication on the right hand side.
 
+```{r defineqtoc}
+`quaternion_to_clifford` <- function(Q){
+  Q <- as.numeric(Q)
+  stopifnot(length(Q)==4)
+  clifford(list(numeric(0),c(1,2),c(1,3),c(2,3)),c(Q[1],-Q[2:4]))
+}
+```
+
+We may verify that these maps behave properly by defining some
+random-ish quaternions and Clifford objects:
+
+```{r defqh}
+q1 <- +1 + 2* -e(c(1,2)) + 3*-e(c(1,3)) + 4*-e(c(2,3))
+q2 <- -2 + 1* -e(c(1,2)) - 2*-e(c(1,3)) + 1*-e(c(2,3))
+H1 <- as.quaternion(c(3,-5,2,1),single=TRUE)
+H2 <- as.quaternion(c(1,2,-2,2),single=TRUE)
+```
+
+First, check that they are inverses of one another:
+
+```{r verifyinverse}
+c(  # check they are inverses of one another
+q1 == quaternion_to_clifford(clifford_to_quaternion(q1)),
+q2 == quaternion_to_clifford(clifford_to_quaternion(q2)),
+H1 == clifford_to_quaternion(quaternion_to_clifford(H1)),
+H2 == clifford_to_quaternion(quaternion_to_clifford(H2))
+)
+```
+
+
+Next, verify that they are homomorphisms:
+
+```{r}
+c(
+q1*q2 == quaternion_to_clifford(clifford_to_quaternion(q1)*clifford_to_quaternion(q2)),
+H1*H2 == clifford_to_quaternion(quaternion_to_clifford(H1)*quaternion_to_clifford(H2))
+)
+```
+
+Note that in package idiom the asterisk, "`*`" represents either
+Clifford geometric product or Hamilton's quaternionic multiplication
+depending on its arguments.
 
 ## Alternative mapping
 
@@ -132,7 +158,6 @@ $\operatorname{Cl}(0,3)$ with general element $q_0 + q_1e_{23}
 
 A quick-and-dirty R function might be
 
-
 ```{r}
 signature(0,3)
 cliff2quat <- function(C){
@@ -148,20 +173,23 @@ quat2cliff <- function(H){
 }
 ```
 
-Then:
+Then verification is straightforward:
 
 ```{r}
-cliff2quat(q1*q2) == cliff2quat(q1) * cliff2quat(q2)
+c(
+  cliff2quat(quat2cliff(H1)) == H1,
+  cliff2quat(quat2cliff(H2)) == H2,
+  quat2cliff(cliff2quat(q1)) == q1,
+  quat2cliff(cliff2quat(q2)) == q2,
+  cliff2quat(q1*q2) == cliff2quat(q1) * cliff2quat(q2),
+  quat2cliff(H1*H2) == quat2cliff(H1) * quat2cliff(H2)
+)
 ```
 
-(note that the multiplication `*` is Clifford product on the left but
-quaternionic product on the right).  We should go the other way too:
-
-```{r}
-Ha <- as.quaternion(c(7,-3,2,44),single=TRUE)
-Hb <- as.quaternion(c(-3,13,0,4),single=TRUE)
-quat2cliff(Ha*Hb) == quat2cliff(Ha)*quat2cliff(Hb)
+```{r,echo=FALSE}
+# restore default
+signature(Inf)
+options(maxdim=NULL)
 ```
-
 
 ## References
