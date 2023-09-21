@@ -1,7 +1,14 @@
 ---
-title: "Quaternions are a special case of Clifford algebra"
-output: html_document
+title: "Quaternionic arithmetic with Clifford algebra"
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteIndexEntry{Quaternionic arithmetic with Clifford algebra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -9,15 +16,16 @@ library("clifford")
 library("onion")
 ```
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-</p>
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
 
-
-This short document shows how quaternion arithmetic may be implemented
-as a special case of Clifford algebras.  This is done for illustrative
-purposes only; to manipulate quaternions in R the `onion` package is
-much more efficient and includes more transparent idiom.
+To cite the `clifford` package in publications please use
+[@hankin2022_clifford].  This short document shows how quaternionic
+arithmetic may be implemented as a special case of Clifford algebras.
+This is done for illustrative purposes only; to manipulate quaternions
+in R the `onion` package [@hankin2006_onion] is much more efficient
+and includes more transparent idiom.
 
 Hamilton's Broome Bridge insight:
 
@@ -154,3 +162,6 @@ Ha <- as.quaternion(c(7,-3,2,44),single=TRUE)
 Hb <- as.quaternion(c(-3,13,0,4),single=TRUE)
 quat2cliff(Ha*Hb) == quat2cliff(Ha)*quat2cliff(Hb)
 ```
+
+
+## References
