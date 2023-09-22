@@ -194,14 +194,14 @@ px <- point(c(1,0,0))
 py <- point(c(0,1,0))
 pz <- point(c(0,0,1))
 
-origin %^% px %^% py %^% pz
+origin ^ px ^ py ^ pz
 ```
 
 And this is the representation for a sphere (translating this into a
 center and radius is not yet implemented).  Slightly slicker R idiom might be:
 
 ```{r}
-spherestar <- function(...){Reduce(`%^%`,list(...))}
+spherestar <- function(...){Reduce(`^`,list(...))}
 spherestar(origin, px, py, pz)
 ```
 
@@ -239,7 +239,7 @@ infinity; the OPNS of plane is given by
 planestar <- function(...){ # OPNS; A^B^C^Inf
 	jj <- list(...)
     stopifnot(length(jj) == dimension)
-    Reduce(`%^%`,lapply(jj,point)) %^% einf
+    Reduce(`^`,lapply(jj,point)) %^% einf
 }
 ```
 
@@ -257,7 +257,7 @@ a circle is defined as the intersection of two spheres:
 
 ```{r}
 circle <- function(S1,S2){  # IPNS
-    S1 %^% S2
+    S1 ^ S2
 }
 ```
 
@@ -277,7 +277,7 @@ that lie on it:
 circlestar <- function(...){  # OPNS; A^B^C
 	jj <- list(...)
     stopifnot(length(jj) == dimension)
-    Reduce(`%^%`,lapply(jj,point))
+    Reduce(`^`,lapply(jj,point))
 }
 
 circlestar(c(1,2,3),c(5,6,3),c(8,8,-2))
@@ -288,11 +288,11 @@ circlestar(c(1,2,3),c(5,6,3),c(8,8,-2))
 
 ```{r}
 line <- function(P1,P2){  # IPNS
-    P1 %^% P2
+    P1 ^ P2
 }
 
 pointpair <- function(A,B){ # OPNS
-    A %^% B
+    A ^ B
 }
 ```
 
