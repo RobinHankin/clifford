@@ -1,7 +1,17 @@
 ---
-title: "Dual Quaternions via Clifford algebra"
-output: html_document
+title: "Dual quaternions via Clifford algebra"
+author: "Robin K. S. Hankin"
+bibliography: clifford.bib
+vignette: >
+  %\VignetteIndexEntry{Dual quaternions via Clifford algebra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
+```{r out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+knitr::include_graphics(system.file("help/figures/onion.png", package = "onion"))
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -10,12 +20,11 @@ library("onion")
 library("disordR")
 ```
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-![](`r system.file("help/figures/onion.png", package = "onion")`){width=10%}
-</p>
-
-Consider the following multiplication table:
+To cite the `clifford` package in publications please use
+@hankin2022_clifford.  This short document shows how dual quaternions
+may be implemented using Clifford algebra.  The dual quaternions are
+an interesting and useful mathematical object which finds applications
+in solid-body mechanics.  Consider the following multiplication table:
 
 ```{r,echo=FALSE}
 M <- noquote(matrix(c(
@@ -40,8 +49,9 @@ Thus, for example, $ij=k$ (not $-k$).  Here, $i,j,k$ are the unit
 quaternion basis elements (so $i^2=j^2=k^2=ijk=-1$) and $\varepsilon$
 is the dual unit that commutes with $i,j,k$ and satisfies
 $\varepsilon^2=0$.  We can implement this in a rough-and-ready way
-with the `onion` package by observing that a dual quaternion may be
-represented as $A+\varepsilon B$.  Thus
+with the `onion` package [@hankin2006_onion] by observing that a dual
+quaternion may be represented as $A+\varepsilon B$, where $A$ and $B$
+are quaternions.  Then
 
 \[
 (A+\varepsilon B)(C+\varepsilon D)== AC + \varepsilon(AD+BC)\]
@@ -138,3 +148,5 @@ The final verification is to check that functions `cliff_to_DQ()` and
 identical(DQ1,cliff_to_DQ(DQ_to_cliff(DQ1)))
 identical(C1,DQ_to_cliff(cliff_to_DQ(C1)))
 ```
+
+## References
