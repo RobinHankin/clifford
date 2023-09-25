@@ -13,9 +13,6 @@ library("clifford")
 library("onion")
 library("matlib") # needed for GramSchmidt()
 library("partitions") # needed for allbinom()
-comp <- function(LHS,RHS){
-  c(`Mod(LHS)` = Mod(LHS), `Mod(RHS)`=Mod(RHS), `Mod(LHS-RHS)` = Mod(LHS-RHS))
-}
 ```
 
 \newcommand{\gr}[1]{\left\langle #1\right\rangle}
@@ -29,7 +26,19 @@ This document goes through Hestenes and Sobczyk illustrating the
 various theorems and functions using package idiom.  Each page is a
 self-contained document, in which variables are defined at the
 beginning.  Direct quotes are shown in <span style="color:
-darkblue">dark blue.</span>
+darkblue">dark blue.</span> Many of the numerical verifications use
+(trivial) function `comp()`, which is intended to show that the
+numerical difference between two algebraically identical expressions
+is zero to within numerical roundoff error:
+
+```{r definecomp}
+`comp` <- function(LHS,RHS){
+  c(`Mod(LHS)` = Mod(LHS), `Mod(RHS)`=Mod(RHS), `Mod(LHS-RHS)` = Mod(LHS-RHS))
+}
+```
+
+However, direct numerical equality (as in `X==Y`) is used for clarity,
+if the coefficients are small integers amenable to exact comparison.
 
 
 # Page 3
@@ -51,6 +60,7 @@ $A+B=B+A\qquad (1.1)$
 
 ```{r pa}
 A+B == B+A
+comp(A+B, B+A)
 ```
 
 <span style="color: darkblue">
@@ -519,7 +529,7 @@ c(Mod(LHS),Mod(LHS-RHS1),Mod(LHS-RHS2))
 ```
 
 
-# Page 12
+# Page 13
 
 
 ```{r p12redefineAB}
@@ -549,7 +559,7 @@ RHS <- drop(
      grade(A,3,drop=FALSE) %dot% grade(B,3,drop=FALSE) +
      grade(A,4,drop=FALSE) %dot% grade(B,4,drop=FALSE)
     )    
-c(LHS,Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 <span style="color: darkblue">we can associate with any multivector
@@ -565,7 +575,7 @@ In the package, `Mod(x)` is defined as `sqrt(abs(eucprod(x,x)))` and
 ```{r p12mod}
 LHS <- Mod(A)^2
 RHS <- Conj(A) %star% A
-c(LHS,Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 # Page 14
@@ -585,12 +595,11 @@ $\left|A+B\right|^2 = \left|A\right|^2 + 2A^\dagger*B \left|B\right|^2\qquad(1.5
 ```{r p14modcheck}
 LHS <- Mod(A+B)^2
 RHS <- Mod(A)^2 + Mod(B)^2 + 2*rev(A) %star% B
-c(LHS,RHS-LHS)
+comp(LHS,RHS)
 ```
 
 <span style="color: darkblue">Sometines it is convenient to employ the
 _commutator_ product:</span>
-
 
 $A\times B=\frac{1}{2}(AB-BA)\qquad (1.55)$
 
@@ -598,11 +607,9 @@ $A\times B=\frac{1}{2}(AB-BA)\qquad (1.55)$
 A %X% B
 ```
 
-
 <span style="color: darkblue">Jacobi identity:</span>
 
 $A\times(B\times C) + B\times(C\times A)+C\times(A\times B)\qquad(1.56c)$
-
 
 ```{r e1.56c}
 Mod(A %X% (B %X% C) + B %X% (C %X% A) + C %X% (A %X% B))
@@ -616,7 +623,7 @@ $A\times(BC)=(A\times B)C+B(A\times C)\qquad(1.57)$
 ```{r e1.57}
 LHS <- A %X% (B*C)
 RHS <- (A %X% B)*C + B*(A %X% C)
-c(Mod(LHS),Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 # Page 15
@@ -649,7 +656,7 @@ $BA=B\cdot A + B\times A + B\wedge A\qquad (1.63)$
 ```{r e1.63}
 LHS <- B*A
 RHS <- B %dot% A + B %X% A + B ^ A
-c(Mod(LHS),Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 # Page 16
@@ -673,13 +680,13 @@ $B\times(A\wedge C) = (B\times A)\wedge C+ A\wedge(B\times C)\qquad(1.66)$
 ```{r e1.65}
 LHS <- B %X% (A %dot% C)
 RHS <- (B %X% A) %dot% C + A %dot% (B %X% C)
-c(Mod(LHS),Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 ```{r e1.66}
 LHS <- B %X% (A ^ C)
 RHS <- (B %X% A) ^ C + A ^ (B %X% C)
-c(Mod(LHS),Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 $B\times(a_1\wedge\cdots\wedge a_r)=\sum_{k=1}^r(-1)^{k+1}(B\cdot a_k)\wedge a_1\wedge\cdots\check{a_k}\cdots\wedge a_r\qquad (1.67)$
@@ -692,7 +699,7 @@ RHS <- (
         +(B %dot% a3) ^ a1 ^ a2      ^ a4  
         -(B %dot% a4) ^ a1 ^ a2 ^ a3
        )	 
-c(Mod(LHS),Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 $(a\wedge b)\times(c\wedge d)=a\wedge(b\cdot c\wedge d)-b\wedge(a\cdot c\wedge d)\qquad(1.68)$
@@ -700,7 +707,7 @@ $(a\wedge b)\times(c\wedge d)=a\wedge(b\cdot c\wedge d)-b\wedge(a\cdot c\wedge d
 ```{r e1.68}
 LHS <- (a1 ^ b1) %X% (c1 ^ d1)
 RHS <- a1 ^ (b1 %dot% (c1 ^ d1)) - b1 ^ (a1 %dot% (c1 ^ d1))
-c(Mod(LHS),Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 NB: Bracketing is important here, the wedge product should be carried
@@ -712,7 +719,7 @@ $(a\wedge b) \times (c\wedge b)=(a\wedge b\wedge c)\cdot b\qquad(1.69)$
 ```{r e1.69}
 LHS <- (a1 ^ b1) %X% (c1 ^ b1)
 RHS <- (a1 ^ b1 ^ c1) %dot% b1
-c(Mod(LHS),Mod(LHS-RHS))
+comp(LHS,RHS)
 ```
 
 # Page 17
@@ -739,10 +746,9 @@ A
 Now we take a wedge product of a linear combination of `a1 a2 a3`:
 
 ```{r wedgelinearprod}
-c(
-Mod((a1 + a2 + a3) ^ (a1-4*a2) ^ (-4*a1 + a2-6*a3) ^ (a2-a3)),
-Mod(a1 ^ a2 ^ a3 ^ (rnorm(1)*a1 + rnorm(1)*a2 + rnorm(1)*a3))
-)
+LHS <- Mod((a1 + a2 + a3) ^ (a1-4*a2) ^ (-4*a1 + a2-6*a3) ^ (a2-a3))
+RHS <- Mod(a1 ^ a2 ^ a3 ^ (rnorm(1)*a1 + rnorm(1)*a2 + rnorm(1)*a3))
+comp(LHS,RHS)
 ```
 
 $a_k\wedge A=0\qquad(2.4)$
@@ -750,8 +756,6 @@ $a_k\wedge A=0\qquad(2.4)$
 ```{r eq2.4}
 c(Mod(a1 ^ A), Mod(a2 ^ A), Mod(a3 ^ A), Mod(a4 ^ A))
 ```
-
-
 
 # Page 18
 
