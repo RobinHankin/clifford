@@ -1,6 +1,7 @@
 ---
 title: "The dot: commutators and the Jacobi identity in the clifford package"
 output: bookdown::html_document2
+bibliography: clifford_arxiv.bib
 ---
 
 ```{r setup,include=FALSE}
@@ -9,18 +10,19 @@ knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 ```
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-</p>
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
 
-
+To cite the `freealg` package in publications, please use
+@hankin2022_clifford.  In this short document I show how free algebras
 This short document introduces the dot object and shows how it can be
 used to work with commutators and verify the Jacobi identity.  In the
 `clifford` package, we define $\left[A,B\right] := (AB-BA)/2$.  The
 factor of $\frac{1}{2}$ is to consistentify the Lie bracket with the
 cross product $A\times B$.  The prototypical `dot.Rmd` is that of the
-`freealg` package.  The dot object is a (trivial) `S4` object of class
-`dot`:
+`freealg` package [@hankin2022_freealg].  The dot object is a
+(trivial) `S4` object of class `dot`:
 
 ```{r}
 `.` <- new("dot")
@@ -76,3 +78,5 @@ of the package.
 ```{r,label=savedotdataset}
 save(`.`,file="dot.rda")
 ```
+
+## References
