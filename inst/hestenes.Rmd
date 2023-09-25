@@ -61,7 +61,7 @@ $(A+B)+C =A+(B+C)\qquad (1.2)$
 $(AB)C =A(BC)\qquad (1.3)$
 
 
-```{r}
+```{r checkassoc}
 (A+B)+C == A+(B+C)
 (A*B)*C == A*(B*C)
 ```
@@ -73,7 +73,7 @@ $A(B+C)=A*B+A*C\qquad (1.4)$
 
 $(B+C)A=BA + CA\qquad (1.5)$
 
-```{r}
+```{r checkdistib}
 A*(B+C) == A*B + A*C
 (B+C)*A == B*A + C*A
 ```
@@ -87,7 +87,7 @@ $A+0=A\qquad (1.6)$
 $1A=A\qquad (1.7)$
 
 
-```{r}
+```{r checkzeroone}
 A + 0 == A
 1*A == A
 ```
@@ -105,7 +105,7 @@ Geometric algebra is set apart by _grades_:
 
 $A=\gr{A}_0+\gr{A}_1+\gr{A}_2+\cdots=\sum_r\gr{A}_r\qquad (1.9)$
 
-```{r}
+```{r checkgrades}
 A
 grade(A,0)
 grade(A,1)
@@ -116,7 +116,7 @@ grade(A,2)
 
 # Page 4
 
-```{r}
+```{r defABV}
 (A <- 3 + 4*e(1) -7*e(3) + 8*e(1:4))
 (B <- -e(1:3)  + 6*e(c(1,3,4)))
 (V <- e(1) + 5*e(2) -7*e(5))
@@ -125,7 +125,7 @@ grade(A,2)
 $\ldots$ if $A=\gr{A}_r$ for some positive integer $r$, we say $A$ is
 _homogeneous_ of grade $r$
 
-```{r}
+```{r checkishomog}
 is.homog(A)
 is.homog(B)
 ```
@@ -144,7 +144,7 @@ all(grade(A+B,2) == grade(A,2) + grade(B,2),grade(A*4,2) == 4*grade(A,2),grade(g
 
 [a _vector_ is a homogeneous multivector of grade 1].
 
-```{r}
+```{r vectorisohomoggrade1}
 is.1vector(A)
 is.1vector(V)
 ```
@@ -152,7 +152,7 @@ is.1vector(V)
 <span style="color: darkblue">
 the square of any nonzero vector $a$ is $\ldots$ real":</span>
 
-```{r}
+```{r squareisreal}
 V*V
 Mod(V)
 ```
@@ -169,20 +169,20 @@ where
 $a_ja_k=-a_ka_j$ for $i\neq j$.  In the package we can create blades
 as (scalar multiples of) products of basis vectors as in
 
-```{r}
+```{r bladesareprods}
 (X <- 4*e(1)*e(2)*e(6))
 ```
 
 But testing for an object being a blade is not yet implemented:
 
-```{r,error=TRUE}
+```{r notyetdone, error=TRUE}
 is.blade(X)
 ```
 
 
 # Page 5
 
-```{r}
+```{r p5kickoff}
 A <- +2 + 5*e(1) -7*e(1:2) + e(3)
 B <- -3 + 2*e(3) -7*e(2:3) + e(4)
 C <-      5*e(2)
@@ -215,7 +215,7 @@ $a=a^\dagger,\qquad a=\gr{a}_1\qquad(1.17d)$
 In the package we use `rev()` [notation in the package is detailed 
 in `rev.Rd`]:
 
-```{r}
+```{r checkrev}
 rev(A*B) == rev(B)*rev(A)
 rev(A+B) == rev(A) + rev(B)
 const(A) == const(rev(A))
@@ -225,7 +225,7 @@ rev(C)   == C
 # Page 6
 
 
-```{r}
+```{r p6kickoff}
 A <- +2 + 5*e(1) -7*e(1:2) + e(1:3) - e(1:4)
 B <- -3 + 7*e(1:2) +3*e(1:4)
 C <-      5*e(2)
@@ -273,15 +273,15 @@ $A\wedge B=\sum_r\sum_sA_\overline{r}\wedge B_\overline{s}\qquad(1.22c)$
 
 In the package:
 
-```{r}
-A %^% B
+```{r basicwedgeprod}
+A ^ B
 ```
 
 # Page 7
 
 (many algebraic properties of dot and wedge products)
 
-```{r}
+```{r manypropts}
 A <- +2 + 5*e(1) -7*e(1:2) + e(1:3) - e(1:4)
 B <- -3 + 7*e(1:2) +3*e(1:4)
 C <-      5*e(2)
@@ -290,9 +290,9 @@ C <-      5*e(2)
 $(A\wedge B)C=A\wedge BC\neq A\wedge(BC)$
 
 
-```{r}
-(A %^% B)*C == A %^%  B*C
-(A %^% B)*C == A %^% (B*C)
+```{r checkdistribwedgegeomprod}
+(A ^ B)*C == A ^  B*C
+(A ^ B)*C == A ^ (B*C)
 ```
 
 $(A\cdot B)C=A\cdot BC\neq A\cdot(BC)$
@@ -300,14 +300,14 @@ $(A\cdot B)C=A\cdot BC\neq A\cdot(BC)$
 Note that in package idiom, the inner product is usually denoted `%.%`
 but here is `%dot%` (the shorter form causes problems for markdown):
 
-```{r error=TRUE}
+```{r checkdot, error=TRUE}
 A %.% B
 ```
 
-I have no idea why this occurs.
+I do not understand markdown well enough to correct this.
 
 
-```{r}
+```{r ehcck}
 (A %dot% B)*C == A %dot%  B*C
 (A %dot% B)*C == A %dot% (B*C)
 ```
@@ -315,7 +315,7 @@ I have no idea why this occurs.
 
 # Page 8
 
-```{r}
+```{r p8first}
 a <- as.1vector(1:5)
 A <- -7*e(c(1,2)) + e(c(1,3)) - 5*e(c(4,5))
 B <-  3*e(c(1,2)) +3*e(c(2,5)) -3*e(c(3,4))
@@ -329,11 +329,11 @@ $A\cdot(B\wedge C) = A\cdot B\wedge C\neq (A\cdot B)\wedge C$
 product do not have the correct priority:
 </span>
 
-```{r}
-A %dot% (B %^% C)
-A %dot% B %^% C
-(A %dot% B) %^% C
-c(Mod(A %dot% (B %^% C) - A %dot% B %^% C),Mod((A %dot% B) %^% C - A %dot% B %^% C))
+```{r p8second}
+A %dot% (B ^ C)
+A %dot% B ^ C
+(A %dot% B) ^ C
+c(Mod(A %dot% (B ^ C) - A %dot% B ^ C),Mod((A %dot% B) ^ C - A %dot% B ^ C))
 ```
 
 <span style="color: darkblue">We say that a multivector $A_+$ is
@@ -345,7 +345,7 @@ $A=A_- + A_+\qquad(1.29)$
 
 In the package:
 
-```{r}
+```{r checkevenodd}
 is.even(evenpart(A))
 is.odd(oddpart(A))
 A == evenpart(A) + oddpart(A)
@@ -359,8 +359,8 @@ If $a$ is a vector and $A$ any multivector:
 $aA = a\cdot A + a\wedge A\qquad(1.31)$
 
 
-```{r}
-a*A == a %dot% A + a %^% A
+```{r vecmultivec}
+a*A == a %dot% A + a ^ A
 ```
 
 
@@ -383,7 +383,7 @@ $a\cdot(a_1a_2\ldots a_r) = \sum_{k=1}^r(-1)^{k+1}a\cdot a_k(a_1\ldots\check{a_k
 
 To illustrate package idiom I will use $n=9$ and $k=6$:
 
-```{r}
+```{r p9rnorm}
 a <- as.1vector(rnorm(9))
 a1 <- as.1vector(rnorm(9))
 a2 <- as.1vector(rnorm(9))
@@ -395,7 +395,7 @@ a
 
 Then
 
-```{r}
+```{r p9dots}
 LHS <- a %dot% (a1*a2*a3*a4)
 RHS <- (
        +(a %dot% a1)*(   a2*a3*a4)
@@ -408,7 +408,7 @@ comp(LHS,RHS)
 
 # Page 10
 
-```{r}
+```{r p10first}
 a <- as.1vector(rnorm(9))
 jj <- GramSchmidt(matrix(rnorm(81),9,9),normalize=FALSE)
 max(abs(jj[row(jj) != col(jj)])) # zero -> cols of jj are orthogonal
@@ -425,9 +425,9 @@ $a\wedge A_r=aA_r-a\cdot A_r = bA_r\qquad(1.35)$
 where $b=a-\sum_{k=1}^ra\cdot a_k a_k^{-1}$.  In package idiom:
 
 
-```{r}
+```{r p10second}
 b <- a - ((a%dot%a1)/a1 + (a%dot%a2)/a2 + (a%dot%a3)/a3 + (a%dot%a4)/a4)
-x1 <- a %^% A4
+x1 <- a ^ A4
 x2 <- a*A4-a %dot% A4
 x3 <- b*A4
 c(Mod(x1-x2),Mod(x1-x3))
@@ -444,7 +444,7 @@ $A_rB_s=\gr{A_rB_s}_{|r-s|} + \gr{A_rB_s}_{|r-s|+2}+\cdots + \gr{A_rB_s}_{|r+s|}
 
 Because of linearity the relation holds for any multivectors.
 
-```{r}
+```{r gradelinear}
 A <- rcliff(d=9,g=3,include.fewer=FALSE)
 B <- rcliff(d=9,g=4,include.fewer=FALSE)
 p <- A*B
@@ -453,9 +453,7 @@ comp(LHS=p, RHS=grade(p,1)+grade(p,3)+grade(p,5)+grade(p,7))
 
 # Page 11
 
-```{r}
-a <- as.1vector(rnorm(9))
-
+```{r p11gs}
 a <- as.1vector(rnorm(9))
 jj <- GramSchmidt(matrix(rnorm(81),9,9),normalize=FALSE)
 a1 <- as.1vector(jj[,1])
@@ -466,20 +464,20 @@ a4 <- as.1vector(jj[,4])
 
 $a\cdot(a_1\wedge a_2\wedge\ldots\wedge a_r)=\sum_{k=1}^r(-1)^{k+1}a\cdot a_k a_1\wedge\ldots\wedge\check{a_k}\wedge\ldots\wedge a_r\qquad(1.38)$
 
-```{r}
-LHS <- a %dot% (a1 %^% a2 %^% a3 %^% a4)
+```{r p11second}
+LHS <- a %dot% (a1 ^ a2 ^ a3 ^ a4)
 RHS <- (
-       +(a %dot% a1) * (       a2 %^% a3 %^% a4)
-       -(a %dot% a2) * (a1        %^% a3 %^% a4)
-       +(a %dot% a3) * (a1 %^% a2        %^% a4)
-       -(a %dot% a4) * (a1 %^% a2 %^% a3       )
+       +(a %dot% a1) * (       a2 ^ a3 ^ a4)
+       -(a %dot% a2) * (a1        ^ a3 ^ a4)
+       +(a %dot% a3) * (a1 ^ a2        ^ a4)
+       -(a %dot% a4) * (a1 ^ a2 ^ a3       )
 )
 comp(LHS,RHS)
 ```
 
 # Page 12
 
-```{r}
+```{r p12defAB}
 a <- as.1vector(rnorm(6))
 Ar <- rcliff(g=3, include.fewer=FALSE)  # r=3
 B <- rcliff()  # general multivector
@@ -503,20 +501,20 @@ a\wedge(A_rB) &= a\wedge A_rB + (-1)^rA_ra\cdot B\qquad &(1.41a)\\
 
 Here we have $r=3$.  For (1.41a) and (1.41b):
 
-```{r}
+```{r eq141a}
 LHS <- a %dot% (Ar*B)  # note bracketing ; usual idiom would be  a %.% (Ar*B)
 RHS1 <- a %dot% Ar*B - Ar*a %dot% B
-RHS2 <- a %^% Ar*B + Ar*a %^% B
+RHS2 <- a ^ Ar*B + Ar*a ^ B
 comp(LHS,RHS1)
 comp(LHS,RHS2)
 ```
 
 For (1.42a) and (1.42b):
 
-```{r}
-LHS <- a %^% (Ar*B)  # note bracketing
-RHS1 <- a %^% Ar*B + Ar*a %dot% B   # usual idiom a%^% Ar*B + Ar*a%.%B
-RHS2 <- a %dot% Ar*B - Ar*a %^% B
+```{r 142a142b}
+LHS <- a ^ (Ar*B)  # note bracketing
+RHS1 <- a ^ Ar*B + Ar*a %dot% B   # usual idiom a^ Ar*B + Ar*a%.%B
+RHS2 <- a %dot% Ar*B - Ar*a ^ B
 c(Mod(LHS),Mod(LHS-RHS1),Mod(LHS-RHS2))
 ```
 
@@ -524,7 +522,7 @@ c(Mod(LHS),Mod(LHS-RHS1),Mod(LHS-RHS2))
 # Page 12
 
 
-```{r}
+```{r p12redefineAB}
 A <- rcliff(g=4) + as.1vector(rnorm(4))
 B <- rcliff(g=4) + as.1vector(rnorm(4))
 A
@@ -564,7 +562,7 @@ In the package, `Mod(x)` is defined as `sqrt(abs(eucprod(x,x)))` and
 `eucprod(x,y)=grade(x,Conj(y),0)`.  Thus
 
 
-```{r}
+```{r p12mod}
 LHS <- Mod(A)^2
 RHS <- Conj(A) %star% A
 c(LHS,Mod(LHS-RHS))
@@ -572,7 +570,7 @@ c(LHS,Mod(LHS-RHS))
 
 # Page 14
 
-```{R}
+```{r p14kickoff}
 A <- rcliff()
 B <- rcliff()
 C <- rcliff()
@@ -584,7 +582,7 @@ cosines':</span>
 
 $\left|A+B\right|^2 = \left|A\right|^2 + 2A^\dagger*B \left|B\right|^2\qquad(1.53a)$
 
-```{r}
+```{r p14modcheck}
 LHS <- Mod(A+B)^2
 RHS <- Mod(A)^2 + Mod(B)^2 + 2*rev(A) %star% B
 c(LHS,RHS-LHS)
@@ -623,7 +621,7 @@ c(Mod(LHS),Mod(LHS-RHS))
 
 # Page 15
 
-```{r}
+```{r p15kickoff}
 a <- as.1vector(rnorm(7))
 b <- as.1vector(rnorm(7))
 d <- as.1vector(rnorm(7)) # not c
@@ -639,7 +637,7 @@ $a\cdot(b\wedge c) + c\cdot(d\wedge a)+c\cdot(a\wedge b)=0\qquad(1.61)$
 
 
 ```{r e1.61}
-Mod(a %dot% (b %^% d) + b %dot% (d %^% a) + d %dot% (a %^% b))  # d not c
+Mod(a %dot% (b ^ d) + b %dot% (d ^ a) + d %dot% (a ^ b))  # d not c
 ```
 
 <span style="color: darkblue">Thus we have quite generally</span>
@@ -650,7 +648,7 @@ $BA=B\cdot A + B\times A + B\wedge A\qquad (1.63)$
 
 ```{r e1.63}
 LHS <- B*A
-RHS <- B %dot% A + B %X% A + B %^% A
+RHS <- B %dot% A + B %X% A + B ^ A
 c(Mod(LHS),Mod(LHS-RHS))
 ```
 
@@ -679,20 +677,20 @@ c(Mod(LHS),Mod(LHS-RHS))
 ```
 
 ```{r e1.66}
-LHS <- B %X% (A %^% C)
-RHS <- (B %X% A) %^% C + A %^% (B %X% C)
+LHS <- B %X% (A ^ C)
+RHS <- (B %X% A) ^ C + A ^ (B %X% C)
 c(Mod(LHS),Mod(LHS-RHS))
 ```
 
 $B\times(a_1\wedge\cdots\wedge a_r)=\sum_{k=1}^r(-1)^{k+1}(B\cdot a_k)\wedge a_1\wedge\cdots\check{a_k}\cdots\wedge a_r\qquad (1.67)$
 
 ```{r e1.67}
-LHS <- B %X% (a1 %^% a2 %^% a3 %^% a4)
+LHS <- B %X% (a1 ^ a2 ^ a3 ^ a4)
 RHS <- (
-        +(B %dot% a1)        %^% a2 %^% a3 %^% a4 
-        -(B %dot% a2) %^% a1        %^% a3 %^% a4  
-        +(B %dot% a3) %^% a1 %^% a2        %^% a4  
-        -(B %dot% a4) %^% a1 %^% a2 %^% a3
+        +(B %dot% a1)      ^ a2 ^ a3 ^ a4 
+        -(B %dot% a2) ^ a1      ^ a3 ^ a4  
+        +(B %dot% a3) ^ a1 ^ a2      ^ a4  
+        -(B %dot% a4) ^ a1 ^ a2 ^ a3
        )	 
 c(Mod(LHS),Mod(LHS-RHS))
 ```
@@ -700,8 +698,8 @@ c(Mod(LHS),Mod(LHS-RHS))
 $(a\wedge b)\times(c\wedge d)=a\wedge(b\cdot c\wedge d)-b\wedge(a\cdot c\wedge d)\qquad(1.68)$
 
 ```{r e1.68}
-LHS <- (a1 %^% b1) %X% (c1 %^% d1)
-RHS <- a1 %^% (b1 %dot% (c1 %^% d1)) - b1 %^% (a1 %dot% (c1 %^% d1))
+LHS <- (a1 ^ b1) %X% (c1 ^ d1)
+RHS <- a1 ^ (b1 %dot% (c1 ^ d1)) - b1 ^ (a1 %dot% (c1 ^ d1))
 c(Mod(LHS),Mod(LHS-RHS))
 ```
 
@@ -712,14 +710,14 @@ out before the dot product.
 $(a\wedge b) \times (c\wedge b)=(a\wedge b\wedge c)\cdot b\qquad(1.69)$
 
 ```{r e1.69}
-LHS <- (a1 %^% b1) %X% (c1 %^% b1)
-RHS <- (a1 %^% b1 %^% c1) %dot% b1
+LHS <- (a1 ^ b1) %X% (c1 ^ b1)
+RHS <- (a1 ^ b1 ^ c1) %dot% b1
 c(Mod(LHS),Mod(LHS-RHS))
 ```
 
 # Page 17
 
-```{r p17}
+```{r p17kickoff}
 a1 <- as.1vector(rnorm(4))
 a2 <- as.1vector(rnorm(4))
 a3 <- as.1vector(rnorm(4))
@@ -734,23 +732,23 @@ First establish that the wedge product of these four vectors is a
 multiple of $I$:
 
 ```{r e2.2}
-A <- a1 %^% a2 %^% a3 %^% a4
+A <- a1 ^ a2 ^ a3 ^ a4
 A
 ```
 
 Now we take a wedge product of a linear combination of `a1 a2 a3`:
 
-```{r}
+```{r wedgelinearprod}
 c(
-Mod((a1 + a2 + a3) %^% (a1-4*a2) %^% (-4*a1 + a2-6*a3) %^% (a2-a3)),
-Mod(a1 %^% a2 %^% a3 %^% (rnorm(1)*a1 + rnorm(1)*a2 + rnorm(1)*a3))
+Mod((a1 + a2 + a3) ^ (a1-4*a2) ^ (-4*a1 + a2-6*a3) ^ (a2-a3)),
+Mod(a1 ^ a2 ^ a3 ^ (rnorm(1)*a1 + rnorm(1)*a2 + rnorm(1)*a3))
 )
 ```
 
 $a_k\wedge A=0\qquad(2.4)$
 
 ```{r eq2.4}
-c(Mod(a1 %^% A), Mod(a2 %^% A), Mod(a3 %^% A), Mod(a4 %^% A))
+c(Mod(a1 ^ A), Mod(a2 ^ A), Mod(a3 ^ A), Mod(a4 ^ A))
 ```
 
 
@@ -779,10 +777,10 @@ and
 $b_\perp= p_A^\perp(b)=b\wedge AA^{-1}\qquad(2.8c)$
 
 ```{r eq2.8b}
-A <- a1 %^% a2 %^% a3 %^% a4
+A <- a1 ^ a2 ^ a3 ^ a4
 A
 b_parallel <- (b %dot% A)/A
-b_perp <- (b %^% A)/A
+b_perp <- (b ^ A)/A
 zap(b_parallel)
 zap(b_perp)
 Mod(b-(b_parallel + b_perp))  # zero to numerical precision
@@ -816,7 +814,7 @@ $P_A(B) = (B\cdot A)\cdot A^{-1} = A^{-1}\cdot(A\cdot B)\qquad(2.9a)$
 
 Now the text points out that $P(\gr{B}) = P(\gr{B}_n) = 0$ and indeed:
 
-```{r}
+```{r p29checke}
 P <- function(B){Ainv %dot% (A %dot% B)}
 P(scalar(4444))
 P(e(1:3))
@@ -876,7 +874,7 @@ Mod(P(e(1:4))) # should be zero
 
 
 ```{r p21}
-A <- as.1vector(rnorm(5)) %^% as.1vector(rnorm(5)) %^% as.1vector(rnorm(5))
+A <- as.1vector(rnorm(5)) ^ as.1vector(rnorm(5)) ^ as.1vector(rnorm(5))
 Ainv <- -A/eucprod(A)
 P <- function(B){Ainv %o% (A %o% B)}  # NB %o% not %.% 
 
@@ -898,7 +896,7 @@ $P(BC)=BP(C)\qquad\mbox{if } P(B)\qquad(2.13e)$
 comp(P(1.1*B + 2.5234*C), 1.1*P(B) + 2.5234*P(C))
 comp(P(grade(B,2)), grade(P(B),2))
 comp(P(B),P(P(B)))
-comp(P(C %^% B),P(C) %^% P(B))
+comp(P(C ^ B),P(C) ^ P(B))
 comp(P(P(B)*C), P(B)*P(C))
 ```
 
@@ -922,7 +920,7 @@ B <- e(1) - e(2)
 Ainv <- A/2
 Binv <- B/2
 
-comp(A*B, A%^%B)
+comp(A*B, A^B)
 ```
 
 So we would expect $P_{BA}= P_B+P_A$:
