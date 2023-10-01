@@ -61,7 +61,7 @@ $alpha,\beta$.  To work in R, we first set up some basic features of
 conformal geometry:
 
 
-```{r}
+```{r setdims}
 dimension <- 3
 options("maxdim" = dimension+2)  # paranoid safety measure
 signature(dimension + 1,1)
@@ -75,28 +75,33 @@ E <- e0 ^ einf
 
 So
 
-```{r}
+```{r showe0einfE}
 e0
 einf
 E
 ```
 
-Now we can consider Euclidean vectors $\ba,\bb\in\mathbb{R}^3$ and
-conformal embeddings $\bA,\bB$ given by
+# Points
+
+
+With these definitions, we can consider Euclidean vectors
+$\ba,\bb\in\mathbb{R}^3$ and conformal embeddings $\bA,\bB$ given by
 
 \[
 \bA=C(\ba)=\ba+\ba^2\einf/2 +\ezero\qquad\bB=C(\bb)=\bb+\bb^2\einf/2 +\ezero
 \]
 
+This is straightforward in package idiom:
 
-```{r}
+```{r definepointfunc}
 point <- function(x){ as.1vector(x) + sum(x^2)*einf/2 + e0 }
 ```
 
-Then, for example
+Thus `point()` takes an R vector of length 3 and returns its conformal
+embedding.  For example, we may translate points $(1,2,5)$ and
+$(2,2,2)$ to their conformal equivalent:
 
-
-```{r}
+```{r pointexample}
 a <- c(1,2,5)
 b <- c(2,2,2)
 point(a)
@@ -104,12 +109,12 @@ point(b)
 ```
 
 
-It can be shown that
-$\bA\cdot\bB=-\left\lVert\ba-\bb\right\rVert^2/2$.  Package idiom to
-verify this would be
+It can be shown that $\bA\cdot\bB=-\left\lVert\ba-\bb\right\rVert^2/2$
+[where the dot product is the Clifford inner product, `%.%`].  Package
+idiom to verify this would be
 
 
-```{r}
+```{r verifypointfunc}
 c(conformal=drop(point(a) %.% point(b)), Euclidean = -sum((a-b)^2)/2)
 ```
 
@@ -125,39 +130,38 @@ We can define a sphere with center $\ba$ and radius $\rho$ as
 
 and then the sphere is just the inner product null space of $\bS$,
 that is $\left\lbrace\bx\colon\bS\cdot\bx=0\right\rbrace$.  This is
-straigtforward to implement computationally.  Suppose we have a sphere
-of radius 5, center $[1,2,3]$:
+straightforward to implement computationally.  Suppose we have a
+sphere of radius 5, center $(1,2,3)$:
 
-```{r}
+```{r definesphere}
 sphere <- function(x,r){ point(x) - r^2*einf/2}
 S <- sphere(1:3,5)  # center (1,2,3) radius 5:
 S
 ```
 
 Then object `S` is a conformal representation of such as sphere.  The
-radius $\rho$ can be calculated from $\bS^2=\rho^2$ and the center is
-given by $P=\bS\einf\bS$.  Package idiom:
+radius $\rho$ can be calculated from $\bS^2=\rho^2$.  Package idiom:
 
-```{r}
+```{r verifyradius}
 drop(S^2)   # 5^2 = 25
 ```
+Finding the center of the sphere is slightly more involved;
+Hildenbrand calls this the _sandwich_ product given by
+$P=\bS\einf\bS$:
 
-Finding the center of the sphere is slightly more involved:
-
-
-```{r}
+```{r calcsandichprod}
 S*einf*S
 ```
 
 Hildenbrand shows that the scaling factor is $-2$ so this gives us
 
-```{r}
+```{r usescaling}
 -S*einf*S/2
 ```
 
 which we recognise as the point $(1,2,3)$:
 
-```{r}
+```{r recog123}
 point(1:3)
 ```
 
@@ -185,9 +189,10 @@ Observe again that this parameterization does not require one to take
 a basis of $\mathbb{R}^3$, as all the results are presented in terms
 of vector quantities: at no point does one need to consider components
 or elements of any vector.  The R idiom for defining the sphere
-touching $P_1$ - $P_4$ is straightforward:
+touching $\left\lbrace P_1,P_2,P_3,P_4\right\rbrace$ is
+straightforward:
 
-```{r}
+```{r fourpoints}
 origin <- point(c(0,0,0))
 px <- point(c(1,0,0))
 py <- point(c(0,1,0))
@@ -199,7 +204,7 @@ origin ^ px ^ py ^ pz
 And this is the representation for a sphere (translating this into a
 center and radius is not yet implemented).  Slightly slicker R idiom might be:
 
-```{r}
+```{r definespherestar}
 spherestar <- function(...){Reduce(`^`,list(...))}
 spherestar(origin, px, py, pz)
 ```
@@ -214,7 +219,9 @@ plane <- function(n,d){ as.1vector(n/sqrt(sum(n^2))) + d*einf}
 ```
 
 For example, we consider the plane $\Pi$ with normal
-$\mathbf{n}=\left(1,2,5\right)$ and distance 7:
+$\mathbf{n}=\left(1,2,5\right)$ and distance 7.  We may use `plane()`
+above but first need to calculate
+$\hat{\mathbf{n}}=\mathbf{n}/\left|\mathbf{n}\right|$:
 
 ```{r generatend}
 n <- c(1,2,5)
@@ -251,10 +258,9 @@ c(drop(Pi %.% P1),drop(Pi %.% P2),drop(Pi %.% P3))
 Above we see zero (to numerical precision), showing that we do indeed
 have $7\hat{n} + \alpha\mathbf{u} +
 \beta\mathbf{v}\in\operatorname{IPNS}(\Pi)$ for at least these values
-of $\alpha$ and $\beta$.
-
-Alternatively, a plane can be thought of as a sphere that touches the
-point at infinity; thus the OPNS of plane is given by
+of $\alpha$ and $\beta$.  Alternatively, a plane can be thought of as
+a sphere that touches the point at infinity; thus the OPNS of plane is
+given by
 
 \[
 \pi^\star = P_1\wedge P_2\wedge P_3\wedge\einf
@@ -263,7 +269,7 @@ point at infinity; thus the OPNS of plane is given by
 where $P_1,P_2,P_3$ are any points that lie in the plane.  To
 illustrate this we will use the three points used in the IPNS above:
 
-```{r}
+```{r plane3points}
 Pi2 <- P1 ^ P2 ^ P3 ^ einf
 ```
 
@@ -271,7 +277,7 @@ Then for verification we can create another point known to be in the
 plane and check that this is in the OPNS.  Below we will use `p4`
 which is $d\hat{\mathbf{n}} + 7.6\mathbf{u} - 9.23\mathbf{v}$:
 
-```{r}
+```{r checkonplane}
 p4 <- point(d*nhat + 7.6*u - 9.23*v)
 Mod(Pi2 ^ p4)
 ```
@@ -279,12 +285,12 @@ Mod(Pi2 ^ p4)
 Above we see a very small result showing that `p4` is indeed in the
 OPNS of plane `Pi2`.
 
-## Circle
+# Circle
 
 a circle is defined as the intersection of two spheres:
 
 
-```{r}
+```{r definecirclefun}
 circle <- function(S1,S2){  # IPNS
     S1 ^ S2
 }
@@ -292,7 +298,7 @@ circle <- function(S1,S2){  # IPNS
 
 For example
 
-```{r}
+```{r usecirclefun}
 circle(sphere(1:3,5),sphere(c(1.1,2.1,3.4),6))
 ```
 
@@ -302,7 +308,7 @@ that lie on it:
 \[ Z^*=P_1\wedge P_2\wedge P_3\]
 
 
-```{r}
+```{r definecirclestar}
 circlestar <- function(...){  # OPNS; A^B^C
 	jj <- list(...)
     stopifnot(length(jj) == dimension)
@@ -317,21 +323,29 @@ circlestar(c(1,2,3),c(5,6,3),c(8,8,-2))
 A line is the intersection of two planes; in R:
 
 ```{r defline}
-line <- function(P1,P2){  # IPNS
-    P1 ^ P2
-}
+line <- function(P1,P2){ P1 ^ P2 }
 ```
 
 and a "point pair" is the intersection of three spheres; in R:
 
 ```{r defpp}
-pointpair <- function(S1,S2,S3){ # OPNS
-    S1 ^ S2 ^ S3
-}
+pointpair <- function(S1,S2,S3){ S1 ^ S2 ^ S3 }
 ```
 
+It is not at all obvious that three spheres intersect in a pair of
+points; and still less obvious that the process is associative.
+However, we may verify associativity explicitly:
 
-```{r restoredefault}
+
+```{r verifypointpairassoc}
+S1 <- sphere(c(3,2,4),3)
+S2 <- sphere(c(3,1,4),4)
+S3 <- sphere(c(1,3,3),3)
+(S1^S2)^S3
+(S1^S2)^S3 == S1^(S2^S3)
+```
+
+```{r restoredefault, echo=FALSE}
 options("maxdim" = NULL) # restore default
 ```
 
