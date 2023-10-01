@@ -36,13 +36,13 @@ knitr::include_graphics(system.file("help/figures/clifford.png", package = "clif
 
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how Clifford
-algebra can be applied to conformal geometry, and uses `clifford` R
-package; it follows @hildenbrand2013 and @perwass2009.  Here we
-work in $\operatorname{Cl}(p,q)$, which Perwass denotes
-$\mathbb{G}_{p,q}$.  The set of grade-$k$ objects is denoted
-$\mathbb{G}_{p,q}^k$.  First we define the IPNS and OPNS [inner
-product null space and outer product null space] of $\ak$:
+@hankin2022_clifford.  This short document shows how Clifford algebra
+can be applied to conformal geometry using the `clifford` R package;
+it follows @hildenbrand2013 and @perwass2009.  Here we work in
+$\operatorname{Cl}(p,q)$, which Perwass denotes $\mathbb{G}_{p,q}$.
+The set of grade-$k$ objects is denoted $\mathbb{G}_{p,q}^k$.  First
+we define the IPNS and OPNS [inner product null space and outer
+product null space] of $\ak$:
 
 \[
 \mathbb{NI}(\ak)=\left\lbrace bx\in\mathbb{G}^1_{p,q}\colon\bx\cdot\ak=0\right\rbrace
@@ -56,11 +56,9 @@ Thus if $\ak=\bigwedge_{i=1}^k\ba_i$, then
 $\mathbb{NO}(\ak)=\operatorname{span}(\ba_1,\ldots,\ba_k)\subseteq\mathbb{R}^{p,q}$.
 Further, $\mathbb{NO}(\ak)$ is linear in the sense that
 $\bx,\by\in\mathbb{NO}(\ak)$ implies
-$\alpha\bx+\beta\by\in\mathbb{NO}(\ak)\forall\alpha,\beta\in\mathbb{R}$.
-
-
-To work in R, we first set up some basic features of conformal
-geometry:
+$\alpha\bx+\beta\by\in\mathbb{NO}(\ak)$ for any real numbers
+$alpha,\beta$.  To work in R, we first set up some basic features of
+conformal geometry:
 
 
 ```{r}
@@ -112,7 +110,7 @@ verify this would be
 
 
 ```{r}
-c(conformal=drop(point(a)  %.% point(b)), Euclidean = -sum((a-b)^2)/2)
+c(conformal=drop(point(a) %.% point(b)), Euclidean = -sum((a-b)^2)/2)
 ```
 
 showing that the two results match.
@@ -126,10 +124,9 @@ We can define a sphere with center $\ba$ and radius $\rho$ as
 \]
 
 and then the sphere is just the inner product null space of $\bS$,
-that is $\left\lbrace\bx\colon\bS\cdot\bx=0\right\rbrace$.  The radius
-$\rho$ can be calculated from a given sphere from $\bS^2=\rho^2$ and
-the point is given by $P=\bS\einf\bS$.  Package idiom:
-
+that is $\left\lbrace\bx\colon\bS\cdot\bx=0\right\rbrace$.  This is
+straigtforward to implement computationally.  Suppose we have a sphere
+of radius 5, center $[1,2,3]$:
 
 ```{r}
 sphere <- function(x,r){ point(x) - r^2*einf/2}
@@ -137,10 +134,9 @@ S <- sphere(1:3,5)  # center (1,2,3) radius 5:
 S
 ```
 
-The radius $\rho$ can be calculated from a given sphere from
-$\bS^2=\rho^2$ and the point is given by $P=\bS\einf\bS$.  Package
-idiom:
-
+Then object `S` is a conformal representation of such as sphere.  The
+radius $\rho$ can be calculated from $\bS^2=\rho^2$ and the center is
+given by $P=\bS\einf\bS$.  Package idiom:
 
 ```{r}
 drop(S^2)   # 5^2 = 25
@@ -185,8 +181,11 @@ and points that lie on the sphere are the set
 
 \[\left\lbrace\bx\colon\bx\wedge S^*=0\right\rbrace.\]
 
-
-The R idiom for this is straightforward:
+Observe again that this parameterization does not require one to take
+a basis of $\mathbb{R}^3$, as all the results are presented in terms
+of vector quantities: at no point does one need to consider components
+or elements of any vector.  The R idiom for defining the sphere
+touching $P_1$ - $P_4$ is straightforward:
 
 ```{r}
 origin <- point(c(0,0,0))
@@ -210,47 +209,77 @@ spherestar(origin, px, py, pz)
 A plane is defined as $\bn + d\einf$, where $\bn$ is the unit normal
 and $d$ the distance to the origin.
 
-
-```{r}
-plane <- function(n,d){ # IPNS
-    stopifnot(length(n)==dimension)
-    stopifnot(length(d) == 1)
-    as.1vector(n/sqrt(sum(n^2))) + d*einf
-}
+```{r defineplanefunc}
+plane <- function(n,d){ as.1vector(n/sqrt(sum(n^2))) + d*einf}
 ```
 
-For example, we consider the unit normal
-$\frac{1}{\sqrt{3}}\left(1,2,3\right)$ with distance 5:
+For example, we consider the plane $\Pi$ with normal
+$\mathbf{n}=\left(1,2,5\right)$ and distance 7:
 
-```{r}
-pl <- plane(1:3,5)
-pl
+```{r generatend}
+n <- c(1,2,5)
+nhat <- n/sqrt(sum(n^2))
+d <- 7
+Pi <- plane(nhat,d)
+Pi
 ```
 
-A plane can also be thought of as a sphere that touches the point at
-infinity; the OPNS of plane is given by
+Just to check, we may verify that some points known to lie in $\Pi$
+are in fact in its IPNS.  We observe that the point
+$7\hat{\mathbf{n}}\in\Pi$, and also that vectors $\mathbf{u}=(2,-1,0)$
+and $\mathbf{v}=(5,0,-1)$ are orthogonal to the normal of $\Pi$.  So
+$7\hat{n} + \alpha\mathbf{u} + \beta\mathbf{v}\in\Pi$ for any real
+numbers $\alpha,\beta$.  In R:
+
+```{r generateuvp1p2p3}
+u <- c(2,-1,0)
+v <- c(5,0,-1)
+P1 <- point(d*nhat)                
+P2 <- point(d*nhat + 1.3*u + 3.44*v)
+P3 <- point(d*nhat - 6.1*u + 1.02*v)
+```
+
+Above we use some made-up values of $\alpha,\beta$ to generate `P1`,
+`P2`, `P3` which are known to lie in plane $\Pi$.  Then to verify that
+these points lie in the IPNS of $\Pi$ we need to take the inner
+product with the conformal representation of $\Pi$:
+
+```{r verifyplaneipns}
+c(drop(Pi %.% P1),drop(Pi %.% P2),drop(Pi %.% P3))
+```
+
+Above we see zero (to numerical precision), showing that we do indeed
+have $7\hat{n} + \alpha\mathbf{u} +
+\beta\mathbf{v}\in\operatorname{IPNS}(\Pi)$ for at least these values
+of $\alpha$ and $\beta$.
+
+Alternatively, a plane can be thought of as a sphere that touches the
+point at infinity; thus the OPNS of plane is given by
 
 \[
 \pi^\star = P_1\wedge P_2\wedge P_3\wedge\einf
 \]
 
+where $P_1,P_2,P_3$ are any points that lie in the plane.  To
+illustrate this we will use the three points used in the IPNS above:
 
 ```{r}
-planestar <- function(...){ # OPNS; A^B^C^Inf
-	jj <- list(...)
-    stopifnot(length(jj) == dimension)
-    Reduce(`^`,lapply(jj,point)) %^% einf
-}
+Pi2 <- P1 ^ P2 ^ P3 ^ einf
 ```
 
-For example
+Then for verification we can create another point known to be in the
+plane and check that this is in the OPNS.  Below we will use `p4`
+which is $d\hat{\mathbf{n}} + 7.6\mathbf{u} - 9.23\mathbf{v}$:
 
 ```{r}
-planestar(1:3,3:1,c(2,2,7))
+p4 <- point(d*nhat + 7.6*u - 9.23*v)
+Mod(Pi2 ^ p4)
 ```
 
+Above we see a very small result showing that `p4` is indeed in the
+OPNS of plane `Pi2`.
 
-# Circle
+## Circle
 
 a circle is defined as the intersection of two spheres:
 
@@ -283,20 +312,26 @@ circlestar <- function(...){  # OPNS; A^B^C
 circlestar(c(1,2,3),c(5,6,3),c(8,8,-2))
 ```
 
-## Line
+# Lines and point pairs
 
+A line is the intersection of two planes; in R:
 
-```{r}
+```{r defline}
 line <- function(P1,P2){  # IPNS
     P1 ^ P2
 }
+```
 
-pointpair <- function(A,B){ # OPNS
-    A ^ B
+and a "point pair" is the intersection of three spheres; in R:
+
+```{r defpp}
+pointpair <- function(S1,S2,S3){ # OPNS
+    S1 ^ S2 ^ S3
 }
 ```
 
-```{r}
+
+```{r restoredefault}
 options("maxdim" = NULL) # restore default
 ```
 
