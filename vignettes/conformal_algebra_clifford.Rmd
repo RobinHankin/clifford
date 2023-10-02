@@ -42,24 +42,46 @@ it follows @hildenbrand2013 and @perwass2009.  Here we work in
 $\operatorname{Cl}(p,q)$, which Perwass denotes $\mathbb{G}_{p,q}$.
 The set of grade-$k$ objects is denoted $\mathbb{G}_{p,q}^k$.  First
 we define the IPNS and OPNS [inner product null space and outer
-product null space] of $\ak$:
+product null space] of $\mathbf{A}\in\mathbb{G}_{p,q}^k$.
 
 \[
-\mathbb{NI}(\ak)=\left\lbrace bx\in\mathbb{G}^1_{p,q}\colon\bx\cdot\ak=0\right\rbrace
+\operatorname{IPNS}(\mathbf{A})=\left\lbrace\bx\in\mathbb{G}^1_{p,q}\colon\bx\cdot\mathbf{A}=0\right\rbrace
 \]
 
 \[
-\mathbb{NO}(\ak)=\left\lbrace bx\in\mathbb{G}^1_{p,q}\colon\bx\wedge\ak=0\right\rbrace
+\operatorname{OPNS}(\mathbf{A})=\left\lbrace\bx\in\mathbb{G}^1_{p,q}\colon\bx\wedge\mathbf{A}=0\right\rbrace
 \]
 
-Thus if $\ak=\bigwedge_{i=1}^k\ba_i$, then
-$\mathbb{NO}(\ak)=\operatorname{span}(\ba_1,\ldots,\ba_k)\subseteq\mathbb{R}^{p,q}$.
-Further, $\mathbb{NO}(\ak)$ is linear in the sense that
-$\bx,\by\in\mathbb{NO}(\ak)$ implies
-$\alpha\bx+\beta\by\in\mathbb{NO}(\ak)$ for any real numbers
-$alpha,\beta$.  To work in R, we first set up some basic features of
-conformal geometry:
+Thus if $\mathbf{A}=\ak=\bigwedge_{i=1}^k\ba_i$, then
+$\operatorname{OPNS}(\mathbf{A})=\operatorname{span}(\ba_1,\ldots,\ba_k)\subseteq\mathbb{G}_{p,q}$.
+Further, $\operatorname{OPNS}(\mathbf{A})$ is linear in the sense that
+$\bx,\by\in\operatorname{OPNS}(\mathbf{A})$ implies
+$\alpha\bx+\beta\by\in\operatorname{OPNS}(\mathbf{A})$ for any real
+numbers $\alpha,\beta$.  We will use this system to express a
+geometrical object $\mathcal{G}\subset\mathbb{R}^3$ (such as a sphere
+or a line) as a point $\mathbf{P}$ in $\operatorname{Cl}(4,1)$; the
+idea is that the IPNS or OPNS of $\mathbf{P}$ is $\mathcal{G}$.  This
+allows one to express geometrical ideas in pure Clifford formalism,
+without recourse to the inelegant procedure of taking a basis.
 
+To work in R, we set up some basic features of conformal geometry.
+Specifically, we consider the three Euclidean basis vectors
+$\mathbf{e}_1$, $\mathbf{e}_2$, $\mathbf{e}_3$ together with two
+additional basis vectors $\mathbf{e}_+$ and $\mathbf{e}_-$ obeying
+$\mathbf{e}_+^2=1$, $\mathbf{e}_-^2=0$,
+$\mathbf{e}_+\cdot\mathbf{e}_-=0$.  If we define
+
+\[
+\ezero=\frac{1}{2}\left(\mathbf{e}_--\mathbf{e}_+\right),\qquad
+\einf =\mathbf{e}_- +\mathbf{e}_+
+\]
+
+then we may say that $\ezero$ represents "the origin" and $\einf$
+represents "the point at infinity".  We see that $\ezero^2=\einf^2=0$
+and $\einf\cdot\ezero=-1$; the geometric product is given by and
+$\einf\ezero=-E-1$ and $\ezero\einf=E-1$ where $E=\einf\wedge\ezero$.
+It is straightforward to implement these objects using the `clifford`
+package:
 
 ```{r setdims}
 dimension <- 3
