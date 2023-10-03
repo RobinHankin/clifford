@@ -1,5 +1,5 @@
 ---
-title: "Conformal geometry with Clifford algebra"
+title: "Conformal geometry with the `clifford` R package"
 author: "Robin K. S. Hankin"
 output: html_vignette
 bibliography: clifford.bib
@@ -36,9 +36,9 @@ knitr::include_graphics(system.file("help/figures/clifford.png", package = "clif
 
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how Clifford algebra
-can be applied to conformal geometry using the `clifford` R package;
-it follows @hildenbrand2013 and @perwass2009.  Here we work in
+@hankin2022_clifford.  This short document shows how conformal
+geometry may be implemented using the `clifford` R package; it follows
+@hildenbrand2013 and @perwass2009.  Here we work in
 $\operatorname{Cl}(p,q)$, which Perwass denotes $\mathbb{G}_{p,q}$.
 The set of grade-$k$ objects is denoted $\mathbb{G}_{p,q}^k$.  First
 we define the IPNS and OPNS [inner product null space and outer
@@ -62,7 +62,7 @@ geometrical object $\mathcal{G}\subset\mathbb{R}^3$ (such as a sphere
 or a line) as a point $\mathbf{P}$ in $\operatorname{Cl}(4,1)$; the
 idea is that the IPNS or OPNS of $\mathbf{P}$ is $\mathcal{G}$.  This
 allows one to express geometrical ideas in pure Clifford formalism,
-without recourse to the inelegant procedure of taking a basis.
+without needing to take a dangerous and unsightly basis.
 
 To work in R, we set up some basic features of conformal geometry.
 Specifically, we consider the three Euclidean basis vectors
@@ -78,7 +78,7 @@ $\mathbf{e}_+\cdot\mathbf{e}_-=0$.  If we define
 
 then we may say that $\ezero$ represents "the origin" and $\einf$
 represents "the point at infinity".  We see that $\ezero^2=\einf^2=0$
-and $\einf\cdot\ezero=-1$; the geometric product is given by and
+and $\einf\cdot\ezero=-1$; the geometric product is given by
 $\einf\ezero=-E-1$ and $\ezero\einf=E-1$ where $E=\einf\wedge\ezero$.
 It is straightforward to implement these objects using the `clifford`
 package:
@@ -220,7 +220,7 @@ px <- point(c(1,0,0))
 py <- point(c(0,1,0))
 pz <- point(c(0,0,1))
 
-origin ^ px ^ py ^ pz
+(S <- origin ^ px ^ py ^ pz)
 ```
 
 And this is the representation for a sphere (translating this into a
@@ -231,10 +231,24 @@ spherestar <- function(...){Reduce(`^`,list(...))}
 spherestar(origin, px, py, pz)
 ```
 
+As a verification, we may check that point
+$\left(\frac{1}{2},\frac{1}{2},\frac{1}{2}+\frac{\sqrt{3}}{2}\right)$
+is on the sphere as well:
+
+```{r checksphere}
+p <- point(c(1,1,1+sqrt(3))/2)
+Mod(p ^ S)
+```
+
+Above we see that $p\wedge S$ is zero to within numerical error.
+Again observe that this is established _without_ taking a basis of
+$\mathbb{R}^3$.
+
+
 # Planes
 
-A plane is defined as $\bn + d\einf$, where $\bn$ is the unit normal
-and $d$ the distance to the origin.
+A plane is defined as $\hat{\bn} + d\einf$, where $\hat{\bn}$ is the
+unit normal and $d$ the distance to the origin.
 
 ```{r defineplanefunc}
 plane <- function(n,d){ as.1vector(n/sqrt(sum(n^2))) + d*einf}
@@ -257,8 +271,8 @@ Just to check, we may verify that some points known to lie in $\Pi$
 are in fact in its IPNS.  We observe that the point
 $7\hat{\mathbf{n}}\in\Pi$, and also that vectors $\mathbf{u}=(2,-1,0)$
 and $\mathbf{v}=(5,0,-1)$ are orthogonal to the normal of $\Pi$.  So
-$7\hat{n} + \alpha\mathbf{u} + \beta\mathbf{v}\in\Pi$ for any real
-numbers $\alpha,\beta$.  In R:
+$7\hat{\mathbf{n}} + \alpha\mathbf{u} + \beta\mathbf{v}\in\Pi$ for any
+real numbers $\alpha,\beta$.  In R:
 
 ```{r generateuvp1p2p3}
 u <- c(2,-1,0)
@@ -278,7 +292,7 @@ c(drop(Pi %.% P1),drop(Pi %.% P2),drop(Pi %.% P3))
 ```
 
 Above we see zero (to numerical precision), showing that we do indeed
-have $7\hat{n} + \alpha\mathbf{u} +
+have $7\hat{\bn} + \alpha\mathbf{u} +
 \beta\mathbf{v}\in\operatorname{IPNS}(\Pi)$ for at least these values
 of $\alpha$ and $\beta$.  Alternatively, a plane can be thought of as
 a sphere that touches the point at infinity; thus the OPNS of plane is
@@ -309,8 +323,7 @@ OPNS of plane `Pi2`.
 
 # Circle
 
-a circle is defined as the intersection of two spheres:
-
+A circle is defined as the intersection of two spheres:
 
 ```{r definecirclefun}
 circle <- function(S1,S2){  # IPNS
@@ -337,8 +350,40 @@ circlestar <- function(...){  # OPNS; A^B^C
     Reduce(`^`,lapply(jj,point))
 }
 
-circlestar(c(1,2,3),c(5,6,3),c(8,8,-2))
+(CIRC <- circlestar(c(1,2,3),c(5,6,3),c(8,8,-2)))
 ```
+
+verify:
+
+
+```{r usenumericstofindapointoncircle,echo=FALSE,cache=TRUE}
+M <- rbind (c(1,2,3),c(5,6,3),c(8,8,-2))
+badness_center <- function(pos){
+  bad1 <-  sd(c(
+  sum((pos-M[1,])^2),
+  sum((pos-M[2,])^2),
+  sum((pos-M[3,])^2)))   # pos should be equidistant from rows of M
+  bad2 <- abs(det(sweep(M,2,pos))) # pos should be collinear with rows of M
+  return(bad1+bad2)
+  }
+
+center <- nlm(badness_center,c(0,0,0))$estimate
+badness_pointoncircle <- function(pos){ # pos is a point [that should be] on the circle
+bad1 <-  var(c(sum((center-M[1,])^2), sum((center-M[2,])^2), sum((center-M[3,])^2),   sum((center-pos  )^2)))
+bad2 <-  abs(det(sweep(M,2,pos))) # pos should be coplanar with M[i,]
+return(bad1+bad2)
+}
+
+poc <- point(nlm(badness_pointoncircle,c(0,0,0))$estimate)
+```
+
+```{r verifycircleusingnum}
+poc  # point on circle, found numerically [chunk omitted]
+poc ^ CIRC
+```
+
+Above we see that `poc` is at least close to the circle from the small
+magnitude of the terms in the wedge product.
 
 # Lines and point pairs
 
