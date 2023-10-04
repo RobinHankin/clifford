@@ -44,13 +44,12 @@ The set of grade-$k$ objects is denoted $\mathbb{G}_{p,q}^k$.  First
 we define the IPNS and OPNS [inner product null space and outer
 product null space] of $\mathbf{A}\in\mathbb{G}_{p,q}^k$.
 
-\[
-\operatorname{IPNS}(\mathbf{A})=\left\lbrace\bx\in\mathbb{G}^1_{p,q}\colon\bx\cdot\mathbf{A}=0\right\rbrace
-\]
-
-\[
-\operatorname{OPNS}(\mathbf{A})=\left\lbrace\bx\in\mathbb{G}^1_{p,q}\colon\bx\wedge\mathbf{A}=0\right\rbrace
-\]
+$$
+\begin{eqnarray}
+\operatorname{IPNS}(\mathbf{A}) &=& \left\lbrace\bx\in\mathbb{G}^1_{p,q}\colon\bx\cdot\mathbf{A}  = 0\right\rbrace\\
+\operatorname{OPNS}(\mathbf{A}) &=& \left\lbrace\bx\in\mathbb{G}^1_{p,q}\colon\bx\wedge\mathbf{A} = 0\right\rbrace
+\end{eqnarray}
+$$
 
 Thus if $\mathbf{A}=\ak=\bigwedge_{i=1}^k\ba_i$, then
 $\operatorname{OPNS}(\mathbf{A})=\operatorname{span}(\ba_1,\ldots,\ba_k)\subseteq\mathbb{G}_{p,q}$.
