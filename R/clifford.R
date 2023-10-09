@@ -163,7 +163,7 @@ setGeneric("dim")
 `scalar` <- function(x=1){clifford(list(numeric(0)),x)}
 `as.scalar` <- `scalar`
 `as.1vector` <- function(x){clifford(as.list(seq_along(x)),x)}
-`pseudoscalar` <- function(n,x=1){clifford(list(seq_len(n)),x)}
+`pseudoscalar` <- function(n=getOption("maxdim")){e(seq_len(n))}
 `as.pseudoscalar` <- `pseudoscalar`
 `is.pseudoscalar` <- function(C){
     if(is.zero(C)){return(TRUE)}
@@ -429,4 +429,5 @@ setMethod("[", signature(x="dot",i="clifford",j="ANY"),
 
 setGeneric("sort")
 setGeneric("lapply")
+
 
