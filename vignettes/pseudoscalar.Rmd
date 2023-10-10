@@ -21,6 +21,7 @@ registerS3method(
   "knit_print", "function", knit_print.function,
   envir = asNamespace("knitr")
 )
+
 ```
 
 ```{r out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
@@ -131,7 +132,9 @@ BI$ for vector $a$ and multivectors $A,B$:
 
 ```{r showbits}
 options(maxdim=7)   
+signature(7)
 I <- pseudoscalar()
+I
 a <- as.1vector(sample(1:10,5))
 A <-  rcliff()
 B <- rcliff()
@@ -141,12 +144,18 @@ A  # B looks very similar
 
 Above we choose randomish values for vector $a$ and multivectors
 $A,B$.  Observe that $A$ and $B$ have terms of different grades; they
-are not homogenous.  Numerical verification is straightforward:
+are not homogenous.  Numerical verification is straightforward [NB:
+`%.%` breaks markdown documents]:
 
 ```{r showverif}
-a %.% (A*I)
-A%.%(B*I)
-c(Mod(a%.%(A*I) - (a^A)*I)  ,  Mod(A%.%(B*I) - (A^B)*I))
+LHS <- cliffdotprod(a, A*I) # Usual idiom would be "a %.% (A*I)"
+RHS <- (a^A)*I
+LHS - RHS
+
+
+LHS <- cliffdotprod(A, B*I) # Usual idiom would be "A %.% (B*I)"
+RHS <- (A^B)*I
+LHS - RHS
 ```
 
 ```{r restoredefaults,echo=FALSE}

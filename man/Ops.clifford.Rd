@@ -235,7 +235,9 @@ C1 \%|_\% C2
   needs a terse idiomatic representation (although there \code{A\%^\%B}
   returns the wedge product too).
 
-
+  \strong{Using \code{\%.\%} causes severe and weird difficult-to-debug
+  problems in markdown docuents}
+     
   }
 \references{
 E. Hitzer and S. Sangwine 2017.  \dQuote{Multivector and multivector
