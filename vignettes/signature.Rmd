@@ -1,0 +1,99 @@
+---
+title: "Function `signature()` in the `clifford` package"
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{signature}
+  %\usepackage[utf8]{inputenc}
+---
+ 
+
+```{r setup, include=FALSE}
+set.seed(0)
+library("clifford")
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+knit_print.function <- function(x, ...){dput(x)}
+registerS3method(
+  "knit_print", "function", knit_print.function,
+  envir = asNamespace("knitr")
+)
+```
+
+```{r out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+knitr::include_graphics(system.file("help/figures/lorentz.png", package = "lorentz"))
+```
+
+```{r showsigdef}
+signature
+```
+
+To cite the `clifford` package in publications please use
+@hankin2022_clifford.  This short document discusses `signature()` in
+the `clifford` R package.  As an example we might wish to work in
+$\operatorname{Cl}(1,2)$:
+
+```{r label=sig34}
+signature(1,2)
+```
+
+Thus $e_1^2=+1$, and $e_2^2=e_3^2=-1$:
+
+```{r showp}
+c(drop(e(1)^2),drop(e(2)^2),drop(e(3)^2))
+```
+
+We might ask what $e_4$ would evaluate to, and this is assumed to be
+zero as is $e_i^2$ for $i\geqslant 4$:
+
+```{r showg4}
+c(drop(e(4)^2),drop(e(100)^2))
+```
+
+If we wish to set paranoid-level safety measures, we would set option
+`maxdim` to prevent accidentally working with too-large values of $i$:
+
+```{r usemaxdim}
+options(maxdim = 4)
+```
+
+Now we work with a four-dimensional vector space in which
+$e_1^2=+1,e_2^2=e_3^2=-1,e_4^2=0$, but now $e_5$ is undefined:
+
+```{r showerror, error=TRUE}
+c(drop(e(1)^2),drop(e(2)^2),drop(e(3)^2),drop(e(4)^2))
+e(5)
+```
+
+The operation of `signature()` is modelled on the `sol()` function in
+the `lorentz` package [@hankin2022_lorentz].  Thus, if given no
+arguments we return the signature:
+
+```{r showsig}
+signature()
+```
+
+However, the default value is to use an infinite signature which
+corresponds to $e_i^2=1\forall i$:
+
+```{r showinfinitesig}
+options(maxdim=NULL)
+signature(Inf)
+signature()
+```
+
+Function `signature()` returns an object of (trivial) class `sigobj`
+which has a bespoke print method.  For technical reasons an infinite
+signature is not allowed but is represented internally by a
+near-infinite integer, specifically `.Machine$integer.max`:
+
+
+```{r dputinfinitesig}
+dput(signature())
+```
+
+
+# References

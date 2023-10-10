@@ -9,6 +9,10 @@
         return(s)
     } else { # p not missing, set signature
         s <- c(p,q)
+        m <- getOption("maxdim")
+        if(!is.null(m)){
+          if(p+q > m){stop("signature requires p+q <= maxdim")}
+        }
         p <- min(s[1], .Machine$integer.max)
         q <- min(s[2], .Machine$integer.max)
         stopifnot(is_ok_sig(s))

@@ -87,8 +87,8 @@ $e_{12}^2=e_{12}e_{12}=e_{1212}=-e_{1122}=-e_1^2e_2^2=-1$).  A general
 complex number $z=x+iy$ maps to Clifford object $x + ye_{12}$.
 
 ```{r label=secondcoercions}
-signature(2)
 options(maxdim=2)  # paranoid-level safety measure
+signature(2)
 complex_to_clifford <- function(z){Re(z) + e(1:2)*Im(z)}
 clifford_to_complex <- function(C){const(C) + 1i*coeffs(Im(C))}
 ```
@@ -129,8 +129,8 @@ It is best to return the signature and `maxdim` to their default
 values in order to prevent interference with other vignettes:
 
 ```{r label=restoresig}
-signature(Inf)
 options(maxdim=NULL)
+signature(Inf)
 ```
 
 

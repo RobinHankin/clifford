@@ -189,8 +189,8 @@ c(
 
 ```{r,echo=FALSE}
 # restore default
+options(maxdim = NULL)
 signature(Inf)
-options(maxdim=NULL)
 ```
 
 ## References

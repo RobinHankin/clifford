@@ -22,4 +22,4 @@
 - dot object implemented, commutator .[x,y] now works as expected
 - move more documentation to the vignettes directory
 - automatic codecov improvements
-- typos
+- extra safety checks for signature() and maxdim
