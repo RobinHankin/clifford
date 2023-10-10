@@ -1,0 +1,133 @@
+---
+title: "Function `pseudoscalar()` in the `clifford` package"
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{The pseudoscalar}
+  %\usepackage[utf8]{inputenc}
+---
+ 
+
+```{r setup, include=FALSE}
+set.seed(0)
+library("clifford")
+library("permutations")
+options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+knit_print.function <- function(x, ...){dput(x)}
+registerS3method(
+  "knit_print", "function", knit_print.function,
+  envir = asNamespace("knitr")
+)
+```
+
+```{r out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+knitr::include_graphics(system.file("help/figures/permutations.png", package = "permutations"))
+```
+
+```{r showI}
+pseudoscalar
+```
+
+To cite the `clifford` package in publications please use
+@hankin2022_clifford.  This short document discusses the pseudoscalar
+$I$ in the `clifford` R package.  The behaviour of $I$ depends on the
+dimension $n$ and the signature of the space considered, and as such
+function `pseudoscalar()` fails if `maxdim` is not set:
+
+```{r, error=TRUE}
+pseudoscalar()
+```
+
+Function `pseudoscalar()` needs option `maxdim` to ascertain what
+object to return.  Let us set `maxdim`  to 7:
+
+```{r settoseven}
+options(maxdim=7)
+pseudoscalar()
+```
+
+The example above makes it clear that `pseudoscalar()` returns the
+_unit_ pseudoscalar, in whatever dimension we are working in.  The
+usual workflow would be to define `maxdim` and a signature at the
+start of a session, then define an R object (conventionally `I`), as
+the pseudoscalar.  However, in this vignette we will repeatedly
+redefine the signature and the maximum dimension to illustrate
+different aspects of `pseudoscalar()`.  The first feature of $I$ is
+that $\left|I\right|^2=1$.  For standard $\mathbb{R}^2$ and
+$\mathbb{R}^3$, and Minkowski space $\operatorname{Cl}(3,1)$ we have
+$I^2=-1$:
+
+```{r R3}
+options(maxdim=3)
+signature(3)       # Cl(3,0)
+(I <- pseudoscalar())
+drop(I^2)
+```
+
+And for Minkowski space:
+
+```{r mink}
+options(maxdim=4)
+signature(3,1)       # Cl(3,1)
+I <- pseudoscalar()
+drop(I^2)
+```
+
+However, we can easily define other signatures in which $I^2=+1$:
+
+
+```{r Isquaredplusone}
+options(maxdim=4)
+signature(2,2)       # Cl(2,2)
+(I <- pseudoscalar())
+drop(I^2)
+```
+
+
+The pseudoscalar I defines an orientation in the sense that, for any
+ordered set of $n$ linearly independent vectors $a_1,\ldots, a_n$
+their outer product will have either the same or opposite sign as $I$.
+Because the orientation is negated by interchanging a pair of vectors,
+we see that the orientation is preserved by even permutations of
+$1,2,\ldots,n$.  Working in $\operatorname{Cl}(5,0)$:
+
+```{r cl5}
+options(maxdim=5)
+signature(5)
+I <- pseudoscalar()
+ai <- list(); for(i in 1:5){ai[[i]] <- as.1vector(rnorm(5))}
+ai[[1]] # the other 5 look very similar
+Reduce(`^`,ai)
+```
+
+Above we see, from the last line, that the vectors $a_1$ to $a_5$ are
+independent (the result is nonzero).  Further, we see that the vectors
+are a right-handed set, for the wedge product is positive.  We can
+permute the vectors using the `permutations` package
+[@hankin2020_permutations]:
+
+
+```{r permutevec}
+(p <- permutation("(12)(345)"))
+is.even(p)
+```
+
+Above, we see that `p` is an _odd_ permutation, being a product of a
+transposition and a three-cycle.
+
+```{r permuteai}
+c(drop(Reduce(`^`,ai)),drop(Reduce(`^`,ai[as.word(p)])))
+```
+
+Above, we see that the sign of the wedge product of the permuted list
+has changed, consistent with the permutation's being odd.
+
+```{r restoredefaults,echo=FALSE}
+options(maxdim=NULL) # restore defaults
+```
+
+# References
