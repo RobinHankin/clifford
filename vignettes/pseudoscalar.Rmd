@@ -124,10 +124,35 @@ c(drop(Reduce(`^`,ai)),drop(Reduce(`^`,ai[as.word(p)])))
 ```
 
 Above, we see that the sign of the wedge product of the permuted list
-has changed, consistent with the permutation's being odd.
+has changed, consistent with the permutation's being odd.  We know
+various things about the pseudoscalar; below we will verify that
+$a\cdot\left(AI\right)=a\wedge AI$ and $A\cdot\left(BI\right)=A\wedge
+BI$ for vector $a$ and multivectors $A,B$:
+
+```{r showbits}
+options(maxdim=7)   
+I <- pseudoscalar()
+a <- as.1vector(sample(1:10,5))
+A <-  rcliff()
+B <- rcliff()
+a
+A  # B looks very similar
+```
+
+Above we choose randomish values for vector $a$ and multivectors
+$A,B$.  Observe that $A$ and $B$ have terms of different grades; they
+are not homogenous.  Numerical verification is straightforward:
+
+```{r showverif}
+a %.% (A*I)
+A%.%(B*I)
+c(Mod(a%.%(A*I) - (a^A)*I)  ,  Mod(A%.%(B*I) - (A^B)*I))
+```
 
 ```{r restoredefaults,echo=FALSE}
 options(maxdim=NULL) # restore defaults
 ```
+
+
 
 # References
