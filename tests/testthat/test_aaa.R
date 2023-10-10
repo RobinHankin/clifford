@@ -1,4 +1,5 @@
 test_that("Test suite aaa.R",{
+    options(maxdim=NULL) # default
     expect_silent(as.clifford(0))
     expect_silent(as.clifford(0) + as.clifford(3))
     expect_silent(as.clifford(3) + as.clifford(0))
@@ -144,12 +145,10 @@ test_that("Test suite aaa.R",{
 
     
     expect_true(is.pseudoscalar(as.clifford(0)))
-    expect_true(is.pseudoscalar(as.clifford(1)))
-    expect_true(is.pseudoscalar(pseudoscalar(1)))
-    expect_true(is.pseudoscalar(pseudoscalar(2)))
-    expect_true(is.pseudoscalar(pseudoscalar(3)))
-    expect_false(is.pseudoscalar(1+pseudoscalar(3)))
 
+    options(maxdim=5)
+    expect_true(is.pseudoscalar(pseudoscalar()))
+    options(maxdim = NULL) # restore default
 
     expect_equal(Mod(as.clifford(0)),0)
     expect_equal(Mod(as.clifford(1)),1)
@@ -182,8 +181,10 @@ test_that("Test suite aaa.R",{
     expect_false(is.antivector(allcliff(2)))
     expect_false(is.antivector(allcliff(3)))
 
-    expect_false(is.antivector(pseudoscalar(3),include.pseudoscalar=FALSE))
-    expect_true (is.antivector(pseudoscalar(3),include.pseudoscalar=TRUE ))
+    options(maxdim=3)
+    expect_false(is.antivector(pseudoscalar(),include.pseudoscalar=FALSE))
+    expect_true (is.antivector(pseudoscalar(),include.pseudoscalar=TRUE ))
+    options(maxdim=NULL)
 
     expect_visible(as.character(as.clifford(0)))
     expect_true(as.character(as.clifford(0)) == "0")

@@ -26,5 +26,5 @@
     return(C)
 }
 
-`dual` <- function(C,n){ C*clifford_inverse(pseudoscalar(n)) }
+`dual` <- function(C,n){ C*clifford_inverse(pseudoscalar()) }
 

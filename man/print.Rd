@@ -42,6 +42,7 @@ function.
 \seealso{\code{\link{clifford}}}  
 \examples{
 
+options(maxdim=15)
 a <- rcliff(d=15,g=9)
 a   # incomprehensible
 
@@ -53,8 +54,6 @@ options("separate" = FALSE)
 options(basissep=",")
 a    #  clearer; YMMV
 
-options(basissep = NULL)  # restore default
-
-
+options(basissep = NULL, maxdim=NULL)  # restore default
 
 }

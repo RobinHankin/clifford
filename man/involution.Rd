@@ -142,7 +142,8 @@ B <- rblade(g=4)
 rev(A \%^\% B) == rev(B) \%^\% rev(A)  # should be TRUE
 rev(A * B) == rev(B) * rev(A)          # should be TRUE
 
-a <- rcliff()
+options(maxdim=8)
+a <- rcliff(d=8)
 dual(dual(dual(dual(a,8),8),8),8) == a # should be TRUE
-
+options(maxdim=NULL) # restore default
 }

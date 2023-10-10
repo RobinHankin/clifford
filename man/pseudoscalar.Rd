@@ -6,27 +6,32 @@
 \description{
 Given a numeric value or vector, return a Clifford algebra element}
 \usage{
-pseudoscalar(n=getOption("maxdim"))
-as.pseudoscalar(n)
+pseudoscalar()
 is.pseudoscalar(C)
 }
 \arguments{
-  \item{n}{Integer specifying dimensionality of underlying vector space} 
   \item{C}{Object possibly of class Clifford}
 }
 \details{
 
-  Function \code{pseudoscalar(n)} returns the unit pseudoscalar of
-  dimensionality \code{n} and function \code{is.pseudoscalar()} checks
-  for a Clifford object being a pseudoscalar.
+  Function \code{pseudoscalar()} returns the unit pseudoscalar of
+  dimensionality \code{option("maxdim")} and function
+  \code{is.pseudoscalar()} checks for a Clifford object being a
+  pseudoscalar.  Note that these functions \emph{require} \code{maxdim}
+  to be set; otherwise they are meaningless.
+
+  Usually, one will set \code{option(maxdim)} at the start of a session,
+  together with the signature.  Then one might define \code{I <-
+  pseudoscalar()} in the interests of compactness and legibility.
 
 }
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{getcoeffs}},\code{\link{numeric_to_clifford}},\code{\link{const}}}
 \examples{
 
-pseudoscalar(6)
-
-
+options(maxdim=6)
+I <- pseudoscalar()
+is.pseudoscalar(I)
+options(maxdim=NULL) # restore default
 }
 

@@ -163,15 +163,27 @@ setGeneric("dim")
 `scalar` <- function(x=1){clifford(list(numeric(0)),x)}
 `as.scalar` <- `scalar`
 `as.1vector` <- function(x){clifford(as.list(seq_along(x)),x)}
-`pseudoscalar` <- function(n=getOption("maxdim")){e(seq_len(n))}
-`as.pseudoscalar` <- `pseudoscalar`
+`pseudoscalar` <- function(){
+  m <- getOption("maxdim")
+  if(is.null(m)){
+    stop("maxdim not set")
+  } else {
+    return(e(seq_len(m)))
+  }
+}
 `is.pseudoscalar` <- function(C){
+    if(!is.clifford(C)){return(FALSE)}
     if(is.zero(C)){return(TRUE)}
-    return(
-        is.clifford(C)         &&
-        (length(terms(C))==1) &&
-        all(terms(C)[[1]] == seq_along(terms(C)[[1]]))
-    )
+
+    m <- getOption("maxdim")
+    if(is.null(m)){
+      warning("maxdim not set")
+      return(FALSE)
+    }
+
+    jj <- terms(C)
+    if(length(jj) != 1){return(FALSE)}
+    return(all(jj[[1]] == seq_len(m)))
 }
 
 `antivector` <- function(v,n=length(v)){
@@ -243,11 +255,13 @@ setGeneric("dim")
 setGeneric("drop")
 setMethod("drop","clifford", function(x){
     if(is.zero(x)){
-        return(0)
+      return(0)
     } else if(is.scalar(x)){
-        return(const(x))
+      return(const(x))
+    } else if(!is.null(getOption("maxdim"))){
+      if(is.pseudoscalar(x)){return(coeffs(x))}
     } else {
-        return(x)
+      return(x)
     }
 })
 

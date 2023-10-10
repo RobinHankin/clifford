@@ -63,9 +63,6 @@ e(5:8)
 
 Reduce(`+`,sapply(seq_len(7),function(n){e(seq_len(n))},simplify=FALSE))
 
-pseudoscalar(6)
-
-
 
 }
 
