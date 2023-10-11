@@ -219,6 +219,10 @@ setGeneric("dim")
   return(out)
 } 
 
+`rclifff` <- function(n=100,d=20,g=10,include.fewer=TRUE){
+    rcliff(n=n,d=d,g=g,include.fewer=include.fewer)
+}
+
 `rblade` <- function(d=7,g=3){
     Reduce(`%^%`, sapply(seq_len(g), function(...) {
         as.1vector(sample(1:5,d,replace=TRUE))

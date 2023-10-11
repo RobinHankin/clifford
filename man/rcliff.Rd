@@ -1,11 +1,13 @@
 \name{rcliff}
 \alias{rcliff}
+\alias{rclifff}
 \alias{rblade}
 \title{Random clifford objects}
 \description{Random Clifford algebra elements, intended as quick
   \dQuote{get you going} examples of \code{clifford} objects}
 \usage{
 rcliff(n=9, d=6, g=4, include.fewer=TRUE)
+rclifff(n=100,d=20,g=10,include.fewer=TRUE)
 rblade(d=7, g=3)
 }
 \arguments{
@@ -23,7 +25,8 @@ rblade(d=7, g=3)
   Function \code{rcliff()} gives a quick nontrivial Clifford object,
   typically with terms having a range of grades (see \file{grade.Rd});
   argument \code{include.fewer=FALSE} ensures that all terms are of the
-  same grade.
+  same grade.  Function \code{rclifff()} is the same but returns a more
+  complicated object by default.
 
   Function \code{rblade()} gives a Clifford object that is a
   \emph{blade} (see \file{term.Rd}).  It returns the wedge product of a

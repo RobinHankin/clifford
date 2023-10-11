@@ -47,8 +47,7 @@ function.
 \seealso{\code{\link{clifford}}}  
 \examples{
 
-options(maxdim=15)
-a <- rcliff(d=15,g=9)
+a <- rclifff()
 a   # incomprehensible
 
 options("separate" = TRUE)
