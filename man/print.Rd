@@ -28,10 +28,15 @@ The print method is sensitive to the value of option \code{separate}.
 If \code{FALSE} (the default), the method prints in a compact form, as
 in \code{e_134}.  The indices of the basis vectors are separated with
 option \code{basissep} which is usually \code{NULL} but if \eqn{n>9},
-then setting \code{options("basissep" = ",")} might look good as it will
-print \code{e_10,11,12} instead of \code{e_101112}.  If \code{separate}
-is \code{TRUE}, the method prints the basis vectors separately, as in
-\code{e1 e3 e4}.
+then setting option \code{basissep} to a comma (\dQuote{\code{,}}) might
+look good as it will print \code{e_10,11,12} instead of \code{e_101112}:
+
+\preformatted{options("basissep" = ",")}
+
+If option \code{separate} is \code{TRUE}, the method prints the basis
+vectors separately, as in \code{e1 e3 e4}:
+
+\preformatted{options("separate" = TRUE)}
 
 Function \code{as.character.clifford()} is also sensitive to these
 options.  The print method has special dispensation for length-zero
