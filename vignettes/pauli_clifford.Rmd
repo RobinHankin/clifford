@@ -27,7 +27,12 @@ To cite the `clifford` package in publications please use
 @hankin2022_clifford.  This short document shows how the Pauli
 matrices, often used in quantum mechanics, can be calculated using
 Clifford algebra as implemented by the `clifford` R package.  The
-Pauli matrices are as follows:
+Pauli matrices are set of three $2\times 2$ matrices with complex
+entries.  They represent observables corresponding to measuring spin
+along the $x,$, $y$, and $z$ axes.  They are also useful when
+considering polarized light.  The Pauli matrices have a pleasing
+relationship with Jordan algebra [@hankin2023_jordan].  In component
+form, they are:
 
 \[
 \sigma_0=\left(\begin{matrix}1&0\\0&1\end{matrix}\right)\qquad
