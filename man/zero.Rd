@@ -1,5 +1,7 @@
 \name{zero}
 \alias{zero}
+\alias{zero.clifford}
+\alias{zero.cliff}
 \alias{is.zero}
 \alias{is.zero,clifford-method}
 \alias{is.zero,ANY-method}
