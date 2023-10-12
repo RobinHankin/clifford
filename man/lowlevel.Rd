@@ -46,7 +46,15 @@ c_cartan_inverse(L, c, m, n)
   The functions documented here are low-level helper functions that wrap
   the \code{C} code.  They are called by functions like
   \code{clifford_plus_clifford()}, which are themselves called by the
-  binary operators documented at \code{Ops.clifford.Rd}.
+  binary operators documented at \code{Ops.clifford.Rd}.  The functions
+  documented here are not really intended for day-to-day use.
+
+  Function \code{c_identity()} checks that the list of terms \code{L} is
+  the same length as the vector coefficients \code{p}; if not, an error
+  is given.  Note that \R function \code{clifford()} will recycle the
+  coefficient vector if of length 1, so that
+  \code{clifford(list(1,1:2),7)} works as expected (but
+  \code{c_identity(list(1,1:2),7,2)} will throw an error).
 
   Function \code{clifford_inverse()} is problematic as nonnull blades
   always have an inverse; but function \code{is.blade()} is not yet

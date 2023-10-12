@@ -1,9 +1,8 @@
 `clifford` <- function(terms,coeffs=1){
-    stopifnot(is_ok_clifford(terms,coeffs))
     terms <- elements(terms)
     coeffs <- elements(coeffs)
     if(length(coeffs)==1){coeffs <- coeffs+numeric(length(terms))}
-
+    stopifnot(is_ok_clifford(terms,coeffs))
     if(!isFALSE(getOption("warn_on_repeats")) & anyDuplicated(terms)>0){
         warning("repeated element in terms")
     }
@@ -34,7 +33,6 @@ setOldClass("clifford")
     return(as.clifford(out))
   }
 }
-
 
 `is.1vector` <- function(x){all(grades(x)==1)}
 `is.basisblade` <- function(x){ (nterms(x)==1) || is.scalar(x) }
@@ -86,6 +84,7 @@ setOldClass("clifford")
     stopifnot(is.list(terms))
   
     term_elements <- c(terms,recursive = TRUE)
+    stopifnot(length(coeffs) == length(terms))
 
 
     if(!is.null(term_elements)){
@@ -214,7 +213,9 @@ setGeneric("dim")
   } else {
     f <- function(...){g}
   }
-  out <- clifford(unique(replicate(n,sort(sample(d,f())),simplify=FALSE)),sample(n)-round(n/2))
+  terms <- unique(replicate(n,sort(sample(d,f())),simplify=FALSE))
+  coeffs <- sample(c(seq_len(n),-seq_len(n)),length(terms))
+  out <- clifford(terms,coeffs)
   if(include.fewer){out <- out + round(1+mean(abs(coeffs(out))))}
   return(out)
 } 

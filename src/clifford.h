@@ -30,6 +30,7 @@ clifford remove_zeros(clifford &C){
 clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     clifford out;
     const size_t n=L.size();
+    if(!(n == d.length())){throw std::range_error("in prepare(L,d,m) [file inst/clifford.h], L must be the same length as d");}
     for(size_t i=0 ; i<n ; i++){
         if(d[i] != 0){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);

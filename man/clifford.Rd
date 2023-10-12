@@ -37,7 +37,9 @@ nterms(x)
   \itemize{
     
     \item Function \code{clifford()} is the formal creation mechanism
-    for \code{clifford} objects
+    for \code{clifford} objects.  If \code{coeffs} is of length 1, it
+    will be recycled (even if \code{terms} is empty, in which case the
+    zero Clifford object is returned).
 
     \item Function \code{as.clifford()} is much more user-friendly and
     attempts to coerce a range of input arguments to clifford form
