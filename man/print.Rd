@@ -1,5 +1,6 @@
 \name{print}
 \alias{print.clifford}
+\alias{print.cliff}
 \alias{as.character}
 \alias{as.character.clifford}
 \alias{catterm}
@@ -34,21 +35,21 @@ look good as it will print \code{e_10,11,12} instead of \code{e_101112}:
 \preformatted{options("basissep" = ",")}
 
 If option \code{separate} is \code{TRUE}, the method prints the basis
-vectors separately, as in \code{e1 e3 e4}:
+vectors separately, as in \code{e10 e11 e12}:
 
 \preformatted{options("separate" = TRUE)}
 
 Function \code{as.character.clifford()} is also sensitive to these
-options.  The print method has special dispensation for length-zero
-clifford objects.  Function \code{catterm()} is a low-level helper
+options.  The print method has special dispensation for the zero
+clifford object.  Function \code{catterm()} is a low-level helper
 function.
 
 }
 \seealso{\code{\link{clifford}}}  
 \examples{
 
-a <- rclifff()
-a   # incomprehensible
+a <- rclifff(9)
+a   # default print method incomprehensible
 
 options("separate" = TRUE)
 a    # marginally better
