@@ -124,13 +124,7 @@ maxyterm <- function(C1,C2=as.clifford(0)){
     }
 }
 
-`clifford_negative` <- function(C){
-    if(is.zero(C)){
-        return(C)
-    } else {
-        return(clifford(terms(C),-coeffs(C)))
-    }
-}
+`clifford_negative` <- function(C){ clifford(terms(C),-coeffs(C)) }
 
 `geoprod` <- function(C1,C2){
     if(is.zero(C1) || is.zero(C2)){
