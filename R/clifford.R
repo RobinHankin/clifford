@@ -260,14 +260,15 @@ setGeneric("dim")
 setGeneric("drop")
 setMethod("drop","clifford", function(x){
     if(is.zero(x)){
-      return(0)
+        out <- 0
     } else if(is.scalar(x)){
-      return(const(x))
+        out <- const(x)
     } else if(!is.null(getOption("maxdim"))){
-      if(is.pseudoscalar(x)){return(coeffs(x))}
+        if(is.pseudoscalar(x)){out <- coeffs(x)} else {out <- x}
     } else {
-      return(x)
+        out <- x
     }
+    return(out)
 })
 
 `grade` <- function(C,n,drop=TRUE){
