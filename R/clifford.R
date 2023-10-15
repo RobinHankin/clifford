@@ -165,7 +165,7 @@ setGeneric("dim")
 `pseudoscalar` <- function(){
   m <- getOption("maxdim")
   if(is.null(m)){
-    stop("maxdim not set")
+    stop('pseudoscalar requires a finite value of maxdim; set it with something like options(maxdim = 6)')
   } else {
     return(e(seq_len(m)))
   }
@@ -255,20 +255,20 @@ setGeneric("dim")
   cat(paste(strwrap(out, getOption("width")), collapse="\n"))
   cat("\n")
   return(x)
+  
 }
 
 setGeneric("drop")
-setMethod("drop","clifford", function(x){
-    if(is.zero(x)){
-      return(0)
-    } else if(is.scalar(x)){
-      return(const(x))
-    } else if(!is.null(getOption("maxdim"))){
-      if(is.pseudoscalar(x)){return(coeffs(x))}
-    } else {
-      return(x)
+setMethod("drop","clifford", function(x){drop_clifford(x)})
+
+`drop_clifford` <- function(x){
+    if(is.scalar(x)){ return(const(x)) }
+    if(!is.null(getOption("maxdim"))){
+        if(is.pseudoscalar(x)){return(coeffs(x))
+        }
     }
-})
+    return(x)
+}
 
 `grade` <- function(C,n,drop=TRUE){
   C <- as.clifford(C)
