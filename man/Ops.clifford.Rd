@@ -57,9 +57,8 @@
 \alias{euclidean\_product}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
 \description{\loadmathjax
-  Allows arithmetic operators to be used for
-  multivariate polynomials  such as addition, multiplication,
-  integer powers, etc.
+  Different arithmetic operators for clifford objects, including
+  many different types of multiplication.
 }
 \usage{
 \method{Ops}{clifford}(e1, e2)
