@@ -235,7 +235,7 @@ C1 \%|_\% C2
   returns the wedge product too).
 
   \strong{Using \code{\%.\%} causes severe and weird difficult-to-debug
-  problems in markdown docuents}
+  problems in markdown documents.}
      
   }
 \references{
