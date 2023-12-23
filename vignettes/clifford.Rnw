@@ -9,7 +9,7 @@
 
 
 %% just as usual
-\author{Robin K. S. Hankin\\Auckland University of Technology}
+\author{Robin K. S. Hankin\\University of Stirling}
 \title{Clifford algebra in \proglang{R}}
 %\VignetteIndexEntry{The clifford package}
 
@@ -41,7 +41,7 @@
 %% in the following format:
 \Address{
   Robin K. S. Hankin\\%\orcid{https://orcid.org/0000-0001-5982-0415}\\
-  Auckland University of Technology\\
+  University of Stirling\\
   E-mail: \email{hankin.robin@gmail.com}
 }
 %% It is also possible to add a telephone and fax number
