@@ -6,7 +6,7 @@
 
   Cartan's map isomorphisms from \mjeqn{\operatorname{Cl}(p,q)}{Cl(p,q)}
   to \mjeqn{\operatorname{Cl}(p-4,q+4)}{Cl(p-4,q+4)} and
-  \mjseqn{\operatorname{Cl}(p+4,q-4)}{Cl(p+4,q-4)}
+  \mjeqn{\operatorname{Cl}(p+4,q-4)}{Cl(p+4,q-4)}
 
 }
 \usage{
