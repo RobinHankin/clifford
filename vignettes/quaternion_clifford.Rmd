@@ -63,7 +63,7 @@ Thus, for example,
 $\mathbf{ii}=(-e_{12})(-e_{12})=+e_{1212}=-e_{1122}=-1$ and
 $\mathbf{ij}=(-e_{12})(-e_{13})=+e_{1213}=-e_{1123}=-e_{23}=\mathbf{k}$.
 The default signature [in which $e_i^2=+1$] is fine here, but as a
-safety meaure we can set `maxdim` to 3:
+safety measure we can set `maxdim` to 3:
 
 ```{r}
 options(maxdim=3)  # paranoid safety measure

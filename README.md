@@ -96,7 +96,7 @@ signature(3)
 ```
 
 Function `signature()` is based on `lorentz::sol()` and its argument
-specifes the number of basis blades that square to
+specifies the number of basis blades that square to
 ![+1](https://latex.codecogs.com/png.latex?%2B1 "+1"), the others
 squaring to ![-1](https://latex.codecogs.com/png.latex?-1 "-1"). Thus
 ![e_1^2=e_2^2=e_3^2=1](https://latex.codecogs.com/png.latex?e_1%5E2%3De_2%5E2%3De_3%5E2%3D1 "e_1^2=e_2^2=e_3^2=1")

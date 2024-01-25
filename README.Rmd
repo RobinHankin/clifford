@@ -89,7 +89,7 @@ signature(3)
 ```
 
 Function `signature()` is based on `lorentz::sol()` and its argument
-specifes the number of basis blades that square to $+1$, the others
+specifies the number of basis blades that square to $+1$, the others
 squaring to $-1$.  Thus $e_1^2=e_2^2=e_3^2=1$ and $e_4^2=e_5^2=-1$:
 
 ```{r,showsig}

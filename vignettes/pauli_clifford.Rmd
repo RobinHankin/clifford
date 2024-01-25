@@ -229,7 +229,7 @@ clifford_to_matrix(C1*C2) - clifford_to_matrix(C1)%*%clifford_to_matrix(C2)
 
 The reason that Pauli matrices are useful in physics is that they are
 closed under the Jordan operation $x\circ y=(xy+yx)/2$, which we will
-verify for matrices and their Clifford represenatation.
+verify for matrices and their Clifford representation.
 
 ```{r}
 M1 <- as.1matrix(rchm(1,2))
