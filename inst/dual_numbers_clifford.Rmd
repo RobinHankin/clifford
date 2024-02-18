@@ -24,7 +24,8 @@ set.seed(0)
 
 ## Dual numbers
 
-Dual numbers ${\mathbb D}$ are expressions of the form $a+b\epsilon$, with $a,b\in\mathbb{R}$ and $\epsilon^2=0$.  If we define
+Dual numbers ${\mathbb D}$ are expressions of the form $a+b\epsilon$,
+with $a,b\in\mathbb{R}$ and $\epsilon^2=0$.  If we define
 
 $$\begin{eqnarray}
 (a+b\epsilon) + (c+d\epsilon) &=& (a+c) + (b+d)\epsilon\\
@@ -32,8 +33,8 @@ $$\begin{eqnarray}
 \end{eqnarray}$$
 
 
-then we recover distributivity, commutativity, and associativity.  The Clifford
-representation is easy, first setting the signature to zero:
+then we recover distributivity, commutativity, and associativity.  The
+Clifford representation is easy, first setting the signature to zero:
 
 ```{r defineeps}
 library(clifford)
@@ -55,14 +56,16 @@ for dual numbers.
 
 ## Matrix representation
 
-To represent dual numbers with $2\times 2$ matrices over the reals we define a function $\phi\colon\mathbb{D}\longrightarrow\mathbb{R}$ as follows:
-
+To represent dual numbers with $2\times 2$ matrices over the reals we
+define a function $\phi\colon\mathbb{D}\longrightarrow\mathbb{R}$ as
+follows:
 
 $$
 \phi(a + b\epsilon)=\begin{bmatrix}a&b\\0&a\end{bmatrix}.
 $$
 
-This mapping is a homomorphism between dual numbers and their matrix equivalents, for if $x=a+b\epsilon$ and $y=c+d\epsilon$, we have
+This mapping is a homomorphism between dual numbers and their matrix
+equivalents, for if $x=a+b\epsilon$ and $y=c+d\epsilon$, we have
 
 $$
 \phi(xy)=\phi((a+b\epsilon)\cdot(c+d\epsilon))=\phi(ac+(ad+bc)\epsilon)=
@@ -91,7 +94,11 @@ y <- rnorm(1) + eps*rnorm(1)
 as.matrix(x) %*% as.matrix(y) - as.matrix(x*y)
 ```
 
-above we see that $\phi(xy)$ and $\phi(x)\phi(y)$ agree to within numerical precision.  Further, elementary matrix algebra gives us that $\begin{bmatrix}a&b\\0&a\end{bmatrix}^{-1}=\begin{bmatrix}a^{-1}&-ba^{-2}\\0&a^{-1}\end{bmatrix}$ so we may define $(a+b\epsilon)^{-1}=a^{-1}-ba^{-2}\epsilon$, provided $a\neq 0$.
+above we see that $\phi(xy)$ and $\phi(x)\phi(y)$ agree to within
+numerical precision.  Further, elementary matrix algebra gives us that
+$\begin{bmatrix}a&b\\0&a\end{bmatrix}^{-1}=\begin{bmatrix}a^{-1}&-ba^{-2}\\0&a^{-1}\end{bmatrix}$
+so we may define $(a+b\epsilon)^{-1}=a^{-1}-ba^{-2}\epsilon$, provided
+$a\neq 0$.
 
 ## Automatic differentiation: the chain rule
 
