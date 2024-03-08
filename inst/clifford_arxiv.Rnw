@@ -387,7 +387,7 @@ is.zero(e(5)^2)     # should be TRUE
 @ 
 
 This is a somewhat clunky way of reproducing the functionality of the
-{\tt stokes} package~\cite{hankin2022_stokes,hankin2022_stokes_arxiv}.
+{\tt stokes} package~\cite{hankin2022_stokes_arxiv}.
 If we have
 
 <<reproducewedge>>=
@@ -549,7 +549,7 @@ a different order.
 The {\tt clifford} package furnishes a consistent and documented suite
 of reasonably efficient {\tt R}-centric functionality.  Further work
 might include closer integration with the {\tt stokes}
-package~\citep{hankin2022_stokes,hankin2022_stokes_arxiv}.
+package~\citep{hankin2022_stokes_arxiv}.
 
 \bibliographystyle{plain}
 \bibliography{clifford}
