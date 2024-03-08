@@ -501,7 +501,7 @@ a different order.
 The \pkg{clifford} package furnishes a consistent and documented suite
 of reasonably efficient \proglang{R}-centric functionality.  Further
 work might include closer integration with the \code{stokes}
-package~\citep{hankin2019,hankin2022_stokes}.
+package~\citep{hankin2022_stokes}.
 
 \bibliography{clifford}
 \end{document}
