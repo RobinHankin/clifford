@@ -1,9 +1,16 @@
 ---
 title: "Dual numbers implemented using Clifford algebra, and a case-study of automatic differentiation"
-output: html_document
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{dual_numbers}
+  %\usepackage[utf8]{inputenc}
 ---
 
+
 ```{r setup, include=FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE) 
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
 set.seed(0)
@@ -15,11 +22,13 @@ set.seed(0)
 
 (takes a couple of hours to run without cache)
 
+To cite the clifford package in publications, use @hankin2022_clifford.
+
 *NOTE* This vignette shows a use-case for dual numbers, as applied to
  automatic differentiation.  All it really does is illustrate that
  dual numbers are a special case of Clifford algebra.  If you want to
  actually use AD, I would strongly recommend you consider the
- excellent `dual` package (Sartore 2022), which offers a nice user
+ excellent `dual` package [@sartore2022], which offers a nice user
  interface, efficient coding, and lots of examples.
 
 ## Dual numbers
@@ -531,4 +540,3 @@ gradient.
 
 ## References
 
-* Sartore L (2022). _`dual`: Automatic Differentiation with Dual  Numbers_. R package version 0.0.4,  <https://CRAN.R-project.org/package=dual>.
