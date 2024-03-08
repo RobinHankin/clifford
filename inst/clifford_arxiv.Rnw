@@ -552,7 +552,7 @@ might include closer integration with the {\tt stokes}
 package~\citep{hankin2022_stokes,hankin2022_stokes_arxiv}.
 
 \bibliographystyle{plain}
-\bibliography{clifford_arxiv}
+\bibliography{clifford}
 
 \end{document}
 
