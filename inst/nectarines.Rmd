@@ -1,0 +1,78 @@
+---
+title: "The nectarines implemented using Clifford algebra"
+output: html_vignette
+bibliography: clifford.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{dual_numbers}
+  %\usepackage[utf8]{inputenc}
+---
+
+
+```{r setup, include=FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE) 
+knitr::opts_chunk$set(echo = TRUE)
+library("clifford")
+set.seed(0)
+```
+
+<p style="text-align: right;">
+![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
+</p>
+
+To cite the clifford package in publications, use
+@hankin2022_clifford.  Here I generate the nectarines
+$\mathbb{H}_\mathrm{nec}$ [@janovska2023] using Clifford package
+idiom.  We need
+
+$$i^2=1\qquad j^2=-1\qquad k^2=1$$
+
+$$ij=k\qquad jk=i\qquad ki=-j$$
+
+OK will try an even subalgebra, but what signature?  Will try
+`signature(2,1)`, giving $e_1^2=e_2^2=1$ and $e_3^2=-1$.  Then we will
+try $i=a_ie_{13}$, $j=a_je_{12}$, $k=a_ke_{23}$ [on the grounds that
+$j$ is the odd man out and also $e_3$ is the odd man out, and $j$ is
+unique in having no 3].  Then:
+
+$$i^2=e_{1313}=-e_{1331}=+e_{11}=1$$
+
+$$j^2=e_{1212}=-e_{1221}=-e_{11}=-1$$
+
+$$k^2=e_{2323}=-e_{2233}=+e_{33}=-1$$
+
+(whatever values of $a_i$, $a_j$, $a_k$ are used), and 
+
+$$ij=a_ie_{13}\cdot a_je_{12}=a_ia_je_{1312}=-(a_ia_j)e_{1132}=(a_ia_j)e_{23}=
+\frac{a_ia_j}{a_k}k$$
+
+$$jk=a_je_{12}a_ke_{23}=a_ja_ke_{1223}=a_ja_ke_{13}=\frac{a_ja_k}{a_i}i$$
+
+$$ki=a_ke_{23}a_ie_{13}=a_ka_ie_{2313}=-a_ka_ie_{2133}=a_ka_ie_{21}=-a_ka_ie_{12}=\frac{-a_ka_i}{a_j}j$$
+
+$$\frac{a_ia_j}{a_k}=1\qquad \frac{a_ja_k}{a_i}=1\qquad \frac{-a_ka_i}{a_j}=-1$$
+
+so $a_i=a_j=a_k=1$ will satisfy the requirements [there are other
+solutions: any two of the $a$'s being $-1$ and the other being $+1$
+would also work].
+
+## Verification
+
+Package idiom to implement the above would be:
+
+```{r packageidiom}
+signature(2,1)
+options(maxdim=3)
+i <- e(c(1,3))
+j <- e(c(1,2))
+k <- e(c(2,3))
+```
+
+And then the verification would be
+
+```{r verify}
+c(`i^2`=drop(i^2),`j^2`=drop(j^2),`k^2`=drop(k^2))
+c(`ij=k`=i*j==k,`jk=i`=j*k==i,`ki=-j`=k*i==-j)
+```
+
+## References
