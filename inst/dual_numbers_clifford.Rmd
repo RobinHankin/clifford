@@ -280,12 +280,13 @@ new `S3` method:
 
 ```{r definemydivision}
 `/.clifford` <- function(x,y){
-  xr <- Re(x)
-  jj <- coeffs(Im(x))
-  xd <- ifelse(length(jj)==0,0,jj)
-  yr <- Re(y)
-  yd <- coeffs(Im(y))
-  return(xr/yr + ((xd*yr - xr*yd)/yr^2)*eps)
+    if(!is.clifford(y)){return(x*y^(-1))}
+    xr <- Re(x)
+    jj <- coeffs(Im(x))
+    xd <- ifelse(length(jj)==0,0,jj)
+    yr <- Re(y)
+    yd <- coeffs(Im(y))
+    return(xr/yr + ((xd*yr - xr*yd)/yr^2)*eps)
 }
 ```
 
