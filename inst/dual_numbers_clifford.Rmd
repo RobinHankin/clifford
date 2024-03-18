@@ -276,16 +276,16 @@ can be used for functions of any complexity.
 
 Division is somewhat more problematic.  Multiplication and addition
 work without modification, but division requires the definition of a
-new operator which we will call `%/%`:
+new `S3` method:
 
 ```{r definemydivision}
-mycoeffs <- function(x){if(is.numeric(x)){return(x)} else {return(coeffs(x))}}
-`%/%` <- function(x,y){if(is.numeric(x) & is.numeric(y)){return(x/y)}
+`/.clifford` <- function(x,y){
   xr <- Re(x)
-  xd <- mycoeffs(Im(x))
+  jj <- coeffs(Im(x))
+  xd <- ifelse(length(jj)==0,0,jj)
   yr <- Re(y)
-  yd <- mycoeffs(Im(y))
-  return(xr/yr + eps*(xd*yr - xr*yd)/yr^2)
+  yd <- coeffs(Im(y))
+  return(xr/yr + ((xd*yr - xr*yd)/yr^2)*eps)
 }
 ```
 
@@ -297,7 +297,7 @@ with reasonably nice idiom.  Here we consider
 $f_3(x)=\frac{\sin\left(1+x^2\right)}{2-e^x}$:
 
 ```{r usemypercentdivision}
-f3 <- function(x){sin(1+x^2) %/% (2-exp(x))}
+f3 <- function(x){sin(1+x^2) / (2-exp(x))}
 valgrad(f3,pi)
 ```
 
@@ -314,7 +314,7 @@ c(value=f3(pi), grad=(f3(pi+d/2)-f3(pi-d/2))/d)
 It is possible to implement division in a different way.  If we define
 
 ```{r defineinverse}
-inv <- function(x){1/Re(x) -Im(x)/Re(x)^2}
+inv <- function(x){1/Re(x) -eps*(coeffs(Im(x))/Re(x)^2)}
 ```
 
 Then `inv()` is a dual-ready version of $f(x)=x^{-1}$ with
@@ -331,26 +331,29 @@ exploit the fact that `inv()` works in combination with other
 functions as the chain rule applies to `inv()` as for any other
 dual-ready function.  Here I use R idiom to define `g()` which returns
 $f(x)=\frac{\sin(1+x^2)}{2-\exp(x)}$ as used above, but using `inv()`
-instead of `%/%`:
+instead of `/.clifford()`:
 
 ```{r useinvanother}
-g <-  function(x){sin(1+x^2) * inv(2-exp(x))} # compare f(x) = sin(1+x^2) %/% (2-exp(x))
+g <-  function(x){sin(1+x^2) * inv(2-exp(x))} # compare f(x) = sin(1+x^2) / (2-exp(x))
 g(pi+eps)
 ```
 
 We can further verify that this new division operator works by considering $\sec(x)=1/\cos(x)$ in different ways:
 
 ```{r checksec}
-sec1 <- function(x){1/cos(Re(x)) + sin(Re(x))/cos(Re(x))^2*Im(x)}
-sec2 <- function(x){1 %/% cos(x)}
+sec1 <- function(x){1/cos(Re(x)) + (sin(Re(x))/cos(Re(x))^2)*Im(x)}
+sec2 <- function(x){as.clifford(1) / cos(x)}  # coercion needed to dispatch correctly
 sec3 <- function(x){inv(cos(x))}
-sec1(0.3+eps)
-sec2(0.3+eps)
-sec3(0.3+eps)
+list(
+    sec1(0.3+eps),
+    sec2(0.3+eps),
+    sec3(0.3+eps)
+    )
 ```
 
-Above we see agreement between `sec1()`, defined using the algebraic derivative,  `sec2()`, defined using the `%/%` binary operator, and `sec3()`, defined using 
-the `inv()` function.
+Above we see agreement between `sec1()`, defined using the algebraic
+derivative, `sec2()`, defined using the `/.clifford()` and `sec3()`,
+defined using the `inv()` function.
 
 ## Multivariate case
 
@@ -359,7 +362,7 @@ Consider $f_4(x,y) = \frac{1+\sin(x+\cos y)}{2-e^{x+y}}$, at
 $x=1.1,y=1.443$:
 
 ```{r, multivariate}
-f4 <- function(x,y){(1+sin(x+cos(y))) %/% (2-exp(x+y))}
+f4 <- function(x,y){(1+sin(x+cos(y))) / (2-exp(x+y))}
 f4dx <- function(x,y,d=1e-6){(f4(x+d,y)-f4(x,y))/d}  # numerical estimate
 f4dy <- function(x,y,d=1e-6){(f4(x,y+d)-f4(x,y))/d}  # numerical estimate
 x <- 1.1
