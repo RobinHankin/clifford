@@ -1,5 +1,6 @@
 ---
 title: "Dual numbers implemented using Clifford algebra, and a case-study of automatic differentiation"
+author: "Robin K. S. Hankin"
 output: html_vignette
 bibliography: clifford.bib
 vignette: >
@@ -16,9 +17,9 @@ library("clifford")
 set.seed(0)
 ```
 
-<p style="text-align: right;">
-![](`r system.file("help/figures/clifford.png", package = "clifford")`){width=10%}
-</p>
+```{r, label=hexstickerplotter, out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
 
 (takes a couple of hours to run without cache)
 
