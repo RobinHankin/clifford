@@ -93,6 +93,14 @@ a coefficient of a term that includes a negative index will throw an
 error.  The coefficient of a term including an index larger than
 indicated by \code{maxyterm()} will return zero.
 
+The index for the constant is formally \code{list(numeric(0))}, but
+this is a pain to type.  Square bracket extraction and
+\code{getcoeffs()} have special dispensation for zero entries, which
+are translated by helper function \code{list_modifier()} to
+\code{numeric(0)} and listified if necessary.  The upshot is that
+\code{x[0]} and \code{getcoeffs(x,0)} work as expected, returning the
+constant.
+
 Function \code{Im()} is a generic, which sets the real component of its
 argument to zero (as per the \CRANpkg{onion} package).  Function
 \code{Re()} is a convenience synonym for \code{const()}.
@@ -109,10 +117,13 @@ A[2:3, 4] <- 99
 A[] <- B
 
 
-X <- 1 + e(1)
-X[0,1:5] <- 7   # special dispensation for zero, via list_modifier()
-X
 
+X <- 5 + 6*e(1) -7*e(1:3) + 3*e(4:5)
+X[0]           # special dispensation for zero
+X[list(0,1:3)] 
+
+getcoeffs(X,0)
+getcoeffs(X,list(1,0,1:3))
 
 # clifford(list(1,1:2,1:2),1:3)  # would give a warning
 

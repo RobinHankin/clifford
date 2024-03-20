@@ -21,7 +21,7 @@ setOldClass("clifford")
         L = terms(C),
         c = coeffs(C),
         m = maxyterm(C),
-        B = B)
+        B = list_modifier(B))
 }
 
 `const` <- function(C,drop=TRUE){
