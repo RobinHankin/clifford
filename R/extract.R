@@ -9,7 +9,7 @@ list_modifier <- function(B){
            } )
 }
 
-`[.clifford` <- function(C, index, ...){
+`[.clifford` <- function(C, index, ...,drop=FALSE){
     if(is.clifford(index)){
         stop("cannot extract a clifford; try A[terms(B)]")
     } else if(is.disord(index)){
@@ -23,7 +23,9 @@ list_modifier <- function(B){
     } else {
         dots <- c(list(index),list(...))
     }
-    clifford(list_modifier(dots),getcoeffs(C,list_modifier(dots)))
+    out <- clifford(list_modifier(dots),getcoeffs(C,list_modifier(dots)))
+    if(drop){out <- drop(out)}
+    return(out)
 }  
 
 `[<-.clifford` <- function(C, index, ..., value){

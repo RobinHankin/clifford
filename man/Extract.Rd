@@ -20,7 +20,7 @@
   Extract or replace subsets of cliffords.
 }
 \usage{
-\method{[}{clifford}(C, index, \dots)
+\method{[}{clifford}(C, index, \dots,drop=FALSE)
 \method{[}{clifford}(C, index, \dots) <- value
 coeffs(x)
 coeffs(x) <- value
@@ -34,6 +34,8 @@ getcoeffs(C, B)
   \item{index}{elements to extract or replace}
   \item{value}{replacement value}
   \item{B}{A list of integer vectors, terms}
+  \item{drop}{Boolean: should constant clifford objects
+      be coerced to numeric?}
   \item{...}{Further arguments}
 }
 \details{
@@ -120,6 +122,7 @@ A[] <- B
 
 X <- 5 + 6*e(1) -7*e(1:3) + 3*e(4:5)
 X[0]           # special dispensation for zero
+X[0,drop=TRUE] # coerce to numeric
 X[list(0,1:3)] 
 
 getcoeffs(X,0)
