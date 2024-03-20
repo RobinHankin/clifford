@@ -239,6 +239,7 @@ sin.clifford <- function(x){sin(Re(x)) + cos(Re(x))*Im(x)}
 cos.clifford <- function(x){cos(Re(x)) - sin(Re(x))*Im(x)}
 exp.clifford <- function(x){exp(Re(x)) + exp(Re(x))*Im(x)}
 log.clifford <- function(x){log(Re(x)) + 1/(Re(x))*Im(x)}
+`^.clifford` <- function(x,y){exp(y*log(x))}
 ```
 
 Above we are using `S3` formalism to define methods for functions.
@@ -355,6 +356,7 @@ list(
 Above we see agreement between `sec1()`, defined using the algebraic
 derivative, `sec2()`, defined using the `/.clifford()` and `sec3()`,
 defined using the `inv()` function.
+
 
 ## Multivariate case
 
@@ -550,5 +552,31 @@ assess this by trying the same simulation but with many slightly
 different starting values to get an idea of the distribution of the
 gradient.
 
-## References
+## Comparison with the `dual` package
 
+The `dual` package is a bespoke system for working with dual numbers
+and is much better than `clifford` for this purpose.  Here I show how
+to reproduce some of the results from the `dual` README file:
+
+```{r dual}
+library("dual")
+x <- dual(f = 1.5, grad = c(1,0,0))
+y <- dual(f = 0.5, grad = c(0,1,0))
+z <- dual(f = 1.0, grad = c(0,0,1))
+exp(z - x) * sin(x)^y / x
+```
+
+To reproduce this with the `clifford` package we can use the
+multivariate formalism directly:
+
+```{r dualclifford}
+f <- function(x,y,z){exp(z - x)*sin(x)^y / x}
+x <- 1.5 ; y <- 0.5 ; z <- 1.0
+L <- list(f(x+eps,y,z),f(x,y+eps,z),f(x,y,z+eps))
+rbind(lapply(L,getcoeffs,0),lapply(L,getcoeffs,1))
+```
+
+[observe that $\left.\partial f/\partial z\right|_{x,y,z}=f(x,y,z)$]
+
+
+## References
