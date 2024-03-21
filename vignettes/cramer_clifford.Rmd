@@ -188,3 +188,8 @@ Above we see that the original coefficients are recovered, up to numerical accur
 
 ## References
 
+```{r restoredefaults, echo=FALSE}
+options(maxdim=NULL) # restore default for maxdim: options persist
+                     # between vignettes, and leaving maxdim set
+                     # causes problems for other vignettes
+```
