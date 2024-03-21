@@ -576,7 +576,14 @@ L <- list(f(x+eps,y,z),f(x,y+eps,z),f(x,y,z+eps))
 rbind(lapply(L,getcoeffs,0),lapply(L,getcoeffs,1))
 ```
 
-[observe that $\left.\partial f/\partial z\right|_{x,y,z}=f(x,y,z)$]
+[observe that $\left.\partial f/\partial z\right|_{x,y,z}=f(x,y,z)$].
+
+It is technically possible to reproduce the nice vectorised
+functionality available in the `dual` package with clifford objects of
+the form $x+\alpha e_1 + \beta e_2+\gamma e_3$, but it is awkward and
+inefficient.  The issue is the elimination of cross-terms in products,
+and this can't be done in standard Clifford formalism (one needs to
+redefine multiplication so that cross terms are discarded).
 
 
 ## References
