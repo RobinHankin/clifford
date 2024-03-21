@@ -583,7 +583,8 @@ functionality available in the `dual` package with clifford objects of
 the form $x+\alpha e_1 + \beta e_2+\gamma e_3$, but it is awkward and
 inefficient.  The issue is the elimination of cross-terms in products,
 and this can't be done in standard Clifford formalism (one needs to
-redefine multiplication so that cross terms are discarded).
+redefine multiplication [e. g. by defining `*.clifford()`] so that
+cross terms are discarded).
 
 
 ## References
