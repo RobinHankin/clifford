@@ -75,19 +75,21 @@ Considering $\mathbb{R}^3$ as a vector space and given vectors
 ${\mathbf a}, {\mathbf b}, {\mathbf c}$ spanning the space we can
 express any vector ${\mathbf x}\in\mathbb{R}^3$ as
 
-\[
+\[\mathbf{x}=
 \left(\frac{{\mathbf x}\wedge{\mathbf b}\wedge{\mathbf c}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf a}+
 \left(\frac{{\mathbf a}\wedge{\mathbf x}\wedge{\mathbf c}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf b}+
 \left(\frac{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf x}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf c}
 \]
 
 which is Cramer's rule expressed directly in vector form (rather than
-components).  Package idiom is straightforward:
+components).  Observe that the numerator and denominator of each
+bracketed term is a pseudoscalar; the ratio of two pseudoscalars is an
+ordinary scalar.  Package idiom is straightforward:
 
 ```{r, label=loadlib,results="hide",include=FALSE}
 library("clifford",quietly=TRUE)  # document requires package version 1.0-9 or above
+set.seed(0)
 ```
-
 
 ```{r label=useone,eval=TRUE}
 a <- as.1vector(runif(3))
@@ -95,30 +97,34 @@ b <- as.1vector(runif(3))
 c <- as.1vector(runif(3))
 
 (x <- as.1vector(1:3))
-abc <- a ^ b ^ c
-options(maxdim = 3)
-xabc <-
-a*(x ^ b ^ c)/abc  + 
-b*(a ^ x ^ c)/abc  + 
-c*(a ^ b ^ x)/abc  
+
+options(maxdim = 3)  # needed to drop() pseudoscalars
+abc <- drop(a ^ b ^ c)
+
+alpha <- drop(x ^ b ^ c)/abc
+beta  <- drop(a ^ x ^ c)/abc
+gamma <- drop(a ^ b ^ x)/abc
+
+c(alpha,beta,gamma)
+
+alpha*a + beta*b + gamma*c
+Mod(alpha*a + beta*b + gamma*c-x)
 ```
 
-Thus we have expressed ${\mathbf x}$ as a linear combination of
-${\mathbf a},{\mathbf b},{\mathbf c}$.  To verify:
-
-```{r label=printmod}
-print(Mod(x-xabc))
-```
-
-Conversely, we might know the coefficients [here we will use
-$1,2,3$] and try to determine them using package idiom:
+Thus we have expressed ${\mathbf x}$ (except for possible roundoff
+error) as a linear combination of ${\mathbf a},{\mathbf b},{\mathbf
+c}$, specifically ${\mathbf x}=\alpha{\mathbf a}+\beta{\mathbf
+b}+\gamma{\mathbf c}$.  Conversely, we might know the coefficients and
+try to determine them using package idiom.  Here we will use $1,2,3$
+and suppose that ${\mathbf y}=1{\mathbf a}+2{\mathbf b}+3{\mathbf c}$:
 
 ```{r label=showdrop}
 y <- a*1 + b*2 + c*3
 c(
-drop((y ^ b ^ c)/abc),
-drop((a ^ y ^ c)/abc),
-drop((a ^ b ^ y)/abc))
+    drop(y ^ b ^ c)/abc,
+    drop(a ^ y ^ c)/abc,
+    drop(a ^ b ^ y)/abc
+)
 ```
 
 
