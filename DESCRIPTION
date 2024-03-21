@@ -15,7 +15,7 @@ Description: A suite of routines for Clifford algebras, using the
    included.  The package follows 'disordR' discipline.
 License: GPL (>= 2)
 LazyData: yes
-Suggests: knitr,rmarkdown,testthat,onion (>= 1.5-3),lorentz,emulator (>= 1.2-24),jordan,permutations,covr
+Suggests: knitr,rmarkdown,testthat,onion (>= 1.5-3),lorentz (>= 1.1-1),emulator (>= 1.2-24),jordan (>= 1.0-5),permutations (>= 1.1-5), covr
 VignetteBuilder: knitr
 Imports: Rcpp (>= 0.12.5),mathjaxr,disordR (>= 0.0-8), magrittr, methods, partitions (>= 1.10-4), freealg (>= 1.0-4)
 LinkingTo: Rcpp,BH
