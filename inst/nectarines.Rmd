@@ -75,4 +75,24 @@ c(`i^2`=drop(i^2),`j^2`=drop(j^2),`k^2`=drop(k^2))
 c(`ij=k`=i*j==k,`jk=i`=j*k==i,`ki=-j`=k*i==-j)
 ```
 
+So we may use direct package idiom to generate some random nectarines
+and verify some simple identities:
+
+```{r randomnectarines}
+f <- function(...){sample(9,1)}
+n1 <- f() + i*f() + j*f() + k*f()
+n2 <- f() + i*f() + j*f() + k*f()
+n3 <- f() + i*f() + j*f() + k*f()
+n1
+```
+
+```{r check3}
+c(
+    `commutative`  = n1*n2 == n2*n1,
+    `distributive` = n1*(n2+n3) == n1*n2 + n1*n3,
+    `associative`  = n1*(n2*n3) == (n1*n2)*n3
+)
+```
+
+
 ## References
