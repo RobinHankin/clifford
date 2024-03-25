@@ -17,18 +17,22 @@ setOldClass("clifford")
 `terms` <- function(x){disord(x[[1]], hashcal(x))}  # accessor methods start ...
 `coeffs` <- function(x){ disord(x[[2]],hashcal(x))}  # ... continue ...
 `getcoeffs` <- function(C,B){                     # ... accessor methods end
+    out <- 
     c_getcoeffs(
         L = terms(C),
         c = coeffs(C),
         m = maxyterm(C),
         B = list_modifier(B))
+    names(out) <- lapply(B,catterm)
+    return(out)
 }
 
 `const` <- function(C,drop=TRUE){
   if(is.numeric(C)){return(C[1])}
   out <- getcoeffs(C,list(numeric(0)))
   if(drop){
-    return(out)
+      names(out) <- NULL
+      return(out)
   } else {
     return(as.clifford(out))
   }
