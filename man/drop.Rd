@@ -20,6 +20,9 @@ drop_clifford(x)
   \code{drop_clifford()} prevents \code{is.pseudoscalar()} being called
   if \code{maxdim} is \code{NULL}.
 
+  As of version \code{1.0-9}, Constant clifford objects are coerced to
+  an \emph{unnamed} vector.
+  
 }
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{const}},\code{\link{pseudoscalar}}}

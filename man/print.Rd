@@ -23,14 +23,17 @@ catterm(a)
 The print method does not change the internal representation of a
 \code{clifford} object, which is a two-element list, the first of which
 is a list of integer vectors representing terms, and the second is a
-numeric vector of coefficients.
+numeric vector of coefficients.  The print method has special
+dispensation for the zero clifford object.
 
-The print method is sensitive to the value of option \code{separate}.
-If \code{FALSE} (the default), the method prints in a compact form, as
-in \code{e_134}.  The indices of the basis vectors are separated with
-option \code{basissep} which is usually \code{NULL} but if \eqn{n>9},
-then setting option \code{basissep} to a comma (\dQuote{\code{,}}) might
-look good as it will print \code{e_10,11,12} instead of \code{e_101112}:
+The print method is sensitive to the value of options \code{separate}
+and \code{basissep}.  If option \code{separate} is \code{FALSE} (the
+default), the method prints the basis blades in a compact form, as in
+\dQuote{\code{e_134}}.  The indices of the basis vectors are separated
+with the value of option \code{basissep} which is usually \code{NULL};
+but if \eqn{n>9}, then setting option \code{basissep} to a comma
+(\dQuote{\code{,}}) might look good as it will print \code{e_10,11,12}
+instead of \code{e_101112}:
 
 \preformatted{options("basissep" = ",")}
 
@@ -39,10 +42,15 @@ vectors separately, as in \code{e10 e11 e12}:
 
 \preformatted{options("separate" = TRUE)}
 
-Function \code{as.character.clifford()} is also sensitive to these
-options.  The print method has special dispensation for the zero
-clifford object.  Function \code{catterm()} is a low-level helper
-function.
+Function \code{catterm()} is a low-level helper function, used in the
+print method, \code{as.character.clifford()}, and also in function
+\code{getcoeffs()}.  It is this function that is sensitive to options
+\code{basissep} and \code{separate}.  It takes an integer vector like
+\code{c(1,5,6)} and returns a representation of the corresponding basis
+blade, in this case \dQuote{\code{e_156}}.  Special dispensation is
+needed for the constant, which has a basis blade of \code{numeric(0)},
+and for which \code{e_0} is returned (see also \code{list_modifier()}
+which needs to deal with this issue).
 
 }
 \seealso{\code{\link{clifford}}}  
