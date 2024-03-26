@@ -43,7 +43,7 @@ vectors separately, as in \code{e10 e11 e12}:
 \preformatted{options("separate" = TRUE)}
 
 Function \code{catterm()} is a low-level helper function, used in the
-print method, \code{as.character.clifford()}, and also in function
+print method, coercion to character, and also in function
 \code{getcoeffs()}.  It is this function that is sensitive to options
 \code{basissep} and \code{separate}.  It takes an integer vector like
 \code{c(1,5,6)} and returns a representation of the corresponding basis

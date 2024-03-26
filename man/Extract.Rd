@@ -86,14 +86,17 @@ Idea (tm).  However, if option \code{warn_on_repeats} is set to
 \code{FALSE}, no warning will be given (and the coefficient will be the
 sum of the coefficients of the term; see the examples).
 
-Function \code{getcoeffs()} is a lower-level helper function that lacks
-the succour offered by \code{[.clifford()}.  It returns a numeric vector
-[not a \code{disord} object: the order of the elements is determined by
-the order of argument \code{B}].  Compare standard extraction, eg
-\code{a[index]}, which returns a clifford object.  Attempting to extract
-a coefficient of a term that includes a negative index will throw an
-error.  The coefficient of a term including an index larger than
-indicated by \code{maxyterm()} will return zero.
+Function \code{getcoeffs()} is a lower-level helper function that
+lacks the succour offered by \code{[.clifford()}.  It returns a named
+numeric vector [not a \code{disord} object: the order of the elements
+is determined by the order of argument \code{B}].  Compare standard
+extraction, eg \code{a[index]}, which returns a clifford object.  The
+names of the returned vector are determined by function
+\code{catterm()}.
+
+Attempting to extract a coefficient of a term that includes a negative
+index will throw an error.  The coefficient of a term including an
+index larger than indicated by \code{maxyterm()} will return zero.
 
 The index for the constant is formally \code{list(numeric(0))}, but
 this is a pain to type.  Square bracket extraction and
