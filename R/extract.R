@@ -43,7 +43,7 @@ list_modifier <- function(B){
             return(clifford(terms(C),value + numeric(length(coeffs(C)))))
         }
     } else {  # index supplied, dots interpreted as more terms
-        dots <- list_modifier(c(list(index),list(...)))
+        dots <- list_modifier(c(as.list(index),list(...)))
         if(value==0){
             jj <- clifford(dots,1)
             return(as.clifford(c_overwrite(
