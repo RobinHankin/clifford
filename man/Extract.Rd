@@ -72,8 +72,8 @@ effect as \code{a[] <- b}.
 Functions \code{terms()} [see \code{term.Rd}] and \code{coeffs()}
 extract the terms and coefficients from a clifford object.  These
 functions return \code{disord} objects but the ordering is consistent
-between them (an extended discussion of this phenomenon is presented in
-the \code{mvp} package).   Note that \code{coeffs()} returns
+between them (an extended discussion of this phenomenon is presented
+in the \CRANpkg{mvp} package).  Note that \code{coeffs()} returns
 \code{numeric(0)} on the zero clifford object.
 
 Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets all
