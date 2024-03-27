@@ -74,6 +74,7 @@ test_that("Test suite aaa.R",{
 
     expect_error(A[-1])
     expect_true(A[c(1,4)] == 0)
+    expect_true(A[coeffs(A)>2] == clifford(list(1:3),3))
 
     expect_error(A[B])
     expect_silent(A[1,c(1,3,4)])
@@ -81,6 +82,8 @@ test_that("Test suite aaa.R",{
     expect_silent(A[] <- B)
     expect_silent(A[] <- 3)
 
+    expect_true(A[disord(list(1,1:2)),1:3] == A[disord(list(1,1:2))])
+    
     expect_true(is.1vector(clifford(list(1,2,3),1:3)))
 
     A <- clifford(list(1,1:2,1:3),1:3)
