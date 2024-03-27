@@ -44,6 +44,7 @@ list_modifier <- function(B){
         }
     } else {  # index supplied, dots interpreted as more terms
         dots <- list_modifier(c(as.list(index),list(...)))
+        if(length(value) > 1){stop("replacement length > 1 not allowed")}
         if(value==0){
             jj <- clifford(dots,1)
             return(as.clifford(c_overwrite(

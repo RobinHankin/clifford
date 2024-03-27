@@ -54,14 +54,16 @@ that idiom such as \code{a[coeffs(a)>3]} works.
 
 For replacement methods, the standard use-case is \code{a[i] <- b} in
 which argument \code{i} is a list of integer vectors and \code{b} a
-length-one numeric vector.  Otherwise, to manipulate parts of a clifford
-object, use \code{coeffs(a) <- value}; this effectively leverages
-\code{disord} formalism.  Idiom such as \code{a[coeffs(a)<2] <- 0} is
-not currently implemented (to do this, use \code{coeffs(a)[coeffs(a)<2]
-<- 0}).  Replacement using a list-valued index, as in \code{A[i] <-
-value} uses an ugly hack if \code{value} is zero.  Replacement methods
-are not yet finalised and not yet fully integrated with the
-\code{disordR} package.
+length-one numeric vector; (replacement vectors of length greater than
+one are currently not implemented, whether or not they violate
+\code{disordR} discipline).  Otherwise, to manipulate parts of a
+clifford object, use \code{coeffs(a) <- value}; \code{disord}
+discipline is enforced.  Idiom such as \code{a[coeffs(a)<2] <- 0} is
+implemented experimentally, as syntactic sugar for
+\code{coeffs(a)[coeffs(a)<2] <- 0}.  Replacement using a list-valued
+index, as in \code{A[i] <- value} uses an ugly hack if \code{value} is
+zero.  Replacement methods are not yet finalised and not yet fully
+integrated with the \code{disordR} package.
 
 Idiom such as \code{a[] <- b} follows the \code{spray} package.  If
 \code{b} is a length-one scalar, then \code{coeffs(a) <- b} has the same
@@ -95,8 +97,9 @@ names of the returned vector are determined by function
 \code{catterm()}.
 
 Attempting to extract a coefficient of a term that includes a negative
-index will throw an error.  The coefficient of a term including an
-index larger than indicated by \code{maxyterm()} will return zero.
+index will throw an error.  The coefficient of a term not present in
+the Clifford object (including term with an index larger than
+indicated by \code{maxyterm()}) will return zero.
 
 The index for the constant is formally \code{list(numeric(0))}, but
 this is a pain to type.  Square bracket extraction and
