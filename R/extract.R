@@ -16,7 +16,9 @@ list_modifier <- function(B){
         if(is.list(index)){
             dots <- elements(index)
         } else {
-            return(clifford(elements(terms(C)[index]),elements(coeffs(C)[index])))
+            out <- clifford(elements(terms(C)[index]),elements(coeffs(C)[index]))
+            if(drop){out <- drop(out)}
+            return(out)
         }
     } else if(is.list(index)){
         dots <- index

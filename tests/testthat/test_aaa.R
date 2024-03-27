@@ -95,6 +95,11 @@ test_that("Test suite aaa.R",{
     A[1] <- 0
     expect_true(A == clifford(list(1:2,1:3),2:3))
 
+
+    A <- 5 + clifford(list(1,1:2,1:3),1:3)
+    expect_true (is.clifford(A[coeffs(A)>4,drop=FALSE]))
+    expect_false(is.clifford(A[coeffs(A)>4,drop=TRUE ]))
+
     A <- clifford(list(1,1:2,1:3),1:3)
     A[1,1:2] <- 33
     expect_true(A == clifford(list(1,1:2,1:3),c(33,33,3)))
