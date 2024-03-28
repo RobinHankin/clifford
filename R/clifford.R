@@ -1,4 +1,5 @@
 `clifford` <- function(terms,coeffs=1){
+    terms <- list_modifier(terms)
     terms <- elements(terms)
     coeffs <- elements(coeffs)
     if(length(coeffs)==1){coeffs <- coeffs+numeric(length(terms))}

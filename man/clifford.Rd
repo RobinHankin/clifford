@@ -39,7 +39,9 @@ nterms(x)
     \item Function \code{clifford()} is the formal creation mechanism
     for \code{clifford} objects.  If \code{coeffs} is of length 1, it
     will be recycled (even if \code{terms} is empty, in which case the
-    zero Clifford object is returned).
+    zero Clifford object is returned).  Argument \code{terms} is passed
+    through \code{list_modifier()}, so a zero entry is interpreted as
+    \code{numeric(0)}
 
     \item Function \code{as.clifford()} is much more user-friendly and
     attempts to coerce a range of input arguments to clifford form
