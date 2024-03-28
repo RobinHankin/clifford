@@ -44,13 +44,15 @@ vectors separately, as in \code{e10 e11 e12}:
 
 Function \code{catterm()} is a low-level helper function, used in the
 print method, coercion to character, and also in function
-\code{getcoeffs()}.  It is this function that is sensitive to options
-\code{basissep} and \code{separate}.  It takes an integer vector like
-\code{c(1,5,6)} and returns a representation of the corresponding basis
-blade, in this case \dQuote{\code{e_156}}.  Special dispensation is
-needed for the constant, which has a basis blade of \code{numeric(0)},
-and for which \code{e_0} is returned (see also \code{list_modifier()}
-which needs to deal with this issue).
+\code{getcoeffs()} to set the names of its output.  It takes an integer
+vector like \code{c(1,5,6)} and returns a representation of the
+corresponding basis blade, in this case \dQuote{\code{e_156}}.  Function
+\code{catterm()} is where options \code{basissep} and \code{separate}
+are processed.  Special dispensation is needed for length-zero vectors,
+for which the empty string is returned.  This is needed to ensure that
+the constant term (which has a basis blade of \code{numeric(0)}) is
+treated appropriately.  See also \code{list_modifier()} which deals with
+this issue.
 
 }
 \seealso{\code{\link{clifford}}}  
