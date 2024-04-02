@@ -53,8 +53,8 @@
 \alias{scalprod}
 \alias{scalar_product}
 \alias{eucprod}
-\alias{euclid\_product}
-\alias{euclidean\_product}
+\alias{euclid_product}
+\alias{euclidean_product}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
 \description{\loadmathjax
   Different arithmetic operators for clifford objects, including
