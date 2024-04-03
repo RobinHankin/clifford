@@ -113,6 +113,9 @@ Function \code{Im()} is a generic, which sets the real component of its
 argument to zero (as per the \CRANpkg{onion} package).  Function
 \code{Re()} is a convenience synonym for \code{const()}.
 
+Vignette \code{getcoeffs} gives a more extended discussion of function
+\code{getcoeffs()}.
+
 }
 \seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}
 \examples{
