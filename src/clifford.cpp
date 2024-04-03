@@ -55,7 +55,7 @@ bool c_equal(
 
 // [[Rcpp::export]]
 NumericVector c_getcoeffs(
-          const List &L, const NumericVector &c,  // c[12] = coeffs
+          const List &L, const NumericVector &c,
           const NumericVector &m,
           const List &B
           ){
