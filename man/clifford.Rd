@@ -57,9 +57,6 @@ nterms(x)
     
     \item Function \code{is_ok_clifford()} is a helper function that checks
     for consistency of its arguments
-
-    \item Function \code{is.term()} returns \code{TRUE} if all terms of
-    its argument have the same grade
   }
 }
 \references{
