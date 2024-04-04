@@ -80,9 +80,6 @@ Function \code{coeffs<-()} (idiom \code{coeffs(a) <- b}) sets all
 coefficients of \code{a} to \code{b}.  This has the same effect as
 \code{a[] <- b}.
 
-Extraction and replacement methods treat \code{0} specially, translating
-it (via \code{list_modifier()}) to \code{numeric(0)}.
-
 Extracting or replacing a list with a repeated elements is usually a Bad
 Idea (tm).  However, if option \code{warn_on_repeats} is set to
 \code{FALSE}, no warning will be given (and the coefficient will be the
