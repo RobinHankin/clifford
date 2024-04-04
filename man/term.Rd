@@ -2,7 +2,6 @@
 \alias{term}
 \alias{term}
 \alias{terms}
-\alias{is.term}
 \alias{blade}
 \alias{is.blade}
 \alias{is.basisblade}
