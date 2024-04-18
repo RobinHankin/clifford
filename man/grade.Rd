@@ -123,7 +123,7 @@ zero (I have not seen this anywhere else, but it is a logical
 suggestion).
 
 If the signature is zero, then the Clifford algebra reduces to a
-Grassman algebra and products match the wedge product of exterior
+Grassmann algebra and products match the wedge product of exterior
 calculus.  In this case, functions \code{gradesplus()} and
 \code{gradesminus()} return \code{NA}.
 

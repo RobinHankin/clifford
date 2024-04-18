@@ -233,7 +233,7 @@ equation \ref{gencliff1} becomes
 
 which implies that $\ei{i}\ei{i}=0$.  Geometric products become wedge
 products (although linearity means that we may add terms of different
-grades, unlike conventional Grassman algebra).
+grades, unlike conventional Grassmann algebra).
 
 \section{The package in use}
 
@@ -328,12 +328,12 @@ x*y
 In the above, see how the products are different using the two inner
 products.  
 
-\section{Grassman algebra}
+\section{Grassmann algebra}
 
-A Grassman algebra corresponds to a Clifford algebra with identically
+A Grassmann algebra corresponds to a Clifford algebra with identically
 zero inner product.  Package idiom is to use a zero signature:
 
-<<grassmanalgebra,results=hide>>=
+<<grassmannalgebra,results=hide>>=
 signature(0,0) # specify null inner product
 <<checkforzero print=TRUE,results=verbatim>>=
 e(5)^2 == 0    # cannot use is.zero() here because the jordan package masks clifford::is.zero()

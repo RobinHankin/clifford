@@ -29,7 +29,7 @@
         } else if(s[2] == .Machine$integer.max){
             options("prompt" = paste("Cl(",s[1],",Inf) > ",sep=""))
         } else if(all(s==0)){
-            options("prompt" = "Grassman > ")
+            options("prompt" = "Grassmann > ")
         } else {
             options("prompt" = paste("Cl(", s[1],",", s[2],") > ",sep=""))
         }
@@ -140,7 +140,7 @@ maxyterm <- function(C1,C2=as.clifford(0)){
 }
 
 `clifford_inverse` <- function(C){
-    if(all(signature()==0)){stop("inverses not defined for Grassman algebra")}
+    if(all(signature()==0)){stop("inverses not defined for Grassmann algebra")}
 
     if((all(grades(C)==1)) || is.pseudoscalar(C)){
         return(clifford_times_scalar(Conj(C),1/eucprod(C)))

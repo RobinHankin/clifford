@@ -20,7 +20,7 @@ test_that("Test suite aad.R",{  # tests of signature
     expect_true(1/basis(1) ==  basis(1))
 
 
-    signature(0,0)  # reduces to Grassman algebra
+    signature(0,0)  # reduces to Grassmann algebra
     expect_true(basis(1)*basis(1) == as.clifford(0))
     expect_true(basis(2)*basis(2) == as.clifford(0))
     expect_true(basis(1)*basis(2) ==  basis(1:2))
