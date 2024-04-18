@@ -39,14 +39,16 @@ routine.  It takes as arguments a clifford object and a list of terms:
 ```{r use_getcoeffs}
 set.seed(0)
 (a <- rcliff())
-getcoeffs(a,list(1:2, 0, c(2,5), c(1,5,6), c(2,6)))
+getcoeffs(a,list(1:2, 0, c(2,5), c(1,5,6), c(2,6), 1:2))
 ```
 
-The coefficients are returned in the form of a numeric vector [not a
-`disord` object: the order of the elements is determined by the order
-of argument `B`].  Compare standard extraction, e.g. `a[index]`, which
-returns a `clifford` object.  Also, compare `coeffs()` which extracts
-_all_ coefficients of a clifford object:
+Note that the first and last element of the returned vector are both
+the coefficient of $e_{12}$, _viz._ `-9`.  The coefficients are
+returned in the form of a numeric vector [not a `disord` object: the
+order of the elements is determined by the order of argument `B`].
+Compare standard extraction, e.g. `a[index]`, which returns a
+`clifford` object.  Also, compare `coeffs()` which extracts _all_
+coefficients of a clifford object:
 
 ```{r showcoeffs}
 coeffs(a)
@@ -58,9 +60,9 @@ having list elements of zero, which are translated by helper function
 `list_modifier()` to `numeric(0)` and listified if necessary.  The
 upshot is that a zero list element in argument `B` works as expected
 extracting the constant.  Also, passing `B=0` works as expected,
-returning the constant (there is no need to coerce to a list is
-performed by `list_modifier)`.  A similar scheme is used in the square
-bracket extraction and replacement methods
+returning the constant (there is no need to coerce to a list: coercion
+is performed by `list_modifier)`.  A similar scheme is used in the
+square bracket extraction and replacement methods
 
 Attempting to extract a coefficient of a term that includes a negative
 index will throw an error.  The coefficient of a term including an
