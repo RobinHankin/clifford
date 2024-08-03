@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
-[![Codecov test coverage](https://app.codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford/branch/master)
+[![Codecov test coverage](https://codecov.io/gh/RobinHankin/clifford/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford)
 <!-- badges: end -->
 
 

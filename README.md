@@ -9,7 +9,7 @@ The clifford package: Clifford algebra in R
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
 [![Codecov test
-coverage](https://app.codecov.io/gh/RobinHankin/clifford/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford/branch/master)
+coverage](https://codecov.io/gh/RobinHankin/clifford/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford)
 <!-- badges: end -->
 
 The `clifford` package provides R-centric functionality for working with
@@ -126,12 +126,13 @@ Thus:
 options("basissep" = ",")
 (x <- rcliff(d=20))
 #> Element of a Clifford algebra, equal to
-#> + 4 + 5e_2 + 1e_5 - 2e_4,7 + 2e_11 + 4e_14 - 1e_10,14 + 3e_5,9,15 - 3e_18,19
+#> + 5 - 1e_2 + 6e_5 + 2e_4,7 - 3e_10 - 5e_11 + 3e_14 + 1e_10,14 + 4e_5,9,15 +
+#> 9e_18,19
 summary(x^3)
 #> Element of a Clifford algebra 
-#> Typical terms:  364  ...  + 54e_5,9,10,14,15,18,19 
-#> Number of terms: 40 
-#> Magnitude: 265721
+#> Typical terms:  140  ...  + 216e_5,9,10,14,15,18,19 
+#> Number of terms: 44 
+#> Magnitude: 25376
 ```
 
 # References
