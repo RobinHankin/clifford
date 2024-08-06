@@ -259,8 +259,7 @@ setGeneric("dim")
   }
   cat(paste(strwrap(out, getOption("width")), collapse="\n"))
   cat("\n")
-  return(x)
-  
+  return(invisible(x))
 }
 
 setGeneric("drop")
