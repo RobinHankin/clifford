@@ -160,7 +160,7 @@ S <- sphere(1:3,5)  # center (1,2,3) radius 5:
 S
 ```
 
-Then object `S` is a conformal representation of such as sphere.  The
+Then object `S` is a conformal representation of such a sphere.  The
 radius $\rho$ can be calculated from $\bS^2=\rho^2$.  Package idiom:
 
 ```{r verifyradius}
