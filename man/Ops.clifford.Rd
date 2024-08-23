@@ -56,7 +56,7 @@
 \alias{euclid_product}
 \alias{euclidean_product}
 \title{Arithmetic Ops Group Methods for \code{clifford} objects}
-\description{\loadmathjax
+\description{
   Different arithmetic operators for clifford objects, including
   many different types of multiplication.
 }
@@ -107,32 +107,32 @@ C1 \%|_\% C2
 
   \tabular{lll}{\cr
     Geometric product \tab \code{A*B = geoprod(A,B)} \tab
-    \mjeqn{\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle
+    \eqn{\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s}{see PDF}\cr
     Inner product\tab \code{A \%.\% B = cliffdotprod(A,B)}\tab
-    \mjeqn{\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne
+    \eqn{\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne
     0}^{\vphantom{s\neq 0}}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{\left|s-r\right|}}{see PDF}\cr
     Outer product\tab\code{A \%^\% B = wedge(A,B)}\tab
-    \mjeqn{\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+    \eqn{\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{s+r}}{see PDF}\cr
     Fat dot product\tab\code{A \%o\% B = fatdot(A,B)}\tab
-    \mjeqn{\displaystyle A\bullet B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+    \eqn{\displaystyle A\bullet B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{\left|s-r\right|}}{see PDF}\cr
     Left contraction\tab\code{A \%_|\% B = lefttick(A,B)}\tab
-    \mjeqn{\displaystyle A\rfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+    \eqn{\displaystyle A\rfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{s-r}}{see PDF}\cr
     Right contraction\tab\code{A \%|_\% B = righttick(A,B)}\tab
-    \mjeqn{\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+    \eqn{\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_{r-s}}{see PDF}\cr
     Cross product\tab\code{A \%X\% B = cross(A,B)}\tab
-    \mjeqn{\displaystyle A\times
+    \eqn{\displaystyle A\times
     B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)}{see PDF}\cr
     Scalar product\tab\code{A \%star\% B = star(A,B)}\tab
-    \mjeqn{\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+    \eqn{\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s\right\rangle_0}{see PDF}\cr
     Euclidean product\tab\code{A \%euc\% B = eucprod(A,B)}\tab
-    \mjeqn{\displaystyle A\star B= A\ast B^\dagger}{see PDF}\cr
+    \eqn{\displaystyle A\star B= A\ast B^\dagger}{see PDF}\cr
   }
 
   In \R idiom, the geometric product \code{geoprod(.,.)} has to be
@@ -147,8 +147,8 @@ C1 \%|_\% C2
   causes problems for rmarkdown.
 
   Function \code{clifford_inverse()} returns an inverse for nonnull
-  Clifford objects \mjeqn{\operatorname{Cl}(p,q)}{Cl(p,q)} for
-  \mjeqn{p+q\leq 5}{p+q <= 5}, and a few other special cases.  The
+  Clifford objects \eqn{\operatorname{Cl}(p,q)}{Cl(p,q)} for
+  \eqn{p+q\leq 5}{p+q <= 5}, and a few other special cases.  The
   functionality is problematic as nonnull blades always have an inverse;
   but function \code{is.blade()} is not yet implemented.  Blades
   (including null blades) have a pseudoinverse, but this is not
@@ -157,7 +157,7 @@ C1 \%|_\% C2
   The \dfn{scalar product} of two clifford objects is defined as the
   zero-grade component of their geometric product:
   
-  \mjdeqn{
+  \deqn{
     A\ast B=\left\langle AB\right\rangle_0\qquad{\mbox{NB: notation used by both Perwass and Hestenes}}
   }{
     omitted; see PDF
@@ -165,7 +165,7 @@ C1 \%|_\% C2
 
   In package idiom the scalar product is given by \code{A \%star\% B} or
   \code{scalprod(A,B)}.  Hestenes and Perwass both use an asterisk for
-  scalar product as in \dQuote{\mjeqn{A*B}{A*B}}, but in package idiom, the
+  scalar product as in \dQuote{\eqn{A*B}{A*B}}, but in package idiom, the
   asterisk is reserved for geometric product.
 
   \strong{Note: in the package, \code{A*B} is the geometric product}.
@@ -173,7 +173,7 @@ C1 \%|_\% C2
   The \dfn{Euclidean product} (or \dfn{Euclidean scalar product}) of two
   clifford objects is defined as 
 
-  \mjdeqn{
+  \deqn{
     A\star B=
     A\ast B^\dagger=
     \left\langle AB^\dagger\right\rangle_0\qquad{\mbox{Perwass}}
@@ -181,26 +181,26 @@ C1 \%|_\% C2
     omitted: see PDF
   }
 
-  where \mjeqn{B^\dagger}{?} denotes Conjugate [as in \code{Conj(a)}].  In
+  where \eqn{B^\dagger}{?} denotes Conjugate [as in \code{Conj(a)}].  In
   package idiom the Euclidean scalar product is given by
   \code{eucprod(A,B)} or \code{A \%euc\% B}, both of which return
   \code{A * Conj(B)}.
 
-  Note that the scalar product \mjeqn{A\ast A}{?} can be positive or
+  Note that the scalar product \eqn{A\ast A}{?} can be positive or
   negative [that is, \code{A \%star\% A} may be any sign], but the
   Euclidean product is guaranteed to be non-negative [that is, \code{A
   \%euc\% A} is always positive or zero].
 
   Dorst defines the left and right contraction (Chisholm calls these the
-  left and right inner product) as \mjeqn{A\rfloor B}{see PDF} and
-  \mjeqn{A\lfloor B}{see PDF}.  See the vignette for more details.
+  left and right inner product) as \eqn{A\rfloor B}{see PDF} and
+  \eqn{A\lfloor B}{see PDF}.  See the vignette for more details.
 
   Division, as in idiom \code{x/y}, is defined as
   \code{x*clifford_inverse(y)}.  Function \code{clifford_inverse()} uses
   the method set out by Hitzer and Sangwine but is limited to
-  \mjeqn{p+q\leq 5}{p+q <= 5}.
+  \eqn{p+q\leq 5}{p+q <= 5}.
 
-  The Lie bracket, \mjeqn{\left[x,y\right]}{[x,y]} is implemented in the
+  The Lie bracket, \eqn{\left[x,y\right]}{[x,y]} is implemented in the
   package using idiom such as \code{.[x,y]}, and this is documented at
   \code{dot.Rd}.
   
@@ -229,7 +229,7 @@ C1 \%|_\% C2
 
   Compare the \CRANpkg{stokes} package, where multiplicative powers do
   not really make sense and \code{A^B} is interpreted as a wedge product
-  of differential forms \mjseqn{A} and \mjseqn{B}.  In \CRANpkg{stokes},
+  of differential forms \eqn{A} and \eqn{B}.  In \CRANpkg{stokes},
   the wedge product is the \emph{sine qua non} for the whole package and
   needs a terse idiomatic representation (although there \code{A\%^\%B}
   returns the wedge product too).

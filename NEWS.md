@@ -23,3 +23,4 @@
 - move more documentation to the vignettes directory
 - automatic codecov improvements
 - extra safety checks for signature() and maxdim
+- remove dependence on mathjax

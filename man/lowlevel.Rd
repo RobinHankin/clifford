@@ -16,7 +16,7 @@
 \alias{c_cartan}
 \alias{c_cartan_inverse}
 \title{Low-level helper functions for \code{clifford} objects}
-\description{\loadmathjax
+\description{
   Helper functions for \code{clifford} objects, written in \code{C} using the
   \code{STL} map class.
 }
@@ -37,8 +37,8 @@ c_cartan_inverse(L, c, m, n)
   \item{m}{Maximum entry of terms}
   \item{n}{Grade to extract}
   \item{p}{Integer power}
-  \item{sig}{Two positive integers, \mjseqn{p} and \mjseqn{q},
-    representing the number of \mjseqn{+1} and \mjseqn{-1} terms
+  \item{sig}{Two positive integers, \eqn{p} and \eqn{q},
+    representing the number of \eqn{+1} and \eqn{-1} terms
     on the main diagonal of quadratic form}
 }
 \details{

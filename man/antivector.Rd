@@ -3,7 +3,7 @@
 \alias{as.antivector}
 \alias{is.antivector}
 \title{Antivectors or pseudovectors}
-\description{\loadmathjax
+\description{
 Antivectors or pseudovectors
 }
 \usage{
@@ -20,11 +20,10 @@ is.antivector(C, include.pseudoscalar=FALSE)
 }
 \details{
 
-An \dfn{antivector} is an \mjseqn{n}-dimensional Clifford object, all of
-whose terms are of grade \mjseqn{n-1}.  An antivector has \mjseqn{n}
-degrees of freedom.  Function \code{antivector(v,n)} interprets
-\code{v[i]} as the coefficient of \mjeqn{e_1e_2\ldots
-e_{i-1}e_{i+1}\ldots e_n}{omitted}.
+An \dfn{antivector} is an \eqn{n}-dimensional Clifford object, all of
+whose terms are of grade \eqn{n-1}.  An antivector has \eqn{n} degrees
+of freedom.  Function \code{antivector(v,n)} interprets \code{v[i]} as
+the coefficient of \eqn{e_1e_2\ldots e_{i-1}e_{i+1}\ldots e_n}{omitted}.
 
 Function \code{as.antivector()} is a convenience wrapper, coercing its
 argument to an antivector of minimal dimension (zero entries are

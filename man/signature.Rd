@@ -20,7 +20,7 @@ showsig(s)
   \item{x}{Object of class \code{sigobj}}
   \item{...}{Further arguments, currently ignored}
 }
-\details{\loadmathjax
+\details{
 
 The signature functionality is modelled on the \CRANpkg{lorentz}
 package; \code{clifford::signature()} operates in the same way as
@@ -29,24 +29,24 @@ is that both the speed of light and the signature of a Clifford algebra
 are generally set once, at the beginning of an \R session, and
 subsequently change only very infrequently.
 
-Clifford algebras require a bilinear form on \mjteqn{R^n}{\mathbb{R}^n}{R^n}
-\mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}, usually written
+Clifford algebras require a bilinear form on \eqn{\mathbb{R}^n}{R^n}
+\eqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}, usually written
 
-\mjdeqn{\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
+\deqn{\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
   +x_p^2-x_{p+1}^2-\cdots -x_{p+q}^2
 }{
   <x,x>=x_1^2+...+x_p^2-x_{p+1}^2-...-x_{p+q}^2
 }
 
-where \mjeqn{p+q=n}{p+q=n}.  With this quadratic form the vector space
-is denoted \mjteqn{R^{p,q}}{\mathbb{R}^{p,q}}{R^{p,q}} and we say that
-\mjseqn{(p,q)} is the \dfn{signature} of the bilinear form
-\mjeqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}.  This gives rise to
-the Clifford algebra \mjeqn{C_{p,q}}{C_{p,q}}.
+where \eqn{p+q=n}{p+q=n}.  With this quadratic form the vector space
+is denoted \eqn{\mathbb{R}^{p,q}}{R^{p,q}} and we say that
+\eqn{(p,q)} is the \dfn{signature} of the bilinear form
+\eqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}.  This gives rise to
+the Clifford algebra \eqn{C_{p,q}}{C_{p,q}}.
 
-If the signature is \mjseqn{(p,q)}, then we have
+If the signature is \eqn{(p,q)}, then we have
 
-\mjdeqn{
+\deqn{
   e_i e_i =   +1\, (\mbox{if } 1\leq i\leq p), 
               -1\, (\mbox{if } p+1\leq i\leq p+q),
                0\, (\mbox{if } i>p+q).
@@ -54,22 +54,22 @@ If the signature is \mjseqn{(p,q)}, then we have
   omitted
 }
 
-Note that \mjseqn{(p,0)} corresponds to a positive-semidefinite
-quadratic form in which \mjeqn{e_ie_i=+1}{omitted} for all \mjeqn{i\leq
-p}{i<=p} and \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i > p}.
-Similarly, \mjseqn{(0,q)} corresponds to a negative-semidefinite
-quadratic form in which \mjeqn{e_ie_i=-1}{omitted} for all \mjeqn{i\leq
-q}{i<=q} and \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i > q}.
+Note that \eqn{(p,0)} corresponds to a positive-semidefinite
+quadratic form in which \eqn{e_ie_i=+1}{omitted} for all \eqn{i\leq
+p}{i<=p} and \eqn{e_ie_i=0}{omitted} for all \eqn{i > p}.
+Similarly, \eqn{(0,q)} corresponds to a negative-semidefinite
+quadratic form in which \eqn{e_ie_i=-1}{omitted} for all \eqn{i\leq
+q}{i<=q} and \eqn{e_ie_i=0}{omitted} for all \eqn{i > q}.
 
 A strictly positive-definite quadratic form is specified by infinite
-\mjseqn{p} [in which case \mjseqn{q} is irrelevant], and
+\eqn{p} [in which case \eqn{q} is irrelevant], and
 \code{signature(Inf)} implements this.  For a strictly negative-definite
-quadratic form we would have \mjeqn{p=0,q=\infty}{omitted} which would
+quadratic form we would have \eqn{p=0,q=\infty}{omitted} which would
 be \code{signature(0,Inf)}.
 
-If we specify \mjeqn{e_ie_i=0}{omitted} for all \mjseqn{i}, then the
+If we specify \eqn{e_ie_i=0}{omitted} for all \eqn{i}, then the
 operation reduces to the wedge product of a Grassmann algebra.  Package
-idiom for this is to set \mjseqn{p=q=0} with \code{signature(0,0)}, but
+idiom for this is to set \eqn{p=q=0} with \code{signature(0,0)}, but
 this is not recommended: use the \CRANpkg{stokes} package for Grassmann
 algebras, which is much more efficient and uses nicer idiom.
 
@@ -78,7 +78,7 @@ setting option \code{show_signature} to \code{TRUE} makes
 \code{signature()} have the side-effect of calling \code{showsig()},
 which changes the default prompt to display the signature, much like
 \code{showSOL} in the \CRANpkg{lorentz} package.  There is special
-dispensation for \dQuote{infinite} \mjseqn{p} or \mjseqn{q}.
+dispensation for \dQuote{infinite} \eqn{p} or \eqn{q}.
 
 Calling \code{signature()} [that is, with no arguments] returns an
 object of class \code{sigobj} with elements corresponding to \eqn{p} and
@@ -89,10 +89,10 @@ such as \code{.Machine$integer.max} will be printed as
 
 Function \code{is_ok_sig()} is a helper function that checks for a
 proper signature.  If we set \code{signature(p,q)}, then technically
-\mjseqn{n>p+q} implies \mjeqn{e_n^2=0}{omitted}, but usually we are not
-interested in \mjseqn{e_n} when \mjseqn{n>p+q} and want this to be an
-error.  Option \code{maxdim} specifies the maximum value of \mjseqn{n},
-with default \code{NULL} corresponding to infinity.  If \mjseqn{n}
+\eqn{n>p+q} implies \eqn{e_n^2=0}{omitted}, but usually we are not
+interested in \eqn{e_n} when \eqn{n>p+q} and want this to be an
+error.  Option \code{maxdim} specifies the maximum value of \eqn{n},
+with default \code{NULL} corresponding to infinity.  If \eqn{n}
 exceeds this, \code{is_ok_sig()} throws an error.  Note that it is fine
 to have \code{maxdim > p+q} [and indeed this is useful in the context of
 dual numbers].  This option is intended to be a super-strict safety

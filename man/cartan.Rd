@@ -2,11 +2,11 @@
 \alias{cartan}
 \alias{cartan_inverse}
 \title{Cartan map between clifford algebras}
-\description{\loadmathjax
+\description{
 
-  Cartan's map isomorphisms from \mjeqn{\operatorname{Cl}(p,q)}{Cl(p,q)}
-  to \mjeqn{\operatorname{Cl}(p-4,q+4)}{Cl(p-4,q+4)} and
-  \mjeqn{\operatorname{Cl}(p+4,q-4)}{Cl(p+4,q-4)}
+  Cartan's map isomorphisms from \eqn{\operatorname{Cl}(p,q)}{Cl(p,q)}
+  to \eqn{\operatorname{Cl}(p-4,q+4)}{Cl(p-4,q+4)} and
+  \eqn{\operatorname{Cl}(p+4,q-4)}{Cl(p+4,q-4)}
 
 }
 \usage{
@@ -19,10 +19,10 @@ cartan_inverse(C, n = 1)
 }
 \value{
   Returns an object of class \code{clifford}.  The default value
-  \code{n=1} maps \mjeqn{\operatorname{Cl}(4,q)}{Cl(4,q)} to
-  \mjeqn{\operatorname{Cl}(0,q+4)}{Cl(0,q+4)} (\code{cartan()}) and
-  \mjeqn{\operatorname{Cl}(0,q)}{Cl(0,q)} to
-  \mjeqn{\operatorname{Cl}(4,q-4)}{Cl(4,q-4)}.
+  \code{n=1} maps \eqn{\operatorname{Cl}(4,q)}{Cl(4,q)} to
+  \eqn{\operatorname{Cl}(0,q+4)}{Cl(0,q+4)} (\code{cartan()}) and
+  \eqn{\operatorname{Cl}(0,q)}{Cl(0,q)} to
+  \eqn{\operatorname{Cl}(4,q-4)}{Cl(4,q-4)}.
 }
 
 \references{

@@ -9,18 +9,18 @@
   \code{inst/quaternion_clifford.Rmd}.
 
 }
-\details{\loadmathjax
+\details{
   
-  Given a quaternion \mjeqn{a+bi+cj+dk}{a+bi+cj+dk}, one may identify
-\mjeqn{i}{i} with \mjeqn{-e_{12}}{-e_12}, \mjeqn{j}{j} with
-\mjeqn{-e_{13}}{-e_13}, and \mjeqn{k}{k} with \mjeqn{-e_{23}}{-e_23}
-(the constant term is of course \mjeqn{e_0}{e_0}).
+  Given a quaternion \eqn{a+bi+cj+dk}{a+bi+cj+dk}, one may identify
+\eqn{i}{i} with \eqn{-e_{12}}{-e_12}, \eqn{j}{j} with
+\eqn{-e_{13}}{-e_13}, and \eqn{k}{k} with \eqn{-e_{23}}{-e_23}
+(the constant term is of course \eqn{e_0}{e_0}).
 
 }
 \author{Robin K. S. Hankin}
 \note{
   A different mapping, from the quaternions to
-  \mjeqn{\operatorname{Cl}(0,2)}{Cl(0,2)} is given at
+  \eqn{\operatorname{Cl}(0,2)}{Cl(0,2)} is given at
   \code{signature.Rd}.
 }
 \seealso{\code{\link{signature}}}

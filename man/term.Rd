@@ -6,23 +6,23 @@
 \alias{is.blade}
 \alias{is.basisblade}
 \title{Deal with terms}
-\description{\loadmathjax
+\description{
 
 By \dfn{basis vector}, I mean one of the basis vectors of the underlying
-vector space \mjeqn{R^n}{R^n}, that is, an element of the set
-\mjeqn{\left\lbrace e_1,\ldots,e_n\right\rbrace}{{e_1,...,e_n}}.  A
+vector space \eqn{R^n}{R^n}, that is, an element of the set
+\eqn{\left\lbrace e_1,\ldots,e_n\right\rbrace}{{e_1,...,e_n}}.  A
 \dfn{term} is a wedge product of basis vectors (or a geometric product
 of linearly independent basis vectors), something like
-\mjeqn{e_{12}}{e_12} or \mjeqn{e_{12569}}{e_12569}.  Sometimes I use the
+\eqn{e_{12}}{e_12} or \eqn{e_{12569}}{e_12569}.  Sometimes I use the
 word \dQuote{term} to mean a wedge product of basis vectors together
-with its associated coefficient: so \mjeqn{7e_{12}}{7e_12} would be
+with its associated coefficient: so \eqn{7e_{12}}{7e_12} would be
 described as a term.
 
 From Perwass: a \dfn{blade} is the outer product of a number of
 1-vectors (or, equivalently, the wedge product of linearly independent
-1-vectors).  Thus \mjeqn{e_{12}=e_1\wedge e_2}{e_12=e_1 ^ e_2} and
-\mjeqn{e_{12} + e_{13}=e_1\wedge(e_2+e_3)}{e_12+e_13=e1^(e2+e3)} are
-blades, but \mjeqn{e_{12} + e_{34}}{e_12+e_34} is not.
+1-vectors).  Thus \eqn{e_{12}=e_1\wedge e_2}{e_12=e_1 ^ e_2} and
+\eqn{e_{12} + e_{13}=e_1\wedge(e_2+e_3)}{e_12+e_13=e1^(e2+e3)} are
+blades, but \eqn{e_{12} + e_{34}}{e_12+e_34} is not.
 
 Function \code{rblade()}, documented at \file{rcliff.Rd}, returns a
 random blade.
