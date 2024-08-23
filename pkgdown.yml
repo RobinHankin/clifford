@@ -1,0 +1,19 @@
+pandoc: 3.1.11
+pkgdown: 2.1.0
+pkgdown_sha: ~
+articles:
+  complex_clifford: complex_clifford.html
+  conformal_algebra_clifford: conformal_algebra_clifford.html
+  cramer_clifford: cramer_clifford.html
+  determinants_clifford: determinants_clifford.html
+  dual_quaternion_clifford: dual_quaternion_clifford.html
+  getcoeffs: getcoeffs.html
+  lorentz_clifford: lorentz_clifford.html
+  pauli_clifford: pauli_clifford.html
+  pseudoscalar: pseudoscalar.html
+  quaternion_clifford: quaternion_clifford.html
+  signature: signature.html
+last_built: 2024-08-23T15:00Z
+urls:
+  reference: https://robinhankin.github.io/clifford/reference
+  article: https://robinhankin.github.io/clifford/articles
