@@ -83,7 +83,8 @@
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script></p>
+
+
 <p>Function <code>rcliff()</code> gives a quick nontrivial Clifford object,
   typically with terms having a range of grades (see <code class="file">grade.Rd</code>);
   argument <code>include.fewer=FALSE</code> ensures that all terms are of the
@@ -92,11 +93,11 @@
 <p>Function <code>rblade()</code> gives a Clifford object that is a
   <em>blade</em> (see <code class="file">term.Rd</code>).  It returns the wedge product of a
   number of 1-vectors, for example
-  <em></em>\(\left(e_1+2e_2\right)\wedge\left(e_1+3e_5\right)\).</p>
+  \(\left(e_1+2e_2\right)\wedge\left(e_1+3e_5\right)\).</p>
 <p>Perwass gives the following lemma:</p>
-<p>Given blades <em></em>\(A_{\langle r\rangle}, B_{\langle s\rangle},
+<p>Given blades \(A_{\langle r\rangle}, B_{\langle s\rangle},
     C_{\langle t\rangle}\), then</p>
-<p>\[
+<p>$$
     \langle
     A_{\langle r\rangle}
     B_{\langle s\rangle}
@@ -108,9 +109,9 @@
     A_{\langle r\rangle}
     B_{\langle s\rangle}
     \rangle_0
-  \]</p>
+  $$</p>
 <p>In the proof he notes in an intermediate step that</p>
-<p>\[
+<p>$$
     \langle
     A_{\langle r\rangle}
     B_{\langle s\rangle}
@@ -128,7 +129,7 @@
     A_{\langle r\rangle}
     B_{\langle s\rangle}
     \rangle_0.
-  \]</p>
+  $$</p>
 <p>Package idiom is shown in the examples.</p>
     </div>
     <div class="section level2">
@@ -137,12 +138,12 @@
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>If the grade exceeds the dimensionality, <em></em>\(g&gt;d\), then
+    <p>If the grade exceeds the dimensionality, \(g&gt;d\), then
   the result is arguably zero; <code>rcliff()</code> returns an error.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/clifford/man/term.html" class="external-link">term</a></code>,<code><a href="grade.html">grade</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://robinhankin.github.io/clifford/reference/term.html">term</a></code>,<code><a href="grade.html">grade</a></code></p></div>
     </div>
 
     <div class="section level2">

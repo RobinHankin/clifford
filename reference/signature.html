@@ -76,43 +76,44 @@
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-chtml-full.js"></script></p>
+
+
 <p>The signature functionality is modelled on the <a href="https://CRAN.R-project.org/package=lorentz" class="external-link"><span class="pkg">lorentz</span></a>
 package; <code>clifford::signature()</code> operates in the same way as
 <code><a href="https://robinhankin.github.io/lorentz/reference/sol.html" class="external-link">lorentz::sol()</a></code> which gets and sets the speed of light.  The idea
 is that both the speed of light and the signature of a Clifford algebra
 are generally set once, at the beginning of an <span style="R">R</span> session, and
 subsequently change only very infrequently.</p>
-<p>Clifford algebras require a bilinear form on <em></em>\(\mathbb{R}^n\)
-<em></em>\(\left\langle\cdot,\cdot\right\rangle\), usually written</p>
-<p>\[\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
+<p>Clifford algebras require a bilinear form on \(\mathbb{R}^n\)
+\(\left\langle\cdot,\cdot\right\rangle\), usually written</p>
+<p>$$\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
   +x_p^2-x_{p+1}^2-\cdots -x_{p+q}^2
-\]</p>
-<p>where <em></em>\(p+q=n\).  With this quadratic form the vector space
-is denoted <em></em>\(\mathbb{R}^{p,q}\) and we say that
-<em></em>\((p,q)\) is the <dfn>signature</dfn> of the bilinear form
-<em></em>\(\left\langle\cdot,\cdot\right\rangle\).  This gives rise to
-the Clifford algebra <em></em>\(C_{p,q}\).</p>
-<p>If the signature is <em></em>\((p,q)\), then we have</p>
-<p>\[
+$$</p>
+<p>where \(p+q=n\).  With this quadratic form the vector space
+is denoted \(\mathbb{R}^{p,q}\) and we say that
+\((p,q)\) is the <dfn>signature</dfn> of the bilinear form
+\(\left\langle\cdot,\cdot\right\rangle\).  This gives rise to
+the Clifford algebra \(C_{p,q}\).</p>
+<p>If the signature is \((p,q)\), then we have</p>
+<p>$$
   e_i e_i =   +1\, (\mbox{if } 1\leq i\leq p),
               -1\, (\mbox{if } p+1\leq i\leq p+q),
                0\, (\mbox{if } i&gt;p+q).
-  \]</p>
-<p>Note that <em></em>\((p,0)\) corresponds to a positive-semidefinite
-quadratic form in which <em></em>\(e_ie_i=+1\) for all <em></em>\(i\leq
-p\) and <em></em>\(e_ie_i=0\) for all <em></em>\(i &gt; p\).
-Similarly, <em></em>\((0,q)\) corresponds to a negative-semidefinite
-quadratic form in which <em></em>\(e_ie_i=-1\) for all <em></em>\(i\leq
-q\) and <em></em>\(e_ie_i=0\) for all <em></em>\(i &gt; q\).</p>
+  $$</p>
+<p>Note that \((p,0)\) corresponds to a positive-semidefinite
+quadratic form in which \(e_ie_i=+1\) for all \(i\leq
+p\) and \(e_ie_i=0\) for all \(i &gt; p\).
+Similarly, \((0,q)\) corresponds to a negative-semidefinite
+quadratic form in which \(e_ie_i=-1\) for all \(i\leq
+q\) and \(e_ie_i=0\) for all \(i &gt; q\).</p>
 <p>A strictly positive-definite quadratic form is specified by infinite
-<em></em>\(p\) [in which case <em></em>\(q\) is irrelevant], and
+\(p\) [in which case \(q\) is irrelevant], and
 <code>signature(Inf)</code> implements this.  For a strictly negative-definite
-quadratic form we would have <em></em>\(p=0,q=\infty\) which would
+quadratic form we would have \(p=0,q=\infty\) which would
 be <code>signature(0,Inf)</code>.</p>
-<p>If we specify <em></em>\(e_ie_i=0\) for all <em></em>\(i\), then the
+<p>If we specify \(e_ie_i=0\) for all \(i\), then the
 operation reduces to the wedge product of a Grassmann algebra.  Package
-idiom for this is to set <em></em>\(p=q=0\) with <code>signature(0,0)</code>, but
+idiom for this is to set \(p=q=0\) with <code>signature(0,0)</code>, but
 this is not recommended: use the <a href="https://CRAN.R-project.org/package=stokes" class="external-link"><span class="pkg">stokes</span></a> package for Grassmann
 algebras, which is much more efficient and uses nicer idiom.</p>
 <p>Function <code>signature(p,q)</code> returns the signature invisibly; but
@@ -120,7 +121,7 @@ setting option <code>show_signature</code> to <code>TRUE</code> makes
 <code>signature()</code> have the side-effect of calling <code>showsig()</code>,
 which changes the default prompt to display the signature, much like
 <code>showSOL</code> in the <a href="https://CRAN.R-project.org/package=lorentz" class="external-link"><span class="pkg">lorentz</span></a> package.  There is special
-dispensation for “infinite” <em></em>\(p\) or <em></em>\(q\).</p>
+dispensation for “infinite” \(p\) or \(q\).</p>
 <p>Calling <code>signature()</code> [that is, with no arguments] returns an
 object of class <code>sigobj</code> with elements corresponding to \(p\) and
 \(q\).  The <code>sigobj</code> class ensures that a near-infinite integer
@@ -129,10 +130,10 @@ such as <code>.Machine$integer.max</code> will be printed as
 “<code>2147483647</code>”.</p>
 <p>Function <code>is_ok_sig()</code> is a helper function that checks for a
 proper signature.  If we set <code>signature(p,q)</code>, then technically
-<em></em>\(n&gt;p+q\) implies <em></em>\(e_n^2=0\), but usually we are not
-interested in <em></em>\(e_n\) when <em></em>\(n&gt;p+q\) and want this to be an
-error.  Option <code>maxdim</code> specifies the maximum value of <em></em>\(n\),
-with default <code>NULL</code> corresponding to infinity.  If <em></em>\(n\)
+\(n&gt;p+q\) implies \(e_n^2=0\), but usually we are not
+interested in \(e_n\) when \(n&gt;p+q\) and want this to be an
+error.  Option <code>maxdim</code> specifies the maximum value of \(n\),
+with default <code>NULL</code> corresponding to infinity.  If \(n\)
 exceeds this, <code>is_ok_sig()</code> throws an error.  Note that it is fine
 to have <code>maxdim &gt; p+q</code> [and indeed this is useful in the context of
 dual numbers].  This option is intended to be a super-strict safety
