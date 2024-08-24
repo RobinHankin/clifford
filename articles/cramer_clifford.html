@@ -10,7 +10,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Cramer's rule in civilised form with Clifford algebra">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Cramer's rule in civilised form with Clifford algebra">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -81,21 +81,14 @@ Hankin</h4>
 <p>To cite the <code>clifford</code> package in publications please use
 <span class="citation">Hankin (2022)</span>. This short document shows a
 nice application of Clifford algebras to linear algebra. Suppose we have
-vectors
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐚</mi><mo>,</mo><mi>𝐛</mi><mo>,</mo><mi>𝐜</mi></mrow><annotation encoding="application/x-tex">{\mathbf a}, {\mathbf b}, {\mathbf c}</annotation></semantics></math>
-spanning
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>ℝ</mi><mn>3</mn></msup><annotation encoding="application/x-tex">\mathbb{R}^3</annotation></semantics></math>
-and are given
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>∈</mo><msup><mi>ℝ</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">{\mathbf x}\in\mathbb{R}^3</annotation></semantics></math>.
-We wish to write
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mi>α</mi><mi>𝐚</mi><mo>+</mo><mi>β</mi><mi>𝐛</mi><mo>+</mo><mi>γ</mi><mi>𝐜</mi></mrow><annotation encoding="application/x-tex">{\mathbf
-x}=\alpha {\mathbf a}+\beta {\mathbf b}+\gamma {\mathbf c}</annotation></semantics></math>
-for some
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>,</mo><mi>β</mi><mo>,</mo><mi>γ</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\alpha,\beta,\gamma\in\mathbb{R}</annotation></semantics></math>.
-The traditional Cramer’s rule for finding
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>,</mo><mi>β</mi><mo>,</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">\alpha,\beta,\gamma</annotation></semantics></math>
-would be</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mfrac><mrow><mo>det</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>3</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><mrow><mo>det</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>3</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow></mfrac><mspace width="2.0em"></mspace><mi>β</mi><mo>=</mo><mfrac><mrow><mo>det</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>3</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><mrow><mo>det</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>3</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow></mfrac><mspace width="2.0em"></mspace><mi>γ</mi><mo>=</mo><mfrac><mrow><mo>det</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>x</mi><mn>3</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow><mrow><mo>det</mo><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>1</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>2</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>a</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>b</mi><mn>3</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>c</mi><mn>3</mn></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+vectors <span class="math inline">\({\mathbf a}, {\mathbf b}, {\mathbf
+c}\)</span> spanning <span class="math inline">\(\mathbb{R}^3\)</span>
+and are given <span class="math inline">\({\mathbf
+x}\in\mathbb{R}^3\)</span>. We wish to write <span class="math inline">\({\mathbf
+x}=\alpha {\mathbf a}+\beta {\mathbf b}+\gamma {\mathbf c}\)</span> for
+some <span class="math inline">\(\alpha,\beta,\gamma\in\mathbb{R}\)</span>. The
+traditional Cramer’s rule for finding <span class="math inline">\(\alpha,\beta,\gamma\)</span> would be</p>
+<p><span class="math display">\[
 \alpha=\frac{
     \det\begin{bmatrix}
     x_1&amp;b_1&amp;c_1\\
@@ -136,30 +129,30 @@ would be</p>
     a_3&amp;b_3&amp;c_3
     \end{bmatrix}
 }
-</annotation></semantics></math></p>
-<p>where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>x</mi><mn>3</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">{\mathbf x}=(x_1,x_2,x_3)^T</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐚</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><msub><mi>a</mi><mn>2</mn></msub><mo>,</mo><msub><mi>a</mi><mn>3</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">{\mathbf a}=(a_1,a_2,a_3)^T</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐛</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>b</mi><mn>1</mn></msub><mo>,</mo><msub><mi>b</mi><mn>2</mn></msub><mo>,</mo><msub><mi>b</mi><mn>3</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">{\mathbf b}=(b_1,b_2,b_3)^T</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐜</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mi>c</mi><mn>2</mn></msub><mo>,</mo><msub><mi>c</mi><mn>3</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">{\mathbf c}=(c_1,c_2,c_3)^T</annotation></semantics></math>.
-However, observe that this solution, while accurate, requires one to
-take a coordinate basis; and offers little in the way of intuition.</p>
+\]</span></p>
+<p>where <span class="math inline">\({\mathbf
+x}=(x_1,x_2,x_3)^T\)</span>, <span class="math inline">\({\mathbf
+a}=(a_1,a_2,a_3)^T\)</span>, <span class="math inline">\({\mathbf
+b}=(b_1,b_2,b_3)^T\)</span> and <span class="math inline">\({\mathbf
+c}=(c_1,c_2,c_3)^T\)</span>. However, observe that this solution, while
+accurate, requires one to take a coordinate basis; and offers little in
+the way of intuition.</p>
 <div class="section level3">
 <h3 id="using-clifford-algebra">Using Clifford algebra<a class="anchor" aria-label="anchor" href="#using-clifford-algebra"></a>
 </h3>
-<p>Considering
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>ℝ</mi><mn>3</mn></msup><annotation encoding="application/x-tex">\mathbb{R}^3</annotation></semantics></math>
-as a vector space and given vectors
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐚</mi><mo>,</mo><mi>𝐛</mi><mo>,</mo><mi>𝐜</mi></mrow><annotation encoding="application/x-tex">{\mathbf a}, {\mathbf b}, {\mathbf c}</annotation></semantics></math>
-spanning the space we can express any vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>∈</mo><msup><mi>ℝ</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">{\mathbf x}\in\mathbb{R}^3</annotation></semantics></math>
+<p>Considering <span class="math inline">\(\mathbb{R}^3\)</span> as a
+vector space and given vectors <span class="math inline">\({\mathbf a},
+{\mathbf b}, {\mathbf c}\)</span> spanning the space we can express any
+vector <span class="math inline">\({\mathbf x}\in\mathbb{R}^3\)</span>
 as</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>𝐱</mi><mo>∧</mo><mi>𝐛</mi><mo>∧</mo><mi>𝐜</mi></mrow><mrow><mi>𝐚</mi><mo>∧</mo><mi>𝐛</mi><mo>∧</mo><mi>𝐜</mi></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>𝐚</mi><mo>+</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>𝐚</mi><mo>∧</mo><mi>𝐱</mi><mo>∧</mo><mi>𝐜</mi></mrow><mrow><mi>𝐚</mi><mo>∧</mo><mi>𝐛</mi><mo>∧</mo><mi>𝐜</mi></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>𝐛</mi><mo>+</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>𝐚</mi><mo>∧</mo><mi>𝐛</mi><mo>∧</mo><mi>𝐱</mi></mrow><mrow><mi>𝐚</mi><mo>∧</mo><mi>𝐛</mi><mo>∧</mo><mi>𝐜</mi></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>𝐜</mi></mrow><annotation encoding="application/x-tex">\mathbf{x}=
-\left(\frac{{\mathbf x}\wedge{\mathbf b}\wedge{\mathbf c}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf a}+
-\left(\frac{{\mathbf a}\wedge{\mathbf x}\wedge{\mathbf c}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf b}+
-\left(\frac{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf x}}{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf c}
-</annotation></semantics></math></p>
+<p><span class="math display">\[\mathbf{x}=
+\left(\frac{{\mathbf x}\wedge{\mathbf b}\wedge{\mathbf c}}{{\mathbf
+a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf a}+
+\left(\frac{{\mathbf a}\wedge{\mathbf x}\wedge{\mathbf c}}{{\mathbf
+a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf b}+
+\left(\frac{{\mathbf a}\wedge{\mathbf b}\wedge{\mathbf x}}{{\mathbf
+a}\wedge{\mathbf b}\wedge{\mathbf c}}\right){\mathbf c}
+\]</span></p>
 <p>which is Cramer’s rule expressed directly in vector form (rather than
 components). Observe that the numerator and denominator of each
 bracketed term is a pseudoscalar; the ratio of two pseudoscalars is an
@@ -189,18 +182,15 @@ ordinary scalar. Package idiom is straightforward:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/magnitude.html">Mod</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">*</span><span class="va">a</span> <span class="op">+</span> <span class="va">beta</span><span class="op">*</span><span class="va">b</span> <span class="op">+</span> <span class="va">gamma</span><span class="op">*</span><span class="va">c</span><span class="op">-</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0</span></span></code></pre>
-<p>Thus we have expressed
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐱</mi><annotation encoding="application/x-tex">{\mathbf x}</annotation></semantics></math>
-(except for possible roundoff error) as a linear combination of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐚</mi><mo>,</mo><mi>𝐛</mi><mo>,</mo><mi>𝐜</mi></mrow><annotation encoding="application/x-tex">{\mathbf a},{\mathbf b},{\mathbf
-c}</annotation></semantics></math>, specifically
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mo>=</mo><mi>α</mi><mi>𝐚</mi><mo>+</mo><mi>β</mi><mi>𝐛</mi><mo>+</mo><mi>γ</mi><mi>𝐜</mi></mrow><annotation encoding="application/x-tex">{\mathbf x}=\alpha{\mathbf a}+\beta{\mathbf
-b}+\gamma{\mathbf c}</annotation></semantics></math>. Conversely, we
-might know the coefficients and try to determine them using package
-idiom. Here we will use
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">1,2,3</annotation></semantics></math>
-and suppose that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐲</mi><mo>=</mo><mn>1</mn><mi>𝐚</mi><mo>+</mo><mn>2</mn><mi>𝐛</mi><mo>+</mo><mn>3</mn><mi>𝐜</mi></mrow><annotation encoding="application/x-tex">{\mathbf y}=1{\mathbf a}+2{\mathbf b}+3{\mathbf c}</annotation></semantics></math>:</p>
+<p>Thus we have expressed <span class="math inline">\({\mathbf
+x}\)</span> (except for possible roundoff error) as a linear combination
+of <span class="math inline">\({\mathbf a},{\mathbf b},{\mathbf
+c}\)</span>, specifically <span class="math inline">\({\mathbf
+x}=\alpha{\mathbf a}+\beta{\mathbf
+b}+\gamma{\mathbf c}\)</span>. Conversely, we might know the
+coefficients and try to determine them using package idiom. Here we will
+use <span class="math inline">\(1,2,3\)</span> and suppose that <span class="math inline">\({\mathbf y}=1{\mathbf a}+2{\mathbf b}+3{\mathbf
+c}\)</span>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">*</span><span class="fl">1</span> <span class="op">+</span> <span class="va">b</span><span class="op">*</span><span class="fl">2</span> <span class="op">+</span> <span class="va">c</span><span class="op">*</span><span class="fl">3</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
@@ -214,8 +204,7 @@ and suppose that
 <h2 id="higher-dimensional-space">Higher dimensional space<a class="anchor" aria-label="anchor" href="#higher-dimensional-space"></a>
 </h2>
 <p>To accomplish this in arbitrary-dimensional space is straightforward.
-Here we consider
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>ℝ</mi><mn>5</mn></msup><annotation encoding="application/x-tex">\mathbb{R}^{5}</annotation></semantics></math>:</p>
+Here we consider <span class="math inline">\(\mathbb{R}^{5}\)</span>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">5</span>                                                 <span class="co"># dimensionality of space</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">5</span><span class="op">)</span>                                      <span class="co"># safety precaution</span></span>
@@ -233,8 +222,7 @@ Here we consider
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,<span class="va">coeff</span>,<span class="va">L</span>,<span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1]  21.610237  27.030973  11.866383 -22.222116   3.199427</span></span></code></pre>
-<p>and we can reconstitute vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>:</p>
+<p>and we can reconstitute vector <span class="math inline">\(x\)</span>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clifford.html">as.clifford</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">{</span><span class="va">alpha</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="va">L</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">}</span></span>

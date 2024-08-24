@@ -10,7 +10,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Lorentz transforms via Clifford algebra">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Lorentz transforms via Clifford algebra">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -82,10 +82,9 @@ Hankin</h4>
 <span class="citation">Hankin (2022b)</span>. In this short document I
 show how Clifford algebra may be used to effect Lorentz transforms, and
 showcase the <code>clifford</code> R package. Throughout, we use units
-in which
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c=1</annotation></semantics></math>.
-Notation follows <span class="citation">Snygg (2010)</span>. Consider
-the following four-vector:</p>
+in which <span class="math inline">\(c=1\)</span>. Notation follows
+<span class="citation">Snygg (2010)</span>. Consider the following
+four-vector:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">fourvec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>  <span class="co"># a four-vector</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1 5 3 2</span></span></code></pre>
@@ -117,12 +116,8 @@ packages.</p>
 <div class="section level2">
 <h2 id="lorentz-transforms-in-terms-of-rapidity">Lorentz transforms in terms of rapidity<a class="anchor" aria-label="anchor" href="#lorentz-transforms-in-terms-of-rapidity"></a>
 </h2>
-<p>The general form for a Lorentz transform of speed
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math>
-in the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-direction
-is</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mover><mi>t</mi><mo accent="true">¯</mo></mover></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mover><mi>x</mi><mo accent="true">¯</mo></mover></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>γ</mi></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mi>γ</mi><mi>v</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>−</mo><mi>γ</mi><mi>v</mi></mtd><mtd columnalign="center" style="text-align: center"><mi>γ</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>t</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>x</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p>The general form for a Lorentz transform of speed <span class="math inline">\(u\)</span> in the <span class="math inline">\(x\)</span>-direction is</p>
+<p><span class="math display">\[
 \begin{pmatrix}
 \overline{t}\\
 \overline{x}
@@ -134,62 +129,47 @@ is</p>
 \end{pmatrix}
 \begin{pmatrix}
 t\\x\end{pmatrix}
-</annotation></semantics></math></p>
-<p>where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>u</mi><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mn>1</mn><mi>/</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\gamma=(1-u^2)^{-1/2}</annotation></semantics></math>.
-Writing
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cosh</mo><mi>ϕ</mi><mo>=</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">\cosh\phi=\gamma</annotation></semantics></math>
-and noting that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
-is real (sometimes
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
-is known as the <em>rapidity</em>) we get</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mo>cosh</mo><mi>ϕ</mi></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mo>sinh</mo><mi>ϕ</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>−</mo><mo>sinh</mo><mi>ϕ</mi></mtd><mtd columnalign="center" style="text-align: center"><mo>cosh</mo><mi>ϕ</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+\]</span></p>
+<p>where <span class="math inline">\(\gamma=(1-u^2)^{-1/2}\)</span>.
+Writing <span class="math inline">\(\cosh\phi=\gamma\)</span> and noting
+that <span class="math inline">\(\phi\)</span> is real (sometimes <span class="math inline">\(\phi\)</span> is known as the <em>rapidity</em>)
+we get</p>
+<p><span class="math display">\[
 \begin{pmatrix}
 \cosh\phi&amp;-\sinh\phi\\
 -\sinh\phi &amp;\cosh\phi
 \end{pmatrix}
-</annotation></semantics></math> for the transformation, and we can see
-that the matrix has unit determinant.</p>
+\]</span> for the transformation, and we can see that the matrix has
+unit determinant.</p>
 </div>
 <div class="section level2">
 <h2 id="lorentz-transforms-in-clifford-algebra">Lorentz transforms in Clifford algebra<a class="anchor" aria-label="anchor" href="#lorentz-transforms-in-clifford-algebra"></a>
 </h2>
-<p>Above we considered the four-vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">s=(1,5,3,2)</annotation></semantics></math>.
-In Clifford formalism this appears as</p>
+<p>Above we considered the four-vector <span class="math inline">\(s=(1,5,3,2)\)</span>. In Clifford formalism this
+appears as</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">scliff</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/numeric_to_clifford.html">as.1vector</a></span><span class="op">(</span><span class="va">fourvec</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>
 <span><span class="co">## + 1e_1 + 5e_2 + 3e_3 + 2e_4</span></span></code></pre>
-<p>Algebraically this would be
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msub><mi>𝐞</mi><mn>1</mn></msub><mo>+</mo><mn>5</mn><msub><mi>𝐞</mi><mn>2</mn></msub><mo>+</mo><mn>3</mn><msub><mi>𝐞</mi><mn>3</mn></msub><mo>+</mo><mn>2</mn><msub><mi>𝐞</mi><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">1\mathbf{e}_1+5\mathbf{e}_2+3\mathbf{e}_3+2\mathbf{e}_4</annotation></semantics></math>
-(Snygg would write
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msub><mi>𝐞</mi><mn>0</mn></msub><mo>+</mo><mn>5</mn><msub><mi>𝐞</mi><mn>1</mn></msub><mo>+</mo><mn>3</mn><msub><mi>𝐞</mi><mn>2</mn></msub><mo>+</mo><mn>2</mn><msub><mi>𝐞</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">1\mathbf{e}_0+5\mathbf{e}_1+3\mathbf{e}_2+2\mathbf{e}_3</annotation></semantics></math>;
+<p>Algebraically this would be <span class="math inline">\(1\mathbf{e}_1+5\mathbf{e}_2+3\mathbf{e}_3+2\mathbf{e}_4\)</span>
+(Snygg would write <span class="math inline">\(1\mathbf{e}_0+5\mathbf{e}_1+3\mathbf{e}_2+2\mathbf{e}_3\)</span>;
 we cannot use that notation here because basis vectors are numbered from
 1 in the package, not zero). Also note that the vectors appear in
 implementation-specific order, as per <code>disordR</code> discipline
 <span class="citation">(Hankin 2022c)</span>. The metric would be</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \begin{pmatrix}
- 1&amp;0&amp;0&amp;0\\
- 0&amp;-1&amp;0&amp;0\\
- 0&amp;0&amp;-1&amp;0\\
- 0&amp;0&amp;0&amp;-1
+1&amp;0&amp;0&amp;0\\
+0&amp;-1&amp;0&amp;0\\
+0&amp;0&amp;-1&amp;0\\
+0&amp;0&amp;0&amp;-1
 \end{pmatrix}
-</annotation></semantics></math></p>
+\]</span></p>
 <p>[NB in relativity, the word “signature” refers to the eigenvalues of
-the metric, so the signature of the above matrix would be
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1,3)</annotation></semantics></math>
-[or sometimes
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mo>−</mo><mo>−</mo><mo>−</mo></mrow><annotation encoding="application/x-tex">{+}{-}{-}{-}</annotation></semantics></math>],
-because it has one positive and three negative eigenvalues. In package
-idiom, “signature” means the number of basis vectors that square to
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math>,
-so we would implement this metric using a signature of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1,3)</annotation></semantics></math>].</p>
+the metric, so the signature of the above matrix would be <span class="math inline">\((1,3)\)</span> [or sometimes <span class="math inline">\({+}{-}{-}{-}\)</span>], because it has one
+positive and three negative eigenvalues. In package idiom, “signature”
+means the number of basis vectors that square to <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span>, so we would implement this metric
+using a signature of <span class="math inline">\((1,3)\)</span>].</p>
 <p>The squared interval for our four-vector would be given by</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
@@ -207,20 +187,11 @@ to set the signature to 1]:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/Ops.clifford.html">scalprod</a></span><span class="op">(</span><span class="va">scliff</span>,<span class="va">scliff</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] -37</span></span></code></pre>
-<p>We seek a boost
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>∈</mo><msub><mi>𝒞</mi><mrow><mn>1</mn><mo>,</mo><mn>3</mn></mrow></msub></mrow><annotation encoding="application/x-tex">B\in{\mathcal C}_{1,3}</annotation></semantics></math>
-such that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>s</mi><mo accent="true">¯</mo></mover><mo>=</mo><msup><mi>B</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>s</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\overline{s}=B^{-1}sB</annotation></semantics></math>
-(juxtaposition indicating geometric product). We will start with a boost
-in the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-direction
-with rapidity
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>.
-This would be
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mo>cosh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mo>sinh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">B=\cosh(\phi/2)+{\mathbf e}_{12}\sinh(\phi/2)</annotation></semantics></math>.
-We note that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>B</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mo>cosh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mo>sinh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">B^{-1}=\cosh(\phi/2)-{\mathbf e}_{12}\sinh(\phi/2)</annotation></semantics></math>.
-Numerically:</p>
+<p>We seek a boost <span class="math inline">\(B\in{\mathcal
+C}_{1,3}\)</span> such that <span class="math inline">\(\overline{s}=B^{-1}sB\)</span> (juxtaposition
+indicating geometric product). We will start with a boost in the <span class="math inline">\(x\)</span>-direction with rapidity <span class="math inline">\(\phi\)</span>. This would be <span class="math inline">\(B=\cosh(\phi/2)+{\mathbf
+e}_{12}\sinh(\phi/2)\)</span>. We note that <span class="math inline">\(B^{-1}=\cosh(\phi/2)-{\mathbf
+e}_{12}\sinh(\phi/2)\)</span>. Numerically:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">phi</span> <span class="op">&lt;-</span> <span class="fl">2.1234534</span>   <span class="co"># just a made-up random value</span></span>
 <span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html" class="external-link">cosh</a></span><span class="op">(</span><span class="va">phi</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html" class="external-link">sinh</a></span><span class="op">(</span><span class="va">phi</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> </span>
@@ -238,35 +209,33 @@ Numerically:</p>
 <code class="sourceCode R"><span><span class="fu">B</span><span class="op">(</span><span class="fl">0.26</span> <span class="op">+</span> <span class="fl">1.33</span><span class="op">)</span> <span class="co"># should match</span></span></code></pre></div>
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>
 <span><span class="co">## + 1.333011 + 0.8814299e_12</span></span></code></pre>
-<p>We may formally write
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">B=\exp({\mathbf e}_{12}\phi/2)</annotation></semantics></math>
-on the grounds that</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo></mtd><mtd columnalign="left" style="text-align: left"><mn>1</mn><mo>+</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>x</mi><mo>+</mo><mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mrow><mn>2</mn><mi>!</mi></mrow></mfrac><mo>+</mo><mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mn>3</mn></msup><mrow><mn>3</mn><mi>!</mi></mrow></mfrac><mo>+</mo><mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mn>4</mn></msup><mrow><mn>4</mn><mi>!</mi></mrow></mfrac><mo>+</mo><mi>⋯</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo></mtd><mtd columnalign="left" style="text-align: left"><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup><mi>/</mi><mn>2</mn><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mi>/</mi><mn>4</mn><mi>!</mi><mo>+</mo><mi>⋯</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>+</mo><mfrac><msup><mi>x</mi><mn>3</mn></msup><mrow><mn>3</mn><mi>!</mi></mrow></mfrac><mo>+</mo><mi>⋯</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>cosh</mo><mi>x</mi><mo>+</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mo>sinh</mo><mi>x</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">
+<p>We may formally write <span class="math inline">\(B=\exp({\mathbf
+e}_{12}\phi/2)\)</span> on the grounds that</p>
+<p><span class="math display">\[
 \begin{eqnarray}
-\exp({\mathbf e}_{12}x) &amp;=&amp;1+\mathbf{e}_{12}x + \frac{(\mathbf{e}_{12}x)^2}{2!} + 
+\exp({\mathbf e}_{12}x) &amp;=&amp;1+\mathbf{e}_{12}x +
+\frac{(\mathbf{e}_{12}x)^2}{2!} +
 \frac{(\mathbf{e}_{12}x)^3}{3!}+\frac{(\mathbf{e}_{12}x)^4}{4!}+\cdots\\
-&amp;=&amp; (1+x^2/2+x^4/4!+\cdots) + \mathbf{e}_{12}(x+\frac{x^3}{3!}+\cdots)\\
+&amp;=&amp; (1+x^2/2+x^4/4!+\cdots) +
+\mathbf{e}_{12}(x+\frac{x^3}{3!}+\cdots)\\
 &amp;=&amp; \cosh x + \mathbf{e}_{12}\sinh x
 \end{eqnarray}
-</annotation></semantics></math></p>
+\]</span></p>
 <p>and note that this exponential obeys the usual rules for the regular
-exponential function
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>,</mo><mi>x</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">e^x,x\in\mathbb{R}</annotation></semantics></math>.
-More generally, if we have a transform of rapidity
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>
-and direction cosines
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>x</mi></msub><mo>,</mo><msub><mi>k</mi><mi>y</mi></msub><mo>,</mo><msub><mi>k</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">k_x,k_y,k_z</annotation></semantics></math>
+exponential function <span class="math inline">\(e^x,x\in\mathbb{R}\)</span>. More generally, if we
+have a transform of rapidity <span class="math inline">\(\phi\)</span>
+and direction cosines <span class="math inline">\(k_x,k_y,k_z\)</span>
 then the transform would be</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>x</mi><mi>y</mi><mi>z</mi></mrow></msub><mo>=</mo><mo>cosh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>k</mi><mi>x</mi></msub><msub><mi>𝐞</mi><mn>12</mn></msub><mo>sinh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>k</mi><mi>y</mi></msub><msub><mi>𝐞</mi><mn>13</mn></msub><mo>sinh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>k</mi><mi>z</mi></msub><msub><mi>𝐞</mi><mn>14</mn></msub><mo>sinh</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 B_{xyz}=
 \cosh(\phi/2)
 +k_x\mathbf{e}_{12}\sinh(\phi/2)
 +k_y\mathbf{e}_{13}\sinh(\phi/2)
 +k_z\mathbf{e}_{14}\sinh(\phi/2)
-</annotation></semantics></math></p>
+\]</span></p>
 <p>and we can use standard Clifford algebra (together with the fact that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>k</mi><mi>x</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>k</mi><mi>y</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>k</mi><mi>z</mi><mn>2</mn></msubsup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k_x^2+k_y^2+k_z^2=1</annotation></semantics></math>)
-to demonstrate the transformations. Numerically:</p>
+<span class="math inline">\(k_x^2+k_y^2+k_z^2=1\)</span>) to demonstrate
+the transformations. Numerically:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">B3</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">phi</span>,<span class="va">k</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html" class="external-link">cosh</a></span><span class="op">(</span><span class="va">phi</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span></span>
 <span>     <span class="op">+</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Hyperbolic.html" class="external-link">sinh</a></span><span class="op">(</span><span class="va">phi</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -299,49 +268,27 @@ more complicated:</p>
 <span><span class="co">## 1.071824e_24 + 0.691205e_34</span></span></code></pre>
 <p>Above, we see new terms not present in the pure boosts which
 correspond to rotation.</p>
-<p>Now we consider a general four-vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><msup><mi>s</mi><mn>1</mn></msup><msub><mi>𝐞</mi><mn>1</mn></msub><mo>+</mo><msup><mi>s</mi><mn>2</mn></msup><msub><mi>𝐞</mi><mn>2</mn></msub><mo>+</mo><msup><mi>s</mi><mn>3</mn></msup><msub><mi>𝐞</mi><mn>3</mn></msub><mo>+</mo><msup><mi>s</mi><mn>4</mn></msup><msub><mi>𝐞</mi><mn>4</mn></msub></mrow><annotation encoding="application/x-tex">s=s^1\mathbf{e}_1+s^2\mathbf{e}_2+s^3\mathbf{e}_3+s^4\mathbf{e}_4</annotation></semantics></math>
-and calculate
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>B</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>s</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">B^{-1}sB</annotation></semantics></math>.
-This is made easier if we use the facts that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐞</mi><mn>12</mn></msub><annotation encoding="application/x-tex">\mathbf{e}_{12}</annotation></semantics></math>
-commutes with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐞</mi><mn>3</mn></msub><annotation encoding="application/x-tex">\mathbf{e}_3</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐞</mi><mn>4</mn></msub><annotation encoding="application/x-tex">\mathbf{e}_4</annotation></semantics></math>
-as well as scalars, and anticommutes with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐞</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\mathbf{e}_1</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐞</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\mathbf{e}_2</annotation></semantics></math>.
-Noting that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exp(\mathbf{e}_{12})</annotation></semantics></math>
-is a linear combination of a scalar and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐞</mi><mn>12</mn></msub><annotation encoding="application/x-tex">\mathbf{e}_{12}</annotation></semantics></math>
-we have</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msup><mi>B</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>s</mi><mi>B</mi></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo></mtd><mtd columnalign="left" style="text-align: left"><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>s</mi><mn>1</mn></msup><msub><mi>𝐞</mi><mn>1</mn></msub><mo>+</mo><msup><mi>s</mi><mn>2</mn></msup><msub><mi>𝐞</mi><mn>2</mn></msub><mo>+</mo><msup><mi>s</mi><mn>3</mn></msup><msub><mi>𝐞</mi><mn>3</mn></msub><mo>+</mo><msup><mi>s</mi><mn>4</mn></msup><msub><mi>𝐞</mi><mn>4</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo></mtd><mtd columnalign="left" style="text-align: left"><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>1</mn></msub><msup><mi>s</mi><mn>1</mn></msup><mo>+</mo><msub><mi>𝐞</mi><mn>2</mn></msub><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>𝐞</mi><mn>12</mn></msub><mi>ϕ</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>𝐞</mi><mn>3</mn></msub><msup><mi>s</mi><mn>3</mn></msup><mo>+</mo><msub><mi>𝐞</mi><mn>4</mn></msub><msup><mi>s</mi><mn>4</mn></msup></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo></mtd><mtd columnalign="left" style="text-align: left"><msub><mi>𝐞</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>s</mi><mn>1</mn></msup><mo>cosh</mo><mi>ϕ</mi><mo>−</mo><msup><mi>s</mi><mn>2</mn></msup><mo>sinh</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>𝐞</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>s</mi><mn>2</mn></msup><mo>cosh</mo><mi>ϕ</mi><mo>−</mo><msup><mi>s</mi><mn>1</mn></msup><mo>sinh</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>𝐞</mi><mn>3</mn></msub><msup><mi>s</mi><mn>3</mn></msup><mo>+</mo><msub><mi>𝐞</mi><mn>4</mn></msub><msup><mi>s</mi><mn>4</mn></msup></mtd></mtr></mtable><annotation encoding="application/x-tex">
+<p>Now we consider a general four-vector <span class="math inline">\(s=s^1\mathbf{e}_1+s^2\mathbf{e}_2+s^3\mathbf{e}_3+s^4\mathbf{e}_4\)</span>
+and calculate <span class="math inline">\(B^{-1}sB\)</span>. This is
+made easier if we use the facts that <span class="math inline">\(\mathbf{e}_{12}\)</span> commutes with <span class="math inline">\(\mathbf{e}_3\)</span> and <span class="math inline">\(\mathbf{e}_4\)</span> as well as scalars, and
+anticommutes with <span class="math inline">\(\mathbf{e}_1\)</span> and
+<span class="math inline">\(\mathbf{e}_2\)</span>. Noting that <span class="math inline">\(\exp(\mathbf{e}_{12})\)</span> is a linear
+combination of a scalar and <span class="math inline">\(\mathbf{e}_{12}\)</span> we have</p>
+<p><span class="math display">\[
 \begin{eqnarray}
-B^{-1}sB &amp;=&amp; \exp(-\mathbf{e}_{12}\phi/2)(s^1\mathbf{e}_1+s^2\mathbf{e}_2+s^3\mathbf{e}_3+s^4\mathbf{e}_4)\exp(\mathbf{e}_{12}\phi/2)\\
-&amp;=&amp; (\mathbf{e}_1s^1+\mathbf{e}_2s^2)\exp(\mathbf{e}_{12}\phi/2)\exp(\mathbf{e}_{12}\phi/2)+\mathbf{e}_3s^3 + \mathbf{e}_4s^4\\
-&amp;=&amp; \mathbf{e}_1(s^1\cosh\phi-s^2\sinh\phi)+\mathbf{e}_2(s^2\cosh\phi-s^1\sinh\phi)
+B^{-1}sB &amp;=&amp;
+\exp(-\mathbf{e}_{12}\phi/2)(s^1\mathbf{e}_1+s^2\mathbf{e}_2+s^3\mathbf{e}_3+s^4\mathbf{e}_4)\exp(\mathbf{e}_{12}\phi/2)\\
+&amp;=&amp;
+(\mathbf{e}_1s^1+\mathbf{e}_2s^2)\exp(\mathbf{e}_{12}\phi/2)\exp(\mathbf{e}_{12}\phi/2)+\mathbf{e}_3s^3
++ \mathbf{e}_4s^4\\
+&amp;=&amp;
+\mathbf{e}_1(s^1\cosh\phi-s^2\sinh\phi)+\mathbf{e}_2(s^2\cosh\phi-s^1\sinh\phi)
 +\mathbf{e}_3s^3+\mathbf{e}_4s^4
-\end{eqnarray}</annotation></semantics></math></p>
+\end{eqnarray}\]</span></p>
 <p>as required (it matches the matrix version). If we have two boosts
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>1</mn></msub><annotation encoding="application/x-tex">B_1</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>2</mn></msub><annotation encoding="application/x-tex">B_2</annotation></semantics></math>
-then the combined boost is either
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mn>1</mn></msub><msub><mi>B</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">B_1B_2</annotation></semantics></math>
-(for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>1</mn></msub><annotation encoding="application/x-tex">B_1</annotation></semantics></math>
-followed by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>2</mn></msub><annotation encoding="application/x-tex">B_2</annotation></semantics></math>)
-or
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mn>2</mn></msub><msub><mi>B</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">B_2B_1</annotation></semantics></math>
-(for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>2</mn></msub><annotation encoding="application/x-tex">B_2</annotation></semantics></math>
-followed by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>B</mi><mn>1</mn></msub><annotation encoding="application/x-tex">B_1</annotation></semantics></math>).
-Numerical methods are straightforward as I will demonstrate below.</p>
+<span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> then the combined boost is either
+<span class="math inline">\(B_1B_2\)</span> (for <span class="math inline">\(B_1\)</span> followed by <span class="math inline">\(B_2\)</span>) or <span class="math inline">\(B_2B_1\)</span> (for <span class="math inline">\(B_2\)</span> followed by <span class="math inline">\(B_1\)</span>). Numerical methods are
+straightforward as I will demonstrate below.</p>
 </div>
 <div class="section level2">
 <h2 id="numerical-methods-lorentz-transforms-using-the-clifford-package">Numerical methods: Lorentz transforms using the Clifford
@@ -374,8 +321,7 @@ behaves as expected:</p>
 <code class="sourceCode R"><span><span class="va">B</span><span class="op">*</span><span class="fu"><a href="../reference/involution.html">rev</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>
 <span><span class="co">## scalar ( 1 )</span></span></code></pre>
-<p>Then we can apply the transformation
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>s</mi><mo accent="true">¯</mo></mover><mo>=</mo><msup><mi>B</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>s</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\overline{s}=B^{-1}sB</annotation></semantics></math>:</p>
+<p>Then we can apply the transformation <span class="math inline">\(\overline{s}=B^{-1}sB\)</span>:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/zap.html">zap</a></span><span class="op">(</span><span class="fu"><a href="../reference/involution.html">rev</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">*</span><span class="va">scliff</span><span class="op">*</span><span class="va">B</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>

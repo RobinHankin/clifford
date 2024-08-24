@@ -10,7 +10,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Function `pseudoscalar()` in the `clifford` package">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Function `pseudoscalar()` in the `clifford` package">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -92,14 +92,10 @@ Hankin</h4>
 <span><span class="co">## }</span></span></code></pre>
 <p>To cite the <code>clifford</code> package in publications please use
 <span class="citation">Hankin (2022)</span>. This short document
-discusses the pseudoscalar
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>I</mi><annotation encoding="application/x-tex">I</annotation></semantics></math>
-in the <code>clifford</code> R package. The behaviour of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>I</mi><annotation encoding="application/x-tex">I</annotation></semantics></math>
-depends on the dimension
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
-and the signature of the space considered, and as such function
-<code><a href="../reference/pseudoscalar.html">pseudoscalar()</a></code> fails if <code>maxdim</code> is not set:</p>
+discusses the pseudoscalar <span class="math inline">\(I\)</span> in the
+<code>clifford</code> R package. The behaviour of <span class="math inline">\(I\)</span> depends on the dimension <span class="math inline">\(n\)</span> and the signature of the space
+considered, and as such function <code><a href="../reference/pseudoscalar.html">pseudoscalar()</a></code> fails if
+<code>maxdim</code> is not set:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pseudoscalar.html">pseudoscalar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Error in pseudoscalar(): pseudoscalar requires a finite value of maxdim; set it with something like options(maxdim = 6)</span></span></code></pre>
@@ -118,18 +114,7 @@ and a signature at the start of a session, then define an R object
 (conventionally <code>I</code>), as the pseudoscalar. However, in this
 vignette we will repeatedly redefine the signature and the maximum
 dimension to illustrate different aspects of
-<code><a href="../reference/pseudoscalar.html">pseudoscalar()</a></code>. The first feature of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>I</mi><annotation encoding="application/x-tex">I</annotation></semantics></math>
-is that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">|</mo><mi>I</mi><mo stretchy="true" form="postfix">|</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\left|I\right|^2=1</annotation></semantics></math>.
-For standard
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>ℝ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\mathbb{R}^2</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>ℝ</mi><mn>3</mn></msup><annotation encoding="application/x-tex">\mathbb{R}^3</annotation></semantics></math>,
-and Minkowski space
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Cl</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>3</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{Cl}(3,1)</annotation></semantics></math>
-we have
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi><mn>2</mn></msup><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">I^2=-1</annotation></semantics></math>:</p>
+<code><a href="../reference/pseudoscalar.html">pseudoscalar()</a></code>. The first feature of <span class="math inline">\(I\)</span> is that <span class="math inline">\(\left|I\right|^2=1\)</span>. For standard <span class="math inline">\(\mathbb{R}^2\)</span> and <span class="math inline">\(\mathbb{R}^3\)</span>, and Minkowski space <span class="math inline">\(\operatorname{Cl}(3,1)\)</span> we have <span class="math inline">\(I^2=-1\)</span>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>       <span class="co"># Cl(3,0)</span></span>
@@ -146,8 +131,7 @@ we have
 <span><span class="va">I</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pseudoscalar.html">pseudoscalar</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/drop.html">drop</a></span><span class="op">(</span><span class="va">I</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] -1</span></span></code></pre>
-<p>However, we can easily define other signatures in which
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi><mn>2</mn></msup><mo>=</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">I^2=+1</annotation></semantics></math>:</p>
+<p>However, we can easily define other signatures in which <span class="math inline">\(I^2=+1\)</span>:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>       <span class="co"># Cl(2,2)</span></span>
@@ -158,17 +142,11 @@ we have
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/drop.html">drop</a></span><span class="op">(</span><span class="va">I</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1</span></span></code></pre>
 <p>The pseudoscalar I defines an orientation in the sense that, for any
-ordered set of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
-linearly independent vectors
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>a</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">a_1,\ldots, a_n</annotation></semantics></math>
-their outer product will have either the same or opposite sign as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>I</mi><annotation encoding="application/x-tex">I</annotation></semantics></math>.
-Because the orientation is negated by interchanging a pair of vectors,
-we see that the orientation is preserved by even permutations of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1,2,\ldots,n</annotation></semantics></math>.
-Working in
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Cl</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>5</mn><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{Cl}(5,0)</annotation></semantics></math>:</p>
+ordered set of <span class="math inline">\(n\)</span> linearly
+independent vectors <span class="math inline">\(a_1,\ldots, a_n\)</span>
+their outer product will have either the same or opposite sign as <span class="math inline">\(I\)</span>. Because the orientation is negated by
+interchanging a pair of vectors, we see that the orientation is
+preserved by even permutations of <span class="math inline">\(1,2,\ldots,n\)</span>. Working in <span class="math inline">\(\operatorname{Cl}(5,0)\)</span>:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
@@ -181,14 +159,11 @@ Working in
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span><span class="va">`^`</span>,<span class="va">ai</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>
 <span><span class="co">## + 3.32019e_12345</span></span></code></pre>
-<p>Above we see, from the last line, that the vectors
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mn>1</mn></msub><annotation encoding="application/x-tex">a_1</annotation></semantics></math>
-to
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mn>5</mn></msub><annotation encoding="application/x-tex">a_5</annotation></semantics></math>
-are independent (the result is nonzero). Further, we see that the
-vectors are a right-handed set, for the wedge product is positive. We
-can permute the vectors using the <code>permutations</code> package
-<span class="citation">(Hankin 2020)</span>:</p>
+<p>Above we see, from the last line, that the vectors <span class="math inline">\(a_1\)</span> to <span class="math inline">\(a_5\)</span> are independent (the result is
+nonzero). Further, we see that the vectors are a right-handed set, for
+the wedge product is positive. We can permute the vectors using the
+<code>permutations</code> package <span class="citation">(Hankin
+2020)</span>:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">permutation</span><span class="op">(</span><span class="st">"(12)(345)"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] (12)(345)</span></span></code></pre>
@@ -202,14 +177,10 @@ being a product of a transposition and a three-cycle.</p>
 <pre><code><span><span class="co">## [1]  3.32019 -3.32019</span></span></code></pre>
 <p>Above, we see that the sign of the wedge product of the permuted list
 has changed, consistent with the permutation’s being odd. We know
-various things about the pseudoscalar; below we will verify that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mi>I</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>a</mi><mo>∧</mo><mi>A</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">a\cdot\left(AI\right)=a\wedge AI</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mi>I</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>A</mi><mo>∧</mo><mi>B</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">A\cdot\left(BI\right)=A\wedge
-BI</annotation></semantics></math> for vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>
-and multivectors
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A,B</annotation></semantics></math>:</p>
+various things about the pseudoscalar; below we will verify that <span class="math inline">\(a\cdot\left(AI\right)=a\wedge AI\)</span> and
+<span class="math inline">\(A\cdot\left(BI\right)=A\wedge
+BI\)</span> for vector <span class="math inline">\(a\)</span> and
+multivectors <span class="math inline">\(A,B\)</span>:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">7</span><span class="op">)</span>   </span>
 <span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
@@ -229,17 +200,9 @@ and multivectors
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>
 <span><span class="co">## + 7 + 2e_4 + 7e_234 - 6e_1345 + 9e_16 - 8e_126 + 6e_236 + 3e_1236 - 1e_1356 -</span></span>
 <span><span class="co">## 9e_2456</span></span></code></pre>
-<p>Above we choose randomish values for vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>
-and multivectors
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A,B</annotation></semantics></math>.
-Observe that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
-have terms of different grades; they are not homogenous. Numerical
-verification is straightforward [NB: <code>%.%</code> breaks markdown
-documents]:</p>
+<p>Above we choose randomish values for vector <span class="math inline">\(a\)</span> and multivectors <span class="math inline">\(A,B\)</span>. Observe that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> have terms of different grades; they
+are not homogenous. Numerical verification is straightforward [NB:
+<code>%.%</code> breaks markdown documents]:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">LHS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Ops.clifford.html">cliffdotprod</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">A</span><span class="op">*</span><span class="va">I</span><span class="op">)</span> <span class="co"># Usual idiom would be "a %.% (A*I)"</span></span>
 <span><span class="va">RHS</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">a</span><span class="op">^</span><span class="va">A</span><span class="op">)</span><span class="op">*</span><span class="va">I</span></span>

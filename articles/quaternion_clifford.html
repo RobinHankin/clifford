@@ -10,7 +10,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Quaternionic arithmetic with Clifford algebra">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Quaternionic arithmetic with Clifford algebra">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -85,43 +85,36 @@ Clifford algebras. This is done for illustrative purposes only; to
 manipulate quaternions in R the <code>onion</code> package <span class="citation">(Hankin 2006)</span> is much more efficient and
 includes more transparent idiom.</p>
 <p>Hamilton’s Broome Bridge insight:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐢</mi><mn>2</mn></msup><mo>=</mo><msup><mi>𝐣</mi><mn>2</mn></msup><mo>=</mo><msup><mi>𝐤</mi><mn>2</mn></msup><mo>=</mo><mi>𝐢</mi><mi>𝐣</mi><mi>𝐤</mi><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \mathbf{i}^2=
 \mathbf{j}^2=
 \mathbf{k}^2=
 \mathbf{i}\mathbf{j}\mathbf{k}=-1
-</annotation></semantics></math></p>
+\]</span></p>
 <p>The BBI and associativity together imply</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐣</mi><mi>𝐤</mi><mo>=</mo><mo>−</mo><mi>𝐤</mi><mi>𝐣</mi><mo>=</mo><mi>𝐢</mi><mspace width="2.0em"></mspace><mi>𝐤</mi><mi>𝐢</mi><mo>=</mo><mo>−</mo><mi>𝐢</mi><mi>𝐤</mi><mo>=</mo><mi>𝐣</mi><mspace width="2.0em"></mspace><mi>𝐢</mi><mi>𝐣</mi><mo>=</mo><mo>−</mo><mi>𝐣</mi><mi>𝐢</mi><mo>=</mo><mi>𝐤</mi><mspace width="2.0em"></mspace></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \mathbf{j}\mathbf{k}=-\mathbf{k}\mathbf{j}=\mathbf{i}\qquad
 \mathbf{k}\mathbf{i}=-\mathbf{i}\mathbf{k}=\mathbf{j}\qquad
 \mathbf{i}\mathbf{j}=-\mathbf{j}\mathbf{i}=\mathbf{k}\qquad
-</annotation></semantics></math></p>
+\]</span></p>
 <p>and if we require a distributive algebra we get the quaternions. A
-general quaternion is of the form
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>𝐢</mi><mi>b</mi><mo>+</mo><mi>𝐣</mi><mi>c</mi><mo>+</mo><mi>𝐤</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">a+\mathbf{i}b+\mathbf{j}c+\mathbf{k}d</annotation></semantics></math>;
+general quaternion is of the form <span class="math inline">\(a+\mathbf{i}b+\mathbf{j}c+\mathbf{k}d\)</span>;
 addition is componentwise and multiplication follows from the above.</p>
 <p>To express quaternionic multiplication using Clifford algebra we make
 the following identifications:</p>
-<p><span class="math display">$$
+<p><span class="math display">\[
 \mathbf{i}\leftrightarrow -e_{12}\\
 \mathbf{j}\leftrightarrow -e_{13}\\
 \mathbf{k}\leftrightarrow -e_{23}\\
-$$</span></p>
-<p>Thus, for example,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>𝐢</mi><mi>𝐢</mi></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>e</mi><mn>12</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>e</mi><mn>12</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>+</mo><msub><mi>e</mi><mn>1212</mn></msub><mo>=</mo><mo>−</mo><msub><mi>e</mi><mn>1122</mn></msub><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\mathbf{ii}=(-e_{12})(-e_{12})=+e_{1212}=-e_{1122}=-1</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>𝐢</mi><mi>𝐣</mi></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>e</mi><mn>12</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><msub><mi>e</mi><mn>13</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>+</mo><msub><mi>e</mi><mn>1213</mn></msub><mo>=</mo><mo>−</mo><msub><mi>e</mi><mn>1123</mn></msub><mo>=</mo><mo>−</mo><msub><mi>e</mi><mn>23</mn></msub><mo>=</mo><mi>𝐤</mi></mrow><annotation encoding="application/x-tex">\mathbf{ij}=(-e_{12})(-e_{13})=+e_{1213}=-e_{1123}=-e_{23}=\mathbf{k}</annotation></semantics></math>.
-The default signature [in which
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e_i^2=+1</annotation></semantics></math>]
-is fine here, but as a safety measure we can set <code>maxdim</code> to
-3:</p>
+\]</span></p>
+<p>Thus, for example, <span class="math inline">\(\mathbf{ii}=(-e_{12})(-e_{12})=+e_{1212}=-e_{1122}=-1\)</span>
+and <span class="math inline">\(\mathbf{ij}=(-e_{12})(-e_{13})=+e_{1213}=-e_{1123}=-e_{23}=\mathbf{k}\)</span>.
+The default signature [in which <span class="math inline">\(e_i^2=+1\)</span>] is fine here, but as a safety
+measure we can set <code>maxdim</code> to 3:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">3</span><span class="op">)</span>  <span class="co"># paranoid safety measure</span></span></code></pre></div>
-<p>We might wish to multiply
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo>+</mo><mn>2</mn><mi>𝐢</mi><mo>+</mo><mn>3</mn><mi>𝐣</mi><mo>+</mo><mn>4</mn><mi>𝐤</mi></mrow><annotation encoding="application/x-tex">q_1=1+2\mathbf{i}+3\mathbf{j}+4\mathbf{k}</annotation></semantics></math>
-by
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mn>2</mn></msub><mo>=</mo><mo>−</mo><mn>2</mn><mo>+</mo><mi>𝐢</mi><mo>−</mo><mn>2</mn><mi>𝐣</mi><mo>+</mo><mi>𝐤</mi></mrow><annotation encoding="application/x-tex">q_2=-2+\mathbf{i}-2\mathbf{j}+\mathbf{k}</annotation></semantics></math>:</p>
+<p>We might wish to multiply <span class="math inline">\(q_1=1+2\mathbf{i}+3\mathbf{j}+4\mathbf{k}\)</span>
+by <span class="math inline">\(q_2=-2+\mathbf{i}-2\mathbf{j}+\mathbf{k}\)</span>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">q1</span> <span class="op">&lt;-</span> <span class="op">+</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span> <span class="op">-</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">3</span><span class="op">*</span><span class="op">-</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">4</span><span class="op">*</span><span class="op">-</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">q1</span></span></code></pre></div>
@@ -136,13 +129,12 @@ by
 <code class="sourceCode R"><span><span class="va">q1</span><span class="op">*</span><span class="va">q2</span></span></code></pre></div>
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>
 <span><span class="co">## - 2 - 8e_12 + 6e_13 + 14e_23</span></span></code></pre>
-<p>The product would correspond to
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn><mo>+</mo><mn>8</mn><mi>𝐢</mi><mo>−</mo><mn>6</mn><mi>𝐣</mi><mo>−</mo><mn>14</mn><mi>𝐤</mi></mrow><annotation encoding="application/x-tex">-2+8\mathbf{i} -6\mathbf{j}
--14\mathbf{k}</annotation></semantics></math>. Note that the
-“<code>*</code>” in “<code>q1*q2</code>” is a <em>clifford</em> product.
-It is possible to leverage the <code>onion</code> package and coerce
-between <code>clifford</code> objects and quaternions (but don’t
-actually do it, you crazy fool):</p>
+<p>The product would correspond to <span class="math inline">\(-2+8\mathbf{i} -6\mathbf{j}
+-14\mathbf{k}\)</span>. Note that the “<code>*</code>” in
+“<code>q1*q2</code>” is a <em>clifford</em> product. It is possible to
+leverage the <code>onion</code> package and coerce between
+<code>clifford</code> objects and quaternions (but don’t actually do it,
+you crazy fool):</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">`clifford_to_quaternion`</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">C</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clifford.html">as.clifford</a></span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span>
@@ -189,19 +181,14 @@ multiplication depending on its arguments.</p>
 <div class="section level2">
 <h2 id="alternative-mapping">Alternative mapping<a class="anchor" aria-label="anchor" href="#alternative-mapping"></a>
 </h2>
-<p>Alternatively we might consider the even subalgebra of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Cl</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>3</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{Cl}(0,3)</annotation></semantics></math>
-with general element
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mn>0</mn></msub><mo>+</mo><msub><mi>q</mi><mn>1</mn></msub><msub><mi>e</mi><mn>23</mn></msub><mo>−</mo><msub><mi>q</mi><mn>2</mn></msub><msub><mi>e</mi><mn>13</mn></msub><mo>+</mo><msub><mi>q</mi><mn>3</mn></msub><msub><mi>e</mi><mn>12</mn></msub></mrow><annotation encoding="application/x-tex">q_0 + q_1e_{23}
--q_2e_{13} + q_3e_{12}</annotation></semantics></math> (note change of
-sign for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>q</mi><mn>2</mn></msub><annotation encoding="application/x-tex">q_2</annotation></semantics></math>).
-Thus</p>
-<p><span class="math display">$$
+<p>Alternatively we might consider the even subalgebra of <span class="math inline">\(\operatorname{Cl}(0,3)\)</span> with general
+element <span class="math inline">\(q_0 + q_1e_{23}
+-q_2e_{13} + q_3e_{12}\)</span> (note change of sign for <span class="math inline">\(q_2\)</span>). Thus</p>
+<p><span class="math display">\[
 \mathbf{i}\leftrightarrow e_{23}\\
 \mathbf{j}\leftrightarrow -e_{13}\\
 \mathbf{k}\leftrightarrow e_{12}\\
-$$</span></p>
+\]</span></p>
 <p>A quick-and-dirty R function might be</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span><span class="op">)</span></span>

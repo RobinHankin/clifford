@@ -10,7 +10,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Dual quaternions via Clifford algebra">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Dual quaternions via Clifford algebra">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -93,37 +93,22 @@ multiplication table:</p>
 <span><span class="co">## εi εi  -ε  εk -εj    0   0   0   0</span></span>
 <span><span class="co">## εj εj -εk  -ε  εi    0   0   0   0</span></span>
 <span><span class="co">## εk εk  εj -εi   -ε   0   0   0   0</span></span></code></pre>
-<p>Thus, for example,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>j</mi><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">ij=k</annotation></semantics></math>
-(not
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">-k</annotation></semantics></math>).
-Here,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">i,j,k</annotation></semantics></math>
-are the unit quaternion basis elements (so
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi><mn>2</mn></msup><mo>=</mo><msup><mi>j</mi><mn>2</mn></msup><mo>=</mo><msup><mi>k</mi><mn>2</mn></msup><mo>=</mo><mi>i</mi><mi>j</mi><mi>k</mi><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i^2=j^2=k^2=ijk=-1</annotation></semantics></math>)
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math>
-is the dual unit that commutes with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">i,j,k</annotation></semantics></math>
-and satisfies
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ε</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\varepsilon^2=0</annotation></semantics></math>.
-We can implement this in a rough-and-ready way with the
-<code>onion</code> package <span class="citation">(Hankin 2006)</span>
-by observing that a dual quaternion may be represented as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>+</mo><mi>ε</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">A+\varepsilon B</annotation></semantics></math>,
-where
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
-are quaternions. Then</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>+</mo><mi>ε</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>+</mo><mi>ε</mi><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>=</mo><mi>A</mi><mi>C</mi><mo>+</mo><mi>ε</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mi>D</mi><mo>+</mo><mi>B</mi><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
-(A+\varepsilon B)(C+\varepsilon D)== AC + \varepsilon(AD+BC)</annotation></semantics></math></p>
-<p>(note the absence of a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">BD</annotation></semantics></math>
-term, as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ε</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\varepsilon^2=0</annotation></semantics></math>).
-Very crude R idiom for this would be to define a <code>DQ</code> object
-as a list of quaternions, as in:</p>
+<p>Thus, for example, <span class="math inline">\(ij=k\)</span> (not
+<span class="math inline">\(-k\)</span>). Here, <span class="math inline">\(i,j,k\)</span> are the unit quaternion basis
+elements (so <span class="math inline">\(i^2=j^2=k^2=ijk=-1\)</span>)
+and <span class="math inline">\(\varepsilon\)</span> is the dual unit
+that commutes with <span class="math inline">\(i,j,k\)</span> and
+satisfies <span class="math inline">\(\varepsilon^2=0\)</span>. We can
+implement this in a rough-and-ready way with the <code>onion</code>
+package <span class="citation">(Hankin 2006)</span> by observing that a
+dual quaternion may be represented as <span class="math inline">\(A+\varepsilon B\)</span>, where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are quaternions. Then</p>
+<p><span class="math display">\[
+(A+\varepsilon B)(C+\varepsilon D)== AC +
+\varepsilon(AD+BC)\]</span></p>
+<p>(note the absence of a <span class="math inline">\(BD\)</span> term,
+as <span class="math inline">\(\varepsilon^2=0\)</span>). Very crude R
+idiom for this would be to define a <code>DQ</code> object as a list of
+quaternions, as in:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DQ_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">as.quaternion</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">8</span>,<span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>,single<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, <span class="fu">as.quaternion</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">12</span><span class="op">)</span>,single<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">DQ_example</span></span></code></pre></div>
@@ -150,27 +135,19 @@ as a list of quaternions, as in:</p>
 <code>inst/quaternion_clifford.Rmd</code> (<em>not</em> the alternative
 mapping, which requires a different signature) to coerce from cliffords
 to quaternions. We may map the dual quaternions to Clifford objects by
-additionally identifying
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math>
-with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>e</mi><mn>4</mn></msub><annotation encoding="application/x-tex">e_4</annotation></semantics></math>;
-to ensure
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>4</mn><mn>2</mn></msubsup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">e_4^2=0</annotation></semantics></math>
-we work with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>l</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>3</mn><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">Cl(3,0)</annotation></semantics></math>
-which in package idiom is set by executing
-<code>signature(3,0)</code>.</p>
+additionally identifying <span class="math inline">\(\varepsilon\)</span> with <span class="math inline">\(e_4\)</span>; to ensure <span class="math inline">\(e_4^2=0\)</span> we work with <span class="math inline">\(Cl(3,0)\)</span> which in package idiom is set by
+executing <code>signature(3,0)</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">0</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Element of a Clifford algebra, equal to</span></span>
 <span><span class="co">## the zero clifford element (0)</span></span></code></pre>
-<p><span class="math display">$$
+<p><span class="math display">\[
 \mathbf{i}\leftrightarrow -e_{12}\\
 \mathbf{j}\leftrightarrow -e_{13}\\
 \mathbf{k}\leftrightarrow -e_{23}\\
 \varepsilon\leftrightarrow e_4
-$$</span></p>
+\]</span></p>
 <p>Conversion functions would be</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">`cliff_to_DQ`</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">C</span><span class="op">)</span><span class="op">{</span>  <span class="co"># terms such as e_3 and e_123 and e_34 are silently discarded</span></span>

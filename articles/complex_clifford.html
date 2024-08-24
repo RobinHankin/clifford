@@ -10,7 +10,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Complex arithmetic using Clifford algebra">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Complex arithmetic using Clifford algebra">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -84,23 +84,17 @@ how complex arithmetic may be implemented using Clifford algebra (of
 course, if one really wants to use complex numbers, base R is much more
 efficient and uses nicer idiom than the methods presented here). Recall
 that complex numbers are a two-dimensional algebra over the reals, with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mi>c</mi><mo>−</mo><mi>b</mi><mi>d</mi><mo>,</mo><mi>a</mi><mi>d</mi><mo>+</mo><mi>b</mi><mi>c</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(a,b)\cdot(c,d)=(ac-bd,ad+bc)</annotation></semantics></math>;
-we usually write
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(a,b)</annotation></semantics></math>
-as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mi>i</mi></mrow><annotation encoding="application/x-tex">a+bi</annotation></semantics></math>.
-There are two natural ways to identify complex numbers with Clifford
-objects; but because they use different signatures it is more convenient
-to treat them separately.</p>
+<span class="math inline">\((a,b)\cdot(c,d)=(ac-bd,ad+bc)\)</span>; we
+usually write <span class="math inline">\((a,b)\)</span> as <span class="math inline">\(a+bi\)</span>. There are two natural ways to
+identify complex numbers with Clifford objects; but because they use
+different signatures it is more convenient to treat them separately.</p>
 <div class="section level2">
 <h2 id="first-method">First method<a class="anchor" aria-label="anchor" href="#first-method"></a>
 </h2>
-<p>We use
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Cl</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{Cl}(0,1)</annotation></semantics></math>,
-so
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>1</mn><mn>2</mn></msubsup><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e_1^2=-1</annotation></semantics></math>.
-Package idiom is straightforward; to coerce complex numbers to Clifford
-objects and vice versa, we need a couple of functions:</p>
+<p>We use <span class="math inline">\(\operatorname{Cl}(0,1)\)</span>,
+so <span class="math inline">\(e_1^2=-1\)</span>. Package idiom is
+straightforward; to coerce complex numbers to Clifford objects and vice
+versa, we need a couple of functions:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="co"># paranoid-level safety measure</span></span>
@@ -143,20 +137,12 @@ way too:</p>
 <div class="section level2">
 <h2 id="second-method">Second method<a class="anchor" aria-label="anchor" href="#second-method"></a>
 </h2>
-<p>We use
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Cl</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{Cl}(2)</annotation></semantics></math>,
-so
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>1</mn><mn>2</mn></msubsup><mo>=</mo><msubsup><mi>e</mi><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e_1^2=e_2^2=1</annotation></semantics></math>,
-and identify the imaginary unit
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-with
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>e</mi><mn>12</mn></msub><annotation encoding="application/x-tex">e_{12}</annotation></semantics></math>
-(thus
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>12</mn><mn>2</mn></msubsup><mo>=</mo><msub><mi>e</mi><mn>12</mn></msub><msub><mi>e</mi><mn>12</mn></msub><mo>=</mo><msub><mi>e</mi><mn>1212</mn></msub><mo>=</mo><mo>−</mo><msub><mi>e</mi><mn>1122</mn></msub><mo>=</mo><mo>−</mo><msubsup><mi>e</mi><mn>1</mn><mn>2</mn></msubsup><msubsup><mi>e</mi><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e_{12}^2=e_{12}e_{12}=e_{1212}=-e_{1122}=-e_1^2e_2^2=-1</annotation></semantics></math>).
-A general complex number
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">z=x+iy</annotation></semantics></math>
-maps to Clifford object
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mi>y</mi><msub><mi>e</mi><mn>12</mn></msub></mrow><annotation encoding="application/x-tex">x + ye_{12}</annotation></semantics></math>.</p>
+<p>We use <span class="math inline">\(\operatorname{Cl}(2)\)</span>, so
+<span class="math inline">\(e_1^2=e_2^2=1\)</span>, and identify the
+imaginary unit <span class="math inline">\(i\)</span> with <span class="math inline">\(e_{12}\)</span> (thus <span class="math inline">\(e_{12}^2=e_{12}e_{12}=e_{1212}=-e_{1122}=-e_1^2e_2^2=-1\)</span>).
+A general complex number <span class="math inline">\(z=x+iy\)</span>
+maps to Clifford object <span class="math inline">\(x +
+ye_{12}\)</span>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="fl">2</span><span class="op">)</span>  <span class="co"># paranoid-level safety measure</span></span>
 <span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
@@ -176,18 +162,10 @@ maps to Clifford object
 <div class="section level3">
 <h3 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
 </h3>
-<p>The identification
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi><mo>→</mo><mi>x</mi><mo>+</mo><mi>y</mi><msub><mi>e</mi><mn>12</mn></msub></mrow><annotation encoding="application/x-tex">x+iy\longrightarrow x+ye_{12}</annotation></semantics></math>
-is a homomorphism whenever
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>1</mn><mn>2</mn></msubsup><msubsup><mi>e</mi><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e_1^2e_2^2=1</annotation></semantics></math>;
-above we used
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Cl</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{Cl}(2,0)</annotation></semantics></math>
-so
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>1</mn><mn>2</mn></msubsup><mo>=</mo><msubsup><mi>e</mi><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e_1^2=e_2^2=1</annotation></semantics></math>.
-However, the relation is also satisfied if
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>e</mi><mn>1</mn><mn>2</mn></msubsup><mo>=</mo><msubsup><mi>e</mi><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e_1^2=e_2^2=-1</annotation></semantics></math>,
-so we can equally well use
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Cl</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\operatorname{Cl}(0,2)</annotation></semantics></math>:</p>
+<p>The identification <span class="math inline">\(x+iy\longrightarrow
+x+ye_{12}\)</span> is a homomorphism whenever <span class="math inline">\(e_1^2e_2^2=1\)</span>; above we used <span class="math inline">\(\operatorname{Cl}(2,0)\)</span> so <span class="math inline">\(e_1^2=e_2^2=1\)</span>. However, the relation is
+also satisfied if <span class="math inline">\(e_1^2=e_2^2=-1\)</span>,
+so we can equally well use <span class="math inline">\(\operatorname{Cl}(0,2)\)</span>:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>

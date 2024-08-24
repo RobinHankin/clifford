@@ -10,7 +10,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Pauli matrices via Clifford algebra">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Pauli matrices via Clifford algebra">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -83,101 +83,91 @@ Hankin</h4>
 how the Pauli matrices, often used in quantum mechanics, can be
 calculated using Clifford algebra as implemented by the
 <code>clifford</code> R package. The Pauli matrices are set of three
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2\times 2</annotation></semantics></math>
-matrices with complex entries. They represent observables corresponding
-to measuring spin along the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
-axes. They are also useful when considering polarized light. The Pauli
-matrices have a pleasing relationship with Jordan algebra <span class="citation">(Hankin 2023)</span>. In component form, they are:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mn>0</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><msub><mi>σ</mi><mi>x</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><msub><mi>σ</mi><mi>y</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mi>i</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>i</mi></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><msub><mi>σ</mi><mi>z</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<span class="math inline">\(2\times 2\)</span> matrices with complex
+entries. They represent observables corresponding to measuring spin
+along the <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span> axes. They are also useful when
+considering polarized light. The Pauli matrices have a pleasing
+relationship with Jordan algebra <span class="citation">(Hankin
+2023)</span>. In component form, they are:</p>
+<p><span class="math display">\[
 \sigma_0=\left(\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right)\qquad
 \sigma_x=\left(\begin{matrix}0&amp;1\\1&amp;0\end{matrix}\right)\qquad
 \sigma_y=\left(\begin{matrix}0&amp;-i\\i&amp;0\end{matrix}\right)\qquad
 \sigma_z=\left(\begin{matrix}1&amp;0\\0&amp;-1\end{matrix}\right)
-</annotation></semantics></math></p>
-<p>We observe that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>x</mi></msub><msub><mi>σ</mi><mi>y</mi></msub><mo>=</mo><mi>i</mi><msub><mi>σ</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_x\sigma_y=i\sigma_z</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>y</mi></msub><msub><mi>σ</mi><mi>z</mi></msub><mo>=</mo><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_y\sigma_z=i\sigma_x</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>z</mi></msub><msub><mi>σ</mi><mi>x</mi></msub><mo>=</mo><mi>i</mi><msub><mi>σ</mi><mi>y</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_z\sigma_x=i\sigma_y</annotation></semantics></math>,
-and further that
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>σ</mi><mi>x</mi><mn>2</mn></msubsup><mo>=</mo><msubsup><mi>σ</mi><mi>y</mi><mn>2</mn></msubsup><mo>=</mo><msubsup><mi>σ</mi><mi>z</mi><mn>2</mn></msubsup><mo>=</mo><mo>−</mo><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub><msub><mi>σ</mi><mi>y</mi></msub><msub><mi>σ</mi><mi>z</mi></msub><mo>=</mo><msub><mi>σ</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\sigma_x^2=\sigma_y^2=\sigma_z^2=-i\sigma_x\sigma_y\sigma_z=\sigma_0</annotation></semantics></math>.</p>
-<p>The non-identity Pauli matrices [that is,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>x</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>y</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_x,\sigma_y,\sigma_z</annotation></semantics></math>]
-are subject to the following commutation relations:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>σ</mi><mi>x</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>y</mi></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>2</mn><mi>i</mi><msub><mi>σ</mi><mi>z</mi></msub><mspace width="2.0em"></mspace><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>σ</mi><mi>y</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>z</mi></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>2</mn><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub><mspace width="2.0em"></mspace><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>σ</mi><mi>z</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>x</mi></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>2</mn><mi>i</mi><msub><mi>σ</mi><mi>y</mi></msub></mrow><annotation encoding="application/x-tex">
+\]</span></p>
+<p>We observe that <span class="math inline">\(\sigma_x\sigma_y=i\sigma_z\)</span>, <span class="math inline">\(\sigma_y\sigma_z=i\sigma_x\)</span>, and <span class="math inline">\(\sigma_z\sigma_x=i\sigma_y\)</span>, and further
+that <span class="math inline">\(\sigma_x^2=\sigma_y^2=\sigma_z^2=-i\sigma_x\sigma_y\sigma_z=\sigma_0\)</span>.</p>
+<p>The non-identity Pauli matrices [that is, <span class="math inline">\(\sigma_x,\sigma_y,\sigma_z\)</span>] are subject
+to the following commutation relations:</p>
+<p><span class="math display">\[
 \left[\sigma_x,\sigma_y\right]=2i\sigma_z\qquad
 \left[\sigma_y,\sigma_z\right]=2i\sigma_x\qquad
-\left[\sigma_z,\sigma_x\right]=2i\sigma_y</annotation></semantics></math></p>
-<p>(here,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">[</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>x</mi><mi>y</mi><mo>−</mo><mi>y</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\left[x,y\right]=xy-yx</annotation></semantics></math>).
+\left[\sigma_z,\sigma_x\right]=2i\sigma_y\]</span></p>
+<p>(here, <span class="math inline">\(\left[x,y\right]=xy-yx\)</span>).
 We also have the following anticommutation relations:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>σ</mi><mi>x</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>y</mi></msub><mo stretchy="true" form="postfix">}</mo></mrow><mo>=</mo><mn>2</mn><mi>i</mi><msub><mi>σ</mi><mi>z</mi></msub><mspace width="2.0em"></mspace><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>σ</mi><mi>y</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>z</mi></msub><mo stretchy="true" form="postfix">}</mo></mrow><mo>=</mo><mn>2</mn><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub><mspace width="2.0em"></mspace><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>σ</mi><mi>z</mi></msub><mo>,</mo><msub><mi>σ</mi><mi>x</mi></msub><mo stretchy="true" form="postfix">}</mo></mrow><mo>=</mo><mn>2</mn><mi>i</mi><msub><mi>σ</mi><mi>y</mi></msub></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \left\lbrace\sigma_x,\sigma_y\right\rbrace=2i\sigma_z\qquad
 \left\lbrace\sigma_y,\sigma_z\right\rbrace=2i\sigma_x\qquad
-\left\lbrace\sigma_z,\sigma_x\right\rbrace=2i\sigma_y</annotation></semantics></math></p>
-<p>(here,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">{</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="true" form="postfix">}</mo></mrow><mo>=</mo><mi>x</mi><mi>y</mi><mo>+</mo><mi>y</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\left\lbrace x,y\right\rbrace=xy+yx</annotation></semantics></math>).</p>
-<p>Because any
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2\times 2</annotation></semantics></math>
-Hermitian matrix may be expressed as
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mi>σ</mi><mn>0</mn></msub><mo>+</mo><mi>B</mi><msub><mi>σ</mi><mi>x</mi></msub><mo>+</mo><mi>C</mi><msub><mi>σ</mi><mi>y</mi></msub><mo>+</mo><mi>D</mi><msub><mi>σ</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">A\sigma_0+B\sigma_x+C\sigma_y+D\sigma_z</annotation></semantics></math>
-for
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo>,</mo><mi>D</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">A,B,C,D\in\mathbb{R}</annotation></semantics></math>,
-we observe that the anticommutation relations imply that the Pauli
-matrices are closed under the Jordan operator
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∘</mo><mi>y</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mi>y</mi><mo>+</mo><mi>y</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">x\circ y=(xy+yx)/2</annotation></semantics></math>.
-For more details, see the <code>jordan</code> package <span class="citation">(Hankin 2023)</span> which implements this operation in
-a more general context. The Jordan multiplication rule is</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>a</mi></msub><msub><mi>σ</mi><mi>b</mi></msub><mo>=</mo><msub><mi>δ</mi><mrow><mi>a</mi><mi>b</mi></mrow></msub><msub><mi>I</mi><mn>2</mn></msub><mo>+</mo><mi>i</mi><msub><mi>ϵ</mi><mrow><mi>a</mi><mi>b</mi><mi>c</mi></mrow></msub><msub><mi>σ</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">
+\left\lbrace\sigma_z,\sigma_x\right\rbrace=2i\sigma_y\]</span></p>
+<p>(here, <span class="math inline">\(\left\lbrace
+x,y\right\rbrace=xy+yx\)</span>).</p>
+<p>Because any <span class="math inline">\(2\times 2\)</span> Hermitian
+matrix may be expressed as <span class="math inline">\(A\sigma_0+B\sigma_x+C\sigma_y+D\sigma_z\)</span>
+for <span class="math inline">\(A,B,C,D\in\mathbb{R}\)</span>, we
+observe that the anticommutation relations imply that the Pauli matrices
+are closed under the Jordan operator <span class="math inline">\(x\circ
+y=(xy+yx)/2\)</span>. For more details, see the <code>jordan</code>
+package <span class="citation">(Hankin 2023)</span> which implements
+this operation in a more general context. The Jordan multiplication rule
+is</p>
+<p><span class="math display">\[
 \sigma_a\sigma_b=\delta_{ab}I_2 + i\epsilon_{abc}\sigma_c
-</annotation></semantics></math></p>
+\]</span></p>
 <p>which suggests the following identification:</p>
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mn>0</mn></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>↔</mo><mn>1</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mi>x</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>↔</mo><msub><mi>e</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mi>y</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>↔</mo><msub><mi>e</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mi>z</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>↔</mo><msub><mi>e</mi><mn>3</mn></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+<span class="math display">\[\begin{aligned}
 \sigma_0&amp;\longleftrightarrow 1\\
 \sigma_x&amp;\longleftrightarrow e_1\\
 \sigma_y&amp;\longleftrightarrow e_2\\
 \sigma_z&amp;\longleftrightarrow e_3\\
-\end{aligned}</annotation></semantics></math><p>Then we make the <em>formal</em> identifications:</p>
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>↔</mo><msub><mi>e</mi><mn>2</mn></msub><msub><mi>e</mi><mn>3</mn></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>i</mi><msub><mi>σ</mi><mi>y</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>↔</mo><msub><mi>e</mi><mn>3</mn></msub><msub><mi>e</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>i</mi><msub><mi>σ</mi><mi>z</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>↔</mo><msub><mi>e</mi><mn>1</mn></msub><msub><mi>e</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+\end{aligned}\]</span>
+<p>Then we make the <em>formal</em> identifications:</p>
+<span class="math display">\[\begin{aligned}
 i\sigma_x&amp;\longleftrightarrow e_2e_3\\
 i\sigma_y&amp;\longleftrightarrow e_3e_1\\
 i\sigma_z&amp;\longleftrightarrow e_1e_2\\
-\end{aligned}</annotation></semantics></math><p>and so we recover the Pauli matrix relations from the Clifford
+\end{aligned}\]</span>
+<p>and so we recover the Pauli matrix relations from the Clifford
 algebra.</p>
 <div class="section level2">
 <h2 id="implementation">Implementation<a class="anchor" aria-label="anchor" href="#implementation"></a>
 </h2>
 <p>Let us start with the Pauli matrices:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mn>0</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><msub><mi>σ</mi><mi>x</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><msub><mi>σ</mi><mi>y</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mi>i</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>i</mi></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><msub><mi>σ</mi><mi>z</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \sigma_0=\left(\begin{matrix}1&amp;0\\0&amp;1\end{matrix}\right)\qquad
 \sigma_x=\left(\begin{matrix}0&amp;1\\1&amp;0\end{matrix}\right)\qquad
 \sigma_y=\left(\begin{matrix}0&amp;-i\\i&amp;0\end{matrix}\right)\qquad
 \sigma_z=\left(\begin{matrix}1&amp;0\\0&amp;-1\end{matrix}\right)
-</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><msub><mi>σ</mi><mn>0</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>i</mi></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mi>i</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mi>i</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>i</mi></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><mi>i</mi><msub><mi>σ</mi><mi>y</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mo>−</mo><mn>1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="2.0em"></mspace><mi>i</mi><msub><mi>σ</mi><mi>z</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>i</mi></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mo>−</mo><mi>i</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\]</span></p>
+<p><span class="math display">\[
 i\sigma_0=\left(\begin{matrix}i&amp;0\\0&amp;i\end{matrix}\right)\qquad
 i\sigma_x=\left(\begin{matrix}0&amp;i\\i&amp;0\end{matrix}\right)\qquad
 i\sigma_y=\left(\begin{matrix}0&amp;1\\-1&amp;0\end{matrix}\right)\qquad
 i\sigma_z=\left(\begin{matrix}i&amp;0\\0&amp;-i\end{matrix}\right)
-</annotation></semantics></math></p>
+\]</span></p>
 <p>Given a general complex matrix</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>α</mi><mo>+</mo><mi>β</mi><mi>i</mi></mtd><mtd columnalign="center" style="text-align: center"><mi>γ</mi><mo>+</mo><mi>δ</mi><mi>i</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>ϵ</mi><mo>+</mo><mi>ζ</mi><mi>i</mi></mtd><mtd columnalign="center" style="text-align: center"><mi>η</mi><mo>+</mo><mi>θ</mi><mi>i</mi></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+<p><span class="math display">\[
 \left(\begin{matrix}
 \alpha  +\beta i  &amp;  \gamma+\delta i\\
 \epsilon+\zeta i  &amp;  \eta+\theta i  
 \end{matrix}\right)
-</annotation></semantics></math></p>
+\]</span></p>
 <p>we see that</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mn>0</mn></msub></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>+</mo><mi>η</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn><mspace width="2.0em"></mspace><mi>i</mi><msub><mi>σ</mi><mn>0</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>+</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mi>x</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>γ</mi><mo>+</mo><mi>ϵ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn><mspace width="2.0em"></mspace><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>δ</mi><mo>+</mo><mi>ξ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mi>y</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>γ</mi><mo>−</mo><mi>ϵ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn><mspace width="2.0em"></mspace><mi>i</mi><msub><mi>σ</mi><mi>x</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>δ</mi><mo>−</mo><mi>ξ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>σ</mi><mi>z</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>−</mo><mi>η</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn><mspace width="2.0em"></mspace><mi>i</mi><msub><mi>σ</mi><mi>z</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>−</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{eqnarray}
+<p><span class="math display">\[\begin{eqnarray}
 \sigma_0&amp;=(\alpha+\eta)/2\qquad i\sigma_0=(\beta+\theta)/2\\
 \sigma_x&amp;=(\gamma+\epsilon)/2\qquad i\sigma_x=(\delta+\xi)/2\\
 \sigma_y&amp;=(\gamma-\epsilon)/2\qquad i\sigma_x=(\delta-\xi)/2\\
 \sigma_z&amp;=(\alpha-\eta)/2\qquad i\sigma_z=(\beta-\theta)/2\\
-\end{eqnarray}</annotation></semantics></math></p>
+\end{eqnarray}\]</span></p>
 </div>
 <div class="section level2">
 <h2 id="r-implementation">R implementation<a class="anchor" aria-label="anchor" href="#r-implementation"></a>
@@ -273,9 +263,9 @@ homomorphism:</p>
 <h3 id="closure">Closure<a class="anchor" aria-label="anchor" href="#closure"></a>
 </h3>
 <p>The reason that Pauli matrices are useful in physics is that they are
-closed under the Jordan operation
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∘</mo><mi>y</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mi>y</mi><mo>+</mo><mi>y</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">x\circ y=(xy+yx)/2</annotation></semantics></math>,
-which we will verify for matrices and their Clifford representation.</p>
+closed under the Jordan operation <span class="math inline">\(x\circ
+y=(xy+yx)/2\)</span>, which we will verify for matrices and their
+Clifford representation.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu">as.1matrix</span><span class="op">(</span><span class="fu">rchm</span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">M2</span> <span class="op">&lt;-</span> <span class="fu">as.1matrix</span><span class="op">(</span><span class="fu">rchm</span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -294,9 +284,8 @@ which we will verify for matrices and their Clifford representation.</p>
 <pre><code><span><span class="co">##      [,1] [,2]</span></span>
 <span><span class="co">## [1,] 0+0i 0+0i</span></span>
 <span><span class="co">## [2,] 0+0i 0+0i</span></span></code></pre>
-<p>Above, see how
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>1</mn></msub><mo>∘</mo><msub><mi>M</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">M_1\circ M_2</annotation></semantics></math>
-is Hermitian. Now, in Clifford form:</p>
+<p>Above, see how <span class="math inline">\(M_1\circ M_2\)</span> is
+Hermitian. Now, in Clifford form:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">C1</span> <span class="op">&lt;-</span> <span class="fu">matrix_to_clifford</span><span class="op">(</span><span class="va">M1</span><span class="op">)</span></span>
 <span><span class="va">C2</span> <span class="op">&lt;-</span> <span class="fu">matrix_to_clifford</span><span class="op">(</span><span class="va">M2</span><span class="op">)</span></span>
