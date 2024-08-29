@@ -74,11 +74,13 @@
 
     \item The \dfn{main (grade) involution} or \dfn{grade involution}
     \eqn{\widehat{A}}{omitted} is given by \code{gradeinv()}.  This
-    changes the sign of any term with odd grade: \deqn{
-    \widehat{\left\langle A\right\rangle_r} =(-1)^r\left\langle
-    A\right\rangle_r}{omitted} (I don't see this in Perwass or Hestenes;
-    notation follows Hitzer and Sangwine).  It is a special case of
-    grade negation.
+    changes the sign of any term with odd grade:
+
+    \deqn{\widehat{\left\langle A\right\rangle_r} =(-1)^r\left\langle
+      A\right\rangle_r}{omitted}
+
+    (I don't see this in Perwass or Hestenes; notation follows Hitzer
+    and Sangwine).  It is a special case of grade negation.
 
     \item The \dfn{grade \eqn{r}-negation}
     \eqn{A_{\overline{r}}}{omitted} is given by \code{neg()}.  This
