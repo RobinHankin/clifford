@@ -127,34 +127,24 @@ c(drop(Reduce(`^`,ai)),drop(Reduce(`^`,ai[as.word(p)])))
 Above, we see that the sign of the wedge product of the permuted list
 has changed, consistent with the permutation's being odd.  We know
 various things about the pseudoscalar; below we will verify that
-$a\cdot\left(AI\right)=a\wedge AI$ and $A\cdot\left(BI\right)=A\wedge
-BI$ for vector $a$ and multivectors $A,B$:
+$a\cdot\left(AI\right)=a\wedge AI$ for vector $a$ and multivector $A$:
 
 ```{r showbits}
 options(maxdim=7)   
 signature(7)
-I <- pseudoscalar()
-I
-a <- as.1vector(sample(1:10,5))
-A <-  rcliff()
-B <- rcliff()
-a
-A  # B looks very similar
+(I <- pseudoscalar())
+(a <- as.1vector(sample(1:10,5)))
+(A <- rcliff())
 ```
 
-Above we choose randomish values for vector $a$ and multivectors
-$A,B$.  Observe that $A$ and $B$ have terms of different grades; they
-are not homogenous.  Numerical verification is straightforward [NB:
-`%.%` breaks markdown documents]:
+Above we choose randomish values for $a$ and $A$.  Observe that $A$
+has terms of different grades; it is not homogeneous.  Numerical
+verification is straightforward [NB: "`%.%`" breaks markdown
+documents]:
 
 ```{r showverif}
 LHS <- cliffdotprod(a, A*I) # Usual idiom would be "a %.% (A*I)"
 RHS <- (a^A)*I
-LHS - RHS
-
-
-LHS <- cliffdotprod(A, B*I) # Usual idiom would be "A %.% (B*I)"
-RHS <- (A^B)*I
 LHS - RHS
 ```
 
