@@ -77,7 +77,7 @@ Hankin</h4>
 
     
     
-<p><img src="../../../_temp/Library/clifford/help/figures/clifford.png" width="15%" style="float:right; padding:10px"><img src="../../../_temp/Library/jordan/help/figures/jordan.png" width="15%" style="float:right; padding:10px"><img src="../../../_temp/Library/emulator/help/figures/emulator.png" width="15%" style="float:right; padding:10px"></p>
+<p><img src="..%2F..%2F..%2F_temp%2FLibrary%2Fclifford%2Fhelp%2Ffigures%2Fclifford.png" width="15%" style="float:right; padding:10px"><img src="..%2F..%2F..%2F_temp%2FLibrary%2Fjordan%2Fhelp%2Ffigures%2Fjordan.png" width="15%" style="float:right; padding:10px"><img src="..%2F..%2F..%2F_temp%2FLibrary%2Fquadform%2Fhelp%2Ffigures%2Fquadform.png" width="15%" style="float:right; padding:10px"></p>
 <p>To cite the <code>clifford</code> package in publications please use
 <span class="citation">Hankin (2022b)</span>. In this short document I
 show how Clifford algebra may be used to effect Lorentz transforms, and
@@ -177,10 +177,11 @@ using a signature of <span class="math inline">\((1,3)\)</span>].</p>
 <pre><code><span><span class="co">##      [,1]</span></span>
 <span><span class="co">## [1,]  -37</span></span></code></pre>
 <p>We might use the slightly slicker and more efficient idiom
-<code>quad.form()</code> from the <code>emulator</code> package <span class="citation">(Hankin 2005)</span>:</p>
+<code>quad.form()</code> from the <code>quadform</code> package:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">quad.form</span><span class="op">(</span><span class="va">M</span>,<span class="va">fourvec</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] -37</span></span></code></pre>
+<pre><code><span><span class="co">##      [,1]</span></span>
+<span><span class="co">## [1,]  -37</span></span></code></pre>
 <p>The Clifford equivalent would be <code><a href="../reference/Ops.clifford.html">scalprod()</a></code> [remembering
 to set the signature to 1]:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -411,13 +412,8 @@ as follows:</p>
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-hankin2005" class="csl-entry">
-Hankin, R. K. S. 2005. <span>“Introducing <span>BACCO</span>, an
-<span>R</span> Bundle for <span>B</span>ayesian Analysis of Computer
-Code Output.”</span> <em>Journal of Statistical Software</em> 14 (16).
-</div>
 <div id="ref-hankin2022_lorentz" class="csl-entry">
-———. 2022a. <span>“A Systematic Search for a Three-Velocity
+Hankin, R. K. S. 2022a. <span>“A Systematic Search for a Three-Velocity
 Gyrodistributive Law in Special Relativity with the Lorentz
 <span>R</span> Package.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2212.07005" class="external-link">https://doi.org/10.48550/ARXIV.2212.07005</a>.
 </div>
@@ -445,7 +441,7 @@ Snygg, J. 2010. <em>A New Approach to Differential Geometry Using
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
