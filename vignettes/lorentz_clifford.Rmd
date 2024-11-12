@@ -13,7 +13,7 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("clifford")
-library("emulator")
+library("quadform")
 library("lorentz")
 library("jordan")
 ```
@@ -22,7 +22,7 @@ library("jordan")
 ```{r, label=hexstickerplotter, out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
 knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
 knitr::include_graphics(system.file("help/figures/jordan.png", package = "jordan"))
-knitr::include_graphics(system.file("help/figures/emulator.png", package = "emulator"))
+knitr::include_graphics(system.file("help/figures/quadform.png", package = "quadform"))
 ```
 
 To cite the `clifford` package in publications please use
@@ -125,9 +125,9 @@ t(fourvec) %*% M %*% fourvec
 ```
  
 We might use the slightly slicker and more efficient idiom
-`quad.form()` from the `emulator` package [@hankin2005]:
+`quad.form()` from the `quadform` package:
 
-```{r,useemulator}
+```{r,usequadform}
 quad.form(M,fourvec)
 ```
 

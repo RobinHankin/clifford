@@ -24,3 +24,4 @@
 - automatic codecov improvements
 - extra safety checks for signature() and maxdim
 - remove dependence on mathjax
+- remove dependence on emulator (now uses quadform)
