@@ -5,6 +5,11 @@
 \alias{as.character.clifford}
 \alias{catterm}
 \alias{basissep}
+\alias{print_clifford}
+\alias{print_clifford_default}
+\alias{print_clifford_quaternion}
+\alias{print_clifford_pauli}
+\alias{print_special}
 \title{Print clifford objects}
 \description{Print methods for Clifford algebra}
 \usage{
@@ -54,8 +59,14 @@ the constant term (which has a basis blade of \code{numeric(0)}) is
 treated appropriately.  See also \code{list_modifier()} which deals with
 this issue.
 
+Experimental bespoke print methods \code{print_clifford_quaternion()}
+and \code{print_clifford_pauli()} are included.  These are executed if
+option \code{clifford_print_special} is \code{quaternion} or
+\code{pauli} respectively; if \code{NULL}, then
+\code{print_clifford_default()} is used.
+
 }
-\seealso{\code{\link{clifford}}}  
+\seealso{\code{\link{clifford}}}
 \examples{
 
 a <- rclifff(9)
@@ -71,4 +82,18 @@ a    #  clearer; YMMV
 
 options(basissep = NULL, maxdim=NULL)  # restore default
 
+options("maxdim" = 3)
+signature(3)
+a <- clifford(list(0,c(1,2),c(1,3),c(2,3)),6:9)
+a
+
+options("clifford_print_special" = "quaternion")
+a
+
+options("clifford_print_special" = "pauli")
+a
+
+options("maxdim" = NULL)
+options("clifford_print_special" = NULL)
+signature(Inf)
 }
