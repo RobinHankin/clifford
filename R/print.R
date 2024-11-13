@@ -4,9 +4,6 @@
         print_clifford_default(x, ...)
     } else if(o == "quaternion"){
         print_clifford_quaternion(x)
-    } else if(o == "pauli"){
-        warning("not written yet, defaulting to quaternion")
-        print_clifford_pauli(x)
     } else {
         stop("not recognised")
     }
@@ -81,13 +78,3 @@
                   positive=c(TRUE,FALSE,FALSE,FALSE),
                   name = "quaternion", article = "A")
 }
-
-`print_clifford_pauli` <- function(x){
-    stopifnot(getOption("maxdim") == 3)
-    stopifnot(signature()[1] >= 3)
-    print_special(x,
-                  params = list(" " = 0, i=c(1,2), j=c(1,3), k=c(2,3)),
-                  positive=c(TRUE,FALSE,FALSE,FALSE),
-                  name = "pauli", article = "A")
-}
-

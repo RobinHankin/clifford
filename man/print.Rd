@@ -59,11 +59,12 @@ the constant term (which has a basis blade of \code{numeric(0)}) is
 treated appropriately.  See also \code{list_modifier()} which deals with
 this issue.
 
-Experimental bespoke print methods \code{print_clifford_quaternion()}
-and \code{print_clifford_pauli()} are included.  These are executed if
-option \code{clifford_print_special} is \code{quaternion} or
-\code{pauli} respectively; if \code{NULL}, then
-\code{print_clifford_default()} is used.
+Experimental bespoke print method \code{print_clifford_quaternion()} and
+\code{print_clifford_pauli()} is included.  This are executed if option
+\code{clifford_print_special} is \code{quaternion}; if \code{NULL}, then
+\code{print_clifford_default()} is used.  It is straightforward to add
+further bespoke print methods if needed (modify
+\code{print.clifford()}).
 
 }
 \seealso{\code{\link{clifford}}}
