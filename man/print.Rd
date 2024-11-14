@@ -91,9 +91,6 @@ a
 options("clifford_print_special" = "quaternion")
 a
 
-options("clifford_print_special" = "pauli")
-a
-
 options("maxdim" = NULL)
 options("clifford_print_special" = NULL)
 signature(Inf)
