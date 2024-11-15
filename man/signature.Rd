@@ -29,8 +29,10 @@ is that both the speed of light and the signature of a Clifford algebra
 are generally set once, at the beginning of an \R session, and
 subsequently change only very infrequently.
 
-Clifford algebras require a bilinear form on \eqn{\mathbb{R}^n}{R^n}
-\eqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>}, usually written
+Clifford algebras require a bilinear form
+\eqn{\left\langle\cdot,\cdot\right\rangle}{<.,.>} on
+\eqn{\mathbb{R}^n}{R^n}.  If \eqn{{\mathbf
+x}=\left(x_1,\ldots,x_n\right)}{omitted} we define
 
 \deqn{\left\langle{\mathbf x},{\mathbf x}\right\rangle=x_1^2+x_2^2+\cdots
   +x_p^2-x_{p+1}^2-\cdots -x_{p+q}^2
