@@ -33,7 +33,9 @@
         } else {
             options("prompt" = paste("Cl(", s[1],",", s[2],") > ",sep=""))
         }
-    } 
+    } else {
+        options("prompt" = "> ")
+    }
 }
 
 `print.sigobj` <- function(x,...){

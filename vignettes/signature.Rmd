@@ -86,9 +86,10 @@ signature()
 ```
 
 Function `signature()` returns an object of (trivial) class `sigobj`
-which has a bespoke print method.  For technical reasons an infinite
-signature is not allowed but is represented internally by a
-near-infinite integer, specifically `.Machine$integer.max`:
+which has a bespoke print method, `print.sigobj()`.  For technical
+reasons an infinite signature is not allowed but is represented
+internally by a near-infinite integer, specifically
+`.Machine$integer.max`:
 
 
 ```{r dputinfinitesig}

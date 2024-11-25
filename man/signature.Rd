@@ -77,14 +77,17 @@ algebras, which is much more efficient and uses nicer idiom.
 
 Function \code{signature(p,q)} returns the signature invisibly; but
 setting option \code{show_signature} to \code{TRUE} makes
-\code{signature()} have the side-effect of calling \code{showsig()},
-which changes the default prompt to display the signature, much like
-\code{showSOL} in the \CRANpkg{lorentz} package.  There is special
-dispensation for \dQuote{infinite} \eqn{p} or \eqn{q}.
+\code{showsig()} [which is called by \code{signature()}] change the
+default prompt so it displays the signature, much like \code{showSOL} in
+the \CRANpkg{lorentz} package.  Note that changing the signature changes
+the prompt immediately (if \code{show_signature} is \code{TRUE}), but
+changing option \code{show_signature} has no effect until
+\code{showsig()} is called.
 
 Calling \code{signature()} [that is, with no arguments] returns an
 object of class \code{sigobj} with elements corresponding to \eqn{p} and
-\eqn{q}.  The \code{sigobj} class ensures that a near-infinite integer
+\eqn{q}.  There is special dispensation for \dQuote{infinite} \eqn{p} or
+\eqn{q}: the \code{sigobj} class ensures that a near-infinite integer
 such as \code{.Machine$integer.max} will be printed as
 \dQuote{\code{Inf}} rather than, for example,
 \dQuote{\code{2147483647}}.
