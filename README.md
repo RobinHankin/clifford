@@ -9,7 +9,7 @@ The clifford package: Clifford algebra in R
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/clifford)](https://cran.r-project.org/package=clifford)
 [![Codecov test
-coverage](https://codecov.io/gh/RobinHankin/clifford/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford)
+coverage](https://codecov.io/gh/RobinHankin/clifford/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford/branch/master)
 <!-- badges: end -->
 
 The `clifford` package provides R-centric functionality for working with
