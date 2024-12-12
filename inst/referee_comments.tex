@@ -78,11 +78,15 @@ There are several reasons for this negative recommendation:
     Author uses identities (7.1) and (7.2) as his/her definitions of
     the contractions, which is mathematically wrong\footnote{By the
     way, the Author does not explain the syntax of such input anyway}
-    whereas the left contraction (and similarly the right contraction)
-    has been defined independently of the Clifford product (cf. [6,
-      Sections 22.1 and 22.2]). Then, the left contraction is used,
-    following the well-known Chevalley’s construction, to define the
-    Clifford product via the formula
+
+    \textcolor{blue}{The definitions are lifted from Dorst 2002 which
+      was not cited explicitly in the manuscript.}
+
+    \ldots whereas the left contraction (and similarly the
+    right contraction) has been defined independently of the Clifford
+    product (cf. [6, Sections 22.1 and 22.2]). Then, the left
+    contraction is used, following the well-known Chevalley’s
+    construction, to define the Clifford product via the formula
 
     $$
     \mathbf{x}u=\mathbf{x}\wedge u + \mathbf{x}\rfloor u,\qquad\mathbf{x}\in V,u\in\bigwedge V
@@ -93,16 +97,55 @@ and then extended by linearity and associativity to all of V [6, Page
 \cliff{Q} (or, \cliff{p, q, r})\footnote{It is strange that the Author
 does not even explain the relation between a quadratic space (V, Q)
 and the (universal) Clifford algebra \cliff{V, Q}, also denoted in the
-literature as \cliff{Q} cf. [6].} \footnote{In fact, the Chevalley’s
-construction works for a Clifford algebra \cliff{B} of any bilinear
-form B and an extensive package already exists for computations with
-these algebras [1, 2].} \footnote{Observe that when the Clifford
-product xu is defined as in (1), which amounts to V defining the
-Clifford algebra \cliff{Q} as a subalgebra of the algebra of
-endomorphisms of the Grassmann algebra V, it is necessary to encode in
-any package (based on this definition) both the Clifford product and
-the Grassmann product. However, in the package clifford of the Author,
-there is no provision for computing the wedge product} Thus, it is a
+literature as \cliff{Q} cf. [6].
+
+\textcolor{blue}{Explaining the relation between $(V,Q)$ and the
+  universal Clifford algebra would not add any value to a manuscript
+  discussing a computational implementation.  The manuscript was
+  prepared to appeal to a particular level of abstraction and
+  discussion of category-theoretic characterisation of Clifford
+  algebras is clearly not in scope.}  } \footnote{In fact, the
+Chevalley’s construction works for a Clifford algebra \cliff{B} of any
+bilinear form B and an extensive package already exists for
+computations with these algebras [1, 2].
+
+\textcolor{blue}{The reviewer states a true fact, one that would not
+  add any value to a manuscript discussing a computational
+  implementation.}} \footnote{Observe that when the Clifford product
+xu is defined as in (1), which amounts to V defining the Clifford
+algebra \cliff{Q} as a subalgebra of the algebra of endomorphisms of
+the Grassmann algebra V, it is necessary to encode in any package
+(based on this definition) both the Clifford product and the Grassmann
+product. However, in the package clifford of the Author, there is no
+provision for computing the wedge product
+
+\textcolor{blue}{This statement is simply false.  A cursory inspection
+  of the package reveals that the wedge product is implemented as an
+  overloaded caret (``{\tt\string^}'').  This device is documented
+  according to standard documentation protocols and is apparent on
+  viewing the default landing page for the package manual, and indeed
+  on the pkgdown website.  I cannot see how one could make the wedge
+  product more visible to users.}  }
+
+\textcolor{blue}{The above comments are true, but I do not see any
+  constructive comments here.  The identity $\mathbf{x}u +
+  \mathbf{x}\wedge u+\mathbf{x}\rfloor u$ is true, as demonstrated
+  in the following R session:\\[20pt]
+{\tt > x <- rcliff(d=5)}\\
+{\tt > u <- as.1vector(sample(1:10,5))}\\
+{\tt > }\\
+{\tt > x}\\
+{\tt Element of a Clifford algebra, eual to}\\
+{\tt + 7 + 8e\_2 - 9e\_3 - 1e\_13 - 2e\_4 - 5e\_234 + 9e\_5 - 8e\_25 + 6e\_1235 - 4e\_2345}\\
+{\tt > u}\\
+{\tt Element of a Clifford algebra, equal to}\\
+{\tt + 10e\_1 + 9e\_2 + 3e\_3 + 2e\_4 + 4e\_5}\\
+{\tt > x*u == x\string^u + x\%|\_\%u}\\
+{\tt [1] TRUE}\\
+{\tt > }\\
+}
+
+Thus, it is a
 serious deficiency not to explain how the Clifford product and the
 contractions are defined and computed in the package.  Of course,
 there are other ways to compute the Clifford product and especially in
