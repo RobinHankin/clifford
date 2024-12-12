@@ -15,6 +15,10 @@ inst/lorentz_clifford.Rmd$
 inst/pauli_clifford.Rmd$
 inst/quaternion_clifford.Rmd$
 inst/complex_clifford.Rmd$
+inst/code.png
+inst/referees_comments.tex
+inst/hankin_aca_revision.tex
+inst/hankin_aca.tex
 ^.github$
 ^.devcontainer$
 ^codecov\.yml$

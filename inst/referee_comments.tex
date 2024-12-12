@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{xcolor}
-
+\usepackage{graphicx}
 \newcommand{\cliff}[1]{\ensuremath{C\ell\left(#1\right)}}
 \begin{document}
 
@@ -45,6 +45,35 @@ There are several reasons for this negative recommendation:
     computes and encodes the algebra product which is critical to
     designing any package for computations with these algebras.
 
+    \textcolor{blue}{I observe that the original manuscript included a
+      substantial amount of high-level discussion of the codebase:
+      ``The package represents basis blades using dynamic bitset
+      objects\ldots''.  In any work of this type the author has to
+      decide how much code to include in the manuscript.  On the one
+      hand, readers of such a manuscript generally do not wish to be
+      presented with a large amount of verbatim code; it is generally
+      regarded as a featureless block of grey, of very little value [I
+        edit two computational statistics journals and often instruct
+        authors to remove code from their manuscripts; if I want to
+        see code, I will look at it using a civilized coding tool, not
+        browse a PDF].  Interested readers may consult the code
+      directly (and here, as stated, the code is distributed under an
+      open source license at github: the entire code base is open to
+      inspection).\\[10pt] The other viewpoint---that of including
+      substantial extracts from the codebase---is being espoused by
+      the referee.  There are occasions where this approach is
+      justified, but I do not agree that this is one of them.  The
+      following figure shows what is in many ways the core of the C
+      backend of the associated software, in this case the direct
+      definition of six of the definitions of ``multiplication''
+      implemented in the package:\\[10pt]
+      \includegraphics[width=6in]{code.png}\\[10pt] Surely the referee
+      is not suggesting I include such material in the manuscript?
+      Nevertheless, on reflection, the submission does not reflect the
+      large codebase present in the R package, and I have added
+      pointers to the github account so interested readers can inspect
+      the code in a suitable interactive environment.}
+      
     In particular, from the text in Section 7 it appears that the
     Author uses identities (7.1) and (7.2) as his/her definitions of
     the contractions, which is mathematically wrong\footnote{By the
