@@ -1,0 +1,705 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+
+
+% ------------------------------------------------------------------------
+% bjourdoc.tex for birkjour.cls: Last revised April 3, 2021, by R.A.****
+% ------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{birkjour}
+%%%Optional but convenient to use is the package ``cite''. If you do not want to use it, remark the next line by placing the percent sign % in front of it:
+\usepackage[noadjust]{cite}
+\usepackage{xcolor}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{Sweave}
+\usepackage{doi}
+\usepackage{url}
+\RequirePackage[all]{xy}
+
+%\include{Tmacros}
+
+%
+% THEOREM Environments (Examples)-----------------------------------------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{comment}[thm]{Comment}
+\newtheorem*{ex}{Example}
+\numberwithin{equation}{section}
+\newtheorem*{warning}{\textbf{Warning!}}
+
+
+\newcommand{\BibTeX}{B\kern-0.1emi\kern-0.017emb\kern-0.15em\TeX}
+\newcommand{\XYpic}{$\mathrm{X\kern-0.3em\raisebox{-0.18em}{Y}}$-$\mathrm{pic}\,$}
+\newcommand{\TexnicCenter}{\TeX nicCenter}
+
+%%%Clifford algebra macros
+\newcommand{\cl}{C \kern -0.1em \ell}  %%Clifford algebra
+
+\DeclareMathOperator{\JJ}{\mathbin{\raisebox{0.25ex}%
+                       {\mbox{\scriptsize$
+                       \rm\vphantom{I}%
+                       \_\hskip -0.25em\_%
+                       \vrule width 0.6pt$}}}}           %left contraction
+
+\DeclareMathOperator{\LL}{\mathbin{\raisebox{0.25ex}%
+                        {\mbox{\scriptsize$
+                        \rm\vphantom{I}%
+                        \vrule width 0.6pt \hskip -0.5pt%
+                        \_\hskip -0.25em\_$}}}}          %right contraction
+
+\newcommand{\JJB}[1]{\JJ_{#1}}
+\newcommand{\LLB}[1]{\LL_{#1}}
+
+
+\newcommand{\w}{\wedge}
+\newcommand{\bigw}{\bigwedge}
+\newcommand{\dw}{\mathbin{\dot\wedge}}
+\newcommand{\dwedge}{\mathbin{\dot\wedge}}
+
+\DeclareMathOperator{\hotimes}{\Hat{\otimes}}
+\DeclareMathOperator{\chr}{\mathrm{char}}
+
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+
+
+%
+\newcommand{\BF}{\mathbb{F}}
+\newcommand{\BZ}{\mathbb{Z}}
+\newcommand{\BR}{\mathbb{R}}
+\newcommand{\BC}{\mathbb{C}}
+\newcommand{\BH}{\mathbb{H}}
+
+\newcommand{\ed}{\end{document}}
+\begin{document}
+
+%-------------------------------------------------------------------------
+% editorial commands: to be inserted by the editorial office
+%
+%\firstpage{1} \volume{228} \Copyrightyear{2004} \DOI{003-0001}
+%
+%
+%\seriesextra{Just an add-on}
+%\seriesextraline{This is the Concrete Title of this Book\br H.E. R and S.T.C. W, Eds.}
+%
+% for journals:
+%
+%\firstpage{1}
+%\issuenumber{1}
+%\Volumeandyear{1 (2004)}
+%\Copyrightyear{2004}
+%\DOI{003-xxxx-y}
+%\Signet
+%\commby{inhouse}
+%\submitted{March 14, 2003}
+%\received{March 16, 2000}
+%\revised{June 1, 2000}
+%\accepted{July 22, 2000}
+%
+%
+%
+%---------------------------------------------------------------------------
+%Insert here the title, affiliations and abstract:
+%
+
+\title[Clifford algebra in R]{
+ Clifford algebra in R: introducing the {\tt clifford} package}
+%----------Author 1
+\author[Hankin]{Robin K. S. Hankin}
+\address{%
+  University of Stirling\\
+  Stirling FK9 4LH\\
+  United Kingdom
+}
+%
+\email{hankin.robin@gmail.com}
+%
+%----------classification, keywords, date
+\subjclass{Primary 15A66, 16W50, 20C05, 20C40, 20D15; Secondary 68W30}
+%
+\keywords{Class file, HTML, journal}
+%
+\date{\today}
+%----------additions
+\dedicatory{Last Revised:\\ \today}
+%%% ----------------------------------------------------------------------
+\begin{abstract}
+
+Here I present the {\tt clifford} package for working with Clifford
+algebras in the R programming language.  Algebras of arbitrary
+dimension and signature can be manipulated, and a range of different
+multiplication operators is provided.  The algebra is described and
+package idiom is given; it obeys {\tt disordR} discipline.  The
+package is available on CRAN at
+\tt{https://CRAN.R-project.org/package=clifford}.
+
+
+\end{abstract}
+\label{page:firstblob}
+%%% ----------------------------------------------------------------------
+\maketitle
+%%% ----------------------------------------------------------------------
+\tableofcontents
+
+
+
+\section{Introduction}
+
+\setlength{\intextsep}{0pt}
+\begin{wrapfigure}{r}{0.2\textwidth}
+  \begin{center}
+\includegraphics[width=1in]{clifford.png}
+  \end{center}
+\end{wrapfigure}
+Clifford algebras are interesting and instructive mathematical
+objects.  The class has a rich structure that has varied applications
+to physics.  Computational support for working with the Clifford
+algebras is part of a number of algebra systems including
+Sage~\cite{sagemath2019} and \textit{sympy}~\cite{sympy2017}.  Here
+I introduce the {\tt clifford} package, written in the R computing
+language~\cite{rcore2022}, which furnishes functionality for working
+with Clifford algebras.  Notation follows Snygg~\cite{snygg2010}.
+
+\newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
+
+
+Suppose we consider a $n$-dimensional vector space spanned by
+$\ei{1},\ldots,\ei{n}$.  Then an arbitrary vector in this space will
+be $a^1\ei{1}+\cdots+a^n\ei{n}$.  The associated Clifford algebra will
+be of dimension $2^n$, spanned by formal products
+$\ei{i_1}\ei{i_2}\ldots\ei{i_r}$, $1\leqslant i_1<\cdots<i_r\leqslant
+n$.  We write this as $\ei{i_1\ldots i_r}$ for brevity.  The defining
+relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$ for $i\neq j$ and
+\begin{equation}\label{posdefcliff2}
+\ei{i}\ei{i} = \begin{cases}
+    +1, & 1\leqslant i\leqslant p\\
+    -1, & p < i\leqslant p+q\\
+    0   & \mbox{otherwise}
+  \end{cases}
+\end{equation}
+
+The Clifford algebra ${\mathcal C}_{p,q}$ (other notations include
+$Cl(p,q)$) is then the algebra formed by $\mathbb{R}_{p,q}$ together
+with formal products of basis vectors.  One special case would be
+$p=q=0$, implying that $\ei{i}\ei{i}=0$; geometric products become
+wedge products.  
+
+\section{Computational implementation and {\tt disordR} discipline}
+
+The package represents basis blades using dynamic bitset objects from
+the {\tt boost} library.  A bitset emulates an array of Boolean
+elements, but is optimized for space allocation and
+access/modification times.  The set bits specify the basis blades
+present in a term; using bitsets allows products to use fast Boolean
+operators.  An object such as $\ei{2}\ei{5}\ei{6}$ [or $\ei{256}$]
+will be a bitset with bits 2, 5, and 6 set [note the off-by-one
+  issue].  Dynamic objects are needed here as the number of bits in
+the set is specified at runtime.
+A {\tt clifford} object is an element of a Clifford algebra; this is
+set of basis blades, each with a real coefficient.  The {\tt stl} map
+class~\cite{musser2009} is used:
+
+{\ }\\[10pt]
+\begin{verbatim}
+typedef boost::dynamic_bitset<> blade;
+typedef map<blade, long double> clifford;
+\end{verbatim}
+
+{\ }\\[10pt]
+
+A ``map'' is a sorted associative container that contains key-value
+pairs with unique keys~\cite{musser2009}.  A {\tt clifford} object
+thus maps dynamic bitsets (basis blades) to long doubles.  The {\tt
+  STL map} class is used for efficiency: search and insertion
+operations have only logarithmic complexity.  Similar techniques are
+used in the {\tt spray} and {\tt mvp}
+packages~\cite{hankin2022_mvp,hankin2022_spray} which furnish
+functionality for multivariate polynomials.
+
+Clifford objects are thus considered to be the sum of a finite number
+of blades, each multiplied by a coefficient.  One reason why the {\tt
+  map} class is fast is that the order in which the keys are stored is
+undefined: the compiler may store them in the order which it regards
+as most propitious.  This is not an issue for the maps considered here
+as addition and multiplication are commutative and associative.  The
+package uses {\tt disordR} discipline, discussed in the appendix.
+
+
+\section{The package in use}
+
+Suppose we want to work with Clifford object
+$1+2\ei{1}+3\ei{2}+4\ei{2}\ei{3}$.  In R idiom this would be
+
+\begin{Schunk}
+\begin{Sinput}
+> (x <- 1 + 2*e(1) + 3*e(2) + 4*e(2:3))
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 1 + 2e_1 + 3e_2 + 4e_23
+\end{Soutput}
+\end{Schunk}
+
+Here we have used function {\tt e()} which takes an integer vector that
+specifies the term.  Addition and subtraction work as expected:
+
+\begin{Schunk}
+\begin{Sinput}
+> y <- e(1) + 55*e(1:5)
+> x-y
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 1 + 1e_1 + 3e_2 + 4e_23 - 55e_12345
+\end{Soutput}
+\end{Schunk}
+
+In the above, see how the $\ei{1}$ term has vanished.  We can
+multiply Clifford elements using natural R idiom:
+
+\begin{Schunk}
+\begin{Sinput}
+> x*x
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+- 2 + 4e_1 + 6e_2 + 8e_23 + 16e_123
+\end{Soutput}
+\end{Schunk}
+
+(Multiplication that Snygg denotes by juxtaposition is here indicated
+with a {\tt *}).  We can consider arbitrarily high dimensional data:
+
+\begin{Schunk}
+\begin{Sinput}
+> (z <- as.1vector(1:7))
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 1e_1 + 2e_2 + 3e_3 + 4e_4 + 5e_5 + 6e_6 + 7e_7
+\end{Soutput}
+\begin{Sinput}
+> z*x
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 8 + 1e_1 - 10e_2 - 1e_12 + 11e_3 - 6e_13 - 9e_23 + 4e_123 + 4e_4 - 8e_14 -
+12e_24 + 16e_234 + 5e_5 - 10e_15 - 15e_25 + 20e_235 + 6e_6 - 12e_16 - 18e_26 +
+24e_236 + 7e_7 - 14e_17 - 21e_27 + 28e_237
+\end{Soutput}
+\end{Schunk}
+
+In the above, we coerce a vector to a Clifford 1-vector.  The package
+includes many functions to generate Clifford objects:
+
+\begin{Schunk}
+\begin{Sinput}
+> rcliff()
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 5 - 5e_1 - 1e_4 + 4e_24 + 3e_5 + 6e_6 - 2e_26 - 4e_36 - 3e_1246 + 8e_456
+\end{Soutput}
+\end{Schunk}
+
+The defaults for {\tt rcliff()} specify that the object is a sum of
+grade-4 terms but this can be altered:
+
+\begin{Schunk}
+\begin{Sinput}
+> (x <- rcliff(d=7,g=5,include.fewer=TRUE))
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 7 - 9e_3 - 7e_4 - 3e_1234 + 2e_6 + 1e_136 + 9e_1246 + 5e_456 + 7e_1237 +
+8e_13567
+\end{Soutput}
+\begin{Sinput}
+> grades(x)
+\end{Sinput}
+\begin{Soutput}
+A disord object with hash 43fa59d6a2a6cc357217b801e91930b0fdbe698d and elements
+ [1] 0 1 1 4 1 3 4 3 4 5
+(in some order)
+\end{Soutput}
+\end{Schunk}
+
+
+\section{Pseudo-Euclidean spaces}
+
+The signature of the metric may be altered.  Starting with the
+Euclidean case we have:
+    
+\begin{Schunk}
+\begin{Sinput}
+> e1 <- e(1)
+> e2 <- e(2)
+> e1*e1
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+scalar ( 1 )
+\end{Soutput}
+\begin{Sinput}
+> e2*e2
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+scalar ( 1 )
+\end{Soutput}
+\end{Schunk}
+
+(function {\tt e(i)} returns $\ei{i}$).  However, if we wish to
+consider $n=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$, the package idiom
+is to use the {\tt signature()} function:
+
+\begin{Schunk}
+\begin{Sinput}
+> signature(1,1)  # signature +-
+> e1*e1 # as before, returns +1
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+scalar ( 1 )
+\end{Soutput}
+\begin{Sinput}
+> e2*e2 # should return -1
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+scalar ( -1 )
+\end{Soutput}
+\end{Schunk}
+
+Suppose we wish to use a signature $+++-$, corresponding to the
+Minkowski metric in special relativity; this would be indicated in
+package idiom by {\tt signature(3,1)}.  Note that the clifford objects
+themselves do not store the signature; it is used only by the product
+operation {\tt *}.
+
+\begin{Schunk}
+\begin{Sinput}
+> x <- rcliff(d=4,g=3,include.fewer=TRUE)
+> y <- rcliff(d=4,g=3,include.fewer=TRUE)
+\end{Sinput}
+\end{Schunk}
+
+Then we may multiply these two clifford objects using either the
+default positive-definite inner product, or the Minkowski metric:
+
+\begin{Schunk}
+\begin{Sinput}
+> x*y
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 20 + 36e_1 - 92e_2 - 90e_12 + 37e_3 + 6e_13 + 92e_23 - 30e_123 - 10e_4 -
+94e_24 - 22e_124 + 87e_34 + 29e_134 - 21e_234 - 20e_1234
+\end{Soutput}
+\begin{Sinput}
+> signature(3,1)  # switch to signature +++-
+> x*y
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 20 + 90e_1 - 56e_2 - 50e_12 - 38e_3 - 51e_13 + 106e_23 + 30e_123 + 2e_4 -
+136e_24 - 40e_124 - 15e_34 + 15e_134 - 21e_234 - 20e_1234
+\end{Soutput}
+\end{Schunk}
+
+In the above, see how the products are different using the two inner
+products.  
+
+\section{Grassmann algebra}
+
+A Grassmann algebra corresponds to a Clifford algebra with identically
+zero inner product.  Package idiom is to use a zero signature:
+
+\begin{Schunk}
+\begin{Sinput}
+> signature(0,0)  # specify null inner product
+\end{Sinput}
+\end{Schunk}
+\begin{Schunk}
+\begin{Sinput}
+> is.zero(e(5)^2)     # should be TRUE
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\end{Schunk}
+
+This is a somewhat clunky way of reproducing the functionality of the
+{\tt stokes} package~\cite{hankin2022_stokes_arxiv}.
+If we have
+
+\begin{Schunk}
+\begin{Sinput}
+> x <- clifford(list(1:3, c(2,3,7)), coeffs=3:4)
+> y <- clifford(list(1:3, c(1,4,5), c(4,5,6)), coeffs=1:3)
+> x %^% y
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 9e_123456 - 8e_123457 - 12e_234567
+\end{Soutput}
+\end{Schunk}
+
+then the {\tt stokes} idiom for this would be:
+
+\begin{Schunk}
+\begin{Sinput}
+> (x <- as.kform(rbind(1:3,c(2,3,7)),3:4))
+\end{Sinput}
+\begin{Soutput}
+           val
+ 2 3 7  =    4
+ 1 2 3  =    3
+\end{Soutput}
+\begin{Sinput}
+> (y <- as.kform(rbind(1:3,c(1,4,5),4:6),1:3))
+\end{Sinput}
+\begin{Soutput}
+           val
+ 1 2 3  =    1
+ 1 4 5  =    2
+ 4 5 6  =    3
+\end{Soutput}
+\begin{Sinput}
+> x %^% y
+\end{Sinput}
+\begin{Soutput}
+                 val
+ 1 2 3 4 5 6  =    9
+ 2 3 4 5 6 7  =  -12
+ 1 2 3 4 5 7  =   -8
+\end{Soutput}
+\end{Schunk}
+
+
+\section{Positive-definite inner product}
+
+Function {\tt signature()} takes an infinite argument to make the
+inner product positive-definite:
+
+\begin{Schunk}
+\begin{Sinput}
+> signature(Inf)
+\end{Sinput}
+\end{Schunk}
+
+(internally the package sets the signature to
+{\tt .Machine\$integer.max}, a near-infinite integer).  With this,
+$\ei{i}\ei{i}=+1$ for any $i$:
+
+\begin{Schunk}
+\begin{Sinput}
+> e(53)^2
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+scalar ( 1 )
+\end{Soutput}
+\end{Schunk}
+
+
+\section{Left and right contractions}
+
+\cite{dorst2002} defines the left contraction $A\rfloor B$ and right
+contraction $A\lfloor B$ (\cite{chisholm2012} calls these left and
+right inner products) as follows:
+
+\begin{eqnarray}
+\displaystyle A\rfloor B = \sum_{r,s}\left\langle\left\langle
+A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s-r}\\
+\displaystyle A\lfloor B = \sum_{r,s}\left\langle\left\langle
+A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}
+\end{eqnarray}
+
+
+Package idiom for these would be {\tt A\%\_|\%B} and {\tt A\%|\_\%B}
+---or {\tt lefttick(A,B)} and {\tt righttick(A,B)}---respectively.
+Thus:
+
+\begin{Schunk}
+\begin{Sinput}
+> (A <- rcliff())
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 7 - 9e_1 + 7e_2 - 5e_23 + 9e_123 + 5e_5 - 7e_15 + 2e_1456
+\end{Soutput}
+\begin{Sinput}
+> (B <- rcliff())
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 6 - 2e_2 + 6e_3 - 7e_123 + 7e_14 - 3e_5 + 2e_26 + 1e_46 + 9e_2346 - 9e_256
+\end{Soutput}
+\begin{Sinput}
+> A %_|% B
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 76 - 35e_1 - 14e_2 + 42e_3 + 49e_13 + 63e_23 - 49e_123 - 63e_4 + 49e_14 -
+21e_5 + 14e_6 + 59e_26 + 52e_46 + 63e_346 + 63e_2346 - 63e_56 - 63e_256
+\end{Soutput}
+\begin{Sinput}
+> A %|_% B
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 76 - 33e_1 + 12e_2 + 54e_12 - 10e_3 + 18e_13 - 30e_23 + 54e_123 + 30e_5 -
+40e_15 + 6e_146 - 14e_56 + 12e_1456
+\end{Soutput}
+\end{Schunk}
+
+One thing to be wary of is the order of operations.  Thus
+$\ei{2}\rfloor\ei{12}=-\ei{1}$ (in a positive-definite space) but
+
+\begin{Schunk}
+\begin{Sinput}
+> e(2) %_|% e(1)*e(2)
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+the zero clifford element (0)
+\end{Soutput}
+\end{Schunk}
+
+because this is parsed as $(\ei{2}\rfloor\ei{1})\ei{2}=0\ei{2}=0$.  To
+evaluate this as intended we need to include brackets:
+
+\begin{Schunk}
+\begin{Sinput}
+> e(2) %_|% (e(1)*e(2))
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+- 1e_1
+\end{Soutput}
+\end{Schunk}
+
+although in this case it might be preferable to create the terms directly:
+
+\begin{Schunk}
+\begin{Sinput}
+> e(2) %_|% e(1:2)
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+- 1e_1
+\end{Soutput}
+\end{Schunk}
+
+
+\subsection{Numerical verification of left and right inner product identities}
+
+Chisholm gives a number of identities for these products including
+
+\begin{eqnarray}
+  A\rfloor(B\lfloor C) &=& (A\rfloor B)\lfloor C\\
+  A\rfloor(B\rfloor C) &=& (A\wedge B)\rfloor C\\
+  A\lfloor(B\wedge  C) &=& (A\lfloor B)\lfloor C
+\end{eqnarray}
+
+In package idiom:
+
+\begin{Schunk}
+\begin{Sinput}
+> A <- rcliff();  B <- rcliff();  C <- rcliff()
+> A %_|% (B %|_% C) == (A %_|% B) %|_% C
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\begin{Sinput}
+> A %_|% (B %_|% C) == (A %^%  B) %_|% C
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\begin{Sinput}
+> A %|_% (B %^%  C) == (A %|_% B) %|_% C
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\end{Schunk}
+\section{Higher dimensional spaces}
+
+Ab\l{}amowicz and Fauser~\cite{ablamowicz2012} consider
+high-dimensional Clifford algebras and consider the following two
+elements of the 1024-dimensional Clifford algebra which we may treat
+as ${\mathcal C}_{7,3}$ spanned by $\ei{1},\ldots,\ei{10}$ and perform
+a calculation which I reproduce below (although these authors
+exploited Bott periodicity, a feature not considered here).
+
+Firstly we change the default print method slightly:
+
+\begin{Schunk}
+\begin{Sinput}
+> options("basissep" = ",")
+\end{Sinput}
+\end{Schunk}
+
+(this separates the subscripts of the basis vectors with a comma,
+which is useful for clarity if $n>9$).  We then define clifford
+elements $x,y$:
+
+\begin{Schunk}
+\begin{Sinput}
+> (x <- clifford(list(1:3,c(1,5,7,8,10)),c(4,-10)) + 2)
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 2 + 4e_1,2,3 - 10e_1,5,7,8,10
+\end{Soutput}
+\begin{Sinput}
+> (y <- clifford(list(c(1,2,3,7),c(1,5,6,8),c(1,4,6,7)),c(4,1,-3)) - 1)
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+- 1 + 4e_1,2,3,7 - 3e_1,4,6,7 + 1e_1,5,6,8
+\end{Soutput}
+\end{Schunk}
+
+Their geometric product is given in the package as
+
+\begin{Schunk}
+\begin{Sinput}
+> signature(7)
+> x*y
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
+- 2 - 4e_1,2,3 - 16e_7 + 8e_1,2,3,7 - 6e_1,4,6,7 - 12e_2,3,4,6,7 + 2e_1,5,6,8 +
+4e_2,3,5,6,8 - 40e_2,3,5,8,10 - 30e_4,5,6,8,10 + 10e_1,5,7,8,10
+\end{Soutput}
+\end{Schunk}
+
+in agreement with \cite{ablamowicz2012}, although the terms appear in
+a different order.
+
+\section{Conclusions and further work}
+
+The {\tt clifford} package furnishes a consistent and documented suite
+of reasonably efficient {\tt R}-centric functionality.  Further work
+might include closer integration with the {\tt stokes}
+package~\cite{hankin2022_stokes_arxiv}.
+
+\bibliographystyle{plain}
+\bibliography{clifford}
+
+\end{document}
+
