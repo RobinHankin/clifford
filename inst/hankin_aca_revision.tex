@@ -280,7 +280,7 @@ Element of a Clifford algebra, equal to
 
 In the above, see how the $\ei{1}$ term has vanished.  We can
 multiply Clifford elements using natural R idiom:
-
+>
 \begin{Schunk}
 \begin{Sinput}
 > x*x
@@ -720,5 +720,115 @@ package~\cite{hankin2022_stokes_arxiv}.
 \bibliographystyle{plain}
 \bibliography{clifford}
 
-\end{document}
+\appendix
+\section{Products and conjugations implemented in the package}
 
+\textcolor{blue}{
+The package implements a number of products and involutions.  The
+products are given in table~\ref{cliffprods}.
+  An involution is a function that is its own inverse, or
+  equivalently ${f(f(x))=x}$.  There are several important
+  involutions on Clifford objects; these commute past the grade operator
+  with ${f(\left\langle A\right\rangle_r)=\left\langle
+  f(A)\right\rangle_r}$ and are linear: ${f(\alpha A+\beta
+  B)=\alpha f(A)+\beta f(B)}$.\\
+  The dual is documented here for convenience, even though it is
+  not an involution (applying the dual \emph{four} times is the
+  identity).
+  \itemize{
+    \item The {\bf reverse} ${A^\sim}$ is given by {\tt rev()} (both Perwass
+      and Dorst use a tilde, as in ${\tilde{A}}$ or ${A^\sim}$.
+      However, both Hestenes and Chisholm use a dagger, as in
+      ${A^\dagger}$.  Here, I use Perwass's notation).  The reverse of
+      a term written as a product of basis vectors is simply the
+      product of the same basis vectors but written in reverse order.
+      This changes the sign of the term if the number of basis vectors
+      is 2 or 3 (modulo 4).  Thus, for example,
+      ${\left(e_1e_2e_3\right)^\sim=e_3e_2e_1=-e_1e_2e_3}$ and
+      ${\left(e_1e_2e_3e_4\right)^\sim=e_4e_3e_2e_1=+e_1e_2e_3e_4}$.
+      Formally, if ${X=e_{i_1}\ldots e_{i_k}}$, then
+      ${\tilde{X}=e_{i_k}\ldots e_{i_1}}$.
+        $$
+        {\left\langle
+          A^\sim\right\rangle_r=\widetilde{\left\langle
+	    A\right\rangle_r}=(-1)^{r(r-1)/2}\left\langle A\right\rangle_r}
+          $$
+    Perwass shows that ${\left\langle
+      AB\right\rangle_r=(-1)^{r(r-1)/2}\left\langle\tilde{B}\tilde{A}\right\rangle_r}$.
+    \item The {\bf Conjugate} ${A^\dagger}$ is given by
+    {\tt Conj()} (we use Perwass's notation, def 2.9 p59).  This
+    depends on the signature of the Clifford algebra; see
+    {\tt grade.Rd} for notation.  Given a basis blade
+    ${e_\mathbb{A}}$ with ${\mathbb{A}\subseteq\left\lbrace
+    1,\ldots,p+q\right\rbrace}$, then we have
+    ${e_\mathbb{A}^\dagger = (-1)^m {e_\mathbb{A}}^\sim}$,
+    where ${m=\mathrm{gr}_{-}(\mathbb{A})}$.  Alternatively,
+    we might say
+    $$
+    {\left(\left\langle
+    A\right\rangle_r\right)^\dagger=(-1)^m(-1)^{r(r-1)/2}\left\langle
+    A\right\rangle_r }
+    $$
+    where
+    ${m=\mathrm{gr}_{-}(\left\langle A\right\rangle_r)}$ [NB
+    I have changed Perwass's notation].
+    \item The {\bf main (grade) involution} or {\bf grade involution}
+    ${\widehat{A}}$ is given by {\tt gradeinv()}.  This
+    changes the sign of any term with odd grade:
+    $$
+    {\widehat{\left\langle A\right\rangle_r} =(-1)^r\left\langle
+      A\right\rangle_r}
+    $$
+    (I don't see this in Perwass or Hestenes; notation follows Hitzer
+    and Sangwine).  It is a special case of grade negation.
+    \item The {\ bf grade ${r}$-negation} ${A_{\overline{r}}}$ is
+      given by {\tt neg()}.  This changes the sign of the grade ${r}$
+      component of ${A}$.  It is formally defined as ${A-2\left\langle
+        A\right\rangle_r}$ but function {\tt neg()} uses a more
+      efficient method.  It is possible to negate all terms with
+      specified grades, so for example we might have ${\left\langle
+        A\right\rangle_{\overline{\left\lbrace 1,2,5\right\rbrace}} =
+        A-2\left( \left\langle A\right\rangle_1 +\left\langle
+        A\right\rangle_2+\left\langle A\right\rangle_5\right)}$ and
+      the R idiom would be {\tt neg(A,c(1,2,5))}.  Note that Hestenes
+      uses ``${A_{\overline{r}}}$'' to mean the same as
+      ${\left\langle A\right\rangle_r}$.
+    \item The {\bf Clifford conjugate} ${\overline{A}}$ is given by
+      {\tt cliffconj()}.  It is distinct from conjugation
+      ${A^\dagger}$, and is defined in Hitzer and Sangwine as
+    $$
+    {\overline{\left\langle A\right\rangle_r} =
+      (-1)^{r(r+1)/2}\left\langle A\right\rangle_r.}
+    $$
+    \item The {\bf dual} ${C^*}$ of a clifford object ${C}$ is given
+      by {\tt dual(C,n)}; argument {\tt n} is the dimension of the
+      underlying vector space.  Perwass gives ${C^*=CI^{-1}}$ where
+      ${I=e_1e_2\ldots e_n}$ is the unit pseudoscalar [note that
+        Hestenes uses ${I}$ to mean something different].  The dual is
+      sensitive to the signature of the Clifford algebra \emph{and}
+      the dimension of the underlying vector space.
+      }
+}
+  
+
+\textcolor{blue}{
+\begin{table}
+  \begin{center}
+    \begin{tabular}{lll}\hline\\
+  Geometric product  & {\tt A*B = geoprod(A,B)}  &  $\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle B\right\rangle_s$ \\
+    Inner product    & {\tt A \%.\% B = cliffdotprod(A,B)} &    $\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne 0}^{\vphantom{s\neq 0}}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{\left|s-r\right|}$\\
+    Outer product    &{\tt A \%\string^\% B = wedge(A,B)} &    $\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s+r}$\\
+    Fat dot product  &{\tt A \%o\% B = fatdot(A,B)} &  $\displaystyle A\bullet B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{\left|s-r\right|}$\\
+    Left contraction &{\tt A \%\_|\% B = lefttick(A,B)} & $\displaystyle A\rfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s-r}$\\
+    Right contraction &{\tt A \%|\_\% B = righttick(A,B)} & $\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}$\\
+    Cross product &{\tt A \%X\% B = cross(A,B)} &  $\displaystyle A\times B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)$\\
+    Scalar product &{\tt A \%star\% B = star(A,B)} & $\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_0$\\
+    Euclidean product &{\tt A \%euc\% B = eucprod(A,B)} &  $\displaystyle A\star B= A\ast B^\dagger$\\
+    \hline
+    \end{tabular}
+  \end{center}
+  \caption{\rule{0mm}{10mm} The Clifford products implemented in the\label{cliffprods} package}
+  \end{table}
+}
+
+\end{document}
