@@ -202,16 +202,25 @@ wedge products.
 \section{Computational implementation and {\tt disordR} discipline}
 
 The package represents basis blades using dynamic bitset objects from
-the {\tt boost} library.  A bitset emulates an array of Boolean
-elements, but is optimized for space allocation and
-access/modification times.  The set bits specify the basis blades
-present in a term; using bitsets allows products to use fast Boolean
-operators.  An object such as $\ei{2}\ei{5}\ei{6}$ [or $\ei{256}$]
-will be a bitset with bits 2, 5, and 6 set [note the off-by-one
-  issue].  Dynamic objects are needed here as the number of bits in
-the set is specified at runtime.
-A {\tt clifford} object is an element of a Clifford algebra; this is
-set of basis blades, each with a real coefficient.  The {\tt stl} map
+the {\tt boost} library~\textcolor{blue}{\cite{karlsson2005}}.  A
+bitset emulates an array of Boolean elements, but is optimized for
+space allocation and access/modification times.  The set bits specify
+the basis blades present in a term; using bitsets allows products to
+use fast Boolean operators.  An object such as $\ei{2}\ei{5}\ei{7}$
+[or $\ei{257}$] will be a bitset with bits 2, 5, and 7 set [note the
+  off-by-one issue].  \textcolor{blue}{To calculate the geometric
+  product of $\ei{257}$ by, say, $\ei{34}$, we first of all establish
+  that the intersection of the set bits is empty [as
+    $\ei{i}\ei{i}=0$]\footnote{\textcolor{blue}{Empty intersection may
+    be replaced with other conditions: for example, to calculate the
+    fat dot product~\cite{dorst2002} we test for the symmetric
+    difference being empty.}}; we then write the product as
+  $\ei{25637}$ and count the number of transpositions required to
+  express this as $\ei{23457}$.  The boost library performs these
+  operations quickly and efficiently.} Dynamic objects are needed here
+as the number of bits in the set is specified at runtime.  A {\tt
+  clifford} object is an element of a Clifford algebra; this is set of
+basis blades, each with a real coefficient.  The {\tt stl} map
 class~\cite{musser2009} is used:
 
 {\ }\\[10pt]
