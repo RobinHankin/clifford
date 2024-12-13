@@ -182,12 +182,40 @@ Thus, it is really puzzling why the Author has selected the R language as the pr
 language for his/her package: it should be clear from this manuscript, that this language is
 highly unsuitable for such task.
 
+\textcolor{blue}{The project gives R users transparent access to
+  Clifford algebra.  As the manuscript demonstrates, the R language is
+  not ``highly unsuitable'' for this task.  Certainly, it is not
+  straightforward, but the resulting package furnishes Clifford
+  algebra constructs in an R-centric manner.  The package now allows
+  seamless R idiom to work with Clifford algebra simultaneously with
+  the considerable codebase [over 20000 packages and counting].}
+
 For one, the language is meant to deal with commuting numerical
 input. As a consequence, the Author uses the same symbol $*$ for the
 scalar product as in $5* e(1)$ and in $x * x$ (see page 1 and later)
 where $x$ is an element in a Clifford algebra.  Thus, the Author
 ignores the fact that the Clifford product is non-commutative in
 general, and so another symbol should be used for it in the package.
+
+\textcolor{blue}{I am not ``ignoring the fact that the Clifford
+  product is non-commutative''.  Cursory inspection of the package
+  would show that the entire codebase is predicated on the
+  noncommutative nature of the geometric product.  It would be more
+  appropriate (and more constructive) to view the package as providing
+  natural R idiom for working with Clifford algebra.  The reviewer
+  appears to be unaware of the standard concept of ``overloading'' in
+  C++ and indeed R.  Briefly, overloading in C++ is compile-time
+  polymorphism, and in R is run-time polymorphism.  In the package
+  this standard concept is applied, {\em inter alia}, to the $*$
+  operator.  When parsing an expression such as {\tt a*b}, R
+  dispatches to a binary operator that depends on the classes of {\tt
+    a} and {\tt b}.  Now, if object {\tt a} happens to be a scalar,
+  then an appropriate scalar product operator is called.  If both {\tt
+    a} and {\tt b} are Clifford objects, the geometric product
+  operator is called.  The object-oriented nature of R can easily cope
+  with these distinctions, and I leverage the S3 and S4 mechanisms to
+  accomplish these operations using natural R idiom.}
+
 For two, the syntax of the R language does not support standard
 mathematical notation because it explicitly outputs terms like
 
@@ -200,6 +228,19 @@ instead of just
 \begin{verbatim}
   8 + e 1 - 10e 2 - e 12 ...
 \end{verbatim}
+
+\textcolor{blue}{This is not a feature of the syntax of the R
+  language.  It is a feature of the print method.  R packages
+  generally include bespoke methods to display R objects using S3 or
+  S4 dispatch.  Perhaps the reviewer was unaware of this.  Is the
+  reviewer {\em really} commenting on the presence of a plus sign at
+  the beginning of a line of output, interpreting it as R ``not
+  supporting standard mathematical notation''?.  The presence of the
+  plus sign was a deliberate and conscious design decision.  It
+  ensures consistency and allows for easy parsing of output.  R is
+  sufficiently flexible to change it [a one-line modification of
+    function {\tt print\_clifford\_default()} would suffice], but the
+  form was chosen with care and should not be changed.}
 
 (see page 3 and later). Furthermore, the input is extremely awkward
 like, for example,
@@ -215,7 +256,16 @@ on page 5 or
 \end{verbatim}
 
  on
-page 7\footnote{By the way, the Author does not explain the syntax of such input anyway.}
+page 7\footnote{By the way, the Author does not explain the syntax of
+such input anyway.}
+
+\textcolor{blue}{If one is not familiar with the R language, such
+  constructs might appear unnatural.  However, close reading of the
+  manuscript reveals that this particular syntax is a {\em formal}
+  creation method.  Along with operator overloading, this is a
+  commonly-used feature of C++ and R.  It is included in many
+  introductory texts, including those cited in the submission.}
+
 \item The Author does not distinguish the unity 1 of the real field R
   from the Clifford algebra unit element. Let us denote the algebra
   unit by say $\mathbf{1}$. While we often write $1 + e_1 + 2e_{23}$
@@ -227,8 +277,27 @@ page 7\footnote{By the way, the Author does not explain the syntax of such input
   writing a paper, it shows a shortcoming of the package, probably
   caused by the very limited ability of the R language to deal with
   symbolic input and output, and hence inability to distinguish
-  between 1 and 1. Yet, when designing any package for
-  Clifford/Grassmann algebras, such distinction is crucial.
+  between 1 and 1.
+
+  \textcolor{blue}{As stated above, these concerns are immaterial if
+    one is familiar with the elementary concept of overloading of
+    operators.  I am having difficulty interpreting the reviewer's
+    comments as informed constructive criticism.  Phrases such as
+    ``limited ability of the R language'' [which are demonstrably
+      incorrect] do not help.  The R language has extensive
+    documentation which includes extensive coverage of this issue, and
+    the standard reference is cited in the submission.}
+
+  Yet, when designing any package for Clifford/Grassmann algebras,
+  such distinction is crucial.
+
+  \textcolor{blue}{The distinction is not necessary if one has
+    operator overloading at one's disposal.  While I appreciate that
+    some segments of ACAA readership might not be familiar with
+    overloading, I feel that there are better ways to introduce the
+    concept than including a ``how to use overloading in R'' in the
+    submission.}
+  
 \item On page 6 in Section 6 Author computes the product $e(53)^2$ in
   a Clifford algebra of a positivedefinite inner product. The answer
   given by his/her package as \verb+scalar( 1 )+ is clearly wrong
@@ -247,7 +316,15 @@ his/her algorithm, nor he provides the code for his/her procedure $*$
 referee cannot trace the source of this error\footnote{Author does not
 explain how the compiler distinguishes between the symbol $*$ used as
 the Clifford product as in $x * x$ and the same symbol $*$ used as a
-scalar product as in $2 * e(2)$.}
+scalar product as in $2 * e(2)$.
+
+\textcolor{blue}{Again, the {\tt *} symbol is overloaded.  A
+  description of the concept of overloading would be superfluous for
+  the intended readership.}  }
+
+\textcolor{blue}{This issue was caused by a misreading of the
+  manuscript, which says, as intended that $(e_{(53)})^2=1$ (that is,
+  element number fifty three squared).}
 
 \item The package clifford presented in the paper is extremely
   limited. It only has a few functionalities such as the computation
@@ -258,22 +335,73 @@ scalar product as in $2 * e(2)$.}
   probably there is a procedure for computing the r-vectorpart
   $\left\langle A\right\rangle_r$ of a general Clifford algebra
   element A\footnote{ Author does not explain the notation
-  $\left\langle A\right\rangle_r$} The package has none of the three
-  main automorphisms built-in such grade involution; reversion; and
-  conjugation [6] which is a must-to-have in any package.
+  $\left\langle A\right\rangle_r$
+
+  \textcolor{blue}{The grade notation $\left\langle A\right\rangle_r$
+    is standard.  See, for example, Hestenes or indeed Snygg, both
+    standard reference texts.  I have cited the notation for the
+    benefit of those unfamiliar with these textbooks.}}  The package
+  has none of the three main automorphisms built-in such grade
+  involution; reversion; and conjugation [6] which is a must-to-have
+  in any package.
+
+\textcolor{blue}{These comments are demonstrably false.  The
+  manuscript presented a small subset of the capabilities of the
+  package.  A cursory inspection of the package would reveal the rich
+  structure of the package.  For example, as enumerated in the
+  documentation, there are five different types of multiplication, and
+  six different types of conjugation.}
+  
 \item The paper, whose purpose is to present Author’s package clifford, is very awkwardly written
 since:
 
 \begin{itemize}
- \item no code is given of any procedure;
+\item no code is given of any procedure;
+
+  \textcolor{blue}{As stated above, snippets of the C++ back-end would
+    be inadvisable in the manuscript, and the code is readily
+    inspectable on github}
 \item  no mathematics behind any procedure is provided;
+
+  \textcolor{blue}{More detail is given in the introduction}
 \item no comparison is made between this very simple package with any of the existing packages;
+
+  \textcolor{blue}{No R functionality for Clifford algebra is available}
+
 \item  no summary of the package functionalities is given;
+
+    \textcolor{blue}{Table of products and conjugations now included}
+
 \item  no explanation or reason is given by the Author why he/she is attempting to write yet
 a new package for Clifford/Grassmann algebras in this very limiting non-symbolic R
 programming language given that many other much more comprehensive packages for
 Clifford/Grassmann algebras exist including a very fast package called eClifford for
 the Clifford algebras C`(p, q, r). See, for example, [1, 2, 3].
+
+\textcolor{blue}{Firstly, I must take issue with the somewhat weighted
+  phrase ``very limiting non-symbolic R programming language''.  There
+  are a wide range of symbolic packages available in the R language.
+  I would include native R capabilities for Weyl algebra, multivariate
+  polynomials, graph theory, finite group theory, and many many
+  others.  It is simply incorrect to characterise R as a non-symbolic
+  language.}
+
+  \textcolor{blue}{Secondly, the Maple language is propietary.  One
+    benefit of the R language is that it is open-source.  Maple
+    libraries might exist but the language is not open-source, which
+    disbars it for many people.  But, noting that these citations are
+    behind a paywall, I do cite the referee's citations in the
+    manuscript.  Although they do claim to be ``available from R'',
+    such functionality is typically somewhat poorly linked to the
+    wider R codebase.  For example, it is difficult to manipulate the
+    objects using natural R idiom, and difficult to extract
+    information to pass to other parts of the wider R ecology.
+    Similar systems also ``available from R'' in the open-source world
+    might include interfaces to sage, maxima, gap, etc.  These
+    uniformly do not include a natural interface that allows one to
+    exploit the many features of the R language.
+ }
+
 \end{itemize}
 
 \item AACA “publishes high-quality peer-reviewed research papers as well as expository and survey
