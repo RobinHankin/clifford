@@ -185,19 +185,20 @@ be of dimension $2^n$, spanned by formal products
 $\ei{i_1}\ei{i_2}\ldots\ei{i_r}$, $1\leqslant i_1<\cdots<i_r\leqslant
 n$.  We write this as $\ei{i_1\ldots i_r}$ for brevity.  The defining
 relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$ for $i\neq j$ and
+
 \begin{equation}\label{posdefcliff2}
 \ei{i}\ei{i} = \begin{cases}
-    +1, & 1\leqslant i\leqslant p\\
-    -1, & p < i\leqslant p+q\\
-    0   & \mbox{otherwise}
+    +1, & \hphantom{p+{}}1\leqslant i\leqslant p\\
+    -1, & \hphantom{p+{}}p < i\leqslant p+q\\
+    0   & p+q < i\leqslant n
   \end{cases}
 \end{equation}
 
 The Clifford algebra ${\mathcal C}_{p,q}$ (other notations include
 $Cl(p,q)$) is then the algebra formed by $\mathbb{R}_{p,q}$ together
 with formal products of basis vectors.  One special case would be
-$p=q=0$, implying that $\ei{i}\ei{i}=0$; geometric products become
-wedge products.  
+$p=q=0$, implying that $\ei{i}\ei{i}=0$ for $1\leqslant i\leqslant n$;
+geometric products become wedge products.
 
 \section{Computational implementation and {\tt disordR} discipline}
 
