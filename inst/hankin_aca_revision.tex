@@ -178,7 +178,7 @@ versions are hosted at github at
 \newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 
 
-Suppose we consider a $n$-dimensional vector space spanned by
+Suppose we consider $V$, an $n$-dimensional vector space spanned by basis vectors
 $\ei{1},\ldots,\ei{n}$.  Then an arbitrary vector in this space will
 be $a^1\ei{1}+\cdots+a^n\ei{n}$.  The associated Clifford algebra will
 be of dimension $2^n$, spanned by formal products
@@ -203,6 +203,10 @@ $p=q=0$, implying that $\ei{i}\ei{i}=0$ for $1\leqslant i\leqslant n$;
 geometric products become wedge products.
 
 \section{Computational implementation and {\tt disordR} discipline}
+
+\textcolor{blue}{ In standard Clifford terminology, a {\em blade} is a
+  product of one-vectors (that is, members of $V$), and a {\em basis
+    blade} is a product of basis vectors.}
 
 The package represents basis blades using dynamic bitset objects from
 the {\tt boost} library~\textcolor{blue}{\cite{karlsson2005}}.  A
