@@ -246,10 +246,10 @@ typedef map<blade, long double> clifford;
 
 A ``map'' is a sorted associative container that contains key-value
 pairs with unique keys~\cite{musser2009}.  A {\tt clifford} object
-thus maps dynamic bitsets (basis blades) to long doubles.  The {\tt
-  STL map} class is used for efficiency: search and insertion
-operations have only logarithmic complexity.  Similar techniques are
-used in the {\tt spray} and {\tt mvp}
+thus maps dynamic bitsets (basis blades) to coefficients, here long
+doubles.  The {\tt STL map} class is used for efficiency: search and
+insertion operations have only logarithmic complexity.  Similar
+techniques are used in the {\tt spray} and {\tt mvp}
 packages~\cite{hankin2022_mvp,hankin2022_spray} which furnish
 functionality for multivariate polynomials.
 
@@ -258,9 +258,11 @@ of blades, each multiplied by a coefficient.  One reason why the {\tt
   map} class is fast is that the order in which the keys are stored is
 undefined: the compiler may store them in the order which it regards
 as most propitious.  This is not an issue for the maps considered here
-as addition is commutative and associative.  The
-package uses {\tt disordR} discipline, discussed in the appendix.
-
+as addition is commutative and associative.  \textcolor{blue}{The
+  package uses standard {\tt disordR} discipline, which efficiently
+  exploits the fact that coefficients are stored as an {\em unordered}
+  map.  Full details are given in~\cite{hankin2022_disordR}.
+}
 
 \section{The package in use}
 
@@ -354,15 +356,16 @@ Element of a Clifford algebra, equal to
 8e_13567
 \end{Soutput}
 \begin{Sinput}
-> grades(x)
+> elements(grades(x))
 \end{Sinput}
 \begin{Soutput}
-A disord object with hash 43fa59d6a2a6cc357217b801e91930b0fdbe698d and elements
  [1] 0 1 1 4 1 3 4 3 4 5
-(in some order)
 \end{Soutput}
 \end{Schunk}
 
+\textcolor{blue}{Above, {\tt elements()} is needed to coerce the
+  disord-compliant output of {\tt grades()} to a normal R vector; full
+  details are given in~\cite{hankin2022_disordR}.}
 
 \section{Pseudo-Euclidean spaces}
 
