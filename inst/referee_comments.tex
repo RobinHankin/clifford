@@ -491,6 +491,21 @@ Clifford product is non-commutative for $n > 1$.
 \item Pages 2, 3, and
 later: Referee has already commented on the very awkward (and
 practically unusable) input/output of the R language.
+
+\textcolor{blue}{Just to be absolutely explicit here, the {\tt
+    clifford()} function is the formal creation method but, as
+  explained at length in the submission, day-to-day package idiom
+  includes much nicer and more convenient idiom for creating clifford
+  objects, for example\\[20pt]
+{\tt
+> 6 - 4*e(3) +11*e(1:4)\\
+Element of a Clifford algebra, equal to\\
++ 6 - 4e\_3 + 11e\_1234\\
+> \\
+}
+I don't see any awkwardness or infelicity in this creation method.}
+  
+
 \item Page 3:
 nowhere on page 3 the reader is informed what signature has been used
 to compute the products $x * x$ and $z * x$. Only later on page 4 the
