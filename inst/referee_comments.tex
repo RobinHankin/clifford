@@ -541,15 +541,18 @@ reader finds out that the default is the signature (p, 0, 0).
 meaning to the reader because the Author does not explain what it
 means.
 
-textcolor{blue}{I note that the original manuscript introduced and
+\textcolor{blue}{I note that the original manuscript introduced and
   cited the {\tt stokes} package in the previous paragraph.  On
   reflection the text is perfectly clear if one can hold the content
-  of the previous paragraph in one's mind.
-  }
+  of the previous paragraph in one's mind.}
 
 \item Page 6: it was already remarked above that in signature $(p, 0,
   0), p > 0$, the square of $e_{53}$ is -1 and not 1 as shown in the
   output \verb+scalar ( 1 )+.
+
+\textcolor{blue}{Discussed above, the reviewer misread the
+  manuscript.}
+
   \item Page 6: Formulas (7.1) and (7.2) are not stated correctly: we
     must require $s\geq r$ in (7.1) and $r \geq s$ in (7.2) with
     additional statements that $\left\langle
@@ -563,12 +566,18 @@ textcolor{blue}{I note that the original manuscript introduced and
     A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}$
     must be replaced with 0 when $s>r$. Apparently, these two special
     cases have been correctly encoded because the two examples for
-    $A\rfloor B$ $A\lfloor B$ have correct outputs.
-\footnote{The referee notes that the Author does not explain the
+    $A\rfloor B$ $A\lfloor B$ have correct outputs.\footnote{The referee notes that the Author does not explain the
 meaning of this notation: $\left\langle A\right\rangle_r$.}
-\footnote{The referee also notes the awkwardness of this syntax {\tt \%\_|\%} for
-the left contraction and {\tt \%|\_\%} for the right
+\footnote{The referee also notes the awkwardness of this syntax {\tt
+  \%\_|\%} for the left contraction and {\tt \%|\_\%} for the right
 contraction in clifford.}
+
+\textcolor{blue}{First, I note that these two operations are in fact
+  correctly implemented, as the referee indicates.  The equations are
+  drawn verbatim from Dorst (2002), who saw no need to add a
+  superfluous indicators such as $s>r$. This would be understood by
+  most readers.}
+
 \item Page 6: the
     comment at the bottom of page 6 which extends to the end of
     Section 7 on page 7 above Section 7.1, points to an irrelevant and
