@@ -878,4 +878,14 @@ products are given in table~\ref{cliffprods}.
   \end{table}
 }
 
+\section{Outline of the computational method}
+
+A Clifford object is the formal sum of terms; a term is a basis blade
+with an an associated coefficient; the sum is managed by an STL map.
+Scalar multiplication is distributive; addition is performed
+elementwise via an appropriate iterator.
+
+
+
+
 \end{document}

@@ -23,7 +23,7 @@ have indicated changes to the manuscript where appropriate.
   audiences, and the reviewer seems to be pointing out that the
   submission lacks one or more aspects of work.}
 
-  
+
 \subsection*{0.1 Summary}
 
 Referee recommends rejection of this paper which has been submitted for publication in AACA.
@@ -74,7 +74,7 @@ There are several reasons for this negative recommendation:
       large codebase present in the R package, and I have added
       pointers to the github account so interested readers can inspect
       the code in a suitable interactive environment.}
-      
+
     In particular, from the text in Section 7 it appears that the
     Author uses identities (7.1) and (7.2) as his/her definitions of
     the contractions, which is mathematically wrong\footnote{By the
@@ -309,7 +309,7 @@ such input anyway.}
     overloading, I feel that there are better ways to introduce the
     concept than including a ``how to use overloading in R'' in the
     submission.}
-  
+
 \item On page 6 in Section 6 Author computes the product $e(53)^2$ in
   a Clifford algebra of a positivedefinite inner product. The answer
   given by his/her package as \verb+scalar( 1 )+ is clearly wrong
@@ -365,7 +365,7 @@ scalar product as in $2 * e(2)$.
   structure of the package.  For example, as enumerated in the
   documentation, there are five different types of multiplication, and
   six different types of conjugation.}
-  
+
 \item The paper, whose purpose is to present Author’s package clifford, is very awkwardly written
 since:
 
@@ -443,7 +443,7 @@ In the following, referee provides some additional comments on the text.
       incorrect. I have included a table showing the most common
       multiplications and the most common convolutions.    }
 
-    
+
 \item Page 2: The last two paragraphs in Section 1 are confusing.
   Namely, we want the vectors $e_1,\ldots e_n$ to provide a basis in
   an $n$-dimensional real vector space $V$ rather than just span the
@@ -467,7 +467,7 @@ In the following, referee provides some additional comments on the text.
   have $\cliff{0,0,r}\simeq\bigwedge V$ or $C\ell_{0,0r})$ where
   $\bigwedge V$ is the Grassmann algebra.
   \textcolor{blue}{This is actually a reasonable comment.  Corrected.}
-  
+
 \item  Page 2 Section 2: Author does not
   explain what a “blade” is.
   \textcolor{blue}{Standard definition of blade now included.}
@@ -507,7 +507,7 @@ Element of a Clifford algebra, equal to\\
 > \\
 }
 I don't see any awkwardness or infelicity in this creation method.}
-  
+
 
 \item Page 3:
 nowhere on page 3 the reader is informed what signature has been used
@@ -538,7 +538,7 @@ reader finds out that the default is the signature (p, 0, 0).
     an alternative notation for the signature that the reviewer points
     out has not been introduced.  I have rewritten in $(p,q)$
     notation.}
-  
+
   \item Page 5: the display after the words
 “then the stokes idiom for this would be: ...” has absolutely no
 meaning to the reader because the Author does not explain what it
@@ -600,7 +600,7 @@ contraction in clifford.\textcolor{blue}{ The issue of ``awkwardness''
     feel that including a brief sentence or two outlining the issue is
     beneficial.}
 
-    
+
 \item Page 8: he conclusions and further work statements are
   insufficient in view of many functionalities that are still missing
   in clifford including the lack (already mentioned) of the three
@@ -682,6 +682,17 @@ following points:
     multivectors. This is a significant computational bottleneck in
     similar libraries.
 
+    \textcolor{blue}{This is indeed a computational bottleneck, one
+      that I have ameliorated by use of the STL map class and boost
+      bitset as keys; {\em any} computational implementation of
+      Clifford algebra needs some way to track the elements of a
+      blade, and the coefficients of a given term.  The map class and
+      bitset objects have been developed over many years by many
+      talented programmers to be as efficient as possible, and to
+      leverage hardware effectively.\\ I have augmented the manuscript
+      to include more detail on the underlying computational method,
+      which was described but only in very general terms.}
+
 \item How is this package useful when we have many multivectors
   (hundreds or thousands) to work with? After all, R is mainly used
   for statistical and data science computations and a use-case where
@@ -704,10 +715,10 @@ following points:
   first few elements, and forget about its exact length.  For example,
   we might define a vector of zeros with length 6:\\[20pt]
   {\tt > x <- rep(0,6)   \# repeat "0" six times and assign to x, a vector}\\
-  {\tt > x\ \ \ \ \ \ \ \ \ \ \ \ \ \# what is x?}\\  
+  {\tt > x\ \ \ \ \ \ \ \ \ \ \ \ \ \# what is x?}\\
   {\tt [1] 0 0 0 0 0 0\ \# x is just six zeros}\\
   {\tt > x[3] <- 1\ \ \ \ \ \# assign "1" to element 3 of x}\\
-  {\tt > x\ \ \ \ \ \ \ \ \ \ \ \ \ \# what is x?}\\  
+  {\tt > x\ \ \ \ \ \ \ \ \ \ \ \ \ \# what is x?}\\
   {\tt [1] 0 0 1 0 0 0\ \# element 3 of x updated to 1}\\[20pt]
 Above, when using {\tt x[3] <- 1}, one does not care what the length
 of the vector x actually is, so long as it is greater than or equal to
@@ -718,13 +729,28 @@ not really need to know the dimensionality of the underlying vector
 space $V$, so long as it is ``big enough''.  Specifically, if one is
 working in $\cliff{p,q}$, one can assume that $n\geq p+q$ where
 $n=\dim(V)$.  If this is so, it is natural to forget the exact value of
-$n$, on the grounds that \ei{i}\ei{i}=0 for any $n\geq p+q$.\\
+$n$, on the grounds that \ei{i}\ei{i}=0 for any value of $i$ so long
+as it is $\geq p+q$.\\
 As an example, consider the first objects presented in chapter 3.  It
 says ``suppose we specify that $\ei{i}\ei{i}=+1$, $i\geq 1$".  This is
 the default signature.  One does not know or care what $n$ is (so long
 as it is $\geq 1$) and it is natural to simply ignore it, as per
 the standard R practice above.\\
-However, sometimes one needs to explicitly respect the value of $n$
+Perhaps not incidentally, the C code mirrors this thinking.  When
+considering the boost bitset equivalent of $\ei{i}\ei{i}$, we see
+dispensation to change the sign 
+if both $i>p$ [logical] and also $i<p+q$.  This is accomplished via
+{\tt signed int} variable {\tt sign}, which takes values
+$\in\left\lbrace -1,+1\right\rbrace$ The value of $n$ is not necessary
+here.  The C code, verbatim, is as follows:\\[20pt]
+{\tt\rule{10mm}{0mm}if(i <= p)\string{}\\
+{\tt\rule{10mm}{0mm}  /* <no operation>   */}\\
+{\tt\rule{10mm}{0mm} \string} else if (i <= p+q)\string{}\\
+{\tt\rule{10mm}{0mm}    sign *= -1;}\\
+{\tt\rule{10mm}{0mm}  \string} else \string{}\\
+{\tt\rule{10mm}{0mm}      sign = 0; // exterior product, repeated index -> 0}\\
+{\tt\rule{10mm}{0mm}  \string}}\\[20pt]
+Nevertheless, sometimes one needs to explicitly respect the value of $n$
 and the package has a mechanism [option {\tt maxdim}] to enforce this
 if needed.  This issue is not super-important in daily use [the docs
   state that {\tt maxdim} is a ``super-strict safety measure''] and I
@@ -747,7 +773,7 @@ have added a brief discussion to a footnote in the manuscript.  }
     of whose terms are the specified grade, and {\tt FALSE} meaning to
     include terms with grades less than the specified grade.  I have
     included [on page 4] a brief explanation on the manuscript.}
-    
+
 \item Page 6: Does ``{\tt x \%\string^\% y}'' mean the outer product
   operation?  Please clarify the correspondance of R operators to
   Clifford algebra operations in a small table in the paper.
