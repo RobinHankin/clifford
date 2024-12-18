@@ -715,7 +715,12 @@ not really need to know the dimensionality of the underlying vector
 space $V$, so long as it is ``big enough''.  Specifically, if one is
 working in $\cliff{p,q}$, one can assume that $n\geq p+q$ where
 $n=\dim(V)$.  If this is so, it is natural to forget the exact value of
-$n$, on the grounds that \ei{i}\ei{i}=0 for any $n\geq p+q$.\\[10pt]
+$n$, on the grounds that \ei{i}\ei{i}=0 for any $n\geq p+q$.\\
+As an example, consider the first objects presented in chapter 3.  It
+says ``suppose we specify that $\ei{i}\ei{i}=+1$, $i\geq 1$".  This is
+the default signature.  One does not know or care what $n$ is (so long
+as it is $\geq 1$) and it is natural to simply ignore it, as per
+the standard R practice above.\\
 However, sometimes one needs to explicitly respect the value of $n$
 and the package has a mechanism [option {\tt maxdim}] to enforce this
 if needed.  This issue is not super-important in daily use [the docs
