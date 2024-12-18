@@ -648,4 +648,48 @@ for Maple 2020, available from R. Ablamowicz at {\tt rablamowicz@gmail.com}, 202
 
 \section*{Reviewer \#3}
 
+
+The paper introduces a new R package for Clifford algebra. The package
+uses a sparse representation for both basis blades and multivectors
+for efficiency of representation.  Arbitrary signatures for the basis
+vectors can be defined by the user.
+
+
+
+On the positive side, R is an important computational environment for
+statistical computing and data science, the introduction of Clifford
+algebra to R is a welcome and appreciated effort.
+
+Unfortunately, I have to recommend the author make some important
+major changes in the paper to be accepted for publication due to the
+following points:
+
+\begin{itemize}
+  \item Are there any other R packages for Clifford algebra? This
+    should be explicitly stated in the paper.
+  \item The paper has no mention of how the main products (geometric,
+    outer, left/right contraction) are actually implemented on
+    multivectors. This is a significant computational bottleneck in
+    similar libraries.
+\item How is this package useful when we have many multivectors
+  (hundreds or thousands) to work with? After all, R is mainly used
+  for statistical and data science computations and a use-case where
+  only a few multivectors are used is not so useful in this context.
+\item The paper also lacks comparison with other similar packages in
+  terms of (for example): performance, memory requirements, design
+  goals, possible use cases, integration with R statistical
+  computation capabilities, implemented algebraic operations on
+  multivectors, support for outermorphisms, etc.
+\item Some other points include: Page 3: The notation for a Clifford
+  Algebra should be modified to become $\cliff{p,q,n-p-q}$ with $p\geq
+  0$, $q\geq 0$, $p+q\leq n$.
+\item Page 4: I'm not sure what {\tt rcliff()} function does, is it a
+  random multivector generator? If so, why are all scalar coefficients
+  integers?
+\item Page 5: What does the {\tt include.fewer=TRUE} flag serve?
+\item Page 6: Does ``{\tt x \%\string^\% y}'' mean the outer product
+  operation?  Please clarify the correspondance of R operators to
+  Clifford algebra operations in a small table in the paper.
+\end{itemize}
+
 \end{document}
