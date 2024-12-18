@@ -2,6 +2,7 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \newcommand{\cliff}[1]{\ensuremath{C\ell\left(#1\right)}}
+\newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 \begin{document}
 
 Manuscript Number: AACA-24-00133
@@ -648,13 +649,19 @@ for Maple 2020, available from R. Ablamowicz at {\tt rablamowicz@gmail.com}, 202
 
 \section*{Reviewer \#3}
 
+\textcolor{blue}{Overall response to reviewer \#3: I am delighted that
+  this insightful referee ``gets'' the package.  They make some
+  comments which I respond to below.}
+
 
 The paper introduces a new R package for Clifford algebra. The package
 uses a sparse representation for both basis blades and multivectors
 for efficiency of representation.  Arbitrary signatures for the basis
 vectors can be defined by the user.
 
-
+\textcolor{blue}{Yes! the characterisation as ``sparse'' is insightful
+  indeed: the efficiency of the bitset class was a major driver behind
+  the back-end architecture of the package.}
 
 On the positive side, R is an important computational environment for
 statistical computing and data science, the introduction of Clifford
@@ -671,6 +678,7 @@ following points:
     outer, left/right contraction) are actually implemented on
     multivectors. This is a significant computational bottleneck in
     similar libraries.
+
 \item How is this package useful when we have many multivectors
   (hundreds or thousands) to work with? After all, R is mainly used
   for statistical and data science computations and a use-case where
@@ -683,6 +691,7 @@ following points:
 \item Some other points include: Page 3: The notation for a Clifford
   Algebra should be modified to become $\cliff{p,q,n-p-q}$ with $p\geq
   0$, $q\geq 0$, $p+q\leq n$.
+
 \item Page 4: I'm not sure what {\tt rcliff()} function does, is it a
   random multivector generator? If so, why are all scalar coefficients
   integers?
