@@ -691,6 +691,36 @@ following points:
 \item Some other points include: Page 3: The notation for a Clifford
   Algebra should be modified to become $\cliff{p,q,n-p-q}$ with $p\geq
   0$, $q\geq 0$, $p+q\leq n$.
+\textcolor{blue}{This is a reasonable point, but I must respectfully
+  disagree.  The package's primary contribution is that of R-centric
+  functionality.  In the R world, the word ``vector'' refers to a
+  basic data structure that represents a one-dimensional array of
+  (real) numbers.  The key fact is that the length of a vector is not
+  specified until it is created.  In R, then, one way of working is to
+  define a vector that is long enough so that one can manipulate the
+  first few elements, and forget about its exact length.  For example,
+  we might define a vector of zeros with length 6:\\[20pt]
+  {\tt > x <- rep(0,6)   \# repeat "0" six times and assign to x, a vector}\\
+  {\tt > x\ \ \ \ \ \ \ \ \ \ \ \ \ \# what is x?}\\  
+  {\tt [1] 0 0 0 0 0 0\ \# x is just six zeros}\\
+  {\tt > x[3] <- 1\ \ \ \ \ \# assign "1" to element 3 of x}\\
+  {\tt > x\ \ \ \ \ \ \ \ \ \ \ \ \ \# what is x?}\\  
+  {\tt [1] 0 0 1 0 0 0\ \# element 3 of x updated to 1}\\[20pt]
+Above, when using {\tt x[3] <- 1}, one does not care what the length
+of the vector x actually is, so long as it is greater than or equal to
+3.  It is very convenient to forget that {\tt x} is actually of length
+6. This kind of thinking is pervasive in the R world.  This is
+compellingly similar to the world of Clifford algebra, where one does
+not really need to know the dimensionality of the underlying vector
+space $V$, so long as it is ``big enough''.  Specifically, if one is
+working in $\cliff{p,q}$, one can assume that $n\geq p+q$ where
+$n=\dim(V)$.  If this is so, it is natural to forget the exact value of
+$n$, on the grounds that \ei{i}\ei{i}=0 for any $n\geq p+q$.\\[10pt]
+However, sometimes one needs to explicitly respect the value of $n$
+and the package has a mechanism [option {\tt maxdim}] to enforce this
+if needed.  This issue is not super-important in daily use [the docs
+  state that {\tt maxdim} is a ``super-strict safety measure''] and I
+have added a brief discussion to a footnote in the manuscript.  }
 
 \item Page 4: I'm not sure what {\tt rcliff()} function does, is it a
   random multivector generator? If so, why are all scalar coefficients
