@@ -725,7 +725,21 @@ have added a brief discussion to a footnote in the manuscript.  }
 \item Page 4: I'm not sure what {\tt rcliff()} function does, is it a
   random multivector generator? If so, why are all scalar coefficients
   integers?
+
+  \textcolor{blue}{Function {\tt rcliff()} does indeed return a random
+    element of a Clifford algebra.  The coefficients are integers in
+    order to give an object with a compact representation.  The
+    function uses random sampling from small integers to generate the
+    coefficients.}
+
 \item Page 5: What does the {\tt include.fewer=TRUE} flag serve?
+
+  \textcolor{blue}{The {\tt include.fewer} flag takes a logical
+    argument with {\tt FALSE} meaning to return a clifford object all
+    of whose terms are the specified grade, and {\tt FALSE} meaning to
+    include terms with grades less than the specified grade.  I have
+    included [on page 4] a brief explanation on the manuscript.}
+    
 \item Page 6: Does ``{\tt x \%\string^\% y}'' mean the outer product
   operation?  Please clarify the correspondance of R operators to
   Clifford algebra operations in a small table in the paper.

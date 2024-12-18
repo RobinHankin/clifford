@@ -369,9 +369,12 @@ Element of a Clifford algebra, equal to
 \end{Soutput}
 \end{Schunk}
 
-\textcolor{blue}{Above, {\tt elements()} is needed to coerce the
-  disord-compliant output of {\tt grades()} to a normal R vector; full
-  details are given in~\cite{hankin2022_disordR}.}
+\textcolor{blue}{Above, argument {\tt include.fewer} directs {\tt
+    rcliff()} to return a Clifford object that includes terms with
+  grades lower than the specified {\tt g=5}; on the next line, {\tt
+    elements()} is needed to coerce the disord-compliant output of
+  {\tt grades()} to a normal R vector; full details are given
+  in~\cite{hankin2022_disordR}.}
 
 \section{Pseudo-Euclidean spaces}
 
