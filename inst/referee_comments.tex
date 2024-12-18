@@ -572,13 +572,18 @@ means.
 meaning of this notation: $\left\langle A\right\rangle_r$.}
 \footnote{The referee also notes the awkwardness of this syntax {\tt
   \%\_|\%} for the left contraction and {\tt \%|\_\%} for the right
-contraction in clifford.}
+contraction in clifford.\textcolor{blue}{ The issue of ``awkwardness''
+  is discussed above.}}
 
 \textcolor{blue}{First, I note that these two operations are in fact
   correctly implemented, as the referee indicates.  The equations are
   drawn verbatim from Dorst (2002), who saw no need to add a
   superfluous indicators such as $s>r$. This would be understood by
-  most readers.}
+  most readers.  As regards the ``awkwardness'' of these notations,
+  the package also allows functional notation: {\tt x\%|\_\% y} {\tt
+    x\%\_|\% y} may be evaluated using {\tt lefttick(x,y)} and {\tt
+    righttick(x,y)} respectively, as detailed in the list now included
+  in the appendix.}
 
 \item Page 6: the comment at the bottom of page 6 which extends to the
   end of Section 7 on page 7 above Section 7.1, points to an
