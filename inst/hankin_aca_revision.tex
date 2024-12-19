@@ -857,11 +857,11 @@ products are given in table~\ref{cliffprods}.
       }
 }
   
-
-\textcolor{blue}{
 \begin{table}
   \begin{center}
-    \begin{tabular}{lll}\hline\\
+      {\color{blue}
+    \begin{tabular}{lll}
+        \hline\\
   Geometric product  & {\tt A*B = geoprod(A,B)}  &  $\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle B\right\rangle_s$ \\
     Inner product    & {\tt A \%.\% B = cliffdotprod(A,B)} &    $\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne 0}^{\vphantom{s\neq 0}}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{\left|s-r\right|}$\\
     Outer product    &{\tt A \%\string^\% B = wedge(A,B)} &    $\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s+r}$\\
@@ -873,10 +873,11 @@ products are given in table~\ref{cliffprods}.
     Euclidean product &{\tt A \%euc\% B = eucprod(A,B)} &  $\displaystyle A\star B= A\ast B^\dagger$\\
     \hline
     \end{tabular}
+    }
   \end{center}
   \caption{\rule{0mm}{10mm} The Clifford products implemented in the\label{cliffprods} package}
   \end{table}
-}
+
 
 \section{Outline of the computational method}
 
