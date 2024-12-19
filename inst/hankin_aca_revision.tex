@@ -226,20 +226,12 @@ space allocation and access/modification times.  The set bits specify
 the basis blades present in a term; using bitsets allows products to
 use fast Boolean operators.  An object such as $\ei{2}\ei{5}\ei{7}$
 [or $\ei{257}$] will be a bitset with bits 2, 5, and 7 set [note the
-  off-by-one issue].  \textcolor{blue}{To calculate the geometric
-  product of $\ei{257}$ by, say, $\ei{34}$, we first of all establish
-  that the intersection of the set bits is empty [as
-    $\ei{i}\ei{i}=0$]\footnote{\textcolor{blue}{Empty intersection may
-    be replaced with other conditions: for example, to calculate the
-    fat dot product~\cite{dorst2002} we test for the symmetric
-    difference being empty.}}; we then write the product as
-  $\ei{25637}$ and count the number of transpositions required to
-  express this as $\ei{23457}$.  The boost library performs these
-  operations quickly and efficiently.} Dynamic objects are needed here
-as the number of bits in the set is specified at runtime.  A {\tt
-  clifford} object is an element of a Clifford algebra; this is set of
-basis blades, each with a real coefficient.  The {\tt stl} map
-class~\cite{musser2009} is used:
+  off-by-one issue].  \textcolor{blue}{More detail on the
+  implementation of products is given in Appendix B.}  Dynamic objects
+are needed here as the number of bits in the set is specified at
+runtime.  A {\tt clifford} object is an element of a Clifford algebra;
+this is set of basis blades, each with a real coefficient.  The {\tt
+  stl} map class~\cite{musser2009} is used:
 
 {\ }\\[10pt]
 \begin{verbatim}
@@ -881,10 +873,37 @@ products are given in table~\ref{cliffprods}.
 
 \section{Outline of the computational method}
 
+{\color{blue}
+
 A Clifford object is the formal sum of terms; a term is a basis blade
-with an an associated coefficient; the sum is managed by an STL map.
+with an an associated coefficient; sums are managed by an STL map.
 Scalar multiplication is distributive; addition is performed
-elementwise via an appropriate iterator.
+elementwise via a standard container iterator.
+
+The six ``ordinary'' products (that is, the first six products of
+Table~\ref{cliffprods}) are implemented using a standardised system.
+Distributivity means we only need consider the product of basis
+blades.
+
+To calculate the product of, say, $\ei{257}$ by $\ei{34}$, we first of
+all count the intersection of the set bits in the ranges $1\leqslant
+i\leq p$, $p<i\leq p+q$, and $i>p+q$ to determine whether a sign flip
+is required or to set the product to zero.  The different types of
+product have different rules for setting the product to zero (this is
+a little difficult to see at first glance; but taking the outer
+product as an example, $\displaystyle A\wedge
+B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+B\right\rangle_s\right\rangle_{s+r}$, we can see that any common set
+bits in the basis blades of $A$ and $B$ will reduce the grade of their
+product, thus by definition having non-empty intersection zeros the
+product).  We then write the product by juxtaposing the set bits to
+arrive at $\ei{25734}$; and then count the number of transpositions
+required to sort the set bits an arrive at $\ei{23457}$.  The boost
+library performs all these operations quickly and efficiently.  The
+coefficient of the product is just the product of the coefficient,
+modulo the sign.  }
+
+
 
 
 
