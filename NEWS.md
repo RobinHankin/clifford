@@ -25,3 +25,4 @@
 - extra safety checks for signature() and maxdim
 - remove dependence on mathjax
 - remove dependence on emulator (now uses quadform)
+- grade(C,n) <- value (where value is a clifford object) now implemented

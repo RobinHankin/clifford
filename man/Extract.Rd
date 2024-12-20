@@ -69,6 +69,9 @@ Idiom such as \code{a[] <- b} follows the \code{spray} package.  If
 \code{b} is a length-one scalar, then \code{coeffs(a) <- b} has the same
 effect as \code{a[] <- b}.
 
+Grade-based replacement methods such as \code{grade(C,n) <- value} are
+impemented and documented at \code{grade.Rd}.
+    
 Functions \code{terms()} [see \code{term.Rd}] and \code{coeffs()}
 extract the terms and coefficients from a clifford object.  These
 functions return \code{disord} objects but the ordering is consistent
@@ -114,7 +117,12 @@ Vignette \code{getcoeffs} gives a more extended discussion of function
 \code{getcoeffs()}.
 
 }
-\seealso{\code{\link{Ops.clifford}},\code{\link{clifford}},\code{\link{term}}}
+\seealso{
+    \code{\link{Ops.clifford}},
+    \code{\link{clifford}},
+    \code{\link{term}}
+    \code{\link{grade}}
+}
 \examples{
 A <- clifford(list(1,1:2,1:3),1:3)
 B <- clifford(list(1:2,1:6),c(44,45))

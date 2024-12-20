@@ -120,6 +120,30 @@ calculus.  In this case, functions \code{gradesplus()} and
 Function \code{grade(C,n)} returns a clifford object with just the
 elements of grade \code{g}, where \code{g \%in\% n}.
 
+Idiom like \code{grade(C,r) <- value}, where \code{r} is a non-negative
+integer (or vector of non-negative integers) should behave as expected.
+It has two distinct cases: firstly, where \code{value} is a length-one
+numeric vector; and secondly, where \code{value} is a clifford object:
+
+\itemize{
+
+  \item Firstly, \code{grade(C,r) <- value} with \code{value} a
+length-one numeric vector.  This changes the coefficient of all
+grade-\code{r} terms to \code{value}.  Note that \code{disordR}
+discipline must be respected, so if \code{value} has length exceeding
+one, a \code{disordR} consistency error might be raised.
+
+  \item Secondly, \code{grade(C,r) <- value} with \code{value} a
+clifford object.  This should operate as expected: it will replace the
+grade-\code{r} components of \code{C} with \code{value}.  If
+\code{value} has any grade component not in \code{r}, a \dQuote{grade
+mismatch} error will be returned.  Thus, only the grade-\code{r}
+components of \code{C} may be modified with this construction.  It is
+semi vectorised: if \code{r} is a vector, it is interpreted as a set of
+grades to replace.
+}
+
+
 The zero grade term, \code{grade(C,0)}, is given more naturally by
 \code{const(C)}.
 
@@ -142,6 +166,14 @@ a <- clifford(sapply(seq_len(7),seq_len),seq_len(7))
 a
 grades(a)
 grade(a,5)
+
+
+a <- clifford(list(0,3,7,1:2,2:3,3:4,1:3,1:4),1:8)
+b <- clifford(list(4,1:2,2:3),c(101,102,103))
+
+grade(a,1) <- 13*e(6)
+grade(a,2) <- grade(b,2)
+grade(a,0:2) <- grade(b,0:2)*7
 
 
 signature(2,2)

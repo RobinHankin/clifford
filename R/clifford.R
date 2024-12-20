@@ -255,8 +255,17 @@ setMethod("drop","clifford", function(x){drop_clifford(x)})
 }
 
 `grade<-` <- function(C,n,value){
-    coeffs(C)[grades(C) %in% n] <- value
-    return(C)
+    if(is.clifford(value)){
+        if(all(grades(value) %in% n)){
+            grade(C,n) <- 0
+            return(C + value)
+        } else {
+            stop("grade mismatch")
+        }
+    } else {
+        coeffs(C)[grades(C) %in% n] <- value
+        return(C)
+    }
 }
 
 `is.homog` <- function(C){
