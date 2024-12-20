@@ -145,7 +145,24 @@ calculus.  In this case, functions <code>gradesplus()</code> and
 <code>gradesminus()</code> return <code>NA</code>.</p>
 <p>Function <code>grade(C,n)</code> returns a clifford object with just the
 elements of grade <code>g</code>, where <code>g %in% n</code>.</p>
-<p>The zero grade term, <code>grade(C,0)</code>, is given more naturally by
+<p>Idiom like <code>grade(C,r) &lt;- value</code>, where <code>r</code> is a non-negative
+integer (or vector of non-negative integers) should behave as expected.
+It has two distinct cases: firstly, where <code>value</code> is a length-one
+numeric vector; and secondly, where <code>value</code> is a clifford object:</p>
+<ul><li><p>Firstly, <code>grade(C,r) &lt;- value</code> with <code>value</code> a
+length-one numeric vector.  This changes the coefficient of all
+grade-<code>r</code> terms to <code>value</code>.  Note that <code>disordR</code>
+discipline must be respected, so if <code>value</code> has length exceeding
+one, a <code>disordR</code> consistency error might be raised.</p></li>
+<li><p>Secondly, <code>grade(C,r) &lt;- value</code> with <code>value</code> a
+clifford object.  This should operate as expected: it will replace the
+grade-<code>r</code> components of <code>C</code> with <code>value</code>.  If
+<code>value</code> has any grade component not in <code>r</code>, a “grade
+mismatch” error will be returned.  Thus, only the grade-<code>r</code>
+components of <code>C</code> may be modified with this construction.  It is
+semi vectorised: if <code>r</code> is a vector, it is interpreted as a set of
+grades to replace.</p></li>
+</ul><p>The zero grade term, <code>grade(C,0)</code>, is given more naturally by
 <code>const(C)</code>.</p>
 <p>Function <code><a href="lowlevel.html">c_grade()</a></code> is a helper function that is documented at
 <code>Ops.clifford.Rd</code>.</p>
@@ -183,6 +200,14 @@ elements of grade <code>g</code>, where <code>g %in% n</code>.</p>
 <span class="r-in"><span><span class="fu">grade</span><span class="op">(</span><span class="va">a</span>,<span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> + 5e_12345</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="clifford.html">clifford</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">7</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="clifford.html">clifford</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">101</span>,<span class="fl">102</span>,<span class="fl">103</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">grade</span><span class="op">(</span><span class="va">a</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">13</span><span class="op">*</span><span class="fu"><a href="numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">grade</span><span class="op">(</span><span class="va">a</span>,<span class="fl">2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">grade</span><span class="op">(</span><span class="va">b</span>,<span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">grade</span><span class="op">(</span><span class="va">a</span>,<span class="fl">0</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">grade</span><span class="op">(</span><span class="va">b</span>,<span class="fl">0</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">*</span><span class="fl">7</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="signature.html">signature</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span></span>
