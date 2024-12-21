@@ -79,10 +79,10 @@ Hankin</h4>
     
 <p><img src="..%2F..%2F..%2F_temp%2FLibrary%2Fclifford%2Fhelp%2Ffigures%2Fclifford.png" width="15%" style="float:right; padding:10px"><img src="..%2F..%2F..%2F_temp%2FLibrary%2Fonion%2Fhelp%2Ffigures%2Fonion.png" width="15%" style="float:right; padding:10px"></p>
 <p>To cite the <code>clifford</code> package in publications please use
-<span class="citation">Hankin (2022)</span>. This short document shows
-how dual quaternions may be implemented using Clifford algebra. The dual
-quaternions are an interesting and useful mathematical object which
-finds applications in solid-body mechanics. Consider the following
+<span class="citation">Hankin (<a href="#ref-hankin2022_clifford">2022</a>)</span>. This short document
+shows how dual quaternions may be implemented using Clifford algebra.
+The dual quaternions are an interesting and useful mathematical object
+which finds applications in solid-body mechanics. Consider the following
 multiplication table:</p>
 <pre><code><span><span class="co">##     1   i   j   k    ε  εi  εj  εk</span></span>
 <span><span class="co">##  1  1   i   j   k    ε  εi  εj  εk</span></span>
@@ -100,8 +100,9 @@ and <span class="math inline">\(\varepsilon\)</span> is the dual unit
 that commutes with <span class="math inline">\(i,j,k\)</span> and
 satisfies <span class="math inline">\(\varepsilon^2=0\)</span>. We can
 implement this in a rough-and-ready way with the <code>onion</code>
-package <span class="citation">(Hankin 2006)</span> by observing that a
-dual quaternion may be represented as <span class="math inline">\(A+\varepsilon B\)</span>, where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are quaternions. Then</p>
+package <span class="citation">(<a href="#ref-hankin2006_onion">Hankin
+2006</a>)</span> by observing that a dual quaternion may be represented
+as <span class="math inline">\(A+\varepsilon B\)</span>, where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are quaternions. Then</p>
 <p><span class="math display">\[
 (A+\varepsilon B)(C+\varepsilon D)== AC +
 \varepsilon(AD+BC)\]</span></p>
