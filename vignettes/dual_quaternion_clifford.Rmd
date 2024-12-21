@@ -2,6 +2,7 @@
 title: "Dual quaternions via Clifford algebra"
 author: "Robin K. S. Hankin"
 bibliography: clifford.bib
+link-citations: true
 vignette: >
   %\VignetteIndexEntry{Dual quaternions via Clifford algebra}
   %\VignetteEngine{knitr::rmarkdown}

@@ -3,6 +3,7 @@ title: "Complex arithmetic using Clifford algebra"
 author: "Robin K. S. Hankin"
 output: html_vignette
 bibliography: clifford.bib
+link-citations: true
 vignette: >
   %\VignetteIndexEntry{Complex arithmetic using Clifford algebra}
   %\VignetteEngine{knitr::rmarkdown}

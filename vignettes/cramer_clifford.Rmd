@@ -2,6 +2,7 @@
 title: "Cramer's rule in civilised form with Clifford algebra"
 author: "Robin K. S. Hankin"
 bibliography: clifford.bib
+link-citations: true
 vignette: >
   %\VignetteIndexEntry{Cramer's rule using Clifford algebra}
   %\VignetteEngine{knitr::rmarkdown}
