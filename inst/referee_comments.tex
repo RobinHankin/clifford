@@ -74,7 +74,9 @@ There are several reasons for this negative recommendation:
       Nevertheless, on reflection, the submission does not reflect the
       large codebase present in the R package, and I have added
       pointers to the github account so interested readers can inspect
-      the code in a suitable interactive environment.}
+      the code in a suitable interactive environment.  There is also a
+      more detailed discussion of the computational implementation in
+      (new) appendix B.}
 
     In particular, from the text in Section 7 it appears that the
     Author uses identities (7.1) and (7.2) as his/her definitions of
@@ -123,7 +125,7 @@ the Grassmann algebra V, it is necessary to encode in any package
 product. However, in the package clifford of the Author, there is no
 provision for computing the wedge product
 
-\textcolor{blue}{This statement is simply false.  A cursory inspection
+\textcolor{blue}{This statement is false.  A cursory inspection
   of the package reveals that the wedge product is implemented as an
   overloaded caret (``{\tt\string^}'').  This device is documented
   according to standard documentation protocols and is apparent on
@@ -171,15 +173,15 @@ include the degenerate quadratic forms for the algebras $\cliff{p, q,
 Nevertheless, the Author does not provide any hint
 which algorithm he has used in his package.
 
-\textcolor{blue}{That is not true.  The original submission included a
-  discussion of how [boost C++ library] bitsets are used in the
-  implementation; the actual code used for Clifford is a
-  straightforward application.  Admittedly, bitsets are a somewhat
-  specialized and arcane aspect of the boost program, and I have
-  arguably assumed knowledge of them that might not be familiar to
-  ACAA readership.  On reflection more detail might have been
-  appropriate.  So, I have added a brief explanatory note (in
-  \textcolor{blue}{blue}) to the manuscript, appendix B}
+\textcolor{blue}{The original submission included a discussion of how
+  [boost C++ library] bitsets are used in the implementation; the
+  actual code used for Clifford is a straightforward application.
+  Admittedly, bitsets are a somewhat specialized and arcane aspect of
+  the boost program, and I have arguably assumed knowledge of them
+  that might not be familiar to ACAA readership.  On reflection more
+  detail might have been appropriate.  So, I have added a brief
+  explanatory note (in \textcolor{blue}{blue}) to the manuscript,
+  appendix B}
 
 \item According to Wikipedia [7], {\em “R is a programming language for statistical computing and
 data visualization. It has been adopted in the fields of data mining, bioinformatics, and data
@@ -223,7 +225,8 @@ general, and so another symbol should be used for it in the package.
     a} and {\tt b} are Clifford objects, the geometric product
   operator is called.  The object-oriented nature of R can easily cope
   with these distinctions, and I leverage the S3 and S4 mechanisms to
-  accomplish these operations using natural R idiom.}
+  accomplish these operations using natural R idiom.
+}
 
 For two, the syntax of the R language does not support standard
 mathematical notation because it explicitly outputs terms like
@@ -302,7 +305,7 @@ such input anyway.}
   between 1 and 1.
 
   \textcolor{blue}{As stated above, these concerns are immaterial if
-    one is familiar with the elementary concept of overloading of
+    one is familiar with the standard concept of overloading of
     operators.  I am having difficulty interpreting the reviewer's
     comments as informed constructive criticism.  Phrases such as
     ``limited ability of the R language'' [which are demonstrably
@@ -606,7 +609,7 @@ contraction in clifford.\textcolor{blue}{ The issue of ``awkwardness''
   computing $e_2\rfloor (e_1e_2)$.
 
   \textcolor{blue}{This is not an ``awkward and irrelevant
-    peculiarity'', this is ``a result of a well-considered parsing
+    peculiarity'', this is a ``result of a well-considered parsing
     mechanism that might be confusing to users of the package''.  This
     particular language feature caught me out more than once and I
     feel that including a brief sentence or two outlining the issue is
@@ -711,11 +714,37 @@ following points:
   (hundreds or thousands) to work with? After all, R is mainly used
   for statistical and data science computations and a use-case where
   only a few multivectors are used is not so useful in this context.
+
+  \textcolor{blue}{
+    I am not sure whether this is asking ``can the package deal with
+    many thousands of multivectors?'', or ``what applications in which
+    there are thousands of multivectors can the package help
+    with?''.\\
+    If the first, the answer is that the package leverages efficient R
+    routines to deal with lists with large number of entries.\\[20pt]
+{\tt library("clifford")}\\
+{\tt a <- list()}\\
+{\tt system.time(for(i in 1:1000)\string{ a\string[\string[i\string]\string] <- rcliff() \string})}\\
+{\tt \#    user  system elapsed}\\
+{\tt \#  11.226   0.043  11.275}\\[20pt]
+The lines above show the package creating 1000 random clifford objects
+and storing them in R object {\tt a}, a list.  It does so in about 11
+seconds and time scales linearly.\\[20pt]
+If the second, it's easy to imagine cases where large number of
+clifford objects are needed.  We might consider a large number of
+circles in 3D space and wish to use conformal geometry as per the
+vignette provided with the package.
+}
+
 \item The paper also lacks comparison with other similar packages in
   terms of (for example): performance, memory requirements, design
   goals, possible use cases, integration with R statistical
   computation capabilities, implemented algebraic operations on
   multivectors, support for outermorphisms, etc.
+
+  \textcolor{blue}{There are no other R packages with Clifford algebra
+    capabilities.}
+
 \item Some other points include: Page 3: The notation for a Clifford
   Algebra should be modified to become $\cliff{p,q,n-p-q}$ with $p\geq
   0$, $q\geq 0$, $p+q\leq n$.
@@ -758,11 +787,11 @@ if both $i>p$ [logical] and also $i<p+q$.  This is accomplished via
 $\in\left\lbrace -1,+1\right\rbrace$ The value of $n$ is not necessary
 here.  The C code, verbatim, is as follows:\\[20pt]
 {\tt\rule{10mm}{0mm}if(i <= p)\string{}\\
-{\tt\rule{10mm}{0mm}  /* <no operation>   */}\\
+{\tt\rule{10mm}{0mm}\ \ \ \ \ /* <no operation>   */}\\
 {\tt\rule{10mm}{0mm} \string} else if (i <= p+q)\string{}\\
-{\tt\rule{10mm}{0mm}    sign *= -1;}\\
+{\tt\rule{10mm}{0mm}\ \ \ \ \  sign *= -1;}\\
 {\tt\rule{10mm}{0mm}  \string} else \string{}\\
-{\tt\rule{10mm}{0mm}      sign = 0; // exterior product, repeated index -> 0}\\
+{\tt\rule{10mm}{0mm}\ \ \ \ \  sign = 0; // exterior product, repeated index -> 0}\\
 {\tt\rule{10mm}{0mm}  \string}}\\[20pt]
 Nevertheless, sometimes one needs to explicitly respect the value of $n$
 and the package has a mechanism [option {\tt maxdim}] to enforce this
