@@ -278,8 +278,12 @@ Element of a Clifford algebra, equal to
 \end{Soutput}
 \end{Schunk}
 
-Here we have used function {\tt e()} which takes an integer vector that
-specifies the term.  Addition and subtraction work as expected:
+Here we have used function {\tt e()} which takes an integer vector
+that specifies the term.  \textcolor{blue}{Note that the {\tt *}
+  operator is ``overloaded''~\cite{stroustrup2013}: that is, it is
+  sensitive to the class of object on either side, and in this case
+  {\tt e(i)} is a Clifford object.}  Addition and subtraction work as
+expected:
 
 \begin{Schunk}
 \begin{Sinput}
