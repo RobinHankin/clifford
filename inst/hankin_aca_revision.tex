@@ -325,9 +325,9 @@ Element of a Clifford algebra, equal to
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 8 + 1e_1 - 10e_2 - 1e_12 + 11e_3 - 6e_13 - 9e_23 + 4e_123 + 4e_4 - 8e_14 -
-12e_24 + 16e_234 + 5e_5 - 10e_15 - 15e_25 + 20e_235 + 6e_6 - 12e_16 - 18e_26 +
-24e_236 + 7e_7 - 14e_17 - 21e_27 + 28e_237
++ 8 + 1e_1 - 10e_2 - 1e_12 + 11e_3 - 6e_13 - 9e_23 + 4e_123 +
+4e_4 - 8e_14 - 12e_24 + 16e_234 + 5e_5 - 10e_15 - 15e_25 + 20e_235 +
+6e_6 - 12e_16 - 18e_26 + 24e_236 + 7e_7 - 14e_17 - 21e_27 + 28e_237
 \end{Soutput}
 \end{Schunk}
 
@@ -343,7 +343,7 @@ including {\tt rcliff()}, a routine for generating
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 5 - 5e_1 - 1e_4 + 4e_24 + 3e_5 + 6e_6 - 2e_26 - 4e_36 - 3e_1246 + 8e_456
++ 5 - 5e_1 - 1e_4 + 4e_24 + 3e_5 + 6e_6 - 2e_26 - 4e_36 - 3e_1246
 \end{Soutput}
 \end{Schunk}
 
@@ -356,8 +356,8 @@ grade-4 terms but this can be altered:
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 7 - 9e_3 - 7e_4 - 3e_1234 + 2e_6 + 1e_136 + 9e_1246 + 5e_456 + 7e_1237 +
-8e_13567
++ 7 - 9e_3 - 7e_4 - 3e_1234 + 2e_6 + 1e_136 + 9e_1246 + 5e_456
++ 7e_1237 + 8e_13567
 \end{Soutput}
 \begin{Sinput}
 > elements(grades(x))
@@ -442,8 +442,8 @@ default positive-definite inner product, or the Minkowski metric:
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 20 + 36e_1 - 92e_2 - 90e_12 + 37e_3 + 6e_13 + 92e_23 - 30e_123 - 10e_4 -
-94e_24 - 22e_124 + 87e_34 + 29e_134 - 21e_234 - 20e_1234
++ 20 + 36e_1 - 92e_2 - 90e_12 + 37e_3 + 6e_13 + 92e_23 - 30e_123 -
+10e_4 - 94e_24 - 22e_124 + 87e_34 + 29e_134 - 21e_234 - 20e_1234
 \end{Soutput}
 \begin{Sinput}
 > signature(3,1)  # switch to signature +++-
@@ -451,8 +451,8 @@ Element of a Clifford algebra, equal to
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 20 + 90e_1 - 56e_2 - 50e_12 - 38e_3 - 51e_13 + 106e_23 + 30e_123 + 2e_4 -
-136e_24 - 40e_124 - 15e_34 + 15e_134 - 21e_234 - 20e_1234
++ 20 + 90e_1 - 56e_2 - 50e_12 - 38e_3 - 51e_13 + 106e_23 + 30e_123 +
+2e_4 - 136e_24 - 40e_124 - 15e_34 + 15e_134 - 21e_234 - 20e_1234
 \end{Soutput}
 \end{Schunk}
 
@@ -551,9 +551,10 @@ inner product positive-definite:
 \end{Sinput}
 \end{Schunk}
 
-(internally the package sets the signature to
-{\tt .Machine\$integer.max}, a near-infinite integer).  With this,
-$\ei{i}\ei{i}=+1$ for any $i$:
+(internally the package sets the signature to {\tt
+  .Machine\$integer.max}, a near-infinite integer).  With this,
+$\ei{i}\ei{i}=+1$ for any $i$.  \textcolor{blue}{For example, if
+  $i=53$ we have:}
 
 \begin{Schunk}
 \begin{Sinput}
@@ -598,23 +599,25 @@ Element of a Clifford algebra, equal to
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 6 - 2e_2 + 6e_3 - 7e_123 + 7e_14 - 3e_5 + 2e_26 + 1e_46 + 9e_2346 - 9e_256
++ 6 - 2e_2 + 6e_3 - 7e_123 + 7e_14 - 3e_5 + 2e_26 + 1e_46 +
+9e_2346 - 9e_256
 \end{Soutput}
 \begin{Sinput}
 > A %_|% B
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 76 - 35e_1 - 14e_2 + 42e_3 + 49e_13 + 63e_23 - 49e_123 - 63e_4 + 49e_14 -
-21e_5 + 14e_6 + 59e_26 + 52e_46 + 63e_346 + 63e_2346 - 63e_56 - 63e_256
++ 76 - 35e_1 - 14e_2 + 42e_3 + 49e_13 + 63e_23 - 49e_123 - 63e_4 +
+49e_14 - 21e_5 + 14e_6 + 59e_26 + 52e_46 + 63e_346 + 63e_2346 -
+63e_56 - 63e_256
 \end{Soutput}
 \begin{Sinput}
 > A %|_% B
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-+ 76 - 33e_1 + 12e_2 + 54e_12 - 10e_3 + 18e_13 - 30e_23 + 54e_123 + 30e_5 -
-40e_15 + 6e_146 - 14e_56 + 12e_1456
++ 76 - 33e_1 + 12e_2 + 54e_12 - 10e_3 + 18e_13 - 30e_23 + 54e_123 +
+30e_5 - 40e_15 + 6e_146 - 14e_56 + 12e_1456
 \end{Soutput}
 \end{Schunk}
 
@@ -737,8 +740,9 @@ Their geometric product is given in the package as
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
-- 2 - 4e_1,2,3 - 16e_7 + 8e_1,2,3,7 - 6e_1,4,6,7 - 12e_2,3,4,6,7 + 2e_1,5,6,8 +
-4e_2,3,5,6,8 - 40e_2,3,5,8,10 - 30e_4,5,6,8,10 + 10e_1,5,7,8,10
+- 2 - 4e_1,2,3 - 16e_7 + 8e_1,2,3,7 - 6e_1,4,6,7 - 12e_2,3,4,6,7 +
+2e_1,5,6,8 + 4e_2,3,5,6,8 - 40e_2,3,5,8,10 - 30e_4,5,6,8,10 +
+10e_1,5,7,8,10
 \end{Soutput}
 \end{Schunk}
 
