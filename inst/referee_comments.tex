@@ -229,7 +229,7 @@ general, and so another symbol should be used for it in the package.
   Nevertheless, if the reviewer is unaware of overloading it is likely
   that other AACA readers will need some explanation too, so I have a
   added a short description of the concept and citations to the
-  canonical citations [viz, Stroustrup and Chambers].
+  canonical reference [viz, Stroustrup]
 }
 
 For two, the syntax of the R language does not support standard
@@ -293,7 +293,9 @@ such input anyway.}
   experience with standard techniques such as this, and to these
   readers such constructions might appear difficult or unnecessarily
   rigid.  I have added a brief explanation that might dispel any
-  confusion.}
+  confusion.  In any event, I note that much more natural idiom for
+  construction---such as {\tt 1 + 4*e(1) -5*e(1:3)}---are given
+  elsewhere in the manuscript.  }
 
 \item The Author does not distinguish the unity 1 of the real field R
   from the Clifford algebra unit element. Let us denote the algebra
@@ -314,7 +316,7 @@ such input anyway.}
     comments as informed constructive criticism.  Phrases such as
     ``limited ability of the R language'' [which are demonstrably
       incorrect] do not help.  The R language has extensive
-    documentation which includes extensive coverage of this issue, and
+    documentation which includes detailed coverage of this issue, and
     the standard reference is cited in the submission.}
 
   Yet, when designing any package for Clifford/Grassmann algebras,
@@ -336,7 +338,12 @@ such input anyway.}
   e(53)^2=e(5)*e(3)*e(5)*e(3)=-(e(5)*e(5))*(e(3)*e(3))=-1
   $$
 
-given that $e(5)*e(5)=e(3)*e(3)=1$ and $e(5)*e(3)=-e(3)*e(5)$.  Thus,
+  given that $e(5)*e(5)=e(3)*e(3)=1$ and $e(5)*e(3)=-e(3)*e(5)$.
+  \textcolor{blue}{This was a misreading of the manuscript which
+    states, correctly, that $\ei{53}^2$ [that is, basis vector number
+      fifty three, squared, is equal to $+1$.  I have added a brief
+      sentence to explain this and remove any confusion.]}
+   Thus,
 the question arises whether the Author’s algorithm for computing the
 Clifford product miscomputes, although other products computed in the
 paper, e.g., $x * x$ and $y * x$, are correct, or, perhaps there is a
@@ -350,10 +357,6 @@ scalar product as in $2 * e(2)$.
 \textcolor{blue}{Again, the {\tt *} symbol is overloaded.  A
   description of the concept of overloading would be superfluous for
   the intended readership.}  }
-
-\textcolor{blue}{This issue was caused by a misreading of the
-  manuscript, which says, as intended that $(e_{(53)})^2=1$ (that is,
-  element number fifty three squared).}
 
 \item The package clifford presented in the paper is extremely
   limited. It only has a few functionalities such as the computation
@@ -378,12 +381,14 @@ scalar product as in $2 * e(2)$.
 
 \textcolor{blue}{These comments are demonstrably false.  The
   manuscript presented a small subset of the capabilities of the
-  package.  A cursory inspection of the package would reveal the rich
-  structure of the package.  For example, as enumerated in the
-  documentation, there are five different types of multiplication, and
-  six different types of conjugation.\\ The package idiom for
-  $\left\langle A\right\rangle_r$ is just {\tt grade(A,r)}. This
-  functionality is easily discovered in the package documents.  }
+  package: detailing of every part of the package functionality would
+  lead to a prohibitively long manuscript.  In any event, inspection
+  of the package would reveal the rich structure of the package.  For
+  example, as enumerated in the documentation, there are five
+  different types of multiplication, and six different types of
+  conjugation.\\ The package idiom for $\left\langle A\right\rangle_r$
+  is just {\tt grade(A,r)}. This functionality is easily discovered in
+  the package documentation.}
 
 \item The paper, whose purpose is to present Author’s package clifford, is very awkwardly written
 since:
@@ -485,7 +490,7 @@ In the following, referee provides some additional comments on the text.
   rather than \cliff{p,q}. In the special case when $p = q = 0$, we
   have $\cliff{0,0,r}\simeq\bigwedge V$ or $C\ell_{0,0r})$ where
   $\bigwedge V$ is the Grassmann algebra.
-  \textcolor{blue}{This is actually a reasonable comment.  Corrected.}
+  \textcolor{blue}{This is a reasonable comment.  Corrected.}
 
 \item  Page 2 Section 2: Author does not
   explain what a “blade” is.
@@ -572,8 +577,8 @@ means.
   0), p > 0$, the square of $e_{53}$ is -1 and not 1 as shown in the
   output \verb+scalar ( 1 )+.
 
-\textcolor{blue}{Discussed above, the reviewer misread the
-  manuscript.}
+\textcolor{blue}{Discussed above, the confusion was due to a
+  misreading of the manuscript.}
 
   \item Page 6: Formulas (7.1) and (7.2) are not stated correctly: we
     must require $s\geq r$ in (7.1) and $r \geq s$ in (7.2) with
