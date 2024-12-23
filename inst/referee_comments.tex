@@ -18,11 +18,6 @@ have indicated changes to the manuscript where appropriate.
 
 \section*{Reviewer \#2}
 
-\textcolor{blue}{ {\bf overall response to issues raised by reviewer
-    \#2}.  Work of this type is always a balance between different
-  audiences, and the reviewer seems to be pointing out that the
-  submission lacks one or more aspects of work.}
-
 
 \subsection*{0.1 Summary}
 
@@ -125,7 +120,7 @@ the Grassmann algebra V, it is necessary to encode in any package
 product. However, in the package clifford of the Author, there is no
 provision for computing the wedge product
 
-\textcolor{blue}{This statement is false.  A cursory inspection
+\textcolor{blue}{This statement is false.  Inspection
   of the package reveals that the wedge product is implemented as an
   overloaded caret (``{\tt\string^}'').  This device is documented
   according to standard documentation protocols and is apparent on
@@ -209,7 +204,7 @@ ignores the fact that the Clifford product is non-commutative in
 general, and so another symbol should be used for it in the package.
 
 \textcolor{blue}{I am not ``ignoring the fact that the Clifford
-  product is non-commutative''.  Cursory inspection of the package
+  product is non-commutative''.  Inspection of the package
   would show that the entire codebase is predicated on the
   noncommutative nature of the geometric product.  It would be more
   appropriate (and more constructive) to view the package as providing
@@ -224,7 +219,7 @@ general, and so another symbol should be used for it in the package.
   then an appropriate scalar product operator is called.  If both {\tt
     a} and {\tt b} are Clifford objects, the geometric product
   operator is called.  The object-oriented nature of R can easily cope
-  with these distinctions, and I leverage the S3 and S4 mechanisms to
+  with these distinctions, and I leverage S3 and S4 mechanisms to
   accomplish these operations using natural R idiom.\\[20pt]
   Nevertheless, if the reviewer is unaware of overloading it is likely
   that other AACA readers will need some explanation too, so I have a
@@ -258,7 +253,7 @@ instead of just
   infrastructure) is sufficiently flexible to change the print method
   in these regards [a one-line modification of function {\tt
       print\_clifford\_default()} would suffice], but the form was
-  chosen with care and should not be changed.}
+  chosen with care and should not be changed without careful consideration.}
 
 (see page 3 and later). Furthermore, the input is extremely awkward
 like, for example,
@@ -312,10 +307,13 @@ such input anyway.}
 
   \textcolor{blue}{As stated above, these concerns are immaterial if
     one is familiar with the standard concept of overloading of
-    operators.  I am having difficulty interpreting the reviewer's
-    comments as informed constructive criticism.  Phrases such as
-    ``limited ability of the R language'' [which are demonstrably
-      incorrect] do not help.  The R language has extensive
+    operators.  I am having difficulty interpreting these comments as
+    constructive criticism.  Phrases such as ``limited ability of the
+    R language'' are unhelpful, and unnecessarily perjorative.  I have
+    added citations to a number of R packages that work with symbolic
+    objects [Weyl algebra, multivariate polynomials, etc],
+    demonstrating unequivocally that R has wide, rich and expressive
+    symbolic functionality.  The R language has extensive
     documentation which includes detailed coverage of this issue, and
     the standard reference is cited in the submission.}
 
@@ -354,7 +352,7 @@ explain how the compiler distinguishes between the symbol $*$ used as
 the Clifford product as in $x * x$ and the same symbol $*$ used as a
 scalar product as in $2 * e(2)$.
 
-\textcolor{blue}{Again, the {\tt *} symbol is overloaded.  A
+\textcolor{blue}{Again, the {\tt *} symbol is overloaded.  A formal
   description of the concept of overloading would be superfluous for
   the intended readership.}  }
 
@@ -464,8 +462,8 @@ In the following, referee provides some additional comments on the text.
     namely, the Clifford product $*$.
 
     \textcolor{blue}{As discussed above, this comment is factually
-      incorrect. I have included a table showing the most common
-      multiplications and the most common convolutions.    }
+      incorrect. I have included a table in appendix A showing the
+      most common multiplications and the most common convolutions.  }
 
 
 \item Page 2: The last two paragraphs in Section 1 are confusing.
@@ -602,8 +600,8 @@ contraction in clifford.\textcolor{blue}{ The issue of ``awkwardness''
 
 \textcolor{blue}{First, I note that these two operations are in fact
   correctly implemented, as the referee indicates.  The equations are
-  drawn verbatim from Dorst (2002), who saw no need to add a
-  superfluous indicators such as $s>r$. This would be understood by
+  drawn verbatim from Dorst (2002), who saw no need to add
+  indicators such as $s>r$. This would be understood by
   most readers.  As regards the ``awkwardness'' of these notations,
   the package also allows functional notation: {\tt x\%|\_\% y} {\tt
     x\%\_|\% y} may be evaluated using {\tt lefttick(x,y)} and {\tt
@@ -635,7 +633,7 @@ contraction in clifford.\textcolor{blue}{ The issue of ``awkwardness''
   alone symbolic matrices.  Thus, it is not known whether it would be
   even possible to handle spinor or regular representations of the
   Clifford algebras \cliff{p, q, 0} in clifford.
-  \textcolor{blue}{Casual familiarity with the R language would reveal
+  \textcolor{blue}{Brief study of the R language would reveal
     extensive R capability for handling matrices.  There is a certain
     amount of functionality for symbolic matrix manipulation.  I have
     added a citation to two such journal articles [for dealing with
