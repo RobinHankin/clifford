@@ -89,14 +89,14 @@ and a basis blade \eqn{e_\mathbb{A}}{e_A} with
 
 \deqn{
   \mathrm{gr}(e_A) = \left|\left\lbrace a\in A\colon
-  1\leq a\leq p+q\right\rbrace\right|
+  1\leqslant a\leqslant p+q\right\rbrace\right|
 }{
   omitted
 }
 
 \deqn{
   \mathrm{gr}_{+}(e_A) = \left|\left\lbrace a\in A\colon
-  1\leq a\leq p\right\rbrace\right|
+  1\leqslant a\leqslant p\right\rbrace\right|
 }{
   omitted
 }
