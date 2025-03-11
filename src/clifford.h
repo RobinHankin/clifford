@@ -85,15 +85,13 @@ List retval(const clifford &C){  // used to return a list to R
 
 clifford c_add(clifford cliff1, clifford cliff2){
     if(cliff1.size() > cliff2.size()){ // #1 is bigger, so iterate through #2
-        for (auto ic=cliff2.cbegin(); ic != cliff2.end(); ++ic){
-            const blade b = ic->first;
-            cliff1[b] += cliff2[b];
+        for(const auto& [blade2, value2] : cliff2 ){
+            cliff1[blade2] += value2;
         }
         return remove_zeros(cliff1);
     } else {  // L2 is bigger
-        for (auto ic=cliff1.cbegin(); ic != cliff1.end(); ++ic){
-            const blade b = ic->first;
-            cliff2[b] += cliff1[b];
+        for(const auto& [blade1, value1] : cliff1 ){
+            cliff2[blade1] += value1;
         }
         return remove_zeros(cliff2);
     }
@@ -144,13 +142,11 @@ clifford c_general_prod(const clifford &C1, const clifford &C2, const NumericVec
     clifford out;
     blade b;
     int sign;
-    for(auto ic1=C1.cbegin(); ic1 != C1.end(); ++ic1){
-        const blade b1 = ic1->first;
-        for(auto ic2=C2.cbegin(); ic2 != C2.end(); ++ic2){
-            const blade b2 = ic2->first;
+    for(const auto &[b1, value1] : C1 ){
+        for(const auto &[b2, value2] : C2 ){
             if(chooser(b1,b2)){
-                tie(b, sign) = juxtapose(b1, b2, signature);
-                out[b] += sign*(ic1->second)*(ic2->second); // the meat
+                std::tie(b, sign) = juxtapose(b1, b2, signature);
+                out[b] += sign * value1 * value2; // the meat
             }
         }
     }
@@ -163,9 +159,8 @@ bool c_equal(clifford C1, clifford C2){
         return false;
     }
 
-    for (auto ic=C1.cbegin(); ic != C1.end(); ++ic){
-        const blade b = ic->first;
-        if(C1[b] != C2[b]){
+    for(const auto &[b1, value1] : C1 ){
+        if(C2[b1] != value1){
             return false;
         }
     }
@@ -176,28 +171,27 @@ bool c_equal(clifford C1, clifford C2){
 clifford c_grade(const clifford &C, const NumericVector &n){
     clifford out;
     for(size_t i=0 ; i < (size_t) n.length() ; ++i){
-        for(auto ic=C.begin() ; ic != C.end() ; ++ic){
-            const blade b = ic->first;
-            if(b.count() == (size_t) n[i]){
-                out[b] = ic->second;
+        for(const auto& [b, value] : C){
+            if(b.count() == static_cast<size_t>(n[i])){
+                out[b] = value;
             }
         }
     }
     return out;
 }
 
-bool any_negative(const IntegerVector iv){
-  for(size_t j=0 ; j < (size_t) iv.size(); j++){
-    if(iv[j] < 0){
-      return(true);
+bool any_negative(const IntegerVector &iv){
+    for(const auto& value : iv){
+        if(value < 0){
+            return(true);
+        }
     }
-  }
-  return(false);
+    return(false);
 }
 
-bool any_too_big(const IntegerVector iv, const unsigned int m){
-  for(size_t j=0 ; j < (size_t) iv.size(); j++){
-      if((unsigned int) iv[j] > m){
+bool any_too_big(const IntegerVector &iv, const unsigned int &m){
+    for(const auto& value : iv){
+      if((unsigned int) value > m){
       return(true);
     }
   }
