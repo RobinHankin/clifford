@@ -259,6 +259,36 @@ as addition is commutative and associative.  The
   map.  Full details are given in~\cite{hankin2022_disordR}.
 
 
+\section{Outline of the computational method}
+
+A Clifford object is the formal sum of terms; a term is a basis blade
+with an an associated coefficient; sums are managed by an STL map.
+Scalar multiplication is distributive; addition is performed
+elementwise via a standard container iterator.
+
+The six ``ordinary'' products (that is, the first six products of
+Table~\ref{cliffprods}) are implemented using a standardised system.
+Distributivity means we only need consider the product of basis
+blades.
+
+To calculate the product of, say, $\ei{257}$ by $\ei{34}$, we first of
+all count the intersection of the set bits in the ranges $1\leqslant
+i\leq p$, $p<i\leq p+q$, and $i>p+q$ to determine whether a sign flip
+is required or to set the product to zero.  The different types of
+product have different rules for setting the product to zero (this is
+a little difficult to see at first glance; but taking the outer
+product as an example, $\displaystyle A\wedge
+B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+B\right\rangle_s\right\rangle_{s+r}$, we can see that any common set
+bits in the basis blades of $A$ and $B$ will reduce the grade of their
+product, thus by definition having non-empty intersection zeros the
+product).  We then write the product by juxtaposing the set bits to
+arrive at $\ei{25734}$; and then count the number of transpositions
+required to sort the set bits an arrive at $\ei{23457}$.  The boost
+library performs all these operations quickly and efficiently.  The
+coefficient of the product is just the product of the coefficient,
+modulo the sign.
+
 \section{The package in use}
 
 Suppose we specify that $\ei{i}\ei{i}=+1$,
@@ -874,41 +904,5 @@ products are given in table~\ref{cliffprods}.
   \end{center}
   \caption{\rule{0mm}{10mm} The Clifford products implemented in the\label{cliffprods} package}
   \end{table}
-
-
-\section{Outline of the computational method}
-
-A Clifford object is the formal sum of terms; a term is a basis blade
-with an an associated coefficient; sums are managed by an STL map.
-Scalar multiplication is distributive; addition is performed
-elementwise via a standard container iterator.
-
-The six ``ordinary'' products (that is, the first six products of
-Table~\ref{cliffprods}) are implemented using a standardised system.
-Distributivity means we only need consider the product of basis
-blades.
-
-To calculate the product of, say, $\ei{257}$ by $\ei{34}$, we first of
-all count the intersection of the set bits in the ranges $1\leqslant
-i\leq p$, $p<i\leq p+q$, and $i>p+q$ to determine whether a sign flip
-is required or to set the product to zero.  The different types of
-product have different rules for setting the product to zero (this is
-a little difficult to see at first glance; but taking the outer
-product as an example, $\displaystyle A\wedge
-B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-B\right\rangle_s\right\rangle_{s+r}$, we can see that any common set
-bits in the basis blades of $A$ and $B$ will reduce the grade of their
-product, thus by definition having non-empty intersection zeros the
-product).  We then write the product by juxtaposing the set bits to
-arrive at $\ei{25734}$; and then count the number of transpositions
-required to sort the set bits an arrive at $\ei{23457}$.  The boost
-library performs all these operations quickly and efficiently.  The
-coefficient of the product is just the product of the coefficient,
-modulo the sign.
-
-
-
-
-
 
 \end{document}
