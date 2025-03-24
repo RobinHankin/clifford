@@ -181,12 +181,7 @@ clifford c_grade(const clifford &C, const NumericVector &n){
 }
 
 bool any_negative(const IntegerVector &iv){
-    for(const auto& value : iv){
-        if(value < 0){
-            return(true);
-        }
-    }
-    return(false);
+    return std::any_of(iv.begin(), iv.end(), [](int x) { return x < 0; });
 }
 
 bool any_too_big(const IntegerVector &iv, const unsigned int &m){
