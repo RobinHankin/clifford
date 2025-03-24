@@ -168,12 +168,12 @@ Clifford algebras is part of a number of algebra systems including
 Sage~\cite{sagemath2019} and \textit{sympy}~\cite{sympy2017}.  Here I
 introduce the {\tt clifford} package, written in the R computing
 language~\cite{rcore2022}, which furnishes functionality for working
-with Clifford algebras.  \textcolor{blue}{The R language is easily
+with Clifford algebras.  The R language is easily
   augmented to manipulate symbolic mathematics and examples would
   include finite group theory~\cite{hankin2020_permutations}, Weyl
   algebra~\cite{hankin2022_weyl_arxiv}, and knot
   theory~\cite{hankin2023}.  As of 2024, no other R functionality for
-  Clifford algebra is available.}
+  Clifford algebra is available.
 
 Notation follows Snygg~\cite{snygg2010}.  The
 package is available on CRAN at
@@ -193,7 +193,6 @@ $\ei{i_1}\ei{i_2}\ldots\ei{i_r}$, $1\leqslant i_1<\cdots<i_r\leqslant
 n$.  We write this as $\ei{i_1\ldots i_r}$ for brevity.  The defining
 relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$ for $i\neq j$ and
 
-\textcolor{blue}{
 \begin{equation}\label{posdefcliff2}
 \ei{i}\ei{i} = \begin{cases}
     +1, & \hphantom{p+{}}1\leqslant i\leqslant p\\
@@ -201,33 +200,32 @@ relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$ for $i\neq j$ and
     0   & p+q < i\leqslant n.
   \end{cases}
 \end{equation}
-}
 
 The Clifford algebra ${\mathcal C}_{p,q}$ (other notations include
 $Cl(p,q)$) is then the algebra formed by $\mathbb{R}_{p,q}$ together
-with formal products of basis vectors. \textcolor{blue}{The value of
+with formal products of basis vectors.  The value of
   $n$ is suppressed in this notation in much the same way as the
   length of a numeric vector is ignorable in base R; but is
   implemented---by way of option {\tt maxdim}---as a controllable
-  option.}  One special case would be $p=q=0$, implying that
+  option.  One special case would be $p=q=0$, implying that
 $\ei{i}\ei{i}=0$ for $1\leqslant i\leqslant n$; geometric products
 become wedge products.
 
 \section{Computational implementation and {\tt disordR} discipline}
 
-\textcolor{blue}{ In standard Clifford terminology, a {\em blade} is a
+In standard Clifford terminology, a {\em blade} is a
   product of one-vectors (that is, members of $V$), and a {\em basis
-    blade} is a product of basis vectors.}
+    blade} is a product of basis vectors.
 
 The package represents basis blades using dynamic bitset objects from
-the {\tt boost} library~\textcolor{blue}{\cite{karlsson2005}}.  A
+the {\tt boost} library~\cite{karlsson2005}.  A
 bitset emulates an array of Boolean elements, but is optimized for
 space allocation and access/modification times.  The set bits specify
 the basis blades present in a term; using bitsets allows products to
 use fast Boolean operators.  An object such as $\ei{2}\ei{5}\ei{7}$
 [or $\ei{257}$] will be a bitset with bits 2, 5, and 7 set [note the
-  off-by-one issue].  \textcolor{blue}{More detail on the
-  implementation of products is given in Appendix B.}  Dynamic objects
+  off-by-one issue].  More detail on the
+  implementation of products is given in Appendix B.  Dynamic objects
 are needed here as the number of bits in the set is specified at
 runtime.  A {\tt clifford} object is an element of a Clifford algebra;
 this is set of basis blades, each with a real coefficient.  The {\tt
@@ -255,16 +253,16 @@ of blades, each multiplied by a coefficient.  One reason why the {\tt
   map} class is fast is that the order in which the keys are stored is
 undefined: the compiler may store them in the order which it regards
 as most propitious.  This is not an issue for the maps considered here
-as addition is commutative and associative.  \textcolor{blue}{The
+as addition is commutative and associative.  The
   package uses standard {\tt disordR} discipline, which efficiently
   exploits the fact that coefficients are stored as an {\em unordered}
   map.  Full details are given in~\cite{hankin2022_disordR}.
-}
+
 
 \section{The package in use}
 
-\textcolor{blue}{Suppose we specify that $\ei{i}\ei{i}=+1$,
-  $i\geqslant 1$ (the default in the package)} and want to work with
+Suppose we specify that $\ei{i}\ei{i}=+1$,
+  $i\geqslant 1$ (the default in the package) and want to work with
 Clifford object $1+2\ei{1}+3\ei{2}+4\ei{2}\ei{3}$.  In R idiom this
 would be
 
@@ -279,10 +277,10 @@ Element of a Clifford algebra, equal to
 \end{Schunk}
 
 Here we have used function {\tt e()} which takes an integer vector
-that specifies the term.  \textcolor{blue}{Note that the {\tt *}
+that specifies the term.  Note that the {\tt *}
   operator is ``overloaded''~\cite{stroustrup2013}: that is, it is
   sensitive to the class of object on either side, and in this case
-  {\tt e(i)} is a Clifford object.}  Addition and subtraction work as
+  {\tt e(i)} is a Clifford object.  Addition and subtraction work as
 expected:
 
 \begin{Schunk}
@@ -334,8 +332,8 @@ Element of a Clifford algebra, equal to
 In the above, we coerce a vector to a Clifford 1-vector.  The package
 includes many functions to create elements of Clifford algebras,
 including {\tt rcliff()}, a routine for generating
-\textcolor{blue}{simple random Clifford objects with small integer
-  coefficients}:
+simple random Clifford objects with small integer
+  coefficients:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -367,12 +365,12 @@ Element of a Clifford algebra, equal to
 \end{Soutput}
 \end{Schunk}
 
-\textcolor{blue}{Above, argument {\tt include.fewer} directs {\tt
+Above, argument {\tt include.fewer} directs {\tt
     rcliff()} to return a Clifford object that includes terms with
   grades lower than the specified {\tt g=5}; on the next line, {\tt
     elements()} is needed to coerce the disord-compliant output of
   {\tt grades()} to a normal R vector; full details are given
-  in~\cite{hankin2022_disordR}.}
+  in~\cite{hankin2022_disordR}.
 
 \section{Pseudo-Euclidean spaces}
 
@@ -398,9 +396,9 @@ scalar ( 1 )
 \end{Soutput}
 \end{Schunk}
 
-\textcolor{blue}{However, if we wish to consider $p=1$, $q=1$ [thus
+However, if we wish to consider $p=1$, $q=1$ [thus
     $\ei{1}^2=+1$, $\ei{2}^2=-1$], package idiom is to use the {\tt
-    signature()} function:}
+    signature()} function:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -553,8 +551,8 @@ inner product positive-definite:
 
 (internally the package sets the signature to {\tt
   .Machine\$integer.max}, a near-infinite integer).  With this,
-$\ei{i}\ei{i}=+1$ for any $i$.  \textcolor{blue}{For example, if
-  $i=53$ we have:}
+$\ei{i}\ei{i}=+1$ for any $i$.  For example, if
+  $i=53$ we have:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -580,8 +578,8 @@ A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s-r}\\
 A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}
 \end{eqnarray}
 
-\textcolor{blue}{(it is understood that $n<0$ implies $\left\langle
-  X\right\rangle_n=0$ for any Clifford object).}
+(it is understood that $n<0$ implies $\left\langle
+  X\right\rangle_n=0$ for any Clifford object).
 Package idiom for these would be {\tt A\%\_|\%B} and {\tt A\%|\_\%B}
 ---or {\tt lefttick(A,B)} and {\tt righttick(A,B)}---respectively.
 Thus:
@@ -757,11 +755,11 @@ available on CRAN at
 \verb+https://CRAN.R-project.org/package=clifford+ and development
 versions are hosted at github at
 \verb+https://github.com/RobinHankin/clifford+.  Further work might
-include \textcolor{blue}{implementation of spinor algebra (via
+include implementation of spinor algebra (via
   existing R-centric symbolic matrix
   functionality~\cite{hankin2023_jordan,hankin2006_onion}), or perhaps
   a more complete implementation of Clifford inverses as introduced
-  in~\cite{hitzer2017}.}
+  in~\cite{hitzer2017}.
 
 
 
@@ -771,7 +769,7 @@ include \textcolor{blue}{implementation of spinor algebra (via
 \appendix
 \section{Products and conjugations implemented in the package}
 
-\textcolor{blue}{
+
 The package implements a number of products and involutions.  The
 products are given in table~\ref{cliffprods}.
   An involution is a function that is its own inverse, or
@@ -856,11 +854,10 @@ products are given in table~\ref{cliffprods}.
       sensitive to the signature of the Clifford algebra \emph{and}
       the dimension of the underlying vector space.
       }
-}
+
   
 \begin{table}
   \begin{center}
-      {\color{blue}
     \begin{tabular}{lll}
         \hline\\
   Geometric product  & {\tt A*B = geoprod(A,B)}  &  $\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle B\right\rangle_s$ \\
@@ -874,15 +871,12 @@ products are given in table~\ref{cliffprods}.
     Euclidean product &{\tt A \%euc\% B = eucprod(A,B)} &  $\displaystyle A\star B= A\ast B^\dagger$\\
     \hline
     \end{tabular}
-    }
   \end{center}
   \caption{\rule{0mm}{10mm} The Clifford products implemented in the\label{cliffprods} package}
   \end{table}
 
 
 \section{Outline of the computational method}
-
-{\color{blue}
 
 A Clifford object is the formal sum of terms; a term is a basis blade
 with an an associated coefficient; sums are managed by an STL map.
@@ -910,7 +904,7 @@ arrive at $\ei{25734}$; and then count the number of transpositions
 required to sort the set bits an arrive at $\ei{23457}$.  The boost
 library performs all these operations quickly and efficiently.  The
 coefficient of the product is just the product of the coefficient,
-modulo the sign.  }
+modulo the sign.
 
 
 
