@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\newcommand{\cliff}[1]{\ensuremath{C\ell\left(#1\right)}}
+\newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
+\begin{document}
+
+Manuscript Number: AACA-24-00133
+
+\section*{Rebuttal to reviewers' comments}
+
+Below, I reproduce the comments made to me on 23 March 2025.  I have
+retrofitted the email to \LaTeX, and made minor changes to the
+typesetting, but have not changed the sense of the comments.  Replies
+to the issues, and my own observations and general comments, are in
+\textcolor{blue}{blue}.  I have indicated changes to the manuscript
+where appropriate.\\
+
+\vspace*{1cm}
+
+\noindent\textcolor{blue}{{\bf Executive Summary.\ \ } All the
+  comments are perfectly reasonable and I have implemented them to the
+  best of my ability.  I believe the manuscript is much improved as a
+  result, and recommend it to you.}
+\vspace*{1cm}
+
+\begin{itemize}
+\item give more details about the data structure and products.  For
+  example, how the author's data structure handle $k$-vectors,
+  $k$-blades, general multivectors with a focus on computational and
+  memory complexity.  This is important to know for the GA
+  implementation community.
+
+\item give a comparison with state-of-the-art methods.  The author's
+  package is the only one written in R but it is not the only GA
+  implementation and it is not the only symbolic computation
+  package.  For example, other methods use the bitset representation of
+  blades (like Gaigen), this would be good to recall this in the
+  paper.  This comparison would provide valuable context and highlight
+  the package's contributions.
+  
+\item add some experimental results on how to use the package e.g. in
+  computer graphics (discrete differential geometry) or physics or
+  statistics.  In the following paragraphs, I explain the above points
+  in more details
+
+\item Section 2 should contain more details about the data structure
+  used: the potential problems of using an associative array (time
+  access).
+
+\item Appendix B should not be in the appendix.  It is a valuable
+  addition to the Section 2.
+  
+\item The presented state-of-art methods should include other symbolic
+  implementation like Clifford implementation (Python), Gaalop..., see
+  [a,b].
+
+\item In section 2, "The package uses standard disordR discipline,
+  which efficiently exploits the fact that coefficients are stored as
+  an unordered map.  Full details are given in [6]".  The unordered
+  map data structure should be described, the reader should not have
+  to look at [6] to understand the authors multivector data
+  structure. Please complete this section.
+
+\item Since the used data structure is an unordered map, the
+  computational cost of finding all the blades of a given grade is not
+  a $\mathcal{O}(\log(n))$ operation.  The author should add more
+  details about the time complexity of operations like computing the
+  outer products of a $k$-vector and a $k'$-vector.  These kind of
+  operations are often used in Conformal Geometric Algebra.
+
+\item About Section 8, the author could give an example of an
+  application in either differential geometry/CG/CV and how it is
+  written with clifford, see [c,d].
+
+\end{itemize}
+\end{document}
