@@ -249,9 +249,13 @@ doubles.  \textcolor{blue}{The {\tt STL map} class is used for
   nonzero coefficients.  For example, elements of any clifford algebra
   on $V=\mathbb{R}^n$ will have at most $2^n$ non-zero coefficients,
   searchable and manipulable in time $\mathcal{O}(n)$; further, any
-  $k$-vector will have ${n\choose k}\lesssim n^{-1/2}2^n/\sqrt{n}$
-  possible coefficients, so operations will again be
-  $\mathcal{O}(n)$.}  Similar techniques are used in the {\tt spray}
+  $k$-vector will have ${n\choose k}\lesssim 2^n/\sqrt{n}$ possible
+  coefficients, so operations will again be $\mathcal{O}(n)$.  The
+  various products presented in Table~\ref{cliffprods} are more
+  complicated but the geometric product of two $k$-vectors will
+  involve $\lesssim\mathcal{O}(4^n/n)$ (scalar) multiplications, and
+  the outer product will involve $\lesssim\mathcal{O}(2^n/\sqrt{n})$
+  multiplications.}  Similar techniques are used in the {\tt spray}
 and {\tt mvp} packages~\cite{hankin2022_mvp,hankin2022_spray} which
 furnish functionality for multivariate polynomials.
 

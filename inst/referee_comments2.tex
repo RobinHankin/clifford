@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amssymb}
 \newcommand{\cliff}[1]{\ensuremath{C\ell\left(#1\right)}}
 \newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 \begin{document}
@@ -34,7 +36,8 @@ where appropriate.\\
 \textcolor{blue}{Discussion added at the end of section 2.  In short,
   insertion, deletion, and lookup are all $\mathcal{O}(\log n)$
   operations and I interpret this for $k$-vectors as suggested by the
-  review}
+  review.  I also give some $\mathcal{O}()$ results for geometric and
+  outer products as suggested.}
 
 \item give a comparison with state-of-the-art methods.  The author's
   package is the only one written in R but it is not the only GA
@@ -43,6 +46,8 @@ where appropriate.\\
   blades (like Gaigen), this would be good to recall this in the
   paper.  This comparison would provide valuable context and highlight
   the package's contributions.
+
+\textcolor{blue}{Gaigen is}
   
 \item add some experimental results on how to use the package e.g. in
   computer graphics (discrete differential geometry) or physics or
@@ -84,4 +89,22 @@ where appropriate.\\
   written with clifford, see [c,d].
 
 \end{itemize}
+
+\section*{References}
+
+\begin{description}
+\item{[a]} \url{https://github.com/ga/awesome-geometric-algebra}
+\item{[b]} Hildenbrand, D., Pitt, J., \& Koch, A. (2010).
+  Gaalop---high performance parallel computing based on conformal
+  geometric algebra.  Geometric Algebra Computing: in Engineering and
+  Computer Science, 477-494.
+\item{[c]} Breuils, S., Nozick, V., Sugimoto, A., \& Hitzer,
+  E. (2018).  Quadric conformal geometric algebra of
+  $\mathbb{R}^{9,6}$.  Advances in Applied Clifford Algebras, 28,
+  1-16.
+\item{[d]} Hildenbrand, D. (2012, September).  Foundations of geometric
+  algebra computing.  In AIP Conference Proceedings (Vol. 1479, No. 1,
+  pp. 27-30).  American Institute of Physics.
+\end{description}
+
 \end{document}
