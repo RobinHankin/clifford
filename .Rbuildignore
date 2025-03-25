@@ -19,6 +19,7 @@ inst/code.png
 inst/referees_comments.tex
 inst/hankin_aca_revision.tex
 inst/hankin_aca.tex
+inst/clifford.bib
 ^.github$
 ^.devcontainer$
 ^codecov\.yml$

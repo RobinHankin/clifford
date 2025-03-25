@@ -18,7 +18,6 @@ inst/Sweave.sty
 inst/arxiv.sty
 inst/birkjour.cls
 inst/bjourdoc.tex
-inst/clifford.bib
 inst/clifford.png
 inst/clifford_arxiv.tex
 inst/dual_numbers_clifford.R
