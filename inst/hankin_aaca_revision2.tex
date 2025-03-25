@@ -185,13 +185,14 @@ versions are hosted at github at
 \newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 
 
-Suppose we consider $V$, an $n$-dimensional vector space spanned by basis vectors
-$\ei{1},\ldots,\ei{n}$.  Then an arbitrary vector in this space will
-be $a^1\ei{1}+\cdots+a^n\ei{n}$.  The associated Clifford algebra will
-be of dimension $2^n$, spanned by formal products
-$\ei{i_1}\ei{i_2}\ldots\ei{i_r}$, $1\leqslant i_1<\cdots<i_r\leqslant
-n$.  We write this as $\ei{i_1\ldots i_r}$ for brevity.  The defining
-relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$ for $i\neq j$ and
+Suppose we consider $V=\mathbb{R}^n$, an $n$-dimensional vector space
+spanned by basis vectors $\ei{1},\ldots,\ei{n}$.  Then an arbitrary
+vector in this space will be $a^1\ei{1}+\cdots+a^n\ei{n}$.  The
+associated Clifford algebra will be of dimension $2^n$, spanned by
+formal products $\ei{i_1}\ei{i_2}\ldots\ei{i_r}$, $1\leqslant
+i_1<\cdots<i_r\leqslant n$.  We write this as $\ei{i_1\ldots i_r}$ for
+brevity.  The defining relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$
+for $i\neq j$ and
 
 \begin{equation}\label{posdefcliff2}
 \ei{i}\ei{i} = \begin{cases}
@@ -211,7 +212,7 @@ with formal products of basis vectors.  The value of
 $\ei{i}\ei{i}=0$ for $1\leqslant i\leqslant n$; geometric products
 become wedge products.
 
-\section{Computational implementation and {\tt disordR} discipline}
+\section{Computational implementation}
 
 In standard Clifford terminology, a {\em blade} is a
   product of one-vectors (that is, members of $V$), and a {\em basis
@@ -242,11 +243,18 @@ typedef map<blade, long double> clifford;
 A ``map'' is a sorted associative container that contains key-value
 pairs with unique keys~\cite{musser2009}.  A {\tt clifford} object
 thus maps dynamic bitsets (basis blades) to coefficients, here long
-doubles.  The {\tt STL map} class is used for efficiency: search and
-insertion operations have only logarithmic complexity.  Similar
-techniques are used in the {\tt spray} and {\tt mvp}
-packages~\cite{hankin2022_mvp,hankin2022_spray} which furnish
-functionality for multivariate polynomials.
+doubles.  \textcolor{blue}{The {\tt STL map} class is used for
+  efficiency: search, and insertion/deletion operations are
+  consistently $\mathcal{O}(\log m)$, where $m$ is the number of
+  nonzero coefficients.  For example, elements of any clifford algebra
+  on $V=\mathbb{R}^n$ will have at most $2^n$ non-zero coefficients,
+  searchable and manipulable in time $\mathcal{O}(n)$; further, any
+  $k$-vector will have ${n\choose k}\lesssim n^{-1/2}2^n/\sqrt{n}$
+  possible coefficients, so operations will again be
+  $\mathcal{O}(n)$.}  Similar techniques are used in the {\tt spray}
+and {\tt mvp} packages~\cite{hankin2022_mvp,hankin2022_spray} which
+furnish functionality for multivariate polynomials.
+
 
 
 
