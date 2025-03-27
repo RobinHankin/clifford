@@ -167,18 +167,32 @@ github.
   \end{center}
 \end{wrapfigure}
 Clifford algebras~\cite{hestenes1987} are interesting and instructive
-mathematical objects.  The class has a rich structure that has varied
-applications to physics.  Computational support for working with the
-Clifford algebras is part of a number of algebra systems including
-Sage~\cite{sagemath2019} and \textit{sympy}~\cite{sympy2017}.  Here I
-introduce the {\tt clifford} package, written in the R computing
-language~\cite{rcore2022}, which furnishes functionality for working
-with Clifford algebras.  The R language is easily
-  augmented to manipulate symbolic mathematics and examples would
-  include finite group theory~\cite{hankin2020_permutations}, Weyl
-  algebra~\cite{hankin2022_weyl_arxiv}, and knot
-  theory~\cite{hankin2023}.  As of 2024, no other R functionality for
-  Clifford algebra is available.
+mathematical objects, with a rich structure that has varied
+applications to physics.  \textcolor{blue}{Clifford algebra has
+  attracted much computational support from a very wide range of
+  perspectives~\cite{burns2020}.  Examples would include purely
+  symbolic support for well-established propietary systems such as
+  mathematica~\cite{aragon2018} or Maple~\cite{ablamowicz2005}
+  matlab~\cite{my_arse}; or open-source systems such as
+  sage~\cite{sagemath2019,scrimshaw2022} or
+  \textit{sympy}~\cite{sympy2017}.  Computational support for Clifford
+  algebras can take many forms: Gaigen~\cite{fontijne2006} and
+  Gaalop~\cite{hildenbrand2010}, for example, generates C++
+  implementations of geometric algebra; other}
+
+  computational \cite{breuils2018}
+
+
+Here I introduce the {\tt clifford} package, written in the R
+computing language~\cite{rcore2022}, which furnishes functionality for
+working with Clifford algebras.  The R language is easily augmented to
+manipulate symbolic mathematics and examples would include finite
+group theory~\cite{hankin2020_permutations}, Weyl
+algebra~\cite{hankin2022_weyl_arxiv}, and knot
+theory~\cite{hankin2023}.  As of 2024, no other R functionality for
+Clifford algebra is available.  Advantages of working with the R
+language include extensive stastistical capabilities, platform
+independence, reproducible research.
 
 Notation follows Snygg~\cite{snygg2010}.  The
 package is available on CRAN at
@@ -263,9 +277,6 @@ doubles.  \textcolor{blue}{The {\tt STL map} class is used for
   multiplications.}  Similar techniques are used in the {\tt spray}
 and {\tt mvp} packages~\cite{hankin2022_mvp,hankin2022_spray} which
 furnish functionality for multivariate polynomials.
-
-
-
 
 \section{Outline of the computational method}
 
