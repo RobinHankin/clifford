@@ -43,6 +43,11 @@
 %%%Clifford algebra macros
 \newcommand{\cl}{C \kern -0.1em \ell}  %%Clifford algebra
 
+\newcommand{\einf}{\mathbf{e}_\infty}
+\newcommand{\ezero}{\mathbf{e}_0}
+
+
+
 \DeclareMathOperator{\JJ}{\mathbin{\raisebox{0.25ex}%
                        {\mbox{\scriptsize$
                        \rm\vphantom{I}%
@@ -276,7 +281,7 @@ blades.
 
 To calculate the product of, say, $\ei{257}$ by $\ei{34}$, we first of
 all count the intersection of the set bits in the ranges $1\leqslant
-i\leq p$, $p<i\leq p+q$, and $i>p+q$ to determine whether a sign flip
+i\leqslant p$, $p<i\leqslant p+q$, and $i >p+q$ to determine whether a sign flip
 is required or to set the product to zero.  The different types of
 product have different rules for setting the product to zero (this is
 a little difficult to see at first glance; but taking the outer
@@ -780,6 +785,113 @@ Element of a Clifford algebra, equal to
 
 in agreement with \cite{ablamowicz2012}, although the terms appear in
 a different order.
+
+
+\section{\textcolor{blue}{Case study: spheres in conformal geometric algebra}}
+
+\textcolor{blue}{
+Perwass~\cite{perwass2009} shows that geometric entities such as
+circles and spheres in $\mathbb{R}^3$ may be represented as points in
+a conformal geometric algebra.  To use the package, we consider the
+three Euclidean basis vectors $\mathbf{e}_1$, $\mathbf{e}_2$,
+$\mathbf{e}_3$ together with two additional basis vectors
+$\mathbf{e}_+$ and $\mathbf{e}_-$ obeying $\mathbf{e}_+^2=1$,
+$\mathbf{e}_-^2=-1$, $\mathbf{e}_+\cdot\mathbf{e}_-=0$.
+Hildenbrand~\cite{hildenbrand2013}
+defines~$\ezero=\left(\mathbf{e}_--\mathbf{e}_+\right)/2$
+and~$\einf=\mathbf{e}_- +\mathbf{e}_+$, representing ``the origin''
+and ``the point at infinity'' respectively.  It is straightforward to
+implement these objects using the package:}
+\begin{Schunk}
+\begin{Sinput}
+signature(4,1)
+eplus <- e(4)
+eminus <- e(5)
+e0 <- (eminus - eplus)/2
+einf <- eminus + eplus
+\end{Sinput}
+\end{Schunk}
+%
+\textcolor{blue}{
+Above we use package idiom to specify $\cl(4,1)$ with Euclidean basis
+vectors $\mathtt{e(1),e(2),e(3)}$, and define conformal objects $e_+,
+e_-, e_0,e_\infty$ in terms of {\tt e(4)} and {\tt e(5)}.  Perwass
+shows that a point $\bx=(x_1,x_2,x_3)$ may be projectively extended to
+$P\in\cl(4,1)$ by the expression $P = \bx+(\bx\cdot\bx)\einf/2
++\ezero$.  Package idiom for this is straightforward:}
+\begin{Schunk}
+\begin{Sinput}
+point <- function(x){as.1vector(x) + sum(x^2)*einf/2 + e0}
+point(c(5, -4, 7))
+\end{Sinput}
+\begin{Soutput}
+Element of a Clifford algebra, equal to
++ 5e_1 - 4e_2 + 7e_3 + 44.5e_4 + 45.5e_5
+\end{Soutput}
+\end{Schunk}
+%
+\textcolor{blue}{
+Perwass goes on to show that a sphere $S$ may be specified in terms of
+four (conformal) points that lie on it:
+%
+\begin{equation}
+  S = P_1\wedge P_2\wedge P_3\wedge P_4/ I
+\end{equation}
+%
+where the $P_i$ are points that lie on the sphere and $I$ is the unit
+pseudoscalar.  Here I demonstrate the package's capabilities by
+finding the unique sphere that passes through four points.  This is
+possible, but difficult, using standard Euclidean methods; but is a
+one-liner in conformal geometry.  Below, I specify the center and
+radius of a sphere in $\mathbb{R}^3$, choose four points on the
+sphere, and numerically reconstruct the center and radius from the
+resulting conformal sphere:}
+%
+\begin{Schunk}
+\begin{Sinput}
+center <- c(3, -5, 6)
+radius <- 3
+point_on_sphere  <- function(center, radius, vec){
+  point(center + radius*vec/sqrt(sum(vec^2)))
+}
+
+p1 <- point_on_sphere(center, radius, c(1, 4, 2))
+p2 <- point_on_sphere(center, radius, c(6,-5, 3))
+p3 <- point_on_sphere(center, radius, c(0, 4, 0))
+p4 <- point_on_sphere(center, radius, c(1, 0, 0))
+
+S <- p1 ^ p2 ^ p3 ^ p4 / pseudoscalar()            
+\end{Sinput}
+\end{Schunk}
+%
+\textcolor{blue}{
+Then we extract the radius and center and compare with the known
+values of $3$ and $(3,-5,6)$ respectively.  The radius $r$ is given by
+$r^2 = \left(\frac{S}{-S\cdot\einf}\right)^2$ and the center by
+scaling the sandwich product $S\einf S$.}
+
+\begin{Schunk}
+\begin{Sinput}
+> sqrt(drop((S / drop(S %.% einf))^2))
+\end{Sinput}
+\begin{Soutput}
+[1]  3
+\end{Soutput}
+\begin{Sinput}
+S_sandwich <- S * einf * S 
+scaling_factor <- -zap(S_sandwich %.% (e(4) + e(5)))
+getcoeffs(zap(S_sandwich / scaling_factor), 1:3)
+\end{Sinput}
+\begin{Soutput}
+[1]  3 -5 6
+\end{Soutput}
+\end{Schunk}
+%
+\textcolor{blue}{
+Above, we use function {\tt zap()} which cancels small coefficients
+which appear due to numerical error; apart from that, we see that the
+radius and center of the original sphere are reconstituted accurately
+and efficiently, using natural R idiom.}
 
 \section{Conclusions and further work}
 
