@@ -180,7 +180,6 @@ applications to physics.  \textcolor{blue}{Clifford algebra has
   implementations of geometric algebra; CliffoSor~\cite{franchini2008}
   offers direct hardware support for Clifford operators.  }
 
-
 Here I introduce the {\tt clifford} package, written in the R
 computing language~\cite{rcore2022}, which furnishes functionality for
 working with Clifford algebras.  The R language is easily augmented to
@@ -189,27 +188,23 @@ group theory~\cite{hankin2020_permutations}, Weyl
 algebra~\cite{hankin2022_weyl_arxiv}, and knot
 theory~\cite{hankin2023}.  As of 2024, no other R functionality for
 Clifford algebra is available.  Advantages of working with the R
-language include extensive stastistical capabilities, platform
-independence, reproducible research.
-
-Notation follows Snygg~\cite{snygg2010}.  The
-package is available on CRAN at
+language include extensive statistical capabilities, platform
+independence, and support for reproducible research.  The package is
+available on CRAN at
 \verb+https://CRAN.R-project.org/package=clifford+ and development
 versions are hosted at github at
 \verb+https://github.com/RobinHankin/clifford+.
 
-
 \newcommand{\ei}[1]{\ensuremath{{\bf e}_{#1}}}
 
-
-Suppose we consider $V=\mathbb{R}^n$, an $n$-dimensional vector space
-spanned by basis vectors $\ei{1},\ldots,\ei{n}$.  Then an arbitrary
-vector in this space will be $a^1\ei{1}+\cdots+a^n\ei{n}$.  The
-associated Clifford algebra will be of dimension $2^n$, spanned by
-formal products $\ei{i_1}\ei{i_2}\ldots\ei{i_r}$, $1\leqslant
-i_1<\cdots<i_r\leqslant n$.  We write this as $\ei{i_1\ldots i_r}$ for
-brevity.  The defining relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$
-for $i\neq j$ and
+Notation follows Snygg~\cite{snygg2010}.  We consider
+$V=\mathbb{R}^n$, an $n$-dimensional vector space spanned by basis
+vectors $\ei{1},\ldots,\ei{n}$.  Then an arbitrary vector in this
+space will be $a^1\ei{1}+\cdots+a^n\ei{n}$.  The associated Clifford
+algebra will be of dimension $2^n$, spanned by formal products
+$\ei{i_1}\ei{i_2}\ldots\ei{i_r}$, $1\leqslant i_1<\cdots<i_r\leqslant
+n$.  We write this as $\ei{i_1\ldots i_r}$ for brevity.  The defining
+relations would be $\ei{i}\ei{j}=-\ei{j}\ei{i}$ for $i\neq j$ and
 
 \begin{equation}\label{posdefcliff2}
 \ei{i}\ei{i} = \begin{cases}
@@ -323,14 +318,14 @@ Element of a Clifford algebra, equal to
 + 1 + 2e_1 + 3e_2 + 4e_23
 \end{Soutput}
 \end{Schunk}
-
+%
 Here we have used function {\tt e()} which takes an integer vector
 that specifies the term.  Note that the {\tt *}
   operator is ``overloaded''~\cite{stroustrup2013}: that is, it is
   sensitive to the class of object on either side, and in this case
   {\tt e(i)} is a Clifford object.  Addition and subtraction work as
 expected:
-
+%
 \begin{Schunk}
 \begin{Sinput}
 > y <- e(1) + 55*e(1:5)
@@ -341,10 +336,10 @@ Element of a Clifford algebra, equal to
 + 1 + 1e_1 + 3e_2 + 4e_23 - 55e_12345
 \end{Soutput}
 \end{Schunk}
-
+%
 In the above, see how the $\ei{1}$ term has vanished.  We can
 multiply Clifford elements using natural R idiom:
->
+
 \begin{Schunk}
 \begin{Sinput}
 > x*x
@@ -354,7 +349,7 @@ Element of a Clifford algebra, equal to
 - 2 + 4e_1 + 6e_2 + 8e_23 + 16e_123
 \end{Soutput}
 \end{Schunk}
-
+%
 (Multiplication that Snygg denotes by juxtaposition is here indicated
 with a {\tt *}).  We can consider arbitrarily high dimensional data:
 
@@ -376,7 +371,7 @@ Element of a Clifford algebra, equal to
 6e_6 - 12e_16 - 18e_26 + 24e_236 + 7e_7 - 14e_17 - 21e_27 + 28e_237
 \end{Soutput}
 \end{Schunk}
-
+%
 In the above, we coerce a vector to a Clifford 1-vector.  The package
 includes many functions to create elements of Clifford algebras,
 including {\tt rcliff()}, a routine for generating
@@ -392,7 +387,7 @@ Element of a Clifford algebra, equal to
 + 5 - 5e_1 - 1e_4 + 4e_24 + 3e_5 + 6e_6 - 2e_26 - 4e_36 - 3e_1246
 \end{Soutput}
 \end{Schunk}
-
+%
 The defaults for {\tt rcliff()} specify that the object is a sum of
 grade-4 terms but this can be altered:
 
@@ -412,7 +407,7 @@ Element of a Clifford algebra, equal to
  [1] 0 1 1 4 1 3 4 3 4 5
 \end{Soutput}
 \end{Schunk}
-
+%
 Above, argument {\tt include.fewer} directs {\tt
     rcliff()} to return a Clifford object that includes terms with
   grades lower than the specified {\tt g=5}; on the next line, {\tt
@@ -443,7 +438,7 @@ Element of a Clifford algebra, equal to
 scalar ( 1 )
 \end{Soutput}
 \end{Schunk}
-
+%
 However, if we wish to consider $p=1$, $q=1$ [thus
     $\ei{1}^2=+1$, $\ei{2}^2=-1$], package idiom is to use the {\tt
     signature()} function:
@@ -465,7 +460,7 @@ Element of a Clifford algebra, equal to
 scalar ( -1 )
 \end{Soutput}
 \end{Schunk}
-
+%
 Suppose we wish to use a signature $+++-$, corresponding to the
 Minkowski metric in special relativity; this would be indicated in
 package idiom by {\tt signature(3,1)}.  Note that the clifford objects
@@ -478,7 +473,7 @@ operation {\tt *}.
 > y <- rcliff(d=4,g=3,include.fewer=TRUE)
 \end{Sinput}
 \end{Schunk}
-
+%
 Then we may multiply these two clifford objects using either the
 default positive-definite inner product, or the Minkowski metric:
 
@@ -501,7 +496,7 @@ Element of a Clifford algebra, equal to
 2e_4 - 136e_24 - 40e_124 - 15e_34 + 15e_134 - 21e_234 - 20e_1234
 \end{Soutput}
 \end{Schunk}
-
+%
 In the above, see how the products are different using the two inner
 products.  
 
@@ -523,7 +518,7 @@ zero inner product.  Package idiom is to use a zero signature:
 [1] TRUE
 \end{Soutput}
 \end{Schunk}
-
+%
 This is a somewhat clunky way of reproducing the functionality of the
 {\tt stokes} package~\cite{hankin2022_stokes_arxiv}.  To create
 example objects illustrating this feature of the package, we use {\tt
@@ -538,9 +533,9 @@ Element of a Clifford algebra, equal to
 + 3e_123 + 4e_237
 \end{Soutput}
 \end{Schunk}
-
+%
 (above we see how {\tt clifford()} takes a list of basis blades and a
-vector of coefficients).  We may take the wedge prduct of {\tt x} with
+vector of coefficients).  We may take the wedge product of {\tt x} with
 another object {\tt y}, created in the same way:
 
 \begin{Schunk}
@@ -553,7 +548,7 @@ Element of a Clifford algebra, equal to
 + 9e_123456 - 8e_123457 - 12e_234567
 \end{Soutput}
 \end{Schunk}
-
+%
 then the {\tt stokes} idiom for this would be:
 
 \begin{Schunk}
@@ -585,7 +580,6 @@ then the {\tt stokes} idiom for this would be:
 \end{Soutput}
 \end{Schunk}
 
-
 \section{Positive-definite inner product}
 
 Function {\tt signature()} takes an infinite argument to make the
@@ -596,7 +590,7 @@ inner product positive-definite:
 > signature(Inf)
 \end{Sinput}
 \end{Schunk}
-
+%
 (internally the package sets the signature to {\tt
   .Machine\$integer.max}, a near-infinite integer).  With this,
 $\ei{i}\ei{i}=+1$ for any $i$.  For example, if
@@ -625,7 +619,7 @@ A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{s-r}\\
 \displaystyle A\lfloor B = \sum_{r,s}\left\langle\left\langle
 A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_{r-s}
 \end{eqnarray}
-
+%
 (it is understood that $n<0$ implies $\left\langle
   X\right\rangle_n=0$ for any Clifford object).
 Package idiom for these would be {\tt A\%\_|\%B} and {\tt A\%|\_\%B}
@@ -666,7 +660,7 @@ Element of a Clifford algebra, equal to
 30e_5 - 40e_15 + 6e_146 - 14e_56 + 12e_1456
 \end{Soutput}
 \end{Schunk}
-
+%
 One thing to be wary of is the order of operations.  Thus
 $\ei{2}\rfloor\ei{12}=-\ei{1}$ (in a positive-definite space) but
 
@@ -679,7 +673,7 @@ Element of a Clifford algebra, equal to
 the zero clifford element (0)
 \end{Soutput}
 \end{Schunk}
-
+%
 because this is parsed as $(\ei{2}\rfloor\ei{1})\ei{2}=0\ei{2}=0$.  To
 evaluate this as intended we need to include brackets:
 
@@ -692,7 +686,7 @@ Element of a Clifford algebra, equal to
 - 1e_1
 \end{Soutput}
 \end{Schunk}
-
+%
 although in this case it might be preferable to create the terms directly:
 
 \begin{Schunk}
@@ -705,7 +699,6 @@ Element of a Clifford algebra, equal to
 \end{Soutput}
 \end{Schunk}
 
-
 \subsection{Numerical verification of left and right inner product identities}
 
 Chisholm gives a number of identities for these products including
@@ -715,7 +708,7 @@ Chisholm gives a number of identities for these products including
   A\rfloor(B\rfloor C) &=& (A\wedge B)\rfloor C\\
   A\lfloor(B\wedge  C) &=& (A\lfloor B)\lfloor C
 \end{eqnarray}
-
+%
 In package idiom:
 
 \begin{Schunk}
@@ -739,6 +732,7 @@ In package idiom:
 [1] TRUE
 \end{Soutput}
 \end{Schunk}
+
 \section{Higher dimensional spaces}
 
 Ab\l{}amowicz and Fauser~\cite{ablamowicz2012} consider
@@ -755,7 +749,7 @@ Firstly we change the default print method slightly:
 > options("basissep" = ",")
 \end{Sinput}
 \end{Schunk}
-
+%
 (this separates the subscripts of the basis vectors with a comma,
 which is useful for clarity if $n>9$).  We then define clifford
 elements $x,y$:
@@ -776,7 +770,7 @@ Element of a Clifford algebra, equal to
 - 1 + 4e_1,2,3,7 - 3e_1,4,6,7 + 1e_1,5,6,8
 \end{Soutput}
 \end{Schunk}
-
+%
 Their geometric product is given in the package as
 
 \begin{Schunk}
@@ -791,7 +785,7 @@ Element of a Clifford algebra, equal to
 10e_1,5,7,8,10
 \end{Soutput}
 \end{Schunk}
-
+%
 in agreement with \cite{ablamowicz2012}, although the terms appear in
 a different order.
 
@@ -882,7 +876,7 @@ scaling the sandwich product $S\einf S$.}
 
 \begin{Schunk}
 \begin{Sinput}
-> sqrt(drop((S / drop(S %.% einf))^2))
+sqrt(drop((S / drop(S %.% einf))^2))
 \end{Sinput}
 \begin{Soutput}
 [1]  3
