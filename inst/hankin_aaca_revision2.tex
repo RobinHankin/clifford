@@ -609,9 +609,9 @@ scalar ( 1 )
 
 \section{Left and right contractions}
 
-\cite{dorst2002} defines the left contraction $A\rfloor B$ and right
-contraction $A\lfloor B$ (\cite{chisholm2012} calls these left and
-right inner products) as follows:
+Dorst~\cite{dorst2002} defines the left contraction $A\rfloor B$ and
+right contraction $A\lfloor B$ (\cite{chisolm2012} calls these left
+and right inner products) as follows:
 
 \begin{eqnarray}
 \displaystyle A\rfloor B = \sum_{r,s}\left\langle\left\langle
@@ -701,7 +701,7 @@ Element of a Clifford algebra, equal to
 
 \subsection{Numerical verification of left and right inner product identities}
 
-Chisholm gives a number of identities for these products including
+Chisolm gives a number of identities for these products including
 
 \begin{eqnarray}
   A\rfloor(B\lfloor C) &=& (A\rfloor B)\lfloor C\\
@@ -818,11 +818,13 @@ einf <- eminus + eplus
 %
 \textcolor{blue}{
 Above we use package idiom to specify $\cl(4,1)$ with Euclidean basis
-vectors $\mathtt{e(1),e(2),e(3)}$, and define conformal objects $e_+,
-e_-, e_0,e_\infty$ in terms of {\tt e(4)} and {\tt e(5)}.  Perwass
-shows that a point $\bx=(x_1,x_2,x_3)$ may be projectively extended to
-$P\in\cl(4,1)$ by the expression $P = \bx+(\bx\cdot\bx)\einf/2
-+\ezero$.  Package idiom for this is straightforward:}
+vectors {\tt e(1)}, {\tt e(2)}, {\tt e(3)}, and define conformal
+objects $e_+, e_-, e_0,e_\infty$ in terms of {\tt e(4)} and {\tt
+  e(5)}.  Perwass shows that a point $\bx=(x_1,x_2,x_3)$ may be
+projectively extended to $P\in\cl(4,1)$ by the expression $P =
+\bx+(\bx\cdot\bx)\einf/2 +\ezero$.  Package idiom for this is
+straightforward:}
+
 \begin{Schunk}
 \begin{Sinput}
 point <- function(x){as.1vector(x) + sum(x^2)*einf/2 + e0}
@@ -935,7 +937,7 @@ products are given in table~\ref{cliffprods}.
   \itemize{
     \item The {\bf reverse} ${A^\sim}$ is given by {\tt rev()} (both Perwass
       and Dorst use a tilde, as in ${\tilde{A}}$ or ${A^\sim}$.
-      However, both Hestenes and Chisholm use a dagger, as in
+      However, both Hestenes and Chisolm use a dagger, as in
       ${A^\dagger}$.  Here, I use Perwass's notation).  The reverse of
       a term written as a product of basis vectors is simply the
       product of the same basis vectors but written in reverse order.
