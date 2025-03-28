@@ -807,12 +807,12 @@ and ``the point at infinity'' respectively.  It is straightforward to
 implement these objects using the package:}
 \begin{Schunk}
 \begin{Sinput}
-options("maxdim" = 5)
-signature(4,1)
-eplus <- e(4)
-eminus <- e(5)
-e0 <- (eminus - eplus)/2
-einf <- eminus + eplus
+> options("maxdim" = 5)
+> signature(4,1)
+> eplus <- e(4)
+> eminus <- e(5)
+> e0 <- (eminus - eplus)/2
+> einf <- eminus + eplus
 \end{Sinput}
 \end{Schunk}
 %
@@ -827,8 +827,8 @@ straightforward:}
 
 \begin{Schunk}
 \begin{Sinput}
-point <- function(x){as.1vector(x) + sum(x^2)*einf/2 + e0}
-point(c(5, -4, 7))
+> point <- function(x){as.1vector(x) + sum(x^2)*einf/2 + e0}
+> point(c(5, -4, 7))
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
@@ -855,18 +855,18 @@ resulting conformal sphere:}
 %
 \begin{Schunk}
 \begin{Sinput}
-center <- c(3, -5, 6)
-radius <- 3
-point_on_sphere  <- function(center, radius, vec){
+> center <- c(3, -5, 6)
+> radius <- 3
+> point_on_sphere  <- function(center, radius, vec){
   point(center + radius*vec/sqrt(sum(vec^2)))
 }
 
-p1 <- point_on_sphere(center, radius, c(1, 4, 2))
-p2 <- point_on_sphere(center, radius, c(6,-5, 3))
-p3 <- point_on_sphere(center, radius, c(0, 4, 0))
-p4 <- point_on_sphere(center, radius, c(1, 0, 0))
+> p1 <- point_on_sphere(center, radius, c(1, 4, 2))
+> p2 <- point_on_sphere(center, radius, c(6,-5, 3))
+> p3 <- point_on_sphere(center, radius, c(0, 4, 0))
+> p4 <- point_on_sphere(center, radius, c(1, 0, 0))
 
-S <- p1 ^ p2 ^ p3 ^ p4 / pseudoscalar()            
+> S <- p1 ^ p2 ^ p3 ^ p4 / pseudoscalar()            
 \end{Sinput}
 \end{Schunk}
 %
@@ -878,15 +878,15 @@ scaling the sandwich product $S\einf S$.}
 
 \begin{Schunk}
 \begin{Sinput}
-sqrt(drop((S / drop(S %.% einf))^2))
+> sqrt(drop((S / drop(S %.% einf))^2))
 \end{Sinput}
 \begin{Soutput}
 [1]  3
 \end{Soutput}
 \begin{Sinput}
-S_sandwich <- S * einf * S 
-scaling_factor <- -zap(S_sandwich %.% (e(4) + e(5)))
-getcoeffs(zap(S_sandwich / scaling_factor), 1:3)
+> S_sandwich <- S * einf * S 
+> scaling_factor <- -zap(S_sandwich %.% (e(4) + e(5)))
+> getcoeffs(zap(S_sandwich / scaling_factor), 1:3)
 \end{Sinput}
 \begin{Soutput}
 [1]  3 -5 6
@@ -1028,8 +1028,9 @@ products are given in table~\ref{cliffprods}.
   \caption{\rule{0mm}{10mm} The Clifford products implemented in the\label{cliffprods} package}
   \end{table}
 
-\section{Note on {\tt disordR} discipline}
+\section{\textcolor{blue}{Note on {\tt disordR} discipline}}
 
+\textcolor{blue}{
 Clifford objects are considered to be the sum of a finite number of
 blades, each multiplied by a coefficient.  As discussed above, the
 mapping itself is implemented using the {\tt STL} map
@@ -1038,15 +1039,16 @@ order in which the key-value pairs are stored is undefined: the
 compiler may store them in the order which it regards as most
 propitious.  The order of storage is immaterial algebraically, as
 addition is commutative and associative.  In the {\tt clifford}
-package, the map is from blades to their coefficient, a real number.
+package, the map is from blades to their coefficient, a real number.}
 
+\textcolor{blue}{
 However, one issue arising from the use of the {\tt map} class in
 computational algebra is that the order of coefficients is
 implementation-specific.  This can be problematic if one attempts to
 access coefficients using standard vector notation, for the result is
 not well-defined.  An example might be Clifford object
 $3+4\ei{1}-5\ei{123}$ and its representation in the following R
-session:
+session:}
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1058,12 +1060,13 @@ Element of a Clifford algebra, equal to
 + 3 + 4e_1 - 5e_123
 \end{Soutput}
 \end{Schunk}
-
-We observe that {\tt p} is algebraically equivalent to
+%
+\textcolor{blue}{
+  We observe that {\tt p} is algebraically equivalent to
 $4\ei{1}-5\ei{123}+3$ [the terms are written in a different order] and
 the internal {\tt map} equivalent leverages this ambiguity by storing
 the key-value pairs in whatever order the compiler finds most
-propitious.  We might wish to extract the coefficients:
+propitious.  We might wish to extract the coefficients:}
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1075,13 +1078,14 @@ propitious.  We might wish to extract the coefficients:
 (in some order)
 \end{Soutput}
 \end{Schunk}
-
+%
+\textcolor{blue}{
 We see that the coefficients are $3,4,-5$, but the returned value---an
 object of class {\tt disord}---declines to specify an order for these
 coefficients.  This is because the order is implementation-specific,
 and {\tt disordR} discipline will not ``guess'' which order is
 actually employed.  For example, if we try to extract the first
-element, an error is returned:
+element, an error is returned:}
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1091,14 +1095,14 @@ element, an error is returned:
 Error in .local(x, i, j = j, ..., drop) : 
    if using a regular index to extract, must extract each
    element once and once only (or none of them)
-> 
 \end{Soutput}
 \end{Schunk}
-
+%
+\textcolor{blue}{
 We see that the package refuses to declare which entry is the first,
 and returns an error message.  Even though the order of coefficients
 is not well defined, various statistics can be obtained:
-
+}
 \begin{Schunk}
 \begin{Sinput}
 > sum(coeffs(p))
@@ -1107,7 +1111,8 @@ is not well defined, various statistics can be obtained:
 [1]  2
 \end{Soutput}
 \end{Schunk}
-
+%
+\textcolor{blue}{
 Here we observe that the sum of the coefficients {\em is} well
 defined, whatever order is used for the summation: addition is
 commutative and associative.  The {\tt disordR} package manages these
@@ -1121,5 +1126,5 @@ examples would
 include~\cite{hankin2017_hyper2,hankin2023_frab,hankin2024_evitaicossa}.
 Full details and further motivating examples are given
 in~\cite{hankin2022_disordR}.
-
+}
 \end{document}
