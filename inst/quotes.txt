@@ -1,0 +1,5 @@
+We consider geometric algebra the be the high-level "object-oriented"
+language for encoding geometry, whereas---in this context---linear
+algebra is more akin to assembly language.
+
+Fontijne 2006

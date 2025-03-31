@@ -20,6 +20,7 @@ inst/referees_comments.tex
 inst/hankin_aca_revision.tex
 inst/hankin_aca.tex
 inst/clifford.bib
+inst/quotes.txt
 ^.github$
 ^.devcontainer$
 ^codecov\.yml$
