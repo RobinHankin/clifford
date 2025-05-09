@@ -17,7 +17,7 @@ typedef std::map<blade, long double> clifford;
 typedef std::tuple<blade, int> blade_and_sign;
 
 clifford remove_zeros(clifford &C){
-    for(auto it=C.cbegin() ; it != C.end() ;){
+    for(auto it = C.cbegin() ; it != C.end() ;){
         if(it->second == 0){
             it = C.erase(it); //increments pointer
         } else {
@@ -29,7 +29,7 @@ clifford remove_zeros(clifford &C){
 
 clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     clifford out;
-    const size_t n=L.size();
+    const size_t n = L.size();
     if(!((unsigned int) n == d.length())){
         throw std::range_error("in prepare(L,d,m) [file inst/clifford.h], L must be the same length as d");
     }
@@ -60,7 +60,7 @@ Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
 List Rblades(const clifford &C){  // takes a clifford object, returns a list of which(blades); used in retval()
     List out;
 
-    for(auto ic=C.cbegin(); ic != C.end(); ++ic){
+    for(auto ic = C.cbegin() ; ic != C.end() ; ++ic){
         out.push_back(which(ic->first));
     }
     return out;
@@ -68,9 +68,9 @@ List Rblades(const clifford &C){  // takes a clifford object, returns a list of 
 
 NumericVector coeffs(const clifford &C){  // takes a clifford object, returns the coefficients
     NumericVector out(C.size());
-    unsigned int i=0;
+    unsigned int i = 0;
 
-    for(auto ic=C.cbegin(); ic != C.end(); ++ic){
+    for(auto ic = C.cbegin() ; ic != C.end() ; ++ic){
         out[i] = ic->second;
         i++;
     }
@@ -78,8 +78,8 @@ NumericVector coeffs(const clifford &C){  // takes a clifford object, returns th
 }
 
 List retval(const clifford &C){  // used to return a list to R
-        return List::create(Named("blades") =  Rblades(C),
-                            Named("coeffs") =  coeffs(C)
+        return List::create(Named("blades") = Rblades(C),
+                            Named("coeffs") = coeffs(C)
                             );
 }
 
@@ -144,7 +144,7 @@ clifford c_general_prod(const clifford &C1, const clifford &C2, const NumericVec
     int sign;
     for(const auto &[b1, value1] : C1 ){
         for(const auto &[b2, value2] : C2 ){
-            if(chooser(b1,b2)){
+            if(chooser(b1, b2)){
                 std::tie(b, sign) = juxtapose(b1, b2, signature);
                 out[b] += sign * value1 * value2; // the meat
             }
@@ -262,7 +262,7 @@ clifford c_power(const clifford &C, const NumericVector &power, const NumericVec
 clifford cartan(const clifford &C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p-4,q+4)
     clifford out;
 
-    for (auto ic=C.begin(); ic != C.end(); ++ic){
+    for (auto ic=C.begin() ; ic != C.end() ; ++ic){
         blade c = ic->first;
         const size_t o = n[0]-1; // "-1" so the numbers match; off-by-one
         if(c.size() < o+5){c.resize(o+5);}

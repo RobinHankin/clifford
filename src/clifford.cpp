@@ -12,7 +12,7 @@ List c_add(
           const List &L2, const NumericVector &c2,  // c[12] = coeffs
           const NumericVector &m
           ){
-    return retval(c_add(prepare(L1,c1,m),prepare(L2,c2,m)));
+  return retval(c_add(prepare(L1,c1,m),prepare(L2,c2,m)));
 }
 
 // [[Rcpp::export]]
@@ -81,6 +81,7 @@ List c_innerprod(
           ){
   return retval(innerprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
 }
+
 // [[Rcpp::export]]
 List c_fatdotprod(
           const List &L1, const NumericVector &c1,
@@ -90,6 +91,7 @@ List c_fatdotprod(
           ){
   return retval(fatdotprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
 }
+
 // [[Rcpp::export]]
 List c_lefttickprod(
           const List &L1, const NumericVector &c1,
@@ -99,6 +101,7 @@ List c_lefttickprod(
           ){
   return retval(lefttickprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
 }
+
 // [[Rcpp::export]]
 List c_righttickprod(
           const List &L1, const NumericVector &c1,
@@ -115,9 +118,8 @@ List c_overwrite(
           const List &L2, const NumericVector &c2,
           const NumericVector &m
           ){
-	return retval(overwrite(prepare(L1,c1,m),prepare(L2,c2,m)));
+  return retval(overwrite(prepare(L1,c1,m),prepare(L2,c2,m)));
 }
-
 
 // [[Rcpp::export]]
 List c_cartan(
