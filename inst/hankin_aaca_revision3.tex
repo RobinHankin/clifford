@@ -397,7 +397,7 @@ grade-4 terms but this can be altered:
 
 \begin{Schunk}
 \begin{Sinput}
-> (x <- rcliff(d=7,g=5,include.fewer=TRUE))
+> (x <- rcliff(d=7, g=5, include.fewer=TRUE))
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
@@ -449,7 +449,7 @@ However, if we wish to consider $p=1$, $q=1$ [thus
 
 \begin{Schunk}
 \begin{Sinput}
-> signature(1,1)  # signature +-
+> signature(1, 1)  # signature +-
 > e1*e1 # as before, returns +1
 \end{Sinput}
 \begin{Soutput}
@@ -473,8 +473,8 @@ operation {\tt *}.
 
 \begin{Schunk}
 \begin{Sinput}
-> x <- rcliff(d=4,g=3,include.fewer=TRUE)
-> y <- rcliff(d=4,g=3,include.fewer=TRUE)
+> x <- rcliff(d=4, g=3, include.fewer=TRUE)
+> y <- rcliff(d=4, g=3, include.fewer=TRUE)
 \end{Sinput}
 \end{Schunk}
 %
@@ -511,7 +511,7 @@ zero inner product.  Package idiom is to use a zero signature:
 
 \begin{Schunk}
 \begin{Sinput}
-> signature(0,0)  # specify null inner product
+> signature(0, 0)  # specify null inner product
 \end{Sinput}
 \end{Schunk}
 \begin{Schunk}
@@ -557,7 +557,7 @@ then the {\tt stokes} idiom for this would be:
 
 \begin{Schunk}
 \begin{Sinput}
-> (x <- as.kform(rbind(1:3,c(2,3,7)),3:4))
+> (x <- as.kform(rbind(1:3, c(2,3,7)), 3:4))
 \end{Sinput}
 \begin{Soutput}
            val
@@ -565,7 +565,7 @@ then the {\tt stokes} idiom for this would be:
  1 2 3  =    3
 \end{Soutput}
 \begin{Sinput}
-> (y <- as.kform(rbind(1:3,c(1,4,5),4:6),1:3))
+> (y <- as.kform(rbind(1:3, c(1,4,5), 4:6), 1:3))
 \end{Sinput}
 \begin{Soutput}
            val
@@ -760,14 +760,14 @@ elements $x,y$:
 
 \begin{Schunk}
 \begin{Sinput}
-> (x <- clifford(list(1:3,c(1,5,7,8,10)),c(4,-10)) + 2)
+> (x <- clifford(list(1:3, c(1,5,7,8,10)), c(4,-10)) + 2)
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
 + 2 + 4e_1,2,3 - 10e_1,5,7,8,10
 \end{Soutput}
 \begin{Sinput}
-> (y <- clifford(list(c(1,2,3,7),c(1,5,6,8),c(1,4,6,7)),c(4,1,-3)) - 1)
+> (y <- clifford(list(c(1,2,3,7), c(1,5,6,8), c(1,4,6,7)), c(4,1,-3)) - 1)
 \end{Sinput}
 \begin{Soutput}
 Element of a Clifford algebra, equal to
@@ -812,7 +812,7 @@ implement these objects using the package:}
 \begin{Schunk}
 \begin{Sinput}
 > options("maxdim" = 5)
-> signature(4,1)
+> signature(4, 1)
 > eplus <- e(4)
 > eminus <- e(5)
 > e0 <- (eminus - eplus)/2
