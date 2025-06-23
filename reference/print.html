@@ -135,26 +135,25 @@ further bespoke print methods if needed (modify
 <span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="rcliff.html">rclifff</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">a</span>   <span class="co"># default print method incomprehensible</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 - 8e_341215 + 2e_71315 + 6e_6791518 - 9e_258111213141720 +</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1e_25101214171820 - 2e_124510111920 - 6e_457811161920 - 3e_46891115161920 +</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7e_15610111415171920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 + 5e_12 - 5e_512 + 6e_6791518 - 9e_34691214161719 + 1e_25101214171820 -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2e_124510111920 - 6e_6781213151920 - 3e_24578911161920 + 7e_15610111415171920</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"separate"</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">a</span>    <span class="co"># marginally better</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 - 8e3 e4 e12 e15 + 2e7 e13 e15 + 6e6 e7 e9 e15 e18 - 9e2 e5 e8 e11 e12 e13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e14 e17 e20 + 1e2 e5 e10 e12 e14 e17 e18 e20 - 2e1 e2 e4 e5 e10 e11 e19 e20 -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6e4 e5 e7 e8 e11 e16 e19 e20 - 3e4 e6 e8 e9 e11 e15 e16 e19 e20 + 7e1 e5 e6 e10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e11 e14 e15 e17 e19 e20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 + 5e12 - 5e5 e12 + 6e6 e7 e9 e15 e18 - 9e3 e4 e6 e9 e12 e14 e16 e17 e19 +</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1e2 e5 e10 e12 e14 e17 e18 e20 - 2e1 e2 e4 e5 e10 e11 e19 e20 - 6e6 e7 e8 e12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e13 e15 e19 e20 - 3e2 e4 e5 e7 e8 e9 e11 e16 e19 e20 + 7e1 e5 e6 e10 e11 e14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e15 e17 e19 e20</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"separate"</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>basissep<span class="op">=</span><span class="st">","</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">a</span>    <span class="co">#  clearer; YMMV</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 - 8e_3,4,12,15 + 2e_7,13,15 + 6e_6,7,9,15,18 - 9e_2,5,8,11,12,13,14,17,20 +</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1e_2,5,10,12,14,17,18,20 - 2e_1,2,4,5,10,11,19,20 - 6e_4,5,7,8,11,16,19,20 -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3e_4,6,8,9,11,15,16,19,20 + 7e_1,5,6,10,11,14,15,17,19,20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 + 5e_12 - 5e_5,12 + 6e_6,7,9,15,18 - 9e_3,4,6,9,12,14,16,17,19 +</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1e_2,5,10,12,14,17,18,20 - 2e_1,2,4,5,10,11,19,20 - 6e_6,7,8,12,13,15,19,20 -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3e_2,4,5,7,8,9,11,16,19,20 + 7e_1,5,6,10,11,14,15,17,19,20</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>basissep <span class="op">=</span> <span class="cn">NULL</span>, maxdim<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span>  <span class="co"># restore default</span></span></span>
 <span class="r-in"><span></span></span>
@@ -184,7 +183,7 @@ further bespoke print methods if needed (modify
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
