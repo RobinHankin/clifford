@@ -259,7 +259,7 @@ typedef map<blade, long double> clifford;
 A ``map'' is a sorted associative container that contains key-value
 pairs with unique keys~\cite{musser2009}.  A {\tt clifford} object
 thus maps dynamic bitsets (basis blades) to coefficients, here long
-doubles.  {The {\tt STL map} class is used for
+doubles.  The {\tt STL map} class is used for
   efficiency: search, and insertion/deletion operations are
   consistently $\mathcal{O}(\log m)$, where $m$ is the number of
   nonzero coefficients.  For example, elements of any clifford algebra
@@ -268,12 +268,12 @@ doubles.  {The {\tt STL map} class is used for
   $k$-vector will have ${n\choose k}\lesssim 2^n/\sqrt{n}$ possible
   coefficients, so operations will again be $\mathcal{O}(n)$.  The
   various products presented in Table~\ref{cliffprods} are more
-  complicated but the geometric product of two $k$-vectors will
-  involve $\lesssim\mathcal{O}(4^n/n)$ (scalar) multiplications, and
-  the outer product will involve $\lesssim\mathcal{O}(2^n/\sqrt{n})$
-  multiplications.}  Similar techniques are used in the {\tt spray}
-and {\tt mvp} packages~\cite{hankin2022_mvp,hankin2022_spray} which
-furnish functionality for multivariate polynomials.
+  complicated but the geometric product of two $k$-vectors has complexity
+  $\mathcal{O}(4^n)$~\cite{breuils2017}, and 
+  the outer product $\mathcal{O}(3^n)$~\cite{breuils2023}.
+  Similar techniques are used in the {\tt spray}
+  and {\tt mvp} packages~\cite{hankin2022_mvp,hankin2022_spray} which
+  furnish functionality for multivariate polynomials.
 
 \section{Outline of the computational method}
 
