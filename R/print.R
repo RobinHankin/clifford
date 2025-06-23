@@ -5,7 +5,7 @@
     } else if(o == "quaternion"){
         print_clifford_quaternion(x)
     } else {
-        stop("not recognised")
+        stop('Option "clifford_print_special", if not NULL, should be "quaternion"')
     }
 }
 
