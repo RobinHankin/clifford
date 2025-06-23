@@ -172,7 +172,7 @@ on CRAN and development versions are hosted at github.
 \end{wrapfigure}
 Clifford algebras~\cite{hestenes1987} are interesting and instructive
 mathematical objects, with a rich structure that has wide-ranging
-applications to physics.  \textcolor{blue}{Clifford algebra has
+applications to physics.  {Clifford algebra has
   attracted much computational support from a very wide range of
   perspectives~\cite{burns2020}.  Examples would include purely
   symbolic support for well-established proprietary systems such as
@@ -259,7 +259,7 @@ typedef map<blade, long double> clifford;
 A ``map'' is a sorted associative container that contains key-value
 pairs with unique keys~\cite{musser2009}.  A {\tt clifford} object
 thus maps dynamic bitsets (basis blades) to coefficients, here long
-doubles.  \textcolor{blue}{The {\tt STL map} class is used for
+doubles.  {The {\tt STL map} class is used for
   efficiency: search, and insertion/deletion operations are
   consistently $\mathcal{O}(\log m)$, where $m$ is the number of
   nonzero coefficients.  For example, elements of any clifford algebra
@@ -794,9 +794,9 @@ in agreement with \cite{ablamowicz2012}, although the terms appear in
 a different order.
 
 
-\section{\textcolor{blue}{Case study: spheres in conformal geometric algebra}}
+\section{Case study: spheres in conformal geometric algebra}
 
-\textcolor{blue}{
+{
 Perwass~\cite{perwass2009} shows that geometric entities such as
 circles and spheres in $\mathbb{R}^3$ may be represented as points in
 a conformal geometric algebra.  To use the package, we consider the
@@ -820,7 +820,7 @@ implement these objects using the package:}
 \end{Sinput}
 \end{Schunk}
 %
-\textcolor{blue}{
+{
 Above we use package idiom to specify $\cl(4,1)$ with Euclidean basis
 vectors {\tt e(1)}, {\tt e(2)}, {\tt e(3)}, and define conformal
 objects $e_+, e_-, e_0,e_\infty$ in terms of {\tt e(4)} and {\tt
@@ -840,7 +840,7 @@ Element of a Clifford algebra, equal to
 \end{Soutput}
 \end{Schunk}
 %
-\textcolor{blue}{
+{
 Perwass goes on to show that a sphere $S$ may be specified in terms of
 four (conformal) points that lie on it:
 %
@@ -874,11 +874,10 @@ resulting conformal sphere:}
 \end{Sinput}
 \end{Schunk}
 %
-\textcolor{blue}{
 Then we extract the radius and center and compare with the known
 values of $3$ and $(3,-5,6)$ respectively.  The radius $r$ is given by
 $r^2 = \left(\frac{S}{-S\cdot\einf}\right)^2$ and the center by
-scaling the sandwich product $S\einf S$.}
+scaling the sandwich product $S\einf S$.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -897,11 +896,10 @@ scaling the sandwich product $S\einf S$.}
 \end{Soutput}
 \end{Schunk}
 %
-\textcolor{blue}{
 Above, we use function {\tt zap()} which cancels small coefficients
 which appear due to numerical error; apart from that, we see that the
 radius and center of the original sphere are reconstituted accurately
-and efficiently, using natural R idiom.}
+and efficiently, using natural R idiom.
 
 \section{Conclusions and further work}
 
@@ -1032,9 +1030,8 @@ products are given in table~\ref{cliffprods}.
   \caption{\rule{0mm}{10mm} The Clifford products implemented in the\label{cliffprods} package}
   \end{table}
 
-\section{\textcolor{blue}{Note on {\tt disordR} discipline}}
+\section{Note on {\tt disordR} discipline}
 
-\textcolor{blue}{
 Clifford objects are considered to be the sum of a finite number of
 blades, each multiplied by a coefficient.  As discussed above, the
 mapping itself is implemented using the {\tt STL} map
@@ -1043,16 +1040,15 @@ order in which the key-value pairs are stored is undefined: the
 compiler may store them in the order which it regards as most
 propitious.  The order of storage is immaterial algebraically, as
 addition is commutative and associative.  In the {\tt clifford}
-package, the map is from blades to their coefficient, a real number.}
+package, the map is from blades to their coefficient, a real number.
 
-\textcolor{blue}{
 However, one issue arising from the use of the {\tt map} class in
 computational algebra is that the order of coefficients is
 implementation-specific.  This can be problematic if one attempts to
 access coefficients using standard vector notation, for the result is
 not well-defined.  An example might be Clifford object
 $3+4\ei{1}-5\ei{123}$ and its representation in the following R
-session:}
+session:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1065,12 +1061,11 @@ Element of a Clifford algebra, equal to
 \end{Soutput}
 \end{Schunk}
 %
-\textcolor{blue}{
   We observe that {\tt p} is algebraically equivalent to
 $4\ei{1}-5\ei{123}+3$ [the terms are written in a different order] and
 the internal {\tt map} equivalent leverages this ambiguity by storing
 the key-value pairs in whatever order the compiler finds most
-propitious.  We might wish to extract the coefficients:}
+propitious.  We might wish to extract the coefficients:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1083,13 +1078,12 @@ propitious.  We might wish to extract the coefficients:}
 \end{Soutput}
 \end{Schunk}
 %
-\textcolor{blue}{
 We see that the coefficients are $3,4,-5$, but the returned value---an
 object of class {\tt disord}---declines to specify an order for these
 coefficients.  This is because the order is implementation-specific,
 and {\tt disordR} discipline will not ``guess'' which order is
 actually employed.  For example, if we try to extract the first
-element, an error is returned:}
+element, an error is returned:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1102,11 +1096,10 @@ Error in .local(x, i, j = j, ..., drop) :
 \end{Soutput}
 \end{Schunk}
 %
-\textcolor{blue}{
 We see that the package refuses to declare which entry is the first,
 and returns an error message.  Even though the order of coefficients
 is not well defined, various statistics can be obtained:
-}
+%
 \begin{Schunk}
 \begin{Sinput}
 > sum(coeffs(p))
@@ -1116,7 +1109,6 @@ is not well defined, various statistics can be obtained:
 \end{Soutput}
 \end{Schunk}
 %
-\textcolor{blue}{
 Here we observe that the sum of the coefficients {\em is} well
 defined, whatever order is used for the summation: addition is
 commutative and associative.  The {\tt disordR} package manages these
@@ -1130,5 +1122,5 @@ examples would
 include~\cite{hankin2017_hyper2,hankin2023_frab,hankin2024_evitaicossa}.
 Full details and further motivating examples are given
 in~\cite{hankin2022_disordR}.
-}
+
 \end{document}
