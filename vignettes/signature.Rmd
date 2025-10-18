@@ -32,7 +32,7 @@ signature
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document discusses `signature()` in
+@hankin2025_clifford.  This short document discusses `signature()` in
 the `clifford` R package.  As an example we might wish to work in
 $\operatorname{Cl}(1,2)$:
 

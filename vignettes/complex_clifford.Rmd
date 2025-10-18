@@ -21,7 +21,7 @@ knitr::include_graphics(system.file("help/figures/clifford.png", package = "clif
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how complex
+@hankin2025_clifford.  This short document shows how complex
 arithmetic may be implemented using Clifford algebra (of course, if
 one really wants to use complex numbers, base R is much more efficient
 and uses nicer idiom than the methods presented here).  Recall that

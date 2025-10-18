@@ -26,7 +26,7 @@ knitr::include_graphics(system.file("help/figures/quadform.png", package = "quad
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  In this short document I show how Clifford
+@hankin2025_clifford.  In this short document I show how Clifford
 algebra may be used to effect Lorentz transforms, and showcase the
 `clifford` R package.  Throughout, we use units in which $c=1$.
 Notation follows @snygg2010.  Consider the following four-vector:
