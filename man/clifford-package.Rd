@@ -21,6 +21,10 @@ Maintainer: \packageMaintainer{clifford}
 }
 \references{
   \itemize{
+    \item R. K. S. Hankin (2025).  \dQuote{Clifford algebra in \R:
+      introducing the \CRANpkg{clifford} package}.  \emph{Advances in
+      Applied Clifford Algebra},
+    \doi{https://doi.org/10.1007/s00006-025-01403-9}
     \item J. Snygg (2012).  \emph{A new approach to differential
       geometry using Clifford's geometric Algebra}, Birkhauser.  ISBN
     978-0-8176-8282-8
@@ -41,10 +45,8 @@ as.1vector(1:4)
 as.1vector(1:4) * rcliff()
 
 # Following from Ablamowicz and Fauser (see vignette):
-x <- clifford(list(1:3,c(1,5,7,8,10)),c(4,-10)) + 2
-y <- clifford(list(c(1,2,3,7),c(1,5,6,8),c(1,4,6,7)),c(4,1,-3)) - 1
+x <- clifford(list(1:3, c(1,5,7,8,10)), c(4,-10)) + 2
+y <- clifford(list(c(1,2,3,7), c(1,5,6,8), c(1,4,6,7)), c(4,1,-3)) - 1
 x*y # signature irrelevant
-
-
 
 }
