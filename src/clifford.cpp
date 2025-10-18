@@ -12,7 +12,7 @@ List c_add(
           const List &L2, const NumericVector &c2,  // c[12] = coeffs
           const NumericVector &m
           ){
-  return retval(c_add(prepare(L1,c1,m),prepare(L2,c2,m)));
+  return retval(add_lowlevel(prepare(L1,c1,m),prepare(L2,c2,m)));
 }
 
 // [[Rcpp::export]]
@@ -22,7 +22,7 @@ List c_multiply(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(c_geometricprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  return retval(geometricprod_lowlevel(prepare(L1,c1,m),prepare(L2,c2,m),sig));
 }
 
 // [[Rcpp::export]]
@@ -32,7 +32,7 @@ List c_power(
           const NumericVector &p,
           const NumericVector &sig
           ){
-  return retval(c_power(prepare(L,c,m),p,sig));
+  return retval(power_lowlevel(prepare(L,c,m),p,sig));
 }
 
 // [[Rcpp::export]]
@@ -41,7 +41,7 @@ List c_grade(
           const NumericVector &m,
           const NumericVector &n
           ){
-  return retval(c_grade(prepare(L,c,m),n));
+  return retval(grade_lowlevel(prepare(L,c,m),n));
 }
 
 // [[Rcpp::export]]
@@ -50,7 +50,7 @@ bool c_equal(
           const List &L2, const NumericVector &c2,  // c[12] = coeffs
           const NumericVector &m
           ){
-  return c_equal(prepare(L1,c1,m),prepare(L2,c2,m));
+  return equal_lowlevel(prepare(L1,c1,m),prepare(L2,c2,m));
 }
 
 // [[Rcpp::export]]
@@ -59,7 +59,7 @@ NumericVector c_getcoeffs(
           const NumericVector &m,
           const List &B
           ){
-  return c_coeffs_of_blades(prepare(L,c,m),B,m);
+  return coeffs_lowlevel(prepare(L,c,m),B,m);
 }
 
 // [[Rcpp::export]]
@@ -140,4 +140,3 @@ List c_cartan_inverse(
           ){
         return retval(cartan_inverse(prepare(L,c,m),n));
 }
-
