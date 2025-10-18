@@ -13,14 +13,14 @@
   The \dfn{grade} of a term is the number of basis vectors in it.}
 \usage{
 grade(C, n, drop=TRUE)
-grade(C,n) <- value
+grade(C, n) <- value
 grades(x)
 gradesplus(x)
 gradesminus(x)
 gradeszero(x)
 }
 \arguments{
-  \item{C,x}{Clifford object}
+  \item{C, x}{Clifford object}
   \item{n}{Integer vector specifying grades to extract}
   \item{value}{Replacement value, a numeric vector}
   \item{drop}{Boolean, with default \code{TRUE} meaning to coerce a

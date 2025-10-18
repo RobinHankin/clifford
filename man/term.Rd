@@ -71,7 +71,6 @@ terms(x)
 
 is.basisblade(x)
 
-
 a <- as.1vector(1:3)
 b <- as.1vector(c(0,0,0,12,13))
 

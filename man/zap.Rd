@@ -30,13 +30,13 @@ zap(x, drop=TRUE, digits = getOption("digits"))
 \author{Robin K. S. Hankin}
 \examples{
 
-a <- clifford(sapply(1:10,seq_len),90^-(1:10))
+a <- clifford(sapply(1:10,seq_len), 90^-(1:10))
 zap(a)
 options(digits=3)
 zap(a)
 
 
-a-zap(a)   # nonzero
+a - zap(a)   # nonzero
 
 B <- rblade(g=3)
 mB <- B*rev(B)

@@ -16,7 +16,7 @@ is.real(C)
 \method{const}{clifford}(x) <- value
 }
 \arguments{
-  \item{C,x}{Clifford object}
+  \item{C, x}{Clifford object}
   \item{value}{Replacement value}
   \item{drop}{Boolean, with default \code{TRUE} meaning to return the
     constant coerced to numeric, and \code{FALSE} meaning to return a
@@ -55,7 +55,7 @@ examples.
 }
 \examples{
 
-X <- clifford(list(1,1:2,1:3,3:5),6:9)
+X <- clifford(list(1,1:2,1:3,3:5), 6:9)
 X
 X <- X + 1e300
 X
@@ -67,14 +67,14 @@ const(X) # should be 0.6, no numerical error
 
 # compare naive approach:
 
-X <- clifford(list(1,1:2,1:3,3:5),6:9)+1e300
-X+0.6-const(X)  # constant gets lost in the numerics
+X <- clifford(list(1,1:2,1:3,3:5), 6:9) + 1e300
+X + 0.6 - const(X)  # constant gets lost in the numerics
 
-X <- clifford(list(1,1:2,1:3,3:5),6:9)+1e-300
-X-const(X)+0.6  # answer correct by virtue of left-associativity
+X <- clifford(list(1,1:2,1:3,3:5), 6:9) + 1e-300
+X - const(X) + 0.6  # answer correct by virtue of left-associativity
 
 
-x <- 2+rcliff(d=3,g=3)
+x <- 2+rcliff(d=3, g=3)
 jj <- x*cliffconj(x)
 is.real(jj*rev(jj))   # should be TRUE
 }

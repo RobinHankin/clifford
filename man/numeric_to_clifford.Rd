@@ -18,8 +18,8 @@ is.1vector(x)
 scalar(x=1)
 as.scalar(x=1)
 is.scalar(C)
-basis(n,x=1)
-e(n,x=1)
+basis(n, x=1)
+e(n, x=1)
 }
 \arguments{
   \item{x}{Numeric vector}

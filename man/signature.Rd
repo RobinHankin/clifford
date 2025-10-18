@@ -9,14 +9,14 @@
 \title{The signature of the Clifford algebra}
 \description{Getting and setting the signature of the Clifford algebra}
 \usage{
-signature(p,q=0)
+signature(p, q=0)
 is_ok_sig(s)
 showsig(s)
-\method{print}{sigobj}(x,...)
+\method{print}{sigobj}(x, ...)
 }
 \arguments{
-  \item{s,p,q}{Integers, specifying number of positive elements on the
-    diagonal of the quadratic form, with \code{s=c(p,q)}}
+  \item{s, p, q}{Integers, specifying number of positive elements on the
+    diagonal of the quadratic form, with \code{s = c(p, q)}}
   \item{x}{Object of class \code{sigobj}}
   \item{...}{Further arguments, currently ignored}
 }
@@ -129,8 +129,8 @@ signature(1)
 e(1)^2
 e(2)^2   # note sign
 
-signature(3,4)
-sapply(1:10,function(i){drop(e(i)^2)})
+signature(3, 4)
+sapply(1:10, function(i){drop(e(i)^2)})
 
 
 signature(Inf)   # restore default
@@ -145,7 +145,7 @@ signature(Inf)   # restore default
 # signature(0,2)
 # Q1 <- rquat(1)
 # Q2 <- rquat(1)
-# f <- function(H){Re(H)+i(H)*e(1)+j(H)*e(2)+k(H)*e(1:2)}
+# f <- function(H){Re(H) + i(H)*e(1) + j(H)*e(2) + k(H)*e(1:2)}
 # f(Q1)*f(Q2) - f(Q1*Q2) # zero to numerical precision
 # signature(Inf)
 

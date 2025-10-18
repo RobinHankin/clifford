@@ -30,7 +30,7 @@
 }
 \arguments{
   \item{x}{Object of any class}
-  \item{i,j}{elements to commute}
+  \item{i, j}{elements to commute}
   \item{...}{Further arguments to \code{dot_error()}, currently ignored}
 }
 \value{

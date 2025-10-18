@@ -7,7 +7,7 @@
   \dQuote{get you going} examples of \code{clifford} objects}
 \usage{
 rcliff(n=9, d=6, g=4, include.fewer=TRUE)
-rclifff(n=100,d=20,g=10,include.fewer=TRUE)
+rclifff(n=100, d=20, g=10, include.fewer=TRUE)
 rblade(d=7, g=3)
 }
 \arguments{
@@ -111,11 +111,11 @@ zap(ainv*a)  # 1 (to numerical precision)
 # Perwass 2009, lemma 3.9:
 
 
-A <- rblade(d=9,g=4)  
-B <- rblade(d=9,g=5)  
-C <- rblade(d=9,g=6)  
+A <- rblade(d=9, g=4)
+B <- rblade(d=9, g=5)
+C <- rblade(d=9, g=6)
 
-grade(A*B*C,0)-grade(C*A*B,0)   # zero to numerical precision
+grade(A*B*C,0) - grade(C*A*B,0)   # zero to numerical precision
 
 
 
