@@ -85,11 +85,10 @@ Hankin</h4>
     
 <p><img src="../../../_temp/Library/clifford/help/figures/clifford.png" width="15%" style="float:right; padding:10px"><img src="../../../_temp/Library/jordan/help/figures/jordan.png" width="15%" style="float:right; padding:10px"><img src="../../../_temp/Library/quadform/help/figures/quadform.png" width="15%" style="float:right; padding:10px"></p>
 <p>To cite the <code>clifford</code> package in publications please use
-<span class="citation">Hankin (2022b)</span>. In this short document I
-show how Clifford algebra may be used to effect Lorentz transforms, and
-showcase the <code>clifford</code> R package. Throughout, we use units
-in which <span class="math inline">\(c=1\)</span>. Notation follows
-<span class="citation">Snygg (2010)</span>. Consider the following
+<span class="citation">Robin. K. S. Hankin (2025)</span>. In this short
+document I show how Clifford algebra may be used to effect Lorentz
+transforms, and showcase the <code>clifford</code> R package.
+Throughout, we use units in which <span class="math inline">\(c=1\)</span>. Notation follows <span class="citation">Snygg (2010)</span>. Consider the following
 four-vector:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">fourvec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>  <span class="co"># a four-vector</span></span></code></pre></div>
@@ -98,7 +97,7 @@ four-vector:</p>
 <code class="sourceCode R"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>,<span class="fl">0.3</span>,<span class="fl">0.4</span><span class="op">)</span>  <span class="co"># a three-velocity</span></span></code></pre></div>
 <p>We wish to consider the effect of a Lorentz transformation of
 <code>s</code>. This is done by the <code>boost()</code> function of the
-<code>lorentz</code> package <span class="citation">(Hankin
+<code>lorentz</code> package <span class="citation">(R. K. S. Hankin
 2022a)</span>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">Bmat</span> <span class="op">&lt;-</span> <span class="fu">boost</span><span class="op">(</span><span class="va">u</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Bmat = "B-matrix"</span></span></code></pre></div>
@@ -162,7 +161,8 @@ appears as</p>
 we cannot use that notation here because basis vectors are numbered from
 1 in the package, not zero). Also note that the vectors appear in
 implementation-specific order, as per <code>disordR</code> discipline
-<span class="citation">(Hankin 2022c)</span>. The metric would be</p>
+<span class="citation">(R. K. S. Hankin 2022b)</span>. The metric would
+be</p>
 <p><span class="math display">\[
 \begin{pmatrix}
 1&amp;0&amp;0&amp;0\\
@@ -423,13 +423,15 @@ Hankin, R. K. S. 2022a. <span>“A Systematic Search for a Three-Velocity
 Gyrodistributive Law in Special Relativity with the Lorentz
 <span>R</span> Package.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2212.07005" class="external-link">https://doi.org/10.48550/ARXIV.2212.07005</a>.
 </div>
-<div id="ref-hankin2022_clifford" class="csl-entry">
-———. 2022b. <span>“Clifford Algebra in <span>R</span>.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2209.13659" class="external-link">https://doi.org/10.48550/ARXIV.2209.13659</a>.
-</div>
 <div id="ref-hankin2022_disordR" class="csl-entry">
-———. 2022c. <span>“<span class="nocase">Disordered vectors in
+———. 2022b. <span>“<span class="nocase">Disordered vectors in
 <span>R</span>: introducing the <span><code>disordR</code></span>
 package</span>.”</span> arXiv, <a href="https://arxiv.org/abs/2210.03856" class="external-link uri">https://arxiv.org/abs/2210.03856</a>; arXiv. <a href="https://doi.org/10.48550/ARXIV.2210.03856" class="external-link">https://doi.org/10.48550/ARXIV.2210.03856</a>.
+</div>
+<div id="ref-hankin2025_clifford" class="csl-entry">
+Hankin, Robin. K. S. 2025. <span>“Clifford Algebra in : Introducing the
+Package.”</span> <em>Advances in Applied Clifford Algebra</em>.
+https://doi.org/<a href="https://doi.org/10.1007/s00006-025-01403-9" class="external-link">https://doi.org/10.1007/s00006-025-01403-9</a>.
 </div>
 <div id="ref-snygg2010" class="csl-entry">
 Snygg, J. 2010. <em>A New Approach to Differential Geometry Using
