@@ -63,19 +63,19 @@
 \usage{
 \method{Ops}{clifford}(e1, e2)
 clifford_negative(C)
-geoprod(C1,C2)
-clifford_times_scalar(C,x)
-clifford_plus_clifford(C1,C2)
-clifford_eq_clifford(C1,C2)
+geoprod(C1, C2)
+clifford_times_scalar(C, x)
+clifford_plus_clifford(C1, C2)
+clifford_eq_clifford(C1, C2)
 clifford_inverse(C)
-cliffdotprod(C1,C2)
-fatdot(C1,C2)
-lefttick(C1,C2)
-righttick(C1,C2)
+cliffdotprod(C1, C2)
+fatdot(C1, C2)
+lefttick(C1, C2)
+righttick(C1, C2)
 wedge(C1,C2)
-scalprod(C1,C2=rev(C1),drop=TRUE)
-eucprod(C1,C2=C1,drop=TRUE)
-maxyterm(C1,C2=as.clifford(0))
+scalprod(C1, C2=rev(C1), drop=TRUE)
+eucprod(C1, C2=C1, drop=TRUE)
+maxyterm(C1, C2=as.clifford(0))
 C1 \%.\% C2
 C1 \%dot\% C2
 C1 \%^\% C2
@@ -88,8 +88,8 @@ C1 \%_|\% C2
 C1 \%|_\% C2
 }
 \arguments{
-  \item{e1,e2,C,C1,C2}{Objects of class \code{clifford} or coerced if
-    needed}
+  \item{e1, e2, C, C1, C2}{Objects of class \code{clifford} or coerced
+    if needed}
   \item{x}{Scalar, length one numeric vector}
   \item{drop}{Boolean, with default \code{TRUE} meaning to return the
     constant coerced to numeric, and \code{FALSE} meaning to return a
@@ -269,9 +269,9 @@ x \%^\% y == (x*y-x*y)/2        # should be TRUE
 
 
 ## Inner product "%.%" is not associative:
-x <- rcliff(5,g=2)
-y <- rcliff(5,g=2)
-z <- rcliff(5,g=2)
+x <- rcliff(5, g=2)
+y <- rcliff(5, g=2)
+z <- rcliff(5, g=2)
 x \%.\% (y \%.\% z) == (x \%.\% y) \%.\% z
 
 ## Other products should work as expected:
