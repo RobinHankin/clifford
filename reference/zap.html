@@ -97,7 +97,7 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="clifford.html">clifford</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="va">seq_len</span><span class="op">)</span>,<span class="fl">90</span><span class="op">^</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="clifford.html">clifford</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="va">seq_len</span><span class="op">)</span>, <span class="fl">90</span><span class="op">^</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">zap</span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> + 0.01111111e_1 + 0.000123457e_12 + 1.372e-06e_123 + 1.5e-08e_1234</span>
@@ -107,7 +107,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> + 0.0111e_1 + 0.00012e_12</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">a</span><span class="op">-</span><span class="fu">zap</span><span class="op">(</span><span class="va">a</span><span class="op">)</span>   <span class="co"># nonzero</span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op">-</span> <span class="fu">zap</span><span class="op">(</span><span class="va">a</span><span class="op">)</span>   <span class="co"># nonzero</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> + 1.11e-06e_1 + 3.46e-06e_12 + 1.37e-06e_123 + 1.52e-08e_1234 + 1.69e-10e_12345</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> + 1.88e-12e_123456 + 2.09e-14e_1234567 + 2.32e-16e_12345678 +</span>

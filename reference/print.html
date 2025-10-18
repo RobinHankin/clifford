@@ -117,6 +117,8 @@ for which the empty string is returned.  This is needed to ensure that
 the constant term (which has a basis blade of <code>numeric(0)</code>) is
 treated appropriately.  See also <code><a href="Extract.html">list_modifier()</a></code> which deals with
 this issue.</p>
+<p>The prompt can be changed to show the signature and this is documented
+at <code>signature</code>.</p>
 <p>Experimental bespoke print method <code>print_clifford_quaternion()</code> and
 <code>print_clifford_pauli()</code> is included.  This are executed if option
 <code>clifford_print_special</code> is <code>quaternion</code>; if <code>NULL</code>, then
@@ -126,7 +128,7 @@ further bespoke print methods if needed (modify
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="clifford.html">clifford</a></code></p></div>
+    <div class="dont-index"><p><code><a href="clifford.html">clifford</a></code>,<code><a href="signature.html">signature</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -159,7 +161,7 @@ further bespoke print methods if needed (modify
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"maxdim"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="signature.html">signature</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="clifford.html">clifford</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>,<span class="fl">6</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="clifford.html">clifford</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">a</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> + 6 + 7e_12 + 8e_13 + 9e_23</span>

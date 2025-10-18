@@ -65,19 +65,19 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'clifford'</span></span>
 <span><span class="fu">Ops</span><span class="op">(</span><span class="va">e1</span>, <span class="va">e2</span><span class="op">)</span></span>
 <span><span class="fu">clifford_negative</span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span>
-<span><span class="fu">geoprod</span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
-<span><span class="fu">clifford_times_scalar</span><span class="op">(</span><span class="va">C</span>,<span class="va">x</span><span class="op">)</span></span>
-<span><span class="fu">clifford_plus_clifford</span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
-<span><span class="fu">clifford_eq_clifford</span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
+<span><span class="fu">geoprod</span><span class="op">(</span><span class="va">C1</span>, <span class="va">C2</span><span class="op">)</span></span>
+<span><span class="fu">clifford_times_scalar</span><span class="op">(</span><span class="va">C</span>, <span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">clifford_plus_clifford</span><span class="op">(</span><span class="va">C1</span>, <span class="va">C2</span><span class="op">)</span></span>
+<span><span class="fu">clifford_eq_clifford</span><span class="op">(</span><span class="va">C1</span>, <span class="va">C2</span><span class="op">)</span></span>
 <span><span class="fu">clifford_inverse</span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span>
-<span><span class="fu">cliffdotprod</span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
-<span><span class="fu">fatdot</span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
-<span><span class="fu">lefttick</span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
-<span><span class="fu">righttick</span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
+<span><span class="fu">cliffdotprod</span><span class="op">(</span><span class="va">C1</span>, <span class="va">C2</span><span class="op">)</span></span>
+<span><span class="fu">fatdot</span><span class="op">(</span><span class="va">C1</span>, <span class="va">C2</span><span class="op">)</span></span>
+<span><span class="fu">lefttick</span><span class="op">(</span><span class="va">C1</span>, <span class="va">C2</span><span class="op">)</span></span>
+<span><span class="fu">righttick</span><span class="op">(</span><span class="va">C1</span>, <span class="va">C2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://robinhankin.github.io/clifford/reference/Ops.clifford.html">wedge</a></span><span class="op">(</span><span class="va">C1</span>,<span class="va">C2</span><span class="op">)</span></span>
-<span><span class="fu">scalprod</span><span class="op">(</span><span class="va">C1</span>,C2<span class="op">=</span><span class="fu"><a href="involution.html">rev</a></span><span class="op">(</span><span class="va">C1</span><span class="op">)</span>,drop<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu">eucprod</span><span class="op">(</span><span class="va">C1</span>,C2<span class="op">=</span><span class="va">C1</span>,drop<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu">maxyterm</span><span class="op">(</span><span class="va">C1</span>,C2<span class="op">=</span><span class="fu"><a href="clifford.html">as.clifford</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">scalprod</span><span class="op">(</span><span class="va">C1</span>, C2<span class="op">=</span><span class="fu"><a href="involution.html">rev</a></span><span class="op">(</span><span class="va">C1</span><span class="op">)</span>, drop<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">eucprod</span><span class="op">(</span><span class="va">C1</span>, C2<span class="op">=</span><span class="va">C1</span>, drop<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">maxyterm</span><span class="op">(</span><span class="va">C1</span>, C2<span class="op">=</span><span class="fu"><a href="clifford.html">as.clifford</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">C1</span> <span class="op">%.%</span> <span class="va">C2</span></span>
 <span><span class="va">C1</span> <span class="op">%dot%</span> <span class="va">C2</span></span>
 <span><span class="va">C1</span> <span class="op">%^%</span> <span class="va">C2</span></span>
@@ -93,9 +93,9 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <p></p>
-<dl><dt id="arg-e-e-c-c-c-">e1,e2,C,C1,C2<a class="anchor" aria-label="anchor" href="#arg-e-e-c-c-c-"></a></dt>
-<dd><p>Objects of class <code>clifford</code> or coerced if
-    needed</p></dd>
+<dl><dt id="arg-e-e-c-c-c-">e1, e2, C, C1, C2<a class="anchor" aria-label="anchor" href="#arg-e-e-c-c-c-"></a></dt>
+<dd><p>Objects of class <code>clifford</code> or coerced
+    if needed</p></dd>
 
   <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>Scalar, length one numeric vector</p></dd>
@@ -264,9 +264,9 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Inner product "%.%" is not associative:</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="rcliff.html">rcliff</a></span><span class="op">(</span><span class="fl">5</span>,g<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="rcliff.html">rcliff</a></span><span class="op">(</span><span class="fl">5</span>,g<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="rcliff.html">rcliff</a></span><span class="op">(</span><span class="fl">5</span>,g<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="rcliff.html">rcliff</a></span><span class="op">(</span><span class="fl">5</span>, g<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="rcliff.html">rcliff</a></span><span class="op">(</span><span class="fl">5</span>, g<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="rcliff.html">rcliff</a></span><span class="op">(</span><span class="fl">5</span>, g<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">%.%</span> <span class="op">(</span><span class="va">y</span> <span class="op">%.%</span> <span class="va">z</span><span class="op">)</span> <span class="op">==</span> <span class="op">(</span><span class="va">x</span> <span class="op">%.%</span> <span class="va">y</span><span class="op">)</span> <span class="op">%.%</span> <span class="va">z</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span></span></span>
