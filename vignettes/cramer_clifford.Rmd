@@ -14,7 +14,7 @@ knitr::include_graphics(system.file("help/figures/clifford.png", package = "clif
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2025_clifford.  This short document shows a nice application of
+@hankin2025_clifford_rmd.  This short document shows a nice application of
 Clifford algebras to linear algebra.  Suppose we have vectors
 ${\mathbf a}, {\mathbf b}, {\mathbf c}$ spanning $\mathbb{R}^3$ and
 are given ${\mathbf x}\in\mathbb{R}^3$.  We wish to write ${\mathbf

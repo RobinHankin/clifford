@@ -26,7 +26,7 @@ knitr::include_graphics(system.file("help/figures/quadform.png", package = "quad
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2025_clifford.  In this short document I show how Clifford
+@hankin2025_clifford_rmd.  In this short document I show how Clifford
 algebra may be used to effect Lorentz transforms, and showcase the
 `clifford` R package.  Throughout, we use units in which $c=1$.
 Notation follows @snygg2010.  Consider the following four-vector:
@@ -38,7 +38,7 @@ u <- c(0.2,0.3,0.4)  # a three-velocity
 
 We wish to consider the effect of a Lorentz transformation of `s`.
 This is done by the `boost()` function of the `lorentz` package
-[@hankin2022_lorentz]:
+[@hankin2025_lorentz]:
 
 ```{r,b1b2}
 (Bmat <- boost(u))  # Bmat = "B-matrix"
