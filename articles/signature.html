@@ -114,16 +114,16 @@ Hankin</h4>
 <span><span class="co">##     }</span></span>
 <span><span class="co">## }</span></span></code></pre>
 <p>To cite the <code>clifford</code> package in publications please use
-<span class="citation">R. K. S. Hankin (2025)</span>. This short
-document discusses <code><a href="../reference/signature.html">signature()</a></code> in the <code>clifford</code>
-R package. As an example we might wish to work in <span class="math inline">\(\operatorname{Cl}(1,2)\)</span>:</p>
+<span class="citation">Hankin (2025a)</span>. This short document
+discusses <code><a href="../reference/signature.html">signature()</a></code> in the <code>clifford</code> R
+package. As an example we might wish to work in <span class="math inline">\(\operatorname{Cl}(1,2)\)</span>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p>Thus <span class="math inline">\(e_1^2=+1\)</span>, and <span class="math inline">\(e_2^2=e_3^2=-1\)</span>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/drop.html">drop</a></span><span class="op">(</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="../reference/drop.html">drop</a></span><span class="op">(</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="../reference/drop.html">drop</a></span><span class="op">(</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1]  1 -1 -1</span></span></code></pre>
-<p>We might ask what <span class="math inline">\(e_4\)</span> would
+<p>We might ask what <span class="math inline">\(e_4^2\)</span> would
 evaluate to, and this is assumed to be zero as is <span class="math inline">\(e_i^2\)</span> for <span class="math inline">\(i\geqslant 4\)</span>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/drop.html">drop</a></span><span class="op">(</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="../reference/drop.html">drop</a></span><span class="op">(</span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -142,14 +142,14 @@ values of <span class="math inline">\(i\)</span>:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Error in is_ok_clifford(terms, coeffs): option maxdim exceeded</span></span></code></pre>
 <p>The operation of <code><a href="../reference/signature.html">signature()</a></code> is modelled on the
-<code>sol()</code> function in the <code>lorentz</code> package <span class="citation">(R. K. S. Hankin 2022)</span>. Thus, if given no
-arguments we return the signature:</p>
+<code>sol()</code> function in the <code>lorentz</code> package <span class="citation">(Hankin 2025b)</span>. Thus, if given no arguments we
+return the signature:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 1 2</span></span></code></pre>
 <p>However, the default value is to use an infinite signature which
-corresponds to <span class="math inline">\(e_i^2=1\forall
-i\)</span>:</p>
+corresponds to <span class="math inline">\(e_i^2=1\)</span> for all
+i$:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>maxdim<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/signature.html">signature</a></span><span class="op">(</span><span class="cn">Inf</span><span class="op">)</span></span>
@@ -167,15 +167,15 @@ specifically <code>.Machine$integer.max</code>:</p>
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-hankin2025_clifford" class="csl-entry">
-Hankin, R. K. S. 2025. <span>“Clifford Algebra in : Introducing the
-Package.”</span> <em>Advances in Applied Clifford Algebra</em>.
-https://doi.org/<a href="https://doi.org/10.1007/s00006-025-01403-9" class="external-link">https://doi.org/10.1007/s00006-025-01403-9</a>.
+<div id="ref-hankin2025_clifford_rmd" class="csl-entry">
+Hankin, R. K. S. 2025a. <span>“Clifford Algebra in <span>R</span>:
+Introducing the <span class="nocase">clifford</span> Package.”</span>
+<em>Advances in Applied Clifford Algebra</em>. https://doi.org/<a href="https://doi.org/10.1007/s00006-025-01403-9" class="external-link">https://doi.org/10.1007/s00006-025-01403-9</a>.
 </div>
-<div id="ref-hankin2022_lorentz" class="csl-entry">
-Hankin, R. K. S. 2022. <span>“A Systematic Search for a Three-Velocity
-Gyrodistributive Law in Special Relativity with the Lorentz
-<span>R</span> Package.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2212.07005" class="external-link">https://doi.org/10.48550/ARXIV.2212.07005</a>.
+<div id="ref-hankin2025_lorentz" class="csl-entry">
+———. 2025b. <span>“Special Relativity in <span>R</span>: The Lorentz
+Package.”</span> <em>Journal of Open Source Education</em> 8 (88): 196.
+<a href="https://doi.org/10.21105/jose.00196" class="external-link">https://doi.org/10.21105/jose.00196</a>.
 </div>
 </div>
 </div>

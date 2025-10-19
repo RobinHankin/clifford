@@ -85,11 +85,11 @@ Hankin</h4>
     
 <p><img src="../../../_temp/Library/clifford/help/figures/clifford.png" width="15%" style="float:right; padding:10px"><img src="../../../_temp/Library/onion/help/figures/onion.png" width="15%" style="float:right; padding:10px"></p>
 <p>To cite the <code>clifford</code> package in publications please use
-<span class="citation">R. K. S. Hankin (<a href="#ref-hankin2025_clifford">2025</a>)</span>. This short document
-shows how dual quaternions may be implemented using Clifford algebra.
-The dual quaternions are an interesting and useful mathematical object
-which finds applications in solid-body mechanics. Consider the following
-multiplication table:</p>
+<span class="citation">Hankin (<a href="#ref-hankin2025_clifford_rmd">2025</a>)</span>. This short
+document shows how dual quaternions may be implemented using Clifford
+algebra. The dual quaternions are an interesting and useful mathematical
+object which finds applications in solid-body mechanics. Consider the
+following multiplication table:</p>
 <pre><code><span><span class="co">##     1   i   j   k    ε  εi  εj  εk</span></span>
 <span><span class="co">##  1  1   i   j   k    ε  εi  εj  εk</span></span>
 <span><span class="co">##  i  i  -1   k  -j   εi  -ε  εk -εj</span></span>
@@ -106,10 +106,9 @@ and <span class="math inline">\(\varepsilon\)</span> is the dual unit
 that commutes with <span class="math inline">\(i,j,k\)</span> and
 satisfies <span class="math inline">\(\varepsilon^2=0\)</span>. We can
 implement this in a rough-and-ready way with the <code>onion</code>
-package <span class="citation">(<a href="#ref-hankin2006_onion">R. K. S.
-Hankin 2006</a>)</span> by observing that a dual quaternion may be
-represented as <span class="math inline">\(A+\varepsilon B\)</span>,
-where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are quaternions. Then</p>
+package <span class="citation">(<a href="#ref-hankin2006_onion">Hankin
+2006</a>)</span> by observing that a dual quaternion may be represented
+as <span class="math inline">\(A+\varepsilon B\)</span>, where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are quaternions. Then</p>
 <p><span class="math display">\[
 (A+\varepsilon B)(C+\varepsilon D)== AC +
 \varepsilon(AD+BC)\]</span></p>
@@ -208,15 +207,15 @@ isomorphisms:</p>
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-hankin2025_clifford" class="csl-entry">
-Hankin, R. K. S. 2025. <span>“Clifford Algebra in : Introducing the
-Package.”</span> <em>Advances in Applied Clifford Algebra</em>.
-https://doi.org/<a href="https://doi.org/10.1007/s00006-025-01403-9" class="external-link">https://doi.org/10.1007/s00006-025-01403-9</a>.
-</div>
 <div id="ref-hankin2006_onion" class="csl-entry">
 Hankin, R. K. S. 2006. <span>“Normed Division Algebras with
 <span>R</span>: Introducing the <span><code>onion</code></span>
 Package.”</span> <em><span>R</span> News</em> 6 (2): 49–52.
+</div>
+<div id="ref-hankin2025_clifford_rmd" class="csl-entry">
+———. 2025. <span>“Clifford Algebra in <span>R</span>: Introducing the
+<span class="nocase">clifford</span> Package.”</span> <em>Advances in
+Applied Clifford Algebra</em>. https://doi.org/<a href="https://doi.org/10.1007/s00006-025-01403-9" class="external-link">https://doi.org/10.1007/s00006-025-01403-9</a>.
 </div>
 </div>
 </div>
