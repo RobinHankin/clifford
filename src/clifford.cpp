@@ -1,5 +1,13 @@
 #include "clifford.h"
 
+/*
+inline List prepare_then_call(const List &L, const NumericVector &c, const NumericVector &m,
+                              std::function<clifford(const clifford&)> op) {
+    const clifford cliff = prepare(L, c, m);
+    return retval(op(cliff));
+}
+*/
+
 // [[Rcpp::export]]
 List c_identity(const List &L, const NumericVector &p, const NumericVector &m){
     const clifford out = prepare(L,p,m);

@@ -16,7 +16,7 @@ typedef boost::dynamic_bitset<> blade;
 typedef std::map<blade, long double> clifford;
 typedef std::tuple<blade, int> blade_and_sign;
 
-clifford remove_zeros(clifford &C){
+inline clifford remove_zeros(clifford C){
     for(auto it = C.cbegin() ; it != C.end() ;){
         if(it->second == 0){
             it = C.erase(it); //increments pointer
@@ -44,7 +44,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
             out[b] += d[i];  // the meat
         } // if d[i] closes
     }  // i loop closes
-    return remove_zeros(out);
+    return remove_zeros(std::move(out));
 }
 
 Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
@@ -88,12 +88,12 @@ clifford add_lowlevel(clifford cliff1, clifford cliff2){
         for(const auto& [blade2, value2] : cliff2 ){
             cliff1[blade2] += value2;
         }
-        return remove_zeros(cliff1);
+        return remove_zeros(std::move(cliff1));
     } else {  // L2 is bigger
         for(const auto& [blade1, value1] : cliff1 ){
             cliff2[blade1] += value1;
         }
-        return remove_zeros(cliff2);
+        return remove_zeros(std::move(cliff2));
     }
 }
 
@@ -150,7 +150,7 @@ clifford c_general_prod(const clifford &C1, const clifford &C2, const NumericVec
             }
         }
     }
-    return remove_zeros(out);
+    return remove_zeros(std::move(out));
 }
 
 bool equal_lowlevel(clifford C1, clifford C2){

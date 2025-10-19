@@ -1,5 +1,6 @@
 # clifford 1.1-2
 - inclusion of AACA paper
+- code refactoring to include newer C++ features
 
 # clifford 1.1-1
 - bugfixes
