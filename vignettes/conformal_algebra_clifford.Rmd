@@ -37,7 +37,7 @@ knitr::include_graphics(system.file("help/figures/clifford.png", package = "clif
 
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how conformal
+@hankin2025_clifford_rmd.  This short document shows how conformal
 geometry may be implemented using the `clifford` R package; it follows
 @hildenbrand2013 and @perwass2009.  Here we work in
 $\operatorname{Cl}(p,q)$, which Perwass denotes $\mathbb{G}_{p,q}$.

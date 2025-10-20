@@ -55,7 +55,4 @@ Mod(A*A - A \%star\% A)  # meh
 A <- rblade()
 Mod(A*A - A \%star\% A)  # should be small
 
-
-
 }
-

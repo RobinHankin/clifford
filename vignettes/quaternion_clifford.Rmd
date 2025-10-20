@@ -22,7 +22,7 @@ knitr::include_graphics(system.file("help/figures/onion.png", package = "onion")
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how quaternionic
+@hankin2025_clifford_rmd.  This short document shows how quaternionic
 arithmetic may be implemented as a special case of Clifford algebras.
 This is done for illustrative purposes only; to manipulate quaternions
 in R the `onion` package [@hankin2006_onion] is much more efficient

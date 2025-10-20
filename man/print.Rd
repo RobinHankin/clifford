@@ -59,6 +59,9 @@ the constant term (which has a basis blade of \code{numeric(0)}) is
 treated appropriately.  See also \code{list_modifier()} which deals with
 this issue.
 
+The prompt can be changed to show the signature and this is documented
+at \code{signature}.
+
 Experimental bespoke print method \code{print_clifford_quaternion()} and
 \code{print_clifford_pauli()} is included.  This are executed if option
 \code{clifford_print_special} is \code{quaternion}; if \code{NULL}, then
@@ -67,7 +70,7 @@ further bespoke print methods if needed (modify
 \code{print.clifford()}).
 
 }
-\seealso{\code{\link{clifford}}}
+\seealso{\code{\link{clifford}},\code{\link{signature}}}
 \examples{
 
 a <- rclifff(9)
@@ -85,7 +88,7 @@ options(basissep = NULL, maxdim=NULL)  # restore default
 
 options("maxdim" = 3)
 signature(3)
-a <- clifford(list(0,c(1,2),c(1,3),c(2,3)),6:9)
+a <- clifford(list(0,c(1,2),c(1,3),c(2,3)), 6:9)
 a
 
 options("clifford_print_special" = "quaternion")

@@ -32,8 +32,8 @@ c_cartan(L, c, m, n)
 c_cartan_inverse(L, c, m, n)
 }
 \arguments{
-  \item{L,L1,L2}{Lists of terms}
-  \item{c1,c2,c}{Numeric vectors of coefficients}
+  \item{L, L1, L2}{Lists of terms}
+  \item{c1, c2, c}{Numeric vectors of coefficients}
   \item{m}{Maximum entry of terms}
   \item{n}{Grade to extract}
   \item{p}{Integer power}

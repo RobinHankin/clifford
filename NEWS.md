@@ -1,3 +1,16 @@
+# clifford 1.1-2
+- inclusion of AACA paper
+- code refactoring to include newer C++ features
+
+# clifford 1.1-1
+- bugfixes
+
+# clifford 1.1-0
+- extra checks
+- bugfixes
+- documentation improvements
+
+
 # clifford 1.0-0
 
 - consistentification: use disordR

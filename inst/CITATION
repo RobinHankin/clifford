@@ -2,11 +2,10 @@ citHeader("To cite in publications use:")
 
 citation(auto = meta)
 
-bibentry(bibtype = "misc",
-         title = "Clifford algebra in R",
+bibentry(bibtype = "Article",
+         title = "Clifford algebra in R: introducing the clifford package",
          author = person("Robin K. S. Hankin"),
-         doi = "10.48550/ARXIV.2209.13659",
-         url = "https://arxiv.org/abs/2209.13659",
-         publisher = "arXiv",
-         year = {2022}
+         journal = "Advances in Applied Clifford Algebra",
+         year = "2025",
+         doi = "10.1007/s00006-025-01403-9"
 )

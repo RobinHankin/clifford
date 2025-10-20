@@ -21,7 +21,9 @@
 %% an abstract and keywords
 \Abstract{Here I present the \pkg{clifford} package for working with
   Clifford algebras.  The algebra is described and package idiom is
-  given.}
+  given.  To cite in publications, use \citet{hankin2025_clifford}.
+
+}
 
 \Keywords{Clifford algebra}
 \Plainkeywords{Clifford algebra}
@@ -70,7 +72,7 @@ library("clifford")
 
 This document gives an introduction to the \pkg{clifford} package from
 an R perspective.  A more theoretical and cursive description is given
-by~\cite{hankin2022_clifford}.
+by~\cite{hankin2025_clifford}.
 
 Clifford algebras are interesting and instructive mathematical
 objects.  The class has a rich structure with varied applications to

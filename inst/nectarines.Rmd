@@ -21,7 +21,7 @@ set.seed(0)
 </p>
 
 To cite the clifford package in publications, use
-@hankin2022_clifford.  Here I generate the nectarines
+@hankin2025_clifford.  Here I generate the nectarines
 $\mathbb{H}_\mathrm{nec}$ [@janovska2023] using Clifford package
 idiom.  We need
 

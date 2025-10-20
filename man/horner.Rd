@@ -2,7 +2,7 @@
 \alias{horner}
 \title{Horner's method}
 \description{Horner's method for Clifford objects}
-\usage{horner(P,v)}
+\usage{horner(P, v)}
 \arguments{
   \item{P}{A Clifford object}
   \item{v}{Numeric vector of coefficients}
@@ -34,7 +34,7 @@ of \code{horner()} depends on the \code{signature()}.
 }
 \examples{
 
-horner(1+e(1:3)+e(2:3) , 1:6)
+horner(1 + e(1:3) + e(2:3), 1:6)
 
 rcliff() |> horner(1:4)
 

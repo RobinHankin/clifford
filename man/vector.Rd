@@ -8,7 +8,7 @@
   corresponding numeric vector
 }
 \usage{
-\method{as.vector}{clifford}(x,mode = "any")
+\method{as.vector}{clifford}(x, mode = "any")
 }
 \arguments{
   \item{x}{Object of class clifford}
@@ -21,7 +21,7 @@ in any order; see the examples
 }
 \seealso{\code{\link{numeric_to_clifford}}}
 \examples{
-x <- clifford(list(6,2,9),1:3)
+x <- clifford(list(6,2,9), 1:3)
 as.vector(x)
 
 as.1vector(as.vector(x)) == x  # should be TRUE

@@ -30,7 +30,7 @@ getcoeffs
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document discusses function
+@hankin2025_clifford_rmd.  This short document discusses function
 `getcoeffs()` in the `clifford` R package which, as its name suggests,
 retrieves specific coefficients from a clifford object.  It is a
 relatively low-level helper function that is a wrapper for a `C`

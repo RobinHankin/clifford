@@ -1,5 +1,13 @@
 #include "clifford.h"
 
+/*
+inline List prepare_then_call(const List &L, const NumericVector &c, const NumericVector &m,
+                              std::function<clifford(const clifford&)> op) {
+    const clifford cliff = prepare(L, c, m);
+    return retval(op(cliff));
+}
+*/
+
 // [[Rcpp::export]]
 List c_identity(const List &L, const NumericVector &p, const NumericVector &m){
     const clifford out = prepare(L,p,m);
@@ -12,7 +20,9 @@ List c_add(
           const List &L2, const NumericVector &c2,  // c[12] = coeffs
           const NumericVector &m
           ){
-  return retval(c_add(prepare(L1,c1,m),prepare(L2,c2,m)));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(add_lowlevel(cliff1, cliff2)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -22,7 +32,9 @@ List c_multiply(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(c_geometricprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(geometricprod_lowlevel(cliff1, cliff2, sig)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -32,7 +44,8 @@ List c_power(
           const NumericVector &p,
           const NumericVector &sig
           ){
-  return retval(c_power(prepare(L,c,m),p,sig));
+  const clifford cliff = prepare(L, c, m);
+  return retval(power_lowlevel(cliff, p, sig)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -41,7 +54,8 @@ List c_grade(
           const NumericVector &m,
           const NumericVector &n
           ){
-  return retval(c_grade(prepare(L,c,m),n));
+  const clifford cliff = prepare(L, c, m);
+  return retval(grade_lowlevel(cliff, n)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -50,7 +64,9 @@ bool c_equal(
           const List &L2, const NumericVector &c2,  // c[12] = coeffs
           const NumericVector &m
           ){
-  return c_equal(prepare(L1,c1,m),prepare(L2,c2,m));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return equal_lowlevel(cliff1, cliff2); // the meat
 }
 
 // [[Rcpp::export]]
@@ -59,7 +75,8 @@ NumericVector c_getcoeffs(
           const NumericVector &m,
           const List &B
           ){
-  return c_coeffs_of_blades(prepare(L,c,m),B,m);
+  const clifford cliff = prepare(L, c, m);
+  return coeffs_lowlevel(cliff, B, m); // the meat
 }
 
 // [[Rcpp::export]]
@@ -69,7 +86,9 @@ List c_outerprod(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(outerprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(outerprod(cliff1, cliff2, sig));  // the meat
 }
 
 // [[Rcpp::export]]
@@ -79,7 +98,9 @@ List c_innerprod(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(innerprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(innerprod(cliff1, cliff2, sig));  // the meat
 }
 
 // [[Rcpp::export]]
@@ -89,7 +110,9 @@ List c_fatdotprod(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(fatdotprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(fatdotprod(cliff1, cliff2, sig)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -99,7 +122,9 @@ List c_lefttickprod(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(lefttickprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(lefttickprod(cliff1, cliff2, sig)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -109,7 +134,9 @@ List c_righttickprod(
           const NumericVector &m,
 	  const NumericVector &sig
           ){
-  return retval(righttickprod(prepare(L1,c1,m),prepare(L2,c2,m),sig));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(righttickprod(cliff1, cliff2, sig)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -118,7 +145,9 @@ List c_overwrite(
           const List &L2, const NumericVector &c2,
           const NumericVector &m
           ){
-  return retval(overwrite(prepare(L1,c1,m),prepare(L2,c2,m)));
+  const clifford cliff1 = prepare(L1, c1, m);
+  const clifford cliff2 = prepare(L2, c2, m);
+  return retval(overwrite(cliff1, cliff2)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -128,7 +157,8 @@ List c_cartan(
           const NumericVector &m,
           const NumericVector &n
           ){
-        return retval(cartan(prepare(L,c,m),n));
+  const clifford cliff = prepare(L, c, m);
+  return retval(cartan(cliff, n)); // the meat
 }
 
 // [[Rcpp::export]]
@@ -138,6 +168,6 @@ List c_cartan_inverse(
           const NumericVector &m,
           const NumericVector &n
           ){
-        return retval(cartan_inverse(prepare(L,c,m),n));
+  const clifford cliff = prepare(L, c, m);
+  return retval(cartan_inverse(cliff, n)); // the meat
 }
-

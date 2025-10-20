@@ -22,7 +22,7 @@ library("disordR")
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how dual quaternions
+@hankin2025_clifford_rmd.  This short document shows how dual quaternions
 may be implemented using Clifford algebra.  The dual quaternions are
 an interesting and useful mathematical object which finds applications
 in solid-body mechanics.  Consider the following multiplication table:

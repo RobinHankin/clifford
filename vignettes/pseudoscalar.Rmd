@@ -34,7 +34,7 @@ pseudoscalar
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document discusses the pseudoscalar
+@hankin2025_clifford_rmd.  This short document discusses the pseudoscalar
 $I$ in the `clifford` R package.  The behaviour of $I$ depends on the
 dimension $n$ and the signature of the space considered, and as such
 function `pseudoscalar()` fails if `maxdim` is not set:

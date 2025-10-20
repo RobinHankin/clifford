@@ -24,10 +24,10 @@ knitr::include_graphics(system.file("help/figures/jordan.png", package = "jordan
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how the Pauli
+@hankin2025_clifford_rmd.  This short document shows how the Pauli
 matrices, often used in quantum mechanics, can be calculated using
 Clifford algebra as implemented by the `clifford` R package.  The
-Pauli matrices are set of three $2\times 2$ matrices with complex
+Pauli matrices are a set of three $2\times 2$ matrices with complex
 entries.  They represent observables corresponding to measuring spin
 along the $x$, $y$, and $z$ axes.  They are also useful when
 considering polarized light.  The Pauli matrices have a pleasing

@@ -16,7 +16,7 @@ typedef boost::dynamic_bitset<> blade;
 typedef std::map<blade, long double> clifford;
 typedef std::tuple<blade, int> blade_and_sign;
 
-clifford remove_zeros(clifford &C){
+inline clifford remove_zeros(clifford C){
     for(auto it = C.cbegin() ; it != C.end() ;){
         if(it->second == 0){
             it = C.erase(it); //increments pointer
@@ -44,7 +44,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
             out[b] += d[i];  // the meat
         } // if d[i] closes
     }  // i loop closes
-    return remove_zeros(out);
+    return remove_zeros(std::move(out));
 }
 
 Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
@@ -83,17 +83,17 @@ List retval(const clifford &C){  // used to return a list to R
                             );
 }
 
-clifford c_add(clifford cliff1, clifford cliff2){
+clifford add_lowlevel(clifford cliff1, clifford cliff2){
     if(cliff1.size() > cliff2.size()){ // #1 is bigger, so iterate through #2
         for(const auto& [blade2, value2] : cliff2 ){
             cliff1[blade2] += value2;
         }
-        return remove_zeros(cliff1);
+        return remove_zeros(std::move(cliff1));
     } else {  // L2 is bigger
         for(const auto& [blade1, value1] : cliff1 ){
             cliff2[blade1] += value1;
         }
-        return remove_zeros(cliff2);
+        return remove_zeros(std::move(cliff2));
     }
 }
 
@@ -150,10 +150,10 @@ clifford c_general_prod(const clifford &C1, const clifford &C2, const NumericVec
             }
         }
     }
-    return remove_zeros(out);
+    return remove_zeros(std::move(out));
 }
 
-bool c_equal(clifford C1, clifford C2){
+bool equal_lowlevel(clifford C1, clifford C2){
     // modelled on spray_equality()
     if(C1.size() != C2.size()){
         return false;
@@ -168,7 +168,7 @@ bool c_equal(clifford C1, clifford C2){
     return true;
 }
 
-clifford c_grade(const clifford &C, const NumericVector &n){
+clifford grade_lowlevel(const clifford &C, const NumericVector &n){
     clifford out;
     for(size_t i=0 ; i < (size_t) n.length() ; ++i){
         for(const auto& [b, value] : C){
@@ -202,10 +202,10 @@ blade int_vec_to_blade(const IntegerVector iv, const int m){
   return b;
 }
 
-NumericVector c_coeffs_of_blades(clifford C,
-                                 const List &B,
-                                 const NumericVector &m
-                                 ){
+NumericVector coeffs_lowlevel(clifford C,
+                              const List &B,
+                              const NumericVector &m
+                              ){
     Rcpp::NumericVector out;
     for(size_t i=0 ; i < (size_t) B.size() ; ++i){
         const IntegerVector iv = B[i];
@@ -229,7 +229,7 @@ bool fatdotchooser          (const blade b1, const blade b2){return ((( b1 & ~b2
 bool lefttickchooser        (const blade b1, const blade b2){return ( ( b1 & ~b2).count() == 0)                                                                   ;}
 bool righttickchooser       (const blade b1, const blade b2){return ( (~b1 &  b2).count() == 0)                                                                   ;}
 
-clifford c_geometricprod(const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &geometricproductchooser);}
+clifford geometricprod_lowlevel(const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &geometricproductchooser);}
 clifford outerprod      (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &outerproductchooser    );}
 clifford innerprod      (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &innerproductchooser    );}
 clifford fatdotprod     (const clifford &C1, const clifford &C2, const NumericVector &signature){ return c_general_prod(C1, C2, signature, &fatdotchooser          );}
@@ -243,7 +243,7 @@ clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
     return C1;
 }
 
-clifford c_power(const clifford &C, const NumericVector &power, const NumericVector &signature){  // p for power
+clifford power_lowlevel(const clifford &C, const NumericVector &power, const NumericVector &signature){  // p for power
     clifford out;
     unsigned int p = power[0];
 
@@ -253,7 +253,7 @@ clifford c_power(const clifford &C, const NumericVector &power, const NumericVec
     } else {
         out = C;
         for( ; p>1; p--){
-            out = c_geometricprod(C,out, signature);
+            out = geometricprod_lowlevel(C,out, signature);
         }
     }
     return out;

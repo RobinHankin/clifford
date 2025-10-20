@@ -36,10 +36,10 @@ Mathematics and Computation}. 311:3755-89
 
 a <- rcliff(d=7)   # Cl(4,3)
 b <- rcliff(d=7)   # Cl(4,3)
-signature(4,3)     # e1^2 = e2^2 = e3^2 = e4^2 = +1; e5^2 = e6^2=e7^2 = -1
+signature(4, 3)    # e1^2 = e2^2 = e3^2 = e4^2 = +1; e5^2 = e6^2=e7^2 = -1
 ab <- a*b          # multiplication in Cl(4,3)
 
-signature(0,7)   # e1^2 = ... = e7^2 = -1
+signature(0, 7)   # e1^2 = ... = e7^2 = -1
 cartan(a)*cartan(b) == cartan(ab) # multiplication in Cl(0,7); should be TRUE
 
 signature(Inf)  # restore default

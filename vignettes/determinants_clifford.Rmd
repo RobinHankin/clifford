@@ -16,7 +16,7 @@ knitr::include_graphics(system.file("help/figures/clifford.png", package = "clif
 ```
 
 To cite the `clifford` package in publications please use
-@hankin2022_clifford.  This short document shows how determinants
+@hankin2025_clifford_rmd.  This short document shows how determinants
 can be calculated using Clifford algebra as implemented by the
 `clifford` R package; notation follows @hestenes1987.  The methods
 shown here are not computationally efficient compared with bespoke
