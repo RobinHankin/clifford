@@ -97,11 +97,12 @@ Hankin</h4>
 <span><span class="co">##     }</span></span>
 <span><span class="co">## }</span></span></code></pre>
 <p>To cite the <code>clifford</code> package in publications please use
-<span class="citation">Hankin (2025)</span>. This short document
-discusses the pseudoscalar <span class="math inline">\(I\)</span> in the
-<code>clifford</code> R package. The behaviour of <span class="math inline">\(I\)</span> depends on the dimension <span class="math inline">\(n\)</span> and the signature of the space
-considered, and as such function <code><a href="../reference/pseudoscalar.html">pseudoscalar()</a></code> fails if
-<code>maxdim</code> is not set:</p>
+<span class="citation">Hankin (<a href="#ref-hankin2025_clifford_rmd">2025</a>)</span>. This short
+document discusses the pseudoscalar <span class="math inline">\(I\)</span> in the <code>clifford</code> R package.
+The behaviour of <span class="math inline">\(I\)</span> depends on the
+dimension <span class="math inline">\(n\)</span> and the signature of
+the space considered, and as such function <code><a href="../reference/pseudoscalar.html">pseudoscalar()</a></code>
+fails if <code>maxdim</code> is not set:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pseudoscalar.html">pseudoscalar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Error in pseudoscalar(): pseudoscalar requires a finite value of maxdim; set it with something like options(maxdim = 6)</span></span></code></pre>
@@ -168,8 +169,7 @@ preserved by even permutations of <span class="math inline">\(1,2,\ldots,n\)</sp
 <p>Above we see, from the last line, that the vectors <span class="math inline">\(a_1\)</span> to <span class="math inline">\(a_5\)</span> are independent (the result is
 nonzero). Further, we see that the vectors are a right-handed set, for
 the wedge product is positive. We can permute the vectors using the
-<code>permutations</code> package <span class="citation">(Hankin
-2020)</span>:</p>
+<code>permutations</code> package <span class="citation">(<a href="#ref-hankin2020_permutations">Hankin 2020</a>)</span>:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">permutation</span><span class="op">(</span><span class="st">"(12)(345)"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] (12)(345)</span></span></code></pre>
