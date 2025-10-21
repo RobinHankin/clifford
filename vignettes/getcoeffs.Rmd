@@ -3,7 +3,9 @@ title: "Function `getcoeffs()` in the `clifford` package"
 author: "Robin K. S. Hankin"
 output: html_vignette
 bibliography: clifford.bib
+link-citations: true
 vignette: >
+  %\VignetteIndexEntry{Function getcoeffs()}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{getcoeffs}
   %\usepackage[utf8]{inputenc}
