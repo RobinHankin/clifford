@@ -62,12 +62,12 @@ this issue.
 The prompt can be changed to show the signature and this is documented
 at \code{signature}.
 
-Experimental bespoke print method \code{print_clifford_quaternion()} and
-\code{print_clifford_pauli()} is included.  This are executed if option
-\code{clifford_print_special} is \code{quaternion}; if \code{NULL}, then
-\code{print_clifford_default()} is used.  It is straightforward to add
-further bespoke print methods if needed (modify
-\code{print.clifford()}).
+Experimental bespoke print method \code{print_clifford_quaternion()} is
+included.  This is executed if option \code{clifford_print_special} is
+\code{quaternion}; if \code{NULL}, then \code{print_clifford_default()}
+is used.  It is straightforward to add further bespoke print methods if
+needed (modify \code{print.clifford()}; it might be nice to have
+\code{clifford_print_pauli()} at some point).
 
 }
 \seealso{\code{\link{clifford}},\code{\link{signature}}}
