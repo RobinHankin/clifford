@@ -105,7 +105,7 @@ C1 \%|_\% C2
 
   The package has several binary operators:
 
-  \tabular{lll}{\cr
+  \tabular{lll}{
     Geometric product \tab \code{A*B = geoprod(A,B)} \tab
     \eqn{\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle
       B\right\rangle_s}{see PDF}\cr
