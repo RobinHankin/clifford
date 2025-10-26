@@ -15,7 +15,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">clifford</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1-2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1-3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,16 +116,16 @@
   function.  Function <code>maxyterm()</code> returns the maximum index in the
   terms of its arguments.</p>
 <p>The package has several binary operators:</p>
-<p></p><table class="table table"><tr><td></td><td>Geometric product</td><td><code>A*B = geoprod(A,B)</code></td></tr><tr><td>\(\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\)</td><td>Inner product</td><td><code>A %.% B = cliffdotprod(A,B)</code></td></tr><tr><td>\(\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne
+<p></p><table class="table table"><tr><td>Geometric product</td><td><code>A*B = geoprod(A,B)</code></td><td>\(\displaystyle AB=\sum_{r,s}\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\)</td></tr><tr><td>Inner product</td><td><code>A %.% B = cliffdotprod(A,B)</code></td><td>\(\displaystyle A\cdot B=\sum_{r\neq 0\atop s\ne
     0}^{\vphantom{s\neq 0}}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle_{\left|s-r\right|}\)</td><td>Outer product</td><td><code>A %^% B = wedge(A,B)</code></td></tr><tr><td>\(\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle_{s+r}\)</td><td>Fat dot product</td><td><code>A %o% B = fatdot(A,B)</code></td></tr><tr><td>\(\displaystyle A\bullet B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle_{\left|s-r\right|}\)</td><td>Left contraction</td><td><code>A %_|% B = lefttick(A,B)</code></td></tr><tr><td>\(\displaystyle A\rfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle_{s-r}\)</td><td>Right contraction</td><td><code>A %|_% B = righttick(A,B)</code></td></tr><tr><td>\(\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle_{r-s}\)</td><td>Cross product</td><td><code>A %X% B = cross(A,B)</code></td></tr><tr><td>\(\displaystyle A\times
-    B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)\)</td><td>Scalar product</td><td><code>A %star% B = star(A,B)</code></td></tr><tr><td>\(\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
-      B\right\rangle_s\right\rangle_0\)</td><td>Euclidean product</td><td><code>A %euc% B = eucprod(A,B)</code></td></tr></table><p>In <span style="R">R</span> idiom, the geometric product <code>geoprod(.,.)</code> has to be
+      B\right\rangle_s\right\rangle_{\left|s-r\right|}\)</td></tr><tr><td>Outer product</td><td><code>A %^% B = wedge(A,B)</code></td><td>\(\displaystyle A\wedge B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{s+r}\)</td></tr><tr><td>Fat dot product</td><td><code>A %o% B = fatdot(A,B)</code></td><td>\(\displaystyle A\bullet B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{\left|s-r\right|}\)</td></tr><tr><td>Left contraction</td><td><code>A %_|% B = lefttick(A,B)</code></td><td>\(\displaystyle A\rfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{s-r}\)</td></tr><tr><td>Right contraction</td><td><code>A %|_% B = righttick(A,B)</code></td><td>\(\displaystyle A\lfloor B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_{r-s}\)</td></tr><tr><td>Cross product</td><td><code>A %X% B = cross(A,B)</code></td><td>\(\displaystyle A\times
+    B=\frac{1}{2_{\vphantom{j}}}\left(AB-BA\right)\)</td></tr><tr><td>Scalar product</td><td><code>A %star% B = star(A,B)</code></td><td>\(\displaystyle A\ast B=\sum_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle
+      B\right\rangle_s\right\rangle_0\)</td></tr><tr><td>Euclidean product</td><td><code>A %euc% B = eucprod(A,B)</code></td><td>\(\displaystyle A\star B= A\ast B^\dagger\)</td></tr></table><p>In <span style="R">R</span> idiom, the geometric product <code>geoprod(.,.)</code> has to be
   indicated with a “<code>*</code>” (as in <code>A*B</code>) and so the
   binary operator must be <code>%*%</code>: we need a different idiom for
   scalar product, which is why <code>%star%</code> is used.</p>
