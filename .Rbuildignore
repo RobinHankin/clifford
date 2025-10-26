@@ -5,6 +5,7 @@
 ^\.github$
 inst/clifford_blue.png$
 inst/clifford_arxiv.Rnw
+inst/clifford_stickermaker.R
 inst/clifford.bib
 inst/code.png
 inst/dot.Rmd
@@ -12,7 +13,7 @@ inst/dual_numbers_clifford.Rmd
 inst/hankin_aaca_revision2.tex
 inst/hankin_aaca_revision3.tex
 inst/hankin_aaca_revision.tex
-inst/hankni_aca.Rnw
+inst/hankin_aca.Rnw
 inst/hestenes.Rmd$
 inst/hitzer.Rmd
 inst/inverse.R$
