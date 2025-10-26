@@ -12,6 +12,7 @@ The clifford package: Clifford algebra in R
 coverage](https://codecov.io/gh/RobinHankin/clifford/graph/badge.svg)](https://app.codecov.io/gh/RobinHankin/clifford/branch/master)
 <!-- badges: end -->
 
+To cite the `clifford` package in publications please use Hankin (2025).
 The `clifford` package provides R-centric functionality for working with
 Clifford algebras of arbitrary dimension and signature. A detailed
 vignette is provided in the package.
@@ -135,16 +136,39 @@ summary(x^3)
 #> Magnitude: 25376
 ```
 
-# References
-
-- D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
-- J. Snygg 2010. *A new approach to differential geometry using
-  Clifford’s geometric algebra*. Berghauser.
-- C. Perwass 2009. *Geometric algebra with applications in engineering*.
-  Springer.
-
 # Further information
 
 For more detail, see the package vignette
 
 `vignette("clifford")`
+
+which is the canonical vignette. However, other vignettes are available:
+which is the canonical vignette. However,
+
+- `complex_clifford`,
+
+which is the canonical vignette. Other vignettes are included in the
+package:
+
+- `complex_clifford`
+- `conformal_algebra_clifford`
+- `cramer_clifford` \[possibly not on CRAN, only the github repo\]
+- `determinants_clifford`
+- `dual_quaternion_clifford`
+- `getcoeffs`
+- `lorentz_clifford`
+- `pauli_clifford`
+- `pseudoscalar`
+- `quaternion_clifford` \[possibly not on CRAN, only the github repo\]
+- `signature`
+
+# References
+
+- R. K. S. Hankin 2025. *Clifford algebra in R: introducing the clifford
+  package*. *Advances in Clifford Algebra*, volume 35, number 51.
+  [doi:10.1007/s00006-025-01403-9](https://10.1007/s00006-025-01403-9).
+- D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
+- J. Snygg 2010. *A new approach to differential geometry using
+  Clifford’s geometric algebra*. Berghauser.
+- C. Perwass 2009. *Geometric algebra with applications in engineering*.
+  Springer.
