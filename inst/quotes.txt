@@ -3,3 +3,60 @@ language for encoding geometry, whereas---in this context---linear
 algebra is more akin to assembly language.
 
 Fontijne 2006
+
+-- 
+
+Even today mathematicians typically typecast Clifford Algebra as the
+"algebra of a quadratic form," with no awareness of its grander role
+in unifying geometry and algebra as envisaged by Clifford himself when
+he named it Geometric Algebra... [which is] a comprehensive
+mathematical language for physics, engineering and computer science.
+
+Hestenes 2016
+
+-- 
+
+A central theme in the history of mathematics is an intricate dance
+between geometry and algebra, with each playing solo on occasion.
+Drawing on contributions by Grassmann and Hamilton, the two were fused
+into a comprehensive Geometric Algebra by W. K. Clifford in the middle
+of the nineteenth century.
+
+Hestenes 2016
+
+--
+
+Newton's well-known quote [viz "If I have seen further it is by
+standing on the shoulders of giants"] to Hooke finds no better
+illustration than in the development of what we call Geometric
+Algebra.  The primary set of shoulders in the Geometric Algebra epic
+belong to Hermann Grassmann, who epitomized the mathematical mind, at
+least in process, if not in expositional style.  He systematically
+created algebras for geometric concepts by listing essential elements
+and operations and then reducing them to minimal axiomatic schemes.
+
+
+It was William Kingdon Clifford, who then recognized the sublime value
+of joining [the inner and outer products], into one product via a new
+algebraic "addition" of the two products.  The geometric product of
+Clifford was cast as the fundamental operation with inner and outer
+products defined in terms of it.  Its subtlety lies in the fact that
+it is not a binary operation as we are used to thinking of
+
+Hildenbrand 2013
+
+--
+
+Geometry is a pervasive mathematical concept that appears in many
+places and in many disguises ... an algebra for geometry is therefore
+a desirable mathematical tool, and indeed many such algebras have been
+developed.  The first ones were probably Grassmann's algebra of
+extensive entities, Hamilton's quaternions, and complex numbers, which
+were all combined by W. K. Clifford into a single algebraic system,
+Clifford algebra.  The aim of this text is not only to show that
+Clifford algebra is *the* geometric algebra, but also to demonstrate its
+advantages for important engineering applications.
+
+Perwass 2009
+
+
