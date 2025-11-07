@@ -166,7 +166,7 @@ package:
 
 - R. K. S. Hankin 2025. *Clifford algebra in R: introducing the clifford
   package*. *Advances in Clifford Algebra*, volume 35, number 51.
-  [doi:10.1007/s00006-025-01403-9](https://10.1007/s00006-025-01403-9).
+  [doi:10.1007/s00006-025-01403-9](https://doi.org/10.1007/s00006-025-01403-9).
 - D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
 - J. Snygg 2010. *A new approach to differential geometry using
   Clifford’s geometric algebra*. Berghauser.
