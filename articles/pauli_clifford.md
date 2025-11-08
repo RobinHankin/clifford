@@ -1,0 +1,285 @@
+# Pauli matrices via Clifford algebra
+
+![](../../../_temp/Library/clifford/help/figures/clifford.png)![](../../../_temp/Library/jordan/help/figures/jordan.png)
+
+To cite the `clifford` package in publications please use Hankin
+([2025](#ref-hankin2025_clifford_rmd)). This short document shows how
+the Pauli matrices, often used in quantum mechanics, can be calculated
+using Clifford algebra as implemented by the `clifford` R package. The
+Pauli matrices are a set of three \\2\times 2\\ matrices with complex
+entries. They represent observables corresponding to measuring spin
+along the \\x\\, \\y\\, and \\z\\ axes. They are also useful when
+considering polarized light. The Pauli matrices have a pleasing
+relationship with Jordan algebra ([Hankin
+2023](#ref-hankin2023_jordan)). In component form, they are:
+
+\\ \sigma_0=\left(\begin{matrix}1&0\\0&1\end{matrix}\right)\qquad
+\sigma_x=\left(\begin{matrix}0&1\\1&0\end{matrix}\right)\qquad
+\sigma_y=\left(\begin{matrix}0&-i\\i&0\end{matrix}\right)\qquad
+\sigma_z=\left(\begin{matrix}1&0\\0&-1\end{matrix}\right) \\
+
+We observe that \\\sigma_x\sigma_y=i\sigma_z\\,
+\\\sigma_y\sigma_z=i\sigma_x\\, and \\\sigma_z\sigma_x=i\sigma_y\\, and
+further that
+\\\sigma_x^2=\sigma_y^2=\sigma_z^2=-i\sigma_x\sigma_y\sigma_z=\sigma_0\\.
+
+The non-identity Pauli matrices \[that is,
+\\\sigma_x,\sigma_y,\sigma_z\\\] are subject to the following
+commutation relations:
+
+\\ \left\[\sigma_x,\sigma_y\right\]=2i\sigma_z\qquad
+\left\[\sigma_y,\sigma_z\right\]=2i\sigma_x\qquad
+\left\[\sigma_z,\sigma_x\right\]=2i\sigma_y\\
+
+(here, \\\left\[x,y\right\]=xy-yx\\). We also have the following
+anticommutation relations:
+
+\\ \left\lbrace\sigma_x,\sigma_y\right\rbrace=2i\sigma_z\qquad
+\left\lbrace\sigma_y,\sigma_z\right\rbrace=2i\sigma_x\qquad
+\left\lbrace\sigma_z,\sigma_x\right\rbrace=2i\sigma_y\\
+
+(here, \\\left\lbrace x,y\right\rbrace=xy+yx\\).
+
+Because any \\2\times 2\\ Hermitian matrix may be expressed as
+\\A\sigma_0+B\sigma_x+C\sigma_y+D\sigma_z\\ for
+\\A,B,C,D\in\mathbb{R}\\, we observe that the anticommutation relations
+imply that the Pauli matrices are closed under the Jordan operator
+\\x\circ y=(xy+yx)/2\\. For more details, see the `jordan` package
+([Hankin 2023](#ref-hankin2023_jordan)) which implements this operation
+in a more general context. The Jordan multiplication rule is
+
+\\ \sigma_a\sigma_b=\delta\_{ab}I_2 + i\epsilon\_{abc}\sigma_c \\
+
+which suggests the following identification:
+
+\\\begin{aligned} \sigma_0&\longleftrightarrow 1\\
+\sigma_x&\longleftrightarrow e_1\\ \sigma_y&\longleftrightarrow e_2\\
+\sigma_z&\longleftrightarrow e_3\\ \end{aligned}\\
+
+Then we make the *formal* identifications:
+
+\\\begin{aligned} i\sigma_x&\longleftrightarrow e_2e_3\\
+i\sigma_y&\longleftrightarrow e_3e_1\\ i\sigma_z&\longleftrightarrow
+e_1e_2\\ \end{aligned}\\
+
+and so we recover the Pauli matrix relations from the Clifford algebra.
+
+## Implementation
+
+Let us start with the Pauli matrices:
+
+\\ \sigma_0=\left(\begin{matrix}1&0\\0&1\end{matrix}\right)\qquad
+\sigma_x=\left(\begin{matrix}0&1\\1&0\end{matrix}\right)\qquad
+\sigma_y=\left(\begin{matrix}0&-i\\i&0\end{matrix}\right)\qquad
+\sigma_z=\left(\begin{matrix}1&0\\0&-1\end{matrix}\right) \\
+
+\\ i\sigma_0=\left(\begin{matrix}i&0\\0&i\end{matrix}\right)\qquad
+i\sigma_x=\left(\begin{matrix}0&i\\i&0\end{matrix}\right)\qquad
+i\sigma_y=\left(\begin{matrix}0&1\\-1&0\end{matrix}\right)\qquad
+i\sigma_z=\left(\begin{matrix}i&0\\0&-i\end{matrix}\right) \\
+
+Given a general complex matrix
+
+\\ \left(\begin{matrix} \alpha +\beta i & \gamma+\delta i\\
+\epsilon+\zeta i & \eta+\theta i \end{matrix}\right) \\
+
+we see that
+
+\\\begin{eqnarray} \sigma_0&=(\alpha+\eta)/2\qquad
+i\sigma_0=(\beta+\theta)/2\\ \sigma_x&=(\gamma+\epsilon)/2\qquad
+i\sigma_x=(\delta+\xi)/2\\ \sigma_y&=(\gamma-\epsilon)/2\qquad
+i\sigma_x=(\delta-\xi)/2\\ \sigma_z&=(\alpha-\eta)/2\qquad
+i\sigma_z=(\beta-\theta)/2\\ \end{eqnarray}\\
+
+## R implementation
+
+``` r
+s0 <- matrix(c(1,0,0,1),2,2)
+sx <- matrix(c(0,1,1,0),2,2)
+sy <- matrix(c(0,1i,-1i,0),2,2)
+sz <- matrix(c(1,0,0,-1),2,2)
+```
+
+Given a general complex matrix `M`, we may coerce this to Clifford form
+as follows:
+
+``` r
+matrix_to_clifford <- function(M){
+      (Re(M[1,1] + M[2,2]))/2             + 
+      (Re(M[1,1] - M[2,2]))/2*e(c(  3  )) +
+      (Im(M[1,1] + M[2,2]))/2*e(c(1,2,3)) + 
+      (Im(M[1,1] - M[2,2]))/2*e(c(1,2  )) +
+
+      (Re(M[2,1] + M[1,2]))/2*e(c(1    )) + 
+      (Re(M[2,1] - M[1,2]))/2*e(c(1,  3)) +
+      (Im(M[2,1] + M[1,2]))/2*e(c(  2,3)) + 
+      (Im(M[2,1] - M[1,2]))/2*e(c(  2  ))
+}
+```
+
+and then test it as follows:
+
+``` r
+rmat <- function(...){matrix(rnorm(4),2,2) + 1i*matrix(rnorm(4),2,2)}
+M <- rmat()
+M
+```
+
+    ##                       [,1]                    [,2]
+    ## [1,] -1.4000435+0.6215527i -2.437263611-1.8218177i
+    ## [2,]  0.2553171+1.1484116i -0.005571287-0.2473253i
+
+``` r
+matrix_to_clifford(M)
+```
+
+    ## Element of a Clifford algebra, equal to
+    ## - 0.7028074 - 1.090973e_1 + 1.485115e_2 + 0.434439e_12 - 0.6972361e_3 +
+    ## 1.34629e_13 - 0.336703e_23 + 0.1871137e_123
+
+We can now test whether `matrix_to_clifford()` is a group homomorphism:
+
+``` r
+M1 <- rmat()
+M2 <- rmat()
+
+diff <- matrix_to_clifford(M1)*matrix_to_clifford(M2) - matrix_to_clifford(M1 %*% M2)
+diff
+```
+
+    ## Element of a Clifford algebra, equal to
+    ## + 2.220446e-16 + 2.220446e-16e_12 + 1.387779e-16e_3 + 2.220446e-16e_23 -
+    ## 8.326673e-17e_123
+
+``` r
+Mod(diff)
+```
+
+    ## [1] 4.172578e-16
+
+We see agreement to numerical precision. Now we can coerce from a
+Clifford to a matrix:
+
+``` r
+`clifford_to_matrix` <- function(C){
+   return(
+                          const(C)*s0 + getcoeffs(C,list(1))*sx 
+  +           getcoeffs(C,list(2))*sy + getcoeffs(C,list(3))*sz
+  + getcoeffs(C,list(c(1,2,3)))*1i*s0 + getcoeffs(C,list(c(  2,3)))*1i*sx 
+  - getcoeffs(C,list(c(1,  3)))*1i*sy + getcoeffs(C,list(c(1,2  )))*1i*sz
+  )
+} 
+```
+
+``` r
+rc <- function(...){rcliff(100,d=3,g=3)}
+C <- 104 + rc()
+C
+```
+
+    ## Element of a Clifford algebra, equal to
+    ## + 155 + 60e_1 - 90e_2 + 74e_12 - 63e_3 + 10e_13 + 27e_23 - 27e_123
+
+``` r
+clifford_to_matrix(C)
+```
+
+    ##        [,1]     [,2]
+    ## [1,] 92+47i  50+117i
+    ## [2,] 70-63i 218-101i
+
+Now test that the two coercion functions are inverses of one another:
+
+``` r
+clifford_to_matrix(matrix_to_clifford(M)) - M 
+```
+
+    ##      [,1]                        [,2]
+    ## [1,] 0+0i  0.000000e+00+2.220446e-16i
+    ## [2,] 0+0i -7.372575e-17+2.775558e-17i
+
+``` r
+matrix_to_clifford(clifford_to_matrix(C))- C
+```
+
+    ## Element of a Clifford algebra, equal to
+    ## the zero clifford element (0)
+
+Now we can establish that `clifford_to_matrix()` is a homomorphism:
+
+``` r
+C1 <- 222 + rc()
+C2 <- 333 + rc()
+clifford_to_matrix(C1*C2) - clifford_to_matrix(C1)%*%clifford_to_matrix(C2)
+```
+
+    ##      [,1] [,2]
+    ## [1,] 0+0i 0+0i
+    ## [2,] 0+0i 0+0i
+
+### Closure
+
+The reason that Pauli matrices are useful in physics is that they are
+closed under the Jordan operation \\x\circ y=(xy+yx)/2\\, which we will
+verify for matrices and their Clifford representation.
+
+``` r
+M1 <- as.1matrix(rchm(1,2))
+M2 <- as.1matrix(rchm(1,2))
+M1
+```
+
+    ##             [,1]        [,2]
+    ## [1,] -0.05+0.00i -0.74-0.11i
+    ## [2,] -0.74+0.11i -0.56+0.00i
+
+``` r
+M2
+```
+
+    ##             [,1]       [,2]
+    ## [1,] -0.56+0.00i 0.75-1.92i
+    ## [2,]  0.75+1.92i 0.19+0.00i
+
+``` r
+p1 <- (M1 %*% M2 + M2 %*% M1)/2
+p1 - ht(p1)  # zero for Hermitian matrices
+```
+
+    ##      [,1] [,2]
+    ## [1,] 0+0i 0+0i
+    ## [2,] 0+0i 0+0i
+
+Above, see how \\M_1\circ M_2\\ is Hermitian. Now, in Clifford form:
+
+``` r
+C1 <- matrix_to_clifford(M1)
+C2 <- matrix_to_clifford(M2)
+p2 <- (C1 * C2 + C2 * C1)/2
+p2
+```
+
+    ## Element of a Clifford algebra, equal to
+    ## - 0.383 - 0.09185e_1 - 0.60595e_2 + 0.0672e_3
+
+above, see how the clifford product `p2` is a pure Pauli matrix as its
+only nonzero coefficients are those of the scalar and the grade-one
+blades:
+
+``` r
+grades(p2)
+```
+
+    ## A disord object with hash dc0ef121a24b8ab8c67bbfc6468e439b5622e81e and elements
+    ## [1] 0 1 1 1
+    ## (in some order)
+
+### References
+
+Hankin, R. K. S. 2023. “Jordan Algebra in R.” arXiv,
+<https://arxiv.org/abs/2303.06062>; arXiv.
+<https://doi.org/10.48550/arXiv.2303.06062>.
+
+———. 2025. “Clifford Algebra in R: Introducing the clifford Package.”
+*Advances in Applied Clifford Algebra* 35 (51).
+https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.

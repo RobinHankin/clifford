@@ -1,0 +1,149 @@
+# The clifford package: Clifford algebra in R
+
+![](reference/figures/clifford.png)
+
+To cite the `clifford` package in publications please use Hankin (2025).
+The `clifford` package provides R-centric functionality for working with
+Clifford algebras of arbitrary dimension and signature. A detailed
+vignette is provided in the package.
+
+# Installation
+
+You can install the released version of the clifford package from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+# install.packages("clifford")  # uncomment this to install the package
+library("clifford")
+set.seed(0)
+```
+
+# The `clifford` package in use
+
+The basic creation function is
+[`clifford()`](https://robinhankin.github.io/clifford/reference/clifford.md),
+which takes a list of basis blades and a vector of coefficients:
+
+``` r
+(a <- clifford(list(1,2,1:4,2:3),1:4))
+#> Element of a Clifford algebra, equal to
+#> + 1e_1 + 2e_2 + 4e_23 + 3e_1234
+(b <- clifford(list(2,2:3,1:2),c(-2,3,-3)))
+#> Element of a Clifford algebra, equal to
+#> - 2e_2 - 3e_12 + 3e_23
+```
+
+So `a` and `b` are multivectors. Clifford objects are a vector space and
+we can add them using `+`:
+
+``` r
+a+b
+#> Element of a Clifford algebra, equal to
+#> + 1e_1 - 3e_12 + 7e_23 + 3e_1234
+```
+
+See how the `e2` term vanishes and the `e_23` term is summed. The
+package includes a large number of products:
+
+``` r
+a*b        # geometric product (also "a % % b")
+#> Element of a Clifford algebra, equal to
+#> - 16 + 6e_1 - 3e_2 - 2e_12 + 14e_3 + 12e_13 + 3e_123 - 9e_14 + 9e_34 - 6e_134
+a %^% b    # outer product
+#> Element of a Clifford algebra, equal to
+#> - 2e_12 + 3e_123
+a %.% b    # inner product
+#> Element of a Clifford algebra, equal to
+#> - 16 + 6e_1 - 3e_2 + 14e_3 - 9e_14 + 9e_34 - 6e_134
+a %star% b # scalar product
+#> [1] -16
+a %euc% b  # Euclidean product
+#> [1] 8
+```
+
+The package can deal with non positive-definite inner products. Suppose
+we wish to deal with an inner product of
+
+where the diagonal is a number of terms followed by a number of terms.
+The package idiom for this would be to use
+[`signature()`](https://robinhankin.github.io/clifford/reference/signature.md):
+
+``` r
+signature(3)
+```
+
+Function
+[`signature()`](https://robinhankin.github.io/clifford/reference/signature.md)
+is based on
+[`lorentz::sol()`](https://robinhankin.github.io/lorentz/reference/sol.html)
+and its argument specifies the number of basis blades that square to ,
+the others squaring to . Thus and :
+
+``` r
+basis(1)
+#> Element of a Clifford algebra, equal to
+#> + 1e_1
+basis(1)^2
+#> Element of a Clifford algebra, equal to
+#> scalar ( 1 )
+basis(4)
+#> Element of a Clifford algebra, equal to
+#> + 1e_4
+basis(4)^2
+#> Element of a Clifford algebra, equal to
+#> the zero clifford element (0)
+```
+
+The package uses the STL map class with dynamic bitset keys for
+efficiency and speed and can deal with objects of arbitrary dimensions.
+Thus:
+
+``` r
+options("basissep" = ",")
+(x <- rcliff(d=20))
+#> Element of a Clifford algebra, equal to
+#> + 5 - 1e_2 + 6e_5 + 2e_4,7 - 3e_10 - 5e_11 + 3e_14 + 1e_10,14 + 4e_5,9,15 +
+#> 9e_18,19
+summary(x^3)
+#> Element of a Clifford algebra 
+#> Typical terms:  140  ...  + 216e_5,9,10,14,15,18,19 
+#> Number of terms: 44 
+#> Magnitude: 25376
+```
+
+# Further information
+
+For more detail, see the package vignette
+
+`vignette("clifford")`
+
+which is the canonical vignette. However, other vignettes are available:
+which is the canonical vignette. However,
+
+- `complex_clifford`,
+
+which is the canonical vignette. Other vignettes are included in the
+package:
+
+- `complex_clifford`
+- `conformal_algebra_clifford`
+- `cramer_clifford` \[possibly not on CRAN, only the github repo\]
+- `determinants_clifford`
+- `dual_quaternion_clifford`
+- `getcoeffs`
+- `lorentz_clifford`
+- `pauli_clifford`
+- `pseudoscalar`
+- `quaternion_clifford` \[possibly not on CRAN, only the github repo\]
+- `signature`
+
+# References
+
+- R. K. S. Hankin 2025. *Clifford algebra in R: introducing the clifford
+  package*. *Advances in Clifford Algebra*, volume 35, number 51.
+  [doi:10.1007/s00006-025-01403-9](https://doi.org/10.1007/s00006-025-01403-9).
+- D. Hestenes 1987. *Clifford algebra to geometric calculus*, Kluwer.
+- J. Snygg 2010. *A new approach to differential geometry using
+  Clifford’s geometric algebra*. Berghauser.
+- C. Perwass 2009. *Geometric algebra with applications in engineering*.
+  Springer.

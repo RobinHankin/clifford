@@ -1,0 +1,150 @@
+# Complex arithmetic using Clifford algebra
+
+![](../../../_temp/Library/clifford/help/figures/clifford.png)
+
+To cite the `clifford` package in publications please use Hankin
+([2025](#ref-hankin2025_clifford_rmd)). This short document shows how
+complex arithmetic may be implemented using Clifford algebra (of course,
+if one really wants to use complex numbers, base R is much more
+efficient and uses nicer idiom than the methods presented here). Recall
+that complex numbers are a two-dimensional algebra over the reals, with
+\\(a,b)\cdot(c,d)=(ac-bd,ad+bc)\\; we usually write \\(a,b)\\ as
+\\a+bi\\. There are two natural ways to identify complex numbers with
+Clifford objects; but because they use different signatures it is more
+convenient to treat them separately.
+
+## First method
+
+We use \\\operatorname{Cl}(0,1)\\, so \\e_1^2=-1\\. Package idiom is
+straightforward; to coerce complex numbers to Clifford objects and vice
+versa, we need a couple of functions:
+
+``` r
+signature(0,1)
+options(maxdim=1) # paranoid-level safety measure
+complex_to_clifford <- function(z){Re(z) + e(1)*Im(z)}
+clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,1)}
+clifford_to_complex <- function(C){const(C) + 1i*coeffs(Im(C))}
+```
+
+Then numerical verification is immediate. First we choose some complex
+numbers:
+
+``` r
+z1 <- 35 + 67i
+z2 <- -2 + 12i
+```
+
+Then, for example:
+
+``` r
+z1
+```
+
+    ## [1] 35+67i
+
+``` r
+complex_to_clifford(z1)
+```
+
+    ## Element of a Clifford algebra, equal to
+    ## + 35 + 67e_1
+
+Checking that the coercion is a homomorphism is easy:
+
+``` r
+complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
+```
+
+    ## [1] TRUE
+
+Above, note that the `*` on the left is the geometric product, while the
+`*` on the right is the usual complex multiplication. And because the
+map is invertible we can check the other way too:
+
+``` r
+(C1 <- 23 + 7*e(1))
+```
+
+    ## Element of a Clifford algebra, equal to
+    ## + 23 + 7e_1
+
+``` r
+clifford_to_complex(C1)
+```
+
+    ## [1] 23+7i
+
+``` r
+C2 <- 2  - 8*e(1)
+clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
+```
+
+    ## [1] TRUE
+
+## Second method
+
+We use \\\operatorname{Cl}(2)\\, so \\e_1^2=e_2^2=1\\, and identify the
+imaginary unit \\i\\ with \\e\_{12}\\ (thus
+\\e\_{12}^2=e\_{12}e\_{12}=e\_{1212}=-e\_{1122}=-e_1^2e_2^2=-1\\). A
+general complex number \\z=x+iy\\ maps to Clifford object \\x +
+ye\_{12}\\.
+
+``` r
+options(maxdim=2)  # paranoid-level safety measure
+signature(2)
+complex_to_clifford <- function(z){Re(z) + e(1:2)*Im(z)}
+clifford_to_complex <- function(C){const(C) + 1i*coeffs(Im(C))}
+```
+
+Then numerical verification:
+
+``` r
+z1 <- 35 + 67i
+z2 <- -2 + 12i
+complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
+```
+
+    ## [1] TRUE
+
+``` r
+C1 <- 23 + 7*e(1:2)
+C2 <- 2  - 8*e(1:2)
+clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
+```
+
+    ## [1] TRUE
+
+### Note
+
+The identification \\x+iy\longrightarrow x+ye\_{12}\\ is a homomorphism
+whenever \\e_1^2e_2^2=1\\; above we used \\\operatorname{Cl}(2,0)\\ so
+\\e_1^2=e_2^2=1\\. However, the relation is also satisfied if
+\\e_1^2=e_2^2=-1\\, so we can equally well use
+\\\operatorname{Cl}(0,2)\\:
+
+``` r
+signature(0,2)
+c(
+complex_to_clifford(z1)*complex_to_clifford(z2) == complex_to_clifford(z1*z2),
+clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
+)
+```
+
+    ## [1] TRUE TRUE
+
+### Default
+
+It is best to return the signature and `maxdim` to their default values
+in order to prevent interference with other vignettes:
+
+``` r
+options(maxdim=NULL)
+signature(Inf)
+```
+
+## References
+
+Hankin, R. K. S. 2025. “Clifford Algebra in R: Introducing the clifford
+Package.” *Advances in Applied Clifford Algebra* 35 (51).
+https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.
