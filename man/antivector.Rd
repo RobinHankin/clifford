@@ -54,14 +54,6 @@ Compare \code{as.1vector()}, which returns a clifford object of grade 1.
 }
 
 \note{An antivector is always a blade.}
-\references{
-
-  Wikipedia contributors. (2018, July 20). \dQuote{Antivector}.  In
-  \emph{Wikipedia, The Free Encyclopedia}. Retrieved 19:06, January 27,
-  2020, from
-  \url{https://en.wikipedia.org/w/index.php?title=Antivector&oldid=851094060}
-
-}
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{as.1vector}}}
 \examples{
