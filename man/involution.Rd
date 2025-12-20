@@ -18,7 +18,23 @@
 \description{
 
   An \dfn{involution} is a function that is its own inverse, or
-  equivalently \eqn{f(f(x))=x}.  There are several important
+  equivalently \eqn{f(f(x))=x}.    In Clifford algebra, involutions are 
+  generalizations of the complex conjugate \eqn{\overline{x+iy}=x-iy}.
+
+}
+\usage{
+\method{rev}{clifford}(x)
+\method{Conj}{clifford}(z)
+cliffconj(z)
+neg(C,n)
+gradeinv(C)
+}
+\arguments{
+  \item{C,x,z}{Clifford object}
+  \item{n}{Integer vector specifying grades to be negated in \code{neg()}}
+}
+\details{
+ There are several important
   involutions on Clifford objects; these commute past the grade operator
   with \eqn{f(\left\langle A\right\rangle_r)=\left\langle
   f(A)\right\rangle_r}{omitted} and are linear: \eqn{f(\alpha A+\beta
@@ -114,20 +130,6 @@
     \emph{and} the dimension of the underlying vector space.
   }
 }
-
-\usage{
-\method{rev}{clifford}(x)
-\method{Conj}{clifford}(z)
-cliffconj(z)
-neg(C,n)
-gradeinv(C)
-}
-\arguments{
-  \item{C,x,z}{Clifford object}
-  \item{n}{Integer vector specifying grades to be negated in \code{neg()}}
-}
-
-
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{grade}}}
 \examples{
