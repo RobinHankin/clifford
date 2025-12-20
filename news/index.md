@@ -1,5 +1,11 @@
 # Changelog
 
+## clifford 1.1-3
+
+CRAN release: 2025-11-10
+
+- documentation tweaks
+
 ## clifford 1.1-2
 
 CRAN release: 2025-10-20

@@ -8,164 +8,12 @@
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Clifford involutions — involution"><meta name="description" content="
 
 An involution is a function that is its own inverse, or
-  equivalently \(f(f(x))=x\).  There are several important
-  involutions on Clifford objects; these commute past the grade operator
-  with \(f(\left\langle A\right\rangle_r)=\left\langle
-  f(A)\right\rangle_r\) and are linear: \(f(\alpha A+\beta
-  B)=\alpha f(A)+\beta f(B)\).
-The dual is documented here for convenience, even though it is
-  not an involution (applying the dual four times is the
-  identity).
-
-The reverse \(A^\sim\) is given by
-    rev() (both Perwass and Dorst use a tilde, as in
-    \(\tilde{A}\) or \(A^\sim\).  However, both
-    Hestenes and Chisholm use a dagger, as in
-    \(A^\dagger\).  This page uses Perwass's notation).
-    The reverse of a term written as a product of basis vectors is
-    simply the product of the same basis vectors but written in reverse
-    order.  This changes the sign of the term if the number of basis
-    vectors is 2 or 3 (modulo 4).  Thus, for example,
-    \(\left(e_1e_2e_3\right)^\sim=e_3e_2e_1=-e_1e_2e_3\)
-    and
-    \(\left(e_1e_2e_3e_4\right)^\sim=e_4e_3e_2e_1=+e_1e_2e_3e_4\).
-    Formally, if \(X=e_{i_1}\ldots e_{i_k}\), then
-    \(\tilde{X}=e_{i_k}\ldots e_{i_1}\).
-$$\left\langle
-      A^\sim\right\rangle_r=\widetilde{\left\langle
-	A\right\rangle_r}=(-1)^{r(r-1)/2}\left\langle A\right\rangle_r
-    $$
-Perwass shows that \(\left\langle
-      AB\right\rangle_r=(-1)^{r(r-1)/2}\left\langle\tilde{B}\tilde{A}\right\rangle_r
-    \)
-The Conjugate \(A^\dagger\) is given by
-    Conj() (we use Perwass's notation, def 2.9 p59).  This
-    depends on the signature of the Clifford algebra; see
-    grade.Rd for notation.  Given a basis blade
-    \(e_\mathbb{A}\) with \(\mathbb{A}\subseteq\left\lbrace
-    1,\ldots,p+q\right\rbrace\), then we have
-    \(e_\mathbb{A}^\dagger = (-1)^m {e_\mathbb{A}}^\sim\),
-    where \(m=\mathrm{gr}_{-}(\mathbb{A})\).  Alternatively,
-    we might say $$\left(\left\langle
-    A\right\rangle_r\right)^\dagger=(-1)^m(-1)^{r(r-1)/2}\left\langle
-    A\right\rangle_r $$ where
-    \(m=\mathrm{gr}_{-}(\left\langle A\right\rangle_r)\) [NB
-    I have changed Perwass's notation].
-The main (grade) involution or grade involution
-    \(\widehat{A}\) is given by gradeinv().  This
-    changes the sign of any term with odd grade:
-$$\widehat{\left\langle A\right\rangle_r} =(-1)^r\left\langle
-      A\right\rangle_r$$
-(I don't see this in Perwass or Hestenes; notation follows Hitzer
-    and Sangwine).  It is a special case of grade negation.
-The grade \(r\)-negation
-    \(A_{\overline{r}}\) is given by neg().  This
-    changes the sign of the grade \(r\) component of \(A\).  It is
-    formally defined as \(A-2\left\langle
-    A\right\rangle_r\) but function neg() uses a more
-    efficient method.  It is possible to negate all terms with specified
-    grades, so for example we might have \(\left\langle
-    A\right\rangle_{\overline{\left\lbrace 1,2,5\right\rbrace}} =
-    A-2\left( \left\langle A\right\rangle_1 +\left\langle
-    A\right\rangle_2+\left\langle A\right\rangle_5\right)\) and
-    the R idiom would be neg(A,c(1,2,5)).  Note that Hestenes
-    uses &amp;#8220;\(A_{\overline{r}}\)&amp;#8221; to mean the same as
-    \(\left\langle A\right\rangle_r\).
-The Clifford conjugate \(\overline{A}\) is
-    given by cliffconj().  It is distinct from conjugation
-    \(A^\dagger\), and is defined in Hitzer and Sangwine as
-$$\overline{\left\langle A\right\rangle_r} =
-      (-1)^{r(r+1)/2}\left\langle A\right\rangle_r.$$
-The dual \(C^*\) of a clifford object \(C\) is
-    given by dual(C,n); argument n is the dimension of the
-    underlying vector space.  Perwass gives
-    \(C^*=CI^{-1}\)
-where \(I=e_1e_2\ldots e_n\) is the unit pseudoscalar
-    [note that Hestenes uses \(I\) to mean something different].
-    The dual is sensitive to the signature of the Clifford algebra
-    and the dimension of the underlying vector space.
-
-"><meta property="og:description" content="
+  equivalently \(f(f(x))=x\).    In Clifford algebra, involutions are
+  generalizations of the complex conjugate \(\overline{x+iy}=x-iy\)."><meta property="og:description" content="
 
 An involution is a function that is its own inverse, or
-  equivalently \(f(f(x))=x\).  There are several important
-  involutions on Clifford objects; these commute past the grade operator
-  with \(f(\left\langle A\right\rangle_r)=\left\langle
-  f(A)\right\rangle_r\) and are linear: \(f(\alpha A+\beta
-  B)=\alpha f(A)+\beta f(B)\).
-The dual is documented here for convenience, even though it is
-  not an involution (applying the dual four times is the
-  identity).
-
-The reverse \(A^\sim\) is given by
-    rev() (both Perwass and Dorst use a tilde, as in
-    \(\tilde{A}\) or \(A^\sim\).  However, both
-    Hestenes and Chisholm use a dagger, as in
-    \(A^\dagger\).  This page uses Perwass's notation).
-    The reverse of a term written as a product of basis vectors is
-    simply the product of the same basis vectors but written in reverse
-    order.  This changes the sign of the term if the number of basis
-    vectors is 2 or 3 (modulo 4).  Thus, for example,
-    \(\left(e_1e_2e_3\right)^\sim=e_3e_2e_1=-e_1e_2e_3\)
-    and
-    \(\left(e_1e_2e_3e_4\right)^\sim=e_4e_3e_2e_1=+e_1e_2e_3e_4\).
-    Formally, if \(X=e_{i_1}\ldots e_{i_k}\), then
-    \(\tilde{X}=e_{i_k}\ldots e_{i_1}\).
-$$\left\langle
-      A^\sim\right\rangle_r=\widetilde{\left\langle
-	A\right\rangle_r}=(-1)^{r(r-1)/2}\left\langle A\right\rangle_r
-    $$
-Perwass shows that \(\left\langle
-      AB\right\rangle_r=(-1)^{r(r-1)/2}\left\langle\tilde{B}\tilde{A}\right\rangle_r
-    \)
-The Conjugate \(A^\dagger\) is given by
-    Conj() (we use Perwass's notation, def 2.9 p59).  This
-    depends on the signature of the Clifford algebra; see
-    grade.Rd for notation.  Given a basis blade
-    \(e_\mathbb{A}\) with \(\mathbb{A}\subseteq\left\lbrace
-    1,\ldots,p+q\right\rbrace\), then we have
-    \(e_\mathbb{A}^\dagger = (-1)^m {e_\mathbb{A}}^\sim\),
-    where \(m=\mathrm{gr}_{-}(\mathbb{A})\).  Alternatively,
-    we might say $$\left(\left\langle
-    A\right\rangle_r\right)^\dagger=(-1)^m(-1)^{r(r-1)/2}\left\langle
-    A\right\rangle_r $$ where
-    \(m=\mathrm{gr}_{-}(\left\langle A\right\rangle_r)\) [NB
-    I have changed Perwass's notation].
-The main (grade) involution or grade involution
-    \(\widehat{A}\) is given by gradeinv().  This
-    changes the sign of any term with odd grade:
-$$\widehat{\left\langle A\right\rangle_r} =(-1)^r\left\langle
-      A\right\rangle_r$$
-(I don't see this in Perwass or Hestenes; notation follows Hitzer
-    and Sangwine).  It is a special case of grade negation.
-The grade \(r\)-negation
-    \(A_{\overline{r}}\) is given by neg().  This
-    changes the sign of the grade \(r\) component of \(A\).  It is
-    formally defined as \(A-2\left\langle
-    A\right\rangle_r\) but function neg() uses a more
-    efficient method.  It is possible to negate all terms with specified
-    grades, so for example we might have \(\left\langle
-    A\right\rangle_{\overline{\left\lbrace 1,2,5\right\rbrace}} =
-    A-2\left( \left\langle A\right\rangle_1 +\left\langle
-    A\right\rangle_2+\left\langle A\right\rangle_5\right)\) and
-    the R idiom would be neg(A,c(1,2,5)).  Note that Hestenes
-    uses &amp;#8220;\(A_{\overline{r}}\)&amp;#8221; to mean the same as
-    \(\left\langle A\right\rangle_r\).
-The Clifford conjugate \(\overline{A}\) is
-    given by cliffconj().  It is distinct from conjugation
-    \(A^\dagger\), and is defined in Hitzer and Sangwine as
-$$\overline{\left\langle A\right\rangle_r} =
-      (-1)^{r(r+1)/2}\left\langle A\right\rangle_r.$$
-The dual \(C^*\) of a clifford object \(C\) is
-    given by dual(C,n); argument n is the dimension of the
-    underlying vector space.  Perwass gives
-    \(C^*=CI^{-1}\)
-where \(I=e_1e_2\ldots e_n\) is the unit pseudoscalar
-    [note that Hestenes uses \(I\) to mean something different].
-    The dual is sensitive to the signature of the Clifford algebra
-    and the dimension of the underlying vector space.
-
-"></head><body>
+  equivalently \(f(f(x))=x\).    In Clifford algebra, involutions are
+  generalizations of the complex conjugate \(\overline{x+iy}=x-iy\)."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -217,7 +65,34 @@ where \(I=e_1e_2\ldots e_n\) is the unit pseudoscalar
 
 
 <p>An <dfn>involution</dfn> is a function that is its own inverse, or
-  equivalently \(f(f(x))=x\).  There are several important
+  equivalently \(f(f(x))=x\).    In Clifford algebra, involutions are
+  generalizations of the complex conjugate \(\overline{x+iy}=x-iy\).</p>
+    </div>
+
+    <div class="section level2">
+    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'clifford'</span></span>
+<span><span class="fu">rev</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for class 'clifford'</span></span>
+<span><span class="fu">Conj</span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
+<span><span class="fu">cliffconj</span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
+<span><span class="fu">neg</span><span class="op">(</span><span class="va">C</span>,<span class="va">n</span><span class="op">)</span></span>
+<span><span class="fu">gradeinv</span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span></code></pre></div>
+    </div>
+
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+    <p></p>
+<dl><dt id="arg-c-x-z">C,x,z<a class="anchor" aria-label="anchor" href="#arg-c-x-z"></a></dt>
+<dd><p>Clifford object</p></dd>
+
+  <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
+<dd><p>Integer vector specifying grades to be negated in <code>neg()</code></p></dd>
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>There are several important
   involutions on Clifford objects; these commute past the grade operator
   with \(f(\left\langle A\right\rangle_r)=\left\langle
   f(A)\right\rangle_r\) and are linear: \(f(\alpha A+\beta
@@ -293,28 +168,6 @@ where \(I=e_1e_2\ldots e_n\) is the unit pseudoscalar
     The dual is sensitive to the signature of the Clifford algebra
     <em>and</em> the dimension of the underlying vector space.</p></li>
 </ul></div>
-
-    <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'clifford'</span></span>
-<span><span class="fu">rev</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co"># S3 method for class 'clifford'</span></span>
-<span><span class="fu">Conj</span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
-<span><span class="fu">cliffconj</span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
-<span><span class="fu">neg</span><span class="op">(</span><span class="va">C</span>,<span class="va">n</span><span class="op">)</span></span>
-<span><span class="fu">gradeinv</span><span class="op">(</span><span class="va">C</span><span class="op">)</span></span></code></pre></div>
-    </div>
-
-    <div class="section level2">
-    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <p></p>
-<dl><dt id="arg-c-x-z">C,x,z<a class="anchor" aria-label="anchor" href="#arg-c-x-z"></a></dt>
-<dd><p>Clifford object</p></dd>
-
-  <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
-<dd><p>Integer vector specifying grades to be negated in <code>neg()</code></p></dd>
-
-</dl></div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
     <p>Robin K. S. Hankin</p>

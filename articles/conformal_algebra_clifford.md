@@ -387,15 +387,15 @@ poc  # point on circle, found numerically [chunk omitted]
 ```
 
     ## Element of a Clifford algebra, equal to
-    ## - 0.7152125e_1 - 0.249856e_2 + 0.3267826e_3 - 0.1596281e_4 + 0.8403719e_5
+    ## - 0.7152127e_1 - 0.2498563e_2 + 0.3267822e_3 - 0.159628e_4 + 0.840372e_5
 
 ``` r
 poc ^ CIRC
 ```
 
     ## Element of a Clifford algebra, equal to
-    ## - 0.003398166e_1234 - 0.003398108e_1235 - 0.001699361e_1245 - 0.00849622e_1345
-    ## - 0.008495811e_2345
+    ## - 0.003402925e_1234 - 0.003402866e_1235 - 0.001701745e_1245 - 0.00850813e_1345
+    ## - 0.008507714e_2345
 
 Above we see that `poc` is at least close to the circle from the small
 magnitude of the terms in the wedge product.

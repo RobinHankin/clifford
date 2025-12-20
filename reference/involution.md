@@ -1,8 +1,35 @@
 # Clifford involutions
 
 An involution is a function that is its own inverse, or equivalently
-\\f(f(x))=x\\. There are several important involutions on Clifford
-objects; these commute past the grade operator with \\f(\left\langle
+\\f(f(x))=x\\. In Clifford algebra, involutions are generalizations of
+the complex conjugate \\\overline{x+iy}=x-iy\\.
+
+## Usage
+
+``` r
+# S3 method for class 'clifford'
+rev(x)
+# S3 method for class 'clifford'
+Conj(z)
+cliffconj(z)
+neg(C,n)
+gradeinv(C)
+```
+
+## Arguments
+
+- C,x,z:
+
+  Clifford object
+
+- n:
+
+  Integer vector specifying grades to be negated in `neg()`
+
+## Details
+
+There are several important involutions on Clifford objects; these
+commute past the grade operator with \\f(\left\langle
 A\right\rangle_r)=\left\langle f(A)\right\rangle_r\\ and are linear:
 \\f(\alpha A+\beta B)=\alpha f(A)+\beta f(B)\\.
 
@@ -77,28 +104,6 @@ involution (applying the dual *four* times is the identity).
   Hestenes uses \\I\\ to mean something different\]. The dual is
   sensitive to the signature of the Clifford algebra *and* the dimension
   of the underlying vector space.
-
-## Usage
-
-``` r
-# S3 method for class 'clifford'
-rev(x)
-# S3 method for class 'clifford'
-Conj(z)
-cliffconj(z)
-neg(C,n)
-gradeinv(C)
-```
-
-## Arguments
-
-- C,x,z:
-
-  Clifford object
-
-- n:
-
-  Integer vector specifying grades to be negated in `neg()`
 
 ## Author
 

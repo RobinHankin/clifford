@@ -6,12 +6,6 @@ Following Perwass, the magnitude of a multivector is defined as
 
 Where \\A\ast A\\ denotes the Euclidean scalar product
 [`eucprod()`](https://robinhankin.github.io/clifford/reference/Ops.clifford.md).
-Recall that the Euclidean scalar product is never negative (the function
-body is `sqrt(abs(eucprod(z)))`; the
-[`abs()`](https://rdrr.io/r/base/MathFun.html) is needed to avoid
-numerical roundoff errors in
-[`eucprod()`](https://robinhankin.github.io/clifford/reference/Ops.clifford.md)
-giving a negative value).
 
 ## Usage
 
@@ -30,11 +24,23 @@ Mod(z)
 
 Robin K. S. Hankin
 
+## Details
+
+For any multivector \\A\\, the Euclidean scalar product \\A\ast A\\ is
+never negative, so the square root is always defined.
+
+The function body of `Mod.clifford()` is `sqrt(abs(eucprod(z)))`; the
+[`abs()`](https://rdrr.io/r/base/MathFun.html) is needed to avoid
+numerical roundoff errors in
+[`eucprod()`](https://robinhankin.github.io/clifford/reference/Ops.clifford.md)
+giving a negative value.
+
 ## Note
 
 If you want the square, \\\left\|\left\|A\right\|\right\|^2\\ and not
 \\\left\|\left\|A\right\|\right\|\\, it is faster and more accurate to
-use `eucprod(A)`, because this avoids a needless square root.
+use `eucprod(A)` \[rather than `Mod(A)^2`\], because this avoids a
+needless square root.
 
 There is a nice example of scalar product at `rcliff.Rd`.
 

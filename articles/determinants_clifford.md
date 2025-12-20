@@ -98,7 +98,7 @@ RHS <- cliff_det(M)
 c(LHS,RHS,LHS-RHS)
 ```
 
-    ## [1] 147.84 147.84   0.00
+    ## [1] 1.478400e+02 1.478400e+02 1.136868e-13
 
 above we see numerical agreement.
 
