@@ -29,7 +29,8 @@ fails if `maxdim` is not set:
 pseudoscalar()
 ```
 
-    ## Error in pseudoscalar(): pseudoscalar requires a finite value of maxdim; set it with something like options(maxdim = 6)
+    ## Error in `pseudoscalar()`:
+    ## ! pseudoscalar requires a finite value of maxdim; set it with something like options(maxdim = 6)
 
 Function
 [`pseudoscalar()`](https://robinhankin.github.io/clifford/reference/pseudoscalar.md)

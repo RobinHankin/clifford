@@ -83,7 +83,7 @@ Hankin</h4>
 
     
     
-<p><img src="../../../_temp/Library/clifford/help/figures/clifford.png" class="r-plt" width="15%" style="float:right; padding:10px"><img src="../../../_temp/Library/lorentz/help/figures/lorentz.png" class="r-plt" width="15%" style="float:right; padding:10px"></p>
+<p><img src="../../../_temp/Library/clifford/help/figures/clifford.png" class="r-plt" alt="" width="15%" style="float:right; padding:10px"><img src="../../../_temp/Library/lorentz/help/figures/lorentz.png" class="r-plt" alt="" width="15%" style="float:right; padding:10px"></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">signature</span></span></code></pre></div>
 <pre><code><span><span class="co">## function (p, q = 0) </span></span>
@@ -140,7 +140,8 @@ values of <span class="math inline">\(i\)</span>:</p>
 <pre><code><span><span class="co">## [1]  1 -1 -1  0</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/numeric_to_clifford.html">e</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in is_ok_clifford(terms, coeffs): option maxdim exceeded</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `is_ok_clifford()`:</span></span></span>
+<span><span class="co">## <span style="color: #BBBB00;">!</span> option maxdim exceeded</span></span></code></pre>
 <p>The operation of <code><a href="../reference/signature.html">signature()</a></code> is modelled on the
 <code>sol()</code> function in the <code>lorentz</code> package <span class="citation">(<a href="#ref-hankin2025_lorentz">Hankin
 2025b</a>)</span>. Thus, if given no arguments we return the

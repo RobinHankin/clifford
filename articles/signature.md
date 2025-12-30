@@ -81,7 +81,8 @@ c(drop(e(1)^2),drop(e(2)^2),drop(e(3)^2),drop(e(4)^2))
 e(5)
 ```
 
-    ## Error in is_ok_clifford(terms, coeffs): option maxdim exceeded
+    ## Error in `is_ok_clifford()`:
+    ## ! option maxdim exceeded
 
 The operation of
 [`signature()`](https://robinhankin.github.io/clifford/reference/signature.md)
