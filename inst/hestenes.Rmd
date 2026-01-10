@@ -9,10 +9,10 @@ output:
 ```{r setup, include=FALSE}
 set.seed(0)
 knitr::opts_chunk$set(echo = TRUE)
-library("clifford")
 library("onion")
 library("matlib") # needed for GramSchmidt()
 library("partitions") # needed for allbinom()
+library("clifford")
 ```
 
 \newcommand{\gr}[1]{\left\langle #1\right\rangle}
