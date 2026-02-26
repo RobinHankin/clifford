@@ -253,7 +253,7 @@ clifford power_lowlevel(const clifford &C, const NumericVector &power, const Num
     } else {
         out = C;
         for( ; p>1; p--){
-            out = geometricprod_lowlevel(C,out, signature);
+            out = geometricprod_lowlevel(C, out, signature);
         }
     }
     return out;
