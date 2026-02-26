@@ -64,7 +64,7 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rcliff</span><span class="op">(</span>n<span class="op">=</span><span class="fl">9</span>, d<span class="op">=</span><span class="fl">6</span>, g<span class="op">=</span><span class="fl">4</span>, include.fewer<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">rclifff</span><span class="op">(</span>n<span class="op">=</span><span class="fl">100</span>, d<span class="op">=</span><span class="fl">20</span>, g<span class="op">=</span><span class="fl">10</span>, include.fewer<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu">rblade</span><span class="op">(</span>d<span class="op">=</span><span class="fl">7</span>, g<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">rblade</span><span class="op">(</span>d<span class="op">=</span><span class="fl">7</span>, g<span class="op">=</span><span class="fl">3</span>, prod<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -85,6 +85,11 @@
     and default <code>TRUE</code> meaning to include terms with
     grades less than <code>g</code> (including a term of grade zero, that
     is, a scalar)</p></dd>
+
+  <dt id="arg-prod">prod<a class="anchor" aria-label="anchor" href="#arg-prod"></a></dt>
+<dd><p>In <code>rblade()</code>, Boolean with default <code>TRUE</code>
+    meaning to return the product of random 1-vectors, and <code>FALSE</code>
+    meaning to return a list of the 1-vectors</p></dd>
 
 </dl></div>
     <div class="section level2">

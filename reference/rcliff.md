@@ -8,7 +8,7 @@ examples of `clifford` objects
 ``` r
 rcliff(n=9, d=6, g=4, include.fewer=TRUE)
 rclifff(n=100, d=20, g=10, include.fewer=TRUE)
-rblade(d=7, g=3)
+rblade(d=7, g=3, prod=TRUE)
 ```
 
 ## Arguments
@@ -31,6 +31,12 @@ rblade(d=7, g=3)
   only terms of grade `g`, and default `TRUE` meaning to include terms
   with grades less than `g` (including a term of grade zero, that is, a
   scalar)
+
+- prod:
+
+  In `rblade()`, Boolean with default `TRUE` meaning to return the
+  product of random 1-vectors, and `FALSE` meaning to return a list of
+  the 1-vectors
 
 ## Details
 
