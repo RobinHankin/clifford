@@ -229,10 +229,14 @@ setGeneric("dim")
     rcliff(n=n, d=d, g=g, include.fewer=include.fewer)
 }
 
-`rblade` <- function(d=7, g=3){
-    Reduce(`%^%`, sapply(seq_len(g), function(...) {
-        as.1vector(sample(1:5, d, replace=TRUE))
-    }, simplify = FALSE))
+`rblade` <- function(d=7, g=3, prod=TRUE){
+    out <- sapply(
+        seq_len(g),
+        function(...){as.1vector(sample(1:5, d, replace=TRUE))},
+        simplify = FALSE)
+
+    if(prod){out <- Reduce(wedge, out) }
+    return(out)
 }
 
 setGeneric("drop")

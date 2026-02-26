@@ -8,7 +8,7 @@
 \usage{
 rcliff(n=9, d=6, g=4, include.fewer=TRUE)
 rclifff(n=100, d=20, g=10, include.fewer=TRUE)
-rblade(d=7, g=3)
+rblade(d=7, g=3, prod=TRUE)
 }
 \arguments{
   \item{n}{Number of terms}
@@ -19,6 +19,9 @@ rblade(d=7, g=3)
     and default \code{TRUE} meaning to include terms with
     grades less than \code{g} (including a term of grade zero, that
     is, a scalar)}
+  \item{prod}{In \code{rblade()}, Boolean with default \code{TRUE}
+    meaning to return the product of random 1-vectors, and \code{FALSE}
+    meaning to return a list of the 1-vectors}
 }
 \details{
 
