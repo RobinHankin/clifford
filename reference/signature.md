@@ -95,8 +95,9 @@ implies \\e_n^2=0\\, but usually we are not interested in \\e_n\\ when
 maximum value of \\n\\, with default `NULL` corresponding to infinity.
 If \\n\\ exceeds `maxdim`, then `is_ok_sig()` throws an error. Note that
 it is sometimes fine to have `maxdim > p+q` \[and indeed this is useful
-in the context of dual numbers\]. This option is intended to be a
-super-strict safety measure.
+in the context of dual numbers\]. This option was originally intended to
+be a super-strict safety measure, but I am finding myself setting it
+more and more frequently.
 
     > e(6)
     Element of a Clifford algebra, equal to

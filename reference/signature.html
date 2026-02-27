@@ -147,8 +147,9 @@ Option <code>maxdim</code> specifies the maximum value of \(n\), with
 default <code>NULL</code> corresponding to infinity.  If \(n\) exceeds
 <code>maxdim</code>, then <code>is_ok_sig()</code> throws an error.  Note that it is
 sometimes fine to have <code>maxdim &gt; p+q</code> [and indeed this is useful in
-the context of dual numbers].  This option is intended to be a
-super-strict safety measure.</p>
+the context of dual numbers].  This option was originally intended to be
+a super-strict safety measure, but I am finding myself setting it more
+and more frequently.</p>
 <div class="sourceCode"><pre><code>
 &gt; e(6)
 Element of a Clifford algebra, equal to
