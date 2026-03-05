@@ -1,9 +1,6 @@
 # Homogenous Clifford objects
 
-A clifford object is homogenous if all its terms are the same grade. A
-scalar (including the zero clifford object) is considered to be
-homogenous. This ensures that `is.homog(grade(C,n))` always returns
-`TRUE`.
+A clifford object is homogenous if all its terms are the same grade.
 
 ## Usage
 
@@ -18,6 +15,10 @@ is.homog(C)
   Object of class clifford
 
 ## Note
+
+A scalar (including the zero clifford object) is considered to be
+homogenous. This ensures that `is.homog(grade(C,n))` always returns
+`TRUE`.
 
 Nonzero homogenous clifford objects have a multiplicative inverse.
 
