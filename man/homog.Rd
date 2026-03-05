@@ -6,10 +6,8 @@
 \title{Homogenous Clifford objects}
 \description{
 
-A clifford object is homogenous if all its terms are the same grade.  A
-scalar (including the zero clifford object) is considered to be
-homogenous.  This ensures that \code{is.homog(grade(C,n))} always
-returns \code{TRUE}.
+A clifford object is \dfn{homogenous} if all its terms are the same
+grade.
 
 }
 \usage{
@@ -17,6 +15,11 @@ is.homog(C)
 }
 \arguments{\item{C}{Object of class clifford}}
 \note{
+
+  A scalar (including the zero clifford object) is considered to be
+  homogenous.  This ensures that \code{is.homog(grade(C,n))} always
+  returns \code{TRUE}.
+  
   Nonzero homogenous clifford objects have a multiplicative inverse.
 }
 \author{Robin K. S. Hankin}
