@@ -63,7 +63,7 @@ a - zap(a)   # nonzero
 B <- rblade(g=3)
 mB <- B*rev(B)
 zap(mB)
-#> [1] 47379
+#> [1] 90829
 drop(mB)
-#> [1] 47379
+#> [1] 90829
 ```

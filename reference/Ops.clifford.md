@@ -181,16 +181,15 @@ w <- rcliff(5)
 
 u
 #> Element of a Clifford algebra, equal to
-#> + 4 - 1e_5 + 4e_35 + 2e_145 + 5e_6 - 2e_36
+#> + 6 + 5e_4 + 4e_5 - 5e_245 - 4e_36
 v
 #> Element of a Clifford algebra, equal to
-#> + 3 - 2e_4 + 1e_125 + 3e_1236 + 2e_1246 - 4e_256
+#> + 3 - 4e_4 - 2e_125 - 1e_1236 - 3e_46 + 1e_256
 u*v
 #> Element of a Clifford algebra, equal to
-#> + 12 + 5e_12 - 11e_123 - 8e_4 + 2e_24 - 10e_124 + 4e_1234 - 3e_5 + 4e_15 -
-#> 20e_25 + 4e_125 + 12e_35 - 8e_235 - 2e_45 + 6e_145 + 8e_345 + 15e_6 - 4e_26 -
-#> 6e_36 - 16e_236 + 12e_1236 + 10e_46 - 4e_346 - 20e_256 - 17e_1256 + 5e_12356 +
-#> 2e_12456 + 6e_23456 - 8e_123456
+#> - 2 - 12e_12 - 9e_4 - 10e_14 - 12e_34 + 12e_5 - 20e_25 - 12e_125 + 4e_235 +
+#> 16e_45 - 15e_245 - 10e_1245 - 15e_6 - 4e_26 - 12e_36 - 6e_1236 - 23e_46 -
+#> 16e_346 + 5e_12346 - 9e_256 - 4e_12356 + 12e_456 - 5e_2456 - 5e_13456
 
 u+(v+w) == (u+v)+w            # should be TRUE by associativity of "+"
 #> [1] TRUE
@@ -224,17 +223,17 @@ x %.% (y %.% z) == (x %.% y) %.% z
 
 x %|_% y   ## left contraction
 #> Element of a Clifford algebra, equal to
-#> + 28 + 4e_2 - 16e_3 + 5e_4 - 4e_24 + 8e_5 + 20e_15 + 4e_56
+#> + 17 - 20e_1 + 15e_2 + 20e_12 - 4e_3 + 4e_4 + 4e_5 - 16e_45 + 5e_6 - 20e_46
 x %_|% y   ## right contraction
 #> Element of a Clifford algebra, equal to
-#> + 28 + 12e_1 + 20e_2 - 10e_3 + 12e_13 - 16e_4 + 4e_5 - 4e_35
+#> + 17 - 12e_1 - 16e_2 + 4e_4 - 3e_5 + 12e_35
 x %o% y    ## fat dot product
 #> Element of a Clifford algebra, equal to
-#> + 28 + 12e_1 + 24e_2 - 26e_3 + 12e_13 - 11e_4 - 4e_24 + 12e_5 + 20e_15 - 4e_35
-#> + 4e_56
+#> + 17 - 32e_1 - 1e_2 + 20e_12 - 4e_3 + 8e_4 + 1e_5 + 12e_35 - 16e_45 + 5e_6 -
+#> 20e_46
 x ^ y        ## Experimental wedge product idiom, plain caret
 #> Element of a Clifford algebra, equal to
-#> + 16 + 20e_2 - 28e_3 + 12e_13 + 20e_23 - 16e_4 - 4e_24 + 16e_34 - 3e_234 +
-#> 3e_1234 + 8e_5 + 20e_15 - 10e_25 - 25e_125 + 2e_35 + 21e_135 + 8e_45 + 20e_145
-#> - 1e_2345 + 4e_56 + 5e_256 - 3e_356 + 3e_1356 - 4e_456
+#> + 16 - 12e_1 - 16e_2 + 20e_12 - 4e_3 - 3e_13 - 4e_23 + 8e_4 + 3e_14 + 4e_24 +
+#> 5e_124 - 1e_34 + 12e_35 + 15e_1235 - 16e_45 + 12e_145 + 16e_245 - 3e_345 -
+#> 20e_46 + 15e_146 + 20e_246 + 15e_3456
 ```

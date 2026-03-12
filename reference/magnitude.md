@@ -55,7 +55,7 @@ There is a nice example of scalar product at `rcliff.Rd`.
 ``` r
 
 Mod(rcliff())
-#> [1] 12.24745
+#> [1] 14.38749
 
 
 # Perwass, p68, asserts that if A is a k-blade, then (in his notation)

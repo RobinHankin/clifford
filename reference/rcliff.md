@@ -86,16 +86,17 @@ arguably zero; `rcliff()` returns an error.
 ``` r
 rcliff()
 #> Element of a Clifford algebra, equal to
-#> + 6 - 3e_2 + 4e_134 - 5e_16 + 8e_36 + 5e_1236 - 1e_256 + 9e_2356 + 6e_3456
+#> + 6 - 8e_2 - 7e_13 - 5e_1234 - 2e_6 - 1e_26 + 8e_1236 + 9e_346 + 4e_256 +
+#> 5e_1356
 rcliff(d=3,g=2)
 #> Element of a Clifford algebra, equal to
-#> + 5 + 8e_1 - 3e_2 - 8e_12 + 2e_3 - 1e_13
+#> + 6 + 8e_1 - 1e_2 + 2e_12 + 4e_3 - 5e_13 - 8e_23
 rcliff(3,10,7)
 #> Element of a Clifford algebra, equal to
-#> + 3 - 2e_49 + 1e_1457910 - 3e_1578910
+#> + 3 + 1e_1257 - 2e_79 - 3e_245689
 rcliff(3,10,7,include=TRUE)
 #> Element of a Clifford algebra, equal to
-#> + 3 + 3e_56 - 1e_234568 - 3e_1569
+#> + 3 - 3e_5 - 1e_34567 + 3e_3456710
 
 x1 <- rcliff()
 x2 <- rcliff()

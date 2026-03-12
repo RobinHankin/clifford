@@ -119,10 +119,10 @@ Robin K. S. Hankin
 x <- rcliff()
 x
 #> Element of a Clifford algebra, equal to
-#> + 4 - 1e_12 - 2e_3 + 2e_1234 - 8e_5 - 5e_1235 - 3e_2345 + 3e_16 + 1e_26
+#> + 5 - 7e_1 + 6e_2 - 4e_12 - 6e_1234 + 2e_2345 + 1e_356 - 2e_1356 + 4e_3456
 rev(x)
 #> Element of a Clifford algebra, equal to
-#> + 4 + 1e_12 - 2e_3 + 2e_1234 - 8e_5 - 5e_1235 - 3e_2345 - 3e_16 - 1e_26
+#> + 5 - 7e_1 + 6e_2 + 4e_12 - 6e_1234 + 2e_2345 - 1e_356 - 2e_1356 + 4e_3456
 
 
 A <- rblade(g=3)

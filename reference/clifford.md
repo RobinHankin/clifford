@@ -79,8 +79,8 @@ Robin K. S. Hankin
 #> + 4e_1 + 3e_2 + 2e_3
 (z <- rcliff(include.fewer=TRUE))
 #> Element of a Clifford algebra, equal to
-#> + 6 - 3e_3 - 8e_25 + 2e_125 + 9e_45 + 6e_2345 - 6e_6 + 4e_2346 + 8e_456 +
-#> 1e_1456
+#> + 6 - 6e_23 - 9e_25 - 2e_125 + 9e_1245 + 6e_2345 + 5e_1246 + 1e_2346 - 7e_56 -
+#> 3e_3456
 
 terms(x+100)
 #> A disord object with hash 44041cf8cc66f11ef3ad34a2b8596d11d2abe80a and elements
@@ -98,8 +98,8 @@ terms(x+100)
 #> 
 #> (in some order)
 coeffs(z)
-#> A disord object with hash eab31f0bdabf8c45bd98dfa9fadfed85c1a59067 and elements
-#>  [1]  6 -3 -8  2  9  6 -6  4  8  1
+#> A disord object with hash 145748b538f82204ea9b48ed4b4973253b73b962 and elements
+#>  [1]  6 -6 -9 -2  9  6  5  1 -7 -3
 #> (in some order)
 
 ## Clifford objects may be added and multiplied:
