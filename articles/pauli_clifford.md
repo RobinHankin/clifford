@@ -148,14 +148,13 @@ diff
 ```
 
     ## Element of a Clifford algebra, equal to
-    ## + 2.220446e-16 + 2.220446e-16e_12 + 1.387779e-16e_3 + 2.220446e-16e_23 -
-    ## 8.326673e-17e_123
+    ## + 2.220446e-16e_12 + 8.326673e-17e_3 + 2.220446e-16e_23 - 8.326673e-17e_123
 
 ``` r
 Mod(diff)
 ```
 
-    ## [1] 4.172578e-16
+    ## [1] 3.353719e-16
 
 We see agreement to numerical precision. Now we can coerce from a
 Clifford to a matrix:
