@@ -1,7 +1,13 @@
 ---
 title: "The dot: commutators and the Jacobi identity in the clifford package"
-output: bookdown::html_document2
+author: "Robin K. S. Hankin"
+output: html_vignette
 bibliography: clifford.bib
+link-citations: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{signature}
+  %\usepackage[utf8]{inputenc}
 ---
 
 ```{r setup,include=FALSE}
