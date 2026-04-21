@@ -31,3 +31,4 @@ inst/spheres.R
 ^pkgdown$
 ^CODE_OF_CONDUCT.md$
 ^CONTRIBUTING.md$
+^vignettes/dot.Rmd$
