@@ -1,7 +1,7 @@
 ---
 title: "The dot: commutators and the Jacobi identity in the clifford package"
 output: bookdown::html_document2
-bibliography: clifford_arxiv.bib
+bibliography: clifford.bib
 ---
 
 ```{r setup,include=FALSE}
