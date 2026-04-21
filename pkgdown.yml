@@ -6,6 +6,7 @@ articles:
   conformal_algebra_clifford: conformal_algebra_clifford.html
   cramer_clifford: cramer_clifford.html
   determinants_clifford: determinants_clifford.html
+  dot: dot.html
   dual_quaternion_clifford: dual_quaternion_clifford.html
   getcoeffs: getcoeffs.html
   lorentz_clifford: lorentz_clifford.html
@@ -13,7 +14,7 @@ articles:
   pseudoscalar: pseudoscalar.html
   quaternion_clifford: quaternion_clifford.html
   signature: signature.html
-last_built: 2026-03-22T14:29Z
+last_built: 2026-04-21T18:46Z
 urls:
   reference: https://robinhankin.github.io/clifford/reference
   article: https://robinhankin.github.io/clifford/articles

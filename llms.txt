@@ -355,6 +355,8 @@ package:
   algebra](https://robinhankin.github.io/clifford/articles/cramer_clifford.md):
 - [Determinants using Clifford
   algebra](https://robinhankin.github.io/clifford/articles/determinants_clifford.md):
+- [The dot: commutators and the Jacobi identity in the clifford
+  package](https://robinhankin.github.io/clifford/articles/dot.md):
 - [Dual quaternions via Clifford
   algebra](https://robinhankin.github.io/clifford/articles/dual_quaternion_clifford.md):
 - [Function \`getcoeffs()\` in the \`clifford\`
