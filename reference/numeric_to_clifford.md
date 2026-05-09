@@ -67,6 +67,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 as.scalar(6)
 #> Element of a Clifford algebra, equal to
 #> scalar ( 6 )

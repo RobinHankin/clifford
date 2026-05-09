@@ -13,6 +13,7 @@ prototypical `dot.Rmd` is that of the `freealg` package ([Hankin
 object of class `dot`:
 
 ``` r
+
 `.` <- new("dot")
 ```
 
@@ -21,6 +22,7 @@ bracket \\\[x,y\]=(xy-yx)/2\\ using R idiom `.[x,y]` in the `clifford`
 package. Thus:
 
 ``` r
+
 (x <- 1 + 3*e(2))
 ```
 
@@ -28,6 +30,7 @@ package. Thus:
     ## + 1 + 3e_2
 
 ``` r
+
 (y <- 5*e(3) - 7*e(1:3)) 
 ```
 
@@ -35,6 +38,7 @@ package. Thus:
     ## + 5e_3 - 7e_123
 
 ``` r
+
 .[x,y]
 ```
 
@@ -46,6 +50,7 @@ apply the dot construction `.[x,y]` to more complicated examples. Here I
 show that the Lie bracket is nonassociative:
 
 ``` r
+
 z <- 3 - e(1:4)
 .[x,.[y,z]]
 ```
@@ -54,6 +59,7 @@ z <- 3 - e(1:4)
     ## - 21e_24
 
 ``` r
+
 .[.[x,y],z]
 ```
 
@@ -61,6 +67,7 @@ z <- 3 - e(1:4)
     ## the zero clifford element (0)
 
 ``` r
+
 .[x,.[y,z]] == .[.[x,y],z]
 ```
 
@@ -71,6 +78,7 @@ However, it does satisfy the Jacobi identity
 \left\[z,\left\[x,y\right\]\right\]=0\\:
 
 ``` r
+
 .[x,.[y,z]] + .[y,.[z,x]] + .[z,.[x,y]]
 ```
 
@@ -83,6 +91,7 @@ It is an interesting, useful, and nontrivial fact that the commutator of
 two bivectors is a bivector:
 
 ``` r
+
 (a <- rcliff(d=9,g=2,include.fewer=FALSE))
 ```
 
@@ -90,6 +99,7 @@ two bivectors is a bivector:
     ## - 8e_13 - 5e_23 + 9e_25 + 5e_17 - 7e_37 - 6e_49 - 4e_59 + 2e_69
 
 ``` r
+
 (b <- rcliff(d=9,g=2,include.fewer=FALSE))
 ```
 
@@ -97,6 +107,7 @@ two bivectors is a bivector:
     ## + 7e_14 - 9e_24 + 2e_16 + 3e_36 - 1e_67 - 3e_48 + 6e_49 + 8e_79
 
 ``` r
+
 .[a,b]
 ```
 
@@ -105,6 +116,7 @@ two bivectors is a bivector:
     ## 27e_67 + 78e_19 - 54e_29 - 62e_39 - 2e_79 + 18e_89
 
 ``` r
+
 grades(.[a,b])
 ```
 
@@ -116,10 +128,11 @@ Following lines create `dot.rda`, residing in the `data/` directory of
 the package.
 
 ``` r
+
 save(`.`,file="dot.rda")
 ```
 
 ## References
 
-Hankin, Robin K. S. 2022. “The Free Algebra in R.” arXiv.
+Hankin, Robin K. S. 2022. *The Free Algebra in R*. arXiv.
 <https://doi.org/10.48550/ARXIV.2211.04002>.

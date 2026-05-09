@@ -84,6 +84,7 @@ arguably zero; `rcliff()` returns an error.
 ## Examples
 
 ``` r
+
 rcliff()
 #> Element of a Clifford algebra, equal to
 #> + 6 - 8e_2 - 7e_13 - 5e_1234 - 2e_6 - 1e_26 + 8e_1236 + 9e_346 + 4e_256 +

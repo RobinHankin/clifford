@@ -3,6 +3,7 @@
 ![](../../../_temp/Library/clifford/help/figures/clifford.png)![](../../../_temp/Library/permutations/help/figures/permutations.png)
 
 ``` r
+
 pseudoscalar
 ```
 
@@ -26,6 +27,7 @@ considered, and as such function
 fails if `maxdim` is not set:
 
 ``` r
+
 pseudoscalar()
 ```
 
@@ -38,6 +40,7 @@ needs option `maxdim` to ascertain what object to return. Let us set
 `maxdim` to 7:
 
 ``` r
+
 options(maxdim=7)
 pseudoscalar()
 ```
@@ -59,6 +62,7 @@ standard \\\mathbb{R}^2\\ and \\\mathbb{R}^3\\, and Minkowski space
 \\\operatorname{Cl}(3,1)\\ we have \\I^2=-1\\:
 
 ``` r
+
 options(maxdim=3)
 signature(3)       # Cl(3,0)
 (I <- pseudoscalar())
@@ -68,6 +72,7 @@ signature(3)       # Cl(3,0)
     ## + 1e_123
 
 ``` r
+
 drop(I^2)
 ```
 
@@ -76,6 +81,7 @@ drop(I^2)
 And for Minkowski space:
 
 ``` r
+
 options(maxdim=4)
 signature(3,1)       # Cl(3,1)
 I <- pseudoscalar()
@@ -87,6 +93,7 @@ drop(I^2)
 However, we can easily define other signatures in which \\I^2=+1\\:
 
 ``` r
+
 options(maxdim=4)
 signature(2,2)       # Cl(2,2)
 (I <- pseudoscalar())
@@ -96,6 +103,7 @@ signature(2,2)       # Cl(2,2)
     ## + 1e_1234
 
 ``` r
+
 drop(I^2)
 ```
 
@@ -109,6 +117,7 @@ we see that the orientation is preserved by even permutations of
 \\1,2,\ldots,n\\. Working in \\\operatorname{Cl}(5,0)\\:
 
 ``` r
+
 options(maxdim=5)
 signature(5)
 I <- pseudoscalar()
@@ -120,6 +129,7 @@ ai[[1]] # the other 5 look very similar
     ## + 1.262954e_1 - 0.3262334e_2 + 1.329799e_3 + 1.272429e_4 + 0.4146414e_5
 
 ``` r
+
 Reduce(`^`,ai)
 ```
 
@@ -133,12 +143,14 @@ can permute the vectors using the `permutations` package ([Hankin
 2020](#ref-hankin2020_permutations)):
 
 ``` r
+
 (p <- permutation("(12)(345)"))
 ```
 
     ## [1] (12)(345)
 
 ``` r
+
 is.even(p)
 ```
 
@@ -148,6 +160,7 @@ Above, we see that `p` is an *odd* permutation, being a product of a
 transposition and a three-cycle.
 
 ``` r
+
 c(drop(Reduce(`^`,ai)),drop(Reduce(`^`,ai[as.word(p)])))
 ```
 
@@ -160,6 +173,7 @@ various things about the pseudoscalar; below we will verify that
 \\A\\:
 
 ``` r
+
 options(maxdim=7)   
 signature(7)
 (I <- pseudoscalar())
@@ -169,6 +183,7 @@ signature(7)
     ## + 1e_1234567
 
 ``` r
+
 (a <- as.1vector(sample(1:10,5)))
 ```
 
@@ -176,6 +191,7 @@ signature(7)
     ## + 7e_1 + 6e_2 + 1e_3 + 4e_4 + 8e_5
 
 ``` r
+
 (A <- rcliff())
 ```
 
@@ -189,6 +205,7 @@ verification is straightforward \[NB: “`%.%`” breaks markdown
 documents\]:
 
 ``` r
+
 LHS <- cliffdotprod(a, A*I) # Usual idiom would be "a %.% (A*I)"
 RHS <- (a^A)*I
 LHS - RHS
@@ -202,6 +219,6 @@ LHS - RHS
 Hankin, R. K. S. 2020. “Introducing the Permutations R Package.”
 *SoftwareX* 11.
 
-———. 2025. “Clifford Algebra in R: Introducing the clifford Package.”
-*Advances in Applied Clifford Algebra* 35 (51).
+Hankin, R. K. S. 2025. “Clifford Algebra in R: Introducing the clifford
+Package.” *Advances in Applied Clifford Algebra* 35 (51).
 https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.

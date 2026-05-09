@@ -99,6 +99,7 @@ in the context of dual numbers\]. This option was originally intended to
 be a super-strict safety measure, but I am finding myself setting it
 more and more frequently.
 
+
     > e(6)
     Element of a Clifford algebra, equal to
     + 1e_6
@@ -116,6 +117,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 
 signature()
 #> [1] Inf   0

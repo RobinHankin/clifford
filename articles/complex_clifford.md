@@ -20,6 +20,7 @@ straightforward; to coerce complex numbers to Clifford objects and vice
 versa, we need a couple of functions:
 
 ``` r
+
 signature(0,1)
 options(maxdim=1) # paranoid-level safety measure
 complex_to_clifford <- function(z){Re(z) + e(1)*Im(z)}
@@ -31,6 +32,7 @@ Then numerical verification is immediate. First we choose some complex
 numbers:
 
 ``` r
+
 z1 <- 35 + 67i
 z2 <- -2 + 12i
 ```
@@ -38,12 +40,14 @@ z2 <- -2 + 12i
 Then, for example:
 
 ``` r
+
 z1
 ```
 
     ## [1] 35+67i
 
 ``` r
+
 complex_to_clifford(z1)
 ```
 
@@ -53,6 +57,7 @@ complex_to_clifford(z1)
 Checking that the coercion is a homomorphism is easy:
 
 ``` r
+
 complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
 ```
 
@@ -63,6 +68,7 @@ Above, note that the `*` on the left is the geometric product, while the
 map is invertible we can check the other way too:
 
 ``` r
+
 (C1 <- 23 + 7*e(1))
 ```
 
@@ -70,12 +76,14 @@ map is invertible we can check the other way too:
     ## + 23 + 7e_1
 
 ``` r
+
 clifford_to_complex(C1)
 ```
 
     ## [1] 23+7i
 
 ``` r
+
 C2 <- 2  - 8*e(1)
 clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
 ```
@@ -91,6 +99,7 @@ general complex number \\z=x+iy\\ maps to Clifford object \\x +
 ye\_{12}\\.
 
 ``` r
+
 options(maxdim=2)  # paranoid-level safety measure
 signature(2)
 complex_to_clifford <- function(z){Re(z) + e(1:2)*Im(z)}
@@ -100,6 +109,7 @@ clifford_to_complex <- function(C){const(C) + 1i*coeffs(Im(C))}
 Then numerical verification:
 
 ``` r
+
 z1 <- 35 + 67i
 z2 <- -2 + 12i
 complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
@@ -108,6 +118,7 @@ complex_to_clifford(z1) * complex_to_clifford(z2) == complex_to_clifford(z1*z2)
     ## [1] TRUE
 
 ``` r
+
 C1 <- 23 + 7*e(1:2)
 C2 <- 2  - 8*e(1:2)
 clifford_to_complex(C1)*clifford_to_complex(C2) == clifford_to_complex(C1*C2)
@@ -124,6 +135,7 @@ whenever \\e_1^2e_2^2=1\\; above we used \\\operatorname{Cl}(2,0)\\ so
 \\\operatorname{Cl}(0,2)\\:
 
 ``` r
+
 signature(0,2)
 c(
 complex_to_clifford(z1)*complex_to_clifford(z2) == complex_to_clifford(z1*z2),
@@ -139,6 +151,7 @@ It is best to return the signature and `maxdim` to their default values
 in order to prevent interference with other vignettes:
 
 ``` r
+
 options(maxdim=NULL)
 signature(Inf)
 ```

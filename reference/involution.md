@@ -116,6 +116,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 x <- rcliff()
 x
 #> Element of a Clifford algebra, equal to

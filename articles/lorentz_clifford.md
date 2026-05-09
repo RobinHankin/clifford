@@ -10,12 +10,14 @@ showcase the `clifford` R package. Throughout, we use units in which
 following four-vector:
 
 ``` r
+
 (fourvec <- c(1,5,3,2))  # a four-vector
 ```
 
     ## [1] 1 5 3 2
 
 ``` r
+
 u <- c(0.2,0.3,0.4)  # a three-velocity
 ```
 
@@ -24,6 +26,7 @@ is done by the `boost()` function of the `lorentz` package ([Hankin
 2025b](#ref-hankin2025_lorentz)):
 
 ``` r
+
 (Bmat <- boost(u))  # Bmat = "B-matrix"
 ```
 
@@ -36,6 +39,7 @@ is done by the `boost()` function of the `lorentz` package ([Hankin
 The transformation itself is simply matrix multiplication:
 
 ``` r
+
 Bmat %*% fourvec
 ```
 
@@ -72,6 +76,7 @@ Above we considered the four-vector \\s=(1,5,3,2)\\. In Clifford
 formalism this appears as
 
 ``` r
+
 (scliff <- as.1vector(fourvec))
 ```
 
@@ -100,6 +105,7 @@ this metric using a signature of \\(1,3)\\\].
 The squared interval for our four-vector would be given by
 
 ``` r
+
 M <- diag(c(1,-1,-1,-1))
 t(fourvec) %*% M %*% fourvec
 ```
@@ -111,6 +117,7 @@ We might use the slightly slicker and more efficient idiom `quad.form()`
 from the `quadform` package:
 
 ``` r
+
 quad.form(M,fourvec)
 ```
 
@@ -122,6 +129,7 @@ The Clifford equivalent would be
 \[remembering to set the signature to 1\]:
 
 ``` r
+
 signature(1,3)
 scalprod(scliff,scliff)
 ```
@@ -136,6 +144,7 @@ e}\_{12}\sinh(\phi/2)\\. We note that \\B^{-1}=\cosh(\phi/2)-{\mathbf
 e}\_{12}\sinh(\phi/2)\\. Numerically:
 
 ``` r
+
 phi <- 2.1234534   # just a made-up random value
 B <- cosh(phi/2) + sinh(phi/2)*e(1:2) 
 Binv <- rev(B) # cosh(phi/2)- sinh(phi/2)*e(1:2)
@@ -148,6 +157,7 @@ B*Binv
 We may verify that rapidities add:
 
 ``` r
+
 B <- function(phi){cosh(phi/2) + sinh(phi/2)*e(1:2)}
 B(0.26) * B(1.33)
 ```
@@ -156,6 +166,7 @@ B(0.26) * B(1.33)
     ## + 1.333011 + 0.8814299e_12
 
 ``` r
+
 B(0.26 + 1.33) # should match
 ```
 
@@ -185,6 +196,7 @@ and we can use standard Clifford algebra (together with the fact that
 Numerically:
 
 ``` r
+
 B3 <- function(phi,k){cosh(phi/2) + (
      +k[1]*sinh(phi/2)*e(c(1,2))
      +k[2]*sinh(phi/2)*e(c(1,3))
@@ -202,6 +214,7 @@ sum(k1^2) # verify; should be = 1
     ## [1] 1
 
 ``` r
+
 zap(B3(0.3,k1)*B3(1.9,k1))  # zap() kills terms with small coefficients
 ```
 
@@ -209,6 +222,7 @@ zap(B3(0.3,k1)*B3(1.9,k1))  # zap() kills terms with small coefficients
     ## + 1.668519 + 0.3071989e_12 - 0.507546e_13 + 1.196654e_14
 
 ``` r
+
 zap(B3(0.3+1.9,k1)) # should match previous line (up to numerical accuracy)
 ```
 
@@ -219,6 +233,7 @@ But if the two boosts have different direction cosines, the result is
 more complicated:
 
 ``` r
+
 k2 <- k(-0.5,0.1)
 zap(B3(2.4,k1) * B3(1.9,k2))
 ```
@@ -260,6 +275,7 @@ this boost in terms of Clifford objects, using a specialist function
 `f()`:
 
 ``` r
+
 f <- function(u){
     phi <- acosh(gam(u))               # rapidity
     k <- cosines(u)                    # direction cosines
@@ -275,6 +291,7 @@ f <- function(u){
 Thus we can express the Lorentz transform as a Clifford object:
 
 ``` r
+
 u <- as.3vel(-c(0.2,0.3,0.4))  # negative (passive transform)
 options(digits=5)
 (B <- f(u))
@@ -287,6 +304,7 @@ The first thing to do is to verify that the inverse of `B` behaves as
 expected:
 
 ``` r
+
 B*rev(B)
 ```
 
@@ -296,6 +314,7 @@ B*rev(B)
 Then we can apply the transformation \\\overline{s}=B^{-1}sB\\:
 
 ``` r
+
 zap(rev(B)*scliff*B)
 ```
 
@@ -305,6 +324,7 @@ zap(rev(B)*scliff*B)
 Comparing with the result from the `lorentz` package
 
 ``` r
+
 Bmat %*% fourvec
 ```
 
@@ -318,6 +338,7 @@ we see agreement to within numerical precision. We can further verify
 that the squared interval is unchanged:
 
 ``` r
+
 jj <- rev(B)*scliff*B
 scalprod(jj,jj)
 ```
@@ -332,6 +353,7 @@ Successive Lorentz boosts can induce a rotation as well as a
 translation.
 
 ``` r
+
 u <- as.3vel(c(0.2, 0.3,  0.4))
 v <- as.3vel(c(0.5, 0.0, -0.4))
 w <- as.3vel(c(0.0, 0.7,  0.1))
@@ -348,6 +370,7 @@ component, and also a nonzero `e_1234` component. However, it represents
 a consistent Lorentz transformation:
 
 ``` r
+
 zap(Buvw*rev(Buvw))
 ```
 
@@ -356,6 +379,7 @@ zap(Buvw*rev(Buvw))
 We can now apply this transform to a four-velocity:
 
 ``` r
+
 n <- as.1vector(c(1,0,0,0))
 zap(rev(Buvw) * n * Buvw)
 ```
@@ -369,6 +393,7 @@ We can shed some light on this representation of Lorentz transforms as
 follows:
 
 ``` r
+
 signature(1,3)
 L <- list(
     C     = basis(numeric()),
@@ -405,16 +430,16 @@ Thus we can see, for example, that `e12*e13 = -e23` and
 
 ## References
 
-Hankin, R. K. S. 2022. “Disordered vectors in R: introducing the
-`disordR` package.” arXiv, <https://arxiv.org/abs/2210.03856>; arXiv.
+Hankin, R. K. S. 2022. *Disordered vectors in R: introducing the
+`disordR` package*. arXiv, <https://arxiv.org/abs/2210.03856>; arXiv.
 <https://doi.org/10.48550/ARXIV.2210.03856>.
 
-———. 2025a. “Clifford Algebra in R: Introducing the clifford Package.”
-*Advances in Applied Clifford Algebra* 35 (51).
+Hankin, R. K. S. 2025a. “Clifford Algebra in R: Introducing the clifford
+Package.” *Advances in Applied Clifford Algebra* 35 (51).
 https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.
 
-———. 2025b. “Special Relativity in R: The Lorentz Package.” *Journal of
-Open Source Education* 8 (88): 196.
+Hankin, R. K. S. 2025b. “Special Relativity in R: The Lorentz Package.”
+*Journal of Open Source Education* 8 (88): 196.
 <https://doi.org/10.21105/jose.00196>.
 
 Snygg, J. 2010. *A New Approach to Differential Geometry Using

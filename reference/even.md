@@ -36,6 +36,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 A <- rcliff()
 A == evenpart(A) + oddpart(A) # should be true
 #> [1] TRUE

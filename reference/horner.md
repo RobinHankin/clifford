@@ -47,6 +47,7 @@ Clifford objects don't get more complicated as the power increases.
 ## Examples
 
 ``` r
+
 horner(1 + e(1:3) + e(2:3), 1:6)
 #> Element of a Clifford algebra, equal to
 #> + 511 + 490e_1 + 502e_23 + 502e_123

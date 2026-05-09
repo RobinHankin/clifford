@@ -45,6 +45,7 @@ bracketed term is a pseudoscalar; the ratio of two pseudoscalars is an
 ordinary scalar. Package idiom is straightforward:
 
 ``` r
+
 a <- as.1vector(runif(3))
 b <- as.1vector(runif(3))
 c <- as.1vector(runif(3))
@@ -56,6 +57,7 @@ c <- as.1vector(runif(3))
     ## + 1e_1 + 2e_2 + 3e_3
 
 ``` r
+
 options(maxdim = 3)  # needed to drop() pseudoscalars
 abc <- drop(a ^ b ^ c)
 
@@ -69,6 +71,7 @@ c(alpha,beta,gamma)
     ## [1] -3.805997 -5.328439  8.309581
 
 ``` r
+
 alpha*a + beta*b + gamma*c
 ```
 
@@ -76,6 +79,7 @@ alpha*a + beta*b + gamma*c
     ## + 1e_1 + 2e_2 + 3e_3
 
 ``` r
+
 Mod(alpha*a + beta*b + gamma*c-x)
 ```
 
@@ -89,6 +93,7 @@ try to determine them using package idiom. Here we will use \\1,2,3\\
 and suppose that \\{\mathbf y}=1{\mathbf a}+2{\mathbf b}+3{\mathbf c}\\:
 
 ``` r
+
 y <- a*1 + b*2 + c*3
 c(
     drop(y ^ b ^ c)/abc,
@@ -105,6 +110,7 @@ To accomplish this in arbitrary-dimensional space is straightforward.
 Here we consider \\\mathbb{R}^{5}\\:
 
 ``` r
+
 n <- 5                                                 # dimensionality of space
 options(maxdim=5)                                      # safety precaution
 x <- as.1vector(seq_len(n))                            # target vector
@@ -115,6 +121,7 @@ x
     ## + 1e_1 + 2e_2 + 3e_3 + 4e_4 + 5e_5
 
 ``` r
+
 L <- replicate(n,as.1vector(rnorm(n)),simplify=FALSE)  # spanning vectors
 subst <- function(L,n,x){L[[n]] <- x; return(L)}       # list substitution
 coeff <- function(n,L,x){
@@ -125,6 +132,7 @@ coeff <- function(n,L,x){
 Then the coefficients are given by:
 
 ``` r
+
 (alpha <- sapply(seq_len(n),coeff,L,x))
 ```
 
@@ -133,6 +141,7 @@ Then the coefficients are given by:
 and we can reconstitute vector \\x\\:
 
 ``` r
+
 out <- as.clifford(0)
 f <- function(i){alpha[i]*L[[i]]}
 for(i in seq_len(n)){
@@ -146,6 +155,7 @@ Mod(out-x)  # zero to numerical precision
 Or, somewhat slicker:
 
 ``` r
+
 Reduce(`+`,sapply(seq_len(n),f,simplify=FALSE))
 ```
 
@@ -156,6 +166,7 @@ Conversely, if we know the coefficients are, say, `15:11`, then we would
 have
 
 ``` r
+
 coeffs <- 15:11
 x <- 0
 for(i in seq_len(5)){x <- x + coeffs[i]*L[[i]]}
@@ -168,6 +179,7 @@ x
 And then to find the coefficients:
 
 ``` r
+
 sapply(seq_len(n),coeff,L,x)
 ```
 

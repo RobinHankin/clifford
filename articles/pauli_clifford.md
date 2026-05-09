@@ -94,6 +94,7 @@ i\sigma_z=(\beta-\theta)/2\\ \end{eqnarray}\\
 ## R implementation
 
 ``` r
+
 s0 <- matrix(c(1,0,0,1),2,2)
 sx <- matrix(c(0,1,1,0),2,2)
 sy <- matrix(c(0,1i,-1i,0),2,2)
@@ -104,6 +105,7 @@ Given a general complex matrix `M`, we may coerce this to Clifford form
 as follows:
 
 ``` r
+
 matrix_to_clifford <- function(M){
       (Re(M[1,1] + M[2,2]))/2             + 
       (Re(M[1,1] - M[2,2]))/2*e(c(  3  )) +
@@ -120,6 +122,7 @@ matrix_to_clifford <- function(M){
 and then test it as follows:
 
 ``` r
+
 rmat <- function(...){matrix(rnorm(4),2,2) + 1i*matrix(rnorm(4),2,2)}
 M <- rmat()
 M
@@ -130,6 +133,7 @@ M
     ## [2,]  0.2553171+1.1484116i -0.005571287-0.2473253i
 
 ``` r
+
 matrix_to_clifford(M)
 ```
 
@@ -140,6 +144,7 @@ matrix_to_clifford(M)
 We can now test whether `matrix_to_clifford()` is a group homomorphism:
 
 ``` r
+
 M1 <- rmat()
 M2 <- rmat()
 
@@ -151,6 +156,7 @@ diff
     ## + 2.220446e-16e_12 + 8.326673e-17e_3 + 2.220446e-16e_23 - 8.326673e-17e_123
 
 ``` r
+
 Mod(diff)
 ```
 
@@ -160,6 +166,7 @@ We see agreement to numerical precision. Now we can coerce from a
 Clifford to a matrix:
 
 ``` r
+
 `clifford_to_matrix` <- function(C){
    return(
                           const(C)*s0 + getcoeffs(C,list(1))*sx 
@@ -171,6 +178,7 @@ Clifford to a matrix:
 ```
 
 ``` r
+
 rc <- function(...){rcliff(100,d=3,g=3)}
 C <- 104 + rc()
 C
@@ -180,6 +188,7 @@ C
     ## + 155 + 60e_1 - 90e_2 + 74e_12 - 63e_3 + 10e_13 + 27e_23 - 27e_123
 
 ``` r
+
 clifford_to_matrix(C)
 ```
 
@@ -190,6 +199,7 @@ clifford_to_matrix(C)
 Now test that the two coercion functions are inverses of one another:
 
 ``` r
+
 clifford_to_matrix(matrix_to_clifford(M)) - M 
 ```
 
@@ -198,6 +208,7 @@ clifford_to_matrix(matrix_to_clifford(M)) - M
     ## [2,] 0+0i -7.372575e-17+2.775558e-17i
 
 ``` r
+
 matrix_to_clifford(clifford_to_matrix(C))- C
 ```
 
@@ -207,6 +218,7 @@ matrix_to_clifford(clifford_to_matrix(C))- C
 Now we can establish that `clifford_to_matrix()` is a homomorphism:
 
 ``` r
+
 C1 <- 222 + rc()
 C2 <- 333 + rc()
 clifford_to_matrix(C1*C2) - clifford_to_matrix(C1)%*%clifford_to_matrix(C2)
@@ -223,6 +235,7 @@ closed under the Jordan operation \\x\circ y=(xy+yx)/2\\, which we will
 verify for matrices and their Clifford representation.
 
 ``` r
+
 M1 <- as.1matrix(rchm(1,2))
 M2 <- as.1matrix(rchm(1,2))
 M1
@@ -233,6 +246,7 @@ M1
     ## [2,] -0.74+0.11i -0.56+0.00i
 
 ``` r
+
 M2
 ```
 
@@ -241,6 +255,7 @@ M2
     ## [2,]  0.75+1.92i 0.19+0.00i
 
 ``` r
+
 p1 <- (M1 %*% M2 + M2 %*% M1)/2
 p1 - ht(p1)  # zero for Hermitian matrices
 ```
@@ -252,6 +267,7 @@ p1 - ht(p1)  # zero for Hermitian matrices
 Above, see how \\M_1\circ M_2\\ is Hermitian. Now, in Clifford form:
 
 ``` r
+
 C1 <- matrix_to_clifford(M1)
 C2 <- matrix_to_clifford(M2)
 p2 <- (C1 * C2 + C2 * C1)/2
@@ -266,6 +282,7 @@ only nonzero coefficients are those of the scalar and the grade-one
 blades:
 
 ``` r
+
 grades(p2)
 ```
 
@@ -275,10 +292,10 @@ grades(p2)
 
 ### References
 
-Hankin, R. K. S. 2023. “Jordan Algebra in R.” arXiv,
+Hankin, R. K. S. 2023. *Jordan Algebra in R*. arXiv,
 <https://arxiv.org/abs/2303.06062>; arXiv.
 <https://doi.org/10.48550/arXiv.2303.06062>.
 
-———. 2025. “Clifford Algebra in R: Introducing the clifford Package.”
-*Advances in Applied Clifford Algebra* 35 (51).
+Hankin, R. K. S. 2025. “Clifford Algebra in R: Introducing the clifford
+Package.” *Advances in Applied Clifford Algebra* 35 (51).
 https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.

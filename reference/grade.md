@@ -149,6 +149,7 @@ Springer.
 ## Examples
 
 ``` r
+
 a <- clifford(sapply(seq_len(7),seq_len),seq_len(7))
 a
 #> Element of a Clifford algebra, equal to

@@ -37,6 +37,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 options(maxdim=6)
 I <- pseudoscalar()
 is.pseudoscalar(I)

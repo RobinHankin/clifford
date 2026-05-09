@@ -44,6 +44,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 a <- clifford(sapply(1:10,seq_len), 90^-(1:10))
 zap(a)
 #> Element of a Clifford algebra, equal to

@@ -54,6 +54,7 @@ There is a nice example of scalar product at `rcliff.Rd`.
 
 ``` r
 
+
 Mod(rcliff())
 #> [1] 14.38749
 

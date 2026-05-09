@@ -53,6 +53,7 @@ given by \\\mathbf{e}\_\infty\mathbf{e}\_0=-E-1\\ and
 implement these objects using the `clifford` package:
 
 ``` r
+
 dimension <- 3
 options("maxdim" = dimension+2)  # paranoid safety measure
 signature(dimension + 1,1)
@@ -67,6 +68,7 @@ E <- e0 ^ einf
 So
 
 ``` r
+
 e0
 ```
 
@@ -74,6 +76,7 @@ e0
     ## - 0.5e_4 + 0.5e_5
 
 ``` r
+
 einf
 ```
 
@@ -81,6 +84,7 @@ einf
     ## + 1e_4 + 1e_5
 
 ``` r
+
 E
 ```
 
@@ -100,6 +104,7 @@ With these definitions, we can consider Euclidean vectors
 This is straightforward in package idiom:
 
 ``` r
+
 point <- function(x){ as.1vector(x) + sum(x^2)*einf/2 + e0 }
 ```
 
@@ -108,6 +113,7 @@ embedding. For example, we may translate points \\(1,2,5)\\ and
 \\(2,2,2)\\ to their conformal equivalent:
 
 ``` r
+
 a <- c(1,2,5)
 b <- c(2,2,2)
 point(a)
@@ -117,6 +123,7 @@ point(a)
     ## + 1e_1 + 2e_2 + 5e_3 + 14.5e_4 + 15.5e_5
 
 ``` r
+
 point(b)
 ```
 
@@ -129,6 +136,7 @@ It can be shown that
 idiom to verify this would be
 
 ``` r
+
 c(conformal=drop(point(a) %.% point(b)), Euclidean = -sum((a-b)^2)/2)
 ```
 
@@ -150,6 +158,7 @@ This is straightforward to implement computationally. Suppose we have a
 sphere of radius 5, center \\(1,2,3)\\:
 
 ``` r
+
 sphere <- function(x,r){ point(x) - r^2*einf/2}
 S <- sphere(1:3,5)  # center (1,2,3) radius 5:
 S
@@ -163,6 +172,7 @@ radius \\\rho\\ can be calculated from \\\mathbf{S}^2=\rho^2\\. Package
 idiom:
 
 ``` r
+
 drop(S^2)   # 5^2 = 25
 ```
 
@@ -173,6 +183,7 @@ calls this the *sandwich* product given by
 \\P=\mathbf{S}\mathbf{e}\_\infty\mathbf{S}\\:
 
 ``` r
+
 S*einf*S
 ```
 
@@ -182,6 +193,7 @@ S*einf*S
 Hildenbrand shows that the scaling factor is \\-2\\ so this gives us
 
 ``` r
+
 -S*einf*S/2
 ```
 
@@ -191,6 +203,7 @@ Hildenbrand shows that the scaling factor is \\-2\\ so this gives us
 which we recognise as the point \\(1,2,3)\\:
 
 ``` r
+
 point(1:3)
 ```
 
@@ -221,6 +234,7 @@ elements of any vector. The R idiom for defining the sphere touching
 \\\left\lbrace P_1,P_2,P_3,P_4\right\rbrace\\ is straightforward:
 
 ``` r
+
 origin <- point(c(0,0,0))
 px <- point(c(1,0,0))
 py <- point(c(0,1,0))
@@ -237,6 +251,7 @@ center and radius is not yet implemented). Slightly slicker R idiom
 might be:
 
 ``` r
+
 spherestar <- function(...){Reduce(`^`,list(...))}
 spherestar(origin, px, py, pz)
 ```
@@ -249,6 +264,7 @@ As a verification, we may check that point
 is on the sphere as well:
 
 ``` r
+
 p <- point(c(1,1,1+sqrt(3))/2)
 Mod(p ^ S)
 ```
@@ -266,6 +282,7 @@ A plane is defined as \\\hat{\mathbf{n}} + d\mathbf{e}\_\infty\\, where
 origin.
 
 ``` r
+
 plane <- function(n,d){ as.1vector(n/sqrt(sum(n^2))) + d*einf}
 ```
 
@@ -275,6 +292,7 @@ above but first need to calculate
 \\\hat{\mathbf{n}}=\mathbf{n}/\left\|\mathbf{n}\right\|\\:
 
 ``` r
+
 n <- c(1,2,5)
 nhat <- n/sqrt(sum(n^2))
 d <- 7
@@ -293,6 +311,7 @@ the normal of \\\Pi\\. So \\7\hat{\mathbf{n}} + \alpha\mathbf{u} +
 \beta\mathbf{v}\in\Pi\\ for any real numbers \\\alpha,\beta\\. In R:
 
 ``` r
+
 u <- c(2,-1,0)
 v <- c(5,0,-1)
 P1 <- point(d*nhat)                
@@ -306,6 +325,7 @@ these points lie in the IPNS of \\\Pi\\ we need to take the inner
 product with the conformal representation of \\\Pi\\:
 
 ``` r
+
 c(drop(Pi %.% P1),drop(Pi %.% P2),drop(Pi %.% P3))
 ```
 
@@ -324,6 +344,7 @@ where \\P_1,P_2,P_3\\ are any points that lie in the plane. To
 illustrate this we will use the three points used in the IPNS above:
 
 ``` r
+
 Pi2 <- P1 ^ P2 ^ P3 ^ einf
 ```
 
@@ -332,6 +353,7 @@ plane and check that this is in the OPNS. Below we will use `p4` which
 is \\d\hat{\mathbf{n}} + 7.6\mathbf{u} - 9.23\mathbf{v}\\:
 
 ``` r
+
 p4 <- point(d*nhat + 7.6*u - 9.23*v)
 Mod(Pi2 ^ p4)
 ```
@@ -346,6 +368,7 @@ of plane `Pi2`.
 A circle is defined as the intersection of two spheres:
 
 ``` r
+
 circle <- function(S1,S2){  # IPNS
     S1 ^ S2
 }
@@ -354,6 +377,7 @@ circle <- function(S1,S2){  # IPNS
 For example
 
 ``` r
+
 circle(sphere(1:3,5),sphere(c(1.1,2.1,3.4),6))
 ```
 
@@ -367,6 +391,7 @@ lie on it:
 \\ Z^\*=P_1\wedge P_2\wedge P_3\\
 
 ``` r
+
 circlestar <- function(...){  # OPNS; A^B^C
     jj <- list(...)
     stopifnot(length(jj) == dimension)
@@ -383,6 +408,7 @@ circlestar <- function(...){  # OPNS; A^B^C
 verify:
 
 ``` r
+
 poc  # point on circle, found numerically [chunk omitted]
 ```
 
@@ -390,6 +416,7 @@ poc  # point on circle, found numerically [chunk omitted]
     ## - 0.7152127e_1 - 0.2498563e_2 + 0.3267822e_3 - 0.159628e_4 + 0.840372e_5
 
 ``` r
+
 poc ^ CIRC
 ```
 
@@ -405,12 +432,14 @@ magnitude of the terms in the wedge product.
 A line is the intersection of two planes; in R:
 
 ``` r
+
 line <- function(P1,P2){ P1 ^ P2 }
 ```
 
 and a “point pair” is the intersection of three spheres; in R:
 
 ``` r
+
 pointpair <- function(S1,S2,S3){ S1 ^ S2 ^ S3 }
 ```
 
@@ -419,6 +448,7 @@ points; and still less obvious that the process is associative. However,
 we may verify associativity explicitly:
 
 ``` r
+
 S1 <- sphere(c(3,2,4),3)
 S2 <- sphere(c(3,1,4),4)
 S3 <- sphere(c(1,3,3),3)
@@ -430,6 +460,7 @@ S3 <- sphere(c(1,3,3),3)
     ## 10e_145 + 10e_245 - 5e_345
 
 ``` r
+
 (S1^S2)^S3 == S1^(S2^S3)
 ```
 

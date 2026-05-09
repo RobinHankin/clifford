@@ -28,6 +28,7 @@ Considering a \\3\times 3\\ matrix as an example, we simply calculate
 the wedge product of its columns:
 
 ``` r
+
 suppressMessages(library("clifford"))
 set.seed(0)
 (M <- matrix(rnorm(9),3,3))
@@ -39,6 +40,7 @@ set.seed(0)
     ## [3,]  1.3297993 -1.5399500 -0.005767173
 
 ``` r
+
 o <- as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3])
 Adag <- rev(e(seq_len(3)))
 c(drop(Adag %.% o), det(M))
@@ -51,6 +53,7 @@ that the dagger is needed to get the correct sign if the dimension is
 odd\]. Alternatively, we can examine the wedge product directly:
 
 ``` r
+
 as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3])
 ```
 
@@ -63,6 +66,7 @@ using
 [`coeffs()`](https://robinhankin.github.io/clifford/reference/Extract.md):
 
 ``` r
+
 coeffs(as.1vector(M[,1]) ^ as.1vector(M[,2]) ^ as.1vector(M[,3]))
 ```
 
@@ -72,6 +76,7 @@ Just as a consistency check, we evaluate the wedge product of a set of
 basis vectors, effectively calculating the determinant of \\I_3\\:
 
 ``` r
+
 coeffs(e(1) ^ e(2) ^ e(3))
 ```
 
@@ -80,6 +85,7 @@ coeffs(e(1) ^ e(2) ^ e(3))
 We see \\+1\\, as expected. It is possible to consider larger matrices:
 
 ``` r
+
 cliff_det <- function(M){
   o <- as.1vector(M[,1])
   for(i in 2:nrow(M)){
@@ -92,6 +98,7 @@ cliff_det <- function(M){
 Then
 
 ``` r
+
 M <- matrix(rnorm(100),10,10)
 LHS <- det(M)
 RHS <- cliff_det(M)

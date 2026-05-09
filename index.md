@@ -13,6 +13,7 @@ You can install the released version of the clifford package from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
+
 # install.packages("clifford")  # uncomment this to install the package
 library("clifford")
 set.seed(0)
@@ -25,6 +26,7 @@ The basic creation function is
 which takes a list of basis blades and a vector of coefficients:
 
 ``` r
+
 (a <- clifford(list(1,2,1:4,2:3),1:4))
 #> Element of a Clifford algebra, equal to
 #> + 1e_1 + 2e_2 + 4e_23 + 3e_1234
@@ -37,6 +39,7 @@ So `a` and `b` are multivectors. Clifford objects are a vector space and
 we can add them using `+`:
 
 ``` r
+
 a+b
 #> Element of a Clifford algebra, equal to
 #> + 1e_1 - 3e_12 + 7e_23 + 3e_1234
@@ -46,6 +49,7 @@ See how the `e2` term vanishes and the `e_23` term is summed. The
 package includes a large number of products:
 
 ``` r
+
 a*b        # geometric product (also "a % % b")
 #> Element of a Clifford algebra, equal to
 #> - 16 + 6e_1 - 3e_2 - 2e_12 + 14e_3 + 12e_13 + 3e_123 - 9e_14 + 9e_34 - 6e_134
@@ -69,6 +73,7 @@ The package idiom for this would be to use
 [`signature()`](https://robinhankin.github.io/clifford/reference/signature.md):
 
 ``` r
+
 signature(3)
 ```
 
@@ -80,6 +85,7 @@ and its argument specifies the number of basis blades that square to ,
 the others squaring to . Thus and :
 
 ``` r
+
 basis(1)
 #> Element of a Clifford algebra, equal to
 #> + 1e_1
@@ -99,6 +105,7 @@ efficiency and speed and can deal with objects of arbitrary dimensions.
 Thus:
 
 ``` r
+
 options("basissep" = ",")
 (x <- rcliff(d=20))
 #> Element of a Clifford algebra, equal to

@@ -83,6 +83,7 @@ some point).
 ## Examples
 
 ``` r
+
 a <- rclifff(9)
 a   # default print method incomprehensible
 #> Element of a Clifford algebra, equal to

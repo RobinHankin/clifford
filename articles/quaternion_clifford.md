@@ -39,6 +39,7 @@ The default signature \[in which \\e_i^2=+1\\\] is fine here, but as a
 safety measure we can set `maxdim` to 3:
 
 ``` r
+
 options(maxdim=3)  # paranoid safety measure
 ```
 
@@ -46,6 +47,7 @@ We might wish to multiply \\q_1=1+2\mathbf{i}+3\mathbf{j}+4\mathbf{k}\\
 by \\q_2=-2+\mathbf{i}-2\mathbf{j}+\mathbf{k}\\:
 
 ``` r
+
 q1 <- +1 + 2* -e(c(1,2)) + 3*-e(c(1,3)) + 4*-e(c(2,3))
 q1
 ```
@@ -54,6 +56,7 @@ q1
     ## + 1 - 2e_12 - 3e_13 - 4e_23
 
 ``` r
+
 q2 <- -2 + 1* -e(c(1,2)) - 2*-e(c(1,3)) + 1*-e(c(2,3))
 q2
 ```
@@ -62,6 +65,7 @@ q2
     ## - 2 - 1e_12 + 2e_13 - 1e_23
 
 ``` r
+
 q1*q2
 ```
 
@@ -75,6 +79,7 @@ between `clifford` objects and quaternions (but don’t actually do it,
 you crazy fool):
 
 ``` r
+
 `clifford_to_quaternion` <- function(C){
     C <- as.clifford(C)
     tC <- disordR::elements(terms(C))
@@ -88,6 +93,7 @@ you crazy fool):
 ```
 
 ``` r
+
 `quaternion_to_clifford` <- function(Q){
   Q <- as.numeric(Q)
   stopifnot(length(Q)==4)
@@ -99,6 +105,7 @@ We may verify that these maps behave properly by defining some
 random-ish quaternions and Clifford objects:
 
 ``` r
+
 q1 <- +1 + 2* -e(c(1,2)) + 3*-e(c(1,3)) + 4*-e(c(2,3))
 q2 <- -2 + 1* -e(c(1,2)) - 2*-e(c(1,3)) + 1*-e(c(2,3))
 H1 <- as.quaternion(c(3,-5,2,1),single=TRUE)
@@ -108,6 +115,7 @@ H2 <- as.quaternion(c(1,2,-2,2),single=TRUE)
 First, check that they are inverses of one another:
 
 ``` r
+
 c(  # check they are inverses of one another
 q1 == quaternion_to_clifford(clifford_to_quaternion(q1)),
 q2 == quaternion_to_clifford(clifford_to_quaternion(q2)),
@@ -121,6 +129,7 @@ H2 == clifford_to_quaternion(quaternion_to_clifford(H2))
 Next, verify that they are homomorphisms:
 
 ``` r
+
 c(
 q1*q2 == quaternion_to_clifford(clifford_to_quaternion(q1)*clifford_to_quaternion(q2)),
 H1*H2 == clifford_to_quaternion(quaternion_to_clifford(H1)*quaternion_to_clifford(H2))
@@ -145,6 +154,7 @@ Alternatively we might consider the even subalgebra of
 A quick-and-dirty R function might be
 
 ``` r
+
 signature(0,3)
 cliff2quat <- function(C){
   out <- getcoeffs(C,list(numeric(0),c(2,3),c(1,3),c(1,2)))
@@ -162,6 +172,7 @@ quat2cliff <- function(H){
 Then verification is straightforward:
 
 ``` r
+
 c(
   cliff2quat(quat2cliff(H1)) == H1,
   cliff2quat(quat2cliff(H2)) == H2,
@@ -179,6 +190,6 @@ c(
 Hankin, R. K. S. 2006. “Normed Division Algebras with R: Introducing the
 `onion` Package.” *R News* 6 (2): 49–52.
 
-———. 2025. “Clifford Algebra in R: Introducing the clifford Package.”
-*Advances in Applied Clifford Algebra* 35 (51).
+Hankin, R. K. S. 2025. “Clifford Algebra in R: Introducing the clifford
+Package.” *Advances in Applied Clifford Algebra* 35 (51).
 https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.

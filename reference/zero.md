@@ -50,6 +50,7 @@ two do not play nicely together.
 ## Examples
 
 ``` r
+
 is.zero(rcliff())
 #> [1] FALSE
 ```

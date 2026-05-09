@@ -36,6 +36,7 @@ but this may change in future.
 
 The R idiom in `const<-()` is slightly awkward:
 
+
     > body(`const<-.clifford`)
     {
       stopifnot(length(value) == 1)
@@ -61,6 +62,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 X <- clifford(list(1,1:2,1:3,3:5), 6:9)
 X
 #> Element of a Clifford algebra, equal to

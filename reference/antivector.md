@@ -41,6 +41,7 @@ interpreted consistently).
 
 The pseudoscalar is a peculiar edge case. Consider:
 
+
       A <- clifford(list(c(1,2,3)))
       B <- A + clifford(list(c(1,2,4)))
 

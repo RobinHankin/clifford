@@ -35,6 +35,7 @@ R idiom for this would be to define a `DQ` object as a list of
 quaternions, as in:
 
 ``` r
+
 DQ_example <- list(as.quaternion(c(5,8,-3,3),single=TRUE), as.quaternion(c(-1,2,1,12),single=TRUE))
 DQ_example
 ```
@@ -56,6 +57,7 @@ DQ_example
 Then the product can be implemented as follows:
 
 ``` r
+
 DQ_prod_DQ <- function(DQ1,DQ2){
   A <- DQ1[[1]] ; B <- DQ1[[2]] ; C <- DQ2[[1]] ; D <- DQ2[[2]]
   list(A*C, A*D+B*C) 
@@ -70,6 +72,7 @@ Clifford objects by additionally identifying \\\varepsilon\\ with
 idiom is set by executing `signature(3,0)`.
 
 ``` r
+
 signature(3,0)
 e(4)*e(4)
 ```
@@ -84,6 +87,7 @@ e(4)*e(4)
 Conversion functions would be
 
 ``` r
+
 `cliff_to_DQ` <- function(C){  # terms such as e_3 and e_123 and e_34 are silently discarded
     quat <- getcoeffs(C,list(numeric(0),c(1,2),c(1,3),c(2,3)))
     quat[-1] <- -quat[-1]
@@ -108,6 +112,7 @@ Conversion functions would be
 Check that `DQ_to_cliff()` is indeed a homomorphism:
 
 ``` r
+
 DQ1 <- list(as.quaternion(c(5,6,2,-7),single=TRUE),as.quaternion(c(-3,1,4,8),single=TRUE))
 DQ2 <- list(as.quaternion(c(-1,3,1,4),single=TRUE),as.quaternion(c(1,9,-7,4),single=TRUE))
 LHS <- DQ_to_cliff(DQ1) * DQ_to_cliff(DQ2)
@@ -121,6 +126,7 @@ Checking that `cliff_to_DQ()` is a homomorphism follows the same line of
 reasoning:
 
 ``` r
+
 C1 <- clifford(list(numeric(0),c(1,3),c(1,2,4),c(1,3,4)),c(3,7,11,13))
 C2 <- clifford(list(numeric(0),c(1,2),c(1,3),c(1,3,4)),c(2,5,6,17))
 
@@ -135,12 +141,14 @@ The final verification is to check that functions `cliff_to_DQ()` and
 `DQ_to_cliff()` are isomorphisms:
 
 ``` r
+
 identical(DQ1,cliff_to_DQ(DQ_to_cliff(DQ1)))
 ```
 
     ## [1] TRUE
 
 ``` r
+
 identical(C1,DQ_to_cliff(cliff_to_DQ(C1)))
 ```
 
@@ -151,6 +159,6 @@ identical(C1,DQ_to_cliff(cliff_to_DQ(C1)))
 Hankin, R. K. S. 2006. “Normed Division Algebras with R: Introducing the
 `onion` Package.” *R News* 6 (2): 49–52.
 
-———. 2025. “Clifford Algebra in R: Introducing the clifford Package.”
-*Advances in Applied Clifford Algebra* 35 (51).
+Hankin, R. K. S. 2025. “Clifford Algebra in R: Introducing the clifford
+Package.” *Advances in Applied Clifford Algebra* 35 (51).
 https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.

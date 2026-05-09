@@ -58,17 +58,17 @@ the terms of its arguments.
 
 The package has several binary operators:
 
-|                   |                               |                                                                                                                                                                                      |
-|-------------------|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Geometric product | `A*B = geoprod(A,B)`          | \\\displaystyle AB=\sum\_{r,s}\left\langle A\right\rangle_r\left\langle B\right\rangle_s\\                                                                                           |
-| Inner product     | `A %.% B = cliffdotprod(A,B)` | \\\displaystyle A\cdot B=\sum\_{r\neq 0\atop s\ne 0}^{\vphantom{s\neq 0}}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{\left\|s-r\right\|}\\ |
-| Outer product     | `A %^% B = wedge(A,B)`        | \\\displaystyle A\wedge B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{s+r}\\                                                    |
-| Fat dot product   | `A %o% B = fatdot(A,B)`       | \\\displaystyle A\bullet B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{\left\|s-r\right\|}\\                                    |
-| Left contraction  | `A %_|% B = lefttick(A,B)`    | \\\displaystyle A\rfloor B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{s-r}\\                                                   |
-| Right contraction | `A %|_% B = righttick(A,B)`   | \\\displaystyle A\lfloor B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{r-s}\\                                                   |
-| Cross product     | `A %X% B = cross(A,B)`        | \\\displaystyle A\times B=\frac{1}{2\_{\vphantom{j}}}\left(AB-BA\right)\\                                                                                                            |
-| Scalar product    | `A %star% B = star(A,B)`      | \\\displaystyle A\ast B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_0\\                                                           |
-| Euclidean product | `A %euc% B = eucprod(A,B)`    | \\\displaystyle A\star B= A\ast B^\dagger\\                                                                                                                                          |
+|  |  |  |
+|----|----|----|
+| Geometric product | `A*B = geoprod(A,B)` | \\\displaystyle AB=\sum\_{r,s}\left\langle A\right\rangle_r\left\langle B\right\rangle_s\\ |
+| Inner product | `A %.% B = cliffdotprod(A,B)` | \\\displaystyle A\cdot B=\sum\_{r\neq 0\atop s\ne 0}^{\vphantom{s\neq 0}}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{\left\|s-r\right\|}\\ |
+| Outer product | `A %^% B = wedge(A,B)` | \\\displaystyle A\wedge B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{s+r}\\ |
+| Fat dot product | `A %o% B = fatdot(A,B)` | \\\displaystyle A\bullet B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{\left\|s-r\right\|}\\ |
+| Left contraction | `A %_|% B = lefttick(A,B)` | \\\displaystyle A\rfloor B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{s-r}\\ |
+| Right contraction | `A %|_% B = righttick(A,B)` | \\\displaystyle A\lfloor B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle\_{r-s}\\ |
+| Cross product | `A %X% B = cross(A,B)` | \\\displaystyle A\times B=\frac{1}{2\_{\vphantom{j}}}\left(AB-BA\right)\\ |
+| Scalar product | `A %star% B = star(A,B)` | \\\displaystyle A\ast B=\sum\_{r,s}\left\langle\left\langle A\right\rangle_r\left\langle B\right\rangle_s\right\rangle_0\\ |
+| Euclidean product | `A %euc% B = eucprod(A,B)` | \\\displaystyle A\star B= A\ast B^\dagger\\ |
 
 In R idiom, the geometric product `geoprod(.,.)` has to be indicated
 with a “`*`” (as in `A*B`) and so the binary operator must be `%*%`: we
@@ -175,6 +175,7 @@ Computation* 311:375-389
 ## Examples
 
 ``` r
+
 u <- rcliff(5)
 v <- rcliff(5)
 w <- rcliff(5)

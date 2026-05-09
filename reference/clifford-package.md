@@ -47,6 +47,7 @@ Maintainer: Robin K. S. Hankin \<hankin.robin@gmail.com\>
 ## Examples
 
 ``` r
+
 as.1vector(1:4)
 #> Element of a Clifford algebra, equal to
 #> + 1e_1 + 2e_2 + 3e_3 + 4e_4

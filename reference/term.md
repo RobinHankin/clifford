@@ -67,6 +67,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 x <- rcliff()
 terms(x)
 #> A disord object with hash 7626c66c33b83172f7fd824a9fa20059caa7ca2c and elements

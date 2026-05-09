@@ -3,6 +3,7 @@
 ![](../../../_temp/Library/clifford/help/figures/clifford.png)
 
 ``` r
+
 getcoeffs
 ```
 
@@ -24,6 +25,7 @@ low-level helper function that is a wrapper for a `C` routine. It takes
 as arguments a clifford object and a list of terms:
 
 ``` r
+
 set.seed(0)
 (a <- rcliff())
 ```
@@ -32,6 +34,7 @@ set.seed(0)
     ## + 5 + 6e_1 - 9e_12 - 3e_14 + 3e_26 - 6e_126 + 1e_236 - 1e_56 + 4e_156
 
 ``` r
+
 getcoeffs(a,list(1:2, 0, c(2,5), c(1,5,6), c(2,6), 1:2))
 ```
 
@@ -48,6 +51,7 @@ Also, compare
 which extracts *all* coefficients of a clifford object:
 
 ``` r
+
 coeffs(a)
 ```
 

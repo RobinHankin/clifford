@@ -71,6 +71,7 @@ Robin K. S. Hankin
 ## Examples
 
 ``` r
+
 (x <- clifford(list(1,2,1:4),1:3))   # Formal creation method
 #> Element of a Clifford algebra, equal to
 #> + 1e_1 + 2e_2 + 3e_1234
