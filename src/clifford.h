@@ -69,7 +69,7 @@ List Rblades(const clifford &C){  // takes a clifford object, returns a list of 
     List out(C.size());
     size_t k=0;
 
-    for(auto ic = C.cbegin() ; ic != C.end() ; ++ic){
+    for(auto ic = C.cbegin() ; ic != C.cend() ; ++ic){
         out[k++] = which(ic->first);
     }
     return out;
