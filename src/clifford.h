@@ -92,20 +92,21 @@ List retval(const clifford &C){  // used to return a list to R
                             );
 }
 
-clifford add_lowlevel(clifford cliff1, clifford cliff2){
+clifford add_lowlevel(const clifford &cliff1, const clifford& cliff2){
+    clifford out;
     if(cliff1.size() > cliff2.size()){ // #1 is bigger, so iterate through #2
+        out = cliff1;
         for(const auto& [blade2, value2] : cliff2 ){
-            cliff1[blade2] += value2;
+            out[blade2] += value2;
         }
-        remove_zeros(cliff1);
-        return cliff1;
-    } else {  // L2 is bigger
+    } else {
+        out = cliff2;
         for(const auto& [blade1, value1] : cliff1 ){
-            cliff2[blade1] += value1;
+            out[blade1] += value1;
         }
-        remove_zeros(cliff2);
-        return cliff2;
     }
+    remove_zeros(out);
+    return out;
 }
 
 blade_and_sign juxtapose(blade b1, blade b2, const NumericVector signature){//juxtaposes two blades, returns reduction and sign
