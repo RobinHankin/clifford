@@ -55,7 +55,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     return out;
 }
 
-Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
+Rcpp::IntegerVector which(const blade& b){ // takes a blade, returns which(blade)
     Rcpp::IntegerVector out;
     for(unsigned int i=0 ; i<b.size() ; ++i){
         if(b[i]){
