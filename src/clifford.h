@@ -58,7 +58,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
 Rcpp::IntegerVector which(const blade b){ // takes a blade, returns which(blade)
     Rcpp::IntegerVector out;
     for(unsigned int i=0 ; i<b.size() ; ++i){
-        if((bool) b[i]){
+        if(b[i]){
             out.push_back(i); // the meat; off-by-one here
         }
     }
