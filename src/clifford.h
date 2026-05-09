@@ -12,9 +12,9 @@
 
 using namespace Rcpp;
 
-typedef boost::dynamic_bitset<> blade;
-typedef std::map<blade, long double> clifford;
-typedef std::tuple<blade, int> blade_and_sign;
+using blade = boost::dynamic_bitset<>;
+using clifford = std::map<blade, long double>;
+using blade_and_sign = std::tuple<blade, int>;
 
 inline clifford remove_zeros(clifford C){
     for(auto it = C.cbegin() ; it != C.end() ;){
