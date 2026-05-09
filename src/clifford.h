@@ -39,7 +39,7 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
 
     for(size_t i=0 ; i<n ; i++){
         if(d[i] != 0){
-            Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
+            const Rcpp::IntegerVector iv = L[i];
             b.reset();
             for(unsigned int j=0 ; j < iv.size(); j++){
                 b[iv[j]] = 1;
