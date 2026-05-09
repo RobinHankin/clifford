@@ -78,7 +78,7 @@ NumericVector coeffs(const clifford &C){  // takes a clifford object, returns th
     NumericVector out(C.size());
     unsigned int i = 0;
 
-    for(auto ic = C.cbegin() ; ic != C.end() ; ++ic){
+    for(auto ic = C.cbegin() ; ic != C.cend() ; ++ic){
         out[i] = ic->second;
         i++;
     }
