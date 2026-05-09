@@ -32,15 +32,25 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
     if(!((unsigned int) n == d.length())){
         throw std::range_error("in prepare(L,d,m) [file inst/clifford.h], L must be the same length as d");
     }
+
+    const size_t blade_size = m[0] + 1;
+    blade b;
+    b.resize(blade_size);
+
     for(size_t i=0 ; i<n ; i++){
         if(d[i] != 0){
             Rcpp::IntegerVector iv = as<Rcpp::IntegerVector> (L[i]);
-            blade b;
-            b.resize(m[0]+1);  //off-by-one
+            b.reset();
             for(unsigned int j=0 ; j < iv.size(); j++){
                 b[iv[j]] = 1;
             }
-            out[b] += d[i];  // the meat
+
+            auto it = out.find(b);
+            if(it == out.end()){
+                out.emplace(b, d[i]);
+            } else {
+                it->second += d[i];
+            }
         } // if d[i] closes
     }  // i loop closes
 
