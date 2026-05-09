@@ -66,10 +66,11 @@ Rcpp::IntegerVector which(const blade& b){ // takes a blade, returns which(blade
 }
 
 List Rblades(const clifford &C){  // takes a clifford object, returns a list of which(blades); used in retval()
-    List out;
+    List out(C.size());
+    size_t k=0;
 
     for(auto ic = C.cbegin() ; ic != C.end() ; ++ic){
-        out.push_back(which(ic->first));
+        out[k++] = which(ic->first);
     }
     return out;
 }
