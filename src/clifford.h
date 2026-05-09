@@ -44,11 +44,8 @@ clifford prepare(const List &L, const NumericVector &d, const NumericVector &m){
             for(unsigned int j=0 ; j < iv.size(); j++){
                 b[iv[j]] = 1;
             }
-
-            auto it = out.find(b);
-            if(it == out.end()){
-                out.emplace(b, d[i]);
-            } else {
+            auto [it, inserted] = out.try_emplace(b, d[i]);
+            if(!inserted){
                 it->second += d[i];
             }
         } // if d[i] closes
