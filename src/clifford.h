@@ -78,11 +78,10 @@ List Rblades(const clifford &C){  // takes a clifford object, returns a list of 
 
 NumericVector coeffs(const clifford &C){  // takes a clifford object, returns the coefficients
     NumericVector out(C.size());
-    unsigned int i = 0;
+    size_t i = 0;
 
     for(auto ic = C.cbegin() ; ic != C.cend() ; ++ic){
-        out[i] = ic->second;
-        i++;
+        out[i++] = ic->second;
     }
     return out;
 }
