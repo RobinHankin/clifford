@@ -166,18 +166,18 @@ clifford c_general_prod(const clifford &C1, const clifford &C2, const NumericVec
     return out;
 }
 
-bool equal_lowlevel(clifford C1, clifford C2){
+bool equal_lowlevel(const clifford& C1, const clifford& C2){
     // modelled on spray_equality()
     if(C1.size() != C2.size()){
         return false;
     }
 
     for(const auto &[b1, value1] : C1 ){
-        if(C2[b1] != value1){
+        auto it = C2.find(b1);
+        if(it == C2.end() || it->second != value1){
             return false;
         }
     }
-
     return true;
 }
 
