@@ -207,7 +207,7 @@ bool any_too_big(const IntegerVector &iv, const unsigned int m){
   return(false);
 }
 
-blade int_vec_to_blade(const IntegerVector iv, const int m){
+blade int_vec_to_blade(const IntegerVector& iv, const int m){
   blade b;
   b.resize(m+1);
   for(size_t j=0 ; j < (size_t) iv.size(); j++){
