@@ -258,17 +258,15 @@ clifford overwrite(clifford C1, const clifford C2){  // C1[] <- C2
 }
 
 clifford power_lowlevel(const clifford &C, const NumericVector &power, const NumericVector &signature){  // p for power
-    clifford out;
     unsigned int p = power[0];
 
     if(p<1){throw std::range_error("power cannot be <1");}
     if(p==1){
         return C;
-    } else {
-        out = C;
-        for( ; p>1; p--){
-            out = geometricprod_lowlevel(C, out, signature);
-        }
+    } 
+    clifford out = C;
+    for( ; p>1; p--){
+        out = geometricprod_lowlevel(C, out, signature);
     }
     return out;
 }
