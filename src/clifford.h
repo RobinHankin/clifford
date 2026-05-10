@@ -274,9 +274,9 @@ clifford power_lowlevel(const clifford &C, const NumericVector &power, const Num
 clifford cartan(const clifford &C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p-4,q+4)
     clifford out;
 
-    for (auto ic=C.begin() ; ic != C.end() ; ++ic){
+    const size_t o = n[0]-1; // "-1" so the numbers match; off-by-one
+    for (auto ic=C.cbegin() ; ic != C.cend() ; ++ic){
         blade c = ic->first;
-        const size_t o = n[0]-1; // "-1" so the numbers match; off-by-one
         if(c.size() < o+5){c.resize(o+5);}
         const blade b = c;
         const long double v = ic->second;
@@ -307,9 +307,9 @@ clifford cartan(const clifford &C, const NumericVector &n){ // Appendix B of Hit
 clifford cartan_inverse(const clifford &C, const NumericVector &n){ // Appendix B of Hitzer and Sangwine: Cl(p,q) -> cl(p+4,q-4)
     clifford out;
 
-    for (auto ic=C.begin(); ic != C.end(); ++ic){
+    const size_t o = n[0]-1; // "-1" so the numbers match
+    for (auto ic=C.cbegin(); ic != C.cend(); ++ic){
         blade c = ic->first;
-        const size_t o = n[0]-1; // "-1" so the numbers match
         if(c.size() < o+5){c.resize(o+5);}
         const blade b = c;
         const long double v = ic->second;
