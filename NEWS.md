@@ -1,3 +1,7 @@
+# clifford 1.2-0
+- C++-20 idiom
+
+
 # clifford 1.1-3
 - documentation tweaks
 
