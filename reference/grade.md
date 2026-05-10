@@ -178,5 +178,5 @@ drop(gradesplus(x) + gradesminus(x) + gradeszero(x) - grades(x))
 
 a <- rcliff()
 a == Reduce(`+`,sapply(unique(grades(a)),function(g){grade(a,g)}))
-#> [1] TRUE
+#> [1] FALSE
 ```
