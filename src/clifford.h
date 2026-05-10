@@ -198,7 +198,7 @@ bool any_negative(const IntegerVector &iv){
     return std::any_of(iv.begin(), iv.end(), [](int x) { return x < 0; });
 }
 
-bool any_too_big(const IntegerVector &iv, const unsigned int &m){
+bool any_too_big(const IntegerVector &iv, const unsigned int m){
     for(const auto& value : iv){
       if((unsigned int) value > m){
       return(true);
