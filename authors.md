@@ -11,12 +11,12 @@ Source:
 [`inst/CITATION`](https://github.com/RobinHankin/clifford/blob/master/inst/CITATION)
 
 Hankin RKS (????). *clifford: Arbitrary Dimensional Clifford Algebras*.
-R package version 1.1-3, <https://github.com/RobinHankin/clifford>.
+R package version 1.2-0, <https://github.com/RobinHankin/clifford>.
 
     @Manual{,
       title = {clifford: Arbitrary Dimensional Clifford Algebras},
       author = {Robin K. S. Hankin},
-      note = {R package version 1.1-3},
+      note = {R package version 1.2-0},
       url = {https://github.com/RobinHankin/clifford},
     }
 
