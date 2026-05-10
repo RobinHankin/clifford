@@ -187,6 +187,7 @@ clifford grade_lowlevel(const clifford &C, const NumericVector &n){
         for(const auto& [b, value] : C){
             if(b.count() == static_cast<size_t>(n[i])){
                 out[b] = value;
+                break;
             }
         }
     }
