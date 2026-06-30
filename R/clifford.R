@@ -306,17 +306,19 @@ setMethod("drop","clifford", function(x){drop_clifford(x)})
 
 `Mod.clifford` <- function(z){sqrt(abs(eucprod(z)))}
 
-`is.even` <- function(C){all(grades(C)%%2==0)}
-`is.odd`  <- function(C){all(grades(C)%%2==1)}
+`is.even` <- function(C){all(grades(C)%%2 == 0)}
+`is.odd`  <- function(C){all(grades(C)%%2 != 0)}
 
 `evenpart` <- function(C){
     wanted <- which(unlist(lapply(elements(terms(C)), length))%%2==0)
     clifford(elements(terms(C))[wanted], coeffs=elements(coeffs(C))[wanted])
+    ## C[grades(C)%%2 == 0] looks good but fails tests/testthat/test_aam.R
 }
 
-`oddpart` <- function(C){
+ `oddpart` <- function(C){
     wanted <- which(unlist(lapply(elements(terms(C)), length))%%2==1)
     clifford(elements(terms(C))[wanted], coeffs=elements(coeffs(C))[wanted])
+    ## C[grades(C)%%2 == 1] looks good but fails tests/testthat/test_aam.R
 }
 
 `allcliff` <- function(n,grade){
