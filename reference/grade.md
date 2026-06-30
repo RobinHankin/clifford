@@ -155,7 +155,7 @@ a
 #> Element of a Clifford algebra, equal to
 #> + 1e_1 + 2e_12 + 3e_123 + 4e_1234 + 5e_12345 + 6e_123456 + 7e_1234567
 grades(a)
-#> A disord object with hash 185ca524fb71fa2ae28566b137978e475c1aa00f and elements
+#> A disord object with hash 62107b1c5b603be8852ff77a5fd60be6e13e4b27 and elements
 #> [1] 1 2 3 4 5 6 7
 #> (in some order)
 grade(a,5)

@@ -87,17 +87,16 @@ arguably zero; `rcliff()` returns an error.
 
 rcliff()
 #> Element of a Clifford algebra, equal to
-#> + 6 - 8e_2 - 7e_13 - 5e_1234 - 2e_6 - 1e_26 + 8e_1236 + 9e_346 + 4e_256 +
-#> 5e_1356
+#> + 6 - 9e_2 + 9e_5 + 7e_25 + 1e_136 - 1e_46 + 8e_146 - 6e_1346 + 3e_3456
 rcliff(d=3,g=2)
 #> Element of a Clifford algebra, equal to
-#> + 6 + 8e_1 - 1e_2 + 2e_12 + 4e_3 - 5e_13 - 8e_23
+#> + 7 - 4e_1 + 6e_2 + 3e_12 - 7e_3 - 8e_13 + 9e_23
 rcliff(3,10,7)
 #> Element of a Clifford algebra, equal to
-#> + 3 + 1e_1257 - 2e_79 - 3e_245689
+#> + 3 - 1e_257 + 1e_1234510 - 3e_345610
 rcliff(3,10,7,include=TRUE)
 #> Element of a Clifford algebra, equal to
-#> + 3 - 3e_5 - 1e_34567 + 3e_3456710
+#> + 3 + 3e_1246710 - 1e_13457910 + 1e_18910
 
 x1 <- rcliff()
 x2 <- rcliff()
@@ -109,10 +108,11 @@ x1*(x2*x3) == (x1*x2)*x3  # should be TRUE
 
 rblade()
 #> Element of a Clifford algebra, equal to
-#> - 21e_123 - 4e_124 + 1e_134 - 9e_234 - 8e_125 + 2e_135 - 18e_235 + 40e_126 +
-#> 32e_136 - 15e_236 + 8e_146 - 20e_246 - 13e_346 + 16e_156 - 40e_256 - 26e_356 -
-#> 22e_127 - 5e_137 - 18e_237 - 2e_147 + 6e_247 + 3e_347 - 4e_157 + 12e_257 +
-#> 6e_357 - 24e_167 + 50e_267 + 31e_367 - 2e_467 - 4e_567
+#> + 64e_123 - 32e_124 - 82e_134 + 12e_234 - 16e_125 - 11e_135 + 50e_235 - 15e_145
+#> - 22e_245 - 62e_345 - 12e_136 + 8e_236 + 6e_146 - 4e_246 - 8e_346 + 3e_156 -
+#> 2e_256 + 8e_356 - 6e_456 + 16e_127 - 25e_137 + 38e_237 + 33e_147 - 22e_247 -
+#> 44e_347 + 9e_157 - 22e_257 + 13e_357 - 33e_457 + 3e_167 - 2e_267 - 4e_367 +
+#> 3e_567
 
 # We can invert blades easily:
 a <- rblade()

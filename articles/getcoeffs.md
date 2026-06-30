@@ -55,7 +55,7 @@ which extracts *all* coefficients of a clifford object:
 coeffs(a)
 ```
 
-    ## A disord object with hash 95062597dd6246faa022dc8f8a57947483f5ba60 and elements
+    ## A disord object with hash 681f24ec6d47e08867661a199b1ce8e46c01be0c and elements
     ## [1]  5  6 -9 -3  3 -6  1 -1  4
     ## (in some order)
 

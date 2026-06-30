@@ -84,7 +84,7 @@ Robin K. S. Hankin
 #> 3e_3456
 
 terms(x+100)
-#> A disord object with hash 44041cf8cc66f11ef3ad34a2b8596d11d2abe80a and elements
+#> A disord object with hash b970bfa31ac8e546f0d03091602b82227e72fc24 and elements
 #> [[1]]
 #> integer(0)
 #> 
@@ -99,7 +99,7 @@ terms(x+100)
 #> 
 #> (in some order)
 coeffs(z)
-#> A disord object with hash 145748b538f82204ea9b48ed4b4973253b73b962 and elements
+#> A disord object with hash b168b85501e6a173fb372f5ed2ecc8fa82018488 and elements
 #>  [1]  6 -6 -9 -2  9  6  5  1 -7 -3
 #> (in some order)
 

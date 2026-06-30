@@ -5,7 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Random clifford objects — rcliff"><meta name="description" content="Random Clifford algebra elements, intended as quick
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Random clifford objects — rcliff"><meta name="description" content="Random Clifford algebra elements, intended as quick
   &amp;#8220;get you going&amp;#8221; examples of clifford objects"><meta property="og:description" content="Random Clifford algebra elements, intended as quick
   &amp;#8220;get you going&amp;#8221; examples of clifford objects"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -163,17 +163,16 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">rcliff</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 - 8e_2 - 7e_13 - 5e_1234 - 2e_6 - 1e_26 + 8e_1236 + 9e_346 + 4e_256 +</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5e_1356</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 - 9e_2 + 9e_5 + 7e_25 + 1e_136 - 1e_46 + 8e_146 - 6e_1346 + 3e_3456</span>
 <span class="r-in"><span><span class="fu">rcliff</span><span class="op">(</span>d<span class="op">=</span><span class="fl">3</span>,g<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 6 + 8e_1 - 1e_2 + 2e_12 + 4e_3 - 5e_13 - 8e_23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 7 - 4e_1 + 6e_2 + 3e_12 - 7e_3 - 8e_13 + 9e_23</span>
 <span class="r-in"><span><span class="fu">rcliff</span><span class="op">(</span><span class="fl">3</span>,<span class="fl">10</span>,<span class="fl">7</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 3 + 1e_1257 - 2e_79 - 3e_245689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 3 - 1e_257 + 1e_1234510 - 3e_345610</span>
 <span class="r-in"><span><span class="fu">rcliff</span><span class="op">(</span><span class="fl">3</span>,<span class="fl">10</span>,<span class="fl">7</span>,include<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 3 - 3e_5 - 1e_34567 + 3e_3456710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 3 + 3e_1246710 - 1e_13457910 + 1e_18910</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu">rcliff</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu">rcliff</span><span class="op">(</span><span class="op">)</span></span></span>
@@ -185,10 +184,11 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">rblade</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Element of a Clifford algebra, equal to</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - 21e_123 - 4e_124 + 1e_134 - 9e_234 - 8e_125 + 2e_135 - 18e_235 + 40e_126 +</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32e_136 - 15e_236 + 8e_146 - 20e_246 - 13e_346 + 16e_156 - 40e_256 - 26e_356 -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22e_127 - 5e_137 - 18e_237 - 2e_147 + 6e_247 + 3e_347 - 4e_157 + 12e_257 +</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6e_357 - 24e_167 + 50e_267 + 31e_367 - 2e_467 - 4e_567</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 64e_123 - 32e_124 - 82e_134 + 12e_234 - 16e_125 - 11e_135 + 50e_235 - 15e_145</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> - 22e_245 - 62e_345 - 12e_136 + 8e_236 + 6e_146 - 4e_246 - 8e_346 + 3e_156 -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2e_256 + 8e_356 - 6e_456 + 16e_127 - 25e_137 + 38e_237 + 33e_147 - 22e_247 -</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44e_347 + 9e_157 - 22e_257 + 13e_357 - 33e_457 + 3e_167 - 2e_267 - 4e_367 +</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3e_567</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># We can invert blades easily:</span></span></span>
 <span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">rblade</span><span class="op">(</span><span class="op">)</span></span></span>

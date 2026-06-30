@@ -153,15 +153,14 @@ diff
 ```
 
     ## Element of a Clifford algebra, equal to
-    ## + 2.220446e-16 + 2.220446e-16e_12 + 1.387779e-16e_3 + 2.220446e-16e_23 -
-    ## 8.326673e-17e_123
+    ## + 2.220446e-16e_12 + 8.326673e-17e_3 + 2.220446e-16e_23 - 8.326673e-17e_123
 
 ``` r
 
 Mod(diff)
 ```
 
-    ## [1] 4.172578e-16
+    ## [1] 3.353719e-16
 
 We see agreement to numerical precision. Now we can coerce from a
 Clifford to a matrix:
@@ -287,7 +286,7 @@ blades:
 grades(p2)
 ```
 
-    ## A disord object with hash dc0ef121a24b8ab8c67bbfc6468e439b5622e81e and elements
+    ## A disord object with hash 64cfd2f51f6831bd64332b8da4f491e5d4197bdc and elements
     ## [1] 0 1 1 1
     ## (in some order)
 

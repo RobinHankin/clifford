@@ -70,7 +70,7 @@ Robin K. S. Hankin
 
 x <- rcliff()
 terms(x)
-#> A disord object with hash 7626c66c33b83172f7fd824a9fa20059caa7ca2c and elements
+#> A disord object with hash 91f546544a646f133a7b952c1b7ea2be75169ddd and elements
 #> [[1]]
 #> integer(0)
 #> 
@@ -78,25 +78,25 @@ terms(x)
 #> [1] 1
 #> 
 #> [[3]]
-#> [1] 2
+#> [1] 1 3
 #> 
 #> [[4]]
-#> [1] 4
+#> [1] 3 4
 #> 
 #> [[5]]
-#> [1] 3 4 5
-#> 
-#> [[6]]
-#> [1] 1 3 4 5
-#> 
-#> [[7]]
 #> [1] 6
 #> 
-#> [[8]]
+#> [[6]]
 #> [1] 1 2 3 6
 #> 
+#> [[7]]
+#> [1] 1 2 4 6
+#> 
+#> [[8]]
+#> [1] 1 4 5 6
+#> 
 #> [[9]]
-#> [1] 1 3 5 6
+#> [1] 2 4 5 6
 #> 
 #> (in some order)
 

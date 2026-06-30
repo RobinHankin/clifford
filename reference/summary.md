@@ -41,7 +41,7 @@ Robin K. S. Hankin
 ``` r
 summary(rcliff())
 #> Element of a Clifford algebra 
-#> Typical terms:  6  ...  - 7e_2356 
-#> Number of terms: 10 
-#> Magnitude: 371 
+#> Typical terms:  5  ...  - 1e_1356 
+#> Number of terms: 9 
+#> Magnitude: 234 
 ```
