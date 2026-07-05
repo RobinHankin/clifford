@@ -1,6 +1,12 @@
 # Changelog
 
+## clifford 1.2-0-1
+
+- bugfix
+
 ## clifford 1.2-0
+
+CRAN release: 2026-06-30
 
 - C++-20 idiom
 

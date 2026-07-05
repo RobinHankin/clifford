@@ -1,6 +1,6 @@
 # Quaternionic arithmetic with Clifford algebra
 
-![](../../../_temp/Library/clifford/help/figures/clifford.png)![](../../../_temp/Library/onion/help/figures/onion.png)
+![](../../../_temp/Library/clifford/help/figures/clifford.png)
 
 To cite the `clifford` package in publications please use Hankin
 ([2025](#ref-hankin2025_clifford_rmd)). This short document shows how
