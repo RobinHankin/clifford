@@ -1,3 +1,6 @@
+# clifford 1.2-0-1
+- bugfix
+
 # clifford 1.2-0
 - C++-20 idiom
 
