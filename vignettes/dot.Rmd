@@ -6,7 +6,7 @@ bibliography: clifford.bib
 link-citations: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{signature}
+  %\VignetteIndexEntry{The dot object in the clifford package}
   %\usepackage[utf8]{inputenc}
 ---
 
