@@ -63,7 +63,7 @@ having list elements of zero, which are translated by helper function
 upshot is that a zero list element in argument `B` works as expected
 extracting the constant.  Also, passing `B=0` works as expected,
 returning the constant (there is no need to coerce to a list: coercion
-is performed by `list_modifier)`.  A similar scheme is used in the
+is performed by `list_modifier()`).  A similar scheme is used in the
 square bracket extraction and replacement methods
 
 Attempting to extract a coefficient of a term that includes a negative
