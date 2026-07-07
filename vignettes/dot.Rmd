@@ -20,8 +20,8 @@ library("clifford")
 knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
 ```
 
-To cite the `freealg` package in publications, please use
-@hankin2022_freealg.  This short document introduces the dot object
+To cite the `clifford` package in publications, please use
+@hankin2025_clifford.  This short document introduces the dot object
 and shows how it can be used to work with commutators and verify the
 Jacobi identity.  In the `clifford` package, we define
 $\left[A,B\right] := (AB-BA)/2$.  The factor of $\frac{1}{2}$ is to
