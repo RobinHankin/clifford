@@ -1,4 +1,4 @@
-# Complex arithmetic using Clifford algebra
+# arithmetic using Clifford algebra
 
 ![](../../../_temp/Library/clifford/help/figures/clifford.png)
 
@@ -24,7 +24,6 @@ versa, we need a couple of functions:
 signature(0,1)
 options(maxdim=1) # paranoid-level safety measure
 complex_to_clifford <- function(z){Re(z) + e(1)*Im(z)}
-clifford_to_complex <- function(C){const(C) + 1i*getcoeffs(C,1)}
 clifford_to_complex <- function(C){const(C) + 1i*coeffs(Im(C))}
 ```
 

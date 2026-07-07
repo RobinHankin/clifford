@@ -124,8 +124,8 @@ x
 
 L <- replicate(n,as.1vector(rnorm(n)),simplify=FALSE)  # spanning vectors
 subst <- function(L,n,x){L[[n]] <- x; return(L)}       # list substitution
-coeff <- function(n,L,x){
-      drop(Reduce(`^`,subst(L,n,x))/Reduce(`^`,L))
+coeff <- function(i,L,x){
+      drop(Reduce(`^`,subst(L,i,x))/Reduce(`^`,L))
 }
 ```
 

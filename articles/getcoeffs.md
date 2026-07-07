@@ -66,7 +66,8 @@ list elements of zero, which are translated by helper function
 to `numeric(0)` and listified if necessary. The upshot is that a zero
 list element in argument `B` works as expected extracting the constant.
 Also, passing `B=0` works as expected, returning the constant (there is
-no need to coerce to a list: coercion is performed by `list_modifier)`.
+no need to coerce to a list: coercion is performed by
+[`list_modifier()`](https://robinhankin.github.io/clifford/reference/Extract.md)).
 A similar scheme is used in the square bracket extraction and
 replacement methods
 

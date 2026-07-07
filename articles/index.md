@@ -2,7 +2,7 @@
 
 ### All vignettes
 
-- [Complex arithmetic using Clifford
+- [arithmetic using Clifford
   algebra](https://robinhankin.github.io/clifford/articles/complex_clifford.md):
 - [Conformal geometry with Clifford
   algebra](https://robinhankin.github.io/clifford/articles/conformal_algebra_clifford.md):

@@ -2,6 +2,8 @@
 
 ## clifford 1.2-0-1
 
+CRAN release: 2026-07-05
+
 - bugfix
 
 ## clifford 1.2-0
