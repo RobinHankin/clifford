@@ -229,21 +229,12 @@ package:
   [`` `const<-`( ``*`<clifford>`*`)`](https://robinhankin.github.io/clifford/reference/const.md)
   : The constant term of a Clifford object
 
-- [`dot`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`.`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`dot-class`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`commutator`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`jacobi`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`dot_error`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[.dot`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot-method`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot,ANY,ANY-method`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot,ANY,missing-method`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot,missing,ANY-method`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot,missing,missing-method`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot,matrix,matrix-method`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot,clifford,ANY,ANY-method`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`[,dot,clifford,ANY-method`](https://robinhankin.github.io/clifford/reference/dot.md)
+- [`` `[`( ``*`<dot>`*`,`*`<missing>`*`,`*`<missing>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
+  [`` `[`( ``*`<dot>`*`,`*`<ANY>`*`,`*`<missing>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
+  [`` `[`( ``*`<dot>`*`,`*`<missing>`*`,`*`<ANY>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
+  [`` `[`( ``*`<dot>`*`,`*`<matrix>`*`,`*`<matrix>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
+  [`` `[`( ``*`<dot>`*`,`*`<ANY>`*`,`*`<ANY>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
+  [`` `[`( ``*`<dot>`*`,`*`<function>`*`,`*`<function>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
   : Class “dot”
 
 - [`drop()`](https://robinhankin.github.io/clifford/reference/drop.md)
