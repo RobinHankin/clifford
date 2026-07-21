@@ -229,12 +229,8 @@ package:
   [`` `const<-`( ``*`<clifford>`*`)`](https://robinhankin.github.io/clifford/reference/const.md)
   : The constant term of a Clifford object
 
-- [`` `[`( ``*`<dot>`*`,`*`<missing>`*`,`*`<missing>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`` `[`( ``*`<dot>`*`,`*`<ANY>`*`,`*`<missing>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`` `[`( ``*`<dot>`*`,`*`<missing>`*`,`*`<ANY>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`` `[`( ``*`<dot>`*`,`*`<matrix>`*`,`*`<matrix>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`` `[`( ``*`<dot>`*`,`*`<ANY>`*`,`*`<ANY>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
-  [`` `[`( ``*`<dot>`*`,`*`<function>`*`,`*`<function>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
+- [`` `[`( ``*`<dot>`*`,`*`<clifford>`*`,`*`<ANY>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
+  [`` `[`( ``*`<dot>`*`,`*`<clifford>`*`,`*`<ANY>`*`,`*`<ANY>`*`)`](https://robinhankin.github.io/clifford/reference/dot.md)
   : Class “dot”
 
 - [`drop()`](https://robinhankin.github.io/clifford/reference/drop.md)

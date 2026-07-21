@@ -64,7 +64,7 @@ DQ_prod_DQ <- function(DQ1,DQ2){
 }
 ```
 
-We will use follow the coercion used in `inst/quaternion_clifford.Rmd`
+We will follow the coercion used in `inst/quaternion_clifford.Rmd`
 (*not* the alternative mapping, which requires a different signature) to
 coerce from cliffords to quaternions. We may map the dual quaternions to
 Clifford objects by additionally identifying \\\varepsilon\\ with

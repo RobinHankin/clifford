@@ -139,7 +139,7 @@ quaternions, as in:</p>
 <span>  <span class="va">A</span> <span class="op">&lt;-</span> <span class="va">DQ1</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> ; <span class="va">B</span> <span class="op">&lt;-</span> <span class="va">DQ1</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> ; <span class="va">C</span> <span class="op">&lt;-</span> <span class="va">DQ2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> ; <span class="va">D</span> <span class="op">&lt;-</span> <span class="va">DQ2</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">A</span><span class="op">*</span><span class="va">C</span>, <span class="va">A</span><span class="op">*</span><span class="va">D</span><span class="op">+</span><span class="va">B</span><span class="op">*</span><span class="va">C</span><span class="op">)</span> </span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>We will use follow the coercion used in
+<p>We will follow the coercion used in
 <code>inst/quaternion_clifford.Rmd</code> (<em>not</em> the alternative
 mapping, which requires a different signature) to coerce from cliffords
 to quaternions. We may map the dual quaternions to Clifford objects by

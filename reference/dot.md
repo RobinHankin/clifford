@@ -11,17 +11,9 @@ creates file `dot.rda` which resides in the `data/` directory.
 ## Usage
 
 ``` r
-# S4 method for class 'dot,missing,missing'
-x[i, j, drop]
-# S4 method for class 'dot,ANY,missing'
-x[i, j, drop]
-# S4 method for class 'dot,missing,ANY'
-x[i, j, drop]
-# S4 method for class 'dot,matrix,matrix'
-x[i, j, drop]
-# S4 method for class 'dot,ANY,ANY'
-x[i, j, drop]
-# S4 method for class 'dot,function,function'
+# S4 method for class 'dot,clifford,ANY'
+x[i, j]
+# S4 method for class 'dot,clifford,ANY,ANY'
 x[i, j, drop]
 ```
 

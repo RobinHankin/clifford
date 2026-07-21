@@ -2,8 +2,8 @@
 
 ![](../../../_temp/Library/clifford/help/figures/clifford.png)
 
-To cite the `freealg` package in publications, please use Hankin
-([2022](#ref-hankin2022_freealg)). This short document introduces the
+To cite the `clifford` package in publications, please use Hankin
+([2025](#ref-hankin2025_clifford)). This short document introduces the
 dot object and shows how it can be used to work with commutators and
 verify the Jacobi identity. In the `clifford` package, we define
 \\\left\[A,B\right\] := (AB-BA)/2\\. The factor of \\\frac{1}{2}\\ is to
@@ -133,6 +133,10 @@ save(`.`,file="dot.rda")
 ```
 
 ## References
+
+Hankin, R. K. S. 2025. “Clifford Algebra in : Introducing the Package.”
+*Advances in Applied Clifford Algebra* 35 (51).
+https://doi.org/<https://doi.org/10.1007/s00006-025-01403-9>.
 
 Hankin, Robin K. S. 2022. *The Free Algebra in R*. arXiv.
 <https://doi.org/10.48550/ARXIV.2211.04002>.
