@@ -7,14 +7,8 @@
 \alias{jacobi}
 \alias{dot_error}
 \alias{[,dot-method}
-\alias{[,dot,ANY,ANY-method}
-\alias{[,dot,ANY,missing-method}
-\alias{[,dot,missing,ANY-method}
-\alias{[,dot,missing,missing-method}
-\alias{[,dot,matrix,matrix-method}
 \alias{[,dot,clifford,ANY,ANY-method}
 \alias{[,dot,clifford,ANY-method}
-\alias{[,dot,function,function-method}
 \title{Class \dQuote{dot}}
 \description{
 
@@ -29,12 +23,8 @@
 
 }
 \usage{
-\S4method{[}{dot,missing,missing}(x, i, j, drop)
-\S4method{[}{dot,ANY,missing}(x, i, j, drop)
-\S4method{[}{dot,missing,ANY}(x, i, j, drop)
-\S4method{[}{dot,matrix,matrix}(x, i, j, drop)
-\S4method{[}{dot,ANY,ANY}(x, i, j, drop)
-\S4method{[}{dot,function,function}(x, i, j, drop)
+\S4method{[}{dot,clifford,ANY}(x, i, j)
+\S4method{[}{dot,clifford,ANY,ANY}(x, i, j, drop)
 }
 \arguments{
   \item{x}{An object of class \code{dot} (typically the pre-built object \code{.})}
