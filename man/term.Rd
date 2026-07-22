@@ -21,18 +21,12 @@ is.basisblade(x)
   \item{x}{Object of class \code{clifford}}
 }
 \details{
-
   \itemize{
-    
     \item Functions \code{terms()} and \code{coeffs()} are the
     extraction methods.  These are unordered vectors but the ordering is
     consistent between them (an extended discussion of this phenomenon
     is presented in the \code{mvp} package).
-
-    \item Function \code{term()} returns a clifford object that comprises
-    a single term with unit coefficient.
-    
-    \item Function \code{is.basisterm()} returns \code{TRUE} if its
+    \item Function \code{is.basisblade()} returns \code{TRUE} if its
     argument has only a single term, or is a nonzero scalar; the zero
     clifford object is not considered to be a basis term.
   }
@@ -58,9 +52,6 @@ random blade.
 
 Function \code{is.blade()} is not currently implemented: there is no
 easy way to detect whether a Clifford object is a product of 1-vectors.
-
-
-
 
 }
 \references{
