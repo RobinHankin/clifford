@@ -49,18 +49,18 @@ the Clifford algebra \eqn{C_{p,q}}{C_{p,q}}.
 If the signature is \eqn{(p,q)}, then we have
 
 \deqn{
-  e_i e_i =   +1\, (\mbox{if } 1\leq i\leq p), 
-              -1\, (\mbox{if } p+1\leq i\leq p+q),
+  e_i e_i =   +1\, (\mbox{if } 1\leqslant i\leqslant p), 
+              -1\, (\mbox{if } p+1\leqslant i\leqslant p+q),
                0\, (\mbox{if } i>p+q).
   }{
   omitted
 }
 
 Note that \eqn{(p,0)} corresponds to a positive-semidefinite
-quadratic form in which \eqn{e_ie_i=+1}{omitted} for all \eqn{i\leq
+quadratic form in which \eqn{e_ie_i=+1}{omitted} for all \eqn{i\leqslant
 p}{i<=p} and \eqn{e_ie_i=0}{omitted} for all \eqn{i > p}.
 Similarly, \eqn{(0,q)} corresponds to a negative-semidefinite
-quadratic form in which \eqn{e_ie_i=-1}{omitted} for all \eqn{i\leq
+quadratic form in which \eqn{e_ie_i=-1}{omitted} for all \eqn{i\leqslant
 q}{i<=q} and \eqn{e_ie_i=0}{omitted} for all \eqn{i > q}.
 
 A strictly positive-definite quadratic form is specified by infinite

@@ -103,7 +103,7 @@ and a basis blade \eqn{e_\mathbb{A}}{e_A} with
     
 \deqn{
   \mathrm{gr}_{-}(e_A) = \left|\left\lbrace a\in A\colon
-  p < a\leq p+q\right\rbrace\right|
+  p < a\leqslant p+q\right\rbrace\right|
 }{
   omitted
 }

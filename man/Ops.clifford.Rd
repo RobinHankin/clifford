@@ -148,7 +148,7 @@ C1 \%|_\% C2
 
   Function \code{clifford_inverse()} returns an inverse for nonnull
   Clifford objects \eqn{\operatorname{Cl}(p,q)}{Cl(p,q)} for
-  \eqn{p+q\leq 5}{p+q <= 5}, and a few other special cases.  The
+  \eqn{p+q\leqslant 5}{p+q <= 5}, and a few other special cases.  The
   functionality is problematic as nonnull blades always have an inverse;
   but function \code{is.blade()} is not yet implemented.  Blades
   (including null blades) have a pseudoinverse, but this is not
@@ -198,7 +198,7 @@ C1 \%|_\% C2
   Division, as in idiom \code{x/y}, is defined as
   \code{x*clifford_inverse(y)}.  Function \code{clifford_inverse()} uses
   the method set out by Hitzer and Sangwine but is limited to
-  \eqn{p+q\leq 5}{p+q <= 5}.
+  \eqn{p+q\leqslant 5}{p+q <= 5}.
 
   The Lie bracket, \eqn{\left[x,y\right]}{[x,y]} is implemented in the
   package using idiom such as \code{.[x,y]}, and this is documented at

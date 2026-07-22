@@ -11,7 +11,7 @@ The Clifford algebra on basis vectors \eqn{e_1,e_2,\ldots,
 \arguments{
   \item{n}{Integer specifying dimension of underlying vector space}
   \item{grade}{Grade of multivector to be returned.  If missing,
-    multivector contains every term of every grade \eqn{\leq n}{<=n}}
+    multivector contains every term of every grade \eqn{\leqslant n}{<=n}}
 }
 \author{Robin K. S. Hankin}
 \examples{
