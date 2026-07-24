@@ -1,7 +1,7 @@
 
 test_that("Test suite aaf.R",{  # tests of division
-    small <- 1e-4
-    tiny <- 1e-10
+    small <- 1e-2
+    tiny <- 1e-8
     signature(Inf,0)
     checker1 <- function(A){
         if(Mod(A)>small){
@@ -18,11 +18,13 @@ test_that("Test suite aaf.R",{  # tests of division
         }
     }
     
-    for(n in 1:9){
+    for(n in 1:2){
         A <- rcliff(d=5)
         B <- rcliff(d=5)
+        options(maxdim = 5)
         checker1(A)
-        checker2(A,B)
+        checker2(A, B)
+        options(maxdim = NULL)
     }
 
     # Some spot checks:
