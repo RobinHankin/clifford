@@ -52,14 +52,14 @@ to the Clifford algebra \\C\_{p,q}\\.
 
 If the signature is \\(p,q)\\, then we have
 
-\$\$ e_i e_i = +1\\ (\mbox{if } 1\leq i\leq p), -1\\ (\mbox{if } p+1\leq
-i\leq p+q), 0\\ (\mbox{if } i\>p+q). \$\$
+\$\$ e_i e_i = +1\\ (\mbox{if } 1\leqslant i\leqslant p), -1\\ (\mbox{if
+} p+1\leqslant i\leqslant p+q), 0\\ (\mbox{if } i\>p+q). \$\$
 
 Note that \\(p,0)\\ corresponds to a positive-semidefinite quadratic
-form in which \\e_ie_i=+1\\ for all \\i\leq p\\ and \\e_ie_i=0\\ for all
-\\i \> p\\. Similarly, \\(0,q)\\ corresponds to a negative-semidefinite
-quadratic form in which \\e_ie_i=-1\\ for all \\i\leq q\\ and
-\\e_ie_i=0\\ for all \\i \> q\\.
+form in which \\e_ie_i=+1\\ for all \\i\leqslant p\\ and \\e_ie_i=0\\
+for all \\i \> p\\. Similarly, \\(0,q)\\ corresponds to a
+negative-semidefinite quadratic form in which \\e_ie_i=-1\\ for all
+\\i\leqslant q\\ and \\e_ie_i=0\\ for all \\i \> q\\.
 
 A strictly positive-definite quadratic form is specified by infinite
 \\p\\ \[in which case \\q\\ is irrelevant\], and `signature(Inf)`

@@ -82,9 +82,9 @@ Binary operator `%dot%` is a synonym for `%.%`, which causes problems
 for rmarkdown.
 
 Function `clifford_inverse()` returns an inverse for nonnull Clifford
-objects \\\operatorname{Cl}(p,q)\\ for \\p+q\leq 5\\, and a few other
-special cases. The functionality is problematic as nonnull blades always
-have an inverse; but function
+objects \\\operatorname{Cl}(p,q)\\ for \\p+q\leqslant 5\\, and a few
+other special cases. The functionality is problematic as nonnull blades
+always have an inverse; but function
 [`is.blade()`](https://robinhankin.github.io/clifford/reference/term.md)
 is not yet implemented. Blades (including null blades) have a
 pseudoinverse, but this is not implemented yet either.
@@ -123,7 +123,7 @@ the vignette for more details.
 
 Division, as in idiom `x/y`, is defined as `x*clifford_inverse(y)`.
 Function `clifford_inverse()` uses the method set out by Hitzer and
-Sangwine but is limited to \\p+q\leq 5\\.
+Sangwine but is limited to \\p+q\leqslant 5\\.
 
 The Lie bracket, \\\left\[x,y\right\]\\ is implemented in the package
 using idiom such as `.[x,y]`, and this is documented at `dot.Rd`.

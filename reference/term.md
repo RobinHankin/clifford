@@ -24,10 +24,7 @@ is.basisblade(x)
   ordering is consistent between them (an extended discussion of this
   phenomenon is presented in the `mvp` package).
 
-- Function `term()` returns a clifford object that comprises a single
-  term with unit coefficient.
-
-- Function `is.basisterm()` returns `TRUE` if its argument has only a
+- Function `is.basisblade()` returns `TRUE` if its argument has only a
   single term, or is a nonzero scalar; the zero clifford object is not
   considered to be a basis term.
 

@@ -87,8 +87,8 @@ a\leqslant p+q\right\rbrace\right\| \$\$
 \$\$ \mathrm{gr}\_{+}(e_A) = \left\|\left\lbrace a\in A\colon 1\leqslant
 a\leqslant p\right\rbrace\right\| \$\$
 
-\$\$ \mathrm{gr}\_{-}(e_A) = \left\|\left\lbrace a\in A\colon p \< a\leq
-p+q\right\rbrace\right\| \$\$
+\$\$ \mathrm{gr}\_{-}(e_A) = \left\|\left\lbrace a\in A\colon p \<
+a\leqslant p+q\right\rbrace\right\| \$\$
 
 Function `gradeszero()` counts only the basis vectors squaring to zero
 (I have not seen this anywhere else, but it is a logical suggestion).

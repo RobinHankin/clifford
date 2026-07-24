@@ -80,15 +80,11 @@ Various components of a clifford algebra object: terms and blades."></head><body
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-
-
-<p></p><ul><li><p>Functions <code>terms()</code> and <code><a href="Extract.html">coeffs()</a></code> are the
+    <p></p><ul><li><p>Functions <code>terms()</code> and <code><a href="Extract.html">coeffs()</a></code> are the
     extraction methods.  These are unordered vectors but the ordering is
     consistent between them (an extended discussion of this phenomenon
     is presented in the <code>mvp</code> package).</p></li>
-<li><p>Function <code>term()</code> returns a clifford object that comprises
-    a single term with unit coefficient.</p></li>
-<li><p>Function <code>is.basisterm()</code> returns <code>TRUE</code> if its
+<li><p>Function <code>is.basisblade()</code> returns <code>TRUE</code> if its
     argument has only a single term, or is a nonzero scalar; the zero
     clifford object is not considered to be a basis term.</p></li>
 </ul><p>By <dfn>basis vector</dfn>, I mean one of the basis vectors of the underlying
@@ -109,10 +105,6 @@ blades, but \(e_{12} + e_{34}\) is not.</p>
 random blade.</p>
 <p>Function <code>is.blade()</code> is not currently implemented: there is no
 easy way to detect whether a Clifford object is a product of 1-vectors.</p>
-
-
-
-
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

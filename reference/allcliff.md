@@ -19,7 +19,7 @@ allcliff(n,grade)
 - grade:
 
   Grade of multivector to be returned. If missing, multivector contains
-  every term of every grade \\\leq n\\
+  every term of every grade \\\leqslant n\\
 
 ## Author
 
