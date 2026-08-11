@@ -21,7 +21,7 @@ x[i, j, drop]
 
 - x:
 
-  An object of class `dot` (typically the pre-built object `.`)
+  An object of class `dot` (typically the pre-built object “`.`”)
 
 - i, j:
 
