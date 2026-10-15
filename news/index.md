@@ -1,5 +1,9 @@
 # Changelog
 
+## clifford 1.2-1
+
+- antivector vignette inst/
+
 ## clifford 1.2-0-1
 
 CRAN release: 2026-07-05

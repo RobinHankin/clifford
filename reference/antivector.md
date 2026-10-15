@@ -64,7 +64,7 @@ which returns a clifford object of grade 1.
 
 ## Note
 
-An antivector is always a blade.
+An antivector is always a blade; see `inst/antivectors_are_blades.Rmd`
 
 ## Author
 
