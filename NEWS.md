@@ -1,3 +1,6 @@
+# clifford 1.2-1
+- antivector vignette inst/
+
 # clifford 1.2-0-1
 - bugfix
 

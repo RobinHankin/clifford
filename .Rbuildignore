@@ -23,6 +23,7 @@ inst/read.me
 inst/referee_comments2.tex
 inst/referee_comments.tex
 inst/spheres.R
+^inst/antivectors_are_blades.Rmd$
 ^.github$
 ^.devcontainer$
 ^codecov\.yml$

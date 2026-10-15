@@ -53,7 +53,7 @@ Compare \code{as.1vector()}, which returns a clifford object of grade 1.
 
 }
 
-\note{An antivector is always a blade.}
+\note{An antivector is always a blade; see \code{inst/antivectors_are_blades.Rmd}}
 \author{Robin K. S. Hankin}
 \seealso{\code{\link{as.1vector}}}
 \examples{

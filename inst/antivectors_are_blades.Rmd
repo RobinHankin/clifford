@@ -1,0 +1,71 @@
+---
+title: "Antivectors are blades"
+author: "Robin K. S. Hankin"
+output: html_vignette
+bibliography: clifford.bib
+link-citations: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{antivectors}
+  %\usepackage[utf8]{inputenc}
+---
+
+
+```{r setup, include=FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE) 
+knitr::opts_chunk$set(echo = TRUE)
+library("clifford")
+set.seed(0)
+```
+
+```{r out.width='20%', out.extra='style="float:right; padding:10px"',echo=FALSE}
+knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
+```
+
+To cite the clifford package in publications, use
+@hankin2025_clifford.  Here I demonstrate that antivectors are blades
+using algebra and give a numerical example.
+
+
+```{r packageidiom}
+library(clifford)
+
+signature(3,4)
+n <- 7
+options("maxdim" = n)
+
+A <- as.antivector(c(2,3,5,7,11,13,17))
+v <- A * pseudoscalar()
+
+
+f <- function(n){coeffs(v[n])*e(1) - (e(n)^2) * coeffs(v[1])*e(n)}
+
+f(2)
+f(3)
+
+c(
+    drop(f(2) %.% v),
+    drop(f(3) %.% v),
+    drop(f(4) %.% v),
+    drop(f(5) %.% v),
+    drop(f(6) %.% v),
+    drop(f(7) %.% v)
+)
+
+jj <- f(2) ^ f(3) ^ f(4) ^ f(5) ^ f(6) ^ f(7)
+
+scalarfac <- (coeffs(A[seq_len(n)[-1]]))^(n-2)
+
+candidate <- jj / scalarfac
+
+candidate - A
+```
+
+here is a vector that can be used to calculate `e(n)^2`:
+
+```{r}
+ c(rep(c(1,-1),times=signature()),rep(0,getOption("maxdim")-sum(signature())))
+```
+
+
+## References
