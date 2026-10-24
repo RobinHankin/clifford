@@ -78,7 +78,7 @@ signature()
 ```
 
 However, the default value is to use an infinite signature which
-corresponds to $e_i^2=1$ for all i$:
+corresponds to $e_i^2=1$ for all $i$:
 
 ```{r showinfinitesig}
 options(maxdim=NULL)
