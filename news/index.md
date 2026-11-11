@@ -3,6 +3,7 @@
 ## clifford 1.2-1
 
 - antivector vignette inst/
+- rollback for quadform 0.0-4-1
 
 ## clifford 1.2-0-1
 

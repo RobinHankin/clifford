@@ -1,6 +1,6 @@
 # Lorentz transforms via Clifford algebra
 
-![](../../../_temp/Library/clifford/help/figures/clifford.png)![](../../../_temp/Library/jordan/help/figures/jordan.png)![](../../../_temp/Library/quadform/help/figures/quadform.png)
+![](../../../_temp/Library/clifford/help/figures/clifford.png)![](../../../_temp/Library/jordan/help/figures/jordan.png)
 
 To cite the `clifford` package in publications please use Hankin
 ([2025a](#ref-hankin2025_clifford_rmd)). In this short document I show
