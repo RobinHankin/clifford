@@ -23,7 +23,7 @@ library("jordan")
 ```{r, label=hexstickerplotter, out.width='15%', out.extra='style="float:right; padding:10px"',echo=FALSE}
 knitr::include_graphics(system.file("help/figures/clifford.png", package = "clifford"))
 knitr::include_graphics(system.file("help/figures/jordan.png", package = "jordan"))
-knitr::include_graphics(system.file("help/figures/quadform.png", package = "quadform"))
+# knitr::include_graphics(system.file("help/figures/logo.png", package = "quadform")) # needs quadform >=0.0-4-1
 ```
 
 To cite the `clifford` package in publications please use
